@@ -48,8 +48,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a class="text-info" href="{{route('seller')}}"><i class="fa fa-level-down"></i>Seller</a></li>
-            <li><a class="text-info" href="#"><i class="fa fa-level-down"></i>Buyer</a></li>
+            <li><a class="text-info" href="{{route('seller')}}"><i class="fa fa-level-down"></i>Seller Management</a></li>
+            <li><a class="text-info" href="#"><i class="fa fa-level-down"></i>Buyer Management</a></li>
+            <li><a class="text-info" href="{{route('group')}}"><i class="fa fa-level-down"></i>Group Management</a></li>
           </ul>
         </li>
 

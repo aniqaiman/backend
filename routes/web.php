@@ -16,8 +16,15 @@ Route::get('/', ['as' => 'dashboard','uses' =>
 	return view('dashboard');
 }]);
 
-Route::post('/seller', ['as'=>'createSeller', 'uses'=>'SellerController@createSeller']);
-Route::get('/seller',['as'=>'seller','uses'=>'SellerController@getSeller']);
-Route::get('/editSeller/{seller_id}',['as'=>'editSeller','uses'=>'SellerController@editSeller']);
-Route::post('/updateSeller',['as'=>'updateSeller','uses'=>'SellerController@updateSeller']);
-Route::delete('/seller/{seller_id}',['as'=>'deleteSeller','uses'=>'SellerController@deleteSeller']);
+// -------------------------------------------Seller----------------------------------------------------
+
+	Route::post('/seller', ['as'=>'createSeller', 'uses'=>'SellerController@createSeller']);
+	Route::get('/seller',['as'=>'seller','uses'=>'SellerController@getSeller']);
+	Route::get('/editSeller/{seller_id}',['as'=>'editSeller','uses'=>'SellerController@editSeller']);
+	Route::post('/updateSeller',['as'=>'updateSeller','uses'=>'SellerController@updateSeller']);
+	Route::delete('/seller/{seller_id}',['as'=>'deleteSeller','uses'=>'SellerController@deleteSeller']);
+
+// -------------------------------------------Group----------------------------------------------------
+
+	Route::post('/group', ['as'=>'createGroup', 'uses'=>'GroupController@createGroup']);
+	Route::get('/group', ['as'=>'group', 'uses'=>'GroupController@getGroup', 'roles'=>['admin']]);
