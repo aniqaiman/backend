@@ -37,69 +37,31 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="first_name" class="col-sm-3 control-label">First Name: </label>
-                          <div class="col-sm-9">
-                          <input type="text" class="form-control" name="first_name" id="first_name">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="last_name" class="col-sm-3 control-label">Last Name: </label>
-                          <div class="col-sm-9">
-                          <input type="text" class="form-control" name="last_name" id="last_name">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="locale" class="col-sm-3 control-label">Locale: </label>
-                          <div class="col-sm-9">
-                          <input type="text" class="form-control" name="locale" id="locale">
-                          </div>
-                        </div>
-                        <div class="form-group">
                           <label for="email" class="col-sm-3 control-label">Email: </label>
                           <div class="col-sm-9">
-                          <input type="text" class="form-control" name="email" id="email">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="phone_number" class="col-sm-3 control-label">Phone Number: </label>
-                          <div class="col-sm-9">
-                          <input type="text" class="form-control" name="phone_number" id="phone_number">
+                          <input type="email" class="form-control" name="email" id="email">
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="address" class="col-sm-3 control-label">Address: </label>
                           <div class="col-sm-9">
-                          <input type="text" class="form-control" name="address" id="address">
-                          </div>
-                        </div> 
-                        <div class="form-group">
-                          <label for="birthdate" class="col-sm-3 control-label">Birth Date: </label>
-                          <div class="col-sm-9">
-                          <input type="date" class="form-control" name="birthdate" id="birthdate">
+                          <textarea class="form-control" name="address" id="address"></textarea>
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="gender" class="col-sm-3 control-label">Gender: </label>
+                          <label for="phonenumber" class="col-sm-3 control-label">Phone Number: </label>
                           <div class="col-sm-9">
-                          <input type="text" class="form-control" name="gender" id="gender">
+                          <input type="text" class="form-control" name="phonenumber" id="phonenumber">
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="race" class="col-sm-3 control-label">Race: </label>
+                          <label for="profilepic" class="col-sm-3 control-label">Profile Picture: </label>
                           <div class="col-sm-9">
-                          <input type="text" class="form-control" name="race" id="race">
+                          <input type="file" class="form-control" name="profilepic" id="profilepic">
                           </div>
                         </div>
-                        <div class="form-group">
-                          <label for="image" class="col-sm-3 control-label">Image: </label>
-                          <div class="col-sm-9">
-                          <input type="file" class="form-control" name="image" id="image">
-                          </div>
-                        </div>
-                        
-                        
+    
                     </div>
-
                   </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -130,15 +92,13 @@
                       <div class="table-responsive mailbox-messages">
                         <table class="table table-hover table-striped" id="user-table">
                           <thead>
-                          <tr class="info">
+                          <tr class="info bg-black">
                             <th><input type="checkbox"></th>
                             <th class="mailbox-star"><center><a href="#">Id</a></center></th>
                             <th class="mailbox-name"><center><a href="#">Name</a></center></th>
                             <th class="mailbox-name"><center><a href="#">Email</a></center></th>
-                            <th class="mailbox-name"><center><a href="#">Password</a></center></th>
+                            <!-- <th class="mailbox-name"><center><a href="#">Password</a></center></th> -->
                             <th class="mailbox-name"><center><a href="#">Address</a></center></th>
-                            <th class="col-sm-3"><center><a href="#">Billing Info</a></center></th>
-                            <th class="col-sm-3"><center><a href="#">Credit Card Info</a></center></th>
                             <th class="col-sm-3"><center><a href="#">Phone Number</a></center></th>
                             <th class="col-sm-3"><center><a href="#">Profile Picture</a></center></th>
                             <th class="mailbox-name"><center><a href="#">Operation</a></center></th>
@@ -152,10 +112,8 @@
                             <td class="mailbox-star"><center><a href="#">{{$user->user_id}}</a></center></td>
                             <td class="mailbox-name"><center><a href="#">{{$user->name}}</a></center></td>
                             <td class="mailbox-name"><center><a href="#">{{$user->email}}</a></center></td>
-                            <td class="mailbox-name"><center><a href="#">{{$user->password}}</a></center></td>
+                            <!-- <td class="mailbox-name"><center><a href="#">{{$user->password}}</a></center></td> -->
                             <td class="mailbox-name"><center><a href="#">{{$user->address}}</a></center></td>
-                            <td class="mailbox-name"><center><a href="#">{{$user->billinginfo}}</a></center></td>
-                            <td class="mailbox-name"><center><a href="#">{{$user->creditcardinfo}}</a></center></td>
                             <td class="mailbox-name"><center><a href="#">{{$user->phonenumber}}</a></center></td>
                             <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$user->profilepic}}"></a></center></td>
                             <td class="mailbox-name"><center><div class="btn-group">
@@ -195,6 +153,7 @@
 <script>
 $(document).ready(function(){
     $('#user-table').DataTable();
+    CKEDITOR.replace('address');
     $('#frm-user-create').on('submit',function(e)
     {
         e.preventDefault();
@@ -202,6 +161,7 @@ $(document).ready(function(){
         var data = $(this).serialize();
         console.log(data);
         var formData = new FormData($(this)[0]);
+        formData.append('farm_address', CKEDITOR.instances.farm_address.getData());
 
         $.ajax(
         {

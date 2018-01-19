@@ -19,6 +19,7 @@ class CreateSellersTable extends Migration
             $table->string('handphone_number');
             $table->string('email_address');
             $table->string('password');
+            $table->string('group_id');
             $table->timestamps();
         });
     }

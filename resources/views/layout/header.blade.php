@@ -4,9 +4,9 @@
     <!-- Logo -->
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>F</b>R</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>|ninja</b>CART|</span>
+      <span class="logo-lg">|food<b>RICO</b>|</span>
     </a>
 
     <!-- Header Navbar -->

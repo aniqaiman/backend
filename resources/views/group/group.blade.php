@@ -53,6 +53,9 @@
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs ">
             <li class="active"><a href="#tab_1" data-toggle="tab">Active</a></li>
+            <li class="pull-right"> 
+          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add-group">Add Group</button>
+          </li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab_1">
@@ -68,7 +71,7 @@
                           
                           <thead>
 
-                          <tr class="info">
+                          <tr class="info bg-black">
                             <th><input type="checkbox"></th>
                             <th class="mailbox-subject"><center><a>Group ID</a></center></th>
                             <th class="mailbox-subject"><center><a>Group Name</a></center></th>

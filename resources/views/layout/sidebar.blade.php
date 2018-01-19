@@ -67,8 +67,8 @@
         </li>
 
         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-file-text"></i> <span class="text-info">Test</span>
+          <a href="{{route('users')}}">
+            <i class="fa fa-file-text"></i> <span class="text-info">User Management</span>
           </a>
         </li> 
         

@@ -28,3 +28,10 @@ Route::get('/', ['as' => 'dashboard','uses' =>
 
 	Route::post('/group', ['as'=>'createGroup', 'uses'=>'GroupController@createGroup']);
 	Route::get('/group', ['as'=>'group', 'uses'=>'GroupController@getGroup', 'roles'=>['admin']]);
+
+// -------------------------------------------user----------------------------------------------------
+
+	Route::post('/users', ['as' =>'createUser', 'uses'=>'UserController@createUser']);
+	Route::get('/users',['as'=>'users','uses'=>'UserController@getUser','roles'=>['admin']]);
+	Route::get('/editUser/{user_id}', ['as' => 'editUser', 'uses' => 'UserController@editUser']);
+	Route::post('/updateUser', ['as' => 'updateUser', 'uses' => 'UserController@updateUser']);
