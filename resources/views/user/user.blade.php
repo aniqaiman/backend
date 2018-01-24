@@ -116,12 +116,12 @@
                             <td class="mailbox-name"><center><a href="#">{{$user->address}}</a></center></td>
                             <td class="mailbox-name"><center><a href="#">{{$user->phonenumber}}</a></center></td>
                             <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$user->profilepic}}"></a></center></td>
-                            <td class="mailbox-name"><center><div class="btn-group">
+                            <!-- <td class="mailbox-name"><center><div class="btn-group">
                             <a class="button btn btn-success btn-sm" href="{{route('editUser', ['user_id'=> $user->user_id])}}"><i class="fa fa-gear"></i>Edit</a>
                             {{ Form::open(array('url' => 'user/' . $user->user_id, 'class' => 'pull-right')) }}
                             {{ Form::hidden('_method', 'DELETE') }}
                             {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
-                            {{ Form::close() }}
+                            {{ Form::close() }} -->
                             </center>
                             </td>
                           </tr>
