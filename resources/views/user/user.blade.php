@@ -161,7 +161,7 @@ $(document).ready(function(){
         var data = $(this).serialize();
         console.log(data);
         var formData = new FormData($(this)[0]);
-        formData.append('farm_address', CKEDITOR.instances.farm_address.getData());
+        formData.append('address', CKEDITOR.instances.address.getData());
 
         $.ajax(
         {
