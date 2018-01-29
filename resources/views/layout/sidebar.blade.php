@@ -35,7 +35,7 @@
 
         <li class="treeview">
           <a href="{{route('dashboard')}}">
-            <i class="fa fa-file-text"></i> <span class="text-info">Dashboard</span>
+            <i class="fa fa-bars"></i> <span class="text-info">Dashboard</span>
           </a>
         </li>
 
@@ -61,14 +61,14 @@
         </li>
 
         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-file-text"></i> <span class="text-info">Test</span>
+          <a href="{{route('driver')}}">
+            <i class="fa fa-truck"></i> <span class="text-info">Driver Management</span>
           </a>
         </li>
 
         <li class="treeview">
           <a href="{{route('users')}}">
-            <i class="fa fa-file-text"></i> <span class="text-info">User Management</span>
+            <i class="fa fa-users"></i> <span class="text-info">User Management</span>
           </a>
         </li> 
         

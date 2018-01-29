@@ -35,3 +35,8 @@ Route::get('/', ['as' => 'dashboard','uses' =>
 	Route::get('/users',['as'=>'users','uses'=>'UserController@getUser','roles'=>['admin']]);
 	// Route::get('/editUser/{user_id}', ['as' => 'editUser', 'uses' => 'UserController@editUser']);
 	// Route::post('/updateUser', ['as' => 'updateUser', 'uses' => 'UserController@updateUser']);
+
+// -------------------------------------------Driver----------------------------------------------------	
+
+	Route::post('/driver', ['as'=>'createDriver', 'uses'=>'DriverController@createDriver']);
+	Route::get('/driver', ['as'=>'driver','uses'=>'DriverController@getDriver']);
