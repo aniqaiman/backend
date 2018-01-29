@@ -82,7 +82,7 @@
                           @foreach($groups as $group)
                           <tr class="info">
                             <td><input type="checkbox"></td>
-                            <td class="mailbox-subject"><center><a href="#">{{$group->id}}</a></center></td>
+                            <td class="mailbox-subject"><center><a href="#">{{$group->group_id}}</a></center></td>
                             <td class="mailbox-subject"><center><a href="#">{{$group->group_name}}</a></center></td>
                           </tr>
                          @endforeach

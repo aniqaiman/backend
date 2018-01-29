@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->longtext('address');
             $table->string('phonenumber');
             $table->string('profilepic');
+            $table->string('group_id');
             $table->timestamps();
         });    
     }
