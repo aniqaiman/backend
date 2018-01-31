@@ -61,7 +61,7 @@
             <div class="form-group">
               <label for="farm_address" class="col-sm-3 control-label">Farm Address: </label>
               <div class="col-sm-9">
-              <textarea class="form-control" name="farm_address" id="farm_address" ></textarea>
+                <textarea class="form-control" name="farm_address" id="farm_address" ></textarea>
               </div>
             </div>
 
@@ -86,11 +86,32 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label for="bank_name" class="col-sm-3 control-label">Bank Name: </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="bank_name" id="bank_name" multiple="true">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="bank_acc_holder_name" class="col-sm-3 control-label">Acc Holder Name: </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="bank_acc_holder_name" id="bank_acc_holder_name" multiple="true">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="bank_acc_number" class="col-sm-3 control-label">Bank Acc Number: </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="bank_acc_number" id="bank_acc_number" multiple="true">
+              </div>
+            </div>
+
           </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
       </form>
     </div>
   </div>
@@ -118,76 +139,76 @@
                   <table class="table table-hover table-striped" id="supplier-table">
                    <thead>
 
-                      <tr class="info bg-black">
+                    <tr class="info bg-black">
                       
-                        <th><input type="checkbox"></th>
-                        <th class="mailbox-star"><center><a href="#">Seller ID</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">Owner Name</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">Company Name</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">Registration Number</a></center></th>
-                        <!-- <th class="mailbox-star"><center><a href="#">IC Number</a></center></th> -->
-                        <th class="mailbox-star"><center><a href="#">Farm Address</a></center></th>
-                        <!-- <th class="mailbox-star"><center><a href="#">Handphone Number</a></center></th> -->
-                        <th class="mailbox-star"><center><a href="#">Email Address</a></center></th>
-                        <!-- <th class="mailbox-star"><center><a href="#">Password</a></center></th> -->
-                        <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
-                         
-                      </tr>
-                       </thead>
-                       
-                       <tbody>
-                      @foreach($sellers as $seller) 
-                      <tr class="info">
-                        <td><input type="checkbox"></td>
-                        <td class="mailbox-star"><center><a href="#">{{$seller->seller_id}}</a></center></td>
-                        <td class="mailbox-name"><center><a href="#">{{$seller->owner_name}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$seller->company_name}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$seller->registration_number}}</a></center></td>
-                        <!-- <td class="mailbox-date"><center><a href="#">{{$seller->ic_number}}</a></center></td> -->
-                        <td class="mailbox-date"><center><a href="#">{{$seller->farm_address}}</a></center></td>
-                        <!-- <td class="mailbox-date"><center><a href="#">{{$seller->handphone_number}}</a></center></td> -->
-                        <td class="mailbox-date"><center><a href="#">{{$seller->email_address}}</a></center></td>
-                        <!-- <td class="mailbox-date"><center><a href="#">{{$seller->password}}</a></center></td> -->
-                        <td class="mailbox-subject"><center><div class="btn-group">
-                            <a class="button btn btn-success btn-sm" href="#"><i class="fa fa-edit"></i> Edit</a>
-                            {{ Form::open(array('url' => 'seller/' . $seller->seller_id, 'class' => 'pull-right')) }}
-                            {{ Form::hidden('_method', 'DELETE') }}
-                            {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
-                            {{ Form::close() }}
-                            </center>
-                        </td>
-                      </tr>
-                      @endforeach
-
+                      <th><input type="checkbox"></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">Seller ID</a></center></th> -->
+                      <th class="mailbox-star"><center><a href="#">Owner Name</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Company Name</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Registration Number</a></center></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">IC Number</a></center></th> -->
+                      <th class="mailbox-star"><center><a href="#">Farm Address</a></center></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">Handphone Number</a></center></th> -->
+                      <th class="mailbox-star"><center><a href="#">Email Address</a></center></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">Password</a></center></th> -->
+                      <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
                       
-                    </tbody>
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+                    @foreach($sellers as $seller) 
+                    <tr class="info">
+                      <td><input type="checkbox"></td>
+                      <!-- <td class="mailbox-star"><center><a href="#">{{$seller->seller_id}}</a></center></td> -->
+                      <td class="mailbox-name"><center><a href="#">{{$seller->owner_name}}</a></center></td>
+                      <td class="mailbox-date"><center><a href="#">{{$seller->company_name}}</a></center></td>
+                      <td class="mailbox-date"><center><a href="#">{{$seller->registration_number}}</a></center></td>
+                      <!-- <td class="mailbox-date"><center><a href="#">{{$seller->ic_number}}</a></center></td> -->
+                      <td class="mailbox-date"><center><a href="#">{{$seller->farm_address}}</a></center></td>
+                      <!-- <td class="mailbox-date"><center><a href="#">{{$seller->handphone_number}}</a></center></td> -->
+                      <td class="mailbox-date"><center><a href="#">{{$seller->email_address}}</a></center></td>
+                      <!-- <td class="mailbox-date"><center><a href="#">{{$seller->password}}</a></center></td> -->
+                      <td class="mailbox-subject"><center><div class="btn-group">
+                        <a class="button btn btn-success btn-sm" href="#"><i class="fa fa-edit"></i> Edit</a>
+                        {{ Form::open(array('url' => 'seller/' . $seller->seller_id, 'class' => 'pull-right')) }}
+                        {{ Form::hidden('_method', 'DELETE') }}
+                        {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
+                        {{ Form::close() }}
+                      </center>
+                    </td>
+                  </tr>
+                  @endforeach
 
-                  </table>
-                  <!-- /.table -->
-                </div>
-                <!-- /.mail-box-messages -->
-              </div>
-              <!-- /.box-body -->
+                  
+                </tbody>
+
+              </table>
+              <!-- /.table -->
             </div>
+            <!-- /.mail-box-messages -->
           </div>
-          <!-- /.tab-pane -->
-
+          <!-- /.box-body -->
         </div>
-        <!-- /.tab-content -->
       </div>
-      <!-- nav-tabs-custom -->
+      <!-- /.tab-pane -->
+
     </div>
-    <!-- Main content -->
-  </section>
-  @endsection
+    <!-- /.tab-content -->
+  </div>
+  <!-- nav-tabs-custom -->
+</div>
+<!-- Main content -->
+</section>
+@endsection
 
-  @section('script')
-  <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
-  <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+@section('script')
+<script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
-  <script>
-$(document).ready(function()
-{
+<script>
+  $(document).ready(function()
+  {
     $('#supplier-table').DataTable();
     CKEDITOR.replace('farm_address');
 
@@ -199,25 +220,25 @@ $(document).ready(function()
 
       console.log(data);
       var formData = new FormData($(this)[0]);
-   formData.append('farm_address', CKEDITOR.instances.farm_address.getData());
+      formData.append('farm_address', CKEDITOR.instances.farm_address.getData());
    // console.log(CKEDITOR.instances.description.getData());
-      $.ajax(
-      {
-        url:"{{route('createSeller')}}", 
-        type: "POST",
-        data: formData,
-        async: false,
-        success: function(response)
-        {
-          console.log(response);
-          $("[data-dismiss = modal]").trigger({type: "click"});
-        },  
-        cache: false,
-        contentType: false,
-        processData: false
-      });
-    });
-});
+   $.ajax(
+   {
+    url:"{{route('createSeller')}}", 
+    type: "POST",
+    data: formData,
+    async: false,
+    success: function(response)
+    {
+      console.log(response);
+      $("[data-dismiss = modal]").trigger({type: "click"});
+    },  
+    cache: false,
+    contentType: false,
+    processData: false
+  });
+ });
+  });
 
-  </script>
-  @endsection 
+</script>
+@endsection 

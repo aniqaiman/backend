@@ -25,6 +25,9 @@ class SellerController extends Controller
     		$sellers->handphone_number = $request->handphone_number;
     		$sellers->email_address = $request->email_address;
     		$sellers->password = bcrypt('$request->password');
+            $sellers->bank_name = $request->bank_name;
+            $sellers->bank_acc_holder_name = $request->bank_acc_holder_name;
+            $sellers->bank_acc_number = $request->bank_acc_number;
     		$sellers->save();
     		return response($sellers);
     	}
@@ -54,6 +57,9 @@ class SellerController extends Controller
     		$sellers->handphone_number = $request->handphone_number;
     		$sellers->email_address = $request->email_address;
     		$sellers->password = bcrypt('$request->password');
+            $sellers->bank_name = $request->bank_name;
+            $sellers->bank_acc_holder_name = $request->bank_acc_holder_name;
+            $sellers->bank_acc_number = $request->bank_acc_number;
     		$sellers->save();
     		return response($sellers); 
     	}

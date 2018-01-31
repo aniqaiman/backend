@@ -18,5 +18,9 @@ class Seller extends Model
     	'handphone_number',
     	'email_address',
     	'password',
+        'group_id',
+        'bank_name',
+        'bank_acc_holder_name',
+        'bank_holder_number',
     	];
 }

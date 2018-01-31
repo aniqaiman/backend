@@ -75,6 +75,7 @@
                             <th><input type="checkbox"></th>
                             <th class="mailbox-subject"><center><a>Group ID</a></center></th>
                             <th class="mailbox-subject"><center><a>Group Name</a></center></th>
+                            <th class="mailbox-subject"><center><a>Operation</a></center></th>
                           </tr>
                           </thead>
 
@@ -84,6 +85,14 @@
                             <td><input type="checkbox"></td>
                             <td class="mailbox-subject"><center><a href="#">{{$group->group_id}}</a></center></td>
                             <td class="mailbox-subject"><center><a href="#">{{$group->group_name}}</a></center></td>
+                            <td class="mailbox-subject"><center><div class="btn-group">
+                        <a class="button btn btn-success btn-sm" href="{{route('editGroup', ['group_id'=> $group->group_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        {{ Form::open(array('url' => 'group/' . $group->group_id, 'class' => 'pull-right')) }}
+                        {{ Form::hidden('_method', 'DELETE') }}
+                        {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
+                        {{ Form::close() }}
+                      </center>
+                    </td>
                           </tr>
                          @endforeach
                       

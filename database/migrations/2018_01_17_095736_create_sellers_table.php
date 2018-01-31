@@ -19,7 +19,10 @@ class CreateSellersTable extends Migration
             $table->string('handphone_number');
             $table->string('email_address');
             $table->string('password');
-            $table->string('group_id');
+            $table->string('group_id')->default(1);
+            $table->string('bank_name');
+            $table->string('bank_acc_holder_name');
+            $table->string('bank_acc_number');
             $table->timestamps();
         });
     }
