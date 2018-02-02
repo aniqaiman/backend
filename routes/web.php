@@ -32,7 +32,7 @@ Route::get('/', ['as' => 'dashboard','uses' =>
 	Route::post('/updateGroup',['as'=>'updateGroup','uses'=>'GroupController@updateGroup']);
 	Route::delete('/group/{group_id}',['as'=>'deleteGroup','uses'=>'GroupController@deleteGroup']);
 
-// -------------------------------------------user----------------------------------------------------
+// -------------------------------------------User----------------------------------------------------
 
 	Route::post('/users', ['as' =>'createUser', 'uses'=>'UserController@createUser']);
 	Route::get('/users',['as'=>'users','uses'=>'UserController@getUser','roles'=>['admin']]);

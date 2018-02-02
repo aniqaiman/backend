@@ -42,22 +42,16 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-usd"></i>
-            <span class="text-info">Seller / Buyer</span>
+            <span class="text-info">Supplier / Buyer</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a class="text-info" href="{{route('seller')}}"><i class="fa fa-level-down"></i>Seller Management</a></li>
-            <li><a class="text-info" href="#"><i class="fa fa-level-down"></i>Buyer Management</a></li>
+            <li><a class="text-info" href="{{route('seller')}}"><i class="fa fa-level-down"></i>Supplier Management</a></li>
+            <li><a class="text-info" href="{{route('buyer')}}"><i class="fa fa-level-down"></i>Buyer Management</a></li>
             <li><a class="text-info" href="{{route('group')}}"><i class="fa fa-level-down"></i>Group Management</a></li>
           </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-file-text"></i> <span class="text-info">Test</span>
-          </a>
         </li>
 
         <li class="treeview">
