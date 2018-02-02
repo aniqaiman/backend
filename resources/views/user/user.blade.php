@@ -107,11 +107,11 @@
                     <thead>
                       <tr class="info bg-black">
                         <th><input type="checkbox"></th>
-                        <th class="mailbox-star"><center><a href="#">Id</a></center></th>
+                        <!-- <th class="mailbox-star"><center><a href="#">Id</a></center></th> -->
                         <th class="mailbox-name"><center><a href="#">Name</a></center></th>
                         <th class="mailbox-name"><center><a href="#">Email</a></center></th>
                         <th class="mailbox-name"><center><a href="#">Address</a></center></th>
-                        <th class="col-sm-3"><center><a href="#">Phone Number</a></center></th>
+                        <th class="mailbox-name"><center><a href="#">Phone Number</a></center></th>
                         <th class="col-sm-3"><center><a href="#">Profile Picture</a></center></th>
                         <th class="mailbox-name"><center><a href="#">Operation</a></center></th>
                       </tr>
@@ -122,7 +122,7 @@
                      <tr class="info">
                       
                       <td><input type="checkbox"></td>
-                      <td class="mailbox-star"><center><a href="#">{{$user->user_id}}</a></center></td>
+                      <!-- <td class="mailbox-star"><center><a href="#">{{$user->user_id}}</a></center></td> -->
                       <td class="mailbox-name"><center><a href="#">{{$user->name}}</a></center></td>
                       <td class="mailbox-name"><center><a href="#">{{$user->email}}</a></center></td>
                       <td class="mailbox-name"><center><a href="#">{{$user->address}}</a></center></td>
