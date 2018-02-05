@@ -55,6 +55,20 @@
         </li>
 
         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-product-hunt"></i>
+            <span class="text-info">Product Management</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a class="text-info" href="{{route('fruit')}}"><i class="fa fa-level-down"></i>Fruits Management</a></li>
+            <li><a class="text-info" href="#"><i class="fa fa-level-down"></i>Vegetables Management</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
           <a href="{{route('driver')}}">
             <i class="fa fa-truck"></i> <span class="text-info">Driver Management</span>
           </a>

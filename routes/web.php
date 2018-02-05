@@ -55,3 +55,19 @@ Route::get('/', ['as' => 'dashboard','uses' =>
 	Route::get('/editBuyer/{buyer_id}',['as'=>'editBuyer','uses'=>'BuyerController@editBuyer']);
 	Route::post('/updateBuyer',['as'=>'updateBuyer','uses'=>'BuyerController@updateBuyer']);
 	Route::delete('/buyer/{buyer_id}',['as'=>'deleteBuyer','uses'=>'BuyerController@deleteBuyer']);
+
+// -------------------------------------------Fruit----------------------------------------------------
+
+	Route::post('/fruit', ['as'=>'createFruit', 'uses'=>'FruitController@createFruit']);
+	Route::get('/fruit', ['as'=>'fruit','uses'=>'FruitController@getFruit']);
+	Route::get('editFruit/{fruit_id}',['as'=>'editFruit','uses'=>'FruitController@editFruit']);
+	Route::post('/updateFruit',['as'=>'updateFruit','uses'=>'FruitController@updateFruit']);
+	Route::delete('/fruit/{fruit_id}',['as'=>'deleteFruit','uses'=>'FruitController@deleteFruit']);
+
+// -------------------------------------------Vegetable----------------------------------------------------
+
+	Route::post('/vegetable', ['as'=>'createVegetable', 'uses'=>'VegetableController@createVegetable']);
+	Route::get('/vegetable', ['as'=>'vegetable','uses'=>'VegetableController@getVegetable']);
+	Route::get('editVegetable/{vegetable_id}',['as'=>'editVegetable','uses'=>'VegetableController@editVegetable']);
+	Route::post('/updateVegetable',['as'=>'updateVegetable','uses'=>'VegetableController@updateVegetable']);
+	Route::delete('/vegetable/{vegetable_id}',['as'=>'deleteVegetable','uses'=>'VegetableController@deleteVegetable']);	

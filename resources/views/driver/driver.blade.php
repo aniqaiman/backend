@@ -163,12 +163,12 @@
                       <tr class="info bg-black">
                       
                         <th><input type="checkbox"></th>
-                        <th class="mailbox-star"><center><a href="#">Driver ID</a></center></th>
+                        <!-- <th class="mailbox-star"><center><a href="#">Driver ID</a></center></th> -->
                         <th class="mailbox-star"><center><a href="#">Driver Name</a></center></th>
                         <th class="mailbox-star"><center><a href="#">Phone Number</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">Roadtax Expiry</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">Lorry Plate Number</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">License Number</a></center></th>
+                        <th class="mailbox-star"><center><a href="#">Location Cover</a></center></th>
+                        <th class="mailbox-star"><center><a href="#">Max Capacity</a></center></th>
+                        <!-- <th class="mailbox-star"><center><a href="#">License Number</a></center></th> -->
                         <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
                          
                       </tr>
@@ -178,12 +178,12 @@
                       @foreach($drivers as $driver) 
                       <tr class="info">
                         <td><input type="checkbox"></td>
-                        <td class="mailbox-star"><center><a href="#">{{$driver->driver_id}}</a></center></td>
+                        <!-- <td class="mailbox-star"><center><a href="#">{{$driver->driver_id}}</a></center></td> -->
                         <td class="mailbox-name"><center><a href="#">{{$driver->name}}</a></center></td>
                         <td class="mailbox-date"><center><a href="#">{{$driver->phone_number}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$driver->roadtax_expiry}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$driver->lorry_plate_number}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$driver->license_number}}</a></center></td>
+                        <td class="mailbox-date"><center><a href="#">{{$driver->location_to_cover}}</a></center></td>
+                        <td class="mailbox-date"><center><a href="#">{{$driver->lorry_capacity}}</a></center></td>
+                        <!-- <td class="mailbox-date"><center><a href="#">{{$driver->license_number}}</a></center></td> -->
                         <td class="mailbox-subject"><center><div class="btn-group">
                             <a class="button btn btn-success btn-sm" href="#"><i class="fa fa-edit"></i> Edit</a>
                             </center>
