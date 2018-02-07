@@ -73,10 +73,10 @@
             </div>
 
           </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
       </form>
     </div>
   </div>
@@ -104,67 +104,71 @@
                   <table class="table table-hover table-striped" id="vegetable-table">
                    <thead>
 
-                      <tr class="info bg-black">
-                      
-                        <th><input type="checkbox"></th>
-                        <!-- <th class="mailbox-star"><center><a href="#">Driver ID</a></center></th> -->
-                        <th class="mailbox-star"><center><a href="#">Veg Name</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">Veg Grade</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">Veg Price(RM)</a></center></th>
-                        <!-- <th class="mailbox-star"><center><a href="#">Fruit Image</a></center></th> -->
-                        <th class="mailbox-star"><center><a href="#">Veg Quantity(KG)</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">Veg Harvest Duration(Month)</a></center></th>
-                        <!-- <th class="mailbox-star"><center><a href="#">Fruit</a></center></th> -->
-                        <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
-                         
-                      </tr>
-                       </thead>
-                       
-                       <tbody>
-                      @foreach($vegetables as $vegetable) 
-                      <tr class="info">
-                        <td><input type="checkbox"></td>
-                        <td class="mailbox-name"><center><a href="#">{{$vegetable->vegetable_name}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_grade}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_price}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_quantity}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_harvest_duration}}</a></center></td>
-                        <td class="mailbox-subject"><center><div class="btn-group">
-                            <a class="button btn btn-success btn-sm" href="#"><i class="fa fa-edit"></i> Edit</a>
-                            </center>
-                        </td>
-                      </tr>
-                      @endforeach
+                    <tr class="info bg-black">
 
-                      
-                    </tbody>
+                      <th><input type="checkbox"></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">Driver ID</a></center></th> -->
+                      <th class="mailbox-star"><center><a href="#">Veg Name</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Veg Grade</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Veg Price(RM)</a></center></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">Fruit Image</a></center></th> -->
+                      <th class="mailbox-star"><center><a href="#">Veg Quantity(KG)</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Veg Harvest Duration(Month)</a></center></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">Fruit</a></center></th> -->
+                      <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
 
-                  </table>
-                  <!-- /.table -->
-                </div>
-                <!-- /.mail-box-messages -->
-              </div>
-              <!-- /.box-body -->
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    @foreach($vegetables as $vegetable) 
+                    <tr class="info">
+                      <td><input type="checkbox"></td>
+                      <td class="mailbox-name"><center><a href="#">{{$vegetable->vegetable_name}}</a></center></td>
+                      <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_grade}}</a></center></td>
+                      <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_price}}</a></center></td>
+                      <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_quantity}}</a></center></td>
+                      <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_harvest_duration}}</a></center></td>
+                      <td class="mailbox-subject"><center><div class="btn-group">
+                      <a class="button btn btn-success btn-sm" href="{{route('editVegetable', ['vegetable_id'=> $vegetable->vegetable_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        {{ Form::open(array('url' => 'vegetable/' . $vegetable->vegetable_id, 'class' => 'pull-right')) }}
+                        {{ Form::hidden('_method', 'DELETE') }}
+                        {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
+                        {{ Form::close() }}
+                      </center>
+                    </td>
+                  </tr>
+                  @endforeach
+
+
+                </tbody>
+
+              </table>
+              <!-- /.table -->
             </div>
+            <!-- /.mail-box-messages -->
           </div>
-          <!-- /.tab-pane -->
-
+          <!-- /.box-body -->
         </div>
-        <!-- /.tab-content -->
       </div>
-      <!-- nav-tabs-custom -->
+      <!-- /.tab-pane -->
+
     </div>
-    <!-- Main content -->
-  </section>
-  @endsection
+    <!-- /.tab-content -->
+  </div>
+  <!-- nav-tabs-custom -->
+</div>
+<!-- Main content -->
+</section>
+@endsection
 
-  @section('script')
-  <!-- <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script> -->
-  <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+@section('script')
+<!-- <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script> -->
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
-  <script>
-$(document).ready(function()
-{
+<script>
+  $(document).ready(function()
+  {
     $('#vegetable-table').DataTable();
     // CKEDITOR.replace('home_address');
 
@@ -178,23 +182,23 @@ $(document).ready(function()
       var formData = new FormData($(this)[0]);
    // formData.append('home_address', CKEDITOR.instances.home_address.getData());
    // console.log(CKEDITOR.instances.description.getData());
-      $.ajax(
-      {
-        url:"{{route('createVegetable')}}", 
-        type: "POST",
-        data: formData,
-        async: false,
-        success: function(response)
-        {
-          console.log(response);
-          $("[data-dismiss = modal]").trigger({type: "click"});
-        },  
-        cache: false,
-        contentType: false,
-        processData: false
-      });
-    });
-});
+   $.ajax(
+   {
+    url:"{{route('createVegetable')}}", 
+    type: "POST",
+    data: formData,
+    async: false,
+    success: function(response)
+    {
+      console.log(response);
+      $("[data-dismiss = modal]").trigger({type: "click"});
+    },  
+    cache: false,
+    contentType: false,
+    processData: false
+  });
+ });
+  });
 
-  </script>
-  @endsection 
+</script>
+@endsection 

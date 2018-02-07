@@ -47,7 +47,7 @@
             <div class="form-group">
               <label for="home_address" class="col-sm-3 control-label">Home Address: </label>
               <div class="col-sm-9">
-              <textarea class="form-control" name="home_address" id="home_address" multiple="true"></textarea>
+                <textarea class="form-control" name="home_address" id="home_address" multiple="true"></textarea>
               </div>
             </div>
 
@@ -61,7 +61,7 @@
             <div class="form-group">
               <label for="license_number" class="col-sm-3 control-label">License Number: </label>
               <div class="col-sm-9">
-              <input type="text" class="form-control" name="license_number" id="license_number" multiple="true">
+                <input type="text" class="form-control" name="license_number" id="license_number" multiple="true">
               </div>
             </div>
 
@@ -129,10 +129,10 @@
             </div>
 
           </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
       </form>
     </div>
   </div>
@@ -160,66 +160,70 @@
                   <table class="table table-hover table-striped" id="driver-table">
                    <thead>
 
-                      <tr class="info bg-black">
+                    <tr class="info bg-black">
                       
-                        <th><input type="checkbox"></th>
-                        <!-- <th class="mailbox-star"><center><a href="#">Driver ID</a></center></th> -->
-                        <th class="mailbox-star"><center><a href="#">Driver Name</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">Phone Number</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">Location Cover</a></center></th>
-                        <th class="mailbox-star"><center><a href="#">Max Capacity</a></center></th>
-                        <!-- <th class="mailbox-star"><center><a href="#">License Number</a></center></th> -->
-                        <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
-                         
-                      </tr>
-                       </thead>
-                       
-                       <tbody>
-                      @foreach($drivers as $driver) 
-                      <tr class="info">
-                        <td><input type="checkbox"></td>
-                        <!-- <td class="mailbox-star"><center><a href="#">{{$driver->driver_id}}</a></center></td> -->
-                        <td class="mailbox-name"><center><a href="#">{{$driver->name}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$driver->phone_number}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$driver->location_to_cover}}</a></center></td>
-                        <td class="mailbox-date"><center><a href="#">{{$driver->lorry_capacity}}</a></center></td>
-                        <!-- <td class="mailbox-date"><center><a href="#">{{$driver->license_number}}</a></center></td> -->
-                        <td class="mailbox-subject"><center><div class="btn-group">
-                            <a class="button btn btn-success btn-sm" href="#"><i class="fa fa-edit"></i> Edit</a>
-                            </center>
-                        </td>
-                      </tr>
-                      @endforeach
-
+                      <th><input type="checkbox"></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">Driver ID</a></center></th> -->
+                      <th class="mailbox-star"><center><a href="#">Driver Name</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Phone Number</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Location Cover</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Max Capacity</a></center></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">License Number</a></center></th> -->
+                      <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
                       
-                    </tbody>
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+                    @foreach($drivers as $driver) 
+                    <tr class="info">
+                      <td><input type="checkbox"></td>
+                      <!-- <td class="mailbox-star"><center><a href="#">{{$driver->driver_id}}</a></center></td> -->
+                      <td class="mailbox-name"><center><a href="#">{{$driver->name}}</a></center></td>
+                      <td class="mailbox-date"><center><a href="#">{{$driver->phone_number}}</a></center></td>
+                      <td class="mailbox-date"><center><a href="#">{{$driver->location_to_cover}}</a></center></td>
+                      <td class="mailbox-date"><center><a href="#">{{$driver->lorry_capacity}}</a></center></td>
+                      <!-- <td class="mailbox-date"><center><a href="#">{{$driver->license_number}}</a></center></td> -->
+                      <td class="mailbox-subject"><center><div class="btn-group">
+                        <a class="button btn btn-success btn-sm" href="{{route('editDriver', ['driver_id'=> $driver->driver_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        {{ Form::open(array('url' => 'driver/' . $driver->driver_id, 'class' => 'pull-right')) }}
+                        {{ Form::hidden('_method', 'DELETE') }}
+                        {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
+                        {{ Form::close() }}
+                      </center>
+                    </td>
+                  </tr>
+                  @endforeach
 
-                  </table>
-                  <!-- /.table -->
-                </div>
-                <!-- /.mail-box-messages -->
-              </div>
-              <!-- /.box-body -->
+                  
+                </tbody>
+
+              </table>
+              <!-- /.table -->
             </div>
+            <!-- /.mail-box-messages -->
           </div>
-          <!-- /.tab-pane -->
-
+          <!-- /.box-body -->
         </div>
-        <!-- /.tab-content -->
       </div>
-      <!-- nav-tabs-custom -->
+      <!-- /.tab-pane -->
+
     </div>
-    <!-- Main content -->
-  </section>
-  @endsection
+    <!-- /.tab-content -->
+  </div>
+  <!-- nav-tabs-custom -->
+</div>
+<!-- Main content -->
+</section>
+@endsection
 
-  @section('script')
-  <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
-  <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+@section('script')
+<script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
-  <script>
-$(document).ready(function()
-{
+<script>
+  $(document).ready(function()
+  {
     $('#driver-table').DataTable();
     CKEDITOR.replace('home_address');
 
@@ -231,25 +235,25 @@ $(document).ready(function()
 
       console.log(data);
       var formData = new FormData($(this)[0]);
-   formData.append('home_address', CKEDITOR.instances.home_address.getData());
+      formData.append('home_address', CKEDITOR.instances.home_address.getData());
    // console.log(CKEDITOR.instances.description.getData());
-      $.ajax(
-      {
-        url:"{{route('createDriver')}}", 
-        type: "POST",
-        data: formData,
-        async: false,
-        success: function(response)
-        {
-          console.log(response);
-          $("[data-dismiss = modal]").trigger({type: "click"});
-        },  
-        cache: false,
-        contentType: false,
-        processData: false
-      });
-    });
-});
+   $.ajax(
+   {
+    url:"{{route('createDriver')}}", 
+    type: "POST",
+    data: formData,
+    async: false,
+    success: function(response)
+    {
+      console.log(response);
+      $("[data-dismiss = modal]").trigger({type: "click"});
+    },  
+    cache: false,
+    contentType: false,
+    processData: false
+  });
+ });
+  });
 
-  </script>
-  @endsection 
+</script>
+@endsection 

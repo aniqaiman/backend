@@ -58,7 +58,7 @@ class VegetableController extends Controller
             }       
     }
 
-    public function deleteVegetable($Vegetable_id, Request $request)
+    public function deleteVegetable($vegetable_id, Request $request)
     {
         $vegetables = Vegetable::find($vegetable_id);
         $vegetables->delete();

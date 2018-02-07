@@ -38,7 +38,7 @@ Route::get('/', ['as' => 'dashboard','uses' =>
 	Route::get('/users',['as'=>'users','uses'=>'UserController@getUser','roles'=>['admin']]);
 	Route::get('/editUser/{user_id}', ['as' => 'editUser', 'uses' => 'UserController@editUser']);
 	Route::post('/updateUser', ['as' => 'updateUser', 'uses' => 'UserController@updateUser']);
-	Route::delete('/user/{user_id}',['as'=>'deleteUser','uses'=>'UserController@deleteUser']);
+	Route::delete('/users/{user_id}',['as'=>'deleteUser','uses'=>'UserController@deleteUser']);
 
 // -------------------------------------------Driver----------------------------------------------------	
 

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
@@ -41,7 +41,7 @@ class SellerController extends Controller
 
     public function editSeller($seller_id, Request $request)
     {
-    	$sellers = Seller::where('seller_id', $request->$seller_id)->first();
+    	$sellers = Seller::where('seller_id', $request->seller_id)->first();
     	return view('seller.editSeller', compact('sellers'));
     }
 
@@ -56,7 +56,6 @@ class SellerController extends Controller
     		$sellers->farm_address =$request->farm_address;
     		$sellers->handphone_number = $request->handphone_number;
     		$sellers->email_address = $request->email_address;
-    		$sellers->password = bcrypt('$request->password');
             $sellers->bank_name = $request->bank_name;
             $sellers->bank_acc_holder_name = $request->bank_acc_holder_name;
             $sellers->bank_acc_number = $request->bank_acc_number;

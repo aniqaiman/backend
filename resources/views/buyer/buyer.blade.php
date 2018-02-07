@@ -126,17 +126,13 @@
                    <thead>
 
                     <tr class="info bg-black">
-                      
+
                       <th><input type="checkbox"></th>
-                      <!-- <th class="mailbox-star"><center><a href="#">Buyer ID</a></center></th> -->
                       <th class="mailbox-star"><center><a href="#">Owner Name</a></center></th>
                       <th class="mailbox-star"><center><a href="#">Company Name</a></center></th>
                       <th class="mailbox-star"><center><a href="#">Company Reg Number</a></center></th>
-                      <!-- <th class="mailbox-star"><center><a href="#">IC Number</a></center></th> -->
                       <th class="mailbox-star"><center><a href="#">Company Address</a></center></th>
-                      <!-- <th class="mailbox-star"><center><a href="#">Handphone Number</a></center></th> -->
                       <th class="mailbox-star"><center><a href="#">Email Address</a></center></th>
-                      <!-- <th class="mailbox-star"><center><a href="#">Password</a></center></th> -->
                       <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
                       
                     </tr>
@@ -146,17 +142,13 @@
                     @foreach($buyers as $buyer) 
                     <tr class="info">
                       <td><input type="checkbox"></td>
-                      <!-- <td class="mailbox-star"><center><a href="#">{{$buyer->buyer_id}}</a></center></td> -->
                       <td class="mailbox-name"><center><a href="#">{{$buyer->owner_name}}</a></center></td>
                       <td class="mailbox-date"><center><a href="#">{{$buyer->company_name}}</a></center></td>
                       <td class="mailbox-date"><center><a href="#">{{$buyer->company_reg_number}}</a></center></td>
-                      <!-- <td class="mailbox-date"><center><a href="#">{{$buyer->ic_number}}</a></center></td> -->
                       <td class="mailbox-date"><center><a href="#">{{$buyer->company_address}}</a></center></td>
-                      <!-- <td class="mailbox-date"><center><a href="#">{{$buyer->handphone_number}}</a></center></td> -->
                       <td class="mailbox-date"><center><a href="#">{{$buyer->email_address}}</a></center></td>
-                      <!-- <td class="mailbox-date"><center><a href="#">{{$buyer->password}}</a></center></td> -->
                       <td class="mailbox-subject"><center><div class="btn-group">
-                        <a class="button btn btn-success btn-sm" href="#"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="button btn btn-success btn-sm" href="{{route('editBuyer', ['buyer_id'=> $buyer->buyer_id])}}"><i class="fa fa-edit"></i> Edit</a>
                         {{ Form::open(array('url' => 'buyer/' . $buyer->buyer_id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
@@ -193,29 +185,25 @@
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
 <script>
-  $(document).ready(function()
-  {
-    $('#buyer-table').DataTable();
-    CKEDITOR.replace('company_address');
+$(document).ready(function(){
+  $('#buyer-table').DataTable();
+  CKEDITOR.replace('company_address');
 
-    $('#frm-buyer-create').on('submit',function(e)
-    {
-      e.preventDefault();
-      console.log('pressed');
-      var data = $(this).serialize();
+  $('#frm-buyer-create').on('submit',function(e){
+    e.preventDefault();
+    console.log('pressed');
+    var data = $(this).serialize();
 
-      console.log(data);
-      var formData = new FormData($(this)[0]);
-      formData.append('company_address', CKEDITOR.instances.company_address.getData());
+    console.log(data);
+    var formData = new FormData($(this)[0]);
+    formData.append('company_address', CKEDITOR.instances.company_address.getData());
    // console.log(CKEDITOR.instances.description.getData());
-   $.ajax(
-   {
+   $.ajax({
     url:"{{route('createBuyer')}}", 
     type: "POST",
     data: formData,
     async: false,
-    success: function(response)
-    {
+    success: function(response){
       console.log(response);
       $("[data-dismiss = modal]").trigger({type: "click"});
     },  
@@ -224,7 +212,7 @@
     processData: false
   });
  });
-  });
+});
 
 </script>
 @endsection 

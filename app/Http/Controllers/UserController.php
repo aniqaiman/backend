@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
@@ -45,10 +45,9 @@ class UserController extends Controller
     {
         $path = $request->file('profilepic')->store('public/images');
         if($request->ajax()){
-            $user = User::where('user_id', $request->user_id)->first();
+            $users = User::where('user_id', $request->user_id)->first();
             $users->name = $request->name;
             $users->email = $request->email;
-            // $users->password = $request->password;
             $users->address = $request->address;
             $users->phonenumber = $request->phonenumber;
             $users->profilepic = $path;
@@ -59,10 +58,10 @@ class UserController extends Controller
 
     public function deleteUser($user_id, Request $request)
     {
-        $user = User::find($user_id);
-        $user->delete();
+        $users = User::find($user_id);
+        $users->delete();
         Session::flash('message', 'Successfully deleted!');
-        return Redirect::to('user');
+        return Redirect::to('users');
     }            
 
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

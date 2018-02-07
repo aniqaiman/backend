@@ -38,7 +38,7 @@ class FruitController extends Controller
 
     public function editFruit($fruit_id, Request $request)
     {
-        $fruits = Fruit::where('group_id', $request->fruit_id)->first();
+        $fruits = Fruit::where('fruit_id', $request->fruit_id)->first();
         return view('fruit.editFruit', compact('fruits'));
     }
 

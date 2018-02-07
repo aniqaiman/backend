@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
-
 use App\Buyer;
 
 class BuyerController extends Controller
@@ -40,8 +39,8 @@ class BuyerController extends Controller
 
     public function editBuyer($buyer_id, Request $request)
     {
-    	$buyers = Buyer::where('buyer_id', $request->$buyer_id)->first();
-    	return view('buyer.buyer', compact('buyers'));
+    	$buyers = Buyer::where('buyer_id', $request->buyer_id)->first();
+    	return view('buyer.editBuyer', compact('buyers'));
     }
 
     public function updateBuyer(Request $request)
@@ -50,13 +49,12 @@ class BuyerController extends Controller
     		$buyers = Buyer::where('buyer_id', $request->buyer_id)->first();
     		$buyers->owner_name = $request->owner_name;
     		$buyers->company_name = $request->company_name;
-    		$buyers->company_reg_number = $request-$company_reg_number;
+    		$buyers->company_reg_number = $request->company_reg_number;
     		$buyers->ic_number = $request->ic_number;
     		$buyers->company_address = $request->company_address;
     		$buyers->phone_number = $request->phone_number;
     		$buyers->handphone_number = $request->handphone_number;
     		$buyers->email_address = $request->email_address;
-    		// $buyers->password = bcrypt('$request->password');
     		$buyers->save();
     		return response($buyers);
     	}
@@ -67,7 +65,7 @@ class BuyerController extends Controller
     	$buyers = Buyer::find($buyer_id);
     	$buyers->delete();
     	Session::flash('message','Successfully deleted!');
-    	return Redirect::to('buyers');
+    	return Redirect::to('buyer');
     }
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
