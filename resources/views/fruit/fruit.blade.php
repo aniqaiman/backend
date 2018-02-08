@@ -31,16 +31,9 @@
           <div class="row">
 
             <div class="form-group">
-              <label for="fruit_name" class="col-sm-3 control-label">Fruit Name: </label>
+              <label for="fruit_image" class="col-sm-3 control-label">Fruit Image: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="fruit_name" id="fruit_name" multiple="true">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="fruit_grade" class="col-sm-3 control-label">Fruit Grade: </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="fruit_grade" id="fruit_grade" multiple="true">
+                <input type="file" class="form-control" name="fruit_image" id="fruit_image" multiple="true">
               </div>
             </div>
 
@@ -52,23 +45,16 @@
             </div>
 
             <div class="form-group">
-              <label for="fruit_image" class="col-sm-3 control-label">Fruit Image: </label>
+              <label for="fruit_name" class="col-sm-3 control-label">Fruit Name: </label>
               <div class="col-sm-9">
-                <input type="file" class="form-control" name="fruit_image" id="fruit_image" multiple="true">
+                <input type="text" class="form-control" name="fruit_name" id="fruit_name" multiple="true">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="fruit_quantity" class="col-sm-3 control-label">Fruit Quantity(KG): </label>
+              <label for="fruit_desc" class="col-sm-3 control-label">Fruit Desc: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="fruit_quantity" id="fruit_quantity" multiple="true">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="fruit_harvest_duration" class="col-sm-3 control-label">Fruit Harvest Duration(month): </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="fruit_harvest_duration" id="fruit_harvest_duration" multiple="true">
+              <textarea class="form-control" name="fruit_desc" id="fruit_desc"></textarea>
               </div>
             </div>
 
@@ -107,14 +93,9 @@
                     <tr class="info bg-black">
 
                       <th><input type="checkbox"></th>
-                      <!-- <th class="mailbox-star"><center><a href="#">Driver ID</a></center></th> -->
                       <th class="mailbox-star"><center><a href="#">Fruit Name</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Fruit Grade</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Fruit Price(RM)</a></center></th>
-                      <!-- <th class="mailbox-star"><center><a href="#">Fruit Image</a></center></th> -->
-                      <th class="mailbox-star"><center><a href="#">Fruit Quantity(KG)</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Fruit Harvest Duration(Month)</a></center></th>
-                      <!-- <th class="mailbox-star"><center><a href="#">Fruit</a></center></th> -->
+                      <th class="mailbox-star"><center><a href="#">Fruit Price(RM/Unit)</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Fruit Image</a></center></th>
                       <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
 
                     </tr>
@@ -125,11 +106,8 @@
                     <tr class="info">
                       <td><input type="checkbox"></td>
                       <td class="mailbox-name"><center><a href="#">{{$fruit->fruit_name}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$fruit->fruit_grade}}</a></center></td>
                       <td class="mailbox-date"><center><a href="#">{{$fruit->fruit_price}}</a></center></td>
-                      <!-- <td class="mailbox-date"><center><a href="#">{{$fruit->fruit_image}}</a></center></td> -->
-                      <td class="mailbox-date"><center><a href="#">{{$fruit->fruit_quantity}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$fruit->fruit_harvest_duration}}</a></center></td>
+                      <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$fruit->fruit_image}}"></a></center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editFruit', ['fruit_id'=> $fruit->fruit_id])}}"><i class="fa fa-edit"></i> Edit</a>
                         {{ Form::open(array('url' => 'fruit/' . $fruit->fruit_id, 'class' => 'pull-right')) }}
@@ -164,14 +142,14 @@
 @endsection
 
 @section('script')
-<!-- <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script> -->
+<script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
 <script>
   $(document).ready(function()
   {
     $('#fruit-table').DataTable();
-    // CKEDITOR.replace('home_address');
+    CKEDITOR.replace('fruit_desc');
 
     $('#frm-fruit-create').on('submit',function(e)
     {
@@ -181,7 +159,7 @@
 
       console.log(data);
       var formData = new FormData($(this)[0]);
-   // formData.append('home_address', CKEDITOR.instances.home_address.getData());
+   formData.append('fruit_desc', CKEDITOR.instances.fruit_desc.getData());
    // console.log(CKEDITOR.instances.description.getData());
    $.ajax(
    {

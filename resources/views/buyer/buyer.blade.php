@@ -128,11 +128,12 @@
                     <tr class="info bg-black">
 
                       <th><input type="checkbox"></th>
-                      <th class="mailbox-star"><center><a href="#">Owner Name</a></center></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">Owner Name</a></center></th> -->
                       <th class="mailbox-star"><center><a href="#">Company Name</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Company Reg Number</a></center></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">Company Reg Number</a></center></th> -->
                       <th class="mailbox-star"><center><a href="#">Company Address</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Email Address</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Phone Number</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Handphone Number</a></center></th>
                       <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
                       
                     </tr>
@@ -142,11 +143,12 @@
                     @foreach($buyers as $buyer) 
                     <tr class="info">
                       <td><input type="checkbox"></td>
-                      <td class="mailbox-name"><center><a href="#">{{$buyer->owner_name}}</a></center></td>
+                      <!-- <td class="mailbox-name"><center><a href="#">{{$buyer->owner_name}}</a></center></td> -->
                       <td class="mailbox-date"><center><a href="#">{{$buyer->company_name}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$buyer->company_reg_number}}</a></center></td>
+                      <!-- <td class="mailbox-date"><center><a href="#">{{$buyer->company_reg_number}}</a></center></td> -->
                       <td class="mailbox-date"><center><a href="#">{{$buyer->company_address}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$buyer->email_address}}</a></center></td>
+                      <td class="mailbox-date"><center><a href="#">{{$buyer->phone_number}}</a></center></td>
+                      <td class="mailbox-date"><center><a href="#">{{$buyer->handphone_number}}</a></center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editBuyer', ['buyer_id'=> $buyer->buyer_id])}}"><i class="fa fa-edit"></i> Edit</a>
                         {{ Form::open(array('url' => 'buyer/' . $buyer->buyer_id, 'class' => 'pull-right')) }}

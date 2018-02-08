@@ -19,11 +19,9 @@ class VegetableController extends Controller
 		if($request->ajax()){
             $vegetables = new Vegetable;
             $vegetables->vegetable_name = $request->vegetable_name;
-            $vegetables->vegetable_grade = $request->vegetable_grade;
+            $vegetables->vegetable_desc = $request->vegetable_desc;
             $vegetables->vegetable_price = $request->vegetable_price;
             $vegetables->vegetable_image = $path;
-            $vegetables->vegetable_quantity = $request->vegetable_quantity;
-            $vegetables->vegetable_harvest_duration = $request->vegetable_harvest_duration;
             $vegetables->save();
             return response($vegetables);
         }
@@ -48,11 +46,9 @@ class VegetableController extends Controller
         if($request->ajax()){
             $vegetables = Vegetable::where('vegetable_id', $request->vegetable_id)->first();
             $vegetables->vegetable_name = $request->vegetable_name;
-            $vegetables->vegetable_grade = $request->vegetable_grade;
+            $vegetables->vegetable_desc = $request->vegetable_desc;
             $vegetables->vegetable_price = $request->vegetable_price;
             $vegetables->vegetable_image = $path;
-            $vegetables->vegetable_quantity = $request->vegetable_quantity;
-            $vegetables->vegetable_harvest_duration = $request->vegetable_harvest_duration;
             $vegetables->save();
             return response($vegetables);
             }       

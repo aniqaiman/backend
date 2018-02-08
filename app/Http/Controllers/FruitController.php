@@ -19,11 +19,9 @@ class FruitController extends Controller
 		if($request->ajax()){
             $fruits = new Fruit;
             $fruits->fruit_name = $request->fruit_name;
-            $fruits->fruit_grade = $request->fruit_grade;
+            $fruits->fruit_desc = $request->fruit_desc;
             $fruits->fruit_price = $request->fruit_price;
             $fruits->fruit_image = $path;
-            $fruits->fruit_quantity = $request->fruit_quantity;
-            $fruits->fruit_harvest_duration = $request->fruit_harvest_duration;
             $fruits->save();
             return response($fruits);
         }
@@ -48,11 +46,9 @@ class FruitController extends Controller
         if($request->ajax()){
             $fruits = Fruit::where('fruit_id', $request->fruit_id)->first();
             $fruits->fruit_name = $request->fruit_name;
-            $fruits->fruit_grade = $request->fruit_grade;
+            $fruits->fruit_desc = $request->fruit_desc;
             $fruits->fruit_price = $request->fruit_price;
             $fruits->fruit_image = $path;
-            $fruits->fruit_quantity = $request->fruit_quantity;
-            $fruits->fruit_harvest_duration = $request->fruit_harvest_duration;
             $fruits->save();
             return response($fruits);
             }       

@@ -34,27 +34,6 @@
                 {!! csrf_field() !!}
                 <div class="row">
 
-                  <div class="form-group">
-              <label for="vegetable_name" class="col-sm-3 control-label">Vegetable Name: </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="vegetable_name" id="vegetable_name" value="{{$vegetables->vegetable_name}}">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="vegetable_grade" class="col-sm-3 control-label">Vegetable Grade: </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="vegetable_grade" id="vegetable_grade" value="{{$vegetables->vegetable_grade}}">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="vegetable_price" class="col-sm-3 control-label">Vegetable Price(RM): </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="vegetable_price" id="vegetable_price" value="{{$vegetables->vegetable_price}}">
-              </div>
-            </div>
-
             <div class="form-group">
               <label for="vegetable_image" class="col-sm-3 control-label">Vegetable Image: </label>
               <div class="col-sm-9">
@@ -63,16 +42,23 @@
             </div>
 
             <div class="form-group">
-              <label for="vegetable_quantity" class="col-sm-3 control-label">Vegetable Quantity(KG): </label>
+              <label for="vegetable_price" class="col-sm-3 control-label">Vegetable Price(RM/Unit): </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="vegetable_quantity" id="vegetable_quantity" value="{{$vegetables->vegetable_quantity}}">
+                <input type="text" class="form-control" name="vegetable_price" id="vegetable_price" value="{{$vegetables->vegetable_price}}">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="vegetable_harvest_duration" class="col-sm-3 control-label">Vegetable Harvest Duration(month): </label>
+              <label for="vegetable_name" class="col-sm-3 control-label">Vegetable Name: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="vegetable_harvest_duration" id="vegetable_harvest_duration" value="{{$vegetables->vegetable_harvest_duration}}">
+                <input type="text" class="form-control" name="vegetable_name" id="vegetable_name" value="{{$vegetables->vegetable_name}}">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="vegetable_desc" class="col-sm-3 control-label">Vegetable Description: </label>
+              <div class="col-sm-9">
+              <textarea class="form-control" name="vegetable_desc" id="vegetable_desc" multiple="true">{{$vegetables->vegetable_desc}}</textarea>
               </div>
             </div>
 
@@ -98,14 +84,19 @@
 @endsection
 
 @section('script')
+<script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+
 
 <script>
+$(document).ready(function(){
+  CKEDITOR.replace('vegetable_desc');
   $('#frm-vegetable-edit').on('submit',function(e){
     e.preventDefault();
     console.log('pressed');
     var data = $(this).serialize();
     console.log(data);
     var formData = new FormData($(this)[0]);
+    formData.append('vegetable_desc', CKEDITOR.instances.vegetable_desc.getData());
 
     $.ajax({
       url:"{{route('updateVegetable')}}", 
@@ -122,6 +113,7 @@
       processData: false
     });
   });
+});
 
 </script>
 @endsection

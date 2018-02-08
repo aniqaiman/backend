@@ -31,16 +31,9 @@
           <div class="row">
 
             <div class="form-group">
-              <label for="vegetable_name" class="col-sm-3 control-label">Veg Name: </label>
+              <label for="vegetable_image" class="col-sm-3 control-label">Vegetable Image: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="vegetable_name" id="vegetable_name" multiple="true">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="vegetable_grade" class="col-sm-3 control-label">Veg Grade: </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="vegetable_grade" id="vegetable_grade" multiple="true">
+                <input type="file" class="form-control" name="vegetable_image" id="vegetable_image" multiple="true">
               </div>
             </div>
 
@@ -52,23 +45,16 @@
             </div>
 
             <div class="form-group">
-              <label for="vegetable_image" class="col-sm-3 control-label">Veg Image: </label>
+              <label for="vegetable_name" class="col-sm-3 control-label">Vegetable Name: </label>
               <div class="col-sm-9">
-                <input type="file" class="form-control" name="vegetable_image" id="vegetable_image" multiple="true">
+                <input type="text" class="form-control" name="vegetable_name" id="vegetable_name" multiple="true">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="vegetable_quantity" class="col-sm-3 control-label">Veg Quantity(KG): </label>
+              <label for="vegetable_desc" class="col-sm-3 control-label">Vegetable Desc: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="vegetable_quantity" id="vegetable_quantity" multiple="true">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="vegetable_harvest_duration" class="col-sm-3 control-label">Veg Harvest Duration(Month): </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="vegetable_harvest_duration" id="vegetable_harvest_duration" multiple="true">
+              <textarea class="form-control" name="vegetable_desc" id="vegetable_desc"></textarea>
               </div>
             </div>
 
@@ -107,14 +93,10 @@
                     <tr class="info bg-black">
 
                       <th><input type="checkbox"></th>
-                      <!-- <th class="mailbox-star"><center><a href="#">Driver ID</a></center></th> -->
-                      <th class="mailbox-star"><center><a href="#">Veg Name</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Veg Grade</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Veg Price(RM)</a></center></th>
-                      <!-- <th class="mailbox-star"><center><a href="#">Fruit Image</a></center></th> -->
-                      <th class="mailbox-star"><center><a href="#">Veg Quantity(KG)</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Veg Harvest Duration(Month)</a></center></th>
-                      <!-- <th class="mailbox-star"><center><a href="#">Fruit</a></center></th> -->
+                      <th class="mailbox-star"><center><a href="#">Vegetable Name</a></center></th>
+                      <!-- <th class="mailbox-star"><center><a href="#">Vegetable Desc</a></center></th> -->
+                      <th class="mailbox-star"><center><a href="#">Vegetable Price(RM/Unit)</a></center></th>
+                      <th class="mailbox-star"><center><a href="#">Vegetable Image</a></center></th>
                       <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
 
                     </tr>
@@ -125,10 +107,9 @@
                     <tr class="info">
                       <td><input type="checkbox"></td>
                       <td class="mailbox-name"><center><a href="#">{{$vegetable->vegetable_name}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_grade}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_price}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_quantity}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$vegetable->vegetable_harvest_duration}}</a></center></td>
+                      <!-- <td class="mailbox-name"><center><a href="#">{{$vegetable->vegetable_desc}}</a></center></td> -->
+                      <td class="mailbox-name"><center><a href="#">{{$vegetable->vegetable_price}}</a></center></td>
+                      <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$vegetable->vegetable_image}}"></a></center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
                       <a class="button btn btn-success btn-sm" href="{{route('editVegetable', ['vegetable_id'=> $vegetable->vegetable_id])}}"><i class="fa fa-edit"></i> Edit</a>
                         {{ Form::open(array('url' => 'vegetable/' . $vegetable->vegetable_id, 'class' => 'pull-right')) }}
@@ -163,14 +144,14 @@
 @endsection
 
 @section('script')
-<!-- <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script> -->
+<script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
 <script>
   $(document).ready(function()
   {
     $('#vegetable-table').DataTable();
-    // CKEDITOR.replace('home_address');
+    CKEDITOR.replace('vegetable_desc');
 
     $('#frm-vegetable-create').on('submit',function(e)
     {
@@ -180,7 +161,7 @@
 
       console.log(data);
       var formData = new FormData($(this)[0]);
-   // formData.append('home_address', CKEDITOR.instances.home_address.getData());
+   formData.append('vegetable_desc', CKEDITOR.instances.vegetable_desc.getData());
    // console.log(CKEDITOR.instances.description.getData());
    $.ajax(
    {

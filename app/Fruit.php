@@ -11,10 +11,8 @@ class Fruit extends Model
     public $timestamp = 'true';
     protected $fillable = [
     	'fruit_name',
-    	'fruit_grade',
+    	'fruit_desc',
     	'fruit_price',
     	'fruit_image',
-    	'fruit_quantity',
-    	'fruit_harvest_duration',
     	];
 }

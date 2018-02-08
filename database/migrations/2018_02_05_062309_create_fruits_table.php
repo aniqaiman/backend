@@ -11,11 +11,9 @@ class CreateFruitsTable extends Migration
         Schema::create('fruits', function(Blueprint $table){
             $table->increments('fruit_id');
             $table->string('fruit_name');
-            $table->string('fruit_grade');
+            $table->string('fruit_desc');
             $table->string('fruit_price');
             $table->string('fruit_image');
-            $table->string('fruit_quantity');
-            $table->string('fruit_harvest_duration');
             $table->timestamps();
         });
     }

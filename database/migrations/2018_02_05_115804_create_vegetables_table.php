@@ -11,11 +11,9 @@ class CreateVegetablesTable extends Migration
         Schema::create('vegetables', function(Blueprint $table){
             $table->increments('vegetable_id');
             $table->string('vegetable_name');
-            $table->string('vegetable_grade');
+            $table->string('vegetable_desc');
             $table->string('vegetable_price');
             $table->string('vegetable_image');
-            $table->string('vegetable_quantity');
-            $table->string('vegetable_harvest_duration');
             $table->timestamps();
         });
     }
