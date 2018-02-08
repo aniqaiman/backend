@@ -14,6 +14,7 @@ class CreateFruitsTable extends Migration
             $table->string('fruit_desc');
             $table->string('fruit_price');
             $table->string('fruit_image');
+            $table->string('price_id');
             $table->timestamps();
         });
     }

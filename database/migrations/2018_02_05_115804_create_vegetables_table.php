@@ -14,6 +14,7 @@ class CreateVegetablesTable extends Migration
             $table->string('vegetable_desc');
             $table->string('vegetable_price');
             $table->string('vegetable_image');
+            $table->string('price_id');
             $table->timestamps();
         });
     }

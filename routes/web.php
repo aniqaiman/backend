@@ -71,3 +71,16 @@ Route::get('/', ['as' => 'dashboard','uses' =>
 	Route::get('editVegetable/{vegetable_id}',['as'=>'editVegetable','uses'=>'VegetableController@editVegetable']);
 	Route::post('/updateVegetable',['as'=>'updateVegetable','uses'=>'VegetableController@updateVegetable']);
 	Route::delete('/vegetable/{vegetable_id}',['as'=>'deleteVegetable','uses'=>'VegetableController@deleteVegetable']);	
+
+// -------------------------------------------Price----------------------------------------------------
+
+	Route::post('/price', ['as'=>'createPrice', 'uses'=>'PriceController@createPrice']);
+	Route::get('/price', ['as'=>'price','uses'=>'PriceController@getPrice']);
+	Route::get('editPrice/{price_id}',['as'=>'editPrice','uses'=>'PriceController@editPrice']);
+	Route::post('/updatePrice',['as'=>'updatePrice','uses'=>'PriceController@updatePrice']);
+	Route::delete('/price/{price_id}',['as'=>'deletePrice','uses'=>'PriceController@deletePrice']);
+
+// -------------------------------------------API----------------------------------------------------	
+
+	Route::post('/api/registerseller', 'Api\SellerController@postRegisterSeller');
+	Route::post('/api/registerbuyer', 'Api\BuyerController@postRegisterBuyer');
