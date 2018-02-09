@@ -16,6 +16,8 @@ class CreateSellersTable extends Migration
             $table->string('registration_number');
             $table->string('ic_number');
             $table->string('farm_address');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->string('handphone_number');
             $table->string('email_address');
             $table->string('password');

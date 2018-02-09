@@ -70,6 +70,20 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="latitude" class="col-sm-3 control-label">Latitude: </label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" name="latitude" id="latitude" value="{{$sellers->latitude}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="longitude" class="col-sm-3 control-label">Longitude: </label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" name="longitude" id="longitude" value="{{$sellers->longitude}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
                     <label for="handphone_number" class="col-sm-3 control-label">Handphone No.: </label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" name="handphone_number" id="handphone_number" value="{{$sellers->handphone_number}}">

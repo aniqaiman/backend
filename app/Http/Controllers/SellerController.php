@@ -21,7 +21,9 @@ class SellerController extends Controller
     		$sellers->company_name = $request->company_name;
     		$sellers->registration_number = $request->registration_number;
     		$sellers->ic_number = $request->ic_number;
-    		$sellers->farm_address =$request->farm_address;
+    		$sellers->farm_address = $request->farm_address;
+            $sellers->latitude = $request->latitude;
+            $sellers->longitude = $request->longitude;
     		$sellers->handphone_number = $request->handphone_number;
     		$sellers->email_address = $request->email_address;
     		$sellers->password = bcrypt('$request->password');
@@ -54,6 +56,8 @@ class SellerController extends Controller
     		$sellers->registration_number = $request->registration_number;
     		$sellers->ic_number = $request->ic_number;
     		$sellers->farm_address =$request->farm_address;
+            $sellers->latitude = $request->latitude;
+            $sellers->longitude = $request->longitude;
     		$sellers->handphone_number = $request->handphone_number;
     		$sellers->email_address = $request->email_address;
             $sellers->bank_name = $request->bank_name;

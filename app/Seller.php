@@ -15,6 +15,8 @@ class Seller extends Model
     	'registration_number',
     	'ic_number',
     	'farm_address',
+        'latitude',
+        'longitude',
     	'handphone_number',
     	'email_address',
     	'password',

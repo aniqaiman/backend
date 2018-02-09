@@ -21,6 +21,8 @@ class SellerController extends BaseController
             // 'registration_number' => $request->get('registration_number'),
             'ic_number' => $request->get('ic_number'),
             'farm_address' => $request->get('farm_address'),
+            'latitude' => $request->get('latitude'),
+            'longitude' => $request->get('longitude'),
             'handphone_number' => $request->get('handphone_number'),
             'email_address' => $request->get('email_address'),
             'password' => bcrypt($request->get('password')),
