@@ -17,12 +17,11 @@ class BuyerController extends BaseController
     {
         $buyer = Buyer::create([
             'owner_name' => $request->get('owner_name'),
-            // 'company_name' => $request->get('company_name'),
-            // 'company_reg_number' => $request->get('company_reg_number'),
-            'ic_number' => $request->get('ic_number'),
+            'company_name' => $request->get('company_name'),
+            'company_reg_ic_number' => $request->get('company_reg_ic_number'),
             'company_address' => $request->get('company_address'),
             'handphone_number' => $request->get('handphone_number'),
-            // 'phone_number' => $request->get('phone_number'),
+            'phone_number' => $request->get('phone_number'),
             'email_address' => $request->get('email_address'),
             'password' => bcrypt($request->get('password')),
             'group_id'=>11,

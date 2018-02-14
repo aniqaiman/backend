@@ -12,8 +12,7 @@ class CreateBuyersTable extends Migration
             $table->increments('buyer_id');
             $table->string('owner_name');
             $table->string('company_name');
-            $table->string('company_reg_number');
-            $table->string('ic_number');
+            $table->string('company_reg_ic_number');    
             $table->string('company_address');
             $table->string('phone_number');
             $table->string('handphone_number');

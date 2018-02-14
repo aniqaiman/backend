@@ -19,8 +19,7 @@ class BuyerController extends Controller
     		$buyers = new Buyer;
     		$buyers->owner_name = $request->owner_name;
     		$buyers->company_name = $request->company_name;
-    		$buyers->company_reg_number = $request->company_reg_number;
-    		$buyers->ic_number = $request->ic_number;
+    		$buyers->company_reg_ic_number = $request->company_reg_ic_number;
     		$buyers->company_address = $request->company_address;
     		$buyers->phone_number = $request->phone_number;
     		$buyers->handphone_number = $request->handphone_number;
@@ -49,8 +48,7 @@ class BuyerController extends Controller
     		$buyers = Buyer::where('buyer_id', $request->buyer_id)->first();
     		$buyers->owner_name = $request->owner_name;
     		$buyers->company_name = $request->company_name;
-    		$buyers->company_reg_number = $request->company_reg_number;
-    		$buyers->ic_number = $request->ic_number;
+    		$buyers->company_reg_ic_number = $request->company_reg_ic_number;
     		$buyers->company_address = $request->company_address;
     		$buyers->phone_number = $request->phone_number;
     		$buyers->handphone_number = $request->handphone_number;

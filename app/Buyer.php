@@ -12,8 +12,7 @@ class Buyer extends Model
     protected $fillable = [
     	'owner_name',
     	'company_name',
-    	'company_reg_number',
-    	'ic_number',
+    	'company_reg_ic_number',
     	'company_address',
     	'phone_number',
     	'handphone_number',
