@@ -13,8 +13,7 @@ class CreateSellersTable extends Migration
             $table->increments('seller_id');
             $table->string('owner_name');
             $table->string('company_name');
-            $table->string('registration_number');
-            $table->string('ic_number');
+            $table->string('company_reg_ic_number');
             $table->string('farm_address');
             $table->string('latitude');
             $table->string('longitude');

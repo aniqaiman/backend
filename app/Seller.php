@@ -12,8 +12,7 @@ class Seller extends Model
     protected $fillable = [
     	'owner_name',
     	'company_name',
-    	'registration_number',
-    	'ic_number',
+    	'company_reg_ic_number',
     	'farm_address',
         'latitude',
         'longitude',

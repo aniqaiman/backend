@@ -45,16 +45,9 @@
             </div>
 
             <div class="form-group">
-              <label for="registration_number" class="col-sm-3 control-label">Registration No.: </label>
+              <label for="company_reg_ic_number" class="col-sm-3 control-label">Reg No./IC No.: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="registration_number" id="registration_number" multiple="true">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="ic_number" class="col-sm-3 control-label">IC No.: </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="ic_number" id="ic_number" multiple="true">
+                <input type="text" class="form-control" name="company_reg_ic_number" id="company_reg_ic_number" multiple="true">
               </div>
             </div>
 
@@ -93,7 +86,7 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="password" class="col-sm-3 control-label">Password: </label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="password" id="password" multiple="true">
@@ -119,7 +112,7 @@
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="bank_acc_number" id="bank_acc_number" multiple="true">
               </div>
-            </div>
+            </div> -->
 
           </div>
         </div>

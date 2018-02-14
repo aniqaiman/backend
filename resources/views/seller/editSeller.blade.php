@@ -49,16 +49,9 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="registration_number" class="col-sm-3 control-label">Registration No.: </label>
+                    <label for="company_reg_ic_number" class="col-sm-3 control-label">Company Reg No./IC No.: </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="registration_number" id="registration_number" value="{{$sellers->registration_number}}">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="ic_number" class="col-sm-3 control-label">IC No.: </label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" name="ic_number" id="ic_number" value="{{$sellers->ic_number}}">
+                      <input type="text" class="form-control" name="company_reg_ic_number" id="company_reg_ic_number" value="{{$sellers->company_reg_ic_number}}">
                     </div>
                   </div>
 

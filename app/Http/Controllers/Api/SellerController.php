@@ -18,8 +18,7 @@ class SellerController extends BaseController
         $seller = Seller::create([
             'owner_name' => $request->get('owner_name'),
             'company_name' => $request->get('company_name'),
-            'registration_number' => $request->get('registration_number'),
-            'ic_number' => $request->get('ic_number'),
+            'company_reg_ic_number' => $request->get('company_reg_ic_number'),
             'farm_address' => $request->get('farm_address'),
             'latitude' => $request->get('latitude'),
             'longitude' => $request->get('longitude'),

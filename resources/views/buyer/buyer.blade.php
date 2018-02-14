@@ -45,7 +45,7 @@
             </div>
 
             <div class="form-group">
-              <label for="company_reg_ic_number" class="col-sm-3 control-label">Company Reg No./IC No.: </label>
+              <label for="company_reg_ic_number" class="col-sm-3 control-label">Reg No./IC No.: </label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="company_reg_ic_number" id="company_reg_ic_number" multiple="true">
               </div>

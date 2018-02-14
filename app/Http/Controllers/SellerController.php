@@ -19,8 +19,7 @@ class SellerController extends Controller
     		$sellers = new Seller;
     		$sellers->owner_name = $request->owner_name;
     		$sellers->company_name = $request->company_name;
-    		$sellers->registration_number = $request->registration_number;
-    		$sellers->ic_number = $request->ic_number;
+    		$sellers->company_reg_ic_number = $request->company_reg_ic_number;
     		$sellers->farm_address = $request->farm_address;
             $sellers->latitude = $request->latitude;
             $sellers->longitude = $request->longitude;
@@ -53,8 +52,7 @@ class SellerController extends Controller
     		$sellers = Seller::where('seller_id', $request->seller_id)->first();
     		$sellers->owner_name = $request->owner_name;
     		$sellers->company_name = $request->company_name;
-    		$sellers->registration_number = $request->registration_number;
-    		$sellers->ic_number = $request->ic_number;
+    		$sellers->company_reg_ic_number = $request->company_reg_ic_number;
     		$sellers->farm_address =$request->farm_address;
             $sellers->latitude = $request->latitude;
             $sellers->longitude = $request->longitude;
