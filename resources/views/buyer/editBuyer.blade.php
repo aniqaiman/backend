@@ -83,6 +83,13 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label for="password" class="col-sm-3 control-label">Password: </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="password" id="password" value="{{$buyers->password}}">
+              </div>
+            </div>
+
                 </div>
                 <input type="hidden" name="buyer_id" value="{{$buyers->buyer_id}}">
                 <div class="box-footer">
