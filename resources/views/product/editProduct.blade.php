@@ -5,12 +5,12 @@
 
 <section class="content-header">
   <h1>
-    FRUIT
+    PRODUCT
     <small>Control Panel</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-    <li class="active">Fruit</li>
+    <li class="active">Product</li>
   </ol>
 </section>
 
@@ -30,56 +30,42 @@
             <!-- /.box-header -->
             <div class="modal-body">
               <!-- Custom Tabs (Pulled to the right) -->
-              <form action="#" method="POST" id="frm-fruit-edit" enctype ="multipart/form-data">
+              <form action="#" method="POST" id="frm-product-edit" enctype ="multipart/form-data">
                 {!! csrf_field() !!}
                 <div class="row">
 
                   <div class="form-group">
-              <label for="fruit_name" class="col-sm-3 control-label">Fruit Name: </label>
+              <label for="product_image" class="col-sm-3 control-label">Product Image: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="fruit_name" id="fruit_name" value="{{$fruits->fruit_name}}">
+                <input type="file" class="form-control" name="product_image" id="product_image" value="{{$products->product_image}}">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="fruit_grade" class="col-sm-3 control-label">Fruit Grade: </label>
+              <label for="product_price" class="col-sm-3 control-label">Product Price: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="fruit_grade" id="fruit_grade" value="{{$fruits->fruit_grade}}">
+                <input type="text" class="form-control" name="product_price" id="product_price" value="{{$products->product_price}}">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="fruit_price" class="col-sm-3 control-label">Fruit Price(RM): </label>
+              <label for="product_name" class="col-sm-3 control-label">Product Name: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="fruit_price" id="fruit_price" value="{{$fruits->fruit_price}}">
+                <input type="text" class="form-control" name="product_name" id="product_name" value="{{$products->product_name}}">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="fruit_image" class="col-sm-3 control-label">Fruit Image: </label>
+              <label for="product_desc" class="col-sm-3 control-label">Product Desc: </label>
               <div class="col-sm-9">
-                <input type="file" class="form-control" name="fruit_image" id="fruit_image" value="{{$fruits->fruit_image}}">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="fruit_quantity" class="col-sm-3 control-label">Fruit Quantity(KG): </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="fruit_quantity" id="fruit_quantity" value="{{$fruits->fruit_quantity}}">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="fruit_harvest_duration" class="col-sm-3 control-label">Fruit Harvest Duration(month): </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="fruit_harvest_duration" id="fruit_harvest_duration" value="{{$fruits->fruit_harvest_duration}}">
+              <textarea class="form-control" name="product_desc" id="product_desc">{{$products->product_desc}}</textarea>
               </div>
             </div>
 
                 </div>
-                <input type="hidden" name="fruit_id" value="{{$fruits->fruit_id}}">
+                <input type="hidden" name="product_id" value="{{$products->product_id}}">
                 <div class="box-footer">
-                  <button type="submit" onclick="window.location='{{ url("/fruit") }}'" class="btn btn-primary">Save Change</button>
+                  <button type="submit" onclick="window.location='{{ url("/product") }}'" class="btn btn-primary">Save Change</button>
                 </div>
               </form>
             </div>
@@ -98,17 +84,20 @@
 @endsection
 
 @section('script')
+ <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 
 <script>
-  $('#frm-fruit-edit').on('submit',function(e){
+CKEDITOR.replace('product_desc');
+  $('#frm-product-edit').on('submit',function(e){
     e.preventDefault();
     console.log('pressed');
     var data = $(this).serialize();
     console.log(data);
     var formData = new FormData($(this)[0]);
+    formData.append('product_desc', CKEDITOR.instances.product_desc.getData());
 
     $.ajax({
-      url:"{{route('updateFruit')}}", 
+      url:"{{route('updateProduct')}}", 
       type: "POST",
       data: formData,
       async: false,

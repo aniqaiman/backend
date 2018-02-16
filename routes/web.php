@@ -56,21 +56,13 @@ Route::get('/', ['as' => 'dashboard','uses' =>
 	Route::post('/updateBuyer',['as'=>'updateBuyer','uses'=>'BuyerController@updateBuyer']);
 	Route::delete('/buyer/{buyer_id}',['as'=>'deleteBuyer','uses'=>'BuyerController@deleteBuyer']);
 
-// -------------------------------------------Fruit----------------------------------------------------
+// -------------------------------------------Product----------------------------------------------------
 
-	Route::post('/fruit', ['as'=>'createFruit', 'uses'=>'FruitController@createFruit']);
-	Route::get('/fruit', ['as'=>'fruit','uses'=>'FruitController@getFruit']);
-	Route::get('editFruit/{fruit_id}',['as'=>'editFruit','uses'=>'FruitController@editFruit']);
-	Route::post('/updateFruit',['as'=>'updateFruit','uses'=>'FruitController@updateFruit']);
-	Route::delete('/fruit/{fruit_id}',['as'=>'deleteFruit','uses'=>'FruitController@deleteFruit']);
-
-// -------------------------------------------Vegetable----------------------------------------------------
-
-	Route::post('/vegetable', ['as'=>'createVegetable', 'uses'=>'VegetableController@createVegetable']);
-	Route::get('/vegetable', ['as'=>'vegetable','uses'=>'VegetableController@getVegetable']);
-	Route::get('editVegetable/{vegetable_id}',['as'=>'editVegetable','uses'=>'VegetableController@editVegetable']);
-	Route::post('/updateVegetable',['as'=>'updateVegetable','uses'=>'VegetableController@updateVegetable']);
-	Route::delete('/vegetable/{vegetable_id}',['as'=>'deleteVegetable','uses'=>'VegetableController@deleteVegetable']);	
+	Route::post('/product', ['as'=>'createProduct', 'uses'=>'ProductController@createProduct']);
+	Route::get('/product', ['as'=>'product','uses'=>'ProductController@getProduct']);
+	Route::get('editProduct/{product_id}',['as'=>'editProduct','uses'=>'ProductController@editProduct']);
+	Route::post('/updateProduct',['as'=>'updateProduct','uses'=>'ProductController@updateProduct']);
+	Route::delete('/product/{product_id}',['as'=>'deleteProduct','uses'=>'ProductController@deleteProduct']);
 
 // -------------------------------------------Price----------------------------------------------------
 
@@ -84,3 +76,7 @@ Route::get('/', ['as' => 'dashboard','uses' =>
 
 	Route::post('/api/registerseller', 'Api\SellerController@postRegisterSeller');
 	Route::post('/api/registerbuyer', 'Api\BuyerController@postRegisterBuyer');
+
+
+	Route::get('/api/products','Api\ProductController@getProduct');
+	Route::get('/api/product/{product_id}','Api\ProductController@getProductbyId');

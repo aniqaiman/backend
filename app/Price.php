@@ -10,9 +10,13 @@ class Price extends Model
     protected $primaryKey = 'price_id';
     public $timestamp = 'true';
     protected $fillable = [
-    	'vegetable_id',
-    	'fruit_id',
+    	'product_id',
     	'product_price',
     	'date_price',
     	];
+
+    public function product()
+    {
+    	return $this->belongsTo('App\Product','product_id');
+    }
 }

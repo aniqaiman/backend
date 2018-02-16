@@ -9,8 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
-use App\Fruit;
-use App\Vegetable;
+use App\Product;
 use App\Price;
 
 class PriceController extends Controller
@@ -25,9 +24,8 @@ class PriceController extends Controller
     public function getPrice()
     {
     	$prices = Price::all();
-    	$fruits = Fruit::all();
-    	$vegetables = Vegetable::all();
-	    return view('price.price',compact('prices','fruits','vegetables'));
+    	$products = Product::all();
+	    return view('price.price',compact('prices','products'));
     }
 
     public function editPrice($price_id, Request $request)
@@ -40,8 +38,7 @@ class PriceController extends Controller
     {
         if($request->ajax()){
             $prices = Price::where('price_id', $request->price_id)->first();
-            $prices->vegetable_id = $request->vegetable_id;
-            $prices->fruit_id = $request->fruit_id;
+            $prices->product_id = $request->product_id;
             $prices->product_price = $request->product_price;
             $prices->date_price = $request->date_price;
             $prices->save();

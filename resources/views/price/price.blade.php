@@ -31,22 +31,11 @@
                     <div class="row">
 
                         <div class="form-group">
-                          <label for="vegetable_id" class="col-sm-3 control-label">Vegetable_id: </label>
+                          <label for="product_id" class="col-sm-3 control-label">Product ID: </label>
                           <div class="col-sm-9">
-                          <select class="form-control" name="location" id="location" data-placeholder="Select">
-                        @foreach($vegetables as $vegetable)
-                        <option value="{{$vegetable->vegetable_id}}">{{$vegetable->vegetable_name}}</option>
-                        @endforeach
-                      </select>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="fruit_id" class="col-sm-3 control-label">Fruit ID: </label>
-                          <div class="col-sm-9">
-                          <select class="form-control" name="location" id="location" data-placeholder="Select">
-                        @foreach($fruits as $fruit)
-                        <option value="{{$fruit->fruit_id}}">{{$fruit->fruit_name}}</option>
+                          <select class="form-control" name="product_id" id="product_id" data-placeholder="Select">
+                        @foreach($products as $product)
+                        <option value="{{$product->product_id}}">{{$product->product_name}}</option>
                         @endforeach
                       </select>
                           </div>
