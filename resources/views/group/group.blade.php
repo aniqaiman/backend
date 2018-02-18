@@ -67,15 +67,15 @@
 
                       </div>
                       <div class="table-responsive mailbox-messages">
-                        <table class="table table-hover table-striped" id="group-table">
+                        <table class="table table-bordered" id="group-table">
                           
                           <thead>
 
-                          <tr class="info bg-black">
+                          <tr class="info bg-white">
                             <th><input type="checkbox"></th>
-                            <th class="mailbox-subject"><center><a>Group ID</a></center></th>
-                            <th class="mailbox-subject"><center><a>Group Name</a></center></th>
-                            <th class="mailbox-subject"><center><a>Operation</a></center></th>
+                            <th class="mailbox-subject"><center>Group ID</center></th>
+                            <th class="mailbox-subject"><center>Group Name</center></th>
+                            <th class="mailbox-subject"><center>Operation</center></th>
                           </tr>
                           </thead>
 
@@ -83,8 +83,8 @@
                           @foreach($groups as $group)
                           <tr class="info">
                             <td><input type="checkbox"></td>
-                            <td class="mailbox-subject"><center><a href="#">{{$group->group_id}}</a></center></td>
-                            <td class="mailbox-subject"><center><a href="#">{{$group->group_name}}</a></center></td>
+                            <td class="mailbox-subject"><center>{{$group->group_id}}</center></td>
+                            <td class="mailbox-subject"><center>{{$group->group_name}}</center></td>
                             <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editGroup', ['group_id'=> $group->group_id])}}"><i class="fa fa-edit"></i> Edit</a>
                         {{ Form::open(array('url' => 'group/' . $group->group_id, 'class' => 'pull-right')) }}

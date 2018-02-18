@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Session;
 use Redirect;
 use App\Product;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -21,6 +22,7 @@ class ProductController extends Controller
             $products->product_name = $request->product_name;
             $products->product_desc = $request->product_desc;
             $products->product_price = $request->product_price;
+            $products->category = $request->category;
             $products->product_image = $path;
             $products->save();
             return response($products);
@@ -30,14 +32,15 @@ class ProductController extends Controller
     public function getProduct()
     {
     	$products = Product::all();
-	    // $users = User::all();
-	    return view('product.product',compact('products'));
+	    $categories = Category::all();
+	    return view('product.product',compact('products','categories'));
     }
 
     public function editProduct($product_id, Request $request)
     {
         $products = Product::where('product_id', $request->product_id)->first();
-        return view('product.editProduct', compact('products'));
+        $categories = Category::all();
+        return view('product.editProduct', compact('products','categories'));
     }
 
     public function updateProduct(Request $request)
@@ -48,6 +51,7 @@ class ProductController extends Controller
             $products->product_name = $request->product_name;
             $products->product_desc = $request->product_desc;
             $products->product_price = $request->product_price;
+            $products->category = $request->category;
             $products->product_image = $path;
             $products->save();
             return response($products);

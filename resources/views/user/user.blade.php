@@ -102,18 +102,18 @@
 
                 </div>
                 <div class="table-responsive mailbox-messages">
-                  <table class="table table-hover table-striped" id="user-table">
+                  <table class="table table-bordered" id="user-table">
 
                     <thead>
-                      <tr class="info bg-black">
+                      <tr class="info bg-white">
                         <th><input type="checkbox"></th>
                         <!-- <th class="mailbox-star"><center><a href="#">Id</a></center></th> -->
-                        <th class="mailbox-name"><center><a href="#">Name</a></center></th>
-                        <th class="mailbox-name"><center><a href="#">Email</a></center></th>
-                        <th class="mailbox-name"><center><a href="#">Address</a></center></th>
-                        <th class="mailbox-name"><center><a href="#">Phone Number</a></center></th>
-                        <th class="col-sm-3"><center><a href="#">Profile Picture</a></center></th>
-                        <th class="mailbox-name"><center><a href="#">Operation</a></center></th>
+                        <th class="mailbox-name"><center>Name</center></th>
+                        <th class="mailbox-name"><center>Email</center></th>
+                        <th class="mailbox-name"><center>Address</center></th>
+                        <th class="mailbox-name"><center>Phone Number</center></th>
+                        <th class="col-sm-3"><center>Profile Picture</center></th>
+                        <th class="mailbox-name"><center>Operation</center></th>
                       </tr>
                     </thead>
 
@@ -123,11 +123,11 @@
                       
                       <td><input type="checkbox"></td>
                       <!-- <td class="mailbox-star"><center><a href="#">{{$user->user_id}}</a></center></td> -->
-                      <td class="mailbox-name"><center><a href="#">{{$user->name}}</a></center></td>
-                      <td class="mailbox-name"><center><a href="#">{{$user->email}}</a></center></td>
-                      <td class="mailbox-name"><center><a href="#">{{$user->address}}</a></center></td>
-                      <td class="mailbox-name"><center><a href="#">{{$user->phonenumber}}</a></center></td>
-                      <td class="col-sm-3"><center><img style="width: 25%" src="{{$user->profilepic}}"></a></center></td>
+                      <td class="mailbox-name"><center>{{$user->name}}</center></td>
+                      <td class="mailbox-name"><center>{{$user->email}}</center></td>
+                      <td class="mailbox-name"><center>{{$user->address}}</center></td>
+                      <td class="mailbox-name"><center>{{$user->phonenumber}}</center></td>
+                      <td class="col-sm-3"><center><img style="width: 25%" src="{{$user->profilepic}}"></center></td>
                       <td class="mailbox-name"><center><div class="btn-group">
                       <a class="button btn btn-success btn-sm" href="{{route('editUser', ['user_id'=> $user->user_id])}}"><i class="fa fa-gear"></i>Edit</a>
                         {{ Form::open(array('url' => 'users/' . $user->user_id, 'class' => 'pull-right')) }}

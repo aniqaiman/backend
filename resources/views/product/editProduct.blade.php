@@ -56,6 +56,21 @@
             </div>
 
             <div class="form-group">
+                    <label for="category" class="col-sm-3 control-label">Category: </label>
+                    <div class="col-sm-9">
+                      <select class="form-control" name="category" id="category" data-placeholder="Select " style="width: 100%;">
+                      @foreach($categories as $category)
+                          @if ($category->cat_id === $products->category)
+                             <option value="{{$category->cat_id}}" selected="selected">{{$category->cat_name}}</option>
+                          @else
+                          <option value="{{$category->cat_id}}">{{$category->cat_name}}</option>
+                          @endif
+                            @endforeach
+                          </select>
+                    </div>
+                  </div>
+
+            <div class="form-group">
               <label for="product_desc" class="col-sm-3 control-label">Product Desc: </label>
               <div class="col-sm-9">
               <textarea class="form-control" name="product_desc" id="product_desc">{{$products->product_desc}}</textarea>

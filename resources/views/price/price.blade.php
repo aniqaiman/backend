@@ -85,16 +85,16 @@
 
                       </div>
                       <div class="table-responsive mailbox-messages">
-                        <table class="table table-hover table-striped" id="price-table">
+                        <table class="table table-bordered" id="price-table">
                           
                           <thead>
 
-                          <tr class="info bg-black">
+                          <tr class="info bg-white">
                             <th><input type="checkbox"></th>
-                            <th class="mailbox-subject"><center><a>Price ID</a></center></th>
-                            <th class="mailbox-subject"><center><a>Product Price</a></center></th>
-                            <th class="mailbox-subject"><center><a>Date Price</a></center></th>
-                            <th class="mailbox-subject"><center><a>Operation</a></center></th>
+                            <th class="mailbox-subject"><center>Price ID</center></th>
+                            <th class="mailbox-subject"><center>Product Price</center></th>
+                            <th class="mailbox-subject"><center>Date Price</center></th>
+                            <th class="mailbox-subject"><center>Operation</center></th>
                           </tr>
                           </thead>
 
@@ -102,9 +102,9 @@
                           @foreach($prices as $price)
                           <tr class="info">
                             <td><input type="checkbox"></td>
-                            <td class="mailbox-subject"><center><a href="#">{{$price->price_id}}</a></center></td>
-                            <td class="mailbox-subject"><center><a href="#">{{$price->product_price}}</a></center></td>
-                            <td class="mailbox-subject"><center><a href="#">{{$price->date_price}}</a></center></td>
+                            <td class="mailbox-subject"><center>{{$price->price_id}}</center></td>
+                            <td class="mailbox-subject"><center>{{$price->product_price}}</center></td>
+                            <td class="mailbox-subject"><center>{{$price->date_price}}</center></td>
                             <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editPrice', ['price_id'=> $price->price_id])}}"><i class="fa fa-edit"></i> Edit</a>
                         {{ Form::open(array('url' => 'price/' . $price->price_id, 'class' => 'pull-right')) }}

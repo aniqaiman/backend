@@ -14,10 +14,16 @@ class Product extends Model
     	'product_desc',
     	'product_price',
     	'product_image',
+    	'category',
     	];
 
     public function prices()
     {
     	return $this->hasMany('App\Price','product_id');
+    }
+
+    public function categories()
+    {
+    	return $this->belongsTo('App\Category', 'product_id');
     }
 }

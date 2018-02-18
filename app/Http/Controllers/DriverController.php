@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Session;
 use Redirect;
 use App\Driver;
+use App\Type;
+use App\Capacity;
 
 class DriverController extends Controller
 {
@@ -29,9 +31,9 @@ class DriverController extends Controller
             $drivers->lorry_capacity = $request->lorry_capacity;
             $drivers->location_to_cover = $request->location_to_cover;
             $drivers->lorry_plate_number = $request->lorry_plate_number;
-            $drivers->bank_name = $request->bank_name;
-            $drivers->bank_acc_holder_name = $request->bank_acc_holder_name;
-            $drivers->bank_acc_number = $request->bank_acc_number;
+            // $drivers->bank_name = $request->bank_name;
+            // $drivers->bank_acc_holder_name = $request->bank_acc_holder_name;
+            // $drivers->bank_acc_number = $request->bank_acc_number;
             $drivers->save();
             return response($drivers);
 		}
@@ -40,7 +42,9 @@ class DriverController extends Controller
     public function getDriver()
     {
     	$drivers = Driver::all();
-    	return view('driver.driver', compact('drivers'));
+        $types = Type::all();
+        $capacities = Capacity::all();
+    	return view('driver.driver', compact('drivers','types','capacities'));
     }
 
     public function editDriver($driver_id, Request $request)

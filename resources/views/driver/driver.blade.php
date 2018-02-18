@@ -86,10 +86,23 @@
               </div>
             </div>
 
-            <div class="form-group">
+             <div class="form-group">
+              <label for="type_of_lorry" class="col-sm-3 control-label">Type of Lorry: </label>
+              <div class="col-sm-9">
+              <select class="form-control" name="type_of_lorry" id="type_of_lorry" placeholder="Select">
+                      @foreach($types as $type)
+                <option value="{{$type->type_id}}">{{$type->type}}</option>
+                @endforeach
+                </select>
+              </div>
+            </div><div class="form-group">
               <label for="lorry_capacity" class="col-sm-3 control-label">Lorry Capacity: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="lorry_capacity" id="lorry_capacity" multiple="true">
+              <select class="form-control" name="lorry_capacity" id="lorry_capacity" placeholder="Select">
+                      @foreach($capacities as $capacity)
+                <option value="{{$capacity->cap_id}}">{{$capacity->capacity}}</option>
+                @endforeach
+                </select>
               </div>
             </div>
 
@@ -107,7 +120,7 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="bank_name" class="col-sm-3 control-label">Bank Name: </label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="bank_name" id="bank_name" multiple="true">
@@ -126,7 +139,7 @@
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="bank_acc_number" id="bank_acc_number" multiple="true">
               </div>
-            </div>
+            </div> -->
 
           </div>
         </div>
@@ -157,19 +170,19 @@
 
                 </div>
                 <div class="table-responsive mailbox-messages">
-                  <table class="table table-hover table-striped" id="driver-table">
+                  <table class="table table-bordered" id="driver-table">
                    <thead>
 
-                    <tr class="info bg-black">
+                    <tr class="info bg-white">
                       
                       <th><input type="checkbox"></th>
                       <!-- <th class="mailbox-star"><center><a href="#">Driver ID</a></center></th> -->
-                      <th class="mailbox-star"><center><a href="#">Driver Name</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Phone Number</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Location Cover</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Max Capacity</a></center></th>
+                      <th class="mailbox-star"><center>Driver Name</center></th>
+                      <th class="mailbox-star"><center>Phone Number</center></th>
+                      <th class="mailbox-star"><center>Location Cover</center></th>
+                      <th class="mailbox-star"><center>Max Capacity</center></th>
                       <!-- <th class="mailbox-star"><center><a href="#">License Number</a></center></th> -->
-                      <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
+                      <th class="mailbox-subject"><center>Operation</center></th>
                       
                     </tr>
                   </thead>
@@ -179,10 +192,10 @@
                     <tr class="info">
                       <td><input type="checkbox"></td>
                       <!-- <td class="mailbox-star"><center><a href="#">{{$driver->driver_id}}</a></center></td> -->
-                      <td class="mailbox-name"><center><a href="#">{{$driver->name}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$driver->phone_number}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$driver->location_to_cover}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$driver->lorry_capacity}}</a></center></td>
+                      <td class="mailbox-name"><center>{{$driver->name}}</center></td>
+                      <td class="mailbox-date"><center>{{$driver->phone_number}}</center></td>
+                      <td class="mailbox-date"><center>{{$driver->location_to_cover}}</center></td>
+                      <td class="mailbox-date"><center>{{$driver->lorry_capacity}}</center></td>
                       <!-- <td class="mailbox-date"><center><a href="#">{{$driver->license_number}}</a></center></td> -->
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editDriver', ['driver_id'=> $driver->driver_id])}}"><i class="fa fa-edit"></i> Edit</a>

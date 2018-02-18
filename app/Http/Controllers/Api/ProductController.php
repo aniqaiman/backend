@@ -26,6 +26,7 @@ class ProductController extends BaseController
 			$newproduct["product_desc"] = $product->product_desc;
 			$newproduct["product_price"] = $product->product_price;
 			$newproduct["product_image"] = $product->product_image;
+			$newproduct["category"] = $product->category;
 			$newproduct["created_at"] = $product->created_at;
 			$newproduct["updated_at"] = $product->updated_at;
 
@@ -44,6 +45,7 @@ class ProductController extends BaseController
 			$newproduct["product_desc"] = $product->product_desc;
 			$newproduct["product_price"] = $product->product_price;
 			$newproduct["product_image"] = $product->product_image;
+			$newproduct["category"] = $product->category;
 			$newproduct["created_at"] = $product->created_at;
 			$newproduct["updated_at"] = $product->updated_at;
 

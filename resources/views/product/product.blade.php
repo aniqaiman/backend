@@ -52,6 +52,17 @@
             </div>
 
             <div class="form-group">
+              <label for="category" class="col-sm-3 control-label">Category: </label>
+              <div class="col-sm-9">
+              <select class="form-control" name="category" id="category" data-placeholder="Select">
+                      @foreach($categories as $category)
+                <option value="{{$category->cat_id}}">{{$category->cat_name}}</option>
+                @endforeach
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
               <label for="product_desc" class="col-sm-3 control-label">Product Desc: </label>
               <div class="col-sm-9">
               <textarea class="form-control" name="product_desc" id="product_desc"></textarea>
@@ -87,16 +98,16 @@
 
                 </div>
                 <div class="table-responsive mailbox-messages">
-                  <table class="table table-hover table-striped" id="product-table">
+                  <table class="table table-bordered" id="product-table">
                    <thead>
 
-                    <tr class="info bg-black">
+                    <tr class="info bg-white">
 
                       <th><input type="checkbox"></th>
-                      <th class="mailbox-star"><center><a href="#">Product Name</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Product Price(RM/Unit)</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Product Image</a></center></th>
-                      <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
+                      <th class="mailbox-star"><center>Product Name</center></th>
+                      <th class="mailbox-star"><center>Product Price(RM/Unit)</center></th>
+                      <th class="mailbox-star"><center>Product Image</center></th>
+                      <th class="mailbox-star"><center>Operation</center></th>
 
                     </tr>
                   </thead>
@@ -105,11 +116,12 @@
                     @foreach($products as $product) 
                     <tr class="info">
                       <td><input type="checkbox"></td>
-                      <td class="mailbox-name"><center><a href="#">{{$product->product_name}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$product->product_price}}</a></center></td>
+                      <td class="mailbox-name"><center>{{$product->product_name}}</center></td>
+                      <td class="mailbox-date"><center>{{$product->product_price}}</center></td>
                       <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$product->product_image}}"></a></center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editProduct', ['product_id'=> $product->product_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="button btn btn-primary btn-sm" href="{{route('editProduct', ['product_id'=> $product->product_id])}}"><i class="fa fa-edit"></i> Edit Price</a>
                         {{ Form::open(array('url' => 'product/' . $product->product_id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}

@@ -143,22 +143,22 @@
 
                 </div>
                 <div class="table-responsive mailbox-messages">
-                  <table class="table table-hover table-striped" id="supplier-table">
+                  <table class="table table-bordered" id="supplier-table">
                    <thead>
 
-                    <tr class="info bg-black">
+                    <tr class="info bg-white">
                       
                       <th><input type="checkbox"></th>
                       <!-- <th class="mailbox-star"><center><a href="#">Seller ID</a></center></th> -->
                       <!-- <th class="mailbox-star"><center><a href="#">Owner Name</a></center></th> -->
-                      <th class="mailbox-star"><center><a href="#">Company Name</a></center></th>
+                      <th class="mailbox-star"><center>Company Name</center></th>
                       <!-- <th class="mailbox-star"><center><a href="#">Registration Number</a></center></th> -->
                       <!-- <th class="mailbox-star"><center><a href="#">IC Number</a></center></th> -->
-                      <th class="mailbox-star"><center><a href="#">Farm Address</a></center></th>
-                      <th class="mailbox-star"><center><a href="#">Handphone Number</a></center></th>
+                      <th class="mailbox-star"><center>Farm Address</center></th>
+                      <th class="mailbox-star"><center>Handphone Number</center></th>
                       <!-- <th class="mailbox-star"><center><a href="#">Email Address</a></center></th> -->
                       <!-- <th class="mailbox-star"><center><a href="#">Password</a></center></th> -->
-                      <th class="mailbox-subject"><center><a href="#">Operation</a></center></th>
+                      <th class="mailbox-subject"><center>Operation</center></th>
                       
                     </tr>
                   </thead>
@@ -169,11 +169,11 @@
                       <td><input type="checkbox"></td>
                       <!-- <td class="mailbox-star"><center><a href="#">{{$seller->seller_id}}</a></center></td> -->
                       <!-- <td class="mailbox-name"><center><a href="#">{{$seller->owner_name}}</a></center></td> -->
-                      <td class="mailbox-date"><center><a href="#">{{$seller->company_name}}</a></center></td>
+                      <td class="mailbox-date"><center>{{$seller->company_name}}</center></td>
                       <!-- <td class="mailbox-date"><center><a href="#">{{$seller->registration_number}}</a></center></td> -->
                       <!-- <td class="mailbox-date"><center><a href="#">{{$seller->ic_number}}</a></center></td> -->
-                      <td class="mailbox-date"><center><a href="#">{{$seller->farm_address}}</a></center></td>
-                      <td class="mailbox-date"><center><a href="#">{{$seller->handphone_number}}</a></center></td>
+                      <td class="mailbox-date"><center>{{$seller->farm_address}}</center></td>
+                      <td class="mailbox-date"><center>{{$seller->handphone_number}}</center></td>
                       <!-- <td class="mailbox-date"><center><a href="#">{{$seller->email_address}}</a></center></td> -->
                       <!-- <td class="mailbox-date"><center><a href="#">{{$seller->password}}</a></center></td> -->
                       <td class="mailbox-subject"><center><div class="btn-group">

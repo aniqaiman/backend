@@ -25,4 +25,14 @@ class Driver extends Model
     	'bank_acc_holder_name',
     	'bank_acc_number',
     	];
+
+    public function types()
+    {
+        return $this->hasMany('App\Type','driver_id');
+    }
+
+    public function capacities()
+    {
+        return $this->hasMany('App\Capacity','driver_id');
+    }
 }
