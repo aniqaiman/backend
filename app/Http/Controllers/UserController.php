@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -20,10 +21,11 @@ class UserController extends Controller
             $users = new User;
             $users->name = $request->name;
             $users->email = $request->email;
-            $users->password = $request->password;
+            $users->password =  bcrypt('$request->password');
             $users->address = $request->address;
-            $users->phonenumber = $request->phonenumber;
+            $users->handphone_number = $request->handphone_number;
             $users->profilepic = $path;
+            $users->group_id = 1;
             $users->save();
             return response($users);
 		}
@@ -31,13 +33,13 @@ class UserController extends Controller
 
 	public function getUser()
 	{
-    	$users = User::all();
+    	$users = User::where('group_id', 1)->get();
     	return view('user.user', compact('users'));
     }
 
     public function editUser($user_id, Request $request)
     {
-        $users = User::where('user_id', $request->user_id)->first();
+        $users = User::where('user_id', $user_id)->first();
         return view('user.editUser', compact('users'));
     }
 
@@ -49,7 +51,7 @@ class UserController extends Controller
             $users->name = $request->name;
             $users->email = $request->email;
             $users->address = $request->address;
-            $users->phonenumber = $request->phonenumber;
+            $users->handphone_number = $request->handphone_number;
             $users->profilepic = $path;
             $users->save();
             return response($users);

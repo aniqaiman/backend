@@ -35,9 +35,9 @@
                 <div class="row">
 
                   <div class="form-group">
-              <label for="owner_name" class="col-sm-3 control-label">Owner Name: </label>
+              <label for="name" class="col-sm-3 control-label">Owner Name: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="owner_name" id="owner_name" value="{{$buyers->owner_name}}">
+                <input type="text" class="form-control" name="name" id="name" value="{{$buyers->name}}">
               </div>
             </div>
 
@@ -56,16 +56,16 @@
             </div>
 
             <div class="form-group">
-              <label for="company_address" class="col-sm-3 control-label">Company Address: </label>
+              <label for="address" class="col-sm-3 control-label">Company Address: </label>
               <div class="col-sm-9">
-                <textarea class="form-control" name="company_address" id="company_address">{{$buyers->company_address}}</textarea>
+                <textarea class="form-control" name="address" id="address">{{$buyers->address}}</textarea>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="phone_number" class="col-sm-3 control-label">Phone No.: </label>
+              <label for="phonenumber" class="col-sm-3 control-label">Phone No.: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="phone_number" id="phone_number" value="{{$buyers->phone_number}}">
+                <input type="text" class="form-control" name="phonenumber" id="phonenumber" value="{{$buyers->phonenumber}}">
               </div>
             </div>
 
@@ -77,9 +77,9 @@
             </div>
 
             <div class="form-group">
-              <label for="email_address" class="col-sm-3 control-label">Email Address: </label>
+              <label for="email" class="col-sm-3 control-label">Email Address: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="email_address" id="email_address" value="{{$buyers->email_address}}">
+                <input type="text" class="form-control" name="email" id="email" value="{{$buyers->email}}">
               </div>
             </div>
 
@@ -91,7 +91,7 @@
             </div>
 
                 </div>
-                <input type="hidden" name="buyer_id" value="{{$buyers->buyer_id}}">
+                <input type="hidden" name="user_id" value="{{$buyers->user_id}}">
                 <div class="box-footer">
                   <button type="submit" onclick="window.location='{{ url("/buyer") }}'" class="btn btn-primary">Save Change</button>
                 </div>
@@ -117,7 +117,7 @@
 <script>
   $(document).ready(function()
   {
-    CKEDITOR.replace('company_address');
+    CKEDITOR.replace('address');
     $('#frm-buyer-edit').on('submit',function(e)
     {
       e.preventDefault();
@@ -125,7 +125,7 @@
       var data = $(this).serialize();
       console.log(data);
       var formData = new FormData($(this)[0]);
-      formData.append('company_address', CKEDITOR.instances.company_address.getData());
+      formData.append('address', CKEDITOR.instances.address.getData());
 
       $.ajax(
       {

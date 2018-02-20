@@ -17,6 +17,15 @@ class CreateUsersTable extends Migration
             $table->longtext('address');
             $table->string('phonenumber');
             $table->string('profilepic');
+            $table->string('remember_token');
+            $table->string('company_name');
+            $table->string('company_reg_ic_number');
+            $table->string('handphone_number');
+            $table->string('bank_name');
+            $table->string('bank_acc_holder_name');
+            $table->string('bank_acc_number');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->string('group_id');
             $table->timestamps();
         });    

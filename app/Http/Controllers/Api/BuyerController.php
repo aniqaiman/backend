@@ -9,20 +9,20 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
-use App\Buyer;
+use App\User;
 
 class BuyerController extends BaseController
 {
 	public function postRegisterBuyer(Request $request)
     {
-        $buyer = Buyer::create([
-            'owner_name' => $request->get('owner_name'),
+        $buyer = User::create([
+            'name' => $request->get('name'),
             'company_name' => $request->get('company_name'),
             'company_reg_ic_number' => $request->get('company_reg_ic_number'),
-            'company_address' => $request->get('company_address'),
+            'address' => $request->get('address'),
             'handphone_number' => $request->get('handphone_number'),
-            'phone_number' => $request->get('phone_number'),
-            'email_address' => $request->get('email_address'),
+            'phonenumber' => $request->get('phonenumber'),
+            'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')),
             'group_id'=>11,
             ]);

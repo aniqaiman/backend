@@ -31,9 +31,9 @@
           <div class="row">
 
             <div class="form-group">
-              <label for="owner_name" class="col-sm-3 control-label">Owner Name: </label>
+              <label for="name" class="col-sm-3 control-label">Owner Name: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="owner_name" id="owner_name" multiple="true">
+                <input type="text" class="form-control" name="name" id="name" multiple="true">
               </div>
             </div>
 
@@ -52,16 +52,16 @@
             </div>
 
             <div class="form-group">
-              <label for="company_address" class="col-sm-3 control-label">Company Address: </label>
+              <label for="address" class="col-sm-3 control-label">Company Address: </label>
               <div class="col-sm-9">
-                <textarea class="form-control" name="company_address" id="company_address"></textarea>
+                <textarea class="form-control" name="address" id="address"></textarea>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="phone_number" class="col-sm-3 control-label">Phone No.: </label>
+              <label for="phonenumber" class="col-sm-3 control-label">Phone No.: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="phone_number" id="phone_number" multiple="true">
+                <input type="text" class="form-control" name="phonenumber" id="phonenumber" multiple="true">
               </div>
             </div>
 
@@ -73,9 +73,9 @@
             </div>
 
             <div class="form-group">
-              <label for="email_address" class="col-sm-3 control-label">Email Address: </label>
+              <label for="email" class="col-sm-3 control-label">Email Address: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="email_address" id="email_address" multiple="true">
+                <input type="text" class="form-control" name="email" id="email" multiple="true">
               </div>
             </div>
 
@@ -132,11 +132,11 @@
                       <!-- <td class="mailbox-name"><center><a href="#">{{$buyer->owner_name}}</a></center></td> -->
                       <td class="mailbox-date"><center>{{$buyer->company_name}}</center></td>
                       <!-- <td class="mailbox-date"><center><a href="#">{{$buyer->company_reg_number}}</a></center></td> -->
-                      <td class="mailbox-date"><center>{{$buyer->company_address}}</center></td>
-                      <td class="mailbox-date"><center>{{$buyer->phone_number}}</center></td>
+                      <td class="mailbox-date"><center>{{$buyer->address}}</center></td>
+                      <td class="mailbox-date"><center>{{$buyer->phonenumber}}</center></td>
                       <td class="mailbox-date"><center>{{$buyer->handphone_number}}</center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
-                        <a class="button btn btn-success btn-sm" href="{{route('editBuyer', ['buyer_id'=> $buyer->buyer_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="button btn btn-success btn-sm" href="{{route('editBuyer', ['user_id'=> $buyer->user_id])}}"><i class="fa fa-edit"></i> Edit</a>
                         {{ Form::open(array('url' => 'buyer/' . $buyer->buyer_id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
@@ -175,7 +175,7 @@
 <script>
 $(document).ready(function(){
   $('#buyer-table').DataTable();
-  CKEDITOR.replace('company_address');
+  CKEDITOR.replace('address');
 
   $('#frm-buyer-create').on('submit',function(e){
     e.preventDefault();
@@ -184,7 +184,7 @@ $(document).ready(function(){
 
     console.log(data);
     var formData = new FormData($(this)[0]);
-    formData.append('company_address', CKEDITOR.instances.company_address.getData());
+    formData.append('address', CKEDITOR.instances.address.getData());
    // console.log(CKEDITOR.instances.description.getData());
    $.ajax({
     url:"{{route('createBuyer')}}", 

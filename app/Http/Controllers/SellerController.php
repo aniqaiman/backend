@@ -9,26 +9,27 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
-use App\Seller;
+use App\User;
 
 class SellerController extends Controller
 {
     public function createSeller(Request $request)
     {
     	if($request->ajax()){
-    		$sellers = new Seller;
-    		$sellers->owner_name = $request->owner_name;
+    		$sellers = new User;
+    		$sellers->name = $request->name;
     		$sellers->company_name = $request->company_name;
     		$sellers->company_reg_ic_number = $request->company_reg_ic_number;
-    		$sellers->farm_address = $request->farm_address;
+    		$sellers->address = $request->address;
             $sellers->latitude = $request->latitude;
             $sellers->longitude = $request->longitude;
     		$sellers->handphone_number = $request->handphone_number;
-    		$sellers->email_address = $request->email_address;
+    		$sellers->email = $request->email;
     		$sellers->password = bcrypt('$request->password');
             $sellers->bank_name = $request->bank_name;
             $sellers->bank_acc_holder_name = $request->bank_acc_holder_name;
             $sellers->bank_acc_number = $request->bank_acc_number;
+            $sellers->group_id = 21;
     		$sellers->save();
     		return response($sellers);
     	}
@@ -36,28 +37,28 @@ class SellerController extends Controller
 
     public function getSeller()
     {
-    	$sellers = Seller::all();
+    	$sellers = User::where('group_id', 21)->get();
     	return view('seller.seller', compact('sellers'));
     }
 
-    public function editSeller($seller_id, Request $request)
+    public function editSeller($user_id, Request $request)
     {
-    	$sellers = Seller::where('seller_id', $request->seller_id)->first();
+    	$sellers = User::where('user_id', $user_id)->first();
     	return view('seller.editSeller', compact('sellers'));
     }
 
     public function updateSeller(Request $request)
     {
     	if($request->ajax()){
-    		$sellers = Seller::where('seller_id', $request->seller_id)->first();
-    		$sellers->owner_name = $request->owner_name;
-    		$sellers->company_name = $request->company_name;
-    		$sellers->company_reg_ic_number = $request->company_reg_ic_number;
-    		$sellers->farm_address =$request->farm_address;
+    		$sellers = User::where('user_id', $request->user_id)->first();
+    		$sellers->name = $request->name;
+            $sellers->company_name = $request->company_name;
+            $sellers->company_reg_ic_number = $request->company_reg_ic_number;
+            $sellers->address = $request->address;
             $sellers->latitude = $request->latitude;
             $sellers->longitude = $request->longitude;
-    		$sellers->handphone_number = $request->handphone_number;
-    		$sellers->email_address = $request->email_address;
+            $sellers->handphone_number = $request->handphone_number;
+            $sellers->email = $request->email;
             $sellers->password = bcrypt('$request->password');
             $sellers->bank_name = $request->bank_name;
             $sellers->bank_acc_holder_name = $request->bank_acc_holder_name;
@@ -67,9 +68,9 @@ class SellerController extends Controller
     	}
     }
 
-    public function deleteSeller($seller_id, Request $request)
+    public function deleteSeller($user_id, Request $request)
     {
-    	$sellers = Seller::find($seller_id);
+    	$sellers = User::find($user_id);
     	$sellers->delete();
     	Session::flash('message','Successfully deleted');
     	return Redirect::to('seller');

@@ -63,7 +63,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a class="text-info" href="{{route('product')}}"><i class="fa fa-level-down"></i>Products Management</a></li>
+            <li><a class="text-info" href="{{route('fruit')}}"><i class="fa fa-level-down"></i>Fruit Management</a></li>
+            <li><a class="text-info" href="{{route('vege')}}"><i class="fa fa-level-down"></i>Vegetable Management</a></li>
             <li><a class="text-info" href="{{route('price')}}"><i class="fa fa-level-down"></i>Price Management</a></li>
           </ul>
         </li>

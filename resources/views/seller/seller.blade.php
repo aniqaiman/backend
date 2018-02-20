@@ -31,9 +31,9 @@
           <div class="row">
 
             <div class="form-group">
-              <label for="owner_name" class="col-sm-3 control-label">Owner Name: </label>
+              <label for="name" class="col-sm-3 control-label">Owner Name: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="owner_name" id="owner_name" multiple="true">
+                <input type="text" class="form-control" name="name" id="name" multiple="true">
               </div>
             </div>
 
@@ -52,9 +52,9 @@
             </div>
 
             <div class="form-group">
-              <label for="farm_address" class="col-sm-3 control-label">Farm Address: </label>
+              <label for="address" class="col-sm-3 control-label">Farm Address: </label>
               <div class="col-sm-9">
-                <textarea class="form-control" name="farm_address" id="farm_address" ></textarea>
+                <textarea class="form-control" name="address" id="address" ></textarea>
               </div>
             </div>
 
@@ -80,9 +80,9 @@
             </div>
 
             <div class="form-group">
-              <label for="email_address" class="col-sm-3 control-label">Email Address: </label>
+              <label for="email" class="col-sm-3 control-label">Email Address: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="email_address" id="email_address" multiple="true">
+                <input type="text" class="form-control" name="email" id="email" multiple="true">
               </div>
             </div>
 
@@ -172,13 +172,13 @@
                       <td class="mailbox-date"><center>{{$seller->company_name}}</center></td>
                       <!-- <td class="mailbox-date"><center><a href="#">{{$seller->registration_number}}</a></center></td> -->
                       <!-- <td class="mailbox-date"><center><a href="#">{{$seller->ic_number}}</a></center></td> -->
-                      <td class="mailbox-date"><center>{{$seller->farm_address}}</center></td>
+                      <td class="mailbox-date"><center>{{$seller->address}}</center></td>
                       <td class="mailbox-date"><center>{{$seller->handphone_number}}</center></td>
                       <!-- <td class="mailbox-date"><center><a href="#">{{$seller->email_address}}</a></center></td> -->
                       <!-- <td class="mailbox-date"><center><a href="#">{{$seller->password}}</a></center></td> -->
                       <td class="mailbox-subject"><center><div class="btn-group">
-                        <a class="button btn btn-success btn-sm" href="{{route('editSeller', ['seller_id'=> $seller->seller_id])}}"><i class="fa fa-edit"></i> Edit</a>
-                        {{ Form::open(array('url' => 'seller/' . $seller->seller_id, 'class' => 'pull-right')) }}
+                        <a class="button btn btn-success btn-sm" href="{{route('editSeller', ['user_id'=> $seller->user_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        {{ Form::open(array('url' => 'seller/' . $seller->user_id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
                         {{ Form::close() }}
@@ -217,7 +217,7 @@
   $(document).ready(function()
   {
     $('#supplier-table').DataTable();
-    CKEDITOR.replace('farm_address');
+    CKEDITOR.replace('address');
 
     $('#frm-supplier-create').on('submit',function(e)
     {
@@ -227,7 +227,7 @@
 
       console.log(data);
       var formData = new FormData($(this)[0]);
-      formData.append('farm_address', CKEDITOR.instances.farm_address.getData());
+      formData.append('address', CKEDITOR.instances.address.getData());
    // console.log(CKEDITOR.instances.description.getData());
    $.ajax(
    {

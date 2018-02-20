@@ -56,9 +56,9 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="phonenumber" class="col-sm-3 control-label">Phone Number: </label>
+                    <label for="handphone_number" class="col-sm-3 control-label">Handphone No: </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="phonenumber" id="phonenumber" value="{{$users->phonenumber}}">
+                      <input type="text" class="form-control" name="handphone_number" id="handphone_number" value="{{$users->handphone_number}}">
                     </div>
                   </div>
 

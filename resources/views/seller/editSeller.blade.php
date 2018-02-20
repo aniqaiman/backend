@@ -35,9 +35,9 @@
                 <div class="row">
 
                   <div class="form-group">
-                    <label for="owner_name" class="col-sm-3 control-label">Owner Name: </label>
+                    <label for="name" class="col-sm-3 control-label">Owner Name: </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="owner_name" id="owner_name" value="{{$sellers->owner_name}}">
+                      <input type="text" class="form-control" name="name" id="name" value="{{$sellers->name}}">
                     </div>
                   </div>
 
@@ -56,9 +56,9 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="farm_address" class="col-sm-3 control-label">Farm Address: </label>
+                    <label for="address" class="col-sm-3 control-label">Farm Address: </label>
                     <div class="col-sm-9">
-                      <textarea class="form-control" name="farm_address" id="farm_address">{{$sellers->farm_address}}</textarea>
+                      <textarea class="form-control" name="address" id="address">{{$sellers->address}}</textarea>
                     </div>
                   </div>
 
@@ -84,9 +84,9 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="email_address" class="col-sm-3 control-label">Email Address: </label>
+                    <label for="email" class="col-sm-3 control-label">Email Address: </label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="email_address" id="email_address" value="{{$sellers->email_address}}">
+                      <input type="text" class="form-control" name="email" id="email" value="{{$sellers->email}}">
                     </div>
                   </div>
 
@@ -111,8 +111,15 @@
                     </div>
                   </div>
 
+                  <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Password: </label>
+                    <div class="col-sm-9">
+                    <input type="text" class="form-control" name="password" id="password" value="{{$sellers->password}}">
+                    </div>
+                  </div>
+
                 </div>
-                <input type="hidden" name="seller_id" value="{{$sellers->seller_id}}">
+                <input type="hidden" name="user_id" value="{{$sellers->user_id}}">
                 <div class="box-footer">
                   <button type="submit" onclick="window.location='{{ url("/seller") }}'" class="btn btn-primary">Save Change</button>
                 </div>
@@ -138,7 +145,7 @@
 <script>
   $(document).ready(function()
   {
-    CKEDITOR.replace('farm_address');
+    CKEDITOR.replace('address');
     $('#frm-supplier-edit').on('submit',function(e)
     {
       e.preventDefault();
@@ -146,7 +153,7 @@
       var data = $(this).serialize();
       console.log(data);
       var formData = new FormData($(this)[0]);
-      formData.append('farm_address', CKEDITOR.instances.farm_address.getData());
+      formData.append('address', CKEDITOR.instances.address.getData());
 
       $.ajax(
       {

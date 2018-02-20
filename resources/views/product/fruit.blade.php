@@ -6,13 +6,13 @@
 
 <section class="content-header">
   <h1>
-    PRODUCT
+    FRUIT
     <small>Control panel</small>
   </h1>
 
   <ol class="breadcrumb">
     <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>Home</a></li>
-    <li class="active">Product</li>
+    <li class="active">Fruit</li>
   </ol>
 </section>
 
@@ -21,7 +21,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Add Product</h4>
+        <h4 class="modal-title">Add Fruit</h4>
 
       </div>
       <div class="modal-body">
@@ -31,39 +31,28 @@
           <div class="row">
 
             <div class="form-group">
-              <label for="product_image" class="col-sm-3 control-label">Product Image: </label>
+              <label for="product_image" class="col-sm-3 control-label">Fruit Image: </label>
               <div class="col-sm-9">
                 <input type="file" class="form-control" name="product_image" id="product_image" multiple="true">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="product_price" class="col-sm-3 control-label">Product Price: </label>
+              <label for="product_price" class="col-sm-3 control-label">Fruit Price: </label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="product_price" id="product_price" multiple="true">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="product_name" class="col-sm-3 control-label">Product Name: </label>
+              <label for="product_name" class="col-sm-3 control-label">Fruit Name: </label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="product_name" id="product_name" multiple="true">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="category" class="col-sm-3 control-label">Category: </label>
-              <div class="col-sm-9">
-              <select class="form-control" name="category" id="category" data-placeholder="Select">
-                      @foreach($categories as $category)
-                <option value="{{$category->cat_id}}">{{$category->cat_name}}</option>
-                @endforeach
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="product_desc" class="col-sm-3 control-label">Product Desc: </label>
+              <label for="product_desc" class="col-sm-3 control-label">Fruit Desc: </label>
               <div class="col-sm-9">
               <textarea class="form-control" name="product_desc" id="product_desc"></textarea>
               </div>
@@ -86,7 +75,7 @@
       <ul class="nav nav-tabs ">
         <li class="active"><a href="#tab_1" data-toggle="tab">Active</a></li>
         <li class="pull-right"> 
-          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add-product">Add Product</button></li>
+          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add-product">Add Fruit</button></li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="tab_1">
@@ -104,25 +93,25 @@
                     <tr class="info bg-white">
 
                       <th><input type="checkbox"></th>
-                      <th class="mailbox-star"><center>Product Name</center></th>
-                      <th class="mailbox-star"><center>Product Price(RM/Unit)</center></th>
-                      <th class="mailbox-star"><center>Product Image</center></th>
+                      <th class="mailbox-star"><center>Fruit Name</center></th>
+                      <th class="mailbox-star"><center>Fruit Price(RM/Unit)</center></th>
+                      <th class="mailbox-star"><center>Fruit Image</center></th>
                       <th class="mailbox-star"><center>Operation</center></th>
 
                     </tr>
                   </thead>
 
                   <tbody>
-                    @foreach($products as $product) 
+                    @foreach($fruits as $fruit) 
                     <tr class="info">
                       <td><input type="checkbox"></td>
-                      <td class="mailbox-name"><center>{{$product->product_name}}</center></td>
-                      <td class="mailbox-date"><center>{{$product->product_price}}</center></td>
-                      <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$product->product_image}}"></a></center></td>
+                      <td class="mailbox-name"><center>{{$fruit->product_name}}</center></td>
+                      <td class="mailbox-date"><center>{{$fruit->product_price}}</center></td>
+                      <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$fruit->product_image}}"></a></center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
-                        <a class="button btn btn-success btn-sm" href="{{route('editProduct', ['product_id'=> $product->product_id])}}"><i class="fa fa-edit"></i> Edit</a>
-                        <a class="button btn btn-primary btn-sm" href="{{route('editProduct', ['product_id'=> $product->product_id])}}"><i class="fa fa-edit"></i> Edit Price</a>
-                        {{ Form::open(array('url' => 'product/' . $product->product_id, 'class' => 'pull-right')) }}
+                        <a class="button btn btn-success btn-sm" href="{{route('editFruit', ['product_id'=> $fruit->product_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="button btn btn-primary btn-sm" href="{{route('editFruit', ['product_id'=> $fruit->product_id])}}"><i class="fa fa-edit"></i> Edit Price</a>
+                        {{ Form::open(array('url' => 'fruit/' . $fruit->product_id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
                         {{ Form::close() }}
@@ -175,7 +164,7 @@
    // console.log(CKEDITOR.instances.description.getData());
    $.ajax(
    {
-    url:"{{route('createProduct')}}", 
+    url:"{{route('createFruit')}}", 
     type: "POST",
     data: formData,
     async: false,

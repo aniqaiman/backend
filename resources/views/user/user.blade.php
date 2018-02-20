@@ -53,9 +53,9 @@
             </div>
 
             <div class="form-group">
-              <label for="phonenumber" class="col-sm-3 control-label">Phone Number: </label>
+              <label for="handphone_number" class="col-sm-3 control-label">Handphone No: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="phonenumber" id="phonenumber">
+                <input type="text" class="form-control" name="handphone_number" id="handphone_number">
               </div>
             </div>
 
@@ -110,8 +110,8 @@
                         <!-- <th class="mailbox-star"><center><a href="#">Id</a></center></th> -->
                         <th class="mailbox-name"><center>Name</center></th>
                         <th class="mailbox-name"><center>Email</center></th>
-                        <th class="mailbox-name"><center>Address</center></th>
-                        <th class="mailbox-name"><center>Phone Number</center></th>
+                        <!-- <th class="mailbox-name"><center>Address</center></th> -->
+                        <th class="mailbox-name"><center>Handphone Number</center></th>
                         <th class="col-sm-3"><center>Profile Picture</center></th>
                         <th class="mailbox-name"><center>Operation</center></th>
                       </tr>
@@ -125,8 +125,8 @@
                       <!-- <td class="mailbox-star"><center><a href="#">{{$user->user_id}}</a></center></td> -->
                       <td class="mailbox-name"><center>{{$user->name}}</center></td>
                       <td class="mailbox-name"><center>{{$user->email}}</center></td>
-                      <td class="mailbox-name"><center>{{$user->address}}</center></td>
-                      <td class="mailbox-name"><center>{{$user->phonenumber}}</center></td>
+                      <!-- <td class="mailbox-name"><center>{{$user->address}}</center></td> -->
+                      <td class="mailbox-name"><center>{{$user->handphone_number}}</center></td>
                       <td class="col-sm-3"><center><img style="width: 25%" src="{{$user->profilepic}}"></center></td>
                       <td class="mailbox-name"><center><div class="btn-group">
                       <a class="button btn btn-success btn-sm" href="{{route('editUser', ['user_id'=> $user->user_id])}}"><i class="fa fa-gear"></i>Edit</a>
