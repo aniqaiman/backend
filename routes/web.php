@@ -17,8 +17,7 @@ Route::get('/', ['as' => 'welcome','uses' =>
 	}]);
 
 // Route::group(['middleware' => ['api','cors']], function () {
-	Route::post('auth/login', 'ApiController@login');
-	Route::get('user', 'ApiController@getAuthUser');
+	
 
 // -------------------------------------------Dashboard------------------------------------------------
 
@@ -102,8 +101,9 @@ Route::delete('/fruit/{product_id}',['as'=>'deleteFruit','uses'=>'FruitControlle
 
 Route::post('/api/registerseller', 'Api\SellerController@postRegisterSeller');
 Route::post('/api/registerbuyer', 'Api\BuyerController@postRegisterBuyer');
+Route::post('auth/login', 'ApiController@login');
 
-
+Route::get('user', 'ApiController@getAuthUser');
 Route::get('/api/products','Api\ProductController@getProducts');
 Route::get('/api/product/{product_id}','Api\ProductController@getProductbyId');
 Route::get('/api/fruits','Api\ProductController@getFruit');
