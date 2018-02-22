@@ -41,12 +41,12 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="product_price" class="col-sm-3 control-label">Fruit Price: </label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="product_price" id="product_price" value="{{$fruits->product_price}}">
               </div>
-            </div>
+            </div> -->
 
             <div class="form-group">
               <label for="product_name" class="col-sm-3 control-label">Fruit Name: </label>

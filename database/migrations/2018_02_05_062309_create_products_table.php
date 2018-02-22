@@ -12,7 +12,7 @@ class CreateProductsTable extends Migration
             $table->increments('product_id');
             $table->string('product_name');
             $table->string('product_desc');
-            $table->string('product_price');
+            $table->string('price_id');
             $table->string('product_image');
             $table->string('category');
             // $table->string('price_id');

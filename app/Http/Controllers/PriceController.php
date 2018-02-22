@@ -14,27 +14,32 @@ use App\Price;
 
 class PriceController extends Controller
 {
-    public function createPrice(Request $request)
+    public function getFruitDetail($product_id, Request $request)
+    {
+        $fruit = Product::where('product_id', $product_id)->first();
+        $prices = Price::where('product_id', $product_id)->get();
+        return view('price.fruitprice', compact('fruit','prices'));
+    }
+
+    public function createFruitPrice($product_id, Request $request)
     {
     	if($request->ajax()){
-			return response(Price::create($request->all()));
-		}
+            $price = new Price;
+            $price->product_id = $product_id;
+            $price->product_price = $request->product_price;
+            $price->date_price = $request->date_price;
+            $price->save();
+            return response($price); 
+        }
     }
 
-    public function getPrice()
+    public function editFruitPrice($product_id, $price_id, Request $request)
     {
-    	$prices = Price::all();
-    	$products = Product::all();
-	    return view('price.price',compact('prices','products'));
+        $prices = Price::where('price_id', $price_id)->first();
+        return view('price.editFruitPrice', compact('prices'));
     }
 
-    public function editPrice($price_id, Request $request)
-    {
-        $prices = Price::where('price_id', $request->price_id)->first();
-        return view('price.editPrice', compact('prices'));
-    }
-
-    public function updatePrice(Request $request)
+    public function updateFruitPrice(Request $request)
     {
         if($request->ajax()){
             $prices = Price::where('price_id', $request->price_id)->first();
@@ -46,12 +51,58 @@ class PriceController extends Controller
             }       
     }
 
-    public function deletePrice($price_id, Request $request)
+    public function deleteFruitPrice($price_id, Request $request)
     {
         $prices = Price::find($price_id);
         $prices->delete();
         Session::flash('message', 'Successfully deleted!');
-        return Redirect::to('price');
+        return Redirect::to('fruitprice');
+    }
+
+
+    public function createVegePrice($product_id, Request $request)
+    {
+        if($request->ajax()){
+            $price = new Price;
+            $price->product_id = $product_id;
+            $price->product_price = $request->product_price;
+            $price->date_price = $request->date_price;
+            $price->save();
+            return response($price); 
+        }
+    }
+
+    public function getVegeDetail($product_id, Request $request)
+    {
+        $vege = Product::where('product_id', $product_id)->first();
+        $prices = Price::where('product_id', $product_id)->get();
+        return view('price.vegeprice', compact('vege','prices'));
+    }
+
+    public function editVegePrice($product_id, $price_id, Request $request)
+    {
+        $prices = Price::where('price_id', $price_id)->first();
+        return view('price.editVegePrice', compact('prices'));
+    }
+
+    public function updateVegePrice(Request $request)
+    {
+        if($request->ajax()){
+            $prices = Price::where('price_id', $request->price_id)->first();
+            $prices->product_id = $request->product_id;
+            $prices->product_price = $request->product_price;
+            $prices->date_price = $request->date_price;
+            $prices->save();
+            return response($prices);
+            }       
+    }
+
+    public function deleteVegePrice($price_id, Request $request)
+    {
+        $prices = Price::find($price_id);
+        $prices->delete();
+        Session::flash('message', 'Successfully deleted!');
+        return Redirect::to('vegeprice');
     }
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

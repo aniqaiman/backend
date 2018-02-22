@@ -15,7 +15,7 @@ class Price extends Model
     	'date_price',
     	];
 
-    public function product()
+    public function products()
     {
     	return $this->belongsTo('App\Product','product_id');
     }

@@ -34,7 +34,7 @@
         <li class="header">MAIN NAVIGATION</li>
 
         <li class="treeview">
-          <a href="{{route('dashboard')}}">
+          <a href="{{route('welcome')}}">
             <i class="fa fa-bars"></i> <span class="text-info">Dashboard</span>
           </a>
         </li>
@@ -65,7 +65,6 @@
           <ul class="treeview-menu">
             <li><a class="text-info" href="{{route('fruit')}}"><i class="fa fa-level-down"></i>Fruit Management</a></li>
             <li><a class="text-info" href="{{route('vege')}}"><i class="fa fa-level-down"></i>Vegetable Management</a></li>
-            <li><a class="text-info" href="{{route('price')}}"><i class="fa fa-level-down"></i>Price Management</a></li>
           </ul>
         </li>
 

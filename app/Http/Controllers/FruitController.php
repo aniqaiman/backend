@@ -21,7 +21,7 @@ class FruitController extends Controller
             $fruits = new Product;
             $fruits->product_name = $request->product_name;
             $fruits->product_desc = $request->product_desc;
-            $fruits->product_price = $request->product_price;
+            // $fruits->product_price = $request->product_price;
             // $fruits->category = $request->category;
             $fruits->product_image = $path;
             $fruits->category = 1;
@@ -33,15 +33,15 @@ class FruitController extends Controller
     public function getFruit()
     {
     	$fruits = Product::where('category', 1)->get();
-	    // $categories = Category::all();
-	    return view('product.fruit',compact('fruits'));
+	    $categories = Category::all();
+	    return view('product.fruit',compact('fruits','categories'));
     }
 
     public function editFruit($product_id, Request $request)
     {
         $fruits = Product::where('product_id', $product_id)->first();
-        // $categories = Category::all();
-        return view('product.editFruit', compact('fruits'));
+        $categories = Category::all();
+        return view('product.editFruit', compact('fruits','categories'));
     }
 
     public function updateFruit(Request $request)
@@ -51,7 +51,7 @@ class FruitController extends Controller
             $fruits = Product::where('product_id', $request->product_id)->first();
             $fruits->product_name = $request->product_name;
             $fruits->product_desc = $request->product_desc;
-            $fruits->product_price = $request->product_price;
+            // $fruits->product_price = $request->product_price;
             // $fruits->category = $request->category;
             $fruits->product_image = $path;
             $fruits->save();

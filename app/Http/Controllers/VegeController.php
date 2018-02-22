@@ -21,7 +21,7 @@ class VegeController extends Controller
             $vegs = new Product;
             $vegs->product_name = $request->product_name;
             $vegs->product_desc = $request->product_desc;
-            $vegs->product_price = $request->product_price;
+            // $vegs->product_price = $request->product_price;
             // $vegs->category = $request->category;
             $vegs->product_image = $path;
             $vegs->category = 11;
@@ -51,8 +51,8 @@ class VegeController extends Controller
             $vegs = Product::where('product_id', $request->product_id)->first();
             $vegs->product_name = $request->product_name;
             $vegs->product_desc = $request->product_desc;
-            $vegs->product_price = $request->product_price;
-            $vegs->category = $request->category;
+            // $vegs->product_price = $request->product_price;
+            // $vegs->category = $request->category;
             $vegs->product_image = $path;
             $vegs->save();
             return response($vegs);

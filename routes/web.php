@@ -11,14 +11,36 @@
 |
 */
 
-Route::get('/', ['as' => 'dashboard','uses' => 
+Route::get('/', ['as' => 'welcome','uses' => 
 	function () {
-		return view('dashboard');
+		return view('welcome');
 	}]);
 
 // Route::group(['middleware' => ['api','cors']], function () {
 	Route::post('auth/login', 'ApiController@login');
 	Route::get('user', 'ApiController@getAuthUser');
+
+// -------------------------------------------Dashboard------------------------------------------------
+
+	Route::post('/dashboard',['as'=>'createDashboard','uses'=>'DashboardController@createServiceDashboard']);
+	Route::get('dashboard', ['as' => 'dashboard', 'uses' =>  
+				'DashboardController@getDashboard']);  
+
+// -------------------------------------------Detail Fruit----------------------------------------------
+
+Route::post('/fruit/{product_id}/price/add', ['as'=>'createFruitPrice','uses'=>'PriceController@createFruitPrice']);
+Route::get('/fruit/{product_id}/detail', ['as'=>'getFruitDetail','uses'=>'PriceController@getFruitDetail']);
+Route::get('/fruit/{product_id}/editFruitPrice/{price_id}', ['as'=>'editFruitPrice','uses'=>'PriceController@editFruitPrice']);
+Route::post('/updateFruitPrice', ['as'=>'updateFruitPrice','uses'=>'PriceController@updateFruitPrice']);
+Route::get('/fruitprice', ['as'=>'deleteFruitPrice','uses'=>'PriceController@deleteFruitPrice']);
+
+// -------------------------------------------Detail Fruit----------------------------------------------
+
+Route::post('vege/{product_id}/price/add', ['as'=>'createVegePrice','uses'=>'PriceController@createVegePrice']);
+Route::get('vege/{product_id}/detail', ['as'=>'getVegeDetail','uses'=>'PriceController@getVegeDetail']);
+Route::get('vege/{product_id}/editVegePrice/{price_id}', ['as'=>'editVegePrice','uses'=>'PriceController@editVegePrice']);
+Route::post('/updateVegePrice', ['as'=>'updateVegePrice','uses'=>'PriceController@updateVegePrice']);
+Route::delete('vegeprice', ['as'=>'deleteVegePrice','uses'=>'PriceController@deleteVegePrice']);
 
 // -------------------------------------------Seller----------------------------------------------------
 
@@ -76,22 +98,14 @@ Route::get('editFruit/{product_id}',['as'=>'editFruit','uses'=>'FruitController@
 Route::post('/updateFruit',['as'=>'updateFruit','uses'=>'FruitController@updateFruit']);
 Route::delete('/fruit/{product_id}',['as'=>'deleteFruit','uses'=>'FruitController@deleteFruit']);
 
-// -------------------------------------------Price----------------------------------------------------
-
-Route::post('/price', ['as'=>'createPrice', 'uses'=>'PriceController@createPrice']);
-Route::get('/price', ['as'=>'price','uses'=>'PriceController@getPrice']);
-Route::get('editPrice/{price_id}',['as'=>'editPrice','uses'=>'PriceController@editPrice']);
-Route::post('/updatePrice',['as'=>'updatePrice','uses'=>'PriceController@updatePrice']);
-Route::delete('/price/{price_id}',['as'=>'deletePrice','uses'=>'PriceController@deletePrice']);
-
 // -------------------------------------------API----------------------------------------------------	
 
 Route::post('/api/registerseller', 'Api\SellerController@postRegisterSeller');
 Route::post('/api/registerbuyer', 'Api\BuyerController@postRegisterBuyer');
 
 
-Route::get('/api/products','Api\ProductController@getProduct');
+Route::get('/api/products','Api\ProductController@getProducts');
 Route::get('/api/product/{product_id}','Api\ProductController@getProductbyId');
 Route::get('/api/fruits','Api\ProductController@getFruit');
-// Route::get('/api/fruit/{product_id}','Api\ProductController@getFruitById');
 Route::get('/api/veges','Api\ProductController@getVege');
+Route::get('/api/prices','Api\ProductController@getPrices');

@@ -10,10 +10,11 @@ use Illuminate\Http\Request;
 use Redirect;
 use Session;
 use App\Product;
+use App\Price;
 
 class ProductController extends BaseController
 {
-	public function getProduct(Request $request)
+	public function getProducts(Request $request)
 	{
 		$products = Product::orderBy('product_id', 'desc')->get();
 
@@ -24,11 +25,10 @@ class ProductController extends BaseController
 			$newproduct["product_id"] = $product->product_id;
 			$newproduct["product_name"] = $product->product_name;
 			$newproduct["product_desc"] = $product->product_desc;
-			$newproduct["product_price"] = $product->product_price;
 			$newproduct["product_image"] = $product->product_image;
-			$newproduct["category"] = $product->category;
 			$newproduct["created_at"] = $product->created_at;
 			$newproduct["updated_at"] = $product->updated_at;
+			$newproduct["category"] = $product->category;
 
 			array_push($productArray, $newproduct);
 		}
@@ -39,15 +39,26 @@ class ProductController extends BaseController
 	public function getProductById($product_id, Request $request)
 	{
 		$product = Product::where('product_id', $product_id)->first();
+		$prices = Price::where('product_id', $product_id)->orderBy('created_at','desc')->take(1)->get();
 
 		$newproduct["product_id"] = $product->product_id;
 		$newproduct["product_name"] = $product->product_name;
 		$newproduct["product_desc"] = $product->product_desc;
-		$newproduct["product_price"] = $product->product_price;
 		$newproduct["product_image"] = $product->product_image;
 		$newproduct["category"] = $product->category;
 		$newproduct["created_at"] = $product->created_at;
 		$newproduct["updated_at"] = $product->updated_at;
+
+		$priceArray = [];
+
+		foreach ($prices as $newprice) 
+		{
+			$productprice["product_price"] = $newprice->product_price;
+			$productprice["date"] = $newprice->date_price;
+
+			array_push($priceArray, $productprice);
+		}
+		$newproduct["prices"] = $priceArray;
 
 		return response()->json(['data'=>$newproduct, 'status'=>'ok']);
 	}
@@ -55,6 +66,7 @@ class ProductController extends BaseController
 	public function getFruit()
 	{
 		$fruits = Product::where('category', 1)->get();
+		// $prices = Price::where('product_id', $product_id)->orderBy('created_at','desc')->take(1)->get();
 
 		$fruitArray = [];
 
@@ -63,34 +75,28 @@ class ProductController extends BaseController
 			$newfruit["product_id"] = $fruit->product_id;
 			$newfruit["product_name"] = $fruit->product_name;
 			$newfruit["product_desc"] = $fruit->product_desc;
-			$newfruit["product_price"] = $fruit->product_price;
 			$newfruit["product_image"] = $fruit->product_image;
 			$newfruit["category"] = $fruit->category;
 			$newfruit["created_at"] = $fruit->created_at;
 			$newfruit["updated_at"] = $fruit->updated_at;
+
+			$priceArray = [];
+
+		foreach ($fruit->prices as $newprice) 
+		{
+			$productprice["product_price"] = $newprice->product_price;
+			$productprice["date"] = $newprice->date_price;
+
+			array_push($priceArray, $productprice);
+		}
+		$newproduct["prices"] = $priceArray;
 
 			array_push($fruitArray, $newfruit);
 		}
 
 		return response()->json(['data'=>$fruitArray, 'status'=>'ok']);
 	}
-
-	// public function getFruitById($product_id, Request $request)
-	// {
-	// 	$fruit = Product::where('category', $product_id)->first();
-
-	// 		$newfruit["product_id"] = $fruit->product_id;
-	// 		$newfruit["product_name"] = $fruit->product_name;
-	// 		$newfruit["product_desc"] = $fruit->product_desc;
-	// 		$newfruit["product_price"] = $fruit->product_price;
-	// 		$newfruit["product_image"] = $fruit->product_image;
-	// 		$newfruit["category"] = $fruit->category;
-	// 		$newfruit["created_at"] = $fruit->created_at;
-	// 		$newfruit["updated_at"] = $fruit->updated_at;
-
-	// 	return response()->json(['data'=>$newfruit, 'status'=>'ok']);
-	// }
-
+ 
 	public function getVege()
 	{
 		$veges = Product::where('category', 11)->get();
@@ -102,7 +108,6 @@ class ProductController extends BaseController
 			$newvege["product_id"] = $vege->product_id;
 			$newvege["product_name"] = $vege->product_name;
 			$newvege["product_desc"] = $vege->product_desc;
-			$newvege["product_price"] = $vege->product_price;
 			$newvege["product_image"] = $vege->product_image;
 			$newvege["category"] = $vege->category;
 			$newvege["created_at"] = $vege->created_at;
@@ -112,6 +117,25 @@ class ProductController extends BaseController
 		}
 
 		return response()->json(['data'=>$vegeArray, 'status'=>'ok']);
+	}
+
+	public function getPrices(Request $request)
+	{
+		$prices = Price::orderBy('price_id', 'desc')->get();
+
+		$priceArray = [];
+
+		foreach ($prices as $price)
+		{
+			$newprice["price_id"] = $price->price_id;
+			$newprice["product_id"] = $price->product_id;
+			$newprice["product_price"] = $price->product_price;
+			$newprice["date_price"] = $price->date_price;
+
+			array_push($priceArray, $newprice);
+		}
+
+		return response()->json(['data'=>$priceArray, 'status'=>'ok']);
 	}
 
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

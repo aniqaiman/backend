@@ -12,14 +12,14 @@ class Product extends Model
     protected $fillable = [
     	'product_name',
     	'product_desc',
-    	'product_price',
+    	'price_id',
     	'product_image',
     	'category',
     	];
 
     public function prices()
     {
-    	return $this->hasMany('App\Price','product_id');
+    	return $this->hasMany('App\Price','price_id');
     }
 
     public function categories()
