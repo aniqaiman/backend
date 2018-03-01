@@ -27,6 +27,8 @@ class PriceController extends Controller
             $price = new Price;
             $price->product_id = $product_id;
             $price->product_price = $request->product_price;
+            $price->product_price2 = $request->product_price2;
+            $price->product_price3 = $request->product_price3;
             $price->date_price = $request->date_price;
             $price->save();
             return response($price); 
@@ -66,6 +68,8 @@ class PriceController extends Controller
             $price = new Price;
             $price->product_id = $product_id;
             $price->product_price = $request->product_price;
+            $price->product_price2 = $request->product_price2;
+            $price->product_price3 = $request->product_price3;
             $price->date_price = $request->date_price;
             $price->save();
             return response($price); 

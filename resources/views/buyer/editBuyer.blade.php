@@ -63,6 +63,13 @@
             </div>
 
             <div class="form-group">
+              <label for="buss_hour" class="col-sm-3 control-label">Business Hour: </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="buss_hour" id="buss_hour" value="{{$buyers->buss_hour}}">
+              </div>
+            </div>
+
+            <div class="form-group">
               <label for="phonenumber" class="col-sm-3 control-label">Phone No.: </label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="phonenumber" id="phonenumber" value="{{$buyers->phonenumber}}">

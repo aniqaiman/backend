@@ -11,6 +11,7 @@ use Session;
 use Redirect;
 use App\Product;
 use App\Category;
+use App\Price;
 
 class FruitController extends Controller
 {
@@ -34,7 +35,8 @@ class FruitController extends Controller
     {
     	$fruits = Product::where('category', 1)->get();
 	    $categories = Category::all();
-	    return view('product.fruit',compact('fruits','categories'));
+        $prices = Price::all();
+	    return view('product.fruit',compact('fruits','categories','prices'));
     }
 
     public function editFruit($product_id, Request $request)

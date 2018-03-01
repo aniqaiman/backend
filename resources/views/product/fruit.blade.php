@@ -94,7 +94,7 @@
 
                       <th><input type="checkbox"></th>
                       <th class="mailbox-star"><center>Fruit Name</center></th>
-                      <th class="mailbox-star"><center>Fruit Price(RM/Unit)</center></th>
+                      <th class="mailbox-star"><center>Fruit Description</center></th>
                       <th class="mailbox-star"><center>Fruit Image</center></th>
                       <th class="mailbox-star"><center>Operation</center></th>
 
@@ -106,11 +106,11 @@
                     <tr class="info">
                       <td><input type="checkbox"></td>
                       <td class="mailbox-name"><center>{{$fruit->product_name}}</center></td>
-                      <td class="mailbox-date"><center></center></td>
+                      <td class="mailbox-date"><center>{{$fruit->product_desc}}</center></td>
                       <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$fruit->product_image}}"></a></center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editFruit', ['product_id'=> $fruit->product_id])}}"><i class="fa fa-edit"></i> Edit</a>
-                        <a class="button btn btn-primary btn-sm" href="{{route('getFruitDetail', ['product_id'=> $fruit->product_id])}}"><i class="fa fa-eye"></i> Details</a>
+                        <a class="button btn btn-primary btn-sm" href="{{route('getFruitDetail', ['product_id'=> $fruit->product_id])}}"><i class="fa fa-eye"></i> Details & Price</a>
                         {{ Form::open(array('url' => 'fruit/' . $fruit->product_id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}

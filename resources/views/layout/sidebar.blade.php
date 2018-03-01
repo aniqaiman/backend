@@ -75,6 +75,12 @@
         </li>
 
         <li class="treeview">
+          <a href="{{route('order')}}">
+            <i class="fa fa-shopping-cart"></i> <span class="text-info">Order Management</span>
+          </a>
+        </li>
+
+        <li class="treeview">
           <a href="{{route('users')}}">
             <i class="fa fa-users"></i> <span class="text-info">User Management</span>
           </a>

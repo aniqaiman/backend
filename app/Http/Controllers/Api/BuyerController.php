@@ -19,6 +19,7 @@ class BuyerController extends BaseController
             'name' => $request->get('name'),
             'company_name' => $request->get('company_name'),
             'company_reg_ic_number' => $request->get('company_reg_ic_number'),
+            'buss_hour' => $request->get('buss_hour'),
             'address' => $request->get('address'),
             'handphone_number' => $request->get('handphone_number'),
             'phonenumber' => $request->get('phonenumber'),

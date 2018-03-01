@@ -57,6 +57,14 @@ Route::get('/editGroup/{group_id}',['as'=>'editGroup','uses'=>'GroupController@e
 Route::post('/updateGroup',['as'=>'updateGroup','uses'=>'GroupController@updateGroup']);
 Route::delete('/group/{group_id}',['as'=>'deleteGroup','uses'=>'GroupController@deleteGroup']);
 
+// -------------------------------------------Order----------------------------------------------------
+
+Route::post('/order', ['as'=>'createOrder', 'uses'=>'OrderController@createOrder']);
+Route::get('/order', ['as'=>'order', 'uses'=>'OrderController@getOrder', 'roles'=>['admin']]);
+Route::get('/editOrder/{order_id}',['as'=>'editOrder','uses'=>'OrderController@editOrder']);
+Route::post('/updateOrder',['as'=>'updateOrder','uses'=>'OrderController@updateOrder']);
+Route::delete('/order/{order_id}',['as'=>'deleteOrder','uses'=>'OrderController@deleteOrder']);
+
 // -------------------------------------------User----------------------------------------------------
 
 Route::post('/users', ['as' =>'createUser', 'uses'=>'UserController@createUser']);
@@ -102,6 +110,7 @@ Route::delete('/fruit/{product_id}',['as'=>'deleteFruit','uses'=>'FruitControlle
 Route::post('/api/registerseller', 'Api\SellerController@postRegisterSeller');
 Route::post('/api/registerbuyer', 'Api\BuyerController@postRegisterBuyer');
 Route::post('auth/login', 'ApiController@login');
+Route::post('/api/postorder', 'Api\OrderController@postOrder');
 
 Route::get('user', 'ApiController@getAuthUser');
 Route::get('/api/products','Api\ProductController@getProducts');

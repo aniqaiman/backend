@@ -11,7 +11,9 @@ class Price extends Model
     public $timestamp = 'true';
     protected $fillable = [
     	'product_id',
-    	'product_price',
+        'product_price',
+        'product_price2',
+    	'product_price3',
     	'date_price',
     	];
 

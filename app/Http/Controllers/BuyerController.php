@@ -19,7 +19,8 @@ class BuyerController extends Controller
     		$buyers = new User;
     		$buyers->name = $request->name;
     		$buyers->company_name = $request->company_name;
-    		$buyers->company_reg_ic_number = $request->company_reg_ic_number;
+            $buyers->company_reg_ic_number = $request->company_reg_ic_number;
+    		$buyers->buss_hour = $request->buss_hour;
     		$buyers->address = $request->address;
     		$buyers->phonenumber = $request->phonenumber;
     		$buyers->handphone_number = $request->handphone_number;
@@ -50,6 +51,7 @@ class BuyerController extends Controller
     		$buyers->name = $request->name;
             $buyers->company_name = $request->company_name;
             $buyers->company_reg_ic_number = $request->company_reg_ic_number;
+            $buyers->buss_hour = $request->buss_hour;
             $buyers->address = $request->address;
             $buyers->phonenumber = $request->phonenumber;
             $buyers->handphone_number = $request->handphone_number;

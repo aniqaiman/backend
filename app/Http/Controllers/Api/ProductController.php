@@ -54,6 +54,8 @@ class ProductController extends BaseController
 		foreach ($prices as $newprice) 
 		{
 			$productprice["product_price"] = $newprice->product_price;
+			$productprice["product_price2"] = $newprice->product_price2;
+			$productprice["product_price3"] = $newprice->product_price3;
 			$productprice["date"] = $newprice->date_price;
 
 			array_push($priceArray, $productprice);
@@ -63,7 +65,7 @@ class ProductController extends BaseController
 		return response()->json(['data'=>$newproduct, 'status'=>'ok']);
 	}
 
-	public function getFruit()
+	public function getFruit(Request $request)
 	{
 		$fruits = Product::where('category', 1)->get();
 		// $prices = Price::where('product_id', $product_id)->orderBy('created_at','desc')->take(1)->get();
@@ -85,6 +87,8 @@ class ProductController extends BaseController
 		foreach ($fruit->prices as $newprice) 
 		{
 			$productprice["product_price"] = $newprice->product_price;
+			$productprice["product_price2"] = $newprice->product_price2;
+			$productprice["product_price3"] = $newprice->product_price3;
 			$productprice["date"] = $newprice->date_price;
 
 			array_push($priceArray, $productprice);
@@ -113,6 +117,19 @@ class ProductController extends BaseController
 			$newvege["created_at"] = $vege->created_at;
 			$newvege["updated_at"] = $vege->updated_at;
 
+			$priceArray = [];
+
+		foreach ($vege->prices as $newprice) 
+		{
+			$productprice["product_price"] = $newprice->product_price;
+			$productprice["product_price2"] = $newprice->product_price2;
+			$productprice["product_price3"] = $newprice->product_price3;
+			$productprice["date"] = $newprice->date_price;
+
+			array_push($priceArray, $productprice);
+		}
+		$newproduct["prices"] = $priceArray;
+
 			array_push($vegeArray, $newvege);
 		}
 
@@ -130,6 +147,8 @@ class ProductController extends BaseController
 			$newprice["price_id"] = $price->price_id;
 			$newprice["product_id"] = $price->product_id;
 			$newprice["product_price"] = $price->product_price;
+			$newprice["product_price2"] = $price->product_price2;
+			$newprice["product_price3"] = $price->product_price3;
 			$newprice["date_price"] = $price->date_price;
 
 			array_push($priceArray, $newprice);

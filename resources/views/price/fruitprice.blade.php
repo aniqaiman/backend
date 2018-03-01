@@ -73,9 +73,23 @@
           <div class="row">
 
             <div class="form-group">
-              <label for="product_price" class="col-sm-3 control-label">Product Price: </label>
+              <label for="product_price" class="col-sm-3 control-label">Grade A Price: </label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="product_price" id="product_price">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="product_price2" class="col-sm-3 control-label">Grade B Price: </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="product_price2" id="product_price2">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="product_price3" class="col-sm-3 control-label">Grade C Price: </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="product_price3" id="product_price3">
               </div>
             </div>
 
@@ -121,7 +135,9 @@
                     <tr class="info bg-white">
                       <th><input type="checkbox"></th>
                       <th class="mailbox-subject"><center>Price ID</center></th>
-                      <th class="mailbox-subject"><center>Product Price</center></th>
+                      <th class="mailbox-subject"><center>Price</center></th>
+                      <!-- <th class="mailbox-subject"><center>Grade B Price</center></th> -->
+                      <!-- <th class="mailbox-subject"><center>Grade C Price</center></th> -->
                       <th class="mailbox-subject"><center>Date Price</center></th>
                       <th class="mailbox-subject"><center>Operation</center></th>
                     </tr>
@@ -133,6 +149,8 @@
                       <td><input type="checkbox"></td>
                       <td class="mailbox-subject"><center>{{$price->price_id}}</center></td>
                       <td class="mailbox-subject"><center>{{$price->product_price}}</center></td>
+                      <!-- <td class="mailbox-subject"><center>{{$price->product_price2}}</center></td> -->
+                      <!-- <td class="mailbox-subject"><center>{{$price->product_price3}}</center></td> -->
                       <td class="mailbox-subject"><center>{{$price->date_price}}</center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editFruitPrice', ['price_id'=> $price->price_id, 'product_id'=> $fruit->product_id])}}"><i class="fa fa-edit"></i> Edit</a>

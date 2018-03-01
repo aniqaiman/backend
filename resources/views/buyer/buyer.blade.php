@@ -59,6 +59,13 @@
             </div>
 
             <div class="form-group">
+              <label for="buss_hour" class="col-sm-3 control-label">Business Hour: </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="buss_hour" id="buss_hour" multiple="true">
+              </div>
+            </div>
+
+            <div class="form-group">
               <label for="phonenumber" class="col-sm-3 control-label">Phone No.: </label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="phonenumber" id="phonenumber" multiple="true">
@@ -118,7 +125,7 @@
                       <th class="mailbox-star"><center>Company Name</center></th>
                       <!-- <th class="mailbox-star"><center><a href="#">Company Reg Number</a></center></th> -->
                       <th class="mailbox-star"><center>Company Address</center></th>
-                      <th class="mailbox-star"><center>Phone Number</center></th>
+                      <th class="mailbox-star"><center>Business Hour</center></th>
                       <th class="mailbox-star"><center>Handphone Number</center></th>
                       <th class="mailbox-subject"><center>Operation</center></th>
                       
@@ -133,7 +140,7 @@
                       <td class="mailbox-date"><center>{{$buyer->company_name}}</center></td>
                       <!-- <td class="mailbox-date"><center><a href="#">{{$buyer->company_reg_number}}</a></center></td> -->
                       <td class="mailbox-date"><center>{{$buyer->address}}</center></td>
-                      <td class="mailbox-date"><center>{{$buyer->phonenumber}}</center></td>
+                      <td class="mailbox-date"><center>{{$buyer->buss_hour}}</center></td>
                       <td class="mailbox-date"><center>{{$buyer->handphone_number}}</center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editBuyer', ['user_id'=> $buyer->user_id])}}"><i class="fa fa-edit"></i> Edit</a>
