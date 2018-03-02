@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Redirect;
 use Session;
 use App\Order;
+use App\User;
+use App\Product;
 
 class OrderController extends Controller
 {
@@ -18,7 +20,7 @@ class OrderController extends Controller
     	if($request->ajax()){
             $orders = new Order;
             $orders->user_id = $request->user_id;
-            $orders->item_id = $request->item_id;
+            $orders->product_id = $request->product_id;
             $orders->item_quantity = $request->item_quantity;
             $orders->product_price = $request->product_price;
             $orders->promo_price = $request->promo_price;
@@ -30,7 +32,9 @@ class OrderController extends Controller
     public function getOrder()
     {
     	$orders = Order::all();
-    	return view('order.order', compact('orders'));
+        $users = User::all();
+        $products = Product::all();
+    	return view('order.order', compact('orders','users','products'));
     }
 
     public function editOrder($order_id, Request $request)
@@ -44,7 +48,7 @@ class OrderController extends Controller
     	if($request->ajax()){
     	    $orders = Order::where('order_id', $request->order_id)->first();
             $orders->user_id = $request->user_id;
-            $orders->item_id = $request->item_id;
+            $orders->product_id = $request->product_id;
             $orders->item_quantity = $request->item_quantity;
             $orders->product_price = $request->product_price;
             $orders->promo_price = $request->promo_price;

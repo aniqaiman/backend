@@ -33,5 +33,30 @@ class SellerController extends BaseController
             return response()->json(['data'=>$seller, 'status'=>'ok']);
     }
 
+    public function getSellers(Request $request)
+    {
+        $sellers = User::where('group_id',21)->get();
+
+        $sellerArray = [];
+
+        foreach($sellers as $seller)
+        {
+            $newseller["user_id"] = $seller->user_id;
+            $newseller["name"] = $seller->name;
+            $newseller["company_name"] = $seller->company_name;
+            $newseller["company_reg_ic_number"] = $seller->company_reg_ic_number;
+            $newseller["address"] = $seller->address;
+            $newseller["latitude"] = $seller->latitude;
+            $newseller["longitude"] = $seller->longitude;
+            $newseller["handphone_number"] = $seller->handphone_number;
+            $newseller["email"] = $seller->email;
+            $newseller["group_id"] = $seller->group_id;
+
+            array_push($sellerArray, $newseller);
+        }
+
+        return response()->json(['data'=>$sellerArray, 'status'=>'ok']);
+    }
+
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

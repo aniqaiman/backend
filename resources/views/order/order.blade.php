@@ -70,10 +70,10 @@
                             <th><input type="checkbox"></th>
                             <th class="mailbox-subject"><center>Order ID</center></th>
                             <th class="mailbox-subject"><center>User Name</center></th>
-                            <th class="mailbox-subject"><center>Item ID</center></th>
+                            <th class="mailbox-subject"><center>Product Name</center></th>
                             <th class="mailbox-subject"><center>Item Quantity</center></th>
-                            <th class="mailbox-subject"><center>Promo Price</center></th>
                             <th class="mailbox-subject"><center>Product Price</center></th>
+                            <th class="mailbox-subject"><center>Promo Price</center></th>
 
                             <th class="mailbox-subject"><center>Operation</center></th>
                           </tr>
@@ -83,12 +83,12 @@
                           @foreach($orders as $order)
                           <tr class="info">
                             <td><input type="checkbox"></td>
-                            <td class="mailbox-subject"><center>{{$order}}</center></td>
-                            <td class="mailbox-subject"><center>{{$order}}</center></td>
-                            <td class="mailbox-subject"><center>{{$order}}</center></td>
-                            <td class="mailbox-subject"><center>{{$order}}</center></td>
-                            <td class="mailbox-subject"><center>{{$order}}</center></td>
-                            <td class="mailbox-subject"><center>{{$order}}</center></td>
+                            <td class="mailbox-subject"><center>{{$order->order_id}}</center></td>
+                            <td class="mailbox-subject"><center>{{$order->users->name}}</center></td>
+                            <td class="mailbox-subject"><center>{{$order->products->product_name}}</center></td>
+                            <td class="mailbox-subject"><center>{{$order->item_quantity}}</center></td>
+                            <td class="mailbox-subject"><center>{{$order->product_price}}</center></td>
+                            <td class="mailbox-subject"><center>{{$order->promo_price}}</center></td>
 
                             <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editOrder', ['order_id'=> $order->order_id])}}"><i class="fa fa-edit"></i> Edit</a>

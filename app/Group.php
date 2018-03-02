@@ -12,4 +12,9 @@ class Group extends Model
     protected $fillable = [
     	'group_name',
     	];
+
+    public function users()
+    {
+    	return $this->belongsTo('App\User','group_id');
+    }
 }

@@ -11,9 +11,19 @@ class Order extends Model
     public $timestamp = 'true';
     protected $fillable = [
     	'user_id',
-    	'item_id',
+    	'product_id',
     	'item_quantity',
     	'product_price',
     	'promo_price',
     	];
+
+        public function users()
+        {
+            return $this->belongsTo('App\User','user_id');
+        }
+
+        public function products()
+        {
+            return $this->belongsTo('App\Product','product_id');
+        }
 }

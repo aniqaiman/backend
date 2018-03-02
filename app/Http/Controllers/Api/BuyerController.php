@@ -30,5 +30,30 @@ class BuyerController extends BaseController
             return response()->json(['data'=>$buyer, 'status'=>'ok']);
     }
 
+    public function getBuyers(Request $request)
+    {
+        $buyers = User::where('group_id',11)->get();
+
+        $buyerArray = [];
+
+        foreach($buyers as $buyer)
+        {
+            $newbuyer["user_id"] = $buyer->user_id;
+            $newbuyer["name"] = $buyer->name;
+            $newbuyer["company_name"] = $buyer->company_name;
+            $newbuyer["company_reg_ic_number"] = $buyer->company_reg_ic_number;
+            $newbuyer["buss_hour"] = $buyer->buss_hour;
+            $newbuyer["address"] = $buyer->address;
+            $newbuyer["handphone_number"] = $buyer->handphone_number;
+            $newbuyer["phonenumber"] = $buyer->phonenumber;
+            $newbuyer["email"] = $buyer->email;
+            $newbuyer["group_id"] = $buyer->group_id;
+
+            array_push($buyerArray, $newbuyer);
+        }
+
+        return response()->json(['data'=>$buyerArray, 'status'=>'ok']);
+    }
+
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

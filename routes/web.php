@@ -118,3 +118,5 @@ Route::get('/api/product/{product_id}','Api\ProductController@getProductbyId');
 Route::get('/api/fruits','Api\ProductController@getFruit');
 Route::get('/api/veges','Api\ProductController@getVege');
 Route::get('/api/prices','Api\ProductController@getPrices');
+Route::get('/api/buyers','Api\BuyerController@getBuyers');
+Route::get('/api/sellers','Api\SellerController@getSellers');

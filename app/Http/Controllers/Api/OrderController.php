@@ -17,7 +17,7 @@ class OrderController extends BaseController
 	{
 		$orders = Order::create([
 			'user_id' => $request->get('user_id'),
-			'item_id' => $request->get('item_id'),
+			'product_id' => $request->get('product_id'),
 			'item_quantity' => $request->get('item_quantity'),
 			'product_price' => $request->get('product_price'),
 			'promo_price' => $request->get('promo_price'),
