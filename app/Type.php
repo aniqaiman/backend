@@ -13,8 +13,8 @@ class Type extends Model
 	'type',
 	];
 
-	public function driver()
+	public function users()
 	{
-		return $this->hasMany('App\Driver','driver_id');
+		return $this->belongsTo('App\User','type_of_lorry');
 	}
 }

@@ -109,6 +109,7 @@ Route::delete('/fruit/{product_id}',['as'=>'deleteFruit','uses'=>'FruitControlle
 
 Route::post('/api/registerseller', 'Api\SellerController@postRegisterSeller');
 Route::post('/api/registerbuyer', 'Api\BuyerController@postRegisterBuyer');
+Route::post('api/registerdriver', 'Api\DriverController@postRegisterDriver');
 Route::post('auth/login', 'ApiController@login');
 Route::post('/api/postorder', 'Api\OrderController@postOrder');
 
@@ -120,3 +121,4 @@ Route::get('/api/veges','Api\ProductController@getVege');
 Route::get('/api/prices','Api\ProductController@getPrices');
 Route::get('/api/buyers','Api\BuyerController@getBuyers');
 Route::get('/api/sellers','Api\SellerController@getSellers');
+Route::get('/api/drivers','Api\DriverController@getDrivers');

@@ -13,8 +13,8 @@ class Capacity extends Model
 	'capacity',
 	];
 
-	public function driver()
+	public function users()
 	{
-		return $this->hasMany('App\Driver','driver_id');
+		return $this->belongsTo('App\User','lorry_capacity');
 	}
 }

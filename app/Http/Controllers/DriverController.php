@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
-use App\Driver;
+use App\User;
 use App\Type;
 use App\Capacity;
 
@@ -19,11 +19,11 @@ class DriverController extends Controller
     {
     	$path = $request->file('drivers_license')->store('public/images');
 		if($request->ajax()){
-            $drivers = new Driver;
+            $drivers = new User;
             $drivers->name = $request->name;
-            $drivers->ic_number = $request->ic_number;
-            $drivers->home_address = $request->home_address;
-            $drivers->phone_number = $request->phone_number;
+            $drivers->company_reg_ic_number = $request->company_reg_ic_number;
+            $drivers->address = $request->address;
+            $drivers->phonenumber = $request->phonenumber;
             $drivers->license_number = $request->license_number;
             $drivers->drivers_license = $path;
             $drivers->roadtax_expiry = $request->roadtax_expiry;
@@ -31,6 +31,8 @@ class DriverController extends Controller
             $drivers->lorry_capacity = $request->lorry_capacity;
             $drivers->location_to_cover = $request->location_to_cover;
             $drivers->lorry_plate_number = $request->lorry_plate_number;
+            $drivers->password = bcrypt('$request->password');
+            $drivers->group_id = 31;
             // $drivers->bank_name = $request->bank_name;
             // $drivers->bank_acc_holder_name = $request->bank_acc_holder_name;
             // $drivers->bank_acc_number = $request->bank_acc_number;
@@ -41,15 +43,15 @@ class DriverController extends Controller
 
     public function getDriver()
     {
-    	$drivers = Driver::all();
+    	$drivers = User::where('group_id', 31)->get();
         $types = Type::all();
         $capacities = Capacity::all();
     	return view('driver.driver', compact('drivers','types','capacities'));
     }
 
-    public function editDriver($driver_id, Request $request)
+    public function editDriver($user_id, Request $request)
     {
-        $drivers = Driver::where('driver_id', $request->driver_id)->first();
+        $drivers = User::where('user_id', $user_id)->first();
         return view('driver.editDriver', compact('drivers'));
     }
 
@@ -57,11 +59,11 @@ class DriverController extends Controller
     {
         $path = $request->file('drivers_license')->store('public/images');
         if($request->ajax()){
-            $drivers = Driver::where('driver_id', $request->driver_id)->first();
+            $drivers = User::where('user_id', $request->user_id)->first();
             $drivers->name = $request->name;
-            $drivers->ic_number = $request->ic_number;
-            $drivers->home_address = $request->home_address;
-            $drivers->phone_number = $request->phone_number;
+            $drivers->company_reg_ic_number = $request->company_reg_ic_number;
+            $drivers->address = $request->address;
+            $drivers->phonenumber = $request->phonenumber;
             $drivers->license_number = $request->license_number;
             $drivers->drivers_license = $path;
             $drivers->roadtax_expiry = $request->roadtax_expiry;
@@ -72,14 +74,15 @@ class DriverController extends Controller
             $drivers->bank_name = $request->bank_name;
             $drivers->bank_acc_holder_name = $request->bank_acc_holder_name;
             $drivers->bank_acc_number = $request->bank_acc_number;
+            $drivers->password = bcrypt('$request->password');
             $drivers->save();
             return response($drivers);
             }       
     }
 
-    public function deleteDriver($driver_id, Request $request)
+    public function deleteDriver($user_id, Request $request)
     {
-        $drivers = Driver::find($driver_id);
+        $drivers = User::find($user_id);
         $drivers->delete();
         Session::flash('message', 'Successfully deleted!');
         return Redirect::to('driver');

@@ -42,23 +42,23 @@
             </div>
 
             <div class="form-group">
-              <label for="ic_number" class="col-sm-3 control-label">IC Number: </label>
+              <label for="company_reg_ic_number" class="col-sm-3 control-label">IC Number: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="ic_number" id="ic_number" value="{{$drivers->ic_number}}">
+                <input type="text" class="form-control" name="company_reg_ic_number" id="company_reg_ic_number" value="{{$drivers->company_reg_ic_number}}">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="home_address" class="col-sm-3 control-label">Home Address: </label>
+              <label for="address" class="col-sm-3 control-label">Home Address: </label>
               <div class="col-sm-9">
-              <textarea class="form-control" name="home_address" id="home_address" multiple="true">{{$drivers->home_address}}</textarea>
+              <textarea class="form-control" name="address" id="address" multiple="true">{{$drivers->address}}</textarea>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="phone_number" class="col-sm-3 control-label">Phone Number: </label>
+              <label for="phonenumber" class="col-sm-3 control-label">Phone Number: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="phone_number" id="phone_number" value="{{$drivers->phone_number}}">
+                <input type="text" class="form-control" name="phonenumber" id="phonenumber" value="{{$drivers->phonenumber}}">
               </div>
             </div>
 
@@ -132,8 +132,15 @@
               </div>
             </div>
 
+           <!--  <div class="form-group">
+              <label for="password" class="col-sm-3 control-label">Password: </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="password" id="password" value="{{$drivers->password}}">
+              </div>
+            </div> -->
+
                 </div>
-                <input type="hidden" name="driver_id" value="{{$drivers->driver_id}}">
+                <input type="hidden" name="user_id" value="{{$drivers->user_id}}">
                 <div class="box-footer">
                   <button type="submit" onclick="window.location='{{ url("/driver") }}'" class="btn btn-primary">Save Change</button>
                 </div>
@@ -159,7 +166,7 @@
 <script>
   $(document).ready(function()
   {
-    CKEDITOR.replace('home_address');
+    CKEDITOR.replace('address');
     $('#frm-driver-edit').on('submit',function(e)
     {
       e.preventDefault();
@@ -167,7 +174,7 @@
       var data = $(this).serialize();
       console.log(data);
       var formData = new FormData($(this)[0]);
-      formData.append('home_address', CKEDITOR.instances.home_address.getData());
+      formData.append('address', CKEDITOR.instances.address.getData());
 
       $.ajax(
       {

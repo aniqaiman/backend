@@ -38,23 +38,23 @@
             </div>
 
             <div class="form-group">
-              <label for="ic_number" class="col-sm-3 control-label">IC Number: </label>
+              <label for="company_reg_ic_number" class="col-sm-3 control-label">IC Number: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="ic_number" id="ic_number" multiple="true">
+                <input type="text" class="form-control" name="company_reg_ic_number" id="company_reg_ic_number" multiple="true">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="home_address" class="col-sm-3 control-label">Home Address: </label>
+              <label for="address" class="col-sm-3 control-label">Home Address: </label>
               <div class="col-sm-9">
-                <textarea class="form-control" name="home_address" id="home_address" multiple="true"></textarea>
+                <textarea class="form-control" name="address" id="address" multiple="true"></textarea>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="phone_number" class="col-sm-3 control-label">Phone Number: </label>
+              <label for="phonenumber" class="col-sm-3 control-label">Phone Number: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="phone_number" id="phone_number" multiple="true">
+                <input type="text" class="form-control" name="phonenumber" id="phonenumber" multiple="true">
               </div>
             </div>
 
@@ -79,13 +79,6 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="type_of_lorry" class="col-sm-3 control-label">Type of Lorry: </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="type_of_lorry" id="type_of_lorry" multiple="true">
-              </div>
-            </div>
-
              <div class="form-group">
               <label for="type_of_lorry" class="col-sm-3 control-label">Type of Lorry: </label>
               <div class="col-sm-9">
@@ -95,7 +88,9 @@
                 @endforeach
                 </select>
               </div>
-            </div><div class="form-group">
+            </div>
+
+            <div class="form-group">
               <label for="lorry_capacity" class="col-sm-3 control-label">Lorry Capacity: </label>
               <div class="col-sm-9">
               <select class="form-control" name="lorry_capacity" id="lorry_capacity" placeholder="Select">
@@ -193,13 +188,13 @@
                       <td><input type="checkbox"></td>
                       <!-- <td class="mailbox-star"><center><a href="#">{{$driver->driver_id}}</a></center></td> -->
                       <td class="mailbox-name"><center>{{$driver->name}}</center></td>
-                      <td class="mailbox-date"><center>{{$driver->phone_number}}</center></td>
+                      <td class="mailbox-date"><center>{{$driver->phonenumber}}</center></td>
                       <td class="mailbox-date"><center>{{$driver->location_to_cover}}</center></td>
                       <td class="mailbox-date"><center>{{$driver->lorry_capacity}}</center></td>
                       <!-- <td class="mailbox-date"><center><a href="#">{{$driver->license_number}}</a></center></td> -->
                       <td class="mailbox-subject"><center><div class="btn-group">
-                        <a class="button btn btn-success btn-sm" href="{{route('editDriver', ['driver_id'=> $driver->driver_id])}}"><i class="fa fa-edit"></i> Edit</a>
-                        {{ Form::open(array('url' => 'driver/' . $driver->driver_id, 'class' => 'pull-right')) }}
+                        <a class="button btn btn-success btn-sm" href="{{route('editDriver', ['user_id'=> $driver->user_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        {{ Form::open(array('url' => 'driver/' . $driver->user_id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
                         {{ Form::close() }}
@@ -238,7 +233,7 @@
   $(document).ready(function()
   {
     $('#driver-table').DataTable();
-    CKEDITOR.replace('home_address');
+    CKEDITOR.replace('address');
 
     $('#frm-driver-create').on('submit',function(e)
     {
@@ -248,7 +243,7 @@
 
       console.log(data);
       var formData = new FormData($(this)[0]);
-      formData.append('home_address', CKEDITOR.instances.home_address.getData());
+      formData.append('address', CKEDITOR.instances.address.getData());
    // console.log(CKEDITOR.instances.description.getData());
    $.ajax(
    {

@@ -90,12 +90,12 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="password" class="col-sm-3 control-label">Password: </label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="password" id="password" value="{{$buyers->password}}">
               </div>
-            </div>
+            </div> -->
 
                 </div>
                 <input type="hidden" name="user_id" value="{{$buyers->user_id}}">

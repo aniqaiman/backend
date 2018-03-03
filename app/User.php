@@ -33,6 +33,13 @@ class User extends Authenticatable implements JWTSubject
         'latitude',
         'longitude',
         'group_id',
+        'license_number',
+        'drivers_license',
+        'roadtax_expiry',
+        'type_of_lorry',
+        'lorry_capacity',
+        'location_to_cover',
+        'lorry_plate_number',
     	];
 
     public function groups()
@@ -44,6 +51,16 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo('App\Order','user_id');
     }    
+
+    public function types()
+    {
+        return $this->belongsTo('App\Type','type_of_lorry');
+    }
+
+    public function capacities()
+    {
+        return $this->belongsTo('App\Capacity','lorry_capacity');
+    }
 
     public function getJWTIdentifier()
     {
