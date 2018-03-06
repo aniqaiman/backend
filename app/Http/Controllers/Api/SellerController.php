@@ -30,7 +30,7 @@ class SellerController extends BaseController
             // 'bank_acc_number' => $request->get('bank_acc_number'),
             'group_id'=>21,
             ]);
-            return response()->json(['data'=>$seller, 'status'=>'ok']);
+        return response()->json(['data'=>$seller, 'status'=>'ok']);
     }
 
     public function getSellers(Request $request)
@@ -56,6 +56,24 @@ class SellerController extends BaseController
         }
 
         return response()->json(['data'=>$sellerArray, 'status'=>'ok']);
+    }
+
+    public function getSeller($user_id, Request $request)
+    {
+        $seller = User::where('user_id', $user_id)->first();
+
+        $newseller["user_id"] = $seller->user_id;
+        $newseller["name"] = $seller->name;
+        $newseller["company_name"] = $seller->company_name;
+        $newseller["company_reg_ic_number"] = $seller->company_reg_ic_number;
+        $newseller["address"] = $seller->address;
+        $newseller["latitude"] = $seller->latitude;
+        $newseller["longitude"] = $seller->longitude;
+        $newseller["handphone_number"] = $seller->handphone_number;
+        $newseller["email"] = $seller->email;
+        $newseller["group"] = $seller->groups->group_name;
+
+        return response()->json(['data'=>$newseller, 'status'=>'ok']);
     }
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

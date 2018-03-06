@@ -35,30 +35,37 @@
                 <div class="row">
 
                   <div class="form-group">
-              <label for="product_image" class="col-sm-3 control-label">Product Image: </label>
+              <label for="product_image" class="col-sm-3 control-label">Vege Image: </label>
               <div class="col-sm-9">
                 <input type="file" class="form-control" name="product_image" id="product_image" value="{{$vegs->product_image}}">
               </div>
             </div>
 
-            <!-- <div class="form-group">
-              <label for="product_price" class="col-sm-3 control-label">Product Price: </label>
+            <div class="form-group">
+              <label for="quantity" class="col-sm-3 control-label">Vege Quantity: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="product_price" id="product_price" value="{{$vegs->product_price}}">
+                <input type="text" class="form-control" name="quantity" id="quantity" value="{{$vegs->quantity}}">
               </div>
-            </div> -->
+            </div>
 
             <div class="form-group">
-              <label for="product_name" class="col-sm-3 control-label">Product Name: </label>
+              <label for="product_name" class="col-sm-3 control-label">Vege Name: </label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" name="product_name" id="product_name" value="{{$vegs->product_name}}">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="product_desc" class="col-sm-3 control-label">Product Desc: </label>
+              <label for="product_desc" class="col-sm-3 control-label">Vege Desc: </label>
               <div class="col-sm-9">
               <textarea class="form-control" name="product_desc" id="product_desc">{{$vegs->product_desc}}</textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="short_desc" class="col-sm-3 control-label">Short Desc: </label>
+              <div class="col-sm-9">
+              <textarea class="form-control" name="short_desc" id="short_desc">{{$vegs->short_desc}}</textarea>
               </div>
             </div>
 

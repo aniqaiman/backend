@@ -41,12 +41,12 @@
               </div>
             </div>
 
-            <!-- <div class="form-group">
-              <label for="product_price" class="col-sm-3 control-label">Fruit Price: </label>
+            <div class="form-group">
+              <label for="quantity" class="col-sm-3 control-label">Fruit Quantity: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="product_price" id="product_price" value="{{$fruits->product_price}}">
+                <input type="text" class="form-control" name="quantity" id="quantity" value="{{$fruits->quantity}}">
               </div>
-            </div> -->
+            </div>
 
             <div class="form-group">
               <label for="product_name" class="col-sm-3 control-label">Fruit Name: </label>
@@ -59,6 +59,13 @@
               <label for="product_desc" class="col-sm-3 control-label">Fruit Desc: </label>
               <div class="col-sm-9">
               <textarea class="form-control" name="product_desc" id="product_desc">{{$fruits->product_desc}}</textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="short_desc" class="col-sm-3 control-label">Short Desc: </label>
+              <div class="col-sm-9">
+              <textarea class="form-control" name="short_desc" id="short_desc">{{$fruits->short_desc}}</textarea>
               </div>
             </div>
 

@@ -37,13 +37,6 @@
               </div>
             </div>
 
-            <!-- <div class="form-group">
-              <label for="product_price" class="col-sm-3 control-label">Fruit Price: </label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" name="product_price" id="product_price" multiple="true">
-              </div>
-            </div> -->
-
             <div class="form-group">
               <label for="product_name" class="col-sm-3 control-label">Fruit Name: </label>
               <div class="col-sm-9">
@@ -52,9 +45,23 @@
             </div>
 
             <div class="form-group">
+              <label for="quantity" class="col-sm-3 control-label">Fruit Quantity: </label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="quantity" id="quantity" multiple="true">
+              </div>
+            </div>
+
+            <div class="form-group">
               <label for="product_desc" class="col-sm-3 control-label">Fruit Desc: </label>
               <div class="col-sm-9">
               <textarea class="form-control" name="product_desc" id="product_desc"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="short_desc" class="col-sm-3 control-label">Short Desc: </label>
+              <div class="col-sm-9">
+              <textarea class="form-control" name="short_desc" id="short_desc"></textarea>
               </div>
             </div>
 
@@ -93,9 +100,11 @@
                     <tr class="info bg-white">
 
                       <th><input type="checkbox"></th>
-                      <th class="mailbox-star"><center>Fruit Name</center></th>
-                      <th class="mailbox-star"><center>Fruit Description</center></th>
                       <th class="mailbox-star"><center>Fruit Image</center></th>
+                      <th class="mailbox-star"><center>Fruit Name</center></th>
+                      <!-- <th class="mailbox-star"><center>Short Description</center></th> -->
+                      <!-- <th class="mailbox-star"><center>Fruit Price</center></th> -->
+                      <th class="mailbox-star"><center>Fruit Quantity</center></th>
                       <th class="mailbox-star"><center>Operation</center></th>
 
                     </tr>
@@ -105,9 +114,11 @@
                     @foreach($fruits as $fruit)  
                     <tr class="info">
                       <td><input type="checkbox"></td>
-                      <td class="mailbox-name"><center>{{$fruit->product_name}}</center></td>
-                      <td class="mailbox-date"><center>{{$fruit->product_desc}}</center></td>
                       <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$fruit->product_image}}"></a></center></td>
+                      <td class="mailbox-name"><center>{{$fruit->product_name}}</center></td>
+                      <!-- <td class="mailbox-date"><center>{{$fruit->short_desc}}</center></td> -->
+                      <!-- <td class="mailbox-date"><center>{{$fruit->product_price}}</center></td> -->
+                      <td class="mailbox-date"><center>{{$fruit->quantity}}</center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editFruit', ['product_id'=> $fruit->product_id])}}"><i class="fa fa-edit"></i> Edit</a>
                         <a class="button btn btn-primary btn-sm" href="{{route('getFruitDetail', ['product_id'=> $fruit->product_id])}}"><i class="fa fa-eye"></i> Details & Price</a>

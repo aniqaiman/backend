@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Redirect;
 use Session;
 use App\User;
+use App\Type;
 
 class UserController extends Controller
 {
@@ -34,7 +35,8 @@ class UserController extends Controller
 	public function getUser()
 	{
     	$users = User::where('group_id', 1)->get();
-    	return view('user.user', compact('users'));
+        $types = Type::all();
+    	return view('user.user', compact('users','types'));
     }
 
     public function editUser($user_id, Request $request)

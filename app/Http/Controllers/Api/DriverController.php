@@ -28,7 +28,7 @@ class DriverController extends BaseController
             'password' => bcrypt($request->get('password')),
             'group_id'=>31,
             ]);
-            return response()->json(['data'=>$driver, 'status'=>'ok']);
+        return response()->json(['data'=>$driver, 'status'=>'ok']);
     }
 
     public function getDrivers(Request $request)
@@ -55,6 +55,25 @@ class DriverController extends BaseController
         }
 
         return response()->json(['data'=>$driverArray, 'status'=>'ok']);
+    }
+
+    public function getDriver($user_id, Request $request)
+    {
+        $driver = User::where('user_id', $user_id)->first();
+
+        $newdriver["user_id"] = $driver->user_id;
+        $newdriver["name"] = $driver->name;
+        $newdriver["company_reg_ic_number"] = $driver->company_reg_ic_number;
+        $newdriver["address"] = $driver->address;
+        $newdriver["phonenumber"] = $driver->phonenumber;
+        $newdriver["license_number"] = $driver->license_number;
+        $newdriver["roadtax_expiry"] = $driver->roadtax_expiry;
+        $newdriver["type_of_lorry"] = $driver->types->type;
+        $newdriver["lorry_capacity"] = $driver->capacities->capacity;
+        $newdriver["lorry_plate_number"] = $driver->lorry_plate_number;
+        $newdriver["group"] = $driver->groups->group_name;
+
+        return response()->json(['data'=>$newdriver, 'status'=>'ok']);
     }
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

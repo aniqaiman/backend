@@ -178,6 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
 
     ],
 
@@ -231,6 +232,7 @@ return [
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
 
     ],
 

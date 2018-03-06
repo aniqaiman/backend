@@ -25,6 +25,8 @@ class ProductController extends BaseController
 			$newproduct["product_id"] = $product->product_id;
 			$newproduct["product_name"] = $product->product_name;
 			$newproduct["product_desc"] = $product->product_desc;
+			$newproduct["short_desc"] = $product->short_desc;
+			$newproduct["quantity"] = $product->quantity;
 			$newproduct["product_image"] = $product->product_image;
 			$newproduct["created_at"] = $product->created_at;
 			$newproduct["updated_at"] = $product->updated_at;
@@ -44,6 +46,8 @@ class ProductController extends BaseController
 		$newproduct["product_id"] = $product->product_id;
 		$newproduct["product_name"] = $product->product_name;
 		$newproduct["product_desc"] = $product->product_desc;
+		$newproduct["short_desc"] = $product->short_desc;
+		$newproduct["quantity"] = $product->quantity;
 		$newproduct["product_image"] = $product->product_image;
 		$newproduct["category"] = $product->category;
 		$newproduct["created_at"] = $product->created_at;
@@ -77,6 +81,8 @@ class ProductController extends BaseController
 			$newfruit["product_id"] = $fruit->product_id;
 			$newfruit["product_name"] = $fruit->product_name;
 			$newfruit["product_desc"] = $fruit->product_desc;
+			$newfruit["short_desc"] = $fruit->short_desc;
+			$newfruit["quantity"] = $fruit->quantity;
 			$newfruit["product_image"] = $fruit->product_image;
 			$newfruit["category"] = $fruit->category;
 			$newfruit["created_at"] = $fruit->created_at;
@@ -112,6 +118,8 @@ class ProductController extends BaseController
 			$newvege["product_id"] = $vege->product_id;
 			$newvege["product_name"] = $vege->product_name;
 			$newvege["product_desc"] = $vege->product_desc;
+			$newvege["short_desc"] = $vege->short_desc;
+			$newvege["quantity"] = $vege->quantity;
 			$newvege["product_image"] = $vege->product_image;
 			$newvege["category"] = $vege->category;
 			$newvege["created_at"] = $vege->created_at;

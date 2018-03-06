@@ -20,7 +20,7 @@ class ApiController extends Controller
 
 	public function login(Request $request)
 	{
-		$credentials = $request->only('email', 'password');
+		$credentials = $request->only('company_reg_ic_number', 'password');
 		// var_dump($credentials);
 		// exit();
 		$token = null;

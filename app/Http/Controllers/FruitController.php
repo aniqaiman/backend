@@ -22,8 +22,10 @@ class FruitController extends Controller
             $fruits = new Product;
             $fruits->product_name = $request->product_name;
             $fruits->product_desc = $request->product_desc;
+            $fruits->quantity = $request->quantity;
             // $fruits->product_price = $request->product_price;
             // $fruits->category = $request->category;
+            $fruits->short_desc = $request->short_desc;
             $fruits->product_image = $path;
             $fruits->category = 1;
             $fruits->save();
@@ -53,8 +55,10 @@ class FruitController extends Controller
             $fruits = Product::where('product_id', $request->product_id)->first();
             $fruits->product_name = $request->product_name;
             $fruits->product_desc = $request->product_desc;
+            $fruits->quantity = $request->quantity;
             // $fruits->product_price = $request->product_price;
             // $fruits->category = $request->category;
+            $fruits->short_desc = $request->short_desc;
             $fruits->product_image = $path;
             $fruits->save();
             return response($fruits);

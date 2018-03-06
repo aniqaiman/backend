@@ -122,3 +122,6 @@ Route::get('/api/prices','Api\ProductController@getPrices');
 Route::get('/api/buyers','Api\BuyerController@getBuyers');
 Route::get('/api/sellers','Api\SellerController@getSellers');
 Route::get('/api/drivers','Api\DriverController@getDrivers');
+Route::get('/api/buyer/{user_id}','Api\BuyerController@getBuyer');
+Route::get('/api/driver/{user_id}','Api\DriverController@getDriver');
+Route::get('/api/seller/{user_id}','Api\SellerController@getSeller');
