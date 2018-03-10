@@ -137,7 +137,7 @@
        // swal('success','huhu','success').then(function(){
 
         window.location.reload();
-       };
+       // };
        
       
 

@@ -15,6 +15,6 @@ class Type extends Model
 
 	public function users()
 	{
-		return $this->belongsTo('App\User','type_of_lorry');
+		return $this->belongsTo('App\User','type');
 	}
 }

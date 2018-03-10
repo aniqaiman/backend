@@ -87,7 +87,9 @@
                     <label for="type_of_lorry" class="col-sm-3 control-label">Type of Lorry: </label>
                     <div class="col-sm-9">
                       <select class="form-control" name="type_of_lorry" id="type_of_lorry" data-placeholder="Select" style="width: 100%;">
-
+                      @foreach($types as $type)
+                      <option value="{{$type->type_id}}" selected="selected">{{$type->type}}</option>
+                      @endforeach
                       </select>
                     </div>
                   </div>
@@ -95,8 +97,10 @@
                   <div class="form-group">
                     <label for="lorry_capacity" class="col-sm-3 control-label">Lorry Capacity: </label>
                     <div class="col-sm-9">
-                      <select class="form-control" name="lorry_capacity" id="lorry_capacity" placeholder="Select">
-                        
+                      <select class="form-control" name="lorry_capacity" id="lorry_capacity" placeholder="Select" style="width: 100%;">
+                        @foreach($capacities as $capacity)
+                        <option value="{{$capacity->cap_id}}" selected="selected">{{$capacity->capacity}}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>

@@ -52,7 +52,9 @@ class DriverController extends Controller
     public function editDriver($user_id, Request $request)
     {
         $drivers = User::where('user_id', $user_id)->first();
-        return view('driver.editDriver', compact('drivers'));
+        $types = Type::all();
+        $capacities = Capacity::all();
+        return view('driver.editDriver', compact('drivers','types','capacities'));
     }
 
     public function updateDriver(Request $request)

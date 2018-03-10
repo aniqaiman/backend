@@ -15,6 +15,6 @@ class Capacity extends Model
 
 	public function users()
 	{
-		return $this->belongsTo('App\User','lorry_capacity');
+		return $this->belongsTo('App\User','capacity');
 	}
 }
