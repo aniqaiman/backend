@@ -165,6 +165,30 @@ class ProductController extends BaseController
 		return response()->json(['data'=>$priceArray, 'status'=>'ok']);
 	}
 
+	public function getNewProducts(Request $request)
+	{
+		$products = Product::orderBy('created_at', 'desc')->get();
+
+		$productArray = [];
+
+		foreach ($products as $product)
+		{
+			$newproduct["product_id"] = $product->product_id;
+			$newproduct["product_name"] = $product->product_name;
+			$newproduct["product_desc"] = $product->product_desc;
+			$newproduct["short_desc"] = $product->short_desc;
+			$newproduct["quantity"] = $product->quantity;
+			$newproduct["product_image"] = $product->product_image;
+			$newproduct["created_at"] = $product->created_at;
+			$newproduct["updated_at"] = $product->updated_at;
+			$newproduct["category"] = $product->category;
+
+			array_push($productArray, $newproduct);
+		}
+
+		return response()->json(['data'=>$productArray, 'status'=>'ok']);
+	}
+
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 	
 }

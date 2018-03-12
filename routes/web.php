@@ -115,6 +115,7 @@ Route::post('/api/postorder', 'Api\OrderController@postOrder');
 
 Route::get('user', 'ApiController@getAuthUser');
 Route::get('/api/products','Api\ProductController@getProducts');
+Route::get('/api/newproducts','Api\ProductController@getNewProducts');
 Route::get('/api/product/{product_id}','Api\ProductController@getProductbyId');
 Route::get('/api/fruits','Api\ProductController@getFruit');
 Route::get('/api/veges','Api\ProductController@getVege');
