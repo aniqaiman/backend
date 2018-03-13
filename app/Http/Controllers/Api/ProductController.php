@@ -89,7 +89,10 @@ class ProductController extends BaseController
 			$newfruit["created_at"] = $fruit->created_at;
 			$newfruit["updated_at"] = $fruit->updated_at;
 
-			$newfruit["product_price"] = $prices;
+			$newfruit["product_price"] = $prices->product_price;
+			$newfruit["product_price2"] = $prices->product_price2;
+			$newfruit["product_price3"] = $prices->product_price3;
+			$newfruit["date_price"] = $prices->date_price;
 
 			// $priceArray = [];
 
