@@ -103,7 +103,7 @@
                       <th class="mailbox-star"><center>Fruit Image</center></th>
                       <th class="mailbox-star"><center>Fruit Name</center></th>
                       <!-- <th class="mailbox-star"><center>Short Description</center></th> -->
-                      <!-- <th class="mailbox-star"><center>Fruit Price</center></th> -->
+                      <!-- <th class="mailbox-star"><center>Latest Price</center></th> -->
                       <th class="mailbox-star"><center>Fruit Quantity</center></th>
                       <th class="mailbox-star"><center>Operation</center></th>
 
@@ -117,7 +117,7 @@
                       <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$fruit->product_image}}"></a></center></td>
                       <td class="mailbox-name"><center>{{$fruit->product_name}}</center></td>
                       <!-- <td class="mailbox-date"><center>{{$fruit->short_desc}}</center></td> -->
-                      <!-- <td class="mailbox-date"><center>{{$fruit->product_price}}</center></td> -->
+                      <!-- <td class="mailbox-date"><center>{{$fruit->prices}}</center></td> -->
                       <td class="mailbox-date"><center>{{$fruit->quantity}}</center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editFruit', ['product_id'=> $fruit->product_id])}}"><i class="fa fa-edit"></i> Edit</a>

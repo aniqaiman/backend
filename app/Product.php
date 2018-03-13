@@ -12,7 +12,6 @@ class Product extends Model
     protected $fillable = [
     	'product_name',
     	'product_desc',
-    	'price_id',
     	'product_image',
     	'category',
         'quantity',
@@ -21,7 +20,7 @@ class Product extends Model
 
     public function prices()
     {
-    	return $this->hasMany('App\Price','price_id');
+    	return $this->hasMany('App\Price','product_id');
     }
 
     public function categories()

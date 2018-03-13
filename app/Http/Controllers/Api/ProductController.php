@@ -72,12 +72,13 @@ class ProductController extends BaseController
 	public function getFruit(Request $request)
 	{
 		$fruits = Product::where('category', 1)->get();
-		// $prices = Price::where('product_id', $product_id)->orderBy('created_at','desc')->take(1)->get();
 
 		$fruitArray = [];
 
 		foreach ($fruits as $fruit)
 		{
+			$prices = Price::where('product_id', $fruit->product_id)->orderBy('created_at','desc')->first();
+
 			$newfruit["product_id"] = $fruit->product_id;
 			$newfruit["product_name"] = $fruit->product_name;
 			$newfruit["product_desc"] = $fruit->product_desc;
@@ -88,18 +89,20 @@ class ProductController extends BaseController
 			$newfruit["created_at"] = $fruit->created_at;
 			$newfruit["updated_at"] = $fruit->updated_at;
 
-			$priceArray = [];
+			$newfruit["product_price"] = $prices;
 
-		foreach ($fruit->prices as $newprice) 
-		{
-			$productprice["product_price"] = $newprice->product_price;
-			$productprice["product_price2"] = $newprice->product_price2;
-			$productprice["product_price3"] = $newprice->product_price3;
-			$productprice["date"] = $newprice->date_price;
+			// $priceArray = [];
 
-			array_push($priceArray, $productprice);
-		}
-		$newproduct["prices"] = $priceArray;
+		// foreach ($fruit->prices as $newprice) 
+		// {
+		// 	$productprice["product_price"] = $newprice->product_price;
+		// 	$productprice["product_price2"] = $newprice->product_price2;
+		// 	$productprice["product_price3"] = $newprice->product_price3;
+		// 	$productprice["date"] = $newprice->date_price;
+
+		// 	array_push($priceArray, $productprice);
+		// }
+		// $newproduct["prices"] = $priceArray;
 
 			array_push($fruitArray, $newfruit);
 		}
