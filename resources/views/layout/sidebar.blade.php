@@ -1,32 +1,32 @@
 <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
+<aside class="main-sidebar">
 
-<!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
 
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          {{ HTML::image('img/user3.jpg', 'User Image',  array('class' => 'img-circle')) }}
-        </div>
-        <div class="pull-left info">
-          <p>Admin</p>
-          <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel">
+      <div class="pull-left image">
+        {{ HTML::image('img/user3.jpg', 'User Image',  array('class' => 'img-circle')) }}
       </div>
+      <div class="pull-left info">
+        <p>Admin</p>
+        <!-- Status -->
+        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+      </div>
+    </div>
 
-      <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-        </div>
-      </form>
-      <!-- /.search form -->
+    <!-- search form (Optional) -->
+    <form action="#" method="get" class="sidebar-form">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search...">
+        <span class="input-group-btn">
+          <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    </form>
+    <!-- /.search form -->
 
       <!-- sidebar menu: : style can be found in s
       idebar.less -->
@@ -39,18 +39,6 @@
           </a>
         </li>
 
-        <!-- <li class="treeview">
-          <a href="{{route('driver')}}">
-            <i class="fa fa-truck"></i> <span class="text-info">Driver Management</span>
-          </a>
-        </li> -->
-
-        <!-- <li class="treeview">
-          <a href="{{route('order')}}">
-            <i class="fa fa-shopping-cart"></i> <span class="text-info">Order Management</span>
-          </a>
-        </li> -->
-
         <li class="treeview">
           <a href="{{route('order')}}">
             <i class="fa fa-shopping-cart"></i> <span class="text-info">Order Tracking</span>
@@ -59,7 +47,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-comments"></i> <span class="text-info">Feedback Trail</span>
+          <i class="fa fa-comments"></i> <span class="text-info">Feedback Trail n/a</span>
           </a>
         </li> 
 
@@ -79,19 +67,19 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-user"></i> <span class="text-info">SKU Member ID</span>
+            <i class="fa fa-user"></i> <span class="text-info">SKU Member ID n/a</span>
           </a>
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dollar"></i> <span class="text-info">Price Setting Page</span>
+            <i class="fa fa-dollar"></i> <span class="text-info">Price Setting Page n/a</span>
           </a>
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-calendar"></i> <span class="text-info">Earning Summary</span>
+            <i class="fa fa-calendar"></i> <span class="text-info">Earning Summary n/a</span>
           </a>
         </li> 
 
@@ -125,7 +113,7 @@
           </a>
         </li>
         
-        </ul>
+      </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
