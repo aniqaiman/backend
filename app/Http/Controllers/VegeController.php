@@ -34,8 +34,8 @@ class VegeController extends Controller
     public function getVege()
     {
     	$vegs = Product::where('category', 11)->get();
-	    // $categories = Category::all();
-	    return view('product.vege',compact('vegs'));
+	    $categories = Category::all();
+	    return view('product.vege',compact('vegs','categories'));
     }
 
     public function editVege($product_id, Request $request)

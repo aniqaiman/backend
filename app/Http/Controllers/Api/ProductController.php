@@ -94,19 +94,6 @@ class ProductController extends BaseController
 			$newfruit["product_price3"] = $prices->product_price3;
 			$newfruit["date_price"] = $prices->date_price;
 
-			// $priceArray = [];
-
-		// foreach ($fruit->prices as $newprice) 
-		// {
-		// 	$productprice["product_price"] = $newprice->product_price;
-		// 	$productprice["product_price2"] = $newprice->product_price2;
-		// 	$productprice["product_price3"] = $newprice->product_price3;
-		// 	$productprice["date"] = $newprice->date_price;
-
-		// 	array_push($priceArray, $productprice);
-		// }
-		// $newproduct["prices"] = $priceArray;
-
 			array_push($fruitArray, $newfruit);
 		}
 
@@ -121,6 +108,8 @@ class ProductController extends BaseController
 
 		foreach ($veges as $vege)
 		{
+			$prices = Price::where('product_id', $vege->product_id)->orderBy('created_at','desc')->first();
+
 			$newvege["product_id"] = $vege->product_id;
 			$newvege["product_name"] = $vege->product_name;
 			$newvege["product_desc"] = $vege->product_desc;
@@ -131,18 +120,10 @@ class ProductController extends BaseController
 			$newvege["created_at"] = $vege->created_at;
 			$newvege["updated_at"] = $vege->updated_at;
 
-			$priceArray = [];
-
-		foreach ($vege->prices as $newprice) 
-		{
-			$productprice["product_price"] = $newprice->product_price;
-			$productprice["product_price2"] = $newprice->product_price2;
-			$productprice["product_price3"] = $newprice->product_price3;
-			$productprice["date"] = $newprice->date_price;
-
-			array_push($priceArray, $productprice);
-		}
-		$newproduct["prices"] = $priceArray;
+			$newvege["product_price"] = $prices->product_price;
+			$newvege["product_price2"] = $prices->product_price2;
+			$newvege["product_price3"] = $prices->product_price3;
+			$newvege["date_price"] = $prices->date_price;
 
 			array_push($vegeArray, $newvege);
 		}
@@ -173,7 +154,7 @@ class ProductController extends BaseController
 
 	public function getNewProducts(Request $request)
 	{
-		$products = Product::orderBy('created_at', 'desc')->get();
+		$products = Product::orderBy('created_at', 'desc')->take(10)->get();
 
 		$productArray = [];
 

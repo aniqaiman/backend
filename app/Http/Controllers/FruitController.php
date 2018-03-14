@@ -37,7 +37,6 @@ class FruitController extends Controller
     {
     	$fruits = Product::where('category', 1)->get();
 	    $categories = Category::all();
-        // $prices = Price::all();
 	    return view('product.fruit',compact('fruits','categories'));
     }
 
