@@ -26,4 +26,9 @@ class Order extends Model
         {
             return $this->belongsTo('App\Product','product_id');
         }
+
+        public function prices()
+        {
+            return $this->belongsTo('App\Price','product_price');
+        }
 }

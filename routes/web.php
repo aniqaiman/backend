@@ -130,3 +130,4 @@ Route::get('/api/driver/{user_id}','Api\DriverController@getDriver');
 Route::get('/api/seller/{user_id}','Api\SellerController@getSeller');
 Route::get('/api/user/{user_id}','Api\UserController@getUser');
 Route::get('/api/bestselling','Api\ProductController@getBestSelling');
+Route::get('/api/orders','Api\OrderController@getOrders');

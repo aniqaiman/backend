@@ -179,6 +179,15 @@ class ProductController extends BaseController
 
 	public function getBestSelling(Request $request)
 	{
+		// $orders = Order::where('product_id', $order->product_id)->get();
+
+		// $orderArray = [];
+
+		// foreach ($orders as $order) 
+		// {
+			
+		// }
+
 		$orders = Order::all();
 		$max = 0;
 
