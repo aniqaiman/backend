@@ -44,7 +44,7 @@
                 </div>
                 <input type="hidden" name="group_id" value="{{$groups->group_id}}">
                 <div class="box-footer">
-                  <button type="submit" onclick="window.location='{{ url("/group") }}'" class="btn btn-primary">Save Change</button>
+                  <button type="submit" class="btn btn-primary">Save Change</button>
                 </div>
               </form>
             </div>
@@ -80,7 +80,7 @@
       success: function(response){
         console.log(response);
         $("[data-dismiss = modal]").trigger({type: "click"});
-
+        window.location.replace("{{route('group')}}");
       },
       cache: false,
       contentType: false,

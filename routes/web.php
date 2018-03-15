@@ -110,6 +110,7 @@ Route::delete('/fruit/{product_id}',['as'=>'deleteFruit','uses'=>'FruitControlle
 Route::post('/api/registerseller', 'Api\SellerController@postRegisterSeller');
 Route::post('/api/registerbuyer', 'Api\BuyerController@postRegisterBuyer');
 Route::post('api/registerdriver', 'Api\DriverController@postRegisterDriver');
+Route::post('api/registeruser', 'Api\UserController@postRegisterUser');
 Route::post('auth/login', 'ApiController@login');
 Route::post('/api/postorder', 'Api\OrderController@postOrder');
 
@@ -123,6 +124,9 @@ Route::get('/api/prices','Api\ProductController@getPrices');
 Route::get('/api/buyers','Api\BuyerController@getBuyers');
 Route::get('/api/sellers','Api\SellerController@getSellers');
 Route::get('/api/drivers','Api\DriverController@getDrivers');
+Route::get('/api/users','Api\UserController@getUsers');
 Route::get('/api/buyer/{user_id}','Api\BuyerController@getBuyer');
 Route::get('/api/driver/{user_id}','Api\DriverController@getDriver');
 Route::get('/api/seller/{user_id}','Api\SellerController@getSeller');
+Route::get('/api/user/{user_id}','Api\UserController@getUser');
+Route::get('/api/bestselling','Api\ProductController@getBestSelling');

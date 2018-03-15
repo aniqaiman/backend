@@ -72,7 +72,7 @@
                 </div>
                 <input type="hidden" name="product_id" value="{{$fruits->product_id}}">
                 <div class="box-footer">
-                  <button type="submit" onclick="window.location='{{ url("/fruit") }}'" class="btn btn-primary">Save Change</button>
+                  <button type="submit" class="btn btn-primary">Save Change</button>
                 </div>
               </form>
             </div>
@@ -111,6 +111,7 @@ CKEDITOR.replace('product_desc');
       success: function(response){
         console.log(response);
         $("[data-dismiss = modal]").trigger({type: "click"});
+        window.location.replace("{{route('fruit')}}");
 
       },
       cache: false,

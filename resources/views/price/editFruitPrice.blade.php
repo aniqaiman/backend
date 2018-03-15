@@ -66,7 +66,7 @@
                 <input type="hidden" name="price_id" value="{{$prices->price_id}}">
                 <input type="hidden" name="product_id" value="{{$prices->product_id}}">
                 <div class="box-footer">
-                  <button type="submit" onclick="history.go(-1)" class="btn btn-primary">Save Change</button>
+                  <button type="submit" class="btn btn-primary">Save Change</button>
                 </div>
               </form>
             </div>
@@ -105,6 +105,8 @@ $('#frm-price-edit').on('submit',function(e){
       success: function(response){
         console.log(response);
         $("[data-dismiss = modal]").trigger({type: "click"});
+
+        window.location.replace("{{route('getFruitDetail',['product_id'=> $fruit->product_id])}}");
 
       },
       cache: false,

@@ -239,6 +239,8 @@
     {
       console.log(response);
       $("[data-dismiss = modal]").trigger({type: "click"});
+      window.location.reload();
+      
     },  
     cache: false,
     contentType: false,

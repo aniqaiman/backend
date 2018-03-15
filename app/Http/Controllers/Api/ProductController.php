@@ -11,6 +11,7 @@ use Redirect;
 use Session;
 use App\Product;
 use App\Price;
+use App\Order;
 
 class ProductController extends BaseController
 {
@@ -99,7 +100,7 @@ class ProductController extends BaseController
 
 		return response()->json(['data'=>$fruitArray, 'status'=>'ok']);
 	}
- 
+
 	public function getVege()
 	{
 		$veges = Product::where('category', 11)->get();
@@ -176,6 +177,24 @@ class ProductController extends BaseController
 		return response()->json(['data'=>$productArray, 'status'=>'ok']);
 	}
 
+	public function getBestSelling(Request $request)
+	{
+		$orders = Order::all();
+		$max = 0;
+
+		foreach ($orders as $order) 
+		{
+			$productcount = Order::where('product_id', $order->product_id)->count();
+
+			if($productcount>$max){
+				$max = $productcount;
+			}else{
+				$max = $max;
+			}
+		}
+		return response()->json(['data'=>$max, 'status'=>'ok']);
+	}
+
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-	
+
 }

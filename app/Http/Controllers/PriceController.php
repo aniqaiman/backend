@@ -37,8 +37,9 @@ class PriceController extends Controller
 
     public function editFruitPrice($product_id, $price_id, Request $request)
     {
+        $fruit = Product::where('product_id', $product_id)->first();
         $prices = Price::where('price_id', $price_id)->first();
-        return view('price.editFruitPrice', compact('prices'));
+        return view('price.editFruitPrice', compact('prices','fruit'));
     }
 
     public function updateFruitPrice(Request $request)

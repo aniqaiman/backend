@@ -139,7 +139,10 @@
         window.location.reload();
        // };
        
-      
+       cache: false,
+       contentType: false,
+       processData: false
+
 
      });
     });

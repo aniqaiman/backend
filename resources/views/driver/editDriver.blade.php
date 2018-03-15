@@ -150,7 +150,7 @@
           </div>
           <input type="hidden" name="user_id" value="{{$drivers->user_id}}">
           <div class="box-footer">
-            <button type="submit" onclick="window.location='{{ url("/driver") }}'" class="btn btn-primary">Save Change</button>
+            <button type="submit" class="btn btn-primary">Save Change</button>
           </div>
         </form>
       </div>
@@ -194,6 +194,7 @@
         {
           console.log(response);
           $("[data-dismiss = modal]").trigger({type: "click"});
+          window.location.reload();
         },
         cache: false,
         contentType: false,

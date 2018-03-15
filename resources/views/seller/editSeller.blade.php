@@ -121,7 +121,7 @@
                 </div>
                 <input type="hidden" name="user_id" value="{{$sellers->user_id}}">
                 <div class="box-footer">
-                  <button type="submit" onclick="window.location='{{ url("/seller") }}'" class="btn btn-primary">Save Change</button>
+                  <button type="submit" class="btn btn-primary">Save Change</button>
                 </div>
               </form>
             </div>
@@ -165,6 +165,8 @@
         {
           console.log(response);
           $("[data-dismiss = modal]").trigger({type: "click"});
+          window.location.replace("{{route('seller')}}");
+
         },
         cache: false,
         contentType: false,
