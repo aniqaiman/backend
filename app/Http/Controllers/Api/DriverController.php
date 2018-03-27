@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Redirect;
 use Session;
 use App\User;
+use Mail;
 
 class DriverController extends BaseController
 {
@@ -28,6 +29,16 @@ class DriverController extends BaseController
             'password' => bcrypt($request->get('password')),
             'group_id'=>31,
             ]);
+        $userEmail = $request->email;
+
+        // $groups = Group::where('group_id',$request->group_id)->firstOrFail();
+        Mail::send('email.sendemail', ['user'=>$driver], function ($message) use ($userEmail){
+
+            $message->from('wanmuz.ada@gmail.com', 'Admin');
+            
+            $message->to($userEmail);
+
+        });
         return response()->json(['data'=>$driver, 'status'=>'ok']);
     }
 
