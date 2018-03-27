@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
+use Mail;
 use App\User;
 
 class BuyerController extends BaseController
@@ -27,8 +28,20 @@ class BuyerController extends BaseController
             'password' => bcrypt($request->get('password')),
             'group_id'=>11,
             ]);
-        return response()->json(['data'=>$buyer, 'status'=>'ok']);
-    }
+
+    $userEmail = $request->email;
+
+        // $groups = Group::where('group_id',$request->group_id)->firstOrFail();
+        Mail::send('email.sendemail', ['user'=>$buyer], function ($message) use ($userEmail){
+
+            $message->from('aniqaimanimran@gmail.com', 'Admin');
+            
+            $message->to($userEmail);
+
+        });
+
+      return response()->json(['data'=>$buyer, 'status'=>'ok']);
+  }
 
     public function getBuyers(Request $request)
     {

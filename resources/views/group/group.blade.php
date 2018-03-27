@@ -1,6 +1,11 @@
-@extends('layout.master')
+@extends('layout.master') 
 @section('style')
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+<style type="text/css">
+  .dt-buttons {
+    display: inline;
+  }
+</style>
 @endsection
 @section('content')
 
@@ -118,27 +123,50 @@
 @endsection
 
 @section('script')
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 
 <script>
   $(document).ready(function()
   {
-    $('#group-table').DataTable();
+    $('#group-table').DataTable({
+        dom: 'lfrtBp',
+        buttons: [{
+          extend: 'pdf',
+          exportOptions: {
+            columns: [1,2]
+          }
+        }]
+    });
     $('#frm-group-create').on('submit',function(e)
     {
       e.preventDefault();
       console.log('pressed');
       var data = $(this).serialize();
+
       console.log(data);
-      $.post("{{route('createGroup')}}", data, function(response)
+      var formData = new FormData($(this)[0]);
+
+      $.ajax(
+        {
+          url:"{{route('createGroup')}}",
+          type: "POST",
+          data: formData,
+          async: false,
+          success: function(response)
       {
        console.log(response);
        $("[data-dismiss = modal]").trigger({type: "click"});
-       // swal('success','huhu','success').then(function(){
 
         window.location.reload();
-       // };
        
+       },
        cache: false,
        contentType: false,
        processData: false

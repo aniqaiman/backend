@@ -27,7 +27,7 @@ Route::get('/', ['as' => 'welcome','uses' =>
 
 // -------------------------------------------Detail Fruit----------------------------------------------
 
-Route::post('/fruit/{product_id}/price/add', ['as'=>'createFruitPrice','uses'=>'PriceController@createFruitPrice']);
+Route::post('/fruit/{product_id}/price/add', ['as'=>'createFruitPrice','uses'=>'PriceController@createFruitPrice']); 
 Route::get('/fruit/{product_id}/detail', ['as'=>'getFruitDetail','uses'=>'PriceController@getFruitDetail']);
 Route::get('/fruit/{product_id}/editFruitPrice/{price_id}', ['as'=>'editFruitPrice','uses'=>'PriceController@editFruitPrice']);
 Route::post('/updateFruitPrice', ['as'=>'updateFruitPrice','uses'=>'PriceController@updateFruitPrice']);
@@ -104,6 +104,12 @@ Route::get('/fruit', ['as'=>'fruit','uses'=>'FruitController@getFruit']);
 Route::get('editFruit/{product_id}',['as'=>'editFruit','uses'=>'FruitController@editFruit']);
 Route::post('/updateFruit',['as'=>'updateFruit','uses'=>'FruitController@updateFruit']);
 Route::delete('/fruit/{product_id}',['as'=>'deleteFruit','uses'=>'FruitController@deleteFruit']);
+
+
+Route::post('/send', 'EmailController@send');
+
+
+
 
 // -------------------------------------------API----------------------------------------------------	
 
