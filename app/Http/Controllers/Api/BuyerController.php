@@ -34,7 +34,7 @@ class BuyerController extends BaseController
         // $groups = Group::where('group_id',$request->group_id)->firstOrFail();
         Mail::send('email.sendemail', ['user'=>$buyer], function ($message) use ($userEmail){
 
-            $message->from('aniqaimanimran@gmail.com', 'Admin');
+            $message->from('wanmuz.ada@gmail.com', 'Admin');
             
             $message->to($userEmail);
 

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Redirect;
 use Session;
 use App\User;
+use Mail;
 
 class SellerController extends BaseController
 {
@@ -25,11 +26,18 @@ class SellerController extends BaseController
             'handphone_number' => $request->get('handphone_number'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')),
-            // 'bank_name' => $request->get('bank_name'),
-            // 'bank_acc_holder_name' => $request->get('bank_acc_holder_name'),
-            // 'bank_acc_number' => $request->get('bank_acc_number'),
             'group_id'=>21,
             ]);
+
+        $userEmail = $request->email;
+
+        Mail::send('email.sendemail', ['user'=>$seller], function ($message) use ($userEmail){
+
+            $message->from('wanmuz.ada@gmail.com', 'Admin');
+            
+            $message->to($userEmail);
+
+        });
         return response()->json(['data'=>$seller, 'status'=>'ok']);
     }
 

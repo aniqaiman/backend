@@ -13,7 +13,7 @@ class EmailController extends Controller
         Mail::queue('email.sendemail', ['title' => $title, 'content' => $content], function ($message)
         {
 
-            $message->from('aniqaimanimran@gmail.com', 'Aniq Aiman');
+            $message->from('wanmuz.ada@gmail.com', 'Admin');
 
             $message->to('aniqaimanimran@gmail.com');
 
