@@ -15,11 +15,15 @@ class SellerController extends BaseController
     public function postRegisterSeller(Request $request)
     {
         if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
-            return response('The company registration number / ic number had been used.', 400);
+            return response()->json([
+                'message' => 'The company registration number / ic number had been used.',
+            ], 400);
         }
 
         if (User::where('email', $request->get('email'))->exists()) {
-            return response('The email had been used.', 400);
+            return response()->json([
+                'message' => 'The email had been used.',
+            ], 400);
         }
 
         $seller = User::create([

@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Http\Request;
-use Redirect;
-use Session;
-use Mail;
 use App\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
+use Mail;
 
 class BuyerController extends BaseController
 {
-	public function postRegisterBuyer(Request $request)
+    public function postRegisterBuyer(Request $request)
     {
         if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
-            return response('The company registration number / ic number had been used.', 400);
+            return response()->json([
+                'message' => 'The company registration number / ic number had been used.',
+            ], 400);
         }
 
         if (User::where('email', $request->get('email'))->exists()) {
-            return response('The email had been used.', 400);
+            return response()->json([
+                'message' => 'The email had been used.',
+            ], 400);
         }
 
         $buyer = User::create([
@@ -34,31 +36,30 @@ class BuyerController extends BaseController
             'phonenumber' => $request->get('phonenumber'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')),
-            'group_id'=>11,
-            ]);
+            'group_id' => 11,
+        ]);
 
-    $userEmail = $request->email;
+        $userEmail = $request->email;
 
         // $groups = Group::where('group_id',$request->group_id)->firstOrFail();
-        Mail::send('email.sendemail', ['user'=>$buyer], function ($message) use ($userEmail){
+        Mail::send('email.sendemail', ['user' => $buyer], function ($message) use ($userEmail) {
 
             $message->from('wanmuz.ada@gmail.com', 'Admin');
-            
+
             $message->to($userEmail);
 
         });
 
-      return response()->json(['data'=>$buyer, 'status'=>'ok']);
-  }
+        return response()->json(['data' => $buyer, 'status' => 'ok']);
+    }
 
     public function getBuyers(Request $request)
     {
-        $buyers = User::where('group_id',11)->get();
+        $buyers = User::where('group_id', 11)->get();
 
         $buyerArray = [];
 
-        foreach($buyers as $buyer)
-        {
+        foreach ($buyers as $buyer) {
             $newbuyer["user_id"] = $buyer->user_id;
             $newbuyer["name"] = $buyer->name;
             $newbuyer["company_name"] = $buyer->company_name;
@@ -73,7 +74,7 @@ class BuyerController extends BaseController
             array_push($buyerArray, $newbuyer);
         }
 
-        return response()->json(['data'=>$buyerArray, 'status'=>'ok']);
+        return response()->json(['data' => $buyerArray, 'status' => 'ok']);
     }
 
     public function getBuyer($user_id, Request $request)
@@ -91,7 +92,7 @@ class BuyerController extends BaseController
         $newbuyer["email"] = $buyer->email;
         $newbuyer["group"] = $buyer->groups->group_name;
 
-        return response()->json(['data'=>$newbuyer, 'status'=>'ok']);
+        return response()->json(['data' => $newbuyer, 'status' => 'ok']);
     }
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
