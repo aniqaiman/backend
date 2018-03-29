@@ -34,7 +34,7 @@ class ApiController extends Controller
             ], 500);
         }
         return response()->json([
-            'token' => $token
+            'token' => $token,
         ]);
     }
 
@@ -61,7 +61,10 @@ class ApiController extends Controller
         $newuser['updated_at'] = $user->updated_at;
         $newuser['buss_hour'] = $user->buss_hour;
 
-        return response()->json(['data' => $newuser, 'status' => 'ok']);
+        return response()->json([
+            'data' => $newuser,
+            'status' => 'ok',
+        ]);
     }
 
 }

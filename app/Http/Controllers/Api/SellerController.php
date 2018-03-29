@@ -16,7 +16,7 @@ class SellerController extends BaseController
     {
         if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
             return response()->json([
-                'message' => 'The company registration number / ic number had been used.',
+                'message' => 'The company Reg. No. / IC No. had been used.',
             ], 403);
         }
 
@@ -42,11 +42,8 @@ class SellerController extends BaseController
         $userEmail = $request->email;
 
         Mail::send('email.sendemail', ['user' => $seller], function ($message) use ($userEmail) {
-
             $message->from('wanmuz.ada@gmail.com', 'Admin');
-
             $message->to($userEmail);
-
         });
         return response()->json(['data' => $seller, 'status' => 'ok']);
     }

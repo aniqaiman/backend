@@ -16,7 +16,7 @@ class DriverController extends BaseController
     {
         if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
             return response()->json([
-                'message' => 'The company registration number / ic number had been used.',
+                'message' => 'The company Reg. No. / IC No. had been used.',
             ], 403);
         }
 
