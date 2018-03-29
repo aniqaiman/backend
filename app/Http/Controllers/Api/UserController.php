@@ -15,7 +15,7 @@ class UserController extends BaseController
         if (User::where('email', $request->get('email'))->exists()) {
             return response()->json([
                 'message' => 'The email had been used.',
-            ], 400);
+            ], 403);
         }
 
         $user = User::create([

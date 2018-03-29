@@ -17,13 +17,13 @@ class SellerController extends BaseController
         if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
             return response()->json([
                 'message' => 'The company registration number / ic number had been used.',
-            ], 400);
+            ], 403);
         }
 
         if (User::where('email', $request->get('email'))->exists()) {
             return response()->json([
                 'message' => 'The email had been used.',
-            ], 400);
+            ], 403);
         }
 
         $seller = User::create([

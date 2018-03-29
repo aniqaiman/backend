@@ -17,13 +17,13 @@ class DriverController extends BaseController
         if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
             return response()->json([
                 'message' => 'The company registration number / ic number had been used.',
-            ], 400);
+            ], 403);
         }
 
         if (User::where('license_number', $request->get('license_number'))->exists()) {
             return response()->json([
                 'message' => 'The license number had been used.',
-            ], 400);
+            ], 403);
         }
 
         $driver = User::create([
