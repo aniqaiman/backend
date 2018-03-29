@@ -178,6 +178,7 @@
                       <!-- <td class="mailbox-date"><center><a href="#">{{$seller->password}}</a></center></td> -->
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editSeller', ['user_id'=> $seller->user_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="button btn btn-primary btn-sm" href="{{route('sellerdetail', ['user_id'=> $seller->user_id])}}"><i class="fa fa-edit"></i> View</a>
                         {{ Form::open(array('url' => 'seller/' . $seller->user_id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}

@@ -194,6 +194,7 @@
                       <!-- <td class="mailbox-date"><center><a href="#">{{$driver->license_number}}</a></center></td> -->
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editDriver', ['user_id'=> $driver->user_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="button btn btn-primary btn-sm" href="{{route('driverdetail', ['user_id'=> $driver->user_id])}}"><i class="fa fa-eye"></i> View Detail</a>
                         {{ Form::open(array('url' => 'driver/' . $driver->user_id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
@@ -226,14 +227,14 @@
 @endsection
 
 @section('script')
-<script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+<!-- <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script> -->
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
 <script>
   $(document).ready(function()
   {
     $('#driver-table').DataTable();
-    CKEDITOR.replace('address');
+    // CKEDITOR.replace('address');
 
     $('#frm-driver-create').on('submit',function(e)
     {
@@ -243,7 +244,7 @@
 
       console.log(data);
       var formData = new FormData($(this)[0]);
-      formData.append('address', CKEDITOR.instances.address.getData());
+      // formData.append('address', CKEDITOR.instances.address.getData());
    // console.log(CKEDITOR.instances.description.getData());
    $.ajax(
    {

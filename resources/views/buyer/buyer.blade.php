@@ -144,6 +144,7 @@
                       <td class="mailbox-date"><center>{{$buyer->handphone_number}}</center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editBuyer', ['user_id'=> $buyer->user_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="button btn btn-primary btn-sm" href="{{route('editBuyer', ['user_id'=> $buyer->user_id])}}"><i class="fa fa-edit"></i> View</a>
                         {{ Form::open(array('url' => 'buyer/' . $buyer->buyer_id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}

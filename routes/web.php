@@ -27,7 +27,7 @@ Route::get('/', ['as' => 'welcome','uses' =>
 
 // -------------------------------------------Detail Fruit----------------------------------------------
 
-Route::post('/fruit/{product_id}/price/add', ['as'=>'createFruitPrice','uses'=>'PriceController@createFruitPrice']);
+Route::post('/fruit/{product_id}/price/add', ['as'=>'createFruitPrice','uses'=>'PriceController@createFruitPrice']); 
 Route::get('/fruit/{product_id}/detail', ['as'=>'getFruitDetail','uses'=>'PriceController@getFruitDetail']);
 Route::get('/fruit/{product_id}/editFruitPrice/{price_id}', ['as'=>'editFruitPrice','uses'=>'PriceController@editFruitPrice']);
 Route::post('/updateFruitPrice', ['as'=>'updateFruitPrice','uses'=>'PriceController@updateFruitPrice']);
@@ -48,6 +48,8 @@ Route::get('/seller',['as'=>'seller','uses'=>'SellerController@getSeller']);
 Route::get('/editSeller/{seller_id}',['as'=>'editSeller','uses'=>'SellerController@editSeller']);
 Route::post('/updateSeller',['as'=>'updateSeller','uses'=>'SellerController@updateSeller']);
 Route::delete('/seller/{seller_id}',['as'=>'deleteSeller','uses'=>'SellerController@deleteSeller']);
+
+Route::get('seller/{seller_id}/sellerdetail', ['as'=>'sellerdetail','uses'=>'SellerController@getSellerDetail']);
 
 // -------------------------------------------Group----------------------------------------------------
 
@@ -81,6 +83,8 @@ Route::get('/editDriver/{driver_id}',['as'=>'editDriver','uses'=>'DriverControll
 Route::post('/updateDriver',['as'=>'updateDriver','uses'=>'DriverController@updateDriver']);
 Route::delete('/driver/{driver_id}',['as'=>'deleteDriver','uses'=>'DriverController@deleteDriver']);
 
+Route::get('driver/{driver_id}/driverdetail', ['as'=>'driverdetail','uses'=>'DriverController@getDriverDetail']);
+
 // -------------------------------------------Buyer----------------------------------------------------	
 
 Route::post('/buyer', ['as'=>'createBuyer', 'uses'=>'BuyerController@createBuyer']);
@@ -104,6 +108,12 @@ Route::get('/fruit', ['as'=>'fruit','uses'=>'FruitController@getFruit']);
 Route::get('editFruit/{product_id}',['as'=>'editFruit','uses'=>'FruitController@editFruit']);
 Route::post('/updateFruit',['as'=>'updateFruit','uses'=>'FruitController@updateFruit']);
 Route::delete('/fruit/{product_id}',['as'=>'deleteFruit','uses'=>'FruitController@deleteFruit']);
+
+
+Route::post('/send', 'EmailController@send');
+
+
+
 
 // -------------------------------------------API----------------------------------------------------	
 

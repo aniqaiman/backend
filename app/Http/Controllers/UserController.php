@@ -12,6 +12,7 @@ use Redirect;
 use Session;
 use App\User;
 use App\Type;
+use App\Group;
 
 class UserController extends Controller
 {
@@ -34,9 +35,10 @@ class UserController extends Controller
 
 	public function getUser()
 	{
+        $groups = Group::all();
     	$users = User::where('group_id', 1)->get();
         $types = Type::all();
-    	return view('user.user', compact('users','types'));
+    	return view('user.user', compact('users','types','groups'));
     }
 
     public function editUser($user_id, Request $request)
