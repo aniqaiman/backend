@@ -15,6 +15,14 @@ class DriverController extends BaseController
 {
 	public function postRegisterDriver(Request $request)
     {
+        if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
+            abort(400, 'The company registration number / ic number had been used.');
+        }
+
+        if (User::where('license_number', $request->get('license_number'))->exists()) {
+            abort(400, 'The license number had been used.');
+        }
+
         $driver = User::create([
             'name' => $request->get('name'),
             'company_reg_ic_number' => $request->get('company_reg_ic_number'),
