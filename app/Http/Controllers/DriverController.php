@@ -90,5 +90,13 @@ class DriverController extends Controller
         return Redirect::to('driver');
     }
 
+    public function getDriverDetail($user_id, Request $request)
+    {
+        $driver = User::where('user_id', $user_id)->first();
+        $types = Type::all();
+        $capacities = Capacity::all();
+        return view('driver.driverdetail', compact('driver','types','capacities'));
+    }
+
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

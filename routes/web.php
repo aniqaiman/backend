@@ -49,6 +49,8 @@ Route::get('/editSeller/{seller_id}',['as'=>'editSeller','uses'=>'SellerControll
 Route::post('/updateSeller',['as'=>'updateSeller','uses'=>'SellerController@updateSeller']);
 Route::delete('/seller/{seller_id}',['as'=>'deleteSeller','uses'=>'SellerController@deleteSeller']);
 
+Route::get('seller/{seller_id}/sellerdetail', ['as'=>'sellerdetail','uses'=>'SellerController@getSellerDetail']);
+
 // -------------------------------------------Group----------------------------------------------------
 
 Route::post('/group', ['as'=>'createGroup', 'uses'=>'GroupController@createGroup']);
@@ -80,6 +82,8 @@ Route::get('/driver', ['as'=>'driver','uses'=>'DriverController@getDriver']);
 Route::get('/editDriver/{driver_id}',['as'=>'editDriver','uses'=>'DriverController@editDriver']);
 Route::post('/updateDriver',['as'=>'updateDriver','uses'=>'DriverController@updateDriver']);
 Route::delete('/driver/{driver_id}',['as'=>'deleteDriver','uses'=>'DriverController@deleteDriver']);
+
+Route::get('driver/{driver_id}/driverdetail', ['as'=>'driverdetail','uses'=>'DriverController@getDriverDetail']);
 
 // -------------------------------------------Buyer----------------------------------------------------	
 

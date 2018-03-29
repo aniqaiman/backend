@@ -127,7 +127,7 @@
                       <td class="mailbox-name"><center>{{$user->email}}</center></td>
                       <!-- <td class="mailbox-name"><center>{{$user->address}}</center></td> -->
                       <td class="mailbox-name"><center>{{$user->handphone_number}}</center></td>
-                      <td class="col-sm-3"><center><img style="width: 25%" src="{{$user->profilepic}}"></center></td>
+                      <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$user->profilepic}}"></center></td>
                       <td class="mailbox-name"><center><div class="btn-group">
                       <a class="button btn btn-success btn-sm" href="{{route('editUser', ['user_id'=> $user->user_id])}}"><i class="fa fa-gear"></i>Edit</a>
                         {{ Form::open(array('url' => 'users/' . $user->user_id, 'class' => 'pull-right')) }}

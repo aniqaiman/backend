@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Redirect;
 use Session;
 use App\User;
+use App\Type;
+use App\Capacity;
 
 class SellerController extends Controller
 {
@@ -74,6 +76,14 @@ class SellerController extends Controller
     	$sellers->delete();
     	Session::flash('message','Successfully deleted');
     	return Redirect::to('seller');
+    }
+
+    public function getSellerDetail($user_id, Request $request)
+    {
+        $seller = User::where('user_id', $user_id)->first();
+        $types = Type::all();
+        $capacities = Capacity::all();
+        return view('seller.sellerdetail', compact('seller','types','capacities'));
     }
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
