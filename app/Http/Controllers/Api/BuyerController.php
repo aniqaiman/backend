@@ -17,11 +17,11 @@ class BuyerController extends BaseController
 	public function postRegisterBuyer(Request $request)
     {
         if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
-            abort(400, 'The company registration number / ic number had been used.');
+            return response('The company registration number / ic number had been used.', 400);
         }
 
         if (User::where('email', $request->get('email'))->exists()) {
-            abort(400, 'The email had been used.');
+            return response('The email had been used.', 400);
         }
 
         $buyer = User::create([

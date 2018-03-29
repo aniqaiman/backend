@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Http\Request;
-use Redirect;
-use Session;
 use App\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Mail;
 
 class SellerController extends BaseController
 {
-	public function postRegisterSeller(Request $request)
+    public function postRegisterSeller(Request $request)
     {
         if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
-            abort(400, 'The company registration number / ic number had been used.');
+            return response('The company registration number / ic number had been used.', 400);
         }
 
         if (User::where('email', $request->get('email'))->exists()) {
-            abort(400, 'The email had been used.');
+            return response('The email had been used.', 400);
         }
 
         $seller = User::create([
@@ -34,29 +32,28 @@ class SellerController extends BaseController
             'handphone_number' => $request->get('handphone_number'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')),
-            'group_id'=>21,
-            ]);
+            'group_id' => 21,
+        ]);
 
         $userEmail = $request->email;
 
-        Mail::send('email.sendemail', ['user'=>$seller], function ($message) use ($userEmail){
+        Mail::send('email.sendemail', ['user' => $seller], function ($message) use ($userEmail) {
 
             $message->from('wanmuz.ada@gmail.com', 'Admin');
-            
+
             $message->to($userEmail);
 
         });
-        return response()->json(['data'=>$seller, 'status'=>'ok']);
+        return response()->json(['data' => $seller, 'status' => 'ok']);
     }
 
     public function getSellers(Request $request)
     {
-        $sellers = User::where('group_id',21)->get();
+        $sellers = User::where('group_id', 21)->get();
 
         $sellerArray = [];
 
-        foreach($sellers as $seller)
-        {
+        foreach ($sellers as $seller) {
             $newseller["user_id"] = $seller->user_id;
             $newseller["name"] = $seller->name;
             $newseller["company_name"] = $seller->company_name;
@@ -71,7 +68,7 @@ class SellerController extends BaseController
             array_push($sellerArray, $newseller);
         }
 
-        return response()->json(['data'=>$sellerArray, 'status'=>'ok']);
+        return response()->json(['data' => $sellerArray, 'status' => 'ok']);
     }
 
     public function getSeller($user_id, Request $request)
@@ -89,7 +86,7 @@ class SellerController extends BaseController
         $newseller["email"] = $seller->email;
         $newseller["group"] = $seller->groups->group_name;
 
-        return response()->json(['data'=>$newseller, 'status'=>'ok']);
+        return response()->json(['data' => $newseller, 'status' => 'ok']);
     }
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

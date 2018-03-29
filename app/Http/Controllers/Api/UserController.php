@@ -18,7 +18,7 @@ class UserController extends BaseController
         $checkEmail = User::where('email', $request->get('email'))->first();
 
         if (User::where('email', $request->get('email'))->exists()) {
-            abort(400, 'The email had been used');
+            return response('The email had been used.', 400);
         }
 
         $user = User::create([
