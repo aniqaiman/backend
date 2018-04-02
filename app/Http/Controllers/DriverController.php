@@ -31,7 +31,7 @@ class DriverController extends Controller
             $drivers->lorry_capacity = $request->lorry_capacity;
             $drivers->location_to_cover = $request->location_to_cover;
             $drivers->lorry_plate_number = $request->lorry_plate_number;
-            $drivers->password = bcrypt('$request->password');
+            $drivers->password = bcrypt($request->password);
             $drivers->group_id = 31;
             // $drivers->bank_name = $request->bank_name;
             // $drivers->bank_acc_holder_name = $request->bank_acc_holder_name;

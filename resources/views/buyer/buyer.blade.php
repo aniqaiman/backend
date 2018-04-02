@@ -118,9 +118,7 @@
                   <table class="table table-bordered" id="buyer-table">
                    <thead>
 
-                    <tr class="info bg-white">
-
-                      <th><input type="checkbox"></th>
+                    <tr class="info bg-black">
                       <!-- <th class="mailbox-star"><center><a href="#">Owner Name</a></center></th> -->
                       <th class="mailbox-star"><center>Company Name</center></th>
                       <!-- <th class="mailbox-star"><center><a href="#">Company Reg Number</a></center></th> -->
@@ -135,7 +133,6 @@
                   <tbody>
                     @foreach($buyers as $buyer) 
                     <tr class="info">
-                      <td><input type="checkbox"></td>
                       <!-- <td class="mailbox-name"><center><a href="#">{{$buyer->owner_name}}</a></center></td> -->
                       <td class="mailbox-date"><center>{{$buyer->company_name}}</center></td>
                       <!-- <td class="mailbox-date"><center><a href="#">{{$buyer->company_reg_number}}</a></center></td> -->
@@ -183,7 +180,7 @@
 <script>
 $(document).ready(function(){
   $('#buyer-table').DataTable();
-  CKEDITOR.replace('address');
+  // CKEDITOR.replace('address');
 
   $('#frm-buyer-create').on('submit',function(e){
     e.preventDefault();
@@ -192,7 +189,7 @@ $(document).ready(function(){
 
     console.log(data);
     var formData = new FormData($(this)[0]);
-    formData.append('address', CKEDITOR.instances.address.getData());
+    // formData.append('address', CKEDITOR.instances.address.getData());
    // console.log(CKEDITOR.instances.description.getData());
    $.ajax({
     url:"{{route('createBuyer')}}", 

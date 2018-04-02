@@ -32,4 +32,9 @@ class Product extends Model
     {
         return $this->belongsTo('App\Order','product_id');
     }
+
+    public function stocks()
+    {
+        return $this->belongsTo('App\Stock','product_id');
+    }
 }

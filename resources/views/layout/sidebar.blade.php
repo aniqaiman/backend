@@ -7,7 +7,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel">
       <div class="pull-left image">
-        {{ HTML::image('img/user3.jpg', 'User Image',  array('class' => 'img-circle')) }}
+        {{ HTML::image('img/foodrico.png', 'User Image',  array('class' => 'img-circle')) }}
       </div>
       <div class="pull-left info">
         <p>Admin</p>

@@ -174,7 +174,7 @@
 <script>
   $(document).ready(function()
   {
-    CKEDITOR.replace('address');
+    // CKEDITOR.replace('address');
     $('#frm-driver-edit').on('submit',function(e)
     {
       e.preventDefault();
@@ -182,7 +182,7 @@
       var data = $(this).serialize();
       console.log(data);
       var formData = new FormData($(this)[0]);
-      formData.append('address', CKEDITOR.instances.address.getData());
+      // formData.append('address', CKEDITOR.instances.address.getData());
 
       $.ajax(
       {

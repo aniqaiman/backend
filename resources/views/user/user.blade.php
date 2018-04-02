@@ -105,8 +105,7 @@
                   <table class="table table-bordered" id="user-table">
 
                     <thead>
-                      <tr class="info bg-white">
-                        <th><input type="checkbox"></th>
+                      <tr class="info bg-black">
                         <!-- <th class="mailbox-star"><center><a href="#">Id</a></center></th> -->
                         <th class="mailbox-name"><center>Name</center></th>
                         <th class="mailbox-name"><center>Email</center></th>
@@ -120,8 +119,6 @@
                     <tbody>        
                      @foreach($users as $user)
                      <tr class="info">
-                      
-                      <td><input type="checkbox"></td>
                       <!-- <td class="mailbox-star"><center><a href="#">{{$user->user_id}}</a></center></td> -->
                       <td class="mailbox-name"><center>{{$user->name}}</center></td>
                       <td class="mailbox-name"><center>{{$user->email}}</center></td>
@@ -168,7 +165,7 @@
 <script>
   $(document).ready(function(){
     $('#user-table').DataTable();
-    CKEDITOR.replace('address');
+    // CKEDITOR.replace('address');
     $('#frm-user-create').on('submit',function(e)
     {
       e.preventDefault();
@@ -176,7 +173,7 @@
       var data = $(this).serialize();
       console.log(data);
       var formData = new FormData($(this)[0]);
-      formData.append('address', CKEDITOR.instances.address.getData());
+      // formData.append('address', CKEDITOR.instances.address.getData());
 
       $.ajax(
       {

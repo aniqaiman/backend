@@ -94,14 +94,14 @@
  <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 
 <script>
-CKEDITOR.replace('product_desc');
+// CKEDITOR.replace('product_desc');
   $('#frm-product-edit').on('submit',function(e){
     e.preventDefault();
     console.log('pressed');
     var data = $(this).serialize();
     console.log(data);
     var formData = new FormData($(this)[0]);
-    formData.append('product_desc', CKEDITOR.instances.product_desc.getData());
+    // formData.append('product_desc', CKEDITOR.instances.product_desc.getData());
 
     $.ajax({
       url:"{{route('updateVege')}}", 
@@ -111,7 +111,7 @@ CKEDITOR.replace('product_desc');
       success: function(response){
         console.log(response);
         $("[data-dismiss = modal]").trigger({type: "click"});
-        window.location.replace("{{route('fruit')}}");
+        window.location.replace("{{route('vege')}}");
 
       },
       cache: false,

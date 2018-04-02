@@ -168,9 +168,7 @@
                   <table class="table table-bordered" id="driver-table">
                    <thead>
 
-                    <tr class="info bg-white">
-                      
-                      <th><input type="checkbox"></th>
+                    <tr class="info bg-black">
                       <!-- <th class="mailbox-star"><center><a href="#">Driver ID</a></center></th> -->
                       <th class="mailbox-star"><center>Driver Name</center></th>
                       <th class="mailbox-star"><center>Phone Number</center></th>
@@ -185,7 +183,6 @@
                   <tbody>
                     @foreach($drivers as $driver) 
                     <tr class="info">
-                      <td><input type="checkbox"></td>
                       <!-- <td class="mailbox-star"><center><a href="#">{{$driver->driver_id}}</a></center></td> -->
                       <td class="mailbox-name"><center>{{$driver->name}}</center></td>
                       <td class="mailbox-date"><center>{{$driver->phonenumber}}</center></td>

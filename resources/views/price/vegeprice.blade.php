@@ -131,8 +131,7 @@
                   <table class="table table-bordered" id="price-table">
                    <thead>
 
-                    <tr class="info bg-white">
-                      <th><input type="checkbox"></th>
+                    <tr class="info bg-black">
                       <th class="mailbox-subject"><center>Price ID</center></th>
                       <th class="mailbox-subject"><center>Price</center></th>
                       <!-- <th class="mailbox-subject"><center>Grade B Price</center></th> -->
@@ -145,7 +144,6 @@
                   <tbody>
                     @foreach($prices as $price)
                     <tr class="info">
-                      <td><input type="checkbox"></td>
                       <td class="mailbox-subject"><center>{{$price->price_id}}</center></td>
                       <td class="mailbox-subject"><center>{{$price->product_price}}</center></td>
                       <!-- <td class="mailbox-subject"><center>{{$price->product_price2}}</center></td> -->

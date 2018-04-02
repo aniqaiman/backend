@@ -146,9 +146,7 @@
                   <table class="table table-bordered" id="supplier-table">
                    <thead>
 
-                    <tr class="info bg-white">
-                      
-                      <th><input type="checkbox"></th>
+                    <tr class="info bg-black">
                       <!-- <th class="mailbox-star"><center><a href="#">Seller ID</a></center></th> -->
                       <!-- <th class="mailbox-star"><center><a href="#">Owner Name</a></center></th> -->
                       <th class="mailbox-star"><center>Company Name</center></th>
@@ -166,7 +164,6 @@
                   <tbody>
                     @foreach($sellers as $seller) 
                     <tr class="info">
-                      <td><input type="checkbox"></td>
                       <!-- <td class="mailbox-star"><center><a href="#">{{$seller->seller_id}}</a></center></td> -->
                       <!-- <td class="mailbox-name"><center><a href="#">{{$seller->owner_name}}</a></center></td> -->
                       <td class="mailbox-date"><center>{{$seller->company_name}}</center></td>
@@ -218,7 +215,7 @@
   $(document).ready(function()
   {
     $('#supplier-table').DataTable();
-    CKEDITOR.replace('address');
+    // CKEDITOR.replace('address');
 
     $('#frm-supplier-create').on('submit',function(e)
     {
@@ -228,7 +225,7 @@
 
       console.log(data);
       var formData = new FormData($(this)[0]);
-      formData.append('address', CKEDITOR.instances.address.getData());
+      // formData.append('address', CKEDITOR.instances.address.getData());
    // console.log(CKEDITOR.instances.description.getData());
    $.ajax(
    {

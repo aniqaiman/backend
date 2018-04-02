@@ -25,7 +25,7 @@ class BuyerController extends Controller
     		$buyers->phonenumber = $request->phonenumber;
     		$buyers->handphone_number = $request->handphone_number;
     		$buyers->email = $request->email;
-    		$buyers->password = bcrypt('$request->password');
+    		$buyers->password = bcrypt($request->password);
             $buyers->group_id = 11;
     		$buyers->save();
     		return response($buyers);

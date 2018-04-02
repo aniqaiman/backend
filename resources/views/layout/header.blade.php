@@ -31,7 +31,7 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-               {{ HTML::image('img/user3.jpg', 'User Image',  array('class' => 'user-image')) }}
+               {{ HTML::image('img/foodrico.png', 'User Image',  array('class' => 'user-image')) }}
               
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-ms">Admin</span>
@@ -39,7 +39,7 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-              {{ HTML::image('img/user3.jpg', 'User Image',  array('class' => 'img-circle')) }}
+              {{ HTML::image('img/foodrico.png', 'User Image',  array('class' => 'img-circle')) }}
 
                 <p>
                   Admin - Web Developer
@@ -50,13 +50,13 @@
               <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
+                    <!-- <a href="#">Followers</a> -->
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
+                    <!-- <a href="#">Sales</a> -->
                   </div>
                   <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
+                    <!-- <a href="#">Friends</a> -->
                   </div>
                 </div>
                 <!-- /.row -->
@@ -64,7 +64,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <!-- <a href="#" class="btn btn-default btn-flat">Profile</a> -->
                 </div>
                 <div class="pull-right">
                   <a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -74,7 +74,7 @@
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            <!-- <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a> -->
           </li>
         </ul>
       </div>

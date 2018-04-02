@@ -76,8 +76,7 @@
 
                   <thead>
 
-                    <tr class="info bg-white">
-                      <th><input type="checkbox"></th>
+                    <tr class="info bg-black">
                       <th class="mailbox-subject"><center>Group ID</center></th>
                       <th class="mailbox-subject"><center>Group Name</center></th>
                       <th class="mailbox-subject"><center>Operation</center></th>
@@ -87,7 +86,6 @@
                   <tbody>
                     @foreach($groups as $group)
                     <tr class="info">
-                      <td><input type="checkbox"></td>
                       <td class="mailbox-subject"><center>{{$group->group_id}}</center></td>
                       <td class="mailbox-subject"><center>{{$group->group_name}}</center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">

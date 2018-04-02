@@ -11,8 +11,18 @@ class Stock extends Model
     public $timestamp = 'true';
     protected $fillable = [
     	'product_id',
-    	'quantity',
-    	'grade_id',
+    	'product_quantity',
+    	'product_grade',
     	'user_id',
     	];
+
+    	public function sellers()
+    	{
+    		return $this->belongsTo('App\User','user_id');
+    	}
+
+    	public function products()
+    	{
+    		return $this->belongsTo('App\Product','product_id');
+    	}
 }

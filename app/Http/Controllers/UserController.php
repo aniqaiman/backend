@@ -23,7 +23,7 @@ class UserController extends Controller
             $users = new User;
             $users->name = $request->name;
             $users->email = $request->email;
-            $users->password =  bcrypt('$request->password');
+            $users->password =  bcrypt($request->password);
             $users->address = $request->address;
             $users->handphone_number = $request->handphone_number;
             $users->profilepic = $path;

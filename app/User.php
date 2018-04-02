@@ -16,31 +16,31 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = ['password', 'remember_token'];
     public $timestamp = 'true';
     protected $fillable = [
-    	'name',
-    	'email',
-    	'password',
-        'buss_hour',
-    	'address',
-    	'phonenumber',
-    	'profilepic',
-        'remember_token',
-        'company_name',
-        'company_reg_ic_number',
-        'handphone_number',
-        'bank_name',
-        'bank_acc_holder_name',
-        'bank_acc_number',
-        'latitude',
-        'longitude',
-        'group_id',
-        'license_number',
-        'drivers_license',
-        'roadtax_expiry',
-        'type_of_lorry',
-        'lorry_capacity',
-        'location_to_cover',
-        'lorry_plate_number',
-    	];
+    'name',
+    'email',
+    'password',
+    'buss_hour',
+    'address',
+    'phonenumber',
+    'profilepic',
+    'remember_token',
+    'company_name',
+    'company_reg_ic_number',
+    'handphone_number',
+    'bank_name',
+    'bank_acc_holder_name',
+    'bank_acc_number',
+    'latitude',
+    'longitude',
+    'group_id',
+    'license_number',
+    'drivers_license',
+    'roadtax_expiry',
+    'type_of_lorry',
+    'lorry_capacity',
+    'location_to_cover',
+    'lorry_plate_number',
+    ];
 
     public function groups()
     {
@@ -61,6 +61,11 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo('App\Capacity','lorry_capacity');
     }
+
+    // public function stocks()
+    // {
+    //     return $this->belongsTo('App\Stock','user_id');
+    // }
 
     public function getJWTIdentifier()
     {

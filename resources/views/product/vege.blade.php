@@ -98,9 +98,7 @@
                   <table class="table table-bordered" id="product-table">
                    <thead>
 
-                    <tr class="info bg-white">
-
-                      <th><input type="checkbox"></th>
+                    <tr class="info bg-black">
                       <th class="mailbox-star"><center>Vege Image</center></th>
                       <th class="mailbox-star"><center>Vege Name</center></th>
                       <!-- <th class="mailbox-star"><center>Short Description</center></th> -->
@@ -114,7 +112,6 @@
                   <tbody>
                     @foreach($vegs as $veg) 
                     <tr class="info">
-                      <td><input type="checkbox"></td>
                       <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$veg->product_image}}"></a></center></td>
                       <td class="mailbox-name"><center>{{$veg->product_name}}</center></td>
                       <!-- <td class="mailbox-date"><center>{{$veg->short_desc}}</center></td> -->
@@ -162,7 +159,7 @@
   $(document).ready(function()
   {
     $('#product-table').DataTable();
-    CKEDITOR.replace('product_desc');
+    // CKEDITOR.replace('product_desc');
 
     $('#frm-product-create').on('submit',function(e)
     {
@@ -172,7 +169,7 @@
 
       console.log(data);
       var formData = new FormData($(this)[0]);
-   formData.append('product_desc', CKEDITOR.instances.product_desc.getData());
+   // formData.append('product_desc', CKEDITOR.instances.product_desc.getData());
    // console.log(CKEDITOR.instances.description.getData());
    $.ajax(
    {

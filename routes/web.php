@@ -49,7 +49,7 @@ Route::get('/editSeller/{seller_id}',['as'=>'editSeller','uses'=>'SellerControll
 Route::post('/updateSeller',['as'=>'updateSeller','uses'=>'SellerController@updateSeller']);
 Route::delete('/seller/{seller_id}',['as'=>'deleteSeller','uses'=>'SellerController@deleteSeller']);
 
-Route::get('seller/{seller_id}/sellerdetail', ['as'=>'sellerdetail','uses'=>'SellerController@getSellerDetail']);
+Route::get('seller/{seller_id}/sellerdetail', ['as'=>'sellerdetail','uses'=>'SellerController@getSellersDetail']);
 
 // -------------------------------------------Group----------------------------------------------------
 
