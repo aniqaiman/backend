@@ -25,7 +25,7 @@ class ApiController extends Controller
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
-                    'message' => 'Invalid email or password.',
+                    'message' => 'Invalid company_reg_ic_number or password.',
                 ], 401);
             }
         } catch (JWTAuthException $e) {
