@@ -75,35 +75,35 @@
             <div class="form-group">
               <label for="product_price" class="col-sm-3 control-label">Grade A Price: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="product_price" id="product_price">
+                <input type="number" class="form-control" name="product_price" id="product_price" value="{{ $latestPrice->product_price }}">
               </div>
             </div>
 
             <div class="form-group">
               <label for="product_price2" class="col-sm-3 control-label">Grade B Price: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="product_price2" id="product_price2">
+                <input type="number" class="form-control" name="product_price2" id="product_price2" value="{{ $latestPrice->product_price2 }}">
               </div>
             </div>
 
             <div class="form-group">
               <label for="product_price3" class="col-sm-3 control-label">Grade C Price: </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" name="product_price3" id="product_price3">
+                <input type="number" class="form-control" name="product_price3" id="product_price3" value="{{ $latestPrice->product_price3 }}">
               </div>
             </div>
 
             <div class="form-group">
               <label for="date_price" class="col-sm-3 control-label">Date Price: </label>
               <div class="col-sm-9">
-                <input type="date" class="form-control" name="date_price" id="date_price">
+              <input type="date" class="form-control" name="date_price" id="date_price" value="{{ Carbon\Carbon::now()->toDateString() }}">
               </div>
             </div>
 
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary">Save New Price</button>
         </div>
       </form>
     </div>
@@ -134,9 +134,9 @@
 
                     <tr class="info bg-black">
                       <th class="mailbox-subject"><center>Price ID</center></th>
-                      <th class="mailbox-subject"><center>Price</center></th>
-                      <!-- <th class="mailbox-subject"><center>Grade B Price</center></th> -->
-                      <!-- <th class="mailbox-subject"><center>Grade C Price</center></th> -->
+                      <th class="mailbox-subject"><center>Price A</center></th>
+                      <th class="mailbox-subject"><center>Price B</center></th>
+                      <th class="mailbox-subject"><center>Price C</center></th>
                       <th class="mailbox-subject"><center>Date Price</center></th>
                       <th class="mailbox-subject"><center>Operation</center></th>
                     </tr>
@@ -147,8 +147,8 @@
                     <tr class="info">
                       <td class="mailbox-subject"><center>{{$price->price_id}}</center></td>
                       <td class="mailbox-subject"><center>{{$price->product_price}}</center></td>
-                      <!-- <td class="mailbox-subject"><center>{{$price->product_price2}}</center></td> -->
-                      <!-- <td class="mailbox-subject"><center>{{$price->product_price3}}</center></td> -->
+                      <td class="mailbox-subject"><center>{{$price->product_price2}}</center></td>
+                      <td class="mailbox-subject"><center>{{$price->product_price3}}</center></td>
                       <td class="mailbox-subject"><center>{{$price->date_price}}</center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editFruitPrice', ['price_id'=> $price->price_id, 'product_id'=> $fruit->product_id])}}"><i class="fa fa-edit"></i> Edit</a>
@@ -189,7 +189,9 @@
 <script>
   $(document).ready(function()
   {
-    $('#price-table').DataTable();
+    $('#price-table').DataTable({
+      "order": []
+    });
     $('#frm-price-create').on('submit',function(e)
     {
       e.preventDefault();
@@ -210,7 +212,7 @@
     {
       console.log(response);
       $("[data-dismiss = modal]").trigger({type: "click"});
-      window.location.reload();
+      location.reload();
     },  
     cache: false,
     contentType: false,

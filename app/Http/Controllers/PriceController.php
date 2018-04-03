@@ -11,14 +11,16 @@ use Redirect;
 use Session;
 use App\Product;
 use App\Price;
+use Carbon\Carbon;
 
 class PriceController extends Controller
 {
     public function getFruitDetail($product_id, Request $request)
     {
         $fruit = Product::where('product_id', $product_id)->first();
-        $prices = Price::where('product_id', $product_id)->get();
-        return view('price.fruitprice', compact('fruit','prices'));
+        $prices = Price::where('product_id', $product_id)->orderBy('price_id', 'desc')->get();
+        $latestPrice = Price::where('product_id', $product_id)->orderBy('price_id', 'desc')->first();
+        return view('price.fruitprice', compact('fruit','prices', 'latestPrice'));
     }
 
     public function createFruitPrice($product_id, Request $request)
