@@ -57,8 +57,6 @@ class ApiController extends Controller
         $newuser['latitude'] = $user->latitude;
         $newuser['longitude'] = $user->longitude;
         $newuser['group_name'] = $user->groups->group_name;
-        $newuser['created_at'] = $user->created_at;
-        $newuser['updated_at'] = $user->updated_at;
         $newuser['buss_hour'] = $user->buss_hour;
 
         return response()->json([
