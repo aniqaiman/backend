@@ -145,4 +145,4 @@ Route::get('/api/orders', 'Api\OrderController@getOrders');
 
 Route::get('/api/cart/{user_id}', ['as' => 'getCartItems', 'uses' => 'Api\CartController@getCartItems']);
 Route::get('/api/cart/{user_id}/total', ['as' => 'getCartItems', 'uses' => 'Api\CartController@getTotalCartItems']);
-Route::post('/api/cart', ['as' => 'postCartItem', 'uses' => 'Api\CartController@postCartItem']);
+Route::post('/api/carts', ['as' => 'postCartItem', 'uses' => 'Api\CartController@postCartItem']);
