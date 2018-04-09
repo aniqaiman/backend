@@ -34,6 +34,9 @@ class CartController extends Controller
 
     public function postCartItem(Request $request)
     {
+        dump($request);
+        exit();
+
         $item = CartItem::where([
             ['user_id', '=', $request->get('userId')],
             ['product_id', '=', $request->get('product')['id']],
@@ -47,7 +50,7 @@ class CartController extends Controller
             $item = CartItem::create([
                 'user_id' => $request->get('userId'),
                 'product_id' => $request->get('product')['id'],
-                'quantity' => $request->get('quantity')
+                'quantity' => $request->get('quantity'),
             ]);
         }
 
