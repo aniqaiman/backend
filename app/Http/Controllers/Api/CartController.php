@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\CartItem;
+use App\Http\Controllers\Controller;
 use App\Price;
 use App\Product;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -21,7 +21,7 @@ class CartController extends Controller
             $cart->product["priceA"] = $price->product_price;
             $cart->product["priceB"] = $price->product_price2;
             $cart->product["priceC"] = $price->product_price3;
-            }
+        }
 
         return response()->json(['data' => $carts, 'status' => 'ok']);
     }
