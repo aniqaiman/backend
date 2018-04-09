@@ -5,13 +5,19 @@ namespace App\Http\Controllers\Api;
 use App\CartItem;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Product;
 
 class CartController extends Controller
 {
     public function getCartItems($user_id, Request $request)
     {
-        $items = CartItem::where('user_id', $user_id)->get();
-        return response()->json(['data' => $items, 'status' => 'ok']);
+        $carts = CartItem::where('user_id', $user_id)->get();
+
+        foreach ($carts as $cart) {
+            $cart["product"] = Product::where('product_id', $cart['product_id'])->first();
+        }
+
+        return response()->json(['data' => $carts, 'status' => 'ok']);
     }
 
     public function getTotalCartItems($user_id, Request $request)
@@ -34,7 +40,7 @@ class CartController extends Controller
         } else {
             $item = CartItem::create([
                 'user_id' => $request->get('user_id'),
-                'product_id' => $request->get('product_id'),
+                'product_id' => $request->get('product')['product_id'],
                 'quantity' => $request->get('quantity'),
             ]);
         }

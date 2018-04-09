@@ -2,208 +2,185 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Http\Request;
-use Redirect;
-use Session;
-use App\Product;
-use App\Price;
 use App\Order;
+use App\Price;
+use App\Product;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 
 class ProductController extends BaseController
 {
-	public function getProducts(Request $request)
-	{
-		$products = Product::orderBy('product_id', 'desc')->get();
+    public function getProducts(Request $request)
+    {
+        $products = Product::orderBy('product_id', 'desc')->get();
 
-		$productArray = [];
+        $productArray = [];
 
-		foreach ($products as $product)
-		{
-			$newproduct["product_id"] = $product->product_id;
-			$newproduct["product_name"] = $product->product_name;
-			$newproduct["product_desc"] = $product->product_desc;
-			$newproduct["short_desc"] = $product->short_desc;
-			$newproduct["quantity"] = $product->quantity;
-			$newproduct["product_image"] = $product->product_image;
-			$newproduct["created_at"] = $product->created_at;
-			$newproduct["updated_at"] = $product->updated_at;
-			$newproduct["category"] = $product->category;
+        foreach ($products as $product) {
+            $newproduct["product_id"] = $product->product_id;
+            $newproduct["product_name"] = $product->product_name;
+            $newproduct["product_desc"] = $product->product_desc;
+            $newproduct["short_desc"] = $product->short_desc;
+            $newproduct["quantity"] = $product->quantity;
+            $newproduct["product_image"] = $product->product_image;
+            $newproduct["created_at"] = $product->created_at;
+            $newproduct["updated_at"] = $product->updated_at;
+            $newproduct["category"] = $product->category;
 
-			array_push($productArray, $newproduct);
-		}
+            array_push($productArray, $newproduct);
+        }
 
-		return response()->json(['data'=>$productArray, 'status'=>'ok']);
-	}
+        return response()->json(['data' => $productArray, 'status' => 'ok']);
+    }
 
-	public function getProductById($product_id, Request $request)
-	{
-		$product = Product::where('product_id', $product_id)->first();
-		$prices = Price::where('product_id', $product_id)->orderBy('created_at','desc')->take(1)->get();
+    public function getProductById($product_id, Request $request)
+    {
+        $product = Product::where('product_id', $product_id)->first();
+        $price = Price::where('product_id', $product_id)->orderBy('created_at', 'desc')->take(2)->get();
 
-		$newproduct["product_id"] = $product->product_id;
-		$newproduct["product_name"] = $product->product_name;
-		$newproduct["product_desc"] = $product->product_desc;
-		$newproduct["short_desc"] = $product->short_desc;
-		$newproduct["quantity"] = $product->quantity;
-		$newproduct["product_image"] = $product->product_image;
-		$newproduct["category"] = $product->category;
-		$newproduct["created_at"] = $product->created_at;
-		$newproduct["updated_at"] = $product->updated_at;
+        $newproduct["product_id"] = $product->product_id;
+        $newproduct["product_name"] = $product->product_name;
+        $newproduct["product_desc"] = $product->product_desc;
+        $newproduct["short_desc"] = $product->short_desc;
+        $newproduct["quantity"] = $product->quantity;
+        $newproduct["product_image"] = $product->product_image;
+        $newproduct["category"] = $product->category;
+        $newproduct["priceA"] = $price[0]->product_price;
+        $newproduct["priceB"] = $price[0]->product_price2;
+        $newproduct["priceC"] = $price[0]->product_price3;
+        $newproduct["priceADiff"] = $price[0]->product_price - $price[1]->product_price / $price[0]->product_price;
+        $newproduct["priceBDiff"] = $price[0]->product_price2 - $price[1]->product_price2 / $price[0]->product_price2;
+        $newproduct["priceCDiff"] = $price[0]->product_price3 - $price[1]->product_price3 / $price[0]->product_price3;
 
-		$priceArray = [];
+        return response()->json(['data' => $newproduct, 'status' => 'ok']);
+    }
 
-		foreach ($prices as $newprice) 
-		{
-			$productprice["product_price"] = $newprice->product_price;
-			$productprice["product_price2"] = $newprice->product_price2;
-			$productprice["product_price3"] = $newprice->product_price3;
-			$productprice["date"] = $newprice->date_price;
+    public function getFruit(Request $request)
+    {
+        $fruits = Product::where('category', 1)->get();
 
-			array_push($priceArray, $productprice);
-		}
-		$newproduct["prices"] = $priceArray;
+        $fruitArray = [];
 
-		return response()->json(['data'=>$newproduct, 'status'=>'ok']);
-	}
+        foreach ($fruits as $fruit) {
+            $prices = Price::where('product_id', $fruit->product_id)->orderBy('created_at', 'desc')->first();
 
-	public function getFruit(Request $request)
-	{
-		$fruits = Product::where('category', 1)->get();
+            $newfruit["product_id"] = $fruit->product_id;
+            $newfruit["product_name"] = $fruit->product_name;
+            $newfruit["product_desc"] = $fruit->product_desc;
+            $newfruit["short_desc"] = $fruit->short_desc;
+            $newfruit["quantity"] = $fruit->quantity;
+            $newfruit["product_image"] = $fruit->product_image;
+            $newfruit["category"] = $fruit->category;
+            $newfruit["priceA"] = $prices->product_price;
+            $newfruit["priceB"] = $prices->product_price2;
+            $newfruit["priceC"] = $prices->product_price3;
+            $newfruit["date_price"] = $prices->date_price;
 
-		$fruitArray = [];
+            array_push($fruitArray, $newfruit);
+        }
 
-		foreach ($fruits as $fruit)
-		{
-			$prices = Price::where('product_id', $fruit->product_id)->orderBy('created_at','desc')->first();
+        return response()->json(['data' => $fruitArray, 'status' => 'ok']);
+    }
 
-			$newfruit["product_id"] = $fruit->product_id;
-			$newfruit["product_name"] = $fruit->product_name;
-			$newfruit["product_desc"] = $fruit->product_desc;
-			$newfruit["short_desc"] = $fruit->short_desc;
-			$newfruit["quantity"] = $fruit->quantity;
-			$newfruit["product_image"] = $fruit->product_image;
-			$newfruit["category"] = $fruit->category;
-			$newfruit["created_at"] = $fruit->created_at;
-			$newfruit["updated_at"] = $fruit->updated_at;
+    public function getVege()
+    {
+        $veges = Product::where('category', 11)->get();
 
-			$newfruit["product_price"] = $prices->product_price;
-			$newfruit["product_price2"] = $prices->product_price2;
-			$newfruit["product_price3"] = $prices->product_price3;
-			$newfruit["date_price"] = $prices->date_price;
+        $vegeArray = [];
 
-			array_push($fruitArray, $newfruit);
-		}
+        foreach ($veges as $vege) {
+            $prices = Price::where('product_id', $vege->product_id)->orderBy('created_at', 'desc')->first();
 
-		return response()->json(['data'=>$fruitArray, 'status'=>'ok']);
-	}
+            $newvege["product_id"] = $vege->product_id;
+            $newvege["product_name"] = $vege->product_name;
+            $newvege["product_desc"] = $vege->product_desc;
+            $newvege["short_desc"] = $vege->short_desc;
+            $newvege["quantity"] = $vege->quantity;
+            $newvege["product_image"] = $vege->product_image;
+            $newvege["category"] = $vege->category;
+            $newvege["priceA"] = $prices->product_price;
+            $newvege["priceB"] = $prices->product_price2;
+            $newvege["priceC"] = $prices->product_price3;
+            $newvege["date_price"] = $prices->date_price;
 
-	public function getVege()
-	{
-		$veges = Product::where('category', 11)->get();
+            array_push($vegeArray, $newvege);
+        }
 
-		$vegeArray = [];
+        return response()->json(['data' => $vegeArray, 'status' => 'ok']);
+    }
 
-		foreach ($veges as $vege)
-		{
-			$prices = Price::where('product_id', $vege->product_id)->orderBy('created_at','desc')->first();
+    public function getPrices(Request $request)
+    {
+        $prices = Price::orderBy('price_id', 'desc')->get();
 
-			$newvege["product_id"] = $vege->product_id;
-			$newvege["product_name"] = $vege->product_name;
-			$newvege["product_desc"] = $vege->product_desc;
-			$newvege["short_desc"] = $vege->short_desc;
-			$newvege["quantity"] = $vege->quantity;
-			$newvege["product_image"] = $vege->product_image;
-			$newvege["category"] = $vege->category;
-			$newvege["created_at"] = $vege->created_at;
-			$newvege["updated_at"] = $vege->updated_at;
+        $priceArray = [];
 
-			$newvege["product_price"] = $prices->product_price;
-			$newvege["product_price2"] = $prices->product_price2;
-			$newvege["product_price3"] = $prices->product_price3;
-			$newvege["date_price"] = $prices->date_price;
+        foreach ($prices as $price) {
+            $newprice["price_id"] = $price->price_id;
+            $newprice["product_id"] = $price->product_id;
+            $newprice["product_price"] = $price->product_price;
+            $newprice["product_price2"] = $price->product_price2;
+            $newprice["product_price3"] = $price->product_price3;
+            $newprice["date_price"] = $price->date_price;
 
-			array_push($vegeArray, $newvege);
-		}
+            array_push($priceArray, $newprice);
+        }
 
-		return response()->json(['data'=>$vegeArray, 'status'=>'ok']);
-	}
+        return response()->json(['data' => $priceArray, 'status' => 'ok']);
+    }
 
-	public function getPrices(Request $request)
-	{
-		$prices = Price::orderBy('price_id', 'desc')->get();
+    public function getNewProducts(Request $request)
+    {
+        $products = Product::orderBy('created_at', 'desc')->take(10)->get();
 
-		$priceArray = [];
+        $productArray = [];
 
-		foreach ($prices as $price)
-		{
-			$newprice["price_id"] = $price->price_id;
-			$newprice["product_id"] = $price->product_id;
-			$newprice["product_price"] = $price->product_price;
-			$newprice["product_price2"] = $price->product_price2;
-			$newprice["product_price3"] = $price->product_price3;
-			$newprice["date_price"] = $price->date_price;
+        foreach ($products as $product) {
+            $newproduct["product_id"] = $product->product_id;
+            $newproduct["product_name"] = $product->product_name;
+            $newproduct["product_desc"] = $product->product_desc;
+            $newproduct["short_desc"] = $product->short_desc;
+            $newproduct["quantity"] = $product->quantity;
+            $newproduct["product_image"] = $product->product_image;
+            $newproduct["created_at"] = $product->created_at;
+            $newproduct["updated_at"] = $product->updated_at;
+            $newproduct["category"] = $product->category;
 
-			array_push($priceArray, $newprice);
-		}
+            array_push($productArray, $newproduct);
+        }
 
-		return response()->json(['data'=>$priceArray, 'status'=>'ok']);
-	}
+        return response()->json(['data' => $productArray, 'status' => 'ok']);
+    }
 
-	public function getNewProducts(Request $request)
-	{
-		$products = Product::orderBy('created_at', 'desc')->take(10)->get();
+    public function getBestSelling(Request $request)
+    {
+        // $orders = Order::where('product_id', $order->product_id)->get();
 
-		$productArray = [];
+        // $orderArray = [];
 
-		foreach ($products as $product)
-		{
-			$newproduct["product_id"] = $product->product_id;
-			$newproduct["product_name"] = $product->product_name;
-			$newproduct["product_desc"] = $product->product_desc;
-			$newproduct["short_desc"] = $product->short_desc;
-			$newproduct["quantity"] = $product->quantity;
-			$newproduct["product_image"] = $product->product_image;
-			$newproduct["created_at"] = $product->created_at;
-			$newproduct["updated_at"] = $product->updated_at;
-			$newproduct["category"] = $product->category;
+        // foreach ($orders as $order)
+        // {
 
-			array_push($productArray, $newproduct);
-		}
+        // }
 
-		return response()->json(['data'=>$productArray, 'status'=>'ok']);
-	}
+        $orders = Order::all();
+        $max = 0;
 
-	public function getBestSelling(Request $request)
-	{
-		// $orders = Order::where('product_id', $order->product_id)->get();
+        foreach ($orders as $order) {
+            $productcount = Order::where('product_id', $order->product_id)->count();
 
-		// $orderArray = [];
+            if ($productcount > $max) {
+                $max = $productcount;
+            } else {
+                $max = $max;
+            }
+        }
+        return response()->json(['data' => $max, 'status' => 'ok']);
+    }
 
-		// foreach ($orders as $order) 
-		// {
-			
-		// }
-
-		$orders = Order::all();
-		$max = 0;
-
-		foreach ($orders as $order) 
-		{
-			$productcount = Order::where('product_id', $order->product_id)->count();
-
-			if($productcount>$max){
-				$max = $productcount;
-			}else{
-				$max = $max;
-			}
-		}
-		return response()->json(['data'=>$max, 'status'=>'ok']);
-	}
-
-	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 }

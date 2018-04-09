@@ -105,7 +105,7 @@
                   <table class="table table-bordered" id="user-table">
 
                     <thead>
-                      <tr class="info bg-black">
+                      <tr class="bg-black">
                         <!-- <th class="mailbox-star"><center><a href="#">Id</a></center></th> -->
                         <th class="mailbox-name"><center>Name</center></th>
                         <th class="mailbox-name"><center>Email</center></th>
@@ -118,7 +118,7 @@
 
                     <tbody>        
                      @foreach($users as $user)
-                     <tr class="info">
+                     <tr>
                       <!-- <td class="mailbox-star"><center><a href="#">{{$user->user_id}}</a></center></td> -->
                       <td class="mailbox-name"><center>{{$user->name}}</center></td>
                       <td class="mailbox-name"><center>{{$user->email}}</center></td>

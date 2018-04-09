@@ -168,7 +168,7 @@
                   <table class="table table-bordered" id="driver-table">
                    <thead>
 
-                    <tr class="info bg-black">
+                    <tr class="bg-black">
                       <!-- <th class="mailbox-star"><center><a href="#">Driver ID</a></center></th> -->
                       <th class="mailbox-star"><center>Driver Name</center></th>
                       <th class="mailbox-star"><center>Phone Number</center></th>
@@ -182,7 +182,7 @@
                   
                   <tbody>
                     @foreach($drivers as $driver) 
-                    <tr class="info">
+                    <tr>
                       <!-- <td class="mailbox-star"><center><a href="#">{{$driver->driver_id}}</a></center></td> -->
                       <td class="mailbox-name"><center>{{$driver->name}}</center></td>
                       <td class="mailbox-date"><center>{{$driver->phonenumber}}</center></td>

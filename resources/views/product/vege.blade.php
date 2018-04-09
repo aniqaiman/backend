@@ -98,7 +98,7 @@
                   <table class="table table-bordered" id="product-table">
                    <thead>
 
-                    <tr class="info bg-black">
+                    <tr class="bg-black">
                       <th class="mailbox-star"><center>Vege Image</center></th>
                       <th class="mailbox-star"><center>Vege Name</center></th>
                       <!-- <th class="mailbox-star"><center>Short Description</center></th> -->
@@ -111,7 +111,7 @@
 
                   <tbody>
                     @foreach($vegs as $veg) 
-                    <tr class="info">
+                    <tr>
                       <td class="col-sm-3"><center><img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$veg->product_image}}"></a></center></td>
                       <td class="mailbox-name"><center>{{$veg->product_name}}</center></td>
                       <!-- <td class="mailbox-date"><center>{{$veg->short_desc}}</center></td> -->

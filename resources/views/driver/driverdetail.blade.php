@@ -103,7 +103,7 @@
                   <table class="table table-bordered" id="transaction-table">
                    <thead>
 
-                    <tr class="info bg-black">
+                    <tr class="bg-black">
                       <th class="mailbox-star"><center>Date</center></th>
                       <th class="mailbox-star"><center>Item</center></th>
                       <th class="mailbox-star"><center>SKU#</center></th>
@@ -119,7 +119,7 @@
 
                   <tbody>
                     
-                    <tr class="info">
+                    <tr>
                       <td class="mailbox-subject"><center></center></td>
                       <td class="mailbox-subject"><center></center></td>
                       <td class="mailbox-subject"><center></center></td>
