@@ -36,25 +36,6 @@ class CartController extends Controller
     {
         dump($request);
         exit();
-
-        $item = CartItem::where([
-            ['user_id', '=', $request->get('userId')],
-            ['product_id', '=', $request->get('product')['id']],
-        ]);
-
-        if ($item->exists()) {
-            $item = $item->first();
-            $item->quantity = $request->get('quantity');
-            $item->save();
-        } else {
-            $item = CartItem::create([
-                'user_id' => $request->get('userId'),
-                'product_id' => $request->get('product')['id'],
-                'quantity' => $request->get('quantity'),
-            ]);
-        }
-
-        return response()->json(['data' => $item, 'status' => 'ok']);
     }
 
     public function deleteCartItem($user_id, $product_id, Request $request)
