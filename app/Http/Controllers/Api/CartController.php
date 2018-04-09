@@ -54,6 +54,11 @@ class CartController extends Controller
         return response()->json(['data' => $item, 'status' => 'ok']);
     }
 
+    public function postTest(Request $request)
+    {
+        return response()->json(['status' => 'ok']);
+    }
+
     public function deleteCartItem($user_id, $product_id, Request $request)
     {
         $item = CartItem::where([
