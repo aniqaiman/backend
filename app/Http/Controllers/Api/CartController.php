@@ -35,8 +35,8 @@ class CartController extends Controller
     public function postCartItem(Request $request)
     {
         $item = CartItem::where([
-            ['user_id', '=', $request->get('user_id')],
-            ['product_id', '=', $request->get('product_id')],
+            ['user_id', '=', $request->get('userId')],
+            ['product_id', '=', $request->get('product')['id']],
         ]);
 
         if ($item->exists()) {
