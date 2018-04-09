@@ -45,9 +45,9 @@ class CartController extends Controller
             $item->save();
         } else {
             $item = CartItem::create([
-                'user_id' => $request->get('user_id'),
-                'product_id' => $request->get('product')['product_id'],
-                'quantity' => $request->get('quantity'),
+                'user_id' => $request->get('userId'),
+                'product_id' => $request->get('product')['id'],
+                'quantity' => $request->get('quantity')
             ]);
         }
 
