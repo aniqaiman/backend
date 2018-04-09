@@ -10,6 +10,7 @@ class CartItem extends Model
     protected $primaryKey = 'cartitem_id';
     public $timestamps = false;
     protected $fillable = [
+        'cartitem_id',
         'user_id',
         'product_id',
         'quantity',
