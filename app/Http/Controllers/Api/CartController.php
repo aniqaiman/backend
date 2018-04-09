@@ -47,7 +47,7 @@ class CartController extends Controller
             $item = CartItem::create([
                 'user_id' => $request->get('userId'),
                 'product_id' => $request->get('product')['id'],
-                'quantity' => $request->get('quantity')
+                'quantity' => $request->get('quantity'),
             ]);
         }
 
