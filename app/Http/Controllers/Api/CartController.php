@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\CartItem;
+use App\Price;
+use App\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Product;
 
 class CartController extends Controller
 {
@@ -15,7 +16,12 @@ class CartController extends Controller
 
         foreach ($carts as $cart) {
             $cart["product"] = Product::where('product_id', $cart['product_id'])->first();
-        }
+
+            $price = Price::where('product_id', $cart['product_id'])->orderBy('created_at', 'desc')->first();
+            $cart->product["priceA"] = $price->product_price;
+            $cart->product["priceB"] = $price->product_price2;
+            $cart->product["priceC"] = $price->product_price3;
+            }
 
         return response()->json(['data' => $carts, 'status' => 'ok']);
     }
