@@ -34,8 +34,7 @@ class CartController extends Controller
 
     public function postCartItem(Request $request)
     {
-        dump($request);
-        exit();
+        return response()->json(['status' => 'ok']);
     }
 
     public function deleteCartItem($user_id, $product_id, Request $request)
