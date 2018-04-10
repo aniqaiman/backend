@@ -149,5 +149,10 @@ Route::post('api/postorder', 'Api\OrderController@postOrder');
 Route::get('api/cart', 'Api\CartController@getCartItems');
 Route::get('api/cart/totalcartitems', 'Api\CartController@getTotalCartItems');
 Route::get('api/cart/totalprice', 'Api\CartController@getTotalPrice');
+
 Route::post('api/cart', 'Api\CartController@postCartItem');
+
 Route::delete('api/cart/{product_id}', 'Api\CartController@deleteCartItem');
+
+Route::options('api/cart/totalcartitems', 'Api\CartController@getTotalCartItems');
+Route::options('api/cart/totalprice', 'Api\CartController@getTotalPrice');
