@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Price;
+use App\Product;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
-use App\Product;
-use App\Price;
-use Carbon\Carbon;
 
 class PriceController extends Controller
 {
@@ -20,12 +18,12 @@ class PriceController extends Controller
         $fruit = Product::where('product_id', $product_id)->first();
         $prices = Price::where('product_id', $product_id)->orderBy('price_id', 'desc')->get();
         $latestPrice = Price::where('product_id', $product_id)->orderBy('price_id', 'desc')->first();
-        return view('price.fruitprice', compact('fruit','prices', 'latestPrice'));
+        return view('price.fruitprice', compact('fruit', 'prices', 'latestPrice'));
     }
 
     public function createFruitPrice($product_id, Request $request)
     {
-    	if($request->ajax()){
+        if ($request->ajax()) {
             $price = new Price;
             $price->product_id = $product_id;
             $price->product_price = $request->product_price;
@@ -33,7 +31,7 @@ class PriceController extends Controller
             $price->product_price3 = $request->product_price3;
             $price->date_price = $request->date_price;
             $price->save();
-            return response($price); 
+            return response($price);
         }
     }
 
@@ -41,19 +39,19 @@ class PriceController extends Controller
     {
         $fruit = Product::where('product_id', $product_id)->first();
         $prices = Price::where('price_id', $price_id)->first();
-        return view('price.editFruitPrice', compact('prices','fruit'));
+        return view('price.editFruitPrice', compact('prices', 'fruit'));
     }
 
     public function updateFruitPrice(Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
             $prices = Price::where('price_id', $request->price_id)->first();
             $prices->product_id = $request->product_id;
             $prices->product_price = $request->product_price;
             $prices->date_price = $request->date_price;
             $prices->save();
             return response($prices);
-            }       
+        }
     }
 
     public function deleteFruitPrice($price_id, Request $request)
@@ -64,10 +62,9 @@ class PriceController extends Controller
         return Redirect::to('fruitprice');
     }
 
-
     public function createVegePrice($product_id, Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
             $price = new Price;
             $price->product_id = $product_id;
             $price->product_price = $request->product_price;
@@ -75,7 +72,7 @@ class PriceController extends Controller
             $price->product_price3 = $request->product_price3;
             $price->date_price = $request->date_price;
             $price->save();
-            return response($price); 
+            return response($price);
         }
     }
 
@@ -83,7 +80,7 @@ class PriceController extends Controller
     {
         $vege = Product::where('product_id', $product_id)->first();
         $prices = Price::where('product_id', $product_id)->get();
-        return view('price.vegeprice', compact('vege','prices'));
+        return view('price.vegeprice', compact('vege', 'prices'));
     }
 
     public function editVegePrice($product_id, $price_id, Request $request)
@@ -94,14 +91,14 @@ class PriceController extends Controller
 
     public function updateVegePrice(Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
             $prices = Price::where('price_id', $request->price_id)->first();
             $prices->product_id = $request->product_id;
             $prices->product_price = $request->product_price;
             $prices->date_price = $request->date_price;
             $prices->save();
             return response($prices);
-            }       
+        }
     }
 
     public function deleteVegePrice($price_id, Request $request)

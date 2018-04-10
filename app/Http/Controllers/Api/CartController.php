@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\CartItem;
+use App\Http\Controllers\Controller;
 use App\Price;
 use App\Product;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
 use JWTAuth;
 
-class CartController extends BaseController
+class CartController extends Controller
 {
     public function getCartItems(Request $request)
     {

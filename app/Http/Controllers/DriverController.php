@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Http\Request;
-use Session;
-use Redirect;
-use App\User;
-use App\Type;
 use App\Capacity;
+use App\Type;
+use App\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
+use Redirect;
+use Session;
 
 class DriverController extends Controller
 {
     public function createDriver(Request $request)
     {
-    	$path = $request->file('drivers_license')->store('public/images');
-		if($request->ajax()){
+        $path = $request->file('drivers_license')->store('public/images');
+        if ($request->ajax()) {
             $drivers = new User;
             $drivers->name = $request->name;
             $drivers->company_reg_ic_number = $request->company_reg_ic_number;
@@ -38,15 +37,15 @@ class DriverController extends Controller
             // $drivers->bank_acc_number = $request->bank_acc_number;
             $drivers->save();
             return response($drivers);
-		}
+        }
     }
 
     public function getDriver()
     {
-    	$drivers = User::where('group_id', 31)->get();
+        $drivers = User::where('group_id', 31)->get();
         $types = Type::all();
         $capacities = Capacity::all();
-    	return view('driver.driver', compact('drivers','types','capacities'));
+        return view('driver.driver', compact('drivers', 'types', 'capacities'));
     }
 
     public function editDriver($user_id, Request $request)
@@ -54,13 +53,13 @@ class DriverController extends Controller
         $drivers = User::where('user_id', $user_id)->first();
         $types = Type::all();
         $capacities = Capacity::all();
-        return view('driver.editDriver', compact('drivers','types','capacities'));
+        return view('driver.editDriver', compact('drivers', 'types', 'capacities'));
     }
 
     public function updateDriver(Request $request)
     {
         $path = $request->file('drivers_license')->store('public/images');
-        if($request->ajax()){
+        if ($request->ajax()) {
             $drivers = User::where('user_id', $request->user_id)->first();
             $drivers->name = $request->name;
             $drivers->company_reg_ic_number = $request->company_reg_ic_number;
@@ -79,7 +78,7 @@ class DriverController extends Controller
             $drivers->password = bcrypt('$request->password');
             $drivers->save();
             return response($drivers);
-            }       
+        }
     }
 
     public function deleteDriver($user_id, Request $request)
@@ -95,7 +94,7 @@ class DriverController extends Controller
         $driver = User::where('user_id', $user_id)->first();
         $types = Type::all();
         $capacities = Capacity::all();
-        return view('driver.driverdetail', compact('driver','types','capacities'));
+        return view('driver.driverdetail', compact('driver', 'types', 'capacities'));
     }
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

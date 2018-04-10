@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\CartItem;
+use App\Http\Controllers\Controller;
 use App\Order;
 use App\OrderItem;
 use App\Price;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
 use JWTAuth;
 
-class OrderController extends BaseController
+class OrderController extends Controller
 {
     public function postOrder(Request $request)
     {

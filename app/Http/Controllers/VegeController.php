@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Http\Request;
-use Session;
-use Redirect;
-use App\Product;
 use App\Category;
+use App\Product;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
+use Redirect;
+use Session;
 
 class VegeController extends Controller
 {
     public function createVege(Request $request)
     {
-    	$path = $request->file('product_image')->store('public/images');
-		if($request->ajax()){
+        $path = $request->file('product_image')->store('public/images');
+        if ($request->ajax()) {
             $vegs = new Product;
             $vegs->product_name = $request->product_name;
             $vegs->product_desc = $request->product_desc;
@@ -33,9 +32,9 @@ class VegeController extends Controller
 
     public function getVege()
     {
-    	$vegs = Product::where('category', 11)->get();
-	    $categories = Category::all();
-	    return view('product.vege',compact('vegs','categories'));
+        $vegs = Product::where('category', 11)->get();
+        $categories = Category::all();
+        return view('product.vege', compact('vegs', 'categories'));
     }
 
     public function editVege($product_id, Request $request)
@@ -47,8 +46,8 @@ class VegeController extends Controller
 
     public function updateVege(Request $request)
     {
-    	$path = $request->file('product_image')->store('public/images');
-        if($request->ajax()){
+        $path = $request->file('product_image')->store('public/images');
+        if ($request->ajax()) {
             $vegs = Product::where('product_id', $request->product_id)->first();
             $vegs->product_name = $request->product_name;
             $vegs->product_desc = $request->product_desc;
@@ -59,7 +58,7 @@ class VegeController extends Controller
             $vegs->product_image = $path;
             $vegs->save();
             return response($vegs);
-            }       
+        }
     }
 
     public function deleteProduct($product_id, Request $request)
