@@ -1,13 +1,14 @@
 <?php
 # File: app\Http\Middleware\CORS.php
-# Create file with below code in above location. And at the end of the file there are other instructions also. 
-# Please check. 
+# Create file with below code in above location. And at the end of the file there are other instructions also.
+# Please check.
 
 namespace App\Http\Middleware;
 
 use Closure;
 
-class CORS {
+class CORS
+{
 
     /**
      * Handle an incoming request.
@@ -16,26 +17,21 @@ class CORS {
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next) {
-//        return $next($request);
-        header("Access-Control-Allow-Origin: *");
-
-        // ALLOW OPTIONS METHOD
-        $headers = [
-            'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS, PUT, DELETE',
-            'Access-Control-Allow-Headers' => 'Content-Type, X-Auth-Token, Origin, Authorization'
-        ];
-
+    public function handle($request, Closure $next)
+    {
         if ($request->getMethod() == "OPTIONS") {
-            // The client-side application can set only headers allowed in Access-Control-Allow-Headers
-            return \Response::make('OK', 200, $headers);
+            return response(['OK'], 200)->withHeaders([
+                'Access-Control-Allow-Origin' => '*',
+                'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE',
+                'Access-Control-Allow-Credentials' => true,
+                'Access-Control-Allow-Headers' => 'Authorization, Content-Type',
+            ]);
         }
 
-        $response = $next($request);
-        foreach ($headers as $key => $value)
-            $response->header($key, $value);
-        return $response;
+        return $next($request)
+            ->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            ->header('Access-Control-Allow-Credentials', true)
+            ->header('Access-Control-Allow-Headers', 'Authorization,Content-Type');
     }
 }
-
-
