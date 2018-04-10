@@ -1,37 +1,27 @@
 <?php
-# File: app\Http\Middleware\CORS.php
-# Create file with below code in above location. And at the end of the file there are other instructions also.
-# Please check.
 
 namespace App\Http\Middleware;
 
 use Closure;
 
-class CORS
+class Cors
 {
-
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
     public function handle($request, Closure $next)
     {
-        if ($request->getMethod() == "OPTIONS") {
-            return response(['OK'], 200)->withHeaders([
-                'Access-Control-Allow-Origin' => '*',
-                'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE',
-                'Access-Control-Allow-Credentials' => true,
-                'Access-Control-Allow-Headers' => 'Authorization, Content-Type',
-            ]);
+        /* @var $response Response */
+        $response = $next($request);
+        if (!$request->isMethod('OPTIONS')) {
+            return $response;
         }
-
-        return $next($request)
-            ->header('Access-Control-Allow-Origin', '*')
-            ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-            ->header('Access-Control-Allow-Credentials', true)
-            ->header('Access-Control-Allow-Headers', 'Authorization,Content-Type');
+        $allow = $response->headers->get('Allow'); // true list of allowed methods
+        if (!$allow) {
+            return $response;
+        }
+        $headers = [
+            'Access-Control-Allow-Methods' => $allow,
+            'Access-Control-Max-Age' => 3600,
+            'Access-Control-Allow-Headers' => 'X-Requested-With, Origin, X-Csrftoken, Content-Type, Accept',
+        ];
+        return $response->withHeaders($headers);
     }
 }
