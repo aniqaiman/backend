@@ -6,6 +6,9 @@ use App\CartItem;
 use App\Http\Controllers\Controller;
 use App\Price;
 use App\Product;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use JWTAuth;
 
@@ -83,4 +86,6 @@ class CartController extends Controller
 
         return response()->json(['status' => 'ok']);
     }
+
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
