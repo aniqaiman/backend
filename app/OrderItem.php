@@ -8,12 +8,12 @@ class OrderItem extends Model
 {
     protected $table = 'orderitems';
     protected $primaryKey = 'orderitem_id';
-    public $timestamp = 'true';
+    public $timestamps = false;
     protected $fillable = [
         'orderitem_id',
         'order_id',
         'product_id',
-        'quantity',
+        'quantity'
     ];
 
     public function order()

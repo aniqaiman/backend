@@ -2,28 +2,41 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\CartItem;
 use App\Order;
+use App\OrderItem;
 use App\Price;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use JWTAuth;
 
 class OrderController extends BaseController
 {
     public function postOrder(Request $request)
     {
-        $orders = Order::create([
-            'user_id' => $request->get('user_id'),
-            'product_id' => $request->get('product_id'),
-            'item_quantity' => $request->get('item_quantity'),
-            'product_price' => $request->get('product_price'),
-            'promo_price' => $request->get('promo_price'),
+        $user = JWTAuth::parseToken()->authenticate();
+        $carts = CartItem::where('user_id', $user->user_id)->get();
+
+        $order = Order::create([
+            'user_id' => $user->user_id,
         ]);
 
-        return response()->json(['data' => $orders, 'status' => 'ok']);
+        foreach ($carts as $cart) {
+            OrderItem::create([
+                'order_id' => $order->order_id,
+                'product_id' => $cart->product_id,
+                'quantity' => $cart->quantity
+            ]);
+
+            $cart->delete();
+        }
+
+        return response()->json(['data' => $order, 'status' => 'ok']);
     }
 
-    public function getOrders(Request $request)
+    public function getBuyerOrders(Request $request)
     {
+        $user = JWTAuth::parseToken()->authenticate();
         $orders = Order::orderBy('order_id', 'desc')->get();
 
         $orderArray = [];

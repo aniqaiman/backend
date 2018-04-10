@@ -119,7 +119,6 @@ Route::post('/api/registerseller', 'Api\SellerController@postRegisterSeller');
 Route::post('/api/registerbuyer', 'Api\BuyerController@postRegisterBuyer');
 Route::post('api/registerdriver', 'Api\DriverController@postRegisterDriver');
 Route::post('api/registeruser', 'Api\UserController@postRegisterUser');
-Route::post('/api/postorder', 'Api\OrderController@postOrder');
 
 Route::post('auth/login', 'ApiController@login');
 Route::get('user', 'ApiController@getAuthUser');
@@ -139,12 +138,16 @@ Route::get('/api/driver/{user_id}', 'Api\DriverController@getDriver');
 Route::get('/api/seller/{user_id}', 'Api\SellerController@getSeller');
 Route::get('/api/user/{user_id}', 'Api\UserController@getUser');
 Route::get('/api/bestselling', 'Api\ProductController@getBestSelling');
+
+// ------------------------------------------- Order ---------------------------------------------------- //
+
 Route::get('/api/orders', 'Api\OrderController@getOrders');
+Route::post('/api/postorder', 'Api\OrderController@postOrder');
 
 // ------------------------------------------- Cart ---------------------------------------------------- //
 
-Route::get('/api/cart/{user_id}', ['as' => 'getCartItems', 'uses' => 'Api\CartController@getCartItems']);
-Route::get('/api/cart/{user_id}/total', ['as' => 'getCartItems', 'uses' => 'Api\CartController@getTotalCartItems']);
+Route::get('/api/cart/', 'Api\CartController@getCartItems');
+Route::get('/api/cart/totalcartitems', 'Api\CartController@getTotalCartItems');
+Route::get('/api/cart/totalprice', 'Api\CartController@getTotalPrice');
 Route::post('/api/cart', 'Api\CartController@postCartItem');
-Route::post('/api/carttest', 'Api\CartController@postTest');
-Route::delete('/api/cart/{user_id}-{product_id}', ['as' => 'deleteCartItem', 'uses' => 'Api\CartController@deleteCartItem']);
+Route::delete('/api/cart/{product_id}', 'Api\CartController@deleteCartItem');

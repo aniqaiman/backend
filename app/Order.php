@@ -10,11 +10,8 @@ class Order extends Model
     protected $primaryKey = 'order_id';
     public $timestamp = 'true';
     protected $fillable = [
-    	'user_id',
-    	'product_id',
-    	'item_quantity',
-    	'product_price',
-    	'promo_price',
+    	'order_id',
+    	'user_id'
     	];
 
         public function users()
