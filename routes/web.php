@@ -153,6 +153,3 @@ Route::get('api/cart/totalprice', 'Api\CartController@getTotalPrice');
 Route::post('api/cart', 'Api\CartController@postCartItem');
 
 Route::delete('api/cart/{product_id}', 'Api\CartController@deleteCartItem');
-
-Route::options('api/cart/totalcartitems', 'Api\CartController@getTotalCartItems');
-Route::options('api/cart/totalprice', 'Api\CartController@getTotalPrice');
