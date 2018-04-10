@@ -25,7 +25,7 @@ class OrderController extends BaseController
             OrderItem::create([
                 'order_id' => $order->order_id,
                 'product_id' => $cart->product_id,
-                'quantity' => $cart->quantity
+                'quantity' => $cart->quantity,
             ]);
 
             $cart->delete();
