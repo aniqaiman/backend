@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -16,6 +13,4 @@ class DashboardController extends Controller
             return response(Product::create($request->all()));
         }
     }
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

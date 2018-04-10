@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Type;
 use App\User;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -67,6 +64,4 @@ class UserController extends Controller
         Session::flash('message', 'Successfully deleted!');
         return Redirect::to('users');
     }
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Capacity;
 use App\Type;
 use App\User;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -84,6 +81,4 @@ class SellerController extends Controller
         $capacities = Capacity::all();
         return view('seller.sellerdetail', compact('seller', 'types', 'capacities'));
     }
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

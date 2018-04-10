@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Mail;
 
@@ -95,6 +92,4 @@ class DriverController extends Controller
 
         return response()->json(['data' => $newdriver, 'status' => 'ok']);
     }
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

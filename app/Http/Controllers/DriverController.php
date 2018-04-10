@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Capacity;
 use App\Type;
 use App\User;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -96,6 +93,4 @@ class DriverController extends Controller
         $capacities = Capacity::all();
         return view('driver.driverdetail', compact('driver', 'types', 'capacities'));
     }
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

@@ -6,9 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Order;
 use App\Price;
 use App\Product;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -180,7 +177,4 @@ class ProductController extends Controller
         }
         return response()->json(['data' => $max, 'status' => 'ok']);
     }
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
 }

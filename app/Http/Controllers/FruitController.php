@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -67,6 +64,4 @@ class FruitController extends Controller
         Session::flash('message', 'Successfully deleted!');
         return Redirect::to('fruit');
     }
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
