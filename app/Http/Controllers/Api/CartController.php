@@ -19,10 +19,13 @@ class CartController extends Controller
         foreach ($carts as $cart) {
             $cart["product"] = Product::where('product_id', $cart['product_id'])->first();
 
-            $price = Price::where('product_id', $cart['product_id'])->orderBy('created_at', 'desc')->first();
-            $cart->product["priceA"] = $price->product_price;
-            $cart->product["priceB"] = $price->product_price2;
-            $cart->product["priceC"] = $price->product_price3;
+            $prices = Price::where('product_id', $cart->product_id)->orderBy('created_at', 'desc')->take(2)->get();
+            $cart->product["priceA"] = $prices[0]->product_price;
+            $cart->product["priceB"] = $prices[0]->product_price2;
+            $cart->product["priceC"] = $prices[0]->product_price3;
+            $cart->product["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
+            $cart->product["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
+            $cart->product["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
         }
 
         return response()->json(['data' => $carts, 'status' => 'ok']);

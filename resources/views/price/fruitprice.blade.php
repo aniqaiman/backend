@@ -80,10 +80,8 @@
               <label for="product_price" class="col-sm-3 control-label">Grade A Price: </label>
               <div class="col-sm-9">
                 @if (isset($latestPrice))
-                <input type="number" class="form-control" name="product_price" id="product_price" min="1" value="{{ $latestPrice->product_price }}">
-                @else
-                <input type="number" class="form-control" name="product_price" id="product_price" min="1" value="1">
-                @endif
+                <input type="number" class="form-control" name="product_price" id="product_price" min="1" value="{{ $latestPrice->product_price }}">                @else
+                <input type="number" class="form-control" name="product_price" id="product_price" min="1" value="1"> @endif
               </div>
             </div>
 
@@ -91,10 +89,8 @@
               <label for="product_price2" class="col-sm-3 control-label">Grade B Price: </label>
               <div class="col-sm-9">
                 @if (isset($latestPrice))
-                <input type="number" class="form-control" name="product_price2" id="product_price2" min="1" value="{{ $latestPrice->product_price2 }}">
-                @else
-                <input type="number" class="form-control" name="product_price2" id="product_price2" min="1" value="1">
-                @endif
+                <input type="number" class="form-control" name="product_price2" id="product_price2" min="1" value="{{ $latestPrice->product_price2 }}">                @else
+                <input type="number" class="form-control" name="product_price2" id="product_price2" min="1" value="1"> @endif
               </div>
             </div>
 
@@ -102,10 +98,8 @@
               <label for="product_price3" class="col-sm-3 control-label">Grade C Price: </label>
               <div class="col-sm-9">
                 @if (isset($latestPrice))
-                <input type="number" class="form-control" name="product_price3" id="product_price3" min="1" value="{{ $latestPrice->product_price3 }}">
-                @else
-                <input type="number" class="form-control" name="product_price3" id="product_price3" min="1" value="1">
-                @endif
+                <input type="number" class="form-control" name="product_price3" id="product_price3" min="1" value="{{ $latestPrice->product_price3 }}">                @else
+                <input type="number" class="form-control" name="product_price3" id="product_price3" min="1" value="1"> @endif
               </div>
             </div>
 
@@ -191,7 +185,8 @@
                       <td class="mailbox-subject">
                         <center>
                           <div class="btn-group">
-                            <a class="button btn btn-success btn-sm" href="{{route('editFruitPrice', ['price_id'=> $price->price_id, 'product_id'=> $fruit->product_id])}}"><i class="fa fa-edit"></i> Edit</a>                            {{ Form::open(array('url' => 'price/' . $price->price_id, 'class' => 'pull-right')) }} {{ Form::hidden('_method',
+                            <a class="button btn btn-success btn-sm" href="{{route('editFruitPrice', ['price_id'=> $price->price_id, 'product_id'=> $fruit->product_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                            {{ Form::open(array('url' => 'fruitprice/' . $price->price_id, 'class' => 'pull-right')) }} {{ Form::hidden('_method',
                             'DELETE') }} {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
                             {{ Form::close() }}
                         </center>

@@ -53,10 +53,10 @@ class PriceController extends Controller
 
     public function deleteFruitPrice($price_id, Request $request)
     {
-        $prices = Price::find($price_id);
-        $prices->delete();
+        $price = Price::find($price_id);
+        $price->delete();
         Session::flash('message', 'Successfully deleted!');
-        return Redirect::to('fruitprice');
+        return Redirect::to('fruit/'.$price->product_id.'/detail');
     }
 
     public function createVegePrice($product_id, Request $request)

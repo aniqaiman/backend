@@ -36,7 +36,7 @@ class ProductController extends Controller
     public function getProductById($product_id, Request $request)
     {
         $product = Product::where('product_id', $product_id)->first();
-        $price = Price::where('product_id', $product_id)->orderBy('created_at', 'desc')->take(2)->get();
+        $prices = Price::where('product_id', $product_id)->orderBy('created_at', 'desc')->take(2)->get();
 
         $newproduct["product_id"] = $product->product_id;
         $newproduct["product_name"] = $product->product_name;
@@ -45,12 +45,12 @@ class ProductController extends Controller
         $newproduct["quantity"] = $product->quantity;
         $newproduct["product_image"] = $product->product_image;
         $newproduct["category"] = $product->category;
-        $newproduct["priceA"] = $price[0]->product_price;
-        $newproduct["priceB"] = $price[0]->product_price2;
-        $newproduct["priceC"] = $price[0]->product_price3;
-        $newproduct["priceADiff"] = $price[0]->product_price - $price[1]->product_price / $price[0]->product_price;
-        $newproduct["priceBDiff"] = $price[0]->product_price2 - $price[1]->product_price2 / $price[0]->product_price2;
-        $newproduct["priceCDiff"] = $price[0]->product_price3 - $price[1]->product_price3 / $price[0]->product_price3;
+        $newproduct["priceA"] = $prices[0]->product_price;
+        $newproduct["priceB"] = $prices[0]->product_price2;
+        $newproduct["priceC"] = $prices[0]->product_price3;
+        $newproduct["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
+        $newproduct["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
+        $newproduct["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
 
         return response()->json(['data' => $newproduct, 'status' => 'ok']);
     }
@@ -58,11 +58,10 @@ class ProductController extends Controller
     public function getFruit(Request $request)
     {
         $fruits = Product::where('category', 1)->get();
-
         $fruitArray = [];
 
         foreach ($fruits as $fruit) {
-            $prices = Price::where('product_id', $fruit->product_id)->orderBy('created_at', 'desc')->first();
+            $prices = Price::where('product_id', $fruit->product_id)->orderBy('created_at', 'desc')->take(2)->get();
 
             $newfruit["product_id"] = $fruit->product_id;
             $newfruit["product_name"] = $fruit->product_name;
@@ -71,11 +70,13 @@ class ProductController extends Controller
             $newfruit["quantity"] = $fruit->quantity;
             $newfruit["product_image"] = $fruit->product_image;
             $newfruit["category"] = $fruit->category;
-            $newfruit["priceA"] = $prices->product_price;
-            $newfruit["priceB"] = $prices->product_price2;
-            $newfruit["priceC"] = $prices->product_price3;
-            $newfruit["date_price"] = $prices->date_price;
-
+            $newfruit["priceA"] = $prices[0]->product_price;
+            $newfruit["priceB"] = $prices[0]->product_price2;
+            $newfruit["priceC"] = $prices[0]->product_price3;
+            $newfruit["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
+            $newfruit["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
+            $newfruit["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
+    
             array_push($fruitArray, $newfruit);
         }
 
@@ -85,11 +86,10 @@ class ProductController extends Controller
     public function getVege()
     {
         $veges = Product::where('category', 11)->get();
-
         $vegeArray = [];
 
         foreach ($veges as $vege) {
-            $prices = Price::where('product_id', $vege->product_id)->orderBy('created_at', 'desc')->first();
+            $prices = Price::where('product_id', $vege->product_id)->orderBy('created_at', 'desc')->take(2)->get();
 
             $newvege["product_id"] = $vege->product_id;
             $newvege["product_name"] = $vege->product_name;
@@ -98,11 +98,13 @@ class ProductController extends Controller
             $newvege["quantity"] = $vege->quantity;
             $newvege["product_image"] = $vege->product_image;
             $newvege["category"] = $vege->category;
-            $newvege["priceA"] = $prices->product_price;
-            $newvege["priceB"] = $prices->product_price2;
-            $newvege["priceC"] = $prices->product_price3;
-            $newvege["date_price"] = $prices->date_price;
-
+            $newvege["priceA"] = $prices[0]->product_price;
+            $newvege["priceB"] = $prices[0]->product_price2;
+            $newvege["priceC"] = $prices[0]->product_price3;
+            $newvege["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
+            $newvege["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
+            $newvege["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
+    
             array_push($vegeArray, $newvege);
         }
 

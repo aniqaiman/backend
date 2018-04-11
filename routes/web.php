@@ -24,13 +24,13 @@ Route::post('/dashboard', ['as' => 'createDashboard', 'uses' => 'DashboardContro
 Route::get('dashboard', ['as' => 'dashboard', 'uses' =>
     'DashboardController@getDashboard']);
 
-// -------------------------------------------Detail Fruit----------------------------------------------
+// -------------------------------------------Price----------------------------------------------
 
 Route::post('/fruit/{product_id}/price/add', ['as' => 'createFruitPrice', 'uses' => 'PriceController@createFruitPrice']);
 Route::get('/fruit/{product_id}/detail', ['as' => 'getFruitDetail', 'uses' => 'PriceController@getFruitDetail']);
 Route::get('/fruit/{product_id}/editFruitPrice/{price_id}', ['as' => 'editFruitPrice', 'uses' => 'PriceController@editFruitPrice']);
 Route::post('/updateFruitPrice', ['as' => 'updateFruitPrice', 'uses' => 'PriceController@updateFruitPrice']);
-Route::get('/fruitprice', ['as' => 'deleteFruitPrice', 'uses' => 'PriceController@deleteFruitPrice']);
+Route::delete('/fruitprice/{price_id}', ['as' => 'deleteFruitPrice', 'uses' => 'PriceController@deleteFruitPrice']);
 
 // -------------------------------------------Detail Fruit----------------------------------------------
 
