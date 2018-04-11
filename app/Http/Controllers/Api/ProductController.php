@@ -134,19 +134,24 @@ class ProductController extends Controller
     public function getNewProducts(Request $request)
     {
         $products = Product::orderBy('created_at', 'desc')->take(10)->get();
-
         $productArray = [];
 
         foreach ($products as $product) {
+            $prices = Price::where('product_id', $product->product_id)->orderBy('created_at', 'desc')->take(2)->get();
+
             $newproduct["product_id"] = $product->product_id;
             $newproduct["product_name"] = $product->product_name;
             $newproduct["product_desc"] = $product->product_desc;
             $newproduct["short_desc"] = $product->short_desc;
             $newproduct["quantity"] = $product->quantity;
             $newproduct["product_image"] = $product->product_image;
-            $newproduct["created_at"] = $product->created_at;
-            $newproduct["updated_at"] = $product->updated_at;
             $newproduct["category"] = $product->category;
+            $newproduct["priceA"] = $prices[0]->product_price;
+            $newproduct["priceB"] = $prices[0]->product_price2;
+            $newproduct["priceC"] = $prices[0]->product_price3;
+            $newproduct["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
+            $newproduct["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
+            $newproduct["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
 
             array_push($productArray, $newproduct);
         }
