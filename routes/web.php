@@ -136,10 +136,10 @@ Route::get('api/buyer/{user_id}', 'Api\BuyerController@getBuyer');
 Route::get('api/driver/{user_id}', 'Api\DriverController@getDriver');
 Route::get('api/seller/{user_id}', 'Api\SellerController@getSeller');
 Route::get('api/user/{user_id}', 'Api\UserController@getUser');
-Route::get('api/bestselling', 'Api\ProductController@getBestSelling');
 
 Route::get('api/newproducts', 'Api\ProductController@getNewProducts');
 Route::get('api/lastpurchaseproducts', 'Api\ProductController@getLastPurchaseProducts');
+Route::get('api/bestsellingproducts', 'Api\ProductController@getBestSellingProducts');
 
 // ------------------------------------------- Order ---------------------------------------------------- //
 

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Order;
 use App\OrderItem;
 use App\Price;
 use App\Product;
+use DB;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -37,7 +37,10 @@ class ProductController extends Controller
     public function getProductById($product_id, Request $request)
     {
         $product = Product::where('product_id', $product_id)->first();
-        $prices = Price::where('product_id', $product_id)->orderBy('created_at', 'desc')->take(2)->get();
+        $prices = Price::where('product_id', $product_id)
+            ->orderBy('created_at', 'desc')
+            ->take(2)
+            ->get();
 
         $newproduct["product_id"] = $product->product_id;
         $newproduct["product_name"] = $product->product_name;
@@ -62,7 +65,10 @@ class ProductController extends Controller
         $fruitArray = [];
 
         foreach ($fruits as $fruit) {
-            $prices = Price::where('product_id', $fruit->product_id)->orderBy('created_at', 'desc')->take(2)->get();
+            $prices = Price::where('product_id', $fruit->product_id)
+                ->orderBy('created_at', 'desc')
+                ->take(2)
+                ->get();
 
             $newfruit["product_id"] = $fruit->product_id;
             $newfruit["product_name"] = $fruit->product_name;
@@ -90,7 +96,10 @@ class ProductController extends Controller
         $vegeArray = [];
 
         foreach ($veges as $vege) {
-            $prices = Price::where('product_id', $vege->product_id)->orderBy('created_at', 'desc')->take(2)->get();
+            $prices = Price::where('product_id', $vege->product_id)
+                ->orderBy('created_at', 'desc')
+                ->take(2)
+                ->get();
 
             $newvege["product_id"] = $vege->product_id;
             $newvege["product_name"] = $vege->product_name;
@@ -134,11 +143,17 @@ class ProductController extends Controller
 
     public function getNewProducts(Request $request)
     {
-        $products = Product::orderBy('created_at', 'desc')->take(10)->get();
+        $products = Product::orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
+
         $productArray = [];
 
         foreach ($products as $product) {
-            $prices = Price::where('product_id', $product->product_id)->orderBy('created_at', 'desc')->take(2)->get();
+            $prices = Price::where('product_id', $product->product_id)
+                ->orderBy('created_at', 'desc')
+                ->take(2)
+                ->get();
 
             $newproduct["product_id"] = $product->product_id;
             $newproduct["product_name"] = $product->product_name;
@@ -162,12 +177,20 @@ class ProductController extends Controller
 
     public function getLastPurchaseProducts(Request $request)
     {
-        $lastOrderProducts = OrderItem::orderBy('orderitem_id', 'desc')->select('product_id')->distinct()->take(10)->get();
+        $lastOrderProducts = OrderItem::orderBy('orderitem_id', 'desc')
+            ->select('product_id')
+            ->distinct()
+            ->take(10)
+            ->get();
+
         $productArray = [];
 
         foreach ($lastOrderProducts as $product) {
             $product = Product::find($product->product_id);
-            $prices = Price::where('product_id', $product->product_id)->orderBy('created_at', 'desc')->take(2)->get();
+            $prices = Price::where('product_id', $product->product_id)
+                ->orderBy('created_at', 'desc')
+                ->take(2)
+                ->get();
 
             $product["priceA"] = $prices[0]->product_price;
             $product["priceB"] = $prices[0]->product_price2;
@@ -182,29 +205,34 @@ class ProductController extends Controller
         return response()->json(['data' => $productArray, 'status' => 'ok']);
     }
 
-    public function getBestSelling(Request $request)
+    public function getBestSellingProducts(Request $request)
     {
-        // $orders = Order::where('product_id', $order->product_id)->get();
+        $bestSellingProducts = OrderItem::select(DB::raw('product_id, count(*) as product_count'))
+            ->groupBy('product_id')
+            ->orderBy('product_count', 'desc')
+            ->take(10)
+            ->get();
 
-        // $orderArray = [];
+        $productArray = [];
 
-        // foreach ($orders as $order)
-        // {
+        foreach ($bestSellingProducts as $product) {
+            $product = Product::find($product->product_id);
+            $prices = Price::where('product_id', $product->product_id)
+                ->orderBy('created_at', 'desc')
+                ->take(2)
+                ->get();
 
-        // }
+            $product["priceA"] = $prices[0]->product_price;
+            $product["priceB"] = $prices[0]->product_price2;
+            $product["priceC"] = $prices[0]->product_price3;
+            $product["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
+            $product["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
+            $product["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
 
-        $orders = Order::all();
-        $max = 0;
-
-        foreach ($orders as $order) {
-            $productcount = Order::where('product_id', $order->product_id)->count();
-
-            if ($productcount > $max) {
-                $max = $productcount;
-            } else {
-                $max = $max;
-            }
+            array_push($productArray, $product);
         }
-        return response()->json(['data' => $max, 'status' => 'ok']);
+
+        return response()->json(['data' => $productArray, 'status' => 'ok']);
     }
+
 }
