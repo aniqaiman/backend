@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\OrderItem;
 use App\Price;
 use App\Product;
 use Illuminate\Http\Request;
@@ -76,7 +77,7 @@ class ProductController extends Controller
             $newfruit["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
             $newfruit["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
             $newfruit["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
-    
+
             array_push($fruitArray, $newfruit);
         }
 
@@ -104,7 +105,7 @@ class ProductController extends Controller
             $newvege["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
             $newvege["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
             $newvege["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
-    
+
             array_push($vegeArray, $newvege);
         }
 
@@ -154,6 +155,28 @@ class ProductController extends Controller
             $newproduct["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
 
             array_push($productArray, $newproduct);
+        }
+
+        return response()->json(['data' => $productArray, 'status' => 'ok']);
+    }
+
+    public function getLastPurchaseProducts(Request $request)
+    {
+        $lastOrderProducts = OrderItem::orderBy('orderitem_id', 'desc')->select('product_id')->distinct()->take(10)->get();
+        $productArray = [];
+
+        foreach ($lastOrderProducts as $product) {
+            $product = Product::find($product->product_id);
+            $prices = Price::where('product_id', $product->product_id)->orderBy('created_at', 'desc')->take(2)->get();
+
+            $product["priceA"] = $prices[0]->product_price;
+            $product["priceB"] = $prices[0]->product_price2;
+            $product["priceC"] = $prices[0]->product_price3;
+            $product["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
+            $product["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
+            $product["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
+
+            array_push($productArray, $product);
         }
 
         return response()->json(['data' => $productArray, 'status' => 'ok']);

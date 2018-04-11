@@ -125,7 +125,6 @@ Route::get('user', 'ApiController@getAuthUser');
 
 Route::get('api/product/{product_id}', 'Api\ProductController@getProductbyId');
 Route::get('api/products', 'Api\ProductController@getProducts');
-Route::get('api/newproducts', 'Api\ProductController@getNewProducts');
 Route::get('api/fruits', 'Api\ProductController@getFruit');
 Route::get('api/veges', 'Api\ProductController@getVege');
 Route::get('api/prices', 'Api\ProductController@getPrices');
@@ -138,6 +137,9 @@ Route::get('api/driver/{user_id}', 'Api\DriverController@getDriver');
 Route::get('api/seller/{user_id}', 'Api\SellerController@getSeller');
 Route::get('api/user/{user_id}', 'Api\UserController@getUser');
 Route::get('api/bestselling', 'Api\ProductController@getBestSelling');
+
+Route::get('api/newproducts', 'Api\ProductController@getNewProducts');
+Route::get('api/lastpurchaseproducts', 'Api\ProductController@getLastPurchaseProducts');
 
 // ------------------------------------------- Order ---------------------------------------------------- //
 
