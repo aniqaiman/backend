@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use JWTAuth;
 use JWTAuthException;
@@ -63,6 +64,25 @@ class ApiController extends Controller
             'data' => $newuser,
             'status' => 'ok',
         ]);
+    }
+
+    public function verifyReCAPTCHA(Request $request)
+    {
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'https://www.google.com/recaptcha/',
+        ]);
+
+        $response = $client->request('POST', 'api/siteverify', [
+            'form_params' => [
+                'secret' => '6LeYmFIUAAAAAAiDzgP6UdTksJUY5Uumu6CccBPp',
+                'response' => $request->get('captcha'),
+            ],
+        ]);
+
+        return response()->json([
+            'data' => json_decode($response->getBody()),
+        ], $response->getStatusCode());
     }
 
 }

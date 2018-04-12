@@ -115,13 +115,15 @@ Route::post('/send', 'EmailController@send');
 // ------------------------------------------- API ---------------------------------------------------- //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+Route::get('auth/user', 'ApiController@getAuthUser');
+
+Route::post('auth/login', 'ApiController@login');
+Route::post('auth/verifyrecaptcha', 'ApiController@verifyReCAPTCHA');
+
 Route::post('api/registerseller', 'Api\SellerController@postRegisterSeller');
 Route::post('api/registerbuyer', 'Api\BuyerController@postRegisterBuyer');
 Route::post('api/registerdriver', 'Api\DriverController@postRegisterDriver');
 Route::post('api/registeruser', 'Api\UserController@postRegisterUser');
-
-Route::post('auth/login', 'ApiController@login');
-Route::get('user', 'ApiController@getAuthUser');
 
 Route::get('api/product/{product_id}', 'Api\ProductController@getProductbyId');
 Route::get('api/products', 'Api\ProductController@getProducts');
@@ -136,6 +138,8 @@ Route::get('api/buyer/{user_id}', 'Api\BuyerController@getBuyer');
 Route::get('api/driver/{user_id}', 'Api\DriverController@getDriver');
 Route::get('api/seller/{user_id}', 'Api\SellerController@getSeller');
 Route::get('api/user/{user_id}', 'Api\UserController@getUser');
+
+// ------------------------------------------- Promo ---------------------------------------------------- //
 
 Route::get('api/newproducts', 'Api\ProductController@getNewProducts');
 Route::get('api/lastpurchaseproducts', 'Api\ProductController@getLastPurchaseProducts');
