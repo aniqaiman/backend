@@ -80,9 +80,7 @@ class ApiController extends Controller
             ],
         ]);
 
-        return response()->json([
-            'data' => json_decode($response->getBody()),
-        ], $response->getStatusCode());
+        return response()->json(json_decode($response->getBody()), $response->getStatusCode());
     }
 
 }
