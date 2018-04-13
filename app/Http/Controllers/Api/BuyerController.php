@@ -29,6 +29,8 @@ class BuyerController extends Controller
             'company_reg_ic_number' => $request->get('company_reg_ic_number'),
             'buss_hour' => $request->get('buss_hour'),
             'address' => $request->get('address'),
+            'latitude' => $request->get('latitude'),
+            'longitude' => $request->get('longitude'),
             'handphone_number' => $request->get('handphone_number'),
             'phonenumber' => $request->get('phonenumber'),
             'email' => $request->get('email'),
