@@ -4,7 +4,7 @@
 
 		<div style="background-color: white; border-radius: 3px; padding: 30px 30px 20px; text-align: left; color: black; margin-bottom: 5px;">
 			<h1 style="margin-top: 0; text-align: center;">
-				The FoodRico {{ $user->group->name }}
+				FoodRico {{ $user->group->name }}
 				<br />
 				<sup>Welcome Onboard!</sup>
 			</h1>
