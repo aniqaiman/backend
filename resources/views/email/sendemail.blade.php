@@ -3,6 +3,10 @@
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
+    h1 {
+        margin-top: 0;
+    }
+
     a {
         text-decoration: none;
     }
@@ -53,7 +57,7 @@
     <div style="margin: 25px auto; background-color: #343a40; padding: 25px; text-align: center; color: white; max-width: 670px;">
         <img src="https://ninjavan.herokuapp.com/img/logo/logo-text.png" alt="Food Rico Logo" style="width: 190px; margin-top: 5px; margin-bottom: 15px;">
 
-        <div style="background-color: white; border-radius: 3px; padding: 30px 30px 20px; text-align: left; color: black;">
+        <div style="background-color: white; border-radius: 3px; padding: 30px 30px 20px; text-align: left; color: black; margin-bottom: 5px;">
             <h1 style="text-align: center;">
                 The FoodRico {{ $user->group->name }}
                 <br />
