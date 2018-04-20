@@ -15,6 +15,7 @@
         -moz-box-shadow: 0px 10px 14px -7px #3e7327;
         -webkit-box-shadow: 0px 10px 14px -7px #3e7327;
         box-shadow: 0px 10px 14px -7px #3e7327;
+		background-color: #77b55a;
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77b55a), color-stop(1, #72b352));
         background: -moz-linear-gradient(top, #77b55a 5%, #72b352 100%);
         background: -webkit-linear-gradient(top, #77b55a 5%, #72b352 100%);
@@ -54,7 +55,7 @@
 </style>
 
 <body>
-    <div style="margin: 25px auto; background-color: #343a40; padding: 25px; text-align: center; color: white; max-width: 670px;">
+    <div style="margin: 0 auto; background-color: #343a40; padding: 25px; text-align: center; color: white; max-width: 670px;">
         <img src="https://ninjavan.herokuapp.com/img/logo/logo-text.png" alt="Food Rico Logo" style="width: 190px; margin-top: 5px; margin-bottom: 15px;">
 
         <div style="background-color: white; border-radius: 3px; padding: 30px 30px 20px; text-align: left; color: black; margin-bottom: 5px;">
