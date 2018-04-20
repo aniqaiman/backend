@@ -159,3 +159,10 @@ Route::get('api/cart/totalprice', 'Api\CartController@getTotalPrice');
 Route::post('api/cart', 'Api\CartController@postCartItem');
 
 Route::delete('api/cart/{product_id}', 'Api\CartController@deleteCartItem');
+
+
+
+
+
+
+Route::get('playground', 'ApiController@playground');

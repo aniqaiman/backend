@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
-    protected $table = 'states';
-    protected $primaryKey = 'state_id';
-    public $timestamp = 'true';
+    public $timestamp = false;
     protected $fillable = [
-    	'state_name',
-    	];
+        'name',
+    ];
+
+    public function lorries()
+    {
+        return $this->hasMany('App\User');
+    }
 }

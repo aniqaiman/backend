@@ -12,7 +12,7 @@ class PriceController extends Controller
 {
     public function getFruitDetail($product_id, Request $request)
     {
-        $fruit = Product::where('product_id', $product_id)->first();
+        $fruit = Product::where('id', $product_id)->first();
         $prices = Price::where('product_id', $product_id)->orderBy('price_id', 'desc')->get();
         $latestPrice = Price::where('product_id', $product_id)->orderBy('price_id', 'desc')->first();
         return view('price.fruitprice', compact('fruit', 'prices', 'latestPrice'));

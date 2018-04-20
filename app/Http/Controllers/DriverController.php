@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Capacity;
-use App\Type;
+use App\LorryCapacity;
+use App\LorryType;
 use App\User;
 use Illuminate\Http\Request;
 use Redirect;
@@ -40,8 +40,8 @@ class DriverController extends Controller
     public function getDriver()
     {
         $drivers = User::where('group_id', 31)->get();
-        $types = Type::all();
-        $capacities = Capacity::all();
+        $types = LorryType::all();
+        $capacities = LorryCapacity::all();
         return view('driver.driver', compact('drivers', 'types', 'capacities'));
     }
 

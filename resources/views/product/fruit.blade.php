@@ -31,16 +31,16 @@
           {!! csrf_field() !!}
 
           <div class="form-group">
-            <label for="product_image" class="col-sm-3 control-label">Fruit Image: </label>
+            <label for="image" class="col-sm-3 control-label">Fruit Image: </label>
             <div class="col-sm-9">
-              <input type="file" class="form-control" name="product_image" id="product_image" required/>
+              <input type="file" class="form-control" name="image" id="image" required/>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="product_name" class="col-sm-3 control-label">Fruit Name: </label>
+            <label for="name" class="col-sm-3 control-label">Fruit Name: </label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" name="product_name" id="product_name" required/>
+              <input type="text" class="form-control" name="name" id="name" required/>
             </div>
           </div>
 
@@ -52,9 +52,9 @@
           </div>
 
           <div class="form-group">
-            <label for="product_desc" class="col-sm-3 control-label">Fruit Desc: </label>
+            <label for="desc" class="col-sm-3 control-label">Fruit Desc: </label>
             <div class="col-sm-9">
-              <textarea class="form-control" name="product_desc" id="product_desc" required/></textarea>
+              <textarea class="form-control" name="desc" id="desc" required/></textarea>
             </div>
           </div>
 
@@ -114,11 +114,11 @@
                 <tr>
                   <td class="col-sm-3">
                     <center>
-                      <img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$fruit->product_image}}"></a>
+                      <img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$fruit->image}}"></a>
                     </center>
                   </td>
                   <td class="mailbox-name">
-                    <center>{{$fruit->product_name}}</center>
+                    <center>{{$fruit->name}}</center>
                   </td>
                   <!-- <td class="mailbox-date"><center>{{$fruit->short_desc}}</center></td> -->
                   <!-- <td class="mailbox-date"><center>{{$fruit->prices}}</center></td> -->
@@ -128,11 +128,11 @@
                   <td class="mailbox-subject">
                     <center>
                       <div class="btn-group">
-                        <a class="button btn btn-success btn-sm" href="{{route('editFruit', ['product_id'=> $fruit->product_id])}}"><i class="fa fa-edit"></i> Edit</a>
-                        <a class="button btn btn-primary btn-sm" href="{{route('getFruitDetail', ['product_id'=> $fruit->product_id])}}">
+                        <a class="button btn btn-success btn-sm" href="{{route('editFruit', ['product_id'=> $fruit->id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="button btn btn-primary btn-sm" href="{{route('getFruitDetail', ['product_id'=> $fruit->id])}}">
                           <i class="fa fa-eye"></i> Details & Price
                         </a>
-                        {{ Form::open(array('url' => 'fruit/' . $fruit->product_id, 'class' => 'pull-right')) }}
+                        {{ Form::open(array('url' => 'fruit/' . $fruit->id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
                         {{ Form::close() }}

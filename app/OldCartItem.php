@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CartItem extends Model
+class OldCartItem extends Model
 {
     protected $table = 'cartitems';
     protected $primaryKey = 'cartitem_id';

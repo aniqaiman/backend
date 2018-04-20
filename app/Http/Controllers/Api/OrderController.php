@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\CartItem;
 use App\Http\Controllers\Controller;
 use App\Order;
-use App\OrderItem;
 use App\Price;
 use Illuminate\Http\Request;
 use JWTAuth;

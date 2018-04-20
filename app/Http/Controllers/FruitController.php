@@ -28,7 +28,7 @@ class FruitController extends Controller
 
     public function getFruit()
     {
-        $fruits = Product::where('category', 1)->get();
+        $fruits = Product::where('category_id', 1)->get();
         $categories = Category::all();
         return view('product.fruit', compact('fruits', 'categories'));
     }

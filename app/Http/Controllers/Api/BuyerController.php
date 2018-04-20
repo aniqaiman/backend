@@ -11,9 +11,9 @@ class BuyerController extends Controller
 {
     public function postRegisterBuyer(Request $request)
     {
-        if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
+        if (User::where('company_registration_mykad_number', $request->get('company_registration_mykad_number'))->exists()) {
             return response()->json([
-                'message' => 'The company Reg. No. / MyKad No. had been used.',
+                'message' => 'The (company registration / MyKad) number had been used.',
             ], 403);
         }
 
@@ -26,71 +26,69 @@ class BuyerController extends Controller
         $buyer = User::create([
             'name' => $request->get('name'),
             'company_name' => $request->get('company_name'),
-            'company_reg_ic_number' => $request->get('company_reg_ic_number'),
-            'buss_hour' => $request->get('buss_hour'),
+            'company_registration_mykad_number' => $request->get('company_registration_mykad_number'),
+            'bussiness_hour' => $request->get('bussiness_hour'),
             'address' => $request->get('address'),
             'latitude' => $request->get('latitude'),
             'longitude' => $request->get('longitude'),
-            'handphone_number' => $request->get('handphone_number'),
-            'phonenumber' => $request->get('phonenumber'),
+            'mobile_number' => $request->get('mobile_number'),
+            'phone_number' => $request->get('phone_number'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')),
             'group_id' => 11,
+            'status_email' => 0,
+            'status_account' => 0,
         ]);
 
-        $userEmail = $request->email;
+        Mail::send('email.sendemail', ['user' => $buyer], function ($message) use ($buyer) {
 
-        // $groups = Group::where('group_id',$request->group_id)->firstOrFail();
-        Mail::send('email.sendemail', ['user' => $buyer], function ($message) use ($userEmail) {
-
-            $message->from('wanmuz.ada@gmail.com', 'Admin');
-
-            $message->to($userEmail);
+            $message->subject('E-Mail Confirmation');
+            $message->from('wanmuz.ada@gmail.com', 'FoodRico');
+            $message->to($buyer->email);
 
         });
 
-        return response()->json(['data' => $buyer, 'status' => 'ok']);
+        return response()->json($buyer);
     }
 
     public function getBuyers(Request $request)
     {
-        $buyers = User::where('group_id', 11)->get();
-
-        $buyerArray = [];
-
-        foreach ($buyers as $buyer) {
-            $newbuyer["user_id"] = $buyer->user_id;
-            $newbuyer["name"] = $buyer->name;
-            $newbuyer["company_name"] = $buyer->company_name;
-            $newbuyer["company_reg_ic_number"] = $buyer->company_reg_ic_number;
-            $newbuyer["buss_hour"] = $buyer->buss_hour;
-            $newbuyer["address"] = $buyer->address;
-            $newbuyer["handphone_number"] = $buyer->handphone_number;
-            $newbuyer["phonenumber"] = $buyer->phonenumber;
-            $newbuyer["email"] = $buyer->email;
-            $newbuyer["group_id"] = $buyer->group_id;
-
-            array_push($buyerArray, $newbuyer);
-        }
-
-        return response()->json(['data' => $buyerArray, 'status' => 'ok']);
+        return response()->json(
+            User::select(
+                'id',
+                'name',
+                'company_name',
+                'company_registration_mykad_number',
+                'bussiness_hour',
+                'address',
+                'latitude',
+                'longitude',
+                'mobile_number',
+                'phone_number',
+                'email'
+            )
+                ->where('group_id', 11)
+                ->get()
+        );
     }
 
     public function getBuyer($user_id, Request $request)
     {
-        $buyer = User::where('user_id', $user_id)->first();
-
-        $newbuyer["user_id"] = $buyer->user_id;
-        $newbuyer["name"] = $buyer->name;
-        $newbuyer["company_name"] = $buyer->company_name;
-        $newbuyer["company_reg_ic_number"] = $buyer->company_reg_ic_number;
-        $newbuyer["buss_hour"] = $buyer->buss_hour;
-        $newbuyer["address"] = $buyer->address;
-        $newbuyer["handphone_number"] = $buyer->handphone_number;
-        $newbuyer["phonenumber"] = $buyer->phonenumber;
-        $newbuyer["email"] = $buyer->email;
-        $newbuyer["group"] = $buyer->groups->group_name;
-
-        return response()->json(['data' => $newbuyer, 'status' => 'ok']);
+        return response()->json(
+            User::select(
+                'id',
+                'name',
+                'company_name',
+                'company_registration_mykad_number',
+                'bussiness_hour',
+                'address',
+                'latitude',
+                'longitude',
+                'mobile_number',
+                'phone_number',
+                'email'
+            )
+                ->find($user_id)
+        );
     }
 }

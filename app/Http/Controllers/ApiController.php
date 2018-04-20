@@ -3,37 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use JWTAuth;
-use JWTAuthException;
 
 class ApiController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->user = new User;
-    }
-
     public function login(Request $request)
     {
-        $credentials = $request->only('company_reg_ic_number', 'password');
-        //var_dump($credentials);
-        //exit();
+        $credentials = $request->only('company_registration_mykad_number', 'password');
         $token = null;
+
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
-                    'message' => 'Invalid (Company Reg. No. / MyKad No.) or Password.',
+                    'message' => 'Invalid (company registration / MyKad) number or password or inactivated account.',
                 ], 401);
             }
-        } catch (JWTAuthException $e) {
+
+            $credentials['status_email'] = 1;
+
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json([
+                    'message' => 'Your email was not verified yet. Please check your email to verify it.',
+                ], 401);
+            }
+
+            $credentials['status_account'] = 1;
+
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json([
+                    'message' => 'Your account is not activated yet since it currently being review by Food Rico team. You will be inform once it had been activated.',
+                ], 401);
+            }
+        } catch (Exception $e) {
             return response()->json([
                 'message' => 'Failed to generate token.',
             ], 500);
         }
+
         return response()->json([
             'token' => $token,
         ]);
@@ -41,46 +51,38 @@ class ApiController extends Controller
 
     public function getAuthUser(Request $request)
     {
-        $user = JWTAuth::parseToken()->authenticate();
-
-        $newuser['user_id'] = $user->user_id;
-        $newuser['name'] = $user->name;
-        $newuser['email'] = $user->email;
-        $newuser['address'] = $user->address;
-        $newuser['phonenumber'] = $user->phonenumber;
-        $newuser['profilepic'] = $user->profilepic;
-        $newuser['company_name'] = $user->company_name;
-        $newuser['company_reg_ic_number'] = $user->company_reg_ic_number;
-        $newuser['handphone_number'] = $user->handphone_number;
-        $newuser['bank_name'] = $user->bank_name;
-        $newuser['bank_acc_holder_name'] = $user->bank_acc_holder_name;
-        $newuser['bank_acc_number'] = $user->bank_acc_number;
-        $newuser['latitude'] = $user->latitude;
-        $newuser['longitude'] = $user->longitude;
-        $newuser['group_name'] = $user->groups->group_name;
-        $newuser['buss_hour'] = $user->buss_hour;
-
-        return response()->json([
-            'data' => $newuser,
-            'status' => 'ok',
-        ]);
+        try {
+            return response()->json(
+                JWTAuth::parseToken()->authenticate()
+            );
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Failed to verify token.',
+            ], 500);
+        }
     }
 
     public function verifyReCAPTCHA(Request $request)
     {
-        $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => 'https://www.google.com/recaptcha/',
-        ]);
-
-        $response = $client->request('POST', 'api/siteverify', [
+        $client = new Client();
+        $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
             'form_params' => [
                 'secret' => '6LeYmFIUAAAAAAiDzgP6UdTksJUY5Uumu6CccBPp',
                 'response' => $request->get('captcha'),
             ],
         ]);
 
-        return response()->json(json_decode($response->getBody()), $response->getStatusCode());
+        return response()->json(
+            json_decode($response->getBody()),
+            $response->getStatusCode()
+        );
+    }
+
+    public function playground(Request $request)
+    {
+        return response()->json(
+            \App\Category::with('products', 'products.prices')->find('1')->toArray()
+        );
     }
 
 }

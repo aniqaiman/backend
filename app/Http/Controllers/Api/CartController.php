@@ -17,7 +17,7 @@ class CartController extends Controller
         $carts = CartItem::where('user_id', $user->user_id)->get();
 
         foreach ($carts as $cart) {
-            $cart["product"] = Product::where('product_id', $cart['product_id'])->first();
+            $cart["product"] = Product::where('id', $cart['product_id'])->first();
 
             $prices = Price::where('product_id', $cart->product_id)->orderBy('created_at', 'desc')->take(2)->get();
             $cart->product["priceA"] = $prices[0]->product_price;
@@ -45,7 +45,7 @@ class CartController extends Controller
         $total = 0;
 
         foreach ($carts as $cart) {
-            $cart["product"] = Product::where('product_id', $cart['product_id'])->first();
+            $cart["product"] = Product::where('id', $cart['product_id'])->first();
             $price = Price::where('product_id', $cart['product_id'])->orderBy('created_at', 'desc')->first();
             $total += ($price->product_price * $cart->quantity);
         }

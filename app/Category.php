@@ -6,15 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-	protected $table = 'category';
-	protected $primaryKey = 'cat_id';
-	public $timestamp = 'true';
-	protected $fillable = [
-	'cat_name',
-	];
+    public $timestamp = false;
+    protected $fillable = [
+        'name',
+    ];
 
-	public function products()
-	{
-		return $this->hasMany('App\Product', 'cat_id');
-	}
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
 }

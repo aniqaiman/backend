@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class LorryCapacity extends Model
 {
     public $timestamp = false;
     protected $fillable = [
-        'name',
+        'capacity',
     ];
 
-    public function users()
+    public function lorries()
     {
         return $this->hasMany('App\User');
     }
