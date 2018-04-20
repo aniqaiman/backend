@@ -42,7 +42,7 @@ class BuyerController extends Controller
 
         Mail::send('email.sendemail', ['user' => $buyer], function ($message) use ($buyer) {
 
-            $message->subject('FoodRico Registration - E-Mail Confirmation');
+            $message->subject('FoodRico Registration - Account Verification');
             $message->from('wanmuz.ada@gmail.com', 'FoodRico Notification');
             $message->to($buyer->email);
 
