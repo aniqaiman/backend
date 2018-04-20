@@ -46,23 +46,27 @@
 </style>
 
 <body>
-	<div style="margin: 25px; margin-top: 50px; background-color: #343a40; padding: 15px; text-align: center; color: white;">
-		<img src="https://foodrico-web.herokuapp.com/assets/img/logo/logo-text.png" alt="Food Rico Logo" style="width: 150px;">
+	<div style="margin: 25px auto; background-color: #343a40; padding: 25px; text-align: center; color: white; max-width: 650px;">
+		<img src="https://foodrico-web.herokuapp.com/assets/img/logo/logo-text.png" alt="Food Rico Logo" style="width: 190px;">
 
-		<div style="background-color: white; border-radius: 5px; padding: 15px; padding-bottom: 35px; text-align: left; margin-bottom: 5px; margin-top: 15px; color: black;">
+		<div style="background-color: white; border-radius: 5px; padding: 25px; padding-bottom: 35px; text-align: left; margin-bottom: 5px; margin-top: 15px; color: black;">
 			<h1 style="text-align: center;">
 				The FoodRico {{ $user->group->name }}
 				<br />
 				<sup>Welcome Onboard!</sup>
 			</h1>
+
 			<h4>Hi {{ $user->name }},</h4>
+
 			<p>
 				Thanks for creating FoodRico account.
 				<br /> To continue, please confirm you email address by clicking the button below:
 			</p>
+
 			<div style="text-align: center;">
 				<a href="#" class="btnActivate">Activate My E-Mail</a>
 			</div>
+
 			<p>
 				Thanks,
 				<br />

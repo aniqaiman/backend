@@ -40,8 +40,8 @@ class SellerController extends Controller
 
         Mail::send('email.sendemail', ['user' => $seller], function ($message) use ($seller) {
 
-            $message->subject('E-Mail Confirmation');
-            $message->from('wanmuz.ada@gmail.com', 'FoodRico');
+            $message->subject('FoodRico Registration - E-Mail Confirmation');
+            $message->from('wanmuz.ada@gmail.com', 'FoodRico Notification');
             $message->to($seller->email);
 
         });
