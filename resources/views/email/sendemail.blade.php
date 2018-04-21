@@ -13,12 +13,12 @@
 
             <p>
                 Thanks for creating FoodRico account.
-                <br /> To continue, please confirm your email by clicking the button below:
+                <br /> To continue, please confirm your account by clicking the button below:
             </p>
 
             <div style="text-align: center;">
                 <a href="#" style="background-color: #77b55a; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #4b8f29; display: inline-block; cursor: pointer; color: #fff; font-size: 1em; padding: 10px 15px; text-decoration: none;">
-                    Activate My E-Mail
+                    Verify My Account
                 </a>
             </div>
 
