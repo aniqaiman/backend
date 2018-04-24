@@ -125,10 +125,11 @@ Route::post('api/registerbuyer', 'Api\BuyerController@postRegisterBuyer');
 Route::post('api/registerdriver', 'Api\DriverController@postRegisterDriver');
 Route::post('api/registeruser', 'Api\UserController@postRegisterUser');
 
-Route::get('api/product/{product_id}', 'Api\ProductController@getProductbyId');
 Route::get('api/products', 'Api\ProductController@getProducts');
-Route::get('api/fruits', 'Api\ProductController@getFruits');
-Route::get('api/vegetables', 'Api\ProductController@getVegetables');
+Route::get('api/products/{product_id}', 'Api\ProductController@getProductById');
+Route::get('api/products/category/{category_id}', 'Api\ProductController@getProductsByCategory');
+Route::get('api/products/category/{category_id}/page', 'Api\ProductController@getProductsByCategoryWithPage');
+
 Route::get('api/prices', 'Api\ProductController@getPrices');
 Route::get('api/buyers', 'Api\BuyerController@getBuyers');
 Route::get('api/sellers', 'Api\SellerController@getSellers');
