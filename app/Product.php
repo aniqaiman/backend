@@ -12,6 +12,7 @@ class Product extends Model
         'price_difference',
         'category',
     ];
+    
     protected $fillable = [
         'name',
         'description',
