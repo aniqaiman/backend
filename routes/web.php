@@ -148,17 +148,18 @@ Route::get('api/bestsellingproducts', 'Api\ProductController@getBestSellingProdu
 // ------------------------------------------- Order ---------------------------------------------------- //
 
 Route::get('api/orders', 'Api\OrderController@getOrders');
+Route::get('api/orders/{order_id}', 'Api\OrderController@getOrderDetails');
 
 // ------------------------------------------- Cart ---------------------------------------------------- //
 
-Route::get('api/cart', 'Api\CartController@getCartItems');
-Route::get('api/cart/totalitems', 'Api\CartController@getTotalItems');
-Route::get('api/cart/totalprice', 'Api\CartController@getTotalPrice');
+Route::get('api/carts', 'Api\CartController@getCartItems');
+Route::get('api/carts/totalitems', 'Api\CartController@getTotalItems');
+Route::get('api/carts/totalprice', 'Api\CartController@getTotalPrice');
 
-Route::post('api/cart', 'Api\CartController@postCartItem');
-Route::post('api/cart/confirm', 'Api\CartController@postConfirm');
+Route::post('api/carts', 'Api\CartController@postCartItem');
+Route::post('api/carts/confirm', 'Api\CartController@postConfirm');
 
-Route::delete('api/cart/{product_id}', 'Api\CartController@deleteCartItem');
+Route::delete('api/carts/{product_id}', 'Api\CartController@deleteCartItem');
 
 
 
