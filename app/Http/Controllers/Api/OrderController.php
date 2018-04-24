@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\CartItem;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\Price;
@@ -11,28 +10,6 @@ use JWTAuth;
 
 class OrderController extends Controller
 {
-    public function postOrder(Request $request)
-    {
-        $user = JWTAuth::parseToken()->authenticate();
-        $carts = CartItem::where('user_id', $user->user_id)->get();
-
-        $order = Order::create([
-            'user_id' => $user->user_id,
-        ]);
-
-        foreach ($carts as $cart) {
-            OrderItem::create([
-                'order_id' => $order->order_id,
-                'product_id' => $cart->product_id,
-                'quantity' => $cart->quantity,
-            ]);
-
-            $cart->delete();
-        }
-
-        return response()->json(['data' => $order, 'status' => 'ok']);
-    }
-
     public function getBuyerOrders(Request $request)
     {
         $user = JWTAuth::parseToken()->authenticate();

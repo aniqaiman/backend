@@ -48,13 +48,15 @@ class BuyerController extends Controller
 
         });
 
-        return response()->json($buyer);
+        return response()->json([
+            "data" => $buyer,
+        ]);
     }
 
     public function getBuyers(Request $request)
     {
-        return response()->json(
-            User::select(
+        return response()->json([
+            "data" => User::select(
                 'id',
                 'name',
                 'company_name',
@@ -68,14 +70,14 @@ class BuyerController extends Controller
                 'email'
             )
                 ->where('group_id', 11)
-                ->get()
-        );
+                ->get(),
+        ]);
     }
 
     public function getBuyer($user_id, Request $request)
     {
-        return response()->json(
-            User::select(
+        return response()->json([
+            "data" => User::select(
                 'id',
                 'name',
                 'company_name',
@@ -88,7 +90,7 @@ class BuyerController extends Controller
                 'phone_number',
                 'email'
             )
-                ->find($user_id)
-        );
+                ->find($user_id),
+        ]);
     }
 }

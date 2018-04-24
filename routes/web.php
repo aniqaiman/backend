@@ -127,8 +127,8 @@ Route::post('api/registeruser', 'Api\UserController@postRegisterUser');
 
 Route::get('api/product/{product_id}', 'Api\ProductController@getProductbyId');
 Route::get('api/products', 'Api\ProductController@getProducts');
-Route::get('api/fruits', 'Api\ProductController@getFruit');
-Route::get('api/veges', 'Api\ProductController@getVege');
+Route::get('api/fruits', 'Api\ProductController@getFruits');
+Route::get('api/vegetables', 'Api\ProductController@getVegetables');
 Route::get('api/prices', 'Api\ProductController@getPrices');
 Route::get('api/buyers', 'Api\BuyerController@getBuyers');
 Route::get('api/sellers', 'Api\SellerController@getSellers');
@@ -148,15 +148,15 @@ Route::get('api/bestsellingproducts', 'Api\ProductController@getBestSellingProdu
 // ------------------------------------------- Order ---------------------------------------------------- //
 
 Route::get('api/orders', 'Api\OrderController@getOrders');
-Route::post('api/postorder', 'Api\OrderController@postOrder');
 
 // ------------------------------------------- Cart ---------------------------------------------------- //
 
 Route::get('api/cart', 'Api\CartController@getCartItems');
-Route::get('api/cart/totalcartitems', 'Api\CartController@getTotalCartItems');
+Route::get('api/cart/totalitems', 'Api\CartController@getTotalItems');
 Route::get('api/cart/totalprice', 'Api\CartController@getTotalPrice');
 
 Route::post('api/cart', 'Api\CartController@postCartItem');
+Route::post('api/cart/confirm', 'Api\CartController@postConfirm');
 
 Route::delete('api/cart/{product_id}', 'Api\CartController@deleteCartItem');
 

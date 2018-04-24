@@ -59,66 +59,20 @@ class ProductController extends Controller
         return response()->json(["data" => $newproduct, "status" => "ok"]);
     }
 
-    public function getFruit(Request $request)
+    public function getFruits(Request $request)
     {
-        $fruits = Product::where("category", 1)->get();
-        $fruitArray = [];
+        $fruits = Product::where("category_id", 1)
+            ->paginate(15);
 
-        foreach ($fruits as $fruit) {
-            $prices = Price::where("product_id", $fruit->id)
-                ->orderBy("created_at", "desc")
-                ->take(2)
-                ->get();
-
-            $newfruit["id"] = $fruit->id;
-            $newfruit["name"] = $fruit->name;
-            $newfruit["desc"] = $fruit->desc;
-            $newfruit["short_desc"] = $fruit->short_desc;
-            $newfruit["quantity"] = $fruit->quantity;
-            $newfruit["image"] = $fruit->image;
-            $newfruit["category"] = $fruit->category;
-            $newfruit["priceA"] = $prices[0]->product_price;
-            $newfruit["priceB"] = $prices[0]->product_price2;
-            $newfruit["priceC"] = $prices[0]->product_price3;
-            $newfruit["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
-            $newfruit["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
-            $newfruit["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
-
-            array_push($fruitArray, $newfruit);
-        }
-
-        return response()->json(["data" => $fruitArray, "status" => "ok"]);
+        return response($fruits);
     }
 
-    public function getVege()
+    public function getVegetables()
     {
-        $veges = Product::where("category", 11)->get();
-        $vegeArray = [];
+        $vegetables = Product::where("category_id", 11)
+            ->paginate(15);
 
-        foreach ($veges as $vege) {
-            $prices = Price::where("product_id", $vege->id)
-                ->orderBy("created_at", "desc")
-                ->take(2)
-                ->get();
-
-            $newvege["id"] = $vege->id;
-            $newvege["name"] = $vege->name;
-            $newvege["desc"] = $vege->desc;
-            $newvege["short_desc"] = $vege->short_desc;
-            $newvege["quantity"] = $vege->quantity;
-            $newvege["image"] = $vege->image;
-            $newvege["category"] = $vege->category;
-            $newvege["priceA"] = $prices[0]->product_price;
-            $newvege["priceB"] = $prices[0]->product_price2;
-            $newvege["priceC"] = $prices[0]->product_price3;
-            $newvege["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
-            $newvege["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
-            $newvege["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
-
-            array_push($vegeArray, $newvege);
-        }
-
-        return response()->json(["data" => $vegeArray, "status" => "ok"]);
+        return response($vegetables);
     }
 
     public function getPrices(Request $request)
@@ -143,42 +97,28 @@ class ProductController extends Controller
 
     public function getNewProducts(Request $request)
     {
-        $products = Product::orderBy("created_at", "desc")
+        $products = Product::with("latestPrices")
+            ->orderBy("created_at", "desc")
             ->take(10)
-            ->get();
+            ->get()
+            ->each(function ($product) {
+                $product["price_a_diff"] = sizeof($product->latestPrices) > 1 ?
+                round(($product->latestPrices[0]->price_a - $product->latestPrices[1]->price_a) / $product->latestPrices[1]->price_a, 2) : 0;
+                $product["price_b_diff"] = sizeof($product->latestPrices) > 1 ?
+                round(($product->latestPrices[0]->price_b - $product->latestPrices[1]->price_b) / $product->latestPrices[1]->price_b, 2) : 0;
+                $product["price_c_diff"] = sizeof($product->latestPrices) > 1 ?
+                round(($product->latestPrices[0]->price_c - $product->latestPrices[1]->price_c) / $product->latestPrices[1]->price_c, 2) : 0;
+            });
 
-        $productArray = [];
-
-        foreach ($products as $product) {
-            $prices = Price::where("product_id", $product->id)
-                ->orderBy("created_at", "desc")
-                ->take(2)
-                ->get();
-
-            $newproduct["id"] = $product->id;
-            $newproduct["name"] = $product->name;
-            $newproduct["desc"] = $product->desc;
-            $newproduct["short_desc"] = $product->short_desc;
-            $newproduct["quantity"] = $product->quantity;
-            $newproduct["image"] = $product->image;
-            $newproduct["category"] = $product->category;
-            $newproduct["priceA"] = $prices[0]->product_price;
-            $newproduct["priceB"] = $prices[0]->product_price2;
-            $newproduct["priceC"] = $prices[0]->product_price3;
-            $newproduct["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
-            $newproduct["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
-            $newproduct["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
-
-            array_push($productArray, $newproduct);
-        }
-
-        return response()->json(["data" => $productArray, "status" => "ok"]);
+        return response()->json([
+            "data" => $products,
+        ]);
     }
 
     public function getLastPurchaseProducts(Request $request)
     {
         $user = JWTAuth::parseToken()->authenticate();
-        $lastPurchaseProducts = Product::whereHas("orders", function ($orders) use ($user) { $orders->where("user_id", $user->user_id); })
+        $lastPurchaseProducts = Product::whereHas("orders", function ($orders) use ($user) {$orders->where("user_id", $user->user_id);})
             ->select("id")
             ->distinct()
             ->take(10)

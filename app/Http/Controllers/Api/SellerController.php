@@ -46,7 +46,9 @@ class SellerController extends Controller
 
         });
 
-        return response()->json($seller);
+        return response()->json([
+            "data" => $seller
+        ]);
     }
 
     public function getSellers(Request $request)

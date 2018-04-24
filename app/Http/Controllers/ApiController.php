@@ -19,7 +19,7 @@ class ApiController extends Controller
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
-                    'message' => 'Invalid (company registration / MyKad) number or password or inactivated account.',
+                    'message' => 'Invalid (company registration / MyKad) number or password',
                 ], 401);
             }
 
@@ -27,7 +27,7 @@ class ApiController extends Controller
 
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
-                    'message' => 'Your email was not verified yet. Please check your email to verify it.',
+                    'message' => 'Your account is not verified yet. Please check your email to verify it.',
                 ], 401);
             }
 
@@ -35,7 +35,7 @@ class ApiController extends Controller
 
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
-                    'message' => 'Your account is not activated yet since it currently being review by Food Rico team. You will be inform once it had been activated.',
+                    'message' => 'Your account is not activated yet. It currently being review by Food Rico team. You will be inform once it had been activated.',
                 ], 401);
             }
         } catch (Exception $e) {
@@ -52,9 +52,12 @@ class ApiController extends Controller
     public function getAuthUser(Request $request)
     {
         try {
-            return response()->json(
-                JWTAuth::parseToken()->authenticate()
-            );
+            $user = JWTAuth::parseToken()->authenticate();
+            $user["group"] = $user->group;
+
+            return response()->json([
+                "data" => $user,
+            ]);
         } catch (Exception $e) {
             return response()->json([
                 'message' => 'Failed to verify token.',
