@@ -102,7 +102,7 @@
                   <table class="table table-bordered" id="stock-table">
                    <thead>
 
-                    <tr class="info bg-black">
+                    <tr class="bg-black">
                       <th class="mailbox-star"><center>Product Name</center></th>
                       <th class="mailbox-star"><center>Product Category</center></th>
                       <th class="mailbox-star"><center>Grade</center></th>
@@ -113,7 +113,7 @@
 
                   <tbody>
                     
-                    <tr class="info">
+                    <tr>
                       <td class="mailbox-subject"><center></center></td>
                       <td class="mailbox-subject"><center></center></td>
                       <td class="mailbox-subject"><center></center></td>

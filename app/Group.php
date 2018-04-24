@@ -6,15 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
-    protected $table = 'groups';
-    protected $primaryKey = 'group_id';
-    public $timestamp = 'true';
+    public $timestamp = false;
     protected $fillable = [
-    	'group_name',
-    	];
+        'name',
+    ];
 
     public function users()
     {
-    	return $this->belongsTo('App\User','group_id');
+        return $this->hasMany('App\User');
     }
 }

@@ -66,7 +66,7 @@
                           
                           <thead>
 
-                          <tr class="info bg-black">
+                          <tr class="bg-black">
                             <th class="mailbox-subject"><center>Order ID</center></th>
                             <th class="mailbox-subject"><center>User Name</center></th>
                             <th class="mailbox-subject"><center>Product Name</center></th>
@@ -80,7 +80,7 @@
 
                           <tbody>
                           @foreach($orders as $order)
-                          <tr class="info">
+                          <tr>
                             <td class="mailbox-subject"><center>{{$order->order_id}}</center></td>
                             <td class="mailbox-subject"><center>{{$order->users->name}}</center></td>
                             <td class="mailbox-subject"><center>{{$order->products->product_name}}</center></td>

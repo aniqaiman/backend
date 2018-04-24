@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -11,61 +10,86 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    protected $table = 'users';
-    protected $primaryKey = 'user_id';
     protected $hidden = ['password', 'remember_token'];
-    public $timestamp = 'true';
     protected $fillable = [
-    'name',
-    'email',
-    'password',
-    'buss_hour',
-    'address',
-    'phonenumber',
-    'profilepic',
-    'remember_token',
-    'company_name',
-    'company_reg_ic_number',
-    'handphone_number',
-    'bank_name',
-    'bank_acc_holder_name',
-    'bank_acc_number',
-    'latitude',
-    'longitude',
-    'group_id',
-    'license_number',
-    'drivers_license',
-    'roadtax_expiry',
-    'type_of_lorry',
-    'lorry_capacity',
-    'location_to_cover',
-    'lorry_plate_number',
+        'name',
+        'email',
+        'password',
+        'address',
+        'phone_number',
+        'mobile_number',
+        'display_picture',
+        'remember_token',
+        'group_id',
+        'company_name',
+        'company_registration_mykad_number',
+        'bussiness_hour',
+        'bank_name',
+        'bank_account_holder_name',
+        'bank_account_number',
+        'latitude',
+        'longitude',
+        'driver_license_number',
+        'driver_license_picture',
+        'lorry_roadtax_expiry',
+        'lorry_type_id',
+        'lorry_capacity_id',
+        'lorry_plate_number',
+        'state_id',
+        'status_email',
+        'status_account',
     ];
 
-    public function groups()
+    public function group()
     {
-        return $this->belongsTo('App\Group','group_id');
-    }    
+        return $this->belongsTo('App\Group');
+    }
+
+    public function lorryCapacity()
+    {
+        return $this->belongsTo('App\LorryCapacity');
+    }
+
+    public function lorryType()
+    {
+        return $this->belongsTo('App\LorryType');
+    }
+
+    public function lorryLocationCover()
+    {
+        return $this->belongsTo('App\State');
+    }
 
     public function orders()
     {
-        return $this->belongsTo('App\Order','user_id');
-    }    
-
-    public function types()
-    {
-        return $this->belongsTo('App\Type','type_of_lorry');
+        return $this->hasMany('App\Order');
     }
 
-    public function capacities()
+    public function carts()
     {
-        return $this->belongsTo('App\Capacity','lorry_capacity');
+        return $this->belongsToMany('App\Product')
+            ->withPivot('quantity');
     }
 
-    // public function stocks()
-    // {
-    //     return $this->belongsTo('App\Stock','user_id');
-    // }
+    public function totalCartItems()
+    {
+        return $this->carts()
+            ->count();
+    }
+
+    public function totalCartPrice()
+    {
+        return $this->carts()
+            ->get()
+            ->sum(function ($cart) {
+                return $cart->latest_price->price_a * $cart->pivot->quantity;
+            });
+    }
+
+    public function stocks()
+    {
+        return $this->hasMany('App\Stock');
+    }
 
     public function getJWTIdentifier()
     {

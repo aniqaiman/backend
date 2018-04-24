@@ -76,7 +76,7 @@
 
                   <thead>
 
-                    <tr class="info bg-black">
+                    <tr class="bg-black">
                       <th class="mailbox-subject"><center>Group ID</center></th>
                       <th class="mailbox-subject"><center>Group Name</center></th>
                       <th class="mailbox-subject"><center>Operation</center></th>
@@ -85,7 +85,7 @@
 
                   <tbody>
                     @foreach($groups as $group)
-                    <tr class="info">
+                    <tr>
                       <td class="mailbox-subject"><center>{{$group->group_id}}</center></td>
                       <td class="mailbox-subject"><center>{{$group->group_name}}</center></td>
                       <td class="mailbox-subject"><center><div class="btn-group">

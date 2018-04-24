@@ -146,7 +146,7 @@
                   <table class="table table-bordered" id="supplier-table">
                    <thead>
 
-                    <tr class="info bg-black">
+                    <tr class="bg-black">
                       <!-- <th class="mailbox-star"><center><a href="#">Seller ID</a></center></th> -->
                       <!-- <th class="mailbox-star"><center><a href="#">Owner Name</a></center></th> -->
                       <th class="mailbox-star"><center>Company Name</center></th>
@@ -163,7 +163,7 @@
                   
                   <tbody>
                     @foreach($sellers as $seller) 
-                    <tr class="info">
+                    <tr>
                       <!-- <td class="mailbox-star"><center><a href="#">{{$seller->seller_id}}</a></center></td> -->
                       <!-- <td class="mailbox-name"><center><a href="#">{{$seller->owner_name}}</a></center></td> -->
                       <td class="mailbox-date"><center>{{$seller->company_name}}</center></td>

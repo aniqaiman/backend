@@ -21,8 +21,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- datatables -->
   {!!Html::style('css/dataTables.bootstrap.min.css')!!}
 
-  {!!Html::style('css/sweetalert.css')!!}
-
   <!-- Theme style -->
   {!!Html::style('css/AdminLTE.min.css')!!}
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -177,10 +175,7 @@ desired effect
 {!!Html::script('js/app.min.js')!!}
 <!-- datatable -->
 {!!Html::script('js/jquery.dataTables.min.js')!!}
-
 {!!Html::script('js/dataTables.bootstrap.min.js')!!}
-
-{!!Html::script('js/sweetalert.js')!!}
 
  @yield('script')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

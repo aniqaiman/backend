@@ -2,35 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Stock;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
-use App\Stock;
-use App\User;
 
 class StockController extends Controller
 {
     public function createStock(Request $request)
     {
-    	if($request->ajax()){
-    		$stocks = new Stock;
-    		$stock->product_id = $request->product_id;
-    		$stock->product_quantity = $request->product_quantity;
-    		$stock->product_grade = $request->product_grade;
-    		$stock->user_id = $request->user_id;
-    		$stocks->save();
-    		return response($stocks);
-    	}
+        if ($request->ajax()) {
+            $stocks = new Stock;
+            $stock->product_id = $request->product_id;
+            $stock->product_quantity = $request->product_quantity;
+            $stock->product_grade = $request->product_grade;
+            $stock->user_id = $request->user_id;
+            $stocks->save();
+            return response($stocks);
+        }
     }
 
     public function getStock()
     {
-    	$stocks = Stock::all();
-    	 return view('seller.sellerdetail',compact('stocks'));
+        $stocks = Stock::all();
+        return view('seller.sellerdetail', compact('stocks'));
     }
 
     public function editStock($stock_id, Request $request)
@@ -41,16 +36,16 @@ class StockController extends Controller
 
     public function updateStock(Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
             $stocks = Stock::where('stock_id', $request->stock_id)->first();
             $stock->product_id = $request->product_id;
-    		$stock->product_quantity = $request->product_quantity;
-    		$stock->product_grade = $request->product_grade;
-    		$stock->user_id = $request->user_id;
-    		$stocks->save();
-    		return response($stocks);
-            }       
-    }    
+            $stock->product_quantity = $request->product_quantity;
+            $stock->product_grade = $request->product_grade;
+            $stock->user_id = $request->user_id;
+            $stocks->save();
+            return response($stocks);
+        }
+    }
 
     public function deleteStock($stock_id, Request $request)
     {
@@ -59,6 +54,4 @@ class StockController extends Controller
         Session::flash('message', 'Successfully deleted!');
         return Redirect::to('sellerdetail');
     }
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

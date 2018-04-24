@@ -6,24 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Price extends Model
 {
-    protected $table = 'prices';
-    protected $primaryKey = 'price_id';
-    public $timestamp = 'true';
     protected $fillable = [
     	'product_id',
-        'product_price',
-        'product_price2',
-    	'product_price3',
+        'price_a',
+        'price_b',
+    	'price_c',
     	'date_price',
     	];
 
-    public function products()
+    public function product()
     {
-    	return $this->belongsTo('App\Product','product_id');
-    }
-
-    public function orders()
-    {
-        return $this->belongsTo('App\Order','product_price');
+    	return $this->belongsTo('App\Product');
     }
 }

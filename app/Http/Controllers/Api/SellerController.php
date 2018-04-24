@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
 use Mail;
 
-class SellerController extends BaseController
+class SellerController extends Controller
 {
     public function postRegisterSeller(Request $request)
     {
-        if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
+        if (User::where('company_registration_mykad_number', $request->get('company_registration_mykad_number'))->exists()) {
             return response()->json([
-                'message' => 'The company Reg. No. / MyKad No. had been used.',
+                'message' => 'The (company registration / MyKad) number had been used.',
             ], 403);
         }
 
@@ -29,23 +26,29 @@ class SellerController extends BaseController
         $seller = User::create([
             'name' => $request->get('name'),
             'company_name' => $request->get('company_name'),
-            'company_reg_ic_number' => $request->get('company_reg_ic_number'),
+            'company_registration_mykad_number' => $request->get('company_registration_mykad_number'),
             'address' => $request->get('address'),
             'latitude' => $request->get('latitude'),
             'longitude' => $request->get('longitude'),
-            'handphone_number' => $request->get('handphone_number'),
+            'mobile_number' => $request->get('mobile_number'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')),
             'group_id' => 21,
+            'status_email' => 0,
+            'status_account' => 0,
         ]);
 
-        $userEmail = $request->email;
+        Mail::send('email.sendemail', ['user' => $seller], function ($message) use ($seller) {
 
-        Mail::send('email.sendemail', ['user' => $seller], function ($message) use ($userEmail) {
-            $message->from('wanmuz.ada@gmail.com', 'Admin');
-            $message->to($userEmail);
+            $message->subject('FoodRico Registration - Account Verification');
+            $message->from('wanmuz.ada@gmail.com', 'FoodRico Notification');
+            $message->to($seller->email);
+
         });
-        return response()->json(['data' => $seller, 'status' => 'ok']);
+
+        return response()->json([
+            "data" => $seller
+        ]);
     }
 
     public function getSellers(Request $request)
@@ -89,6 +92,4 @@ class SellerController extends BaseController
 
         return response()->json(['data' => $newseller, 'status' => 'ok']);
     }
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

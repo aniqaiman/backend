@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Order;
+use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
-use App\Order;
-use App\User;
-use App\Product;
 
 class OrderController extends Controller
 {
     public function createOrder(Request $request)
     {
-    	if($request->ajax()){
+        if ($request->ajax()) {
             $orders = new Order;
             $orders->user_id = $request->user_id;
             $orders->product_id = $request->product_id;
@@ -26,15 +22,15 @@ class OrderController extends Controller
             $orders->promo_price = $request->promo_price;
             $orders->save();
             return response($orders);
-		}
+        }
     }
 
     public function getOrder()
     {
-    	$orders = Order::all();
+        $orders = Order::all();
         $users = User::all();
         $products = Product::all();
-    	return view('order.order', compact('orders','users','products'));
+        return view('order.order', compact('orders', 'users', 'products'));
     }
 
     public function editOrder($order_id, Request $request)
@@ -45,8 +41,8 @@ class OrderController extends Controller
 
     public function updateOrder(Request $request)
     {
-    	if($request->ajax()){
-    	    $orders = Order::where('order_id', $request->order_id)->first();
+        if ($request->ajax()) {
+            $orders = Order::where('order_id', $request->order_id)->first();
             $orders->user_id = $request->user_id;
             $orders->product_id = $request->product_id;
             $orders->item_quantity = $request->item_quantity;
@@ -54,7 +50,7 @@ class OrderController extends Controller
             $orders->promo_price = $request->promo_price;
             $orders->save();
             return response($orders);
-		}
+        }
     }
 
     public function deleteOrder($order_id, Request $request)
@@ -64,6 +60,4 @@ class OrderController extends Controller
         Session::flash('message', 'Successfully deleted!');
         return Redirect::to('driver');
     }
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

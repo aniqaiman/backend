@@ -2,39 +2,93 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $table = 'products';
-    protected $primaryKey = 'product_id';
-    public $timestamp = 'true';
+    protected $appends = [
+        'latest_price',
+        'price_difference',
+        'category',
+    ];
+    
     protected $fillable = [
-    	'product_name',
-    	'product_desc',
-    	'product_image',
-    	'category',
-        'quantity',
-        'short_desc',
-    	];
+        'name',
+        'description',
+        'short_description',
+        'image',
+        'category_id',
+        'quantity_a',
+        'quantity_b',
+        'quantity_c',
+        'demand_a',
+        'demand_b',
+        'demand_c',
+    ];
 
-    public function prices()
+    public function category()
     {
-    	return $this->hasMany('App\Price','product_id');
+        return $this->belongsTo('App\Category');
     }
 
-    public function categories()
+    public function getCategoryAttribute()
     {
-    	return $this->belongsTo('App\Category', 'product_id');
+        return $this->category()->get();
     }
 
     public function orders()
     {
-        return $this->belongsTo('App\Order','product_id');
+        return $this
+            ->belongsToMany('App\Order')
+            ->withPivot('quantity');
+    }
+
+    public function prices()
+    {
+        return $this->hasMany('App\Price');
+    }
+
+    public function validPrices()
+    {
+        return $this->prices()
+            ->whereDate("date_price", "<=", Carbon::now())
+            ->orderBy("date_price", "desc");
+    }
+
+    public function getLatestPriceAttribute()
+    {
+        return $this->validPrices()
+            ->first();
+    }
+
+    public function getPreviousPriceAttribute()
+    {
+        return $this->validPrices()
+            ->skip(1)
+            ->first();
+    }
+
+    public function getPriceDifferenceAttribute()
+    {
+        return (object) [
+            "price_a" => is_null($this->previous_price) ? 0 : round(($this->latest_price->price_a - $this->previous_price->price_a) / $this->previous_price->price_a, 2),
+            "price_b" => is_null($this->previous_price) ? 0 : round(($this->latest_price->price_b - $this->previous_price->price_b) / $this->previous_price->price_b, 2),
+            "price_c" => is_null($this->previous_price) ? 0 : round(($this->latest_price->price_c - $this->previous_price->price_c) / $this->previous_price->price_c, 2),
+        ];
+    }
+
+    public function carts()
+    {
+        return $this
+            ->belongsToMany('App\User')
+            ->withPivot('quantity');
     }
 
     public function stocks()
     {
-        return $this->belongsTo('App\Stock','product_id');
+        return $this
+            ->belongsToMany('App\Stock')
+            ->withPivot('grade', 'quantity');
     }
 }

@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\User;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as BaseController;
 use Mail;
 
-class DriverController extends BaseController
+class DriverController extends Controller
 {
     public function postRegisterDriver(Request $request)
     {
@@ -94,6 +91,4 @@ class DriverController extends BaseController
 
         return response()->json(['data' => $newdriver, 'status' => 'ok']);
     }
-
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
