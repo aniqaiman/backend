@@ -61,13 +61,13 @@
                     <center>Date</center>
                   </th>
                   <th>
-                    <center>Order ID</center>
+                    <center>Order#</center>
                   </th>
                   <th>
                     Buyer Name
                   </th>
                   <th>
-                    <center>Buyer ID</center>
+                    <center>Buyer#</center>
                   </th>
                   <th>Location</th>
                   <th>Items</th>
@@ -102,7 +102,7 @@
                   <td>
                     {{$order->user->address}}
                     <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
-                    <i class="fa fa-location-arrow"></i>
+                    <i class="fa fa-map-marker"></i>
                   </a>
                   </td>
                   <td>
