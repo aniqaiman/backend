@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Order;
-use App\Product;
-use App\User;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -33,6 +31,12 @@ class OrderController extends Controller
         return view('order.receipts', compact('orders'));
     }
 
+    public function getOrderTrackings()
+    {
+        $orders = Order::whereNotIn('status', [0, 2])->get();
+        return view('order.trackings', compact('orders'));
+    }
+
     public function updateStatus(Request $request)
     {
         $order = Order::find($request->order_id);
@@ -40,14 +44,6 @@ class OrderController extends Controller
         $order->save();
 
         return response($order);
-    }
-
-    public function getOrderTrackings()
-    {
-        $orders = Order::where('status', 1)->get();
-        // dump(urlencode($orders[0]->user->name . ' location'));
-        // exit();
-        return view('order.trackings', compact('orders'));
     }
 
     public function editOrder($order_id, Request $request)

@@ -70,8 +70,8 @@
                 </td>
                 <td class="text-nowrap">
                   <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $order->id }}" onclick="approve(this)">Approve</button>
-                    <button class="btn btn-danger" data-id="{{ $order->id }}" onclick="reject(this)">Reject</button>
+                    <button class="btn btn-success" data-id="{{ $order->id }}" data-status="1" onclick="updateStatus(this)">Approve</button>
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" onclick="updateStatus(this)">Reject</button>
                   </div>
                 </td>
                 <td class="text-nowrap">
@@ -118,44 +118,21 @@
     });
   });
 
-  function approve(btn) {
+  function updateStatus(btn) {
     var order = {
       order_id: $(btn).data('id'),
-      status: 1
+      status: $(btn).data('status')
     }
 
     $.ajax("{{ route('order.status') }}", {
       data: order,
       dataType: "json",
-      error: handleError,
+      error: (jqXHR, textStatus, errorThrown) => {},
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
-        console.log(data);
         window.location.href = window.location.href;
       }
     });
-  }
-
-  function reject(btn) {
-    var order = {
-      order_id: $(btn).data('id'),
-      status: 2
-    }
-
-    $.ajax("{{ route('order.status') }}", {
-      data: order,
-      dataType: "json",
-      error: handleError,
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        console.log(data);
-        window.location.href = window.location.href;
-      }
-    });
-  }
-
-  function handleError(jqXHR, textStatus, errorThrown) {
-
   }
 
 </script>

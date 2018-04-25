@@ -80,8 +80,17 @@
                 </td>
                 <td class="text-nowrap">
                   <div class="btn-group-vertical btn-group-sm" role="group">
-                    <a href="" class="btn btn-success">Paid</a>
-                    <a href="" class="btn btn-danger">Pending</a>
+                    @if ($order->status === 4)
+                    <button class="btn btn-success active" data-id="{{ $order->id }}" data-status="3" onclick="updateStatus(this)">Paid</button>
+                    @else
+                    <button class="btn btn-success" data-id="{{ $order->id }}" data-status="3" onclick="updateStatus(this)">Paid</button>
+                    @endif
+                    
+                    @if ($order->status === 3)
+                    <button class="btn btn-danger active" data-id="{{ $order->id }}" data-status="3" onclick="updateStatus(this)">Pending</button>
+                    @else
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="3" onclick="updateStatus(this)">Pending</button>
+                    @endif
                   </div>
                 </td>
                 <td class="text-nowrap">
@@ -127,6 +136,23 @@
       });
     });
   });
+
+  function updateStatus(btn) {
+    var order = {
+      order_id: $(btn).data('id'),
+      status: $(btn).data('status')
+    }
+
+    $.ajax("{{ route('order.status') }}", {
+      data: order,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        window.location.href = window.location.href;
+      }
+    });
+  }
 
 </script>
 @endsection
