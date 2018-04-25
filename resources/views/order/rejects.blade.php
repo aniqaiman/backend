@@ -53,12 +53,7 @@
                 <td>None</td>
                 <td>None</td>
                 <td class="text-nowrap">
-                  {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
-                  <div class="btn-group-vertical btn-group-sm">
-                    <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>{{
-                    Form::submit('Delete', ['class' => 'btn btn-warning']) }}
-                  </div>
-                  {{ Form::close() }}
+                  <a class="btn btn-primary" href="">Feedback</a>
                 </td>
               </tr>
               @endforeach
@@ -81,19 +76,6 @@
       'responsive': true,
     });
 
-    $('#frm-order-create').on('submit', function (e) {
-      e.preventDefault();
-      console.log('pressed');
-      var data = $(this).serialize();
-      console.log(data);
-      $.post("{{route('createOrder')}}", data, function (response) {
-        console.log(response);
-        $("[data-dismiss = modal]").trigger({
-          type: "click"
-        });
-
-      });
-    });
   });
 
   function updateStatus(btn) {
