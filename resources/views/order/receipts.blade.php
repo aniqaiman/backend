@@ -70,8 +70,8 @@
                 </td>
                 <td class="text-nowrap">
                   <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $order->id }}" data-status="1" onclick="updateStatus(this)">Approve</button>
-                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" onclick="updateStatus(this)">Reject</button>
+                    <button class="btn btn-success" data-id="{{ $order->id }}" data-status="1" onclick="updateStatus(this)">Approved</button>
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" onclick="updateStatus(this)">Rejected</button>
                   </div>
                 </td>
                 <td class="text-nowrap">
