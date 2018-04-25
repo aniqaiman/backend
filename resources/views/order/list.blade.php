@@ -95,8 +95,9 @@
                         <center>Status</center>
                       </th>
                       <th>
-                        <center>Operation</center>
+                        <center>Lorry Assigned</center>
                       </th>
+                      <th></th>
                     </tr>
                   </thead>
 
@@ -149,6 +150,21 @@
                             {{ Form::submit('Delete', ['class' => 'btn btn-warning']) }} {{ Form::close() }}
                           </div>
                         </center>
+                      </td>
+                      <td>
+                        <div class="input-group input-group-sm">
+                          <select class="form-control">
+                            <option>Not Assigned</option>
+                            <option>Lorry 1</option>
+                            <option>Lorry 2</option>
+                            <option>Lorry 3</option>
+                            <option>Lorry 4</option>
+                            <option>Lorry 5</option>
+                          </select>
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Assign</button>
+                          </span>
+                        </div>
                       </td>
                     </tr>
                     @endforeach
