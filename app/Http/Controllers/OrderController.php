@@ -35,6 +35,8 @@ class OrderController extends Controller
 
     public function updateStatus(Request $request)
     {
+        dump($request);
+        exit();
         $order = Order::find($request->order_id);
         $order->status = $request->status;
         $order->save();
