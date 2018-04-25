@@ -25,7 +25,7 @@ class OrderController extends Controller
         }
     }
 
-    public function getOrder()
+    public function getOrderReceipts()
     {
         $orders = Order::get();
         // dump(urlencode($orders[0]->user->name . ' location'));

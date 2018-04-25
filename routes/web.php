@@ -61,7 +61,8 @@ Route::delete('/group/{group_id}', ['as' => 'deleteGroup', 'uses' => 'GroupContr
 // -------------------------------------------Order----------------------------------------------------
 
 Route::post('/order', ['as' => 'createOrder', 'uses' => 'OrderController@createOrder']);
-Route::get('/order', ['as' => 'order', 'uses' => 'OrderController@getOrder', 'roles' => ['admin']]);
+Route::get('/orders/receipts', ['as' => 'order.receipts', 'uses' => 'OrderController@getOrderReceipts']);
+Route::get('/orders/trackings', ['as' => 'order.trackings', 'uses' => 'OrderController@getOrderTrackings']);
 Route::get('/editOrder/{order_id}', ['as' => 'editOrder', 'uses' => 'OrderController@editOrder']);
 Route::post('/updateOrder', ['as' => 'updateOrder', 'uses' => 'OrderController@updateOrder']);
 Route::delete('/order/{order_id}', ['as' => 'deleteOrder', 'uses' => 'OrderController@deleteOrder']);
@@ -160,10 +161,5 @@ Route::post('api/carts', 'Api\CartController@postCartItem');
 Route::post('api/carts/confirm', 'Api\CartController@postConfirm');
 
 Route::delete('api/carts/{product_id}', 'Api\CartController@deleteCartItem');
-
-
-
-
-
 
 Route::get('playground', 'ApiController@playground');

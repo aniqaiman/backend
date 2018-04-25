@@ -103,8 +103,8 @@
                     <ul class="list-unstyled">
                       @foreach ($order->products as $product)
                       <li>
-                        {{ $product->name }} x {{ $product->pivot->quantity }}kg = RM {{ number_format($product->pivot->quantity * $product->latest_price->price_a,
-                        2) }}
+                        {{ $product->name }} - {{ $product->pivot->quantity }}kg x RM {{ number_format($product->latest_price->price_a, 2) }} = RM
+                        {{ number_format($product->pivot->quantity * $product->latest_price->price_a, 2) }}
                       </li>
                       @endforeach
                     </ul>
@@ -152,7 +152,7 @@
                     <center>
                       {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                       <div class="btn-group-vertical btn-group-sm">
-                        <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>                        {{ Form::submit('Delete', ['class' => 'btn btn-warning']) }} {{ Form::close() }}
+                        <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a> {{ Form::submit('Delete', ['class' => 'btn btn-warning']) }} {{ Form::close() }}
                       </div>
                     </center>
                   </td>
@@ -173,7 +173,8 @@
 <script>
   $(document).ready(function () {
     $('#order-table').DataTable({
-      "ordering": false
+      "ordering": false,
+      "responsive": true,
     });
 
     $('#frm-order-create').on('submit', function (e) {
