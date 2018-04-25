@@ -119,13 +119,11 @@
   });
 
   function approve(btn) {
-    console.log($(btn));
-    console.log(btn);
+    console.log($(btn).data('id'));
   }
 
   function reject(btn) {
-    console.log($(btn));
-    console.log(btn);
+    console.log($(btn).data('id'));
   }
 
 </script>
