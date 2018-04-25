@@ -117,7 +117,7 @@
                   </td>
                   <td class="text-nowrap">
                     <center>
-                      <div class="btn-group-vertical btn-group-sm btn-group-justified" role="group">
+                      <div class="btn-group-vertical btn-group-sm" role="group">
                         <a href="" class="btn btn-success">Approve</a>
                         <a href="" class="btn btn-danger">Reject</a>
                       </div>
@@ -126,7 +126,7 @@
                   <td>
                     <center>
                       <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-block btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           None
                           <span class="caret"></span>
                         </button>
