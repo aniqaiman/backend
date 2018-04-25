@@ -33,9 +33,9 @@
                 <th>Order#</th>
                 <th class="text-nowrap">Buyer Name</th>
                 <th>Buyer#</th>
-                <th>Location</th>
-                <th>Items</th>
-                <th>Total</th>
+                <th>Feedback Topic</th>
+                <th>Description</th>
+                <th>Response</th>
                 <th class="col-xs-1">Status</th>
                 <th class="col-xs-1"></th>
               </tr>
@@ -48,32 +48,10 @@
                 <td>{{ $order->id }}</td>
                 <td>{{ $order->user->name }}</td>
                 <td>{{ $order->user->id }}</td>
-                <td>
-                  {{ $order->user->address }}
-                  <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
-                      <i class="fa fa-map-marker"></i>
-                    </a>
-                </td>
-                <td>
-                  <ul class="list-unstyled">
-                    @foreach ($order->products as $product)
-                    <li>
-                      {{ $product->name }} - {{ $product->pivot->quantity }}kg x RM {{ number_format($product->latest_price->price_a, 2) }} = RM
-                      {{ number_format($product->pivot->quantity * $product->latest_price->price_a, 2) }}
-                    </li>
-                    @endforeach
-                  </ul>
-                </td>
-                <td>
-                  <span class="badge">{{ $order->total_quantity }}kg</span>
-                  <span class="badge">RM {{ number_format($order->total_price, 2) }}</span>
-                </td>
-                <td class="text-nowrap">
-                  <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $order->id }}" data-status="1" onclick="updateStatus(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" onclick="updateStatus(this)">Rejected</button>
-                  </div>
-                </td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
                 <td class="text-nowrap">
                   {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
