@@ -120,7 +120,7 @@
 
   function approve(btn) {
     var order = {
-      id: $(btn).data('id'),
+      order_id: $(btn).data('id'),
       status: 1
     }
 
@@ -138,7 +138,7 @@
 
   function reject(btn) {
     var order = {
-      id: $(btn).data('id'),
+      order_id: $(btn).data('id'),
       status: 2
     }
 
