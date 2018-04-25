@@ -1,8 +1,4 @@
-@extends('layout.master') 
-@section('style')
-@endsection
- 
-@section('content')
+@extends('layout.master') @section('style') @endsection @section('content')
 
 <section class="content-header">
   <h1>
@@ -48,7 +44,7 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box">
+      <div class="box box-success">
         <div class="box-header">
           <h3 class="box-title">Order Receipt</h3>
         </div>
@@ -63,9 +59,7 @@
                   <th>
                     <center>Order#</center>
                   </th>
-                  <th>
-                    Buyer Name
-                  </th>
+                  <th class="text-nowrap">Buyer Name</th>
                   <th>
                     <center>Buyer#</center>
                   </th>
@@ -77,7 +71,7 @@
                   <th>
                     <center>Status</center>
                   </th>
-                  <th>
+                  <th class="text-nowrap">
                     <center>Lorry Assigned</center>
                   </th>
                   <!-- <th></th> -->
@@ -102,8 +96,8 @@
                   <td>
                     {{$order->user->address}}
                     <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
-                    <i class="fa fa-map-marker"></i>
-                  </a>
+                      <i class="fa fa-map-marker"></i>
+                    </a>
                   </td>
                   <td>
                     <ul class="list-inline">
@@ -128,9 +122,9 @@
                   <td>
                     <div class="btn-group">
                       <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      None
-                      <span class="caret"></span>
-                    </button>
+                        None
+                        <span class="caret"></span>
+                      </button>
                       <ul class="dropdown-menu">
                         <li>
                           <a href="#">Lorry 1</a>
@@ -171,9 +165,7 @@
   </div>
   <!-- Main content -->
 </section>
-@endsection
- 
-@section('script')
+@endsection @section('script')
 <script>
   $(document).ready(function () {
     $('#order-table').DataTable({
@@ -194,6 +186,5 @@
       });
     });
   });
-
 </script>
 @endsection
