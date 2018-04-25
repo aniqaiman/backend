@@ -43,13 +43,13 @@
           <a href="{{route('order')}}">
             <i class="fa fa-shopping-cart"></i> <span class="text-info">Order Tracking</span>
           </a>
-        </li> 
+        </li>
 
         <li class="treeview">
           <a href="#">
           <i class="fa fa-comments"></i> <span class="text-info">Feedback Trail n/a</span>
           </a>
-        </li> 
+        </li>
 
         <li class="treeview">
           <a href="#">
@@ -81,7 +81,7 @@
           <a href="#">
             <i class="fa fa-calendar"></i> <span class="text-info">Earning Summary n/a</span>
           </a>
-        </li> 
+        </li>
 
         <li class="treeview">
           <a href="{{route('driver')}}">
@@ -105,14 +105,14 @@
           <a href="{{route('users')}}">
             <i class="fa fa-male"></i> <span class="text-info">User Management</span>
           </a>
-        </li> 
+        </li>
 
         <li class="treeview">
           <a href="{{route('group')}}">
             <i class="fa fa-users"></i> <span class="text-info">Group Management</span>
           </a>
         </li>
-        
+
       </ul>
     </section>
     <!-- /.sidebar -->
