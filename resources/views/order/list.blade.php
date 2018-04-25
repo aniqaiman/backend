@@ -95,7 +95,8 @@
                   </td>
                   <td>
                     {{ $order->user->address }}
-                    <a href="https://maps.google.com/?q={{ urlencode($order->user->name . ' location') . '@' . $order->user->latitude . ',' . $order->user->longitude }}" target="_blank">
+                    <a href="https://maps.google.com/?q={{ urlencode($order->user->name . ' location') . '@' . $order->user->latitude . ',' . $order->user->longitude }}"
+                      target="_blank">
                       <i class="fa fa-map-marker"></i>
                     </a>
                   </td>
@@ -116,10 +117,12 @@
                     </center>
                   </td>
                   <td class="text-nowrap">
-                    <div class="btn-group-vertical btn-group-sm" role="group">
-                      <a href="" class="btn btn-success">Approve</a>
-                      <a href="" class="btn btn-danger">Reject</a>
-                    </div>
+                    <center>
+                      <div class="btn-group-vertical btn-group-sm" role="group">
+                        <a href="" class="btn btn-success">Approve</a>
+                        <a href="" class="btn btn-danger">Reject</a>
+                      </div>
+                    </center>
                   </td>
                   <td>
                     <div class="btn-group">
