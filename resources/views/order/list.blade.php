@@ -71,30 +71,30 @@
                   <thead>
 
                     <tr class="bg-black">
-                      <th class="mailbox-subject">
+                      <th>
                         <center>Date</center>
                       </th>
-                      <th class="mailbox-subject">
+                      <th>
                         <center>Order ID</center>
                       </th>
-                      <th class="mailbox-subject">
+                      <th>
                         Buyer Name
                       </th>
-                      <th class="mailbox-subject">
+                      <th>
                         <center>Buyer ID</center>
                       </th>
-                      <th class="mailbox-subject">Location</th>
-                      <th class="mailbox-subject">Items</th>
-                      <th class="mailbox-subject">
+                      <th>Location</th>
+                      <th>Items</th>
+                      <th>
                         <center>Item Quantity</center>
                       </th>
-                      <th class="mailbox-subject">
+                      <th>
                         <center>Total Price</center>
                       </th>
-                      <th class="mailbox-subject">
+                      <th>
                         <center>Status</center>
                       </th>
-                      <th class="mailbox-subject">
+                      <th>
                         <center>Operation</center>
                       </th>
                     </tr>
@@ -103,25 +103,25 @@
                   <tbody>
                     @foreach($orders as $order)
                     <tr>
-                      <td class="mailbox-subject">
+                      <td>
                         <center>{{$order->created_at}}</center>
                       </td>
-                      <td class="mailbox-subject">
+                      <td>
                         <center>{{$order->id}}</center>
                       </td>
-                      <td class="mailbox-subject">
+                      <td>
                         {{$order->user->name}}
                       </td>
-                      <td class="mailbox-subject">
+                      <td>
                         <center>{{$order->user->id}}</center>
                       </td>
-                      <td class="mailbox-subject">
+                      <td>
                         {{$order->user->address}}
                         <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
                           <i class="fa fa-location-arrow"></i>
                         </a>
                       </td>
-                      <td class="mailbox-subject">
+                      <td>
                         <ul class="list-inline">
                           @foreach ($order->products as $product)
                           <li>{{ $product->name }} x {{ $product->pivot->quantity }}kg = RM {{ number_format($product->pivot->quantity
@@ -129,19 +129,19 @@
                           @endforeach
                         </ul>
                       </td>
-                      <td class="mailbox-subject">
+                      <td>
                         <center>{{$order->products->count()}}</center>
                       </td>
-                      <td class="mailbox-subject">
+                      <td>
                         <center>RM {{ number_format($order->total_price, 2) }}</center>
                       </td>
-                      <td nowrap>
+                      <td class="text-nowrap">
                         <div class="btn-group" role="group">
                           <a href="" class="btn btn-success">Approve</a>
                           <a href="" class="btn btn-danger">Reject</a>
                         </div>
                       </td>
-                      <td class="mailbox-subject" nowrap>
+                      <td class="text-nowrap">
                         <center>
                           {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                           <div class="btn-group">
