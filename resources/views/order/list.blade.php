@@ -128,7 +128,10 @@
                         </ul>
                       </td>
                       <td>
-                        <center>{{ $order->total_quantity }}kg = RM {{ number_format($order->total_price, 2) }}</center>
+                        <center>
+                          <span class="badge">{{ $order->total_quantity }}kg</span>
+                          <span class="badge">RM {{ number_format($order->total_price, 2) }}</span>
+                        </center>
                       </td>
                       <td class="text-nowrap">
                         <div class="btn-group-vertical btn-group-sm" role="group">
@@ -138,7 +141,7 @@
                       </td>
                       <td>
                         <div class="btn-group">
-                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             None
                             <span class="caret"></span>
                           </button>
