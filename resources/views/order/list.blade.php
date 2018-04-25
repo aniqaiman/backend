@@ -100,7 +100,7 @@
                     </a>
                   </td>
                   <td>
-                    <ul class="list-inline">
+                    <ul class="list-unstyled">
                       @foreach ($order->products as $product)
                       <li>
                         {{ $product->name }} x {{ $product->pivot->quantity }}kg = RM {{ number_format($product->pivot->quantity
