@@ -129,11 +129,11 @@
       'columnDefs': [
         {
           responsivePriority: 1,
-          target: 0
+          targets: 0
         },
         {
           responsivePriority: 2,
-          target: 1
+          targets: 1
         }
       ]
     });
