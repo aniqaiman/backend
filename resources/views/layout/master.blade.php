@@ -19,7 +19,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Ionicons -->
   {!!Html::style('css/ionicons.min.css')!!}
   <!-- datatables -->
-  {!!Html::style('css/dataTables.bootstrap.min.css')!!}
+  {!!Html::style('datatables/datatables.min.css')!!}
 
   <!-- Theme style -->
   {!!Html::style('css/AdminLTE.min.css')!!}
@@ -174,8 +174,7 @@ desired effect
 <!-- AdminLTE App -->
 {!!Html::script('js/app.min.js')!!}
 <!-- datatable -->
-{!!Html::script('js/jquery.dataTables.min.js')!!}
-{!!Html::script('js/dataTables.bootstrap.min.js')!!}
+{!!Html::script('datatables/datatables.min.js')!!}
 
  @yield('script')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
