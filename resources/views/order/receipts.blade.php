@@ -124,8 +124,18 @@
 <script>
   $(document).ready(function () {
     $('#order-table').DataTable({
-      "ordering": false,
-      "responsive": true,
+      'ordering': false,
+      'responsive': true,
+      'columnDefs': [
+        {
+          responsivePriority: 1,
+          target: 0
+        },
+        {
+          responsivePriority: 2,
+          target: 1
+        }
+      ]
     });
 
     $('#frm-order-create').on('submit', function (e) {
