@@ -82,19 +82,19 @@
                 @foreach($orders as $order)
                 <tr>
                   <td>
-                    <center>{{$order->created_at}}</center>
+                    <center>{{ $order->created_at }}</center>
                   </td>
                   <td>
-                    <center>{{$order->id}}</center>
+                    <center>{{ $order->id }}</center>
                   </td>
                   <td>
-                    {{$order->user->name}}
+                    {{ $order->user->name }}
                   </td>
                   <td>
-                    <center>{{$order->user->id}}</center>
+                    <center>{{ $order->user->id }}</center>
                   </td>
                   <td>
-                    {{$order->user->address}}
+                    {{ $order->user->address }}
                     <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
                       <i class="fa fa-map-marker"></i>
                     </a>
