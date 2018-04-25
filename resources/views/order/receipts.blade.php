@@ -119,11 +119,11 @@
   });
 
   function accept() {
-    console.log($(this);
+    console.log($(this));
   }
 
   function reject() {
-    console.log($(this);
+    console.log($(this));
   }
 
 </script>
