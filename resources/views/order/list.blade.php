@@ -136,16 +136,16 @@
                         <center>RM {{ number_format($order->total_price, 2) }}</center>
                       </td>
                       <td>
-                        <div class="btn-group btn-group-justified" role="group">
+                        <div class="btn-group" role="group">
                           <a href="" class="btn btn-success">Approve</a>
                           <a href="" class="btn btn-danger">Reject</a>
                         </div>
                       </td>
                       <td class="mailbox-subject">
                         <center>
+                          {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                           <div class="btn-group btn-group-xs">
-                            {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
-                            <a class="btn btn-success" href="{{route('editOrder', ['order_id'=> $order->order_id])}}">
+                            <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">
                               <i class="fa fa-edit"></i> Edit
                             </a>
                             {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }} {{ Form::close() }}
