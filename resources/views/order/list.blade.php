@@ -95,7 +95,7 @@
                   </td>
                   <td>
                     {{ $order->user->address }}
-                    <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
+                    <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode(order->user->name . ' location') }}@{{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
                       <i class="fa fa-map-marker"></i>
                     </a>
                   </td>
