@@ -35,7 +35,7 @@
 
         <li class="treeview">
           <a href="{{route('welcome')}}">
-            <i class="fa fa-bars"></i> <span class="text-info">Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span class="text-info">Dashboard</span>
           </a>
         </li>
 
