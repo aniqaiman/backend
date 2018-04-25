@@ -136,7 +136,7 @@
                         <center>RM {{ number_format($order->total_price, 2) }}</center>
                       </td>
                       <td class="text-nowrap">
-                        <div class="btn-group" role="group">
+                        <div class="btn-group-vertical" role="group">
                           <a href="" class="btn btn-success">Approve</a>
                           <a href="" class="btn btn-danger">Reject</a>
                         </div>
@@ -144,7 +144,7 @@
                       <td class="text-nowrap">
                         <center>
                           {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
-                          <div class="btn-group">
+                          <div class="btn-group-vertical">
                             <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">
                               <i class="fa fa-edit"></i> Edit
                             </a>
