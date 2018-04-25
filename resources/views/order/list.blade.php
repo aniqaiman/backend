@@ -145,10 +145,8 @@
                         <center>
                           {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                           <div class="btn-group-vertical">
-                            <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">
-                              <i class="fa fa-edit"></i> Edit
-                            </a>
-                            {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }} {{ Form::close() }}
+                            <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>
+                            {{ Form::submit('Delete', ['class' => 'btn btn-warning']) }} {{ Form::close() }}
                           </div>
                         </center>
                       </td>
