@@ -74,7 +74,7 @@
                   <th class="text-nowrap">
                     <center>Lorry Assigned</center>
                   </th>
-                  <!-- <th></th> -->
+                  <th></th>
                 </tr>
               </thead>
 
@@ -148,14 +148,14 @@
                       </ul>
                     </div>
                   </td>
-                  <!-- <td class="text-nowrap">
+                  <td class="text-nowrap">
                     <center>
                       {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                       <div class="btn-group-vertical btn-group-sm">
                         <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>                        {{ Form::submit('Delete', ['class' => 'btn btn-warning']) }} {{ Form::close() }}
                       </div>
                     </center>
-                  </td> -->
+                  </td>
                 </tr>
                 @endforeach
 
