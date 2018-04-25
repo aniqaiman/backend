@@ -37,6 +37,12 @@ class OrderController extends Controller
         return view('order.trackings', compact('orders'));
     }
 
+    public function getOrderRejects()
+    {
+        $orders = Order::where('status', 1)->get();
+        return view('order.rejects', compact('orders'));
+    }
+
     public function updateStatus(Request $request)
     {
         $order = Order::find($request->order_id);

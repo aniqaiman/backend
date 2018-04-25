@@ -48,8 +48,9 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a class="text-info" href="{{route('order.receipts')}}"><i class="fa fa-circle-o"></i>Order Receipt</a></li>
-          <li><a class="text-info" href="{{route('order.trackings')}}"><i class="fa fa-circle-o"></i>Order Tracking</a></li>
+          <li><a href="{{route('order.receipts')}}"><i class="fa fa-circle-o"></i>Order Receipts</a></li>
+          <li><a href="{{route('order.trackings')}}"><i class="fa fa-circle-o"></i>Order Trackings</a></li>
+          <li><a href="{{route('order.rejects')}}"><i class="fa fa-circle-o"></i>Order Rejects</a></li>
         </ul>
       </li>
 
@@ -68,8 +69,8 @@
             </span>
           </a>
         <ul class="treeview-menu">
-          <li><a class="text-info" href="{{route('fruit')}}"><i class="fa fa-circle-o"></i>Fruit Stock</a></li>
-          <li><a class="text-info" href="{{route('vege')}}"><i class="fa fa-circle-o"></i>Vegetable Stock</a></li>
+          <li><a href="{{route('fruit')}}"><i class="fa fa-circle-o"></i>Fruit Stock</a></li>
+          <li><a href="{{route('vege')}}"><i class="fa fa-circle-o"></i>Vegetable Stock</a></li>
         </ul>
       </li>
 
