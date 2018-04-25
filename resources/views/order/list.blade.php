@@ -103,8 +103,8 @@
                     <ul class="list-unstyled">
                       @foreach ($order->products as $product)
                       <li>
-                        {{ $product->name }} x {{ $product->pivot->quantity }}kg = RM {{ number_format($product->pivot->quantity
-                        * $product->latest_price->price_a, 2) }}
+                        {{ $product->name }} x {{ $product->pivot->quantity }}kg = RM {{ number_format($product->pivot->quantity * $product->latest_price->price_a,
+                        2) }}
                       </li>
                       @endforeach
                     </ul>
@@ -116,35 +116,39 @@
                     </center>
                   </td>
                   <td class="text-nowrap">
-                    <div class="btn-group-vertical btn-group-sm" role="group">
-                      <a href="" class="btn btn-success">Approve</a>
-                      <a href="" class="btn btn-danger">Reject</a>
-                    </div>
+                    <center>
+                      <div class="btn-group-vertical btn-group-sm btn-group-justified" role="group">
+                        <a href="" class="btn btn-success">Approve</a>
+                        <a href="" class="btn btn-danger">Reject</a>
+                      </div>
+                    </center>
                   </td>
                   <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        None
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a href="#">Lorry 1</a>
-                        </li>
-                        <li>
-                          <a href="#">Lorry 2</a>
-                        </li>
-                        <li>
-                          <a href="#">Lorry 3</a>
-                        </li>
-                        <li>
-                          <a href="#">Lorry 4</a>
-                        </li>
-                        <li>
-                          <a href="#">Lorry 5</a>
-                        </li>
-                      </ul>
-                    </div>
+                    <center>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-block btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          None
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a href="#">Lorry 1</a>
+                          </li>
+                          <li>
+                            <a href="#">Lorry 2</a>
+                          </li>
+                          <li>
+                            <a href="#">Lorry 3</a>
+                          </li>
+                          <li>
+                            <a href="#">Lorry 4</a>
+                          </li>
+                          <li>
+                            <a href="#">Lorry 5</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </center>
                   </td>
                   <!-- <td class="text-nowrap">
                     <center>
