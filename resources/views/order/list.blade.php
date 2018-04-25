@@ -175,9 +175,11 @@
  
 @section('script')
 <script>
-  
+
   $(document).ready(function () {
-    $('#order-table').DataTable();
+    $('#order-table').DataTable({
+      "ordering": false
+    });
 
     $('#frm-order-create').on('submit', function (e) {
       e.preventDefault();
