@@ -15,6 +15,11 @@ class Order extends Model
         'status',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function products()
     {
         return $this
@@ -34,10 +39,5 @@ class Order extends Model
             ->sum(function ($product) {
                 return $product->latest_price->price_a * $product->pivot->quantity;
             });
-    }
-
-    public function buyer()
-    {
-        return $this->belongsTo('App\User');
     }
 }
