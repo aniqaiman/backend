@@ -61,6 +61,7 @@ Route::delete('/group/{group_id}', ['as' => 'deleteGroup', 'uses' => 'GroupContr
 // -------------------------------------------Order----------------------------------------------------
 
 Route::post('/order', ['as' => 'createOrder', 'uses' => 'OrderController@createOrder']);
+Route::put('/orders/status', ['as' => 'order.status', 'uses' => 'OrderController@updateStatus']);
 Route::get('/orders/receipts', ['as' => 'order.receipts', 'uses' => 'OrderController@getOrderReceipts']);
 Route::get('/orders/trackings', ['as' => 'order.trackings', 'uses' => 'OrderController@getOrderTrackings']);
 Route::get('/editOrder/{order_id}', ['as' => 'editOrder', 'uses' => 'OrderController@editOrder']);

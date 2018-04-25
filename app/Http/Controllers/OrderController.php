@@ -33,6 +33,15 @@ class OrderController extends Controller
         return view('order.receipts', compact('orders'));
     }
 
+    public function updateStatus(Request $request)
+    {
+        $order = Order::find($request->order_id);
+        $order->status = $request->status;
+        $order->save();
+
+        return response($order);
+    }
+
     public function getOrderTrackings()
     {
         $orders = Order::where('status', 1)->get();

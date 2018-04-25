@@ -119,11 +119,43 @@
   });
 
   function approve(btn) {
-    console.log($(btn).data('id'));
+    var order = {
+      id: $(btn).data('id'),
+      status: 1
+    }
+
+    $.ajax("{{ route('order.status') }}", {
+      data: order,
+      dataType: "json",
+      error: handleError,
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        console.log(data);
+        window.location.href = window.location.href;
+      }
+    });
   }
 
   function reject(btn) {
-    console.log($(btn).data('id'));
+    var order = {
+      id: $(btn).data('id'),
+      status: 2
+    }
+
+    $.ajax("{{ route('order.status') }}", {
+      data: order,
+      dataType: "json",
+      error: handleError,
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        console.log(data);
+        window.location.href = window.location.href;
+      }
+    });
+  }
+
+  function handleError(jqXHR, textStatus, errorThrown) {
+
   }
 
 </script>
