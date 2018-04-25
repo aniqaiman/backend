@@ -70,8 +70,8 @@
                 </td>
                 <td class="text-nowrap">
                   <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $order->id }}" onclick="approve()">Approve</button>
-                    <button class="btn btn-danger" data-id="{{ $order->id }}" onclick="reject()">Reject</button>
+                    <button class="btn btn-success" data-id="{{ $order->id }}" onclick="approve(this)">Approve</button>
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" onclick="reject(this)">Reject</button>
                   </div>
                 </td>
                 <td class="text-nowrap">
@@ -118,12 +118,14 @@
     });
   });
 
-  function approve() {
-    console.log($(this));
+  function approve(btn) {
+    console.log($(btn));
+    console.log(btn);
   }
 
-  function reject() {
-    console.log($(this));
+  function reject(btn) {
+    console.log($(btn));
+    console.log(btn);
   }
 
 </script>
