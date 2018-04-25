@@ -29,24 +29,14 @@
           <table class="table table-bordered" id="order-table" style="width:100%">
             <thead>
               <tr class="bg-black">
-                <th>
-                  <center>Date</center>
-                </th>
-                <th>
-                  <center>Order#</center>
-                </th>
+                <th>Date</th>
+                <th>Order#</th>
                 <th class="text-nowrap">Buyer Name</th>
-                <th>
-                  <center>Buyer#</center>
-                </th>
+                <th>Buyer#</th>
                 <th>Location</th>
                 <th>Items</th>
-                <th>
-                  <center>Total</center>
-                </th>
-                <th class="col-xs-1">
-                  <center>Status</center>
-                </th>
+                <th>Total</th>
+                <th class="col-xs-1">Status</th>
                 <th class="col-xs-1"></th>
               </tr>
             </thead>
@@ -54,18 +44,10 @@
             <tbody>
               @foreach($orders as $order)
               <tr>
-                <td>
-                  <center>{{ $order->created_at }}</center>
-                </td>
-                <td>
-                  <center>{{ $order->id }}</center>
-                </td>
-                <td>
-                  {{ $order->user->name }}
-                </td>
-                <td>
-                  <center>{{ $order->user->id }}</center>
-                </td>
+                <td>{{ $order->created_at }}</td>
+                <td>{{ $order->id }}</td>
+                <td>{{ $order->user->name }}</td>
+                <td>{{ $order->user->id }}</td>
                 <td>
                   {{ $order->user->address }}
                   <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
@@ -83,32 +65,25 @@
                   </ul>
                 </td>
                 <td>
-                  <center>
-                    <span class="badge">{{ $order->total_quantity }}kg</span>
-                    <span class="badge">RM {{ number_format($order->total_price, 2) }}</span>
-                  </center>
+                  <span class="badge">{{ $order->total_quantity }}kg</span>
+                  <span class="badge">RM {{ number_format($order->total_price, 2) }}</span>
                 </td>
                 <td class="text-nowrap">
-                  <center>
-                    <div class="btn-group-vertical btn-group-sm" role="group">
-                      <a href="" class="btn btn-success">Approve</a>
-                      <a href="" class="btn btn-danger">Reject</a>
-                    </div>
-                  </center>
+                  <div class="btn-group-vertical btn-group-sm" role="group">
+                    <button class="btn btn-success" data-id="{{ $order->id }}" onclick="approve()">Approve</button>
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" onclick="reject()">Reject</button>
+                  </div>
                 </td>
                 <td class="text-nowrap">
                   {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
-                  <center>
-                    <div class="btn-group-vertical btn-group-sm">
-                      <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>{{
-                      Form::submit('Delete', ['class' => 'btn btn-warning']) }}
-                    </div>
-                  </center>
+                  <div class="btn-group-vertical btn-group-sm">
+                    <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>{{
+                    Form::submit('Delete', ['class' => 'btn btn-warning']) }}
+                  </div>
                   {{ Form::close() }}
                 </td>
               </tr>
               @endforeach
-
             </tbody>
           </table>
         </div>
@@ -142,6 +117,14 @@
       });
     });
   });
+
+  function accept() {
+    console.log($(this);
+  }
+
+  function reject() {
+    console.log($(this);
+  }
 
 </script>
 @endsection
