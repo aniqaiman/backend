@@ -26,7 +26,7 @@
           <h3 class="box-title">Order Receipts</h3>
         </div>
         <div class="box-body">
-          <table class="table table-bordered" id="order-table">
+          <table class="table table-bordered" id="order-table" style="width:100%">
             <thead>
               <tr class="bg-black">
                 <th>
