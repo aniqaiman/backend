@@ -100,12 +100,12 @@
                     </a>
                   </td>
                   <td>
-                    <ul class="list-inline">
-                      @foreach ($order->products as $product)
-                      <li>{{ $product->name }} x {{ $product->pivot->quantity }}kg = RM {{ number_format($product->pivot->quantity
-                        * $product->latest_price->price_a, 2) }}</li>
-                      @endforeach
-                    </ul>
+                    @foreach ($order->products as $product)
+                    <span class="label label-primary">
+                      {{ $product->name }} x {{ $product->pivot->quantity }}kg = RM {{ number_format($product->pivot->quantity * $product->latest_price->price_a,
+                      2) }}
+                    </span>
+                    @endforeach
                   </td>
                   <td>
                     <center>
