@@ -175,7 +175,6 @@
  
 @section('script')
 <script>
-
   $(document).ready(function () {
     $('#order-table').DataTable({
       "ordering": false
