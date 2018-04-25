@@ -53,7 +53,7 @@
                 <td>None</td>
                 <td>None</td>
                 <td class="text-nowrap">
-                  <a class="btn btn-primary" href="">Feedback</a>
+                  <a class="btn btn-primary btn-sm" href="">Feedback</a>
                 </td>
               </tr>
               @endforeach
