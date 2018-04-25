@@ -1,4 +1,8 @@
-@extends('layout.master') @section('style') @endsection @section('content')
+@extends('layout.master') 
+@section('style')
+@endsection
+ 
+@section('content')
 
 <section class="content-header">
   <h1>
@@ -13,33 +17,6 @@
     <li class="active">Order</li>
   </ol>
 </section>
-
-<div class="modal modal-info fade" id="add-order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Add Order</h4>
-      </div>
-      <div class="modal-body">
-        <!-- Custom Tabs (Pulled to the right) -->
-        <form action="#" method="POST" id="frm-order-create">
-          {!! csrf_field() !!}
-          <div class="row">
-
-
-
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 <section class="content">
   <div class="row">
@@ -64,15 +41,11 @@
                     <center>Buyer#</center>
                   </th>
                   <th>Location</th>
-                  <th>Items</th>
-                  <th>
-                    <center>Total</center>
+                  <th class="text-nowrap">
+                    <center>Lorry Assigned</center>
                   </th>
                   <th>
                     <center>Status</center>
-                  </th>
-                  <th class="text-nowrap">
-                    <center>Lorry Assigned</center>
                   </th>
                   <th></th>
                 </tr>
@@ -98,30 +71,6 @@
                     <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
                       <i class="fa fa-map-marker"></i>
                     </a>
-                  </td>
-                  <td>
-                    <ul class="list-unstyled">
-                      @foreach ($order->products as $product)
-                      <li>
-                        {{ $product->name }} - {{ $product->pivot->quantity }}kg x RM {{ number_format($product->latest_price->price_a, 2) }} = RM
-                        {{ number_format($product->pivot->quantity * $product->latest_price->price_a, 2) }}
-                      </li>
-                      @endforeach
-                    </ul>
-                  </td>
-                  <td>
-                    <center>
-                      <span class="badge">{{ $order->total_quantity }}kg</span>
-                      <span class="badge">RM {{ number_format($order->total_price, 2) }}</span>
-                    </center>
-                  </td>
-                  <td class="text-nowrap">
-                    <center>
-                      <div class="btn-group-vertical btn-group-sm" role="group">
-                        <a href="" class="btn btn-success">Approve</a>
-                        <a href="" class="btn btn-danger">Reject</a>
-                      </div>
-                    </center>
                   </td>
                   <td>
                     <div class="btn-group">
@@ -150,9 +99,17 @@
                   </td>
                   <td class="text-nowrap">
                     <center>
+                      <div class="btn-group-vertical btn-group-sm" role="group">
+                        <a href="" class="btn btn-success">Approve</a>
+                        <a href="" class="btn btn-danger">Reject</a>
+                      </div>
+                    </center>
+                  </td>
+                  <td class="text-nowrap">
+                    <center>
                       {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                       <div class="btn-group-vertical btn-group-sm">
-                        <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a> {{ Form::submit('Delete', ['class' => 'btn btn-warning']) }} {{ Form::close() }}
+                        <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>                        {{ Form::submit('Delete', ['class' => 'btn btn-warning']) }} {{ Form::close() }}
                       </div>
                     </center>
                   </td>
@@ -169,7 +126,9 @@
   </div>
   <!-- Main content -->
 </section>
-@endsection @section('script')
+@endsection
+ 
+@section('script')
 <script>
   $(document).ready(function () {
     $('#order-table').DataTable({
@@ -191,5 +150,6 @@
       });
     });
   });
+
 </script>
 @endsection

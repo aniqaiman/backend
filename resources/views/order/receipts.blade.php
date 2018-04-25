@@ -14,33 +14,6 @@
   </ol>
 </section>
 
-<div class="modal modal-info fade" id="add-order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Add Order</h4>
-      </div>
-      <div class="modal-body">
-        <!-- Custom Tabs (Pulled to the right) -->
-        <form action="#" method="POST" id="frm-order-create">
-          {!! csrf_field() !!}
-          <div class="row">
-
-
-
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-
 <section class="content">
   <div class="row">
     <div class="col-md-12">
@@ -70,9 +43,6 @@
                   </th>
                   <th>
                     <center>Status</center>
-                  </th>
-                  <th class="text-nowrap">
-                    <center>Lorry Assigned</center>
                   </th>
                   <th></th>
                 </tr>
@@ -122,31 +92,6 @@
                         <a href="" class="btn btn-danger">Reject</a>
                       </div>
                     </center>
-                  </td>
-                  <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Assign Lorry
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a href="#">Lorry 1</a>
-                        </li>
-                        <li>
-                          <a href="#">Lorry 2</a>
-                        </li>
-                        <li>
-                          <a href="#">Lorry 3</a>
-                        </li>
-                        <li>
-                          <a href="#">Lorry 4</a>
-                        </li>
-                        <li>
-                          <a href="#">Lorry 5</a>
-                        </li>
-                      </ul>
-                    </div>
                   </td>
                   <td class="text-nowrap">
                     <center>
