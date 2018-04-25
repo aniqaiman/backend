@@ -80,15 +80,11 @@
                 </td>
                 <td class="text-nowrap">
                   <div class="btn-group-vertical btn-group-sm" role="group">
-                    @if ($order->status === 4)
-                    <button class="btn btn-success active" disabled>Paid</button>
-                    @else
+                    @if ($order->status !== 4)
                     <button class="btn btn-success" data-id="{{ $order->id }}" data-status="4" onclick="updateStatus(this)">Paid</button>
                     @endif
                     
-                    @if ($order->status === 3)
-                    <button class="btn btn-danger active" disabled>Pending</button>
-                    @else
+                    @if ($order->status !== 3)
                     <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="3" onclick="updateStatus(this)">Pending</button>
                     @endif
                   </div>
