@@ -118,7 +118,7 @@
     });
   });
 
-  function accept() {
+  function approve() {
     console.log($(this));
   }
 
