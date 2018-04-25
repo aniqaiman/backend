@@ -132,8 +132,8 @@
 <script>
   $(document).ready(function () {
     $('#order-table').DataTable({
-      "ordering": false,
-      "responsive": true,
+      'ordering': false,
+      'responsive': true,
     });
 
     $('#frm-order-create').on('submit', function (e) {
