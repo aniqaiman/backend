@@ -30,7 +30,7 @@ class OrderController extends Controller
         $orders = Order::get();
         // dump(urlencode($orders[0]->user->name . ' location'));
         // exit();
-        return view('order.list', compact('orders'));
+        return view('order.receipts', compact('orders'));
     }
 
     public function editOrder($order_id, Request $request)
