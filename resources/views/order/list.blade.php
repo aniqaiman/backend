@@ -30,8 +30,8 @@
                   {!! csrf_field() !!}
                     <div class="row">
 
-                        
-                          
+
+
                     </div>
                   </div>
           <div class="modal-footer">
@@ -48,7 +48,7 @@
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs ">
             <li class="active"><a href="#tab_1" data-toggle="tab">Active</a></li>
-            <li class="pull-right"> 
+            <li class="pull-right">
           <!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add-order">Add Order</button> -->
           </li>
           </ul>
@@ -63,7 +63,7 @@
                       </div>
                       <div class="table-responsive mailbox-messages">
                         <table class="table table-bordered" id="order-table">
-                          
+
                           <thead>
 
                           <tr class="bg-black">
@@ -72,7 +72,6 @@
                             <th class="mailbox-subject"><center>Product Name</center></th>
                             <th class="mailbox-subject"><center>Item Quantity</center></th>
                             <th class="mailbox-subject"><center>Product Price</center></th>
-                            <th class="mailbox-subject"><center>Promo Price</center></th>
 
                             <th class="mailbox-subject"><center>Operation</center></th>
                           </tr>
@@ -81,16 +80,15 @@
                           <tbody>
                           @foreach($orders as $order)
                           <tr>
-                            <td class="mailbox-subject"><center>{{$order->order_id}}</center></td>
-                            <td class="mailbox-subject"><center>{{$order->users->name}}</center></td>
-                            <td class="mailbox-subject"><center>{{$order->products->product_name}}</center></td>
+                            <td class="mailbox-subject"><center>{{$order->id}}</center></td>
+                            <td class="mailbox-subject"><center>{{$order->buyer}}</center></td>
+                            <td class="mailbox-subject"><center>{{$order->product}}</center></td>
                             <td class="mailbox-subject"><center>{{$order->item_quantity}}</center></td>
-                            <td class="mailbox-subject"><center>{{$order->product_price}}</center></td>
-                            <td class="mailbox-subject"><center>{{$order->promo_price}}</center></td>
+                            <td class="mailbox-subject"><center>{{$order->total_price}}</center></td>
 
                             <td class="mailbox-subject"><center><div class="btn-group">
                         <a class="button btn btn-success btn-sm" href="{{route('editOrder', ['order_id'=> $order->order_id])}}"><i class="fa fa-edit"></i> Edit</a>
-                        {{ Form::open(array('url' => 'order/' . $order->order_id, 'class' => 'pull-right')) }}
+                        {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
                         {{ Form::close() }}
@@ -98,7 +96,7 @@
                     </td>
                           </tr>
                          @endforeach
-                      
+
                           </tbody>
 
                         </table>
@@ -110,7 +108,7 @@
                 </div>
             </div>
             <!-- /.tab-pane -->
-            
+
           </div>
           <!-- /.tab-content -->
         </div>
@@ -137,7 +135,7 @@ $(document).ready(function()
         {
            console.log(response);
            $("[data-dismiss = modal]").trigger({type: "click"});
-          
+
         });
     });
 });

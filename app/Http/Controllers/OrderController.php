@@ -27,10 +27,10 @@ class OrderController extends Controller
 
     public function getOrder()
     {
-        $orders = Order::all();
-        $users = User::all();
-        $products = Product::all();
-        return view('order.order', compact('orders', 'users', 'products'));
+        $orders = Order::get();
+        // dump($orders);
+        // exit();
+        return view('order.list', compact('orders'));
     }
 
     public function editOrder($order_id, Request $request)
