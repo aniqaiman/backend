@@ -91,7 +91,9 @@
                       <th class="mailbox-subject">
                         <center>Total Price</center>
                       </th>
-
+                      <th class="mailbox-subject">
+                        <center>Status</center>
+                      </th>
                       <th class="mailbox-subject">
                         <center>Operation</center>
                       </th>
@@ -122,7 +124,8 @@
                       <td class="mailbox-subject">
                         <ul class="list-inline">
                           @foreach ($order->products as $product)
-                          <li>{{ $product->name }} x {{ $product->pivot->quantity }}kg = {{ $product->pivot->quantity * $product->latest_price->price_a }}</li>
+                          <li>{{ $product->name }} x {{ $product->pivot->quantity }}kg = RM {{ number_format($product->pivot->quantity
+                            * $product->latest_price->price_a, 2) }}</li>
                           @endforeach
                         </ul>
                       </td>
@@ -130,9 +133,14 @@
                         <center>{{$order->products->count()}}</center>
                       </td>
                       <td class="mailbox-subject">
-                        <center>{{$order->total_price}}</center>
+                        <center>RM {{ number_format($order->total_price, 2) }}</center>
                       </td>
-
+                      <td>
+                        <div class="btn-group btn-group-justified" role="group">
+                          <a href="" class="btn btn-success">Approve</a>
+                          <a href="" class="btn btn-danger">Reject</a>
+                        </div>
+                      </td>
                       <td class="mailbox-subject">
                         <center>
                           <div class="btn-group btn-group-xs">
