@@ -28,7 +28,7 @@ class OrderController extends Controller
     public function getOrder()
     {
         $orders = Order::get();
-        // dump($orders);
+        // dump(urlencode($orders[0]->user->name . ' location'));
         // exit();
         return view('order.list', compact('orders'));
     }
