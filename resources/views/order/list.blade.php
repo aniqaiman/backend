@@ -86,10 +86,7 @@
                       <th>Location</th>
                       <th>Items</th>
                       <th>
-                        <center>Item Quantity</center>
-                      </th>
-                      <th>
-                        <center>Total Price</center>
+                        <center>Total</center>
                       </th>
                       <th>
                         <center>Status</center>
@@ -131,10 +128,7 @@
                         </ul>
                       </td>
                       <td>
-                        <center>{{$order->products->count()}}</center>
-                      </td>
-                      <td>
-                        <center>RM {{ number_format($order->total_price, 2) }}</center>
+                        <center>{{ $order->total_quantity }}kg = RM {{ number_format($order->total_price, 2) }}</center>
                       </td>
                       <td class="text-nowrap">
                         <div class="btn-group-vertical btn-group-sm" role="group">

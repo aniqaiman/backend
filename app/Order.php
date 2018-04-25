@@ -40,4 +40,11 @@ class Order extends Model
                 return $product->latest_price->price_a * $product->pivot->quantity;
             });
     }
+
+    public function getTotalQuantityAttribute()
+    {
+        return $this->products()
+            ->get()
+            ->sum('pivot.quantity');
+    }
 }
