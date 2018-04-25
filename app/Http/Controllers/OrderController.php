@@ -27,10 +27,18 @@ class OrderController extends Controller
 
     public function getOrderReceipts()
     {
-        $orders = Order::get();
+        $orders = Order::where('status', 0)->get();
         // dump(urlencode($orders[0]->user->name . ' location'));
         // exit();
         return view('order.receipts', compact('orders'));
+    }
+
+    public function getOrderTrackings()
+    {
+        $orders = Order::where('status', 1)->get();
+        // dump(urlencode($orders[0]->user->name . ' location'));
+        // exit();
+        return view('order.trackings', compact('orders'));
     }
 
     public function editOrder($order_id, Request $request)

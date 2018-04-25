@@ -46,7 +46,7 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-header">
-          <h3 class="box-title">Order Receipts</h3>
+          <h3 class="box-title">Order Trackings</h3>
         </div>
         <div class="box-body">
           <div class="table-responsive">
