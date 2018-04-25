@@ -142,6 +142,31 @@
                           <a href="" class="btn btn-danger">Reject</a>
                         </div>
                       </td>
+                      <td>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            None
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li>
+                              <a href="#">Lorry 1</a>
+                            </li>
+                            <li>
+                              <a href="#">Lorry 2</a>
+                            </li>
+                            <li>
+                              <a href="#">Lorry 3</a>
+                            </li>
+                            <li>
+                              <a href="#">Lorry 4</a>
+                            </li>
+                            <li>
+                              <a href="#">Lorry 5</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
                       <td class="text-nowrap">
                         <center>
                           {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
@@ -150,21 +175,6 @@
                             {{ Form::submit('Delete', ['class' => 'btn btn-warning']) }} {{ Form::close() }}
                           </div>
                         </center>
-                      </td>
-                      <td>
-                        <div class="input-group input-group-sm">
-                          <select class="form-control">
-                            <option>Not Assigned</option>
-                            <option>Lorry 1</option>
-                            <option>Lorry 2</option>
-                            <option>Lorry 3</option>
-                            <option>Lorry 4</option>
-                            <option>Lorry 5</option>
-                          </select>
-                          <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Assign</button>
-                          </span>
-                        </div>
                       </td>
                     </tr>
                     @endforeach
