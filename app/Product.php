@@ -7,12 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $appends = [
-        'latest_price',
-        'price_difference',
-        'category',
-    ];
-    
     protected $fillable = [
         'name',
         'description',
@@ -30,11 +24,6 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo('App\Category');
-    }
-
-    public function getCategoryAttribute()
-    {
-        return $this->category()->get();
     }
 
     public function orders()
@@ -56,25 +45,25 @@ class Product extends Model
             ->orderBy("date_price", "desc");
     }
 
-    public function getLatestPriceAttribute()
+    public function priceLatest()
     {
         return $this->validPrices()
             ->first();
     }
 
-    public function getPreviousPriceAttribute()
+    public function pricePrevious()
     {
         return $this->validPrices()
             ->skip(1)
             ->first();
     }
 
-    public function getPriceDifferenceAttribute()
+    public function priceDifference()
     {
         return (object) [
-            "price_a" => is_null($this->previous_price) ? 0 : round(($this->latest_price->price_a - $this->previous_price->price_a) / $this->previous_price->price_a, 2),
-            "price_b" => is_null($this->previous_price) ? 0 : round(($this->latest_price->price_b - $this->previous_price->price_b) / $this->previous_price->price_b, 2),
-            "price_c" => is_null($this->previous_price) ? 0 : round(($this->latest_price->price_c - $this->previous_price->price_c) / $this->previous_price->price_c, 2),
+            "price_a" => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()->price_a - $this->pricePrevious()->price_a) / $this->pricePrevious()->price_a, 2),
+            "price_b" => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()->price_b - $this->pricePrevious()->price_b) / $this->pricePrevious()->price_b, 2),
+            "price_c" => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()->price_c - $this->pricePrevious()->price_c) / $this->pricePrevious()->price_c, 2),
         ];
     }
 
