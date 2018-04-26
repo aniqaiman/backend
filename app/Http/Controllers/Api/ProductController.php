@@ -14,10 +14,10 @@ class ProductController extends Controller
     public function getFruits(Request $request)
     {
         return response()->json([
-            "data" => Product::where("category_id", 1)
+            "data" => Product::with('category')
+                ->where("category_id", 1)
                 ->get()
                 ->each(function ($item, $key) {
-                    $item['category'] = $item->category();
                     $item['price_latest'] = $item->priceLatest();
                     $item['price_difference'] = $item->priceDifference();
                 }),
@@ -27,10 +27,10 @@ class ProductController extends Controller
     public function getVegetables()
     {
         return response()->json([
-            "data" => Product::where("category_id", 11)
+            "data" => Product::with('category')
+                ->where("category_id", 11)
                 ->get()
                 ->each(function ($item, $key) {
-                    $item['category'] = $item->category();
                     $item['price_latest'] = $item->priceLatest();
                     $item['price_difference'] = $item->priceDifference();
                 }),
