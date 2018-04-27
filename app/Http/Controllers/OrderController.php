@@ -49,6 +49,15 @@ class OrderController extends Controller
         return view('order.rejects', compact('orders'));
     }
 
+    public function approveOrder(Request $request)
+    {
+        $order = Order::find($request->order_id);
+        $order->status = $request->status;
+        $order->save();
+
+        return response($order);
+    }
+
     public function updateStatus(Request $request)
     {
         $order = Order::find($request->order_id);

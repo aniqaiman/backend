@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $appends = [
-        'total_price',
-    ];
-
     protected $fillable = [
         'user_id',
         'status',
@@ -27,12 +23,7 @@ class Order extends Model
             ->withPivot('quantity');
     }
 
-    public function getProductsAttribute()
-    {
-        return $this->products()->get();
-    }
-
-    public function getTotalPriceAttribute()
+    public function totalPrice()
     {
         return $this->products()
             ->get()
@@ -41,7 +32,7 @@ class Order extends Model
             });
     }
 
-    public function getTotalQuantityAttribute()
+    public function totalQuantity()
     {
         return $this->products()
             ->get()

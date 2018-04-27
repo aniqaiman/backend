@@ -35,7 +35,7 @@
                 <th>Buyer#</th>
                 <th>Location</th>
                 <th class="text-nowrap">Lorry Assigned</th>
-                <th class="col-xs-1">Status</th>
+                <th style="width: 1%;">Status</th>
               </tr>
             </thead>
 

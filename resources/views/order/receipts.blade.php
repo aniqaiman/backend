@@ -36,8 +36,8 @@
                 <th>Location</th>
                 <th>Items</th>
                 <th>Total</th>
-                <th class="col-xs-1">Status</th>
-                <th class="col-xs-1"></th>
+                <th style="width: 1%;">Status</th>
+                <th style="width: 1%;"></th>
               </tr>
             </thead>
 
@@ -55,23 +55,25 @@
                     </a>
                 </td>
                 <td>
-                  <ul class="list-unstyled">
+                  <table class="table">
                     @foreach ($order->products as $product)
-                    <li>
-                      {{ $product->name }} - {{ $product->pivot->quantity }}kg x RM {{ number_format($product->priceLatest()->price_a, 2) }} = RM
-                      {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }}
-                    </li>
+                    <tr>
+                      <td>{{ $product->name }}</td>
+                      <td>{{ $product->pivot->quantity }}kg</td>
+                      <td>RM {{ number_format($product->priceLatest()->price_a, 2) }}</td>
+                      <td>RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }}</td>
+                    </tr>
                     @endforeach
-                  </ul>
+                  </table>
                 </td>
                 <td>
-                  <span class="badge">{{ $order->total_quantity }}kg</span>
-                  <span class="badge">RM {{ number_format($order->total_price, 2) }}</span>
+                  <span class="badge">{{ $order->totalQuantity() }}kg</span>
+                  <span class="badge">RM {{ number_format($order->totalPrice(), 2) }}</span>
                 </td>
                 <td class="text-nowrap">
                   <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $order->id }}" data-status="1" onclick="updateStatus(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" onclick="updateStatus(this)">Rejected</button>
+                    <button class="btn btn-success" data-id="{{ $order->id }}" data-status="1" onclick="updateStatus(this)">Approve</button>
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" onclick="updateStatus(this)">Reject</button>
                   </div>
                 </td>
                 <td class="text-nowrap">
