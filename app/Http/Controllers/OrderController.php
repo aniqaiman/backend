@@ -52,8 +52,14 @@ class OrderController extends Controller
     public function approveOrder(Request $request)
     {
         $order = Order::find($request->order_id);
-        $order->status = $request->status;
+        $order->status = 1;
         $order->save();
+
+        foreach ($order->products() as $product) {
+            if ($product->pivot) {
+                # code...
+            }
+        }
 
         return response($order);
     }

@@ -55,8 +55,8 @@
                 </td>
                 <td>
                   <div class="lead">
-                    <span class="badge">{{ $order->totalQuantity() }}kg</span>
-                    <span class="badge">RM {{ number_format($order->totalPrice(), 2) }}</span>
+                    <span class="label label-default">{{ $order->totalQuantity() }}kg</span>
+                    <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
                   </div>
                   <table class="table">
                     @foreach ($order->products as $product)

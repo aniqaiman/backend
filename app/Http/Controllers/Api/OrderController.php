@@ -18,7 +18,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function getOrderDetails($order_id, Request $request)
+    public function getOrderDetails(Request $request, $order_id)
     {
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
