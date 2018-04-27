@@ -36,7 +36,6 @@
                 <th>Location</th>
                 <th class="text-nowrap">Lorry Assigned</th>
                 <th class="col-xs-1">Status</th>
-                <th class="col-xs-1"></th>
               </tr>
             </thead>
 
@@ -92,14 +91,6 @@
                     <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="3" onclick="updateStatus(this)">Pending</button>
                     @endif
                   </div>
-                </td>
-                <td class="text-nowrap">
-                  {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
-                  <div class="btn-group-vertical btn-group-sm">
-                    <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>{{
-                    Form::submit('Delete', ['class' => 'btn btn-warning']) }}
-                  </div>
-                  {{ Form::close() }}
                 </td>
               </tr>
               @endforeach
