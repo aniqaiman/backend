@@ -37,7 +37,7 @@ class Order extends Model
         return $this->products()
             ->get()
             ->sum(function ($product) {
-                return $product->latest_price->price_a * $product->pivot->quantity;
+                return $product->price_latest->price_a * $product->pivot->quantity;
             });
     }
 
