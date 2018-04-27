@@ -26,7 +26,7 @@ class OrderController extends Controller
     public function getOrderReceipts()
     {
         $orders = Order::where('status', 0)
-            ->orderBy('')
+            ->orderBy('created_at', 'desc')
             ->get();
         // dump($orders);
         // exit();
@@ -35,13 +35,17 @@ class OrderController extends Controller
 
     public function getOrderTrackings()
     {
-        $orders = Order::whereNotIn('status', [0, 2])->get();
+        $orders = Order::whereNotIn('status', [0, 2])
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('order.trackings', compact('orders'));
     }
 
     public function getOrderRejects()
     {
-        $orders = Order::where('status', 1)->get();
+        $orders = Order::where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('order.rejects', compact('orders'));
     }
 
