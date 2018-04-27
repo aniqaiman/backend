@@ -17,9 +17,9 @@ class ProductController extends Controller
             "data" => Product::with('category')
                 ->where("category_id", 1)
                 ->get()
-                ->each(function ($item, $key) {
-                    $item['price_latest'] = $item->priceLatest();
-                    $item['price_difference'] = $item->priceDifference();
+                ->each(function ($product, $key) {
+                    $product['price_latest'] = $product->priceLatest();
+                    $product['price_difference'] = $product->priceDifference();
                 }),
         ]);
     }
@@ -30,9 +30,9 @@ class ProductController extends Controller
             "data" => Product::with('category')
                 ->where("category_id", 11)
                 ->get()
-                ->each(function ($item, $key) {
-                    $item['price_latest'] = $item->priceLatest();
-                    $item['price_difference'] = $item->priceDifference();
+                ->each(function ($product, $key) {
+                    $product['price_latest'] = $product->priceLatest();
+                    $product['price_difference'] = $product->priceDifference();
                 }),
         ]);
     }
