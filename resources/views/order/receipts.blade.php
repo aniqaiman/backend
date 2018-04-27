@@ -35,7 +35,6 @@
                 <th>Buyer#</th>
                 <th>Location</th>
                 <th>Items</th>
-                <th>Total</th>
                 <th style="width: 1%;">Status</th>
                 <th style="width: 1%;"></th>
               </tr>
@@ -55,6 +54,10 @@
                     </a>
                 </td>
                 <td>
+                  <div class="lead">
+                    <span class="badge">{{ $order->totalQuantity() }}kg</span>
+                    <span class="badge">RM {{ number_format($order->totalPrice(), 2) }}</span>
+                  </div>
                   <table class="table">
                     @foreach ($order->products as $product)
                     <tr>
@@ -65,10 +68,6 @@
                     </tr>
                     @endforeach
                   </table>
-                </td>
-                <td>
-                  <span class="badge">{{ $order->totalQuantity() }}kg</span>
-                  <span class="badge">RM {{ number_format($order->totalPrice(), 2) }}</span>
                 </td>
                 <td class="text-nowrap">
                   <div class="btn-group-vertical btn-group-sm" role="group">
