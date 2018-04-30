@@ -87,7 +87,7 @@
                 <td class="text-nowrap">
                   @if ($order->status === 2)
                   <button class="btn btn-success btn-sm" data-id="{{ $order->id }}" data-status="3" data-type="order" onclick="updateStatus(this)">Completed</button>
-                  @elseif ($order->status === 3)
+                  @elseif ($order->status !== 3)
                   <button class="btn btn-success btn-sm" disabled>Completed</button>
                   @endif
                 </td>
