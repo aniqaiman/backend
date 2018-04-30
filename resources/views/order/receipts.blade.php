@@ -23,7 +23,10 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-header">
-          <h3 class="box-title">Order Receipts</h3>
+          <h3 class="box-title">
+            Order Receipts
+            <small>Buyer</small>
+          </h3>
         </div>
         <div class="box-body">
           <table class="table table-bordered" id="order-table" style="width:100%">
