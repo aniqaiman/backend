@@ -28,10 +28,12 @@ class OrderController extends Controller
         $orders = Order::where('status', 0)
             ->orderBy('created_at', 'desc')
             ->get();
-        // dump($orders);
-        // exit();
 
-        return view('order.receipts', compact('orders'));
+        $stocks = Stock::where('status', 0)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('order.receipts', compact('orders', 'stocks'));
     }
 
     public function getOrderTrackings()
@@ -48,7 +50,7 @@ class OrderController extends Controller
         $orders = Order::where('status', 1)
             ->orderBy('created_at', 'desc')
             ->get();
-            
+
         return view('order.rejects', compact('orders'));
     }
 

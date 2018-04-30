@@ -116,7 +116,7 @@
             <thead>
               <tr class="bg-black">
                 <th>Date</th>
-                <th>Order#</th>
+                <th>Stock#</th>
                 <th class="text-nowrap">Buyer Name</th>
                 <th>Buyer#</th>
                 <th>Location</th>
@@ -127,25 +127,25 @@
             </thead>
 
             <tbody>
-              @foreach($orders as $order)
+              @foreach($stocks as $stocks)
               <tr>
-                <td>{{ $order->created_at }}</td>
-                <td>{{ $order->id }}</td>
-                <td>{{ $order->user->name }}</td>
-                <td>{{ $order->user->id }}</td>
+                <td>{{ $stocks->created_at }}</td>
+                <td>{{ $stocks->id }}</td>
+                <td>{{ $stocks->user->name }}</td>
+                <td>{{ $stocks->user->id }}</td>
                 <td>
-                  {{ $order->user->address }}
-                  <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
+                  {{ $stocks->user->address }}
+                  <a href="https://www.google.com/maps/search/?api=1&query={{ $stocks->user->latitude }},{{ $stocks->user->longitude }}" target="_blank">
                       <i class="fa fa-map-marker"></i>
                     </a>
                 </td>
                 <td>
                   <div class="lead">
-                    <span class="label label-default">{{ $order->totalQuantity() }}kg</span>
-                    <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
+                    <span class="label label-default">{{ $stocks->totalQuantity() }}kg</span>
+                    <span class="label label-default">RM {{ number_format($stocks->totalPrice(), 2) }}</span>
                   </div>
                   <table class="table">
-                    @foreach ($order->products as $product)
+                    @foreach ($stocks->products as $product)
                     <tr>
                       <td>{{ $product->name }}</td>
                       <td>{{ $product->pivot->quantity }}kg</td>
@@ -157,14 +157,14 @@
                 </td>
                 <td class="text-nowrap">
                   <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $order->id }}" data-status="1" onclick="updateStatus(this)">Approve</button>
-                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" onclick="updateStatus(this)">Reject</button>
+                    <button class="btn btn-success" data-id="{{ $stocks->id }}" data-status="1" onclick="updateStatus(this)">Approve</button>
+                    <button class="btn btn-danger" data-id="{{ $stocks->id }}" data-status="2" onclick="updateStatus(this)">Reject</button>
                   </div>
                 </td>
                 <td class="text-nowrap">
-                  {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
+                  {{ Form::open(array('url' => 'order/' . $stocks->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
-                    <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>{{
+                    <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $stocks->stock_id]) }}">Edit</a>{{
                     Form::submit('Delete', ['class' => 'btn btn-warning']) }}
                   </div>
                   {{ Form::close() }}
