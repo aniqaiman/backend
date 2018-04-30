@@ -11,17 +11,24 @@ class StockController extends Controller
 {
     public function postStocks(Request $request)
     {
-        $stocks = $request->all();
-        $ids = array_column($stocks, 'product.id');
-        dump($ids);
-        exit;
+        $stock = new Stock();
+        $stock->status = 0;
+
+        JWTAuth::parseToken()->authenticate()
+            ->stocks()
+            ->save($stock);
+
+        foreach ($request->all() as $key => $product) {
+            $stock->products()->syncWithoutDetaching([
+                $product['product']['id'] => [
+                    'grade' => $product['grade'],
+                    'quantity' => $product['quantity'],
+                ],
+            ]);
+        }
 
         return response()->json([
-            'data' => JWTAuth::parseToken()->authenticate()
-                ->stocks()
-                ->syncWithoutDetaching([
-                    $request->input('product')['id'] => ['quantity' => $request->input('quantity')],
-                ]),
+            'data' => $stock,
         ]);
     }
 
