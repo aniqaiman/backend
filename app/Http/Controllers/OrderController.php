@@ -27,11 +27,9 @@ class OrderController extends Controller
     public function getOrderReceipts()
     {
         $orders = Order::where('status', 0)
-            ->orderBy('created_at', 'desc')
             ->get();
 
         $stocks = Stock::where('status', 0)
-            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('order.receipts', compact('orders', 'stocks'));

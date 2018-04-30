@@ -49,7 +49,7 @@
 
             <tbody>
               @foreach($orders as $order)
-              <tr>
+              <tr id="order_{{ $order->id }}">
                 <td>{{ $order->created_at }}</td>
                 <td>{{ $order->id }}</td>
                 <td>{{ $order->user->name }}</td>
@@ -128,25 +128,25 @@
             </thead>
 
             <tbody>
-              @foreach($stocks as $stocks)
-              <tr>
-                <td>{{ $stocks->created_at }}</td>
-                <td>{{ $stocks->id }}</td>
-                <td>{{ $stocks->user->name }}</td>
-                <td>{{ $stocks->user->id }}</td>
+              @foreach($stocks as $stock)
+              <tr id="stock_{{ $stock->id }}">
+                <td>{{ $stock->created_at }}</td>
+                <td>{{ $stock->id }}</td>
+                <td>{{ $stock->user->name }}</td>
+                <td>{{ $stock->user->id }}</td>
                 <td>
-                  {{ $stocks->user->address }}
-                  <a href="https://www.google.com/maps/search/?api=1&query={{ $stocks->user->latitude }},{{ $stocks->user->longitude }}" target="_blank">
+                  {{ $stock->user->address }}
+                  <a href="https://www.google.com/maps/search/?api=1&query={{ $stock->user->latitude }},{{ $stock->user->longitude }}" target="_blank">
                       <i class="fa fa-map-marker"></i>
                     </a>
                 </td>
                 <td>
                   <div class="lead">
-                    <span class="label label-default">{{ $stocks->totalQuantity() }}kg</span>
-                    <span class="label label-default">RM {{ number_format($stocks->totalPrice(), 2) }}</span>
+                    <span class="label label-default">{{ $stock->totalQuantity() }}kg</span>
+                    <span class="label label-default">RM {{ number_format($stock->totalPrice(), 2) }}</span>
                   </div>
                   <table class="table">
-                    @foreach ($stocks->products as $product)
+                    @foreach ($stock->products as $product)
                     <tr>
                       <td>{{ $product->name }}</td>
                       <td>Grade {{ $product->pivot->grade }}</td>
@@ -159,14 +159,14 @@
                 </td>
                 <td class="text-nowrap">
                   <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $stocks->id }}" data-status="1" onclick="updateStatus(this)">Approve</button>
-                    <button class="btn btn-danger" data-id="{{ $stocks->id }}" data-status="2" onclick="updateStatus(this)">Reject</button>
+                    <button class="btn btn-success" data-id="{{ $stock->id }}" data-status="1" onclick="updateStatus(this)">Approve</button>
+                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-status="2" onclick="updateStatus(this)">Reject</button>
                   </div>
                 </td>
                 <td class="text-nowrap">
-                  {{ Form::open(array('url' => 'order/' . $stocks->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
+                  {{ Form::open(array('url' => 'order/' . $stock->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
-                    <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $stocks->stock_id]) }}">Edit</a>{{
+                    <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $stock->stock_id]) }}">Edit</a>{{
                     Form::submit('Delete', ['class' => 'btn btn-warning']) }}
                   </div>
                   {{ Form::close() }}
