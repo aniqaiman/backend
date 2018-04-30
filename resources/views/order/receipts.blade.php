@@ -7,6 +7,7 @@
 <section class="content-header">
   <h1>
     Order Management
+    <small>Receipts</small>
   </h1>
 
   <ol class="breadcrumb">
@@ -21,12 +22,14 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success">
+      <div class="box box-success collapsed-box">
         <div class="box-header">
-          <h3 class="box-title">
-            Order Receipts
-            <small>Buyer</small>
-          </h3>
+          <h3 class="box-title">Buyer</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            </button>
+          </div>
         </div>
         <div class="box-body">
           <table class="table table-bordered" id="order-table" style="width:100%">
@@ -95,7 +98,85 @@
       <!-- /.box -->
     </div>
   </div>
-  <!-- Main content -->
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-success collapsed-box">
+        <div class="box-header">
+          <h3 class="box-title">Seller</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="box-body">
+          <table class="table table-bordered" id="order-table" style="width:100%">
+            <thead>
+              <tr class="bg-black">
+                <th>Date</th>
+                <th>Order#</th>
+                <th class="text-nowrap">Buyer Name</th>
+                <th>Buyer#</th>
+                <th>Location</th>
+                <th>Items</th>
+                <th style="width: 1%;">Status</th>
+                <th style="width: 1%;"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @foreach($orders as $order)
+              <tr>
+                <td>{{ $order->created_at }}</td>
+                <td>{{ $order->id }}</td>
+                <td>{{ $order->user->name }}</td>
+                <td>{{ $order->user->id }}</td>
+                <td>
+                  {{ $order->user->address }}
+                  <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
+                      <i class="fa fa-map-marker"></i>
+                    </a>
+                </td>
+                <td>
+                  <div class="lead">
+                    <span class="label label-default">{{ $order->totalQuantity() }}kg</span>
+                    <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
+                  </div>
+                  <table class="table">
+                    @foreach ($order->products as $product)
+                    <tr>
+                      <td>{{ $product->name }}</td>
+                      <td>{{ $product->pivot->quantity }}kg</td>
+                      <td>RM {{ number_format($product->priceLatest()->price_a, 2) }}</td>
+                      <td>RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }}</td>
+                    </tr>
+                    @endforeach
+                  </table>
+                </td>
+                <td class="text-nowrap">
+                  <div class="btn-group-vertical btn-group-sm" role="group">
+                    <button class="btn btn-success" data-id="{{ $order->id }}" data-status="1" onclick="updateStatus(this)">Approve</button>
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" onclick="updateStatus(this)">Reject</button>
+                  </div>
+                </td>
+                <td class="text-nowrap">
+                  {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
+                  <div class="btn-group-vertical btn-group-sm">
+                    <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>{{
+                    Form::submit('Delete', ['class' => 'btn btn-warning']) }}
+                  </div>
+                  {{ Form::close() }}
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
 </section>
 @endsection
  
