@@ -1,8 +1,8 @@
-@extends('layout.master') 
-@section('style')
+@extends("layout.master") 
+@section("style")
 @endsection
  
-@section('content')
+@section("content")
 
 <section class="content-header">
   <h1>
@@ -12,7 +12,7 @@
 
   <ol class="breadcrumb">
     <li>
-      <a href="{{ route('dashboard') }}">
+      <a href="{{ route("dashboard") }}">
         <i class="fa fa-dashboard"></i>Dashboard</a>
     </li>
     <li class="active">Order</li>
@@ -111,7 +111,7 @@
                 <td>None</td>
                 <td>None</td>
                 <td class="text-nowrap">
-                  <a class="btn btn-primary btn-sm" href="">Approve</a>
+                  <a class="btn btn-primary btn-sm" href="">Approved</a>
                 </td>
               </tr>
               @endforeach
@@ -125,27 +125,28 @@
 </section>
 @endsection
  
-@section('script')
+@section("script")
 <script>
   $(document).ready(function () {
-    $('#order-table').DataTable({
-      'ordering': false,
+    $("#order-table").DataTable({
+      "ordering": false,
     });
 
-    $('#stock-table').DataTable({
-      'ordering': false,
+    $("#stock-table").DataTable({
+      "ordering": false,
     });
 
   });
 
   function updateStatus(btn) {
-    var order = {
-      order_id: $(btn).data('id'),
-      status: $(btn).data('status')
+    var data = {
+      id: $(btn).data("id"),
+      status: $(btn).data("status"),
+      type: $(btn).data("type")
     }
 
     $.ajax("{{ route('order.status') }}", {
-      data: order,
+      data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
       method: "PUT",
