@@ -18,13 +18,13 @@
           </div>
           <div class="form-group">
             <label for="message-text" class="control-label">Description:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <textarea class="form-control" id="message-text" rows="3"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-outline">Send message</button>
       </div>
     </div>
   </div>
@@ -216,7 +216,7 @@
       var button = $(event.relatedTarget);
       var id = button.data('id');
       var modal = $(this);
-      modal.find('#exampleModalLabel').text(id + ' | Rejected Order Feedback');
+      modal.find('#exampleModalLabel').text('Rejected Order Feedback | ' + id);
     });
 
     $('#order-table').DataTable({
