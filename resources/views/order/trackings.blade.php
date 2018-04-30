@@ -84,7 +84,7 @@
                     </ul>
                   </div>
                 </td>
-                <td class="text-nowrap">
+                <td>
                   @if ($order->status === 1)
                   <button class="btn btn-success btn-sm" data-id="{{ $order->id }}" data-status="3" data-type="order" onclick="updateStatus(this)">Completed</button>
                   @elseif ($order->status !== 1)
@@ -164,10 +164,10 @@
                     </ul>
                   </div>
                 </td>
-                <td class="text-nowrap">
-                  @if ($stock->status === 2)
+                <td>
+                  @if ($stock->status === 1)
                   <button class="btn btn-success btn-sm" data-id="{{ $stock->id }}" data-status="3" data-type="stock" onclick="updateStatus(this)">Completed</button>
-                  @elseif ($stock->status === 3)
+                  @elseif ($stock->status !== 1)
                   <button class="btn btn-success btn-sm" disabled>Completed</button>
                   @endif
                 </td>

@@ -102,13 +102,13 @@
                     @endforeach
                   </table>
                 </td>
-                <td class="text-nowrap">
+                <td>
                   <div class="btn-group-vertical btn-group-sm" role="group">
                     <button class="btn btn-success" data-id="{{ $order->id }}" data-status="1" data-type="order" onclick="updateStatus(this)">Approved</button>
                     <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                   </div>
                 </td>
-                <td class="text-nowrap">
+                <td>
                   {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
                     <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>{{
@@ -183,13 +183,13 @@
                     @endforeach
                   </table>
                 </td>
-                <td class="text-nowrap">
+                <td>
                   <div class="btn-group-vertical btn-group-sm" role="group">
                     <button class="btn btn-success" data-id="{{ $stock->id }}" data-status="1" data-type="stock" onclick="updateStatus(this)">Approved</button>
                     <button class="btn btn-danger" data-id="{{ $stock->id }}" data-status="2" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                   </div>
                 </td>
-                <td class="text-nowrap">
+                <td>
                   {{ Form::open(array('url' => 'order/' . $stock->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
                     <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $stock->stock_id]) }}">Edit</a>{{

@@ -59,7 +59,7 @@
                 <td>None</td>
                 <td>None</td>
                 <td>None</td>
-                <td class="text-nowrap">
+                <td>
                   <a class="btn btn-primary btn-sm" href="">Approve</a>
                 </td>
               </tr>
@@ -110,7 +110,7 @@
                 <td>None</td>
                 <td>None</td>
                 <td>None</td>
-                <td class="text-nowrap">
+                <td>
                   <a class="btn btn-primary btn-sm" href="">Approved</a>
                 </td>
               </tr>
