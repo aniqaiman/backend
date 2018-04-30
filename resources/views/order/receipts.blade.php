@@ -217,7 +217,6 @@
       var id = button.data('id');
       var modal = $(this);
       modal.find('#exampleModalLabel').text(id + ' | Rejected Order Feedback');
-      modal.find('.modal-body input').val(recipient);
     });
 
     $('#order-table').DataTable({
