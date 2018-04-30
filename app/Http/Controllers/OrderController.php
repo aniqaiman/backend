@@ -70,11 +70,20 @@ class OrderController extends Controller
 
     public function updateStatus(Request $request)
     {
-        $order = Order::find($request->order_id);
-        $order->status = $request->status;
-        $order->save();
+        if ($request->type === "order") {
+            $order = Order::find($request->id);
+            $order->status = $request->status;
+            $order->save();
 
-        return response($order);
+            return response($order);
+        }
+        else if ($request->type === "stock") {
+            $stock = Stock::find($request->id);
+            $stock->status = $request->status;
+            $stock->save();
+
+            return response($stock);
+        }
     }
 
     public function editOrder($order_id, Request $request)
