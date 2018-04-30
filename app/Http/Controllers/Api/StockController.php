@@ -11,9 +11,10 @@ class StockController extends Controller
 {
     public function postStocks(Request $request)
     {
-        dump($request->all());
+        $stocks = $request->all();
+        $ids = array_column($stocks, 'product.id');
+        dump($ids);
         exit;
-        $stocks = $request->input('stocks');
 
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
