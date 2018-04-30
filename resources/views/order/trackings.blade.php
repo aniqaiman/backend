@@ -118,8 +118,8 @@
               <tr class="bg-black">
                 <th>Date</th>
                 <th>Order#</th>
-                <th class="text-nowrap">Buyer Name</th>
-                <th>Buyer#</th>
+                <th class="text-nowrap">Seller Name</th>
+                <th>Seller#</th>
                 <th>Location</th>
                 <th class="text-nowrap">Lorry Assigned</th>
                 <th style="width: 1%;">Status</th>

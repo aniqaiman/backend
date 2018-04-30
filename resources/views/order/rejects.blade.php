@@ -89,8 +89,8 @@
               <tr class="bg-black">
                 <th>Date</th>
                 <th>Stock#</th>
-                <th class="text-nowrap">Buyer Name</th>
-                <th>Buyer#</th>
+                <th class="text-nowrap">Seller Name</th>
+                <th>Seller#</th>
                 <th>Feedback Topic</th>
                 <th>Description</th>
                 <th>Response</th>
