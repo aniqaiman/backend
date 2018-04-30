@@ -153,6 +153,10 @@ Route::get('api/bestsellingproducts', 'Api\ProductController@getBestSellingProdu
 Route::get('api/orders', 'Api\OrderController@getOrders');
 Route::get('api/orders/{order_id}', 'Api\OrderController@getOrderDetails');
 
+// ------------------------------------------- Stock ---------------------------------------------------- //
+
+Route::post('api/stocks', 'Api\StockController@postStocks');
+
 // ------------------------------------------- Cart ---------------------------------------------------- //
 
 Route::get('api/carts', 'Api\CartController@getCartItems');

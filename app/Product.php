@@ -38,22 +38,28 @@ class Product extends Model
         return $this->hasMany('App\Price');
     }
 
-    public function validPrices()
+    public function validPrices($order_date)
     {
         return $this->prices()
-            ->whereDate("date_price", "<=", Carbon::now())
-            ->orderBy("date_price", "desc");
+            ->whereDate('date_price', '<=', $order_date)
+            ->orderBy('date_price', 'desc');
+    }
+
+    public function priceValid($order_date)
+    {
+        return $this->validPrices($order_date)
+            ->first();
     }
 
     public function priceLatest()
     {
-        return $this->validPrices()
+        return $this->validPrices(Carbon::now())
             ->first();
     }
 
     public function pricePrevious()
     {
-        return $this->validPrices()
+        return $this->validPrices(Carbon::now())
             ->skip(1)
             ->first();
     }
@@ -61,9 +67,9 @@ class Product extends Model
     public function priceDifference()
     {
         return (object) [
-            "price_a" => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()->price_a - $this->pricePrevious()->price_a) / $this->pricePrevious()->price_a, 2),
-            "price_b" => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()->price_b - $this->pricePrevious()->price_b) / $this->pricePrevious()->price_b, 2),
-            "price_c" => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()->price_c - $this->pricePrevious()->price_c) / $this->pricePrevious()->price_c, 2),
+            'price_a' => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()->price_a - $this->pricePrevious()->price_a) / $this->pricePrevious()->price_a, 2),
+            'price_b' => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()->price_b - $this->pricePrevious()->price_b) / $this->pricePrevious()->price_b, 2),
+            'price_c' => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()->price_c - $this->pricePrevious()->price_c) / $this->pricePrevious()->price_c, 2),
         ];
     }
 

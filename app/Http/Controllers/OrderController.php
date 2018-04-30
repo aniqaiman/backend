@@ -30,6 +30,7 @@ class OrderController extends Controller
             ->get();
         // dump($orders);
         // exit();
+
         return view('order.receipts', compact('orders'));
     }
 
@@ -38,6 +39,7 @@ class OrderController extends Controller
         $orders = Order::whereNotIn('status', [0, 2])
             ->orderBy('created_at', 'desc')
             ->get();
+
         return view('order.trackings', compact('orders'));
     }
 
@@ -46,6 +48,7 @@ class OrderController extends Controller
         $orders = Order::where('status', 1)
             ->orderBy('created_at', 'desc')
             ->get();
+            
         return view('order.rejects', compact('orders'));
     }
 

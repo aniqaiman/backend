@@ -14,7 +14,10 @@ class OrderController extends Controller
             'data' => JWTAuth::parseToken()->authenticate()
                 ->orders()
                 ->orderBy('created_at', 'desc')
-                ->get(),
+                ->get()
+                ->each(function ($order, $key) {
+                    $order['total_price'] = $order->totalPrice();
+                }),
         ]);
     }
 
