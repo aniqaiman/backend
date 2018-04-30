@@ -22,7 +22,7 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success collapsed-box">
+      <div class="box box-success">
         <div class="box-header">
           <h3 class="box-title">Buyer</h3>
 
@@ -73,7 +73,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success collapsed-box">
+      <div class="box box-success">
         <div class="box-header">
           <h3 class="box-title">Seller</h3>
 
