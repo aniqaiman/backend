@@ -88,7 +88,7 @@
                   @if ($order->status === 1)
                   <button class="btn btn-success btn-sm" data-id="{{ $order->id }}" data-status="3" data-type="order" onclick="updateStatus(this)">Completed</button>
                   @elseif ($order->status !== 1)
-                  <button class="btn btn-success btn-sm" disabled>Completed</button>
+                  <button class="btn btn-sm" disabled>Completed</button>
                   @endif
                 </td>
               </tr>
