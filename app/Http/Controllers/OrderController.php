@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Stock;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
