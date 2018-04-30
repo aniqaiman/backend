@@ -149,6 +149,7 @@
                     @foreach ($stocks->products as $product)
                     <tr>
                       <td>{{ $product->name }}</td>
+                      <td>Grade {{ $product->pivot->grade }}</td>
                       <td>{{ $product->pivot->quantity }}kg</td>
                       <td>RM {{ number_format($product->priceLatest()->price_a, 2) }}</td>
                       <td>RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }}</td>
