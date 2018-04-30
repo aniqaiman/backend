@@ -155,6 +155,9 @@ Route::get('api/orders/{order_id}', 'Api\OrderController@getOrderDetails');
 
 // ------------------------------------------- Stock ---------------------------------------------------- //
 
+Route::get('api/stocks', 'Api\StockController@getStocks');
+Route::get('api/stocks/{stock_id}', 'Api\StockController@getStockDetails');
+
 Route::post('api/stocks', 'Api\StockController@postStocks');
 
 // ------------------------------------------- Cart ---------------------------------------------------- //

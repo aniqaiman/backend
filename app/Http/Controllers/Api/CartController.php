@@ -50,7 +50,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function deleteCartItem($product_id, Request $request)
+    public function deleteCartItem(Request $request, $product_id)
     {
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
