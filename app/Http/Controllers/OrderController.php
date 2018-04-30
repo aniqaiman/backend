@@ -41,7 +41,11 @@ class OrderController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('order.trackings', compact('orders'));
+        $stocks = Stock::whereNotIn('status', [0, 2])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('order.trackings', compact('orders', 'stocks'));
     }
 
     public function getOrderRejects()
@@ -50,7 +54,11 @@ class OrderController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('order.rejects', compact('orders'));
+        $stocks = Stock::where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('order.rejects', compact('orders', 'stocks'));
     }
 
     public function approveOrder(Request $request)
@@ -76,8 +84,7 @@ class OrderController extends Controller
             $order->save();
 
             return response($order);
-        }
-        else if ($request->type === "stock") {
+        } else if ($request->type === "stock") {
             $stock = Stock::find($request->id);
             $stock->status = $request->status;
             $stock->save();

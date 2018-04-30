@@ -113,7 +113,7 @@
           </div>
         </div>
         <div class="box-body">
-          <table class="table table-bordered" id="order-table" style="width:100%">
+          <table class="table table-bordered" id="stock-table" style="width:100%">
             <thead>
               <tr class="bg-black">
                 <th>Date</th>
@@ -188,7 +188,10 @@
   $(document).ready(function () {
     $('#order-table').DataTable({
       'ordering': false,
-      'responsive': true,
+    });
+
+    $('#stock-table').DataTable({
+      'ordering': false,
     });
 
     $('#frm-order-create').on('submit', function (e) {

@@ -7,6 +7,7 @@
 <section class="content-header">
   <h1>
     Order Management
+    <small>Trackings</small>
   </h1>
 
   <ol class="breadcrumb">
@@ -21,9 +22,15 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success">
+      <div class="box box-success collapsed-box">
         <div class="box-header">
-          <h3 class="box-title">Order Trackings</h3>
+          <h3 class="box-title">Buyer</h3>
+
+          <div class="box-tools pull-right">
+            <span class="badge bg-light-blue">{{ $orders->count() }}</span>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            </button>
+          </div>
         </div>
         <div class="box-body">
           <table class="table table-bordered" id="order-table">
@@ -101,7 +108,94 @@
       <!-- /.box -->
     </div>
   </div>
-  <!-- Main content -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-success collapsed-box">
+        <div class="box-header">
+          <h3 class="box-title">Seller</h3>
+
+          <div class="box-tools pull-right">
+            <span class="badge bg-light-blue">{{ $stocks->count() }}</span>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="box-body">
+          <table class="table table-bordered" id="stock-table">
+            <thead>
+              <tr class="bg-black">
+                <th>Date</th>
+                <th>Order#</th>
+                <th class="text-nowrap">Buyer Name</th>
+                <th>Buyer#</th>
+                <th>Location</th>
+                <th class="text-nowrap">Lorry Assigned</th>
+                <th style="width: 1%;">Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @foreach($stocks as $stock)
+              <tr>
+                <td>{{ $stock->created_at }}</td>
+                <td>{{ $stock->id }}</td>
+                <td>{{ $stock->user->name }}</td>
+                <td>{{ $stock->user->id }}</td>
+                <td>
+                  {{ $stock->user->address }}
+                  <a href="https://www.google.com/maps/search/?api=1&query={{ $stock->user->latitude }},{{ $stock->user->longitude }}" target="_blank">
+                    <i class="fa fa-map-marker"></i>
+                  </a>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        No Lorry Assigned
+                        <span class="caret"></span>
+                      </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#">Lorry 1</a>
+                      </li>
+                      <li>
+                        <a href="#">Lorry 2</a>
+                      </li>
+                      <li>
+                        <a href="#">Lorry 3</a>
+                      </li>
+                      <li>
+                        <a href="#">Lorry 4</a>
+                      </li>
+                      <li>
+                        <a href="#">Lorry 5</a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+                <td class="text-nowrap">
+                  <div class="btn-group-vertical btn-group-sm" role="group">
+                    @if ($stock->status === 4)
+                    <button class="btn btn-success" disabled>Paid</button>
+                    @else
+                    <button class="btn btn-success" data-id="{{ $stock->id }}" data-status="4" onclick="updateStatus(this)">Paid</button>
+                    @endif
+                    
+                    @if ($stock->status === 3)
+                    <button class="btn btn-danger" disabled>Pending</button>
+                    @else
+                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-status="3" onclick="updateStatus(this)">Pending</button>
+                    @endif
+                  </div>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
 </section>
 @endsection
  
@@ -110,7 +204,10 @@
   $(document).ready(function () {
     $('#order-table').DataTable({
       'ordering': false,
-      'responsive': true,
+    });
+
+    $('#stock-table').DataTable({
+      'ordering': false,
     });
 
     $('#frm-order-create').on('submit', function (e) {

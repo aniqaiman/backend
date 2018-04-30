@@ -7,6 +7,7 @@
 <section class="content-header">
   <h1>
     Order Management
+    <small>Rejects</small>
   </h1>
 
   <ol class="breadcrumb">
@@ -23,7 +24,13 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-header">
-          <h3 class="box-title">Order Rejects</h3>
+          <h3 class="box-title">Buyer</h3>
+
+          <div class="box-tools pull-right">
+            <span class="badge bg-light-blue">{{ $orders->count() }}</span>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            </button>
+          </div>
         </div>
         <div class="box-body">
           <table class="table table-bordered" id="order-table" style="width:100%">
@@ -64,7 +71,57 @@
       <!-- /.box -->
     </div>
   </div>
-  <!-- Main content -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-success">
+        <div class="box-header">
+          <h3 class="box-title">Seller</h3>
+
+          <div class="box-tools pull-right">
+            <span class="badge bg-light-blue">{{ $stocks->count() }}</span>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="box-body">
+          <table class="table table-bordered" id="stock-table" style="width:100%">
+            <thead>
+              <tr class="bg-black">
+                <th>Date</th>
+                <th>Stock#</th>
+                <th class="text-nowrap">Buyer Name</th>
+                <th>Buyer#</th>
+                <th>Feedback Topic</th>
+                <th>Description</th>
+                <th>Response</th>
+                <th class="col-xs-1">Status</th>
+                <th class="col-xs-1"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @foreach($stocks as $stock)
+              <tr>
+                <td>{{ $stock->created_at }}</td>
+                <td>{{ $stock->id }}</td>
+                <td>{{ $stock->user->name }}</td>
+                <td>{{ $stock->user->id }}</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td class="text-nowrap">
+                  <a class="btn btn-primary btn-sm" href="">Approve</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
 </section>
 @endsection
  
@@ -73,7 +130,10 @@
   $(document).ready(function () {
     $('#order-table').DataTable({
       'ordering': false,
-      'responsive': true,
+    });
+
+    $('#stock-table').DataTable({
+      'ordering': false,
     });
 
   });
