@@ -110,7 +110,7 @@
                 <td class="text-nowrap">
                   <div class="btn-group-vertical btn-group-sm" role="group">
                     <button class="btn btn-success" data-id="{{ $order->id }}" data-status="1" data-type="order" onclick="updateStatus(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" data-type="order" data-toggle="modal" data-target="#myModal">Rejected</button>
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                   </div>
                 </td>
                 <td class="text-nowrap">
@@ -191,7 +191,7 @@
                 <td class="text-nowrap">
                   <div class="btn-group-vertical btn-group-sm" role="group">
                     <button class="btn btn-success" data-id="{{ $stock->id }}" data-status="1" data-type="stock" onclick="updateStatus(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-status="2" data-type="stock" onclick="updateStatus(this)">Rejected</button>
+                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-status="2" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                   </div>
                 </td>
                 <td class="text-nowrap">
