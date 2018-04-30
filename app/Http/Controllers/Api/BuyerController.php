@@ -11,30 +11,30 @@ class BuyerController extends Controller
 {
     public function postRegisterBuyer(Request $request)
     {
-        if (User::where('company_registration_mykad_number', $request->get('company_registration_mykad_number'))->exists()) {
+        if (User::where('company_registration_mykad_number', $request->input('company_registration_mykad_number'))->exists()) {
             return response()->json([
                 'message' => 'The (company registration / MyKad) number had been used.',
             ], 403);
         }
 
-        if (User::where('email', $request->get('email'))->exists()) {
+        if (User::where('email', $request->input('email'))->exists()) {
             return response()->json([
                 'message' => 'The email had been used.',
             ], 403);
         }
 
         $buyer = User::create([
-            'name' => $request->get('name'),
-            'company_name' => $request->get('company_name'),
-            'company_registration_mykad_number' => $request->get('company_registration_mykad_number'),
-            'bussiness_hour' => $request->get('bussiness_hour'),
-            'address' => $request->get('address'),
-            'latitude' => $request->get('latitude'),
-            'longitude' => $request->get('longitude'),
-            'mobile_number' => $request->get('mobile_number'),
-            'phone_number' => $request->get('phone_number'),
-            'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password')),
+            'name' => $request->input('name'),
+            'company_name' => $request->input('company_name'),
+            'company_registration_mykad_number' => $request->input('company_registration_mykad_number'),
+            'bussiness_hour' => $request->input('bussiness_hour'),
+            'address' => $request->input('address'),
+            'latitude' => $request->input('latitude'),
+            'longitude' => $request->input('longitude'),
+            'mobile_number' => $request->input('mobile_number'),
+            'phone_number' => $request->input('phone_number'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
             'group_id' => 11,
             'status_email' => 0,
             'status_account' => 0,

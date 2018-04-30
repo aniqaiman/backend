@@ -45,7 +45,7 @@ class CartController extends Controller
             'data' => JWTAuth::parseToken()->authenticate()
                 ->carts()
                 ->syncWithoutDetaching([
-                    $request->get('product')['id'] => ['quantity' => $request->get('quantity')],
+                    $request->input('product')['id'] => ['quantity' => $request->input('quantity')],
                 ]),
         ]);
     }

@@ -11,15 +11,15 @@ class StockController extends Controller
 {
     public function postStocks(Request $request)
     {
-        dump($request);
+        dump($request->all());
         exit;
-        $stocks = $request->get('stocks');
+        $stocks = $request->input('stocks');
 
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
                 ->stocks()
                 ->syncWithoutDetaching([
-                    $request->get('product')['id'] => ['quantity' => $request->get('quantity')],
+                    $request->input('product')['id'] => ['quantity' => $request->input('quantity')],
                 ]),
         ]);
     }
