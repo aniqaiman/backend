@@ -24,7 +24,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btn-outline">Send message</button>
+        <button type="button" class="btn btn-success btn-outline">Send message</button>
       </div>
     </div>
   </div>
