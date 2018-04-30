@@ -29,7 +29,12 @@ class StockController extends Controller
                 ->stocks()
                 ->find($stock_id)
                 ->products()
-                ->get(),
+                ->with('category')
+                ->get()
+                ->each(function ($product, $key) {
+                    $product['price_latest'] = $product->priceLatest();
+                    $product['price_difference'] = $product->priceDifference();
+                }),
         ]);
     }
 
