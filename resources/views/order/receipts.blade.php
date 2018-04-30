@@ -107,6 +107,7 @@
           <h3 class="box-title">Seller</h3>
 
           <div class="box-tools pull-right">
+            <span class="badge bg-light-blue">{{ $stocks->count() }}</span>
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
             </button>
           </div>
