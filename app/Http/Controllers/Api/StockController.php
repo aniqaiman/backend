@@ -16,8 +16,8 @@ class StockController extends Controller
                 ->stocks()
                 ->orderBy('created_at', 'desc')
                 ->get()
-                ->each(function ($order, $key) {
-                    $order['total_price'] = $order->totalPrice();
+                ->each(function ($stock, $key) {
+                    $stock['total_price'] = $stock->totalPrice();
                 }),
         ]);
     }

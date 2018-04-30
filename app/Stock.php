@@ -22,4 +22,20 @@ class Stock extends Model
             ->belongsToMany('App\Product')
             ->withPivot('grade', 'quantity');
     }
+
+    public function totalPrice()
+    {
+        return $this->products()
+            ->get()
+            ->sum(function ($product) {
+                return $product->priceLatest()->price_a * $product->pivot->quantity;
+            });
+    }
+
+    public function totalQuantity()
+    {
+        return $this->products()
+            ->get()
+            ->sum('pivot.quantity');
+    }
 }
