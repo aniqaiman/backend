@@ -3,5 +3,6 @@
 @endsection
 @section('content')
 
+Welcome to FoodRico
 
 @endsection
