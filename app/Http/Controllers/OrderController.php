@@ -67,14 +67,16 @@ class OrderController extends Controller
         $order->status = 1;
         $order->save();
 
-        foreach ($order->products() as $product) {
+        foreach ($order->products as $product) {
             if ($product->pivot->grade === "A") {
-                $product->quantity_a += $product->pivot->quantity;
+                $product->quantity_a -= $product->pivot->quantity;
             } else if ($product->pivot->grade === "B") {
-                $product->quantity_b += $product->pivot->quantity;
+                $product->quantity_b -= $product->pivot->quantity;
             } else if ($product->pivot->grade === "C") {
-                $product->quantity_c += $product->pivot->quantity;
+                $product->quantity_c -= $product->pivot->quantity;
             }
+
+            $product->save();
         }
 
         return response($order);
@@ -86,7 +88,7 @@ class OrderController extends Controller
         $stock->status = 1;
         $stock->save();
 
-        foreach ($stock->products() as $product) {
+        foreach ($stock->products as $product) {
             if ($product->pivot->grade === "A") {
                 $product->quantity_a += $product->pivot->quantity;
             } else if ($product->pivot->grade === "B") {
@@ -94,26 +96,35 @@ class OrderController extends Controller
             } else if ($product->pivot->grade === "C") {
                 $product->quantity_c += $product->pivot->quantity;
             }
+
+            $product->save();
         }
 
         return response($stock);
     }
 
-    public function updateStatus(Request $request)
+    public function rejectBuyerOrder(Request $request)
     {
-        if ($request->type === "order") {
-            $order = Order::find($request->id);
-            $order->status = $request->status;
-            $order->save();
+        $order = Order::find($request->id);
+        $order->status = 2;
+        $order->feedback_topic = $request->topic;
+        $order->feedback_description = $request->description;
+        $order->feedback_read = 0;
+        $order->save();
 
-            return response($order);
-        } else if ($request->type === "stock") {
-            $stock = Stock::find($request->id);
-            $stock->status = $request->status;
-            $stock->save();
+        return response($order);
+    }
 
-            return response($stock);
-        }
+    public function rejectSellerStock(Request $request)
+    {
+        $stock = Stock::find($request->id);
+        $stock->status = 2;
+        $stock->feedback_topic = $request->topic;
+        $stock->feedback_description = $request->description;
+        $stock->feedback_read = 0;
+        $stock->save();
+
+        return response($stock);
     }
 
     public function editOrder($order_id, Request $request)

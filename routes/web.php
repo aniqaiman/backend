@@ -66,9 +66,10 @@ Route::get('orders/rejects', ['as' => 'orders.rejects', 'uses' => 'OrderControll
 Route::get('orders/{order_id}', ['as' => 'orders.edit', 'uses' => 'OrderController@editOrder']);
 Route::post('orders', ['as' => 'orders.create', 'uses' => 'OrderController@createOrder']);
 Route::post('orders/update', ['as' => 'orders.update', 'uses' => 'OrderController@updateOrder']);
-Route::put('orders/status', ['as' => 'orders.status', 'uses' => 'OrderController@updateStatus']);
 Route::put('orders/buyers/approve', ['as' => 'orders.buyers.approve', 'uses' => 'OrderController@approveBuyerOrder']);
 Route::put('orders/sellers/approve', ['as' => 'orders.sellers.approve', 'uses' => 'OrderController@approveSellerStock']);
+Route::put('orders/buyers/reject', ['as' => 'orders.buyers.reject', 'uses' => 'OrderController@rejectBuyerOrder']);
+Route::put('orders/sellers/reject', ['as' => 'orders.sellers.reject', 'uses' => 'OrderController@rejectSellerStock']);
 Route::delete('orders/{order_id}', ['as' => 'deleteOrder', 'uses' => 'OrderController@deleteOrder']);
 
 // -------------------------------------------User----------------------------------------------------

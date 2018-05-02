@@ -31,7 +31,7 @@ class Product extends Model
         return $this
             ->belongsToMany('App\User')
             ->withPivot(
-                'grade', 
+                'grade',
                 'quantity'
             );
     }
@@ -41,12 +41,8 @@ class Product extends Model
         return $this
             ->belongsToMany('App\Order')
             ->withPivot(
-                'grade', 
-                'quantity',
-                'feedback_topic',
-                'feedback_description',
-                'feedback_response',
-                'feedback_read'
+                'grade',
+                'quantity'
             );
     }
 
@@ -55,12 +51,8 @@ class Product extends Model
         return $this
             ->belongsToMany('App\Stock')
             ->withPivot(
-                'grade', 
-                'quantity',
-                'feedback_topic',
-                'feedback_description',
-                'feedback_response',
-                'feedback_read'
+                'grade',
+                'quantity'
             );
     }
 

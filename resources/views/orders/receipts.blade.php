@@ -14,17 +14,18 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="control-label">Topic:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" class="form-control" id="feedback-topic">
           </div>
           <div class="form-group">
             <label for="message-text" class="control-label">Description:</label>
-            <textarea class="form-control" id="message-text" rows="3"></textarea>
+            <textarea class="form-control" id="feedback-description" rows="3"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline">Submit Feedback</button>
+        <button type="button" class="btn btn-outline" id="feedback-submit">Submit Feedback</button>
+        <input type="hidden" id="feedback-id" />
       </div>
     </div>
   </div>
@@ -129,7 +130,7 @@
                 <td>
                   <div class="btn-group-vertical btn-group-sm" role="group">
                     <button class="btn btn-success" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-toggle="modal" data-target="#exampleModal">Rejected</button>
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                   </div>
                 </td>
                 <td>
@@ -208,7 +209,7 @@
                           @case("B")
                             RM {{ number_format($product->priceLatest()->price_b, 2) }}
                             @break
-                          @case("B")
+                          @case("C")
                             RM {{ number_format($product->priceLatest()->price_c, 2) }}
                             @break
                         @endswitch
@@ -221,7 +222,7 @@
                           @case("B")
                             RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b, 2) }}
                             @break
-                          @case("B")
+                          @case("C")
                             RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c, 2) }}
                             @break
                         @endswitch
@@ -233,7 +234,7 @@
                 <td>
                   <div class="btn-group-vertical btn-group-sm" role="group">
                     <button class="btn btn-success" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-toggle="modal" data-target="#exampleModal">Rejected</button>
+                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                   </div>
                 </td>
                 <td>
@@ -262,8 +263,17 @@
     $('#exampleModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget);
       var id = button.data('id');
+      
       var modal = $(this);
       modal.find('#exampleModalLabel').text('Rejected Order Feedback | ' + id);
+      modal.find('#feedback-id').val(id);
+
+      var type = button.data('type');
+      if (type === 'order') {
+        $("#feedback-submit").on("click", rejectBuyerOrder);
+      } else if (type === 'stock') {
+        $("#feedback-submit").on("click", rejectSellerOrder);
+      }
     });
 
     $('#order-table').DataTable({
@@ -323,14 +333,36 @@
     });
   }
 
-  function updateStatus(btn) {
+  function rejectBuyerOrder() {
     var data = {
-      id: $(btn).data('id'),
-      status: $(btn).data('status'),
-      type: $(btn).data('type')
-    }
+      id: $('#feedback-id').val(),
+      topic: $('#feedback-topic').val(),
+      description: $('#feedback-description').val(),
+    };
+    
+    console.log(data);
 
-    $.ajax("{{ route('orders.status') }}", {
+    $.ajax("{{ route('orders.buyers.reject') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        window.location.href = window.location.href;
+      }
+    });
+  }
+
+  function rejectSellerOrder() {
+    var data = {
+      id: $('#feedback-id').val(),
+      topic: $('#feedback-topic').val(),
+      description: $('#feedback-description').val(),
+    };
+    
+    console.log(data);
+
+    $.ajax("{{ route('orders.sellers.reject') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
