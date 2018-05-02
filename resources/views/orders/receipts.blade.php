@@ -145,6 +145,8 @@
               @endforeach
             </tbody>
           </table>
+
+          {{ $orders->links() }}
         </div>
       </div>
       <!-- /.box -->
@@ -249,6 +251,8 @@
               @endforeach
             </tbody>
           </table>
+
+          {{ $stocks->links() }}
         </div>
       </div>
       <!-- /.box -->
@@ -278,10 +282,12 @@
 
     $('#order-table').DataTable({
       'ordering': false,
+      'paging': false,
     });
 
     $('#stock-table').DataTable({
       'ordering': false,
+      'paging': false,
     });
 
     $('#frm-order-create').on('submit', function (e) {

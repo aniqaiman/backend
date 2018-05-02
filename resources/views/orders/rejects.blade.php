@@ -68,6 +68,8 @@
               @endforeach
             </tbody>
           </table>
+
+          {{ $orders->links() }}
         </div>
       </div>
       <!-- /.box -->
@@ -121,6 +123,8 @@
               @endforeach
             </tbody>
           </table>
+
+          {{ $stocks->links() }}
         </div>
       </div>
       <!-- /.box -->
@@ -134,10 +138,12 @@
   $(document).ready(function () {
     $("#order-table").DataTable({
       "ordering": false,
+      'paging': false,
     });
 
     $("#stock-table").DataTable({
       "ordering": false,
+      'paging': false,
     });
 
   });
