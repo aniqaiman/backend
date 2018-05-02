@@ -342,23 +342,5 @@
     });*/
   }
 
-  function updateStatus(btn) {
-    var data = {
-      id: $(btn).data('id'),
-      status: $(btn).data('status'),
-      type: $(btn).data('type')
-    }
-
-    $.ajax("{{ route('orders.status') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        window.location.href = window.location.href;
-      }
-    });
-  }
-
 </script>
 @endsection
