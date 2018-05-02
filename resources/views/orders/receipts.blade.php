@@ -266,6 +266,13 @@
       var modal = $(this);
       modal.find('#exampleModalLabel').text('Rejected Order Feedback | ' + id);
       modal.find('#feedback-id').val(id);
+
+      var type = button.data('type');
+      if (type === 'order') {
+        $("#feedback-submit").on("click", rejectBuyerOrder);
+      } else if (type === 'stock') {
+        $("#feedback-submit").on("click", rejectSellerOrder);
+      }
     });
 
     $('#order-table').DataTable({
