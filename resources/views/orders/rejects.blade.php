@@ -60,7 +60,7 @@
                 <td>None</td>
                 <td>None</td>
                 <td>
-                  <a class="btn btn-primary btn-sm" href="">Approve</a>
+                  <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
                 </td>
               </tr>
               @endforeach
@@ -111,7 +111,7 @@
                 <td>None</td>
                 <td>None</td>
                 <td>
-                  <a class="btn btn-primary btn-sm" href="">Approved</a>
+                  <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" onclick="approveSellerStock(this)">Approved</button>
                 </td>
               </tr>
               @endforeach
@@ -138,14 +138,30 @@
 
   });
 
-  function updateStatus(btn) {
+  function approveBuyerOrder(btn) {
     var data = {
-      id: $(btn).data("id"),
-      status: $(btn).data("status"),
-      type: $(btn).data("type")
+      id: $(btn).data('id'),
+      status: $(btn).data('status')
     }
 
-    $.ajax("{{ route('orders.status') }}", {
+    $.ajax("{{ route('orders.buyers.approve') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        window.location.href = window.location.href;
+      }
+    });
+  }
+
+  function approveSellerStock(btn) {
+    var data = {
+      id: $(btn).data('id'),
+      status: $(btn).data('status')
+    }
+
+    $.ajax("{{ route('orders.sellers.approve') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
