@@ -41,6 +41,8 @@ class CartController extends Controller
 
     public function postCartItem(Request $request)
     {
+        dump($request->all());
+        exit;
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
                 ->carts()
