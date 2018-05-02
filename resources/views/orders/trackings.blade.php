@@ -86,7 +86,7 @@
                 </td>
                 <td>
                   @if ($order->status === 1)
-                  <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" data-status="3" data-type="order" onclick="updateStatus(this)">Completed</button>
+                  <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" data-type="order" onclick="updateStatus(this)">Completed</button>
                   @elseif ($order->status !== 1)
                   <button class="btn btn-success btn-sm" disabled>Completed</button>
                   @endif
@@ -166,7 +166,7 @@
                 </td>
                 <td>
                   @if ($stock->status === 1)
-                  <button class="btn btn-primary btn-sm" data-id="{{ $stock->id }}" data-status="3" data-type="stock" onclick="updateStatus(this)">Completed</button>
+                  <button class="btn btn-primary btn-sm" data-id="{{ $stock->id }}" data-type="stock" onclick="updateStatus(this)">Completed</button>
                   @elseif ($stock->status !== 1)
                   <button class="btn btn-success btn-sm" disabled>Completed</button>
                   @endif
@@ -210,13 +210,13 @@
   });
 
   function updateStatus(btn) {
-    var order = {
-      order_id: $(btn).data('id'),
-      status: $(btn).data('status')
+    var data = {
+      id: $(btn).data('id'),
+      type: $(btn).data('type')
     }
 
-    $.ajax("{{ route('orders.status') }}", {
-      data: order,
+    $.ajax("{{ route('orders.complete') }}", {
+      data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
       method: "PUT",

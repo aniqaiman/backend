@@ -127,6 +127,21 @@ class OrderController extends Controller
         return response($stock);
     }
 
+    public function completeOrderStock(Request $request)
+    {
+        if ($request->type === "order") {
+            $order = Order::find($request->id);
+            $order->status = 3;
+            $order->save();
+        } else if ($request->type === "stock") {
+            $stock = Stock::find($request->id);
+            $stock->status = 3;
+            $stock->save();
+        }
+
+        return response("success");
+    }
+
     public function editOrder($order_id, Request $request)
     {
         $order = Order::where('order_id', $request->order_id)->first();
