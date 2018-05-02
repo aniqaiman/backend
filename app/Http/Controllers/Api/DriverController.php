@@ -38,7 +38,6 @@ class DriverController extends Controller
         ]);
         $userEmail = $request->email;
 
-        // $groups = Group::where('group_id',$request->group_id)->firstOrFail();
         Mail::send('email.sendemail', ['user' => $driver], function ($message) use ($userEmail) {
 
             $message->from('wanmuz.ada@gmail.com', 'Admin');
