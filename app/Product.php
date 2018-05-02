@@ -26,11 +26,42 @@ class Product extends Model
         return $this->belongsTo('App\Category');
     }
 
+    public function carts()
+    {
+        return $this
+            ->belongsToMany('App\User')
+            ->withPivot(
+                'grade', 
+                'quantity'
+            );
+    }
+
     public function orders()
     {
         return $this
             ->belongsToMany('App\Order')
-            ->withPivot('quantity');
+            ->withPivot(
+                'grade', 
+                'quantity',
+                'feedback_topic',
+                'feedback_description',
+                'feedback_response',
+                'feedback_read'
+            );
+    }
+
+    public function stocks()
+    {
+        return $this
+            ->belongsToMany('App\Stock')
+            ->withPivot(
+                'grade', 
+                'quantity',
+                'feedback_topic',
+                'feedback_description',
+                'feedback_response',
+                'feedback_read'
+            );
     }
 
     public function prices()
@@ -73,31 +104,4 @@ class Product extends Model
         ];
     }
 
-    public function carts()
-    {
-        return $this
-            ->belongsToMany('App\User')
-            ->withPivot(
-                'grade', 
-                'quantity',
-                'feedback_topic',
-                'feedback_description',
-                'feedback_response',
-                'feedback_read'
-            );
-    }
-
-    public function stocks()
-    {
-        return $this
-            ->belongsToMany('App\Stock')
-            ->withPivot(
-                'grade', 
-                'quantity',
-                'feedback_topic',
-                'feedback_description',
-                'feedback_response',
-                'feedback_read'
-            );
-    }
 }
