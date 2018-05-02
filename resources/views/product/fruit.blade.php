@@ -6,12 +6,15 @@
 
 <section class="content-header">
   <h1>
-    FRUIT
-    <small>Control panel</small>
+    Product Management
+    <small>Fruit</small>
   </h1>
 
   <ol class="breadcrumb">
-    <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+    <li>
+      <a href="{{ route('dashboard') }}">
+        <i class="fa fa-dashboard"></i>Dashboard</a>
+    </li>
     <li class="active">Fruit</li>
   </ol>
 </section>
@@ -21,7 +24,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <h4 class="modal-title" id="myModalLabel">Add Fruit</h4>
       </div>
 
@@ -92,18 +97,18 @@
             <table class="table table-bordered" id="product-table">
               <thead>
                 <tr class="bg-black">
-                  <th class="mailbox-star">
+                  <th>
                     <center>Fruit Image</center>
                   </th>
-                  <th class="mailbox-star">
+                  <th>
                     <center>Fruit Name</center>
                   </th>
-                  <!-- <th class="mailbox-star"><center>Short Description</center></th> -->
-                  <!-- <th class="mailbox-star"><center>Latest Price</center></th> -->
-                  <th class="mailbox-star">
+                  <!-- <th><center>Short Description</center></th> -->
+                  <!-- <th><center>Latest Price</center></th> -->
+                  <th>
                     <center>Fruit Quantity</center>
                   </th>
-                  <th class="mailbox-star">
+                  <th>
                     <center>Operation</center>
                   </th>
                 </tr>
@@ -114,7 +119,8 @@
                 <tr>
                   <td class="col-sm-3">
                     <center>
-                      <img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$fruit->image}}"></a>
+                      <img style="width: 25%" src="{{ env('APP_PHOTO_URL') }}{{$fruit->image}}">
+                      </a>
                     </center>
                   </td>
                   <td class="mailbox-name">
@@ -128,14 +134,13 @@
                   <td class="mailbox-subject">
                     <center>
                       <div class="btn-group">
-                        <a class="button btn btn-success btn-sm" href="{{route('editFruit', ['product_id'=> $fruit->id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="button btn btn-success btn-sm" href="{{route('editFruit', ['product_id'=> $fruit->id])}}">
+                          <i class="fa fa-edit"></i> Edit</a>
                         <a class="button btn btn-primary btn-sm" href="{{route('getFruitDetail', ['product_id'=> $fruit->id])}}">
                           <i class="fa fa-eye"></i> Details & Price
-                        </a>
-                        {{ Form::open(array('url' => 'fruit/' . $fruit->id, 'class' => 'pull-right')) }}
-                        {{ Form::hidden('_method', 'DELETE') }}
-                        {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
-                        {{ Form::close() }}
+                        </a> {{ Form::open(array('url' => 'fruit/' . $fruit->id, 'class' => 'pull-right'))
+                        }} {{ Form::hidden('_method', 'DELETE') }} {{ Form::submit('Delete', array('class' => 'button btn
+                        btn-warning btn-sm')) }} {{ Form::close() }}
                       </div>
                     </center>
                   </td>
@@ -143,7 +148,6 @@
                 @endforeach
               </tbody>
             </table>
-            <!-- /.table -->
           </div>
         </div>
       </div>
@@ -155,12 +159,10 @@
  
 @section('script')
 <script>
-  $(document).ready(function()
-  {
+  $(document).ready(function () {
     $('#product-table').DataTable();
 
-    $('#frm-product-create').on('submit',function(e)
-    {
+    $('#frm-product-create').on('submit', function (e) {
       e.preventDefault();
       console.log('pressed');
       var data = $(this).serialize();
@@ -169,14 +171,15 @@
       var formData = new FormData($(this)[0]);
 
       $.ajax({
-        url:"{{route('createFruit')}}",
+        url: "{{route('createFruit')}}",
         type: "POST",
         data: formData,
         async: false,
-        success: function(response)
-        {
+        success: function (response) {
           console.log(response);
-          $("[data-dismiss = modal]").trigger({type: "click"});
+          $("[data-dismiss = modal]").trigger({
+            type: "click"
+          });
           window.location.href = window.location.href;
         },
         cache: false,

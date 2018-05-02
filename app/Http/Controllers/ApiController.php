@@ -71,7 +71,7 @@ class ApiController extends Controller
         $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
             'form_params' => [
                 'secret' => '6LeYmFIUAAAAAAiDzgP6UdTksJUY5Uumu6CccBPp',
-                'response' => $request->get('captcha'),
+                'response' => $request->input('captcha'),
             ],
         ]);
 

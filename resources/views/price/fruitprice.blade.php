@@ -12,7 +12,10 @@
   </h1>
 
   <ol class="breadcrumb">
-    <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+    <li>
+      <a href="{{route('dashboard')}}">
+        <i class="fa fa-dashboard"></i>Dashboard</a>
+    </li>
     <li class="active">Fruit</li>
   </ol>
 </section>
@@ -23,7 +26,9 @@
     <div class="box box-solid">
       <div class="box-header with-border">
         <!-- <i class="fa fa-flag"></i> -->
-        <h3 class="box-title"><b>PRODUCT ID: {{$fruit->product_id}}</b></h3>
+        <h3 class="box-title">
+          <b>PRODUCT ID: {{$fruit->product_id}}</b>
+        </h3>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -36,7 +41,9 @@
           <dd>{{$fruit->product_desc}}</dd>
 
           <dt>Fruit Image</dt>
-          <dd><img src="{{ env('APP_PHOTO_URL') }}{{$fruit->product_image}}" style="max-height: 100px;" /></dd>
+          <dd>
+            <img src="{{ env('APP_PHOTO_URL') }}{{$fruit->product_image}}" style="max-height: 100px;" />
+          </dd>
 
           <dt>Category</dt>
           <dd>{{$fruit->category}}</dd>
@@ -66,7 +73,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <h4 class="modal-title">Add Price</h4>
 
       </div>
@@ -125,9 +134,12 @@
     <!-- Custom Tabs (Pulled to the right) -->
     <div class="nav-tabs-custom">
       <ul class="nav nav-tabs ">
-        <li class="active"><a href="#tab_1" data-toggle="tab">Active</a></li>
+        <li class="active">
+          <a href="#tab_1" data-toggle="tab">Active</a>
+        </li>
         <li class="pull-right">
-          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add-price">Add Price</button></li>
+          <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add-price">Add Price</button>
+        </li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab_1">
@@ -185,10 +197,11 @@
                       <td class="mailbox-subject">
                         <center>
                           <div class="btn-group">
-                            <a class="button btn btn-success btn-sm" href="{{route('editFruitPrice', ['price_id'=> $price->price_id, 'product_id'=> $fruit->product_id])}}"><i class="fa fa-edit"></i> Edit</a>
-                            {{ Form::open(array('url' => 'fruitprice/' . $price->price_id, 'class' => 'pull-right')) }} {{ Form::hidden('_method',
-                            'DELETE') }} {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}
-                            {{ Form::close() }}
+                            <a class="button btn btn-success btn-sm" href="{{route('editFruitPrice', ['price_id'=> $price->price_id, 'product_id'=> $fruit->product_id])}}">
+                              <i class="fa fa-edit"></i> Edit</a> {{ Form::open(array('url' =>
+                            'fruitprice/' . $price->price_id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE')
+                            }} {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }} {{ Form::close()
+                            }}
                         </center>
                       </td>
                     </tr>
@@ -220,38 +233,36 @@
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
 <script>
-  $(document).ready(function()
-  {
+  $(document).ready(function () {
     $('#price-table').DataTable({
       "order": []
     });
-    $('#frm-price-create').on('submit',function(e)
-    {
+    $('#frm-price-create').on('submit', function (e) {
       e.preventDefault();
       console.log('pressed');
       var data = $(this).serialize();
 
       console.log(data);
       var formData = new FormData($(this)[0]);
-   // formData.append('product_desc', CKEDITOR.instances.product_desc.getData());
-   // console.log(CKEDITOR.instances.description.getData());
-   $.ajax(
-   {
-    url:"{{route('createFruitPrice', ['product_id'=> $fruit->product_id])}}", 
-    type: "POST",
-    data: formData,
-    async: false,
-    success: function(response)
-    {
-      console.log(response);
-      $("[data-dismiss = modal]").trigger({type: "click"});
-      window.location.href = window.location.href;
-    },  
-    cache: false,
-    contentType: false,
-    processData: false
-  });
- });
+      // formData.append('product_desc', CKEDITOR.instances.product_desc.getData());
+      // console.log(CKEDITOR.instances.description.getData());
+      $.ajax({
+        url: "{{route('createFruitPrice', ['product_id'=> $fruit->product_id])}}",
+        type: "POST",
+        data: formData,
+        async: false,
+        success: function (response) {
+          console.log(response);
+          $("[data-dismiss = modal]").trigger({
+            type: "click"
+          });
+          window.location.href = window.location.href;
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+      });
+    });
   });
 
 </script>

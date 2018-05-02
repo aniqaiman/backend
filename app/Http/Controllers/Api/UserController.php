@@ -10,20 +10,20 @@ class UserController extends Controller
 {
     public function postRegisterUser(Request $request)
     {
-        $checkEmail = User::where('email', $request->get('email'))->first();
+        $checkEmail = User::where('email', $request->input('email'))->first();
 
-        if (User::where('email', $request->get('email'))->exists()) {
+        if (User::where('email', $request->input('email'))->exists()) {
             return response()->json([
                 'message' => 'The email had been used.',
             ], 403);
         }
 
         $user = User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'address' => $request->get('address'),
-            'handphone_number' => $request->get('handphone_number'),
-            'password' => bcrypt($request->get('password')),
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+            'handphone_number' => $request->input('handphone_number'),
+            'password' => bcrypt($request->input('password')),
             'group_id' => 1,
         ]);
 

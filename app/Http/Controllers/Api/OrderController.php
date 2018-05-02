@@ -14,7 +14,26 @@ class OrderController extends Controller
             'data' => JWTAuth::parseToken()->authenticate()
                 ->orders()
                 ->orderBy('created_at', 'desc')
-                ->get(),
+                ->get()
+                ->each(function ($order, $key) {
+                    $order['total_price'] = $order->totalPrice();
+                }),
+        ]);
+    }
+
+    public function getOrderDetails(Request $request, $order_id)
+    {
+        return response()->json([
+            'data' => JWTAuth::parseToken()->authenticate()
+                ->orders()
+                ->find($order_id)
+                ->products()
+                ->with('category')
+                ->get()
+                ->each(function ($product, $key) {
+                    $product['price_latest'] = $product->priceLatest();
+                    $product['price_difference'] = $product->priceDifference();
+                }),
         ]);
     }
 }

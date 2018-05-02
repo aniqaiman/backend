@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
-use App\Product;
-use App\User;
+use App\Stock;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -25,12 +24,96 @@ class OrderController extends Controller
         }
     }
 
-    public function getOrder()
+    public function getOrderReceipts()
     {
-        $orders = Order::all();
-        $users = User::all();
-        $products = Product::all();
-        return view('order.order', compact('orders', 'users', 'products'));
+        $orders = Order::where('status', 0)
+            ->get();
+
+        $stocks = Stock::where('status', 0)
+            ->get();
+
+        return view('orders.receipts', compact('orders', 'stocks'));
+    }
+
+    public function getOrderTrackings()
+    {
+        $orders = Order::whereNotIn('status', [0, 2])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $stocks = Stock::whereNotIn('status', [0, 2])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('orders.trackings', compact('orders', 'stocks'));
+    }
+
+    public function getOrderRejects()
+    {
+        $orders = Order::where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $stocks = Stock::where('status', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('orders.rejects', compact('orders', 'stocks'));
+    }
+
+    public function approveBuyerOrder(Request $request)
+    {
+        $order = Order::find($request->id);
+        $order->status = 1;
+        $order->save();
+
+        foreach ($order->products() as $product) {
+            if ($product->pivot->grade === "A") {
+                $product->quantity_a += $product->pivot->quantity;
+            } else if ($product->pivot->grade === "B") {
+                $product->quantity_b += $product->pivot->quantity;
+            } else if ($product->pivot->grade === "C") {
+                $product->quantity_c += $product->pivot->quantity;
+            }
+        }
+
+        return response($order);
+    }
+
+    public function approveSellerStock(Request $request)
+    {
+        $stock = Stock::find($request->id);
+        $stock->status = 1;
+        $stock->save();
+
+        foreach ($stock->products() as $product) {
+            if ($product->pivot->grade === "A") {
+                $product->quantity_a += $product->pivot->quantity;
+            } else if ($product->pivot->grade === "B") {
+                $product->quantity_b += $product->pivot->quantity;
+            } else if ($product->pivot->grade === "C") {
+                $product->quantity_c += $product->pivot->quantity;
+            }
+        }
+
+        return response($stock);
+    }
+
+    public function updateStatus(Request $request)
+    {
+        if ($request->type === "order") {
+            $order = Order::find($request->id);
+            $order->status = $request->status;
+            $order->save();
+
+            return response($order);
+        } else if ($request->type === "stock") {
+            $stock = Stock::find($request->id);
+            $stock->status = $request->status;
+            $stock->save();
+
+            return response($stock);
+        }
     }
 
     public function editOrder($order_id, Request $request)

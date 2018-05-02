@@ -6,38 +6,51 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $appends = [
-        'total_price',
-    ];
-
     protected $fillable = [
         'user_id',
         'status',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function products()
     {
         return $this
             ->belongsToMany('App\Product')
-            ->withPivot('quantity');
+            ->withPivot(
+                'grade',
+                'quantity',
+                'feedback_topic',
+                'feedback_description',
+                'feedback_response',
+                'feedback_read'
+            );
     }
 
-    public function getProductsAttribute()
-    {
-        return $this->products()->get();
-    }
-
-    public function getTotalPriceAttribute()
+    public function totalPrice()
     {
         return $this->products()
             ->get()
             ->sum(function ($product) {
-                return $product->latest_price->price_a * $product->pivot->quantity;
+                if ($product->pivot->grade === "A") {
+                    return $product->priceLatest()->price_a * $product->pivot->quantity;
+                }
+                else if ($product->pivot->grade === "B") {
+                    return $product->priceLatest()->price_b * $product->pivot->quantity;
+                }
+                else if ($product->pivot->grade === "C") {
+                    return $product->priceLatest()->price_c * $product->pivot->quantity;
+                }
             });
     }
 
-    public function buyer()
+    public function totalQuantity()
     {
-        return $this->belongsTo('App\User');
+        return $this->products()
+            ->get()
+            ->sum('pivot.quantity');
     }
 }

@@ -14,7 +14,12 @@ class CartController extends Controller
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
                 ->carts()
-                ->get(),
+                ->with('category')
+                ->get()
+                ->each(function ($product, $key) {
+                    $product['price_latest'] = $product->priceLatest();
+                    $product['price_difference'] = $product->priceDifference();
+                }),
         ]);
     }
 
@@ -40,12 +45,15 @@ class CartController extends Controller
             'data' => JWTAuth::parseToken()->authenticate()
                 ->carts()
                 ->syncWithoutDetaching([
-                    $request->get('product')['id'] => ['quantity' => $request->get('quantity')],
+                    $request->input('product')['id'] => [
+                        'quantity' => $request->input('quantity'),
+                        'grade' => $request->input('grade'),
+                    ],
                 ]),
         ]);
     }
 
-    public function deleteCartItem($product_id, Request $request)
+    public function deleteCartItem(Request $request, $product_id)
     {
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
@@ -64,7 +72,10 @@ class CartController extends Controller
 
         foreach ($user->carts()->get() as $cart) {
             $order->products()->syncWithoutDetaching([
-                $cart->id => ['quantity' => $cart->pivot->quantity],
+                $cart->id => [
+                    'quantity' => $cart->pivot->quantity,
+                    'grade' => $cart->pivot->grade,
+                ],
             ]);
         }
 

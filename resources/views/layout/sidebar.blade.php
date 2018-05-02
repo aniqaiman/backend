@@ -7,7 +7,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel">
       <div class="pull-left image">
-        {{ HTML::image('img/foodrico.png', 'User Image',  array('class' => 'img-circle')) }}
+        {{ HTML::image('img/foodrico.png', 'User Image', array('class' => 'img-circle')) }}
       </div>
       <div class="pull-left info">
         <p>Admin</p>
@@ -28,92 +28,101 @@
     </form>
     <!-- /.search form -->
 
-      <!-- sidebar menu: : style can be found in s
+    <!-- sidebar menu: : style can be found in s
       idebar.less -->
-      <ul class="sidebar-menu " data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
+    <ul class="sidebar-menu " data-widget="tree">
+      <li class="header">MAIN NAVIGATION</li>
 
-        <li class="treeview">
-          <a href="{{route('welcome')}}">
-            <i class="fa fa-bars"></i> <span class="text-info">Dashboard</span>
+      <li class="treeview">
+        <a href="{{route('welcome')}}">
+            <i class="fa fa-dashboard"></i> <span class="text-info">Dashboard</span>
           </a>
-        </li>
+      </li>
 
-        <li class="treeview">
-          <a href="{{route('order')}}">
-            <i class="fa fa-shopping-cart"></i> <span class="text-info">Order Tracking</span>
-          </a>
-        </li> 
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-shopping-cart"></i>
+          <span class="text-info">Order Management</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{route('orders.receipts')}}"><i class="fa fa-circle-o"></i>Order Receipts</a></li>
+          <li><a href="{{route('orders.trackings')}}"><i class="fa fa-circle-o"></i>Order Trackings</a></li>
+          <li><a href="{{route('orders.rejects')}}"><i class="fa fa-circle-o"></i>Order Rejects</a></li>
+        </ul>
+      </li>
 
-        <li class="treeview">
-          <a href="#">
+      <li class="treeview">
+        <a href="#">
           <i class="fa fa-comments"></i> <span class="text-info">Feedback Trail n/a</span>
           </a>
-        </li> 
+      </li>
 
-        <li class="treeview">
-          <a href="#">
+      <li class="treeview">
+        <a href="#">
             <i class="fa fa-archive"></i>
             <span class="text-info">Stock Count</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a class="text-info" href="{{route('fruit')}}"><i class="fa fa-level-down"></i>Fruit Stock</a></li>
-            <li><a class="text-info" href="{{route('vege')}}"><i class="fa fa-level-down"></i>Vegetable Stock</a></li>
-          </ul>
-        </li>
+        <ul class="treeview-menu">
+          <li><a href="{{route('fruit')}}"><i class="fa fa-circle-o"></i>Fruit Stock</a></li>
+          <li><a href="{{route('vege')}}"><i class="fa fa-circle-o"></i>Vegetable Stock</a></li>
+        </ul>
+      </li>
 
-        <li class="treeview">
-          <a href="#">
+      <li class="treeview">
+        <a href="#">
             <i class="fa fa-user"></i> <span class="text-info">SKU Member ID n/a</span>
           </a>
-        </li>
+      </li>
 
-        <li class="treeview">
-          <a href="#">
+      <li class="treeview">
+        <a href="#">
             <i class="fa fa-dollar"></i> <span class="text-info">Price Setting Page n/a</span>
           </a>
-        </li>
+      </li>
 
-        <li class="treeview">
-          <a href="#">
+      <li class="treeview">
+        <a href="#">
             <i class="fa fa-calendar"></i> <span class="text-info">Earning Summary n/a</span>
           </a>
-        </li> 
+      </li>
 
-        <li class="treeview">
-          <a href="{{route('driver')}}">
+      <li class="treeview">
+        <a href="{{route('driver')}}">
             <i class="fa fa-truck"></i> <span class="text-info">Lorry Driver</span>
           </a>
-        </li>
+      </li>
 
-        <li class="treeview">
-          <a href="{{route('seller')}}">
+      <li class="treeview">
+        <a href="{{route('seller')}}">
             <i class="fa fa-user"></i> <span class="text-info">Supplier Listing</span>
           </a>
-        </li>
+      </li>
 
-        <li class="treeview">
-          <a href="{{route('buyer')}}">
+      <li class="treeview">
+        <a href="{{route('buyer')}}">
             <i class="fa fa-user-plus"></i> <span class="text-info">Buyer Listing</span>
           </a>
-        </li>
+      </li>
 
-        <li class="treeview">
-          <a href="{{route('users')}}">
+      <li class="treeview">
+        <a href="{{route('users')}}">
             <i class="fa fa-male"></i> <span class="text-info">User Management</span>
           </a>
-        </li> 
+      </li>
 
-        <li class="treeview">
-          <a href="{{route('group')}}">
+      <li class="treeview">
+        <a href="{{route('group')}}">
             <i class="fa fa-users"></i> <span class="text-info">Group Management</span>
           </a>
-        </li>
-        
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+      </li>
+
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>

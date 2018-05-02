@@ -11,29 +11,29 @@ class DriverController extends Controller
 {
     public function postRegisterDriver(Request $request)
     {
-        if (User::where('company_reg_ic_number', $request->get('company_reg_ic_number'))->exists()) {
+        if (User::where('company_reg_ic_number', $request->input('company_reg_ic_number'))->exists()) {
             return response()->json([
                 'message' => 'The company Reg. No. / MyKad No. had been used.',
             ], 403);
         }
 
-        if (User::where('license_number', $request->get('license_number'))->exists()) {
+        if (User::where('license_number', $request->input('license_number'))->exists()) {
             return response()->json([
                 'message' => 'The license number had been used.',
             ], 403);
         }
 
         $driver = User::create([
-            'name' => $request->get('name'),
-            'company_reg_ic_number' => $request->get('company_reg_ic_number'),
-            'address' => $request->get('address'),
-            'phonenumber' => $request->get('phonenumber'),
-            'license_number' => $request->get('license_number'),
-            'roadtax_expiry' => $request->get('roadtax_expiry'),
-            'type_of_lorry' => $request->get('type_of_lorry'),
-            'lorry_capacity' => $request->get('lorry_capacity'),
-            'lorry_plate_number' => $request->get('lorry_plate_number'),
-            'password' => bcrypt($request->get('password')),
+            'name' => $request->input('name'),
+            'company_reg_ic_number' => $request->input('company_reg_ic_number'),
+            'address' => $request->input('address'),
+            'phonenumber' => $request->input('phonenumber'),
+            'license_number' => $request->input('license_number'),
+            'roadtax_expiry' => $request->input('roadtax_expiry'),
+            'type_of_lorry' => $request->input('type_of_lorry'),
+            'lorry_capacity' => $request->input('lorry_capacity'),
+            'lorry_plate_number' => $request->input('lorry_plate_number'),
+            'password' => bcrypt($request->input('password')),
             'group_id' => 31,
         ]);
         $userEmail = $request->email;
