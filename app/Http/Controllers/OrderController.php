@@ -107,8 +107,8 @@ class OrderController extends Controller
     {
         $order = Order::find($request->id);
         $order->status = 2;
-        $order->feedback_topic = $request->feedback_topic;
-        $order->feedback_description = $request->feedback_description;
+        $order->feedback_topic = $request->topic;
+        $order->feedback_description = $request->description;
         $order->feedback_read = 0;
         $order->save();
 

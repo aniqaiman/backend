@@ -68,6 +68,7 @@ Route::post('orders', ['as' => 'orders.create', 'uses' => 'OrderController@creat
 Route::post('orders/update', ['as' => 'orders.update', 'uses' => 'OrderController@updateOrder']);
 Route::put('orders/buyers/approve', ['as' => 'orders.buyers.approve', 'uses' => 'OrderController@approveBuyerOrder']);
 Route::put('orders/sellers/approve', ['as' => 'orders.sellers.approve', 'uses' => 'OrderController@approveSellerStock']);
+Route::put('orders/buyers/reject', ['as' => 'orders.buyers.reject', 'uses' => 'OrderController@rejectBuyerOrder']);
 Route::delete('orders/{order_id}', ['as' => 'deleteOrder', 'uses' => 'OrderController@deleteOrder']);
 
 // -------------------------------------------User----------------------------------------------------

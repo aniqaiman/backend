@@ -24,7 +24,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline">Submit Feedback</button>
+        <button type="button" class="btn btn-outline" onclick="rejectBuyerOrder()">Submit Feedback</button>
         <input type="hidden" id="feedback-id" />
       </div>
     </div>
@@ -327,13 +327,13 @@
   function rejectBuyerOrder() {
     var data = {
       id: $('#feedback-id').val(),
-      feedback_topic: $('#feedback-topic').val(),
-      feedback_description: $('#feedback-description').val(),
+      topic: $('#feedback-topic').val(),
+      description: $('#feedback-description').val(),
     };
     
     console.log(data);
 
-    /*$.ajax("{{ route('orders.sellers.approve') }}", {
+    $.ajax("{{ route('orders.buyers.reject') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
@@ -341,7 +341,7 @@
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;
       }
-    });*/
+    });
   }
 
 </script>
