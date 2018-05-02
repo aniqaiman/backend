@@ -69,13 +69,20 @@ class OrderController extends Controller
 
         foreach ($order->products as $product) {
             if ($product->pivot->grade === "A") {
+                error_log($product->quantity_a);
+                error_log($product->pivot->quantity);
                 $product->quantity_a += $product->pivot->quantity;
             } else if ($product->pivot->grade === "B") {
+                error_log($product->quantity_b);
+                error_log($product->pivot->quantity);
                 $product->quantity_b += $product->pivot->quantity;
             } else if ($product->pivot->grade === "C") {
+                error_log($product->quantity_c);
+                error_log($product->pivot->quantity);
                 $product->quantity_c += $product->pivot->quantity;
             }
         }
+
 
         return response($order);
     }
