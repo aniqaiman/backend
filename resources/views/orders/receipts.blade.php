@@ -14,17 +14,18 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="control-label">Topic:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" class="form-control" id="feedback-topic">
           </div>
           <div class="form-group">
             <label for="message-text" class="control-label">Description:</label>
-            <textarea class="form-control" id="message-text" rows="3"></textarea>
+            <textarea class="form-control" id="feedback-description" rows="3"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-outline">Submit Feedback</button>
+        <input type="hidden" id="feedback-id" />
       </div>
     </div>
   </div>
@@ -53,7 +54,6 @@
           <h3 class="box-title">Buyer</h3>
 
           <div class="box-tools pull-right">
-            <span class="badge bg-light-blue">{{ $orders->count() }}</span>
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
           </div>
@@ -264,6 +264,7 @@
       var id = button.data('id');
       var modal = $(this);
       modal.find('#exampleModalLabel').text('Rejected Order Feedback | ' + id);
+      modal.find('#feedback-id').val(id);
     });
 
     $('#order-table').DataTable({
@@ -321,6 +322,24 @@
         window.location.href = window.location.href;
       }
     });
+  }
+
+  function rejectBuyerOrder() {
+    var data = {
+      id: $('#feedback-id').val(),
+      feedback_topic: $('#feedback-topic').val(),
+      feedback_description: $('#feedback-description').val(),
+    }console.log(data);
+
+    /*$.ajax("{{ route('orders.sellers.approve') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        window.location.href = window.location.href;
+      }
+    });*/
   }
 
   function updateStatus(btn) {

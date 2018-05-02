@@ -75,10 +75,9 @@ class OrderController extends Controller
             } else if ($product->pivot->grade === "C") {
                 $product->quantity_c -= $product->pivot->quantity;
             }
-            
+
             $product->save();
         }
-
 
         return response($order);
     }
@@ -104,21 +103,16 @@ class OrderController extends Controller
         return response($stock);
     }
 
-    public function updateStatus(Request $request)
+    public function rejectBuyerOrder(Request $request)
     {
-        if ($request->type === "order") {
-            $order = Order::find($request->id);
-            $order->status = $request->status;
-            $order->save();
+        $order = Order::find($request->id);
+        $order->status = 2;
+        $order->feedback_topic = $request->feedback_topic;
+        $order->feedback_description = $request->feedback_description;
+        $order->feedback_read = 0;
+        $order->save();
 
-            return response($order);
-        } else if ($request->type === "stock") {
-            $stock = Stock::find($request->id);
-            $stock->status = $request->status;
-            $stock->save();
-
-            return response($stock);
-        }
+        return response($order);
     }
 
     public function editOrder($order_id, Request $request)
