@@ -74,7 +74,7 @@ class CartController extends Controller
             $order->products()->syncWithoutDetaching([
                 $cart->id => [
                     'quantity' => $cart->pivot->quantity,
-                    'grade' => $request->pivot->grade,
+                    'grade' => $cart->pivot->grade,
                 ],
             ]);
         }
