@@ -91,11 +91,11 @@ class OrderController extends Controller
 
         foreach ($stock->products as $product) {
             if ($product->pivot->grade === "A") {
-                $product->quantity_a -= $product->pivot->quantity;
+                $product->quantity_a += $product->pivot->quantity;
             } else if ($product->pivot->grade === "B") {
-                $product->quantity_b -= $product->pivot->quantity;
+                $product->quantity_b += $product->pivot->quantity;
             } else if ($product->pivot->grade === "C") {
-                $product->quantity_c -= $product->pivot->quantity;
+                $product->quantity_c += $product->pivot->quantity;
             }
 
             $product->save();
