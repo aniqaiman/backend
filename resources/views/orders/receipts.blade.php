@@ -329,7 +329,9 @@
       id: $('#feedback-id').val(),
       feedback_topic: $('#feedback-topic').val(),
       feedback_description: $('#feedback-description').val(),
-    }console.log(data);
+    };
+    
+    console.log(data);
 
     /*$.ajax("{{ route('orders.sellers.approve') }}", {
       data: data,
