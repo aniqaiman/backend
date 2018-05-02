@@ -47,12 +47,11 @@ class StockController extends Controller
             ->stocks()
             ->save($stock);
 
-        foreach ($request->all() as $key => $product) {
-            $stock->products()->syncWithoutDetaching([
-                $product['product']['id'] => [
-                    'grade' => $product['grade'],
-                    'quantity' => $product['quantity'],
-                ],
+        foreach ($request->all() as $json) {
+            $product = Product::find($json['product']['id']);
+            $stock->products()->save($product, [
+                'grade' => $json['grade'],
+                'quantity' => $json['quantity'],
             ]);
         }
 
