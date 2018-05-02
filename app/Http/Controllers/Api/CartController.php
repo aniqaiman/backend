@@ -45,7 +45,10 @@ class CartController extends Controller
             'data' => JWTAuth::parseToken()->authenticate()
                 ->carts()
                 ->syncWithoutDetaching([
-                    $request->input('product')['id'] => ['quantity' => $request->input('quantity')],
+                    $request->input('product')['id'] => [
+                        'quantity' => $request->input('quantity'),
+                        'grade' => $request->input('grade'),
+                    ],
                 ]),
         ]);
     }
@@ -69,7 +72,10 @@ class CartController extends Controller
 
         foreach ($user->carts()->get() as $cart) {
             $order->products()->syncWithoutDetaching([
-                $cart->id => ['quantity' => $cart->pivot->quantity],
+                $cart->id => [
+                    'quantity' => $cart->pivot->quantity,
+                    'grade' => $request->pivot->grade,
+                ],
             ]);
         }
 
