@@ -24,7 +24,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline" onclick="rejectBuyerOrder()">Submit Feedback</button>
+        <button type="button" class="btn btn-outline" id="feedback-submit">Submit Feedback</button>
         <input type="hidden" id="feedback-id" />
       </div>
     </div>
@@ -129,7 +129,7 @@
                 <td>
                   <div class="btn-group-vertical btn-group-sm" role="group">
                     <button class="btn btn-success" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-toggle="modal" data-target="#exampleModal">Rejected</button>
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                   </div>
                 </td>
                 <td>
@@ -233,7 +233,7 @@
                 <td>
                   <div class="btn-group-vertical btn-group-sm" role="group">
                     <button class="btn btn-success" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-toggle="modal" data-target="#exampleModal">Rejected</button>
+                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                   </div>
                 </td>
                 <td>
@@ -262,9 +262,17 @@
     $('#exampleModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget);
       var id = button.data('id');
+      
       var modal = $(this);
       modal.find('#exampleModalLabel').text('Rejected Order Feedback | ' + id);
       modal.find('#feedback-id').val(id);
+
+      var type = button.data('type');
+      if (type === 'order') {
+        $("#feedback-submit").click(rejectBuyerOrder);
+      } else if (type === 'stock') {
+        $("#feedback-submit").click(rejectSellerOrder);
+      }
     });
 
     $('#order-table').DataTable({
@@ -334,6 +342,26 @@
     console.log(data);
 
     $.ajax("{{ route('orders.buyers.reject') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        window.location.href = window.location.href;
+      }
+    });
+  }
+
+  function rejectSellerOrder() {
+    var data = {
+      id: $('#feedback-id').val(),
+      topic: $('#feedback-topic').val(),
+      description: $('#feedback-description').val(),
+    };
+    
+    console.log(data);
+
+    $.ajax("{{ route('orders.sellers.reject') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},

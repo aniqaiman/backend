@@ -115,6 +115,18 @@ class OrderController extends Controller
         return response($order);
     }
 
+    public function rejectSellerStock(Request $request)
+    {
+        $stock = Stock::find($request->id);
+        $stock->status = 2;
+        $stock->feedback_topic = $request->topic;
+        $stock->feedback_description = $request->description;
+        $stock->feedback_read = 0;
+        $stock->save();
+
+        return response($stock);
+    }
+
     public function editOrder($order_id, Request $request)
     {
         $order = Order::where('order_id', $request->order_id)->first();
