@@ -48,9 +48,9 @@ class StockController extends Controller
             ->save($stock);
 
         foreach ($request->all() as $json) {
-            var_dump($json['product']['id']);
-            exit;
             $product = Product::find($json['product']['id']);
+            var_dump($product);
+            exit;
             $stock->products()->save($product, [
                 'grade' => $json['grade'],
                 'quantity' => $json['quantity'],
