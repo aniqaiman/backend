@@ -94,10 +94,34 @@
                   <table class="table">
                     @foreach ($order->products as $product)
                     <tr>
-                      <td>{{ $product->name }}</td>
+                      <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
                       <td>{{ $product->pivot->quantity }}kg</td>
-                      <td>RM {{ number_format($product->priceLatest()->price_a, 2) }}</td>
-                      <td>RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }}</td>
+                      <td>
+                        @switch($product->pivot->grade)
+                          @case("A")
+                            RM {{ number_format($product->priceLatest()->price_a, 2) }}
+                            @break
+                          @case("B")
+                            RM {{ number_format($product->priceLatest()->price_b, 2) }}
+                            @break
+                          @case("B")
+                            RM {{ number_format($product->priceLatest()->price_c, 2) }}
+                            @break
+                        @endswitch
+                      </td>
+                      <td>
+                        @switch($product->pivot->grade)
+                          @case("A")
+                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }}
+                            @break
+                          @case("B")
+                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b, 2) }}
+                            @break
+                          @case("B")
+                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c, 2) }}
+                            @break
+                        @endswitch
+                      </td>
                     </tr>
                     @endforeach
                   </table>
@@ -174,11 +198,34 @@
                   <table class="table">
                     @foreach ($stock->products as $product)
                     <tr>
-                      <td>{{ $product->name }}</td>
-                      <td>Grade {{ $product->pivot->grade }}</td>
+                      <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
                       <td>{{ $product->pivot->quantity }}kg</td>
-                      <td>RM {{ number_format($product->priceLatest()->price_a, 2) }}</td>
-                      <td>RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }}</td>
+                      <td>
+                        @switch($product->pivot->grade)
+                          @case("A")
+                            RM {{ number_format($product->priceLatest()->price_a, 2) }}
+                            @break
+                          @case("B")
+                            RM {{ number_format($product->priceLatest()->price_b, 2) }}
+                            @break
+                          @case("B")
+                            RM {{ number_format($product->priceLatest()->price_c, 2) }}
+                            @break
+                        @endswitch
+                      </td>
+                      <td>
+                        @switch($product->pivot->grade)
+                          @case("A")
+                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }}
+                            @break
+                          @case("B")
+                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b, 2) }}
+                            @break
+                          @case("B")
+                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c, 2) }}
+                            @break
+                        @endswitch
+                      </td>
                     </tr>
                     @endforeach
                   </table>
@@ -232,7 +279,7 @@
       console.log('pressed');
       var data = $(this).serialize();
       console.log(data);
-      $.post("{{route('createOrder')}}", data, function (response) {
+      $.post("{{route('order.create')}}", data, function (response) {
         console.log(response);
         $("[data-dismiss = modal]").trigger({
           type: "click"
@@ -241,6 +288,24 @@
       });
     });
   });
+
+  function approveBuyerOrder(btn) {
+    var data = {
+      id: $(btn).data('id'),
+      status: $(btn).data('status'),
+      type: $(btn).data('type')
+    }
+
+    $.ajax("{{ route('order.status') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        window.location.href = window.location.href;
+      }
+    });
+  }
 
   function updateStatus(btn) {
     var data = {

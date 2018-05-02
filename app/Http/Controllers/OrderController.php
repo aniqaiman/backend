@@ -61,19 +61,47 @@ class OrderController extends Controller
         return view('order.rejects', compact('orders', 'stocks'));
     }
 
-    public function approveOrder(Request $request)
+    public function approveBuyerOrder(Request $request)
     {
-        $order = Order::find($request->order_id);
+        $order = Order::find($request->id);
         $order->status = 1;
         $order->save();
 
+        // foreach ($order->products() as $product) {
+        //     if ($product->pivot->grade === "A") {
+        //         $product->quantity_a += $product->pivot->quantity;
+        //     }
+        //     else if ($product->pivot->grade === "B") {
+        //         $product->quantity_b += $product->pivot->quantity;
+        //     }
+        //     else if ($product->pivot->grade === "C") {
+        //         $product->quantity_c += $product->pivot->quantity;
+        //     }
+        // }
         foreach ($order->products() as $product) {
-            if ($product->pivot) {
-                # code...
-            }
+            $product->quantity_a += $product->pivot->quantity;
         }
 
         return response($order);
+    }
+
+    public function approveSellerStock(Request $request)
+    {
+        $stock = Stock::find($request->id);
+        $stock->status = 1;
+        $stock->save();
+
+        foreach ($stock->products() as $product) {
+            if ($product->pivot->grade === "A") {
+                $product->quantity_a += $product->pivot->quantity;
+            } else if ($product->pivot->grade === "B") {
+                $product->quantity_b += $product->pivot->quantity;
+            } else if ($product->pivot->grade === "C") {
+                $product->quantity_c += $product->pivot->quantity;
+            }
+        }
+
+        return response($stock);
     }
 
     public function updateStatus(Request $request)

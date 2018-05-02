@@ -60,11 +60,13 @@ Route::delete('/group/{group_id}', ['as' => 'deleteGroup', 'uses' => 'GroupContr
 
 // -------------------------------------------Order----------------------------------------------------
 
-Route::post('/order', ['as' => 'createOrder', 'uses' => 'OrderController@createOrder']);
+Route::post('/orders', ['as' => 'order.create', 'uses' => 'OrderController@createOrder']);
 Route::put('/orders/status', ['as' => 'order.status', 'uses' => 'OrderController@updateStatus']);
 Route::get('/orders/receipts', ['as' => 'order.receipts', 'uses' => 'OrderController@getOrderReceipts']);
 Route::get('/orders/trackings', ['as' => 'order.trackings', 'uses' => 'OrderController@getOrderTrackings']);
 Route::get('/orders/rejects', ['as' => 'order.rejects', 'uses' => 'OrderController@getOrderRejects']);
+Route::post('/orders/buyers/approve', ['as' => 'order.buyers.approve', 'uses' => 'OrderController@approveBuyerOrder']);
+Route::post('/orders/sellers/approve', ['as' => 'order.sellers.approve', 'uses' => 'OrderController@approveSellerStock']);
 Route::get('/editOrder/{order_id}', ['as' => 'editOrder', 'uses' => 'OrderController@editOrder']);
 Route::post('/updateOrder', ['as' => 'updateOrder', 'uses' => 'OrderController@updateOrder']);
 Route::delete('/order/{order_id}', ['as' => 'deleteOrder', 'uses' => 'OrderController@deleteOrder']);

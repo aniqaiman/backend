@@ -20,7 +20,14 @@ class Stock extends Model
     {
         return $this
             ->belongsToMany('App\Product')
-            ->withPivot('grade', 'quantity');
+            ->withPivot(
+                'grade', 
+                'quantity',
+                'feedback_topic',
+                'feedback_description',
+                'feedback_response',
+                'feedback_read'
+            );
     }
 
     public function totalPrice()

@@ -199,7 +199,7 @@
       console.log('pressed');
       var data = $(this).serialize();
       console.log(data);
-      $.post("{{route('createOrder')}}", data, function (response) {
+      $.post("{{route('order.create')}}", data, function (response) {
         console.log(response);
         $("[data-dismiss = modal]").trigger({
           type: "click"

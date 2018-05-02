@@ -77,13 +77,27 @@ class Product extends Model
     {
         return $this
             ->belongsToMany('App\User')
-            ->withPivot('quantity');
+            ->withPivot(
+                'grade', 
+                'quantity',
+                'feedback_topic',
+                'feedback_description',
+                'feedback_response',
+                'feedback_read'
+            );
     }
 
     public function stocks()
     {
         return $this
             ->belongsToMany('App\Stock')
-            ->withPivot('grade', 'quantity');
+            ->withPivot(
+                'grade', 
+                'quantity',
+                'feedback_topic',
+                'feedback_description',
+                'feedback_response',
+                'feedback_read'
+            );
     }
 }
