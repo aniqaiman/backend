@@ -237,7 +237,7 @@
                   </div>
                 </td>
                 <td>
-                  {{ Form::open(array('url' => 'order/' . $stock->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
+                  {{ Form::open(array('url' => 'orders/' . $stock->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
                     <a class="btn btn-success" href="{{ route('orders.edit', ['order_id'=> $stock->stock_id]) }}">Edit</a>{{
                     Form::submit('Delete', ['class' => 'btn btn-warning']) }}
