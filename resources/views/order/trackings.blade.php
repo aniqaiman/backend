@@ -199,7 +199,7 @@
       console.log('pressed');
       var data = $(this).serialize();
       console.log(data);
-      $.post("{{route('order.create')}}", data, function (response) {
+      $.post("{{route('orders.create')}}", data, function (response) {
         console.log(response);
         $("[data-dismiss = modal]").trigger({
           type: "click"
@@ -215,7 +215,7 @@
       status: $(btn).data('status')
     }
 
-    $.ajax("{{ route('order.status') }}", {
+    $.ajax("{{ route('orders.status') }}", {
       data: order,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},

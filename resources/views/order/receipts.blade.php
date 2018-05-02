@@ -128,14 +128,14 @@
                 </td>
                 <td>
                   <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $order->id }}" data-status="1" data-type="order" onclick="updateStatus(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-status="2" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
+                    <button class="btn btn-success" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                   </div>
                 </td>
                 <td>
                   {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
-                    <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $order->order_id]) }}">Edit</a>{{
+                    <a class="btn btn-success" href="{{ route('orders.edit', ['order_id'=> $order->order_id]) }}">Edit</a>{{
                     Form::submit('Delete', ['class' => 'btn btn-warning']) }}
                   </div>
                   {{ Form::close() }}
@@ -232,14 +232,14 @@
                 </td>
                 <td>
                   <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $stock->id }}" data-status="1" data-type="stock" onclick="updateStatus(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-status="2" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
+                    <button class="btn btn-success" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
+                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                   </div>
                 </td>
                 <td>
                   {{ Form::open(array('url' => 'order/' . $stock->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
-                    <a class="btn btn-success" href="{{ route('editOrder', ['order_id'=> $stock->stock_id]) }}">Edit</a>{{
+                    <a class="btn btn-success" href="{{ route('orders.edit', ['order_id'=> $stock->stock_id]) }}">Edit</a>{{
                     Form::submit('Delete', ['class' => 'btn btn-warning']) }}
                   </div>
                   {{ Form::close() }}
@@ -279,7 +279,7 @@
       console.log('pressed');
       var data = $(this).serialize();
       console.log(data);
-      $.post("{{route('order.create')}}", data, function (response) {
+      $.post("{{route('orders.create')}}", data, function (response) {
         console.log(response);
         $("[data-dismiss = modal]").trigger({
           type: "click"
@@ -292,11 +292,27 @@
   function approveBuyerOrder(btn) {
     var data = {
       id: $(btn).data('id'),
-      status: $(btn).data('status'),
-      type: $(btn).data('type')
+      status: $(btn).data('status')
     }
 
-    $.ajax("{{ route('order.status') }}", {
+    $.ajax("{{ route('orders.buyers.approve') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        window.location.href = window.location.href;
+      }
+    });
+  }
+
+  function approveSellerStock(btn) {
+    var data = {
+      id: $(btn).data('id'),
+      status: $(btn).data('status')
+    }
+
+    $.ajax("{{ route('orders.sellers.approve') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
@@ -314,7 +330,7 @@
       type: $(btn).data('type')
     }
 
-    $.ajax("{{ route('order.status') }}", {
+    $.ajax("{{ route('orders.status') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},

@@ -32,7 +32,7 @@ class OrderController extends Controller
         $stocks = Stock::where('status', 0)
             ->get();
 
-        return view('order.receipts', compact('orders', 'stocks'));
+        return view('orders.receipts', compact('orders', 'stocks'));
     }
 
     public function getOrderTrackings()
@@ -45,7 +45,7 @@ class OrderController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('order.trackings', compact('orders', 'stocks'));
+        return view('orders.trackings', compact('orders', 'stocks'));
     }
 
     public function getOrderRejects()
@@ -58,7 +58,7 @@ class OrderController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('order.rejects', compact('orders', 'stocks'));
+        return view('orders.rejects', compact('orders', 'stocks'));
     }
 
     public function approveBuyerOrder(Request $request)
@@ -67,19 +67,14 @@ class OrderController extends Controller
         $order->status = 1;
         $order->save();
 
-        // foreach ($order->products() as $product) {
-        //     if ($product->pivot->grade === "A") {
-        //         $product->quantity_a += $product->pivot->quantity;
-        //     }
-        //     else if ($product->pivot->grade === "B") {
-        //         $product->quantity_b += $product->pivot->quantity;
-        //     }
-        //     else if ($product->pivot->grade === "C") {
-        //         $product->quantity_c += $product->pivot->quantity;
-        //     }
-        // }
         foreach ($order->products() as $product) {
-            $product->quantity_a += $product->pivot->quantity;
+            if ($product->pivot->grade === "A") {
+                $product->quantity_a += $product->pivot->quantity;
+            } else if ($product->pivot->grade === "B") {
+                $product->quantity_b += $product->pivot->quantity;
+            } else if ($product->pivot->grade === "C") {
+                $product->quantity_c += $product->pivot->quantity;
+            }
         }
 
         return response($order);

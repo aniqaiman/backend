@@ -145,7 +145,7 @@
       type: $(btn).data("type")
     }
 
-    $.ajax("{{ route('order.status') }}", {
+    $.ajax("{{ route('orders.status') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},

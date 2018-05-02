@@ -48,9 +48,9 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{{route('order.receipts')}}"><i class="fa fa-circle-o"></i>Order Receipts</a></li>
-          <li><a href="{{route('order.trackings')}}"><i class="fa fa-circle-o"></i>Order Trackings</a></li>
-          <li><a href="{{route('order.rejects')}}"><i class="fa fa-circle-o"></i>Order Rejects</a></li>
+          <li><a href="{{route('orders.receipts')}}"><i class="fa fa-circle-o"></i>Order Receipts</a></li>
+          <li><a href="{{route('orders.trackings')}}"><i class="fa fa-circle-o"></i>Order Trackings</a></li>
+          <li><a href="{{route('orders.rejects')}}"><i class="fa fa-circle-o"></i>Order Rejects</a></li>
         </ul>
       </li>
 
