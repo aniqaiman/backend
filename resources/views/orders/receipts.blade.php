@@ -301,7 +301,7 @@
       error: (jqXHR, textStatus, errorThrown) => {},
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
-        //window.location.href = window.location.href;
+        window.location.href = window.location.href;
       }
     });
   }
