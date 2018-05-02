@@ -67,7 +67,7 @@ class OrderController extends Controller
         $order->status = 1;
         $order->save();
 
-        foreach ($order->products() as $product) {
+        foreach ($order->products as $product) {
             if ($product->pivot->grade === "A") {
                 $product->quantity_a += $product->pivot->quantity;
             } else if ($product->pivot->grade === "B") {
@@ -86,7 +86,7 @@ class OrderController extends Controller
         $stock->status = 1;
         $stock->save();
 
-        foreach ($stock->products() as $product) {
+        foreach ($stock->products as $product) {
             if ($product->pivot->grade === "A") {
                 $product->quantity_a += $product->pivot->quantity;
             } else if ($product->pivot->grade === "B") {
