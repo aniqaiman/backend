@@ -12,7 +12,7 @@
 
   <ol class="breadcrumb">
     <li>
-      <a href="{{ route("dashboard") }}">
+      <a href="{{ route('dashboard') }}">
         <i class="fa fa-dashboard"></i>Dashboard</a>
     </li>
     <li class="active">Order</li>
@@ -41,8 +41,8 @@
                 <th class="text-nowrap">Buyer Name</th>
                 <th>Buyer#</th>
                 <th>Feedback Topic</th>
-                <th>Description</th>
-                <th>Response</th>
+                <th>Feedback Description</th>
+                <th>Feedback Response</th>
                 <th class="col-xs-1">Status</th>
                 <th class="col-xs-1"></th>
               </tr>
@@ -55,10 +55,12 @@
                 <td>{{ $order->id }}</td>
                 <td>{{ $order->user->name }}</td>
                 <td>{{ $order->user->id }}</td>
-                <td>None</td>
-                <td>None</td>
-                <td>None</td>
-                <td>None</td>
+                <td>{{ $order->feedback_topic }}</td>
+                <td>{{ $order->feedback_description }}</td>
+                <td>{{ $order->feedback_response }}</td>
+                <td>
+                  <span class="label label-danger">Rejected</span>
+                </td>
                 <td>
                   <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
                 </td>
@@ -92,8 +94,8 @@
                 <th class="text-nowrap">Seller Name</th>
                 <th>Seller#</th>
                 <th>Feedback Topic</th>
-                <th>Description</th>
-                <th>Response</th>
+                <th>Feedback Description</th>
+                <th>Feedback Response</th>
                 <th class="col-xs-1">Status</th>
                 <th class="col-xs-1"></th>
               </tr>
@@ -106,10 +108,12 @@
                 <td>{{ $stock->id }}</td>
                 <td>{{ $stock->user->name }}</td>
                 <td>{{ $stock->user->id }}</td>
-                <td>None</td>
-                <td>None</td>
-                <td>None</td>
-                <td>None</td>
+                <td>{{ $order->feedback_topic }}</td>
+                <td>{{ $order->feedback_description }}</td>
+                <td>{{ $order->feedback_response }}</td>
+                <td>
+                  <span class="label label-danger">Rejected</span>
+                </td>
                 <td>
                   <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" onclick="approveSellerStock(this)">Approved</button>
                 </td>
