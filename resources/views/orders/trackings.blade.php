@@ -15,7 +15,7 @@
       <a href="{{ route('dashboard') }}">
         <i class="fa fa-dashboard"></i>Dashboard</a>
     </li>
-    <li class="active">Order</li>
+    <li class="active">Order Management</li>
   </ol>
 </section>
 

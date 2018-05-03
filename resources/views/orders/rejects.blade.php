@@ -15,7 +15,7 @@
       <a href="{{ route('dashboard') }}">
         <i class="fa fa-dashboard"></i>Dashboard</a>
     </li>
-    <li class="active">Order</li>
+    <li class="active">Order Management</li>
   </ol>
 </section>
 
@@ -43,8 +43,8 @@
                 <th>Feedback Topic</th>
                 <th>Feedback Description</th>
                 <th>Feedback Response</th>
-                <th class="col-xs-1">Status</th>
-                <th class="col-xs-1"></th>
+                <th style="width: 1%;">Status</th>
+                <th style="width: 1%;"></th>
               </tr>
             </thead>
 
@@ -100,8 +100,8 @@
                 <th>Feedback Topic</th>
                 <th>Feedback Description</th>
                 <th>Feedback Response</th>
-                <th class="col-xs-1">Status</th>
-                <th class="col-xs-1"></th>
+                <th style="width: 1%;">Status</th>
+                <th style="width: 1%;"></th>
               </tr>
             </thead>
 
