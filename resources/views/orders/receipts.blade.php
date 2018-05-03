@@ -224,7 +224,9 @@
             </tbody>
           </table>
 
-          {{ $stocks->links() }}
+          <div class="pull-right">
+            {{ $stocks->links() }}
+          </div>
         </div>
       </div>
       <!-- /.box -->
@@ -255,11 +257,13 @@
     $('#order-table').DataTable({
       'ordering': false,
       'paging': false,
+      'info': false,
     });
 
     $('#stock-table').DataTable({
       'ordering': false,
       'paging': false,
+      'info': false,
     });
 
     $('#frm-order-create').on('submit', function (e) {
