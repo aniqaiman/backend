@@ -37,11 +37,11 @@ class OrderController extends Controller
 
     public function getOrderTrackings()
     {
-        $orders = Order::whereNotIn('status', [0, 2])
+        $orders = Order::whereIn('status', [1, 3])
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        $stocks = Stock::whereNotIn('status', [0, 2])
+        $stocks = Stock::whereIn('status', [1, 3])
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
@@ -50,11 +50,11 @@ class OrderController extends Controller
 
     public function getOrderRejects()
     {
-        $orders = Order::where('status', 1)
+        $orders = Order::where('status', 2)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        $stocks = Stock::where('status', 1)
+        $stocks = Stock::where('status', 2)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
