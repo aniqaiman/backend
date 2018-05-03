@@ -7,6 +7,7 @@ use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use JWTAuth;
+use Illuminate\Support\Facades\Crypt;
 
 class ApiController extends Controller
 {
@@ -79,6 +80,16 @@ class ApiController extends Controller
             json_decode($response->getBody()),
             $response->getStatusCode()
         );
+    }
+
+    public function validateUserEmail($token)
+    {
+        $encrypted = Crypt::encryptString("1");
+        $decrypted = Crypt::decryptString($encrypted);
+        return response()->json([
+            "encrypted" => $encrypted,
+            "decrypted" => $decrypted,
+        ]);
     }
 
     public function playground(Request $request)

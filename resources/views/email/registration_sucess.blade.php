@@ -16,7 +16,7 @@
             </p>
 
             <div style="text-align: center;">
-                <a href="#" style="background-color: #77b55a; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #4b8f29; display: inline-block; cursor: pointer; color: #fff; font-size: 1em; padding: 10px 15px; text-decoration: none; font-weight: bold;">
+                <a href="{{ route('auth.validate', [$user->activation_token]) }}" style="background-color: #77b55a; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #4b8f29; display: inline-block; cursor: pointer; color: #fff; font-size: 1em; padding: 10px 15px; text-decoration: none; font-weight: bold;">
                     VERIFY MY ACCOUNT
                 </a>
             </div>

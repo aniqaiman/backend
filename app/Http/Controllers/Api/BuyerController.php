@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Mail;
 
 class BuyerController extends Controller
@@ -39,6 +40,8 @@ class BuyerController extends Controller
             'status_email' => 0,
             'status_account' => 0,
         ]);
+
+        $buyer->activation_token = Crypt::encryptString($buyer->id);
 
         Mail::send('email.registration_sucess', ['user' => $buyer], function ($message) use ($buyer) {
 

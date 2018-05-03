@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Mail;
 
 class SellerController extends Controller
@@ -38,6 +39,8 @@ class SellerController extends Controller
             'status_account' => 0,
         ]);
 
+        $seller->activation_token = Crypt::encryptString($seller->id);
+
         Mail::send('email.registration_sucess', ['user' => $seller], function ($message) use ($seller) {
 
             $message->subject('FoodRico Registration - Account Verification');
@@ -47,7 +50,7 @@ class SellerController extends Controller
         });
 
         return response()->json([
-            "data" => $seller
+            "data" => $seller,
         ]);
     }
 

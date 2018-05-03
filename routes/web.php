@@ -18,6 +18,8 @@ Route::get('', ['as' => 'welcome', 'uses' =>
 
 // Route::group(['middleware' => ['api','cors']], function () {
 
+Route::get('auth/validate/{token}', ['as' => 'auth.validate', 'uses' => 'ApiController@validateUserEmail']);
+
 // -------------------------------------------Dashboard------------------------------------------------
 
 Route::post('dashboard', ['as' => 'createDashboard', 'uses' => 'DashboardController@createServiceDashboard']);
