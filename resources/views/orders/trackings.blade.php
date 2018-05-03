@@ -1,8 +1,4 @@
-@extends('layout.master') 
-@section('style')
-@endsection
- 
-@section('content')
+@extends('layout.master') @section('style') @endsection @section('content')
 
 <section class="content-header">
   <h1>
@@ -28,7 +24,8 @@
 
           <div class="box-tools pull-right">
             <span class="badge bg-light-blue">{{ $orders->count() }}</span>
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+              <i class="fa fa-minus"></i>
             </button>
           </div>
         </div>
@@ -62,9 +59,9 @@
                 <td>
                   <div class="btn-group">
                     <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        No Lorry Assigned
-                        <span class="caret"></span>
-                      </button>
+                      No Lorry Assigned
+                      <span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu">
                       <li>
                         <a href="#">Lorry 1</a>
@@ -112,8 +109,9 @@
 
           <div class="box-tools pull-right">
             <span class="badge bg-light-blue">{{ $stocks->count() }}</span>
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+              <i class="fa fa-minus"></i>
+            </button>
           </div>
         </div>
         <div class="box-body">
@@ -140,15 +138,15 @@
                 <td>
                   {{ $stock->user->address }}
                   <a href="https://www.google.com/maps/search/?api=1&query={{ $stock->user->latitude }},{{ $stock->user->longitude }}" target="_blank">
-                      <i class="fa fa-map-marker"></i>
-                    </a>
+                    <i class="fa fa-map-marker"></i>
+                  </a>
                 </td>
                 <td>
                   <div class="btn-group">
                     <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          No Lorry Assigned
-                          <span class="caret"></span>
-                        </button>
+                      No Lorry Assigned
+                      <span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu">
                       <li>
                         <a href="#">Lorry 1</a>
@@ -171,8 +169,9 @@
                 <td>
                   @if ($stock->status === 1)
                   <button class="btn btn-success btn-sm" data-id="{{ $stock->id }}" data-type="stock" onclick="completeOrderStock(this)">Completed</button>
-                   @elseif ($stock->status !== 1)
+                  @elseif ($stock->status !== 1)
                   <span class="label label-success btn-sm">Completed</span>
+                  @endif
                 </td>
               </tr>
               @endforeach
@@ -188,9 +187,7 @@
     <!-- /.box -->
   </div>
 </section>
-@endsection
- 
-@section('script')
+@endsection @section('script')
 <script>
   $(document).ready(function () {
     $('#order-table').DataTable({
@@ -221,6 +218,7 @@
   });
 
   function completeOrderStock(btn) {
+        console.log("lalu 1");
     var data = {
       id: $(btn).data('id'),
       type: $(btn).data('type')
@@ -229,13 +227,13 @@
     $.ajax("{{ route('orders.complete') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => {console.log("lalu error");},
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
+        console.log("lalu 2");
         window.location.href = window.location.href;
       }
     });
   }
-
 </script>
 @endsection
