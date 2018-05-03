@@ -86,8 +86,10 @@
                 </td>
                 <td>
                   @if ($order->status === 1)
-                  <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" data-type="order" onclick="updateStatus(this)">Completed</button>                  @elseif ($order->status !== 1)
-                  <button class="btn btn-success btn-sm" disabled>Completed</button> @endif
+                  <button class="btn btn-success btn-sm" data-id="{{ $order->id }}" data-type="order" onclick="completeOrderStock(this)">Completed</button>
+                  @elseif ($order->status !== 1)
+                  <span class="label label-success btn-sm">Completed</span>
+                  @endif
                 </td>
               </tr>
               @endforeach
@@ -168,8 +170,9 @@
                 </td>
                 <td>
                   @if ($stock->status === 1)
-                  <button class="btn btn-primary btn-sm" data-id="{{ $stock->id }}" data-type="stock" onclick="updateStatus(this)">Completed</button>                  @elseif ($stock->status !== 1)
-                  <button class="btn btn-success btn-sm" disabled>Completed</button> @endif
+                  <button class="btn btn-success btn-sm" data-id="{{ $stock->id }}" data-type="stock" onclick="completeOrderStock(this)">Completed</button>
+                   @elseif ($stock->status !== 1)
+                  <span class="label label-success btn-sm">Completed</span>
                 </td>
               </tr>
               @endforeach
@@ -217,7 +220,7 @@
     });
   });
 
-  function updateStatus(btn) {
+  function completeOrderStock(btn) {
     var data = {
       id: $(btn).data('id'),
       type: $(btn).data('type')
