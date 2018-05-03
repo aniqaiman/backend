@@ -80,7 +80,6 @@ Route::get('users', ['as' => 'users', 'uses' => 'UserController@getUser', 'roles
 Route::get('editUser/{user_id}', ['as' => 'editUser', 'uses' => 'UserController@editUser']);
 Route::post('updateUser', ['as' => 'updateUser', 'uses' => 'UserController@updateUser']);
 Route::delete('users/{user_id}', ['as' => 'deleteUser', 'uses' => 'UserController@deleteUser']);
-Route::get('users/validate/{token}', ['as' => 'users.validate', 'uses' => 'UserController@validateUserEmail']);
 
 // -------------------------------------------Driver----------------------------------------------------
 
@@ -123,6 +122,7 @@ Route::post('send', 'EmailController@send');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('auth/user', 'ApiController@getAuthUser');
+Route::get('auth/verify/{token}', 'ApiController@verifyUserEmail');
 
 Route::post('auth/login', 'ApiController@login');
 Route::post('auth/verifyrecaptcha', 'ApiController@verifyReCAPTCHA');

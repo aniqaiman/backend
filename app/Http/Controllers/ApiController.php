@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use JWTAuth;
 use Illuminate\Support\Facades\Crypt;
+use JWTAuth;
 
 class ApiController extends Controller
 {
@@ -36,7 +37,7 @@ class ApiController extends Controller
 
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
-                    'message' => 'Your account is not activated yet. It currently being review by Food Rico team. You will be inform once it had been activated.',
+                    'message' => 'Your account is not activated yet. It currently being review by FoodRico team. You will be inform once it had been activated.',
                 ], 401);
             }
         } catch (Exception $e) {
@@ -80,6 +81,15 @@ class ApiController extends Controller
             json_decode($response->getBody()),
             $response->getStatusCode()
         );
+    }
+
+    public function verifyUserEmail($token)
+    {
+        $user = User::find(Crypt::decryptString($token));
+        $user->status_email = 1;
+        $user->save();
+
+        return response($user);
     }
 
     public function playground(Request $request)
