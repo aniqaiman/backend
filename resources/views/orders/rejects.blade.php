@@ -69,7 +69,9 @@
             </tbody>
           </table>
 
-          {{ $orders->links() }}
+          <div class="pull-right">
+            {{ $orders->links() }}
+          </div>
         </div>
       </div>
       <!-- /.box -->
@@ -124,11 +126,14 @@
             </tbody>
           </table>
 
-          {{ $stocks->links() }}
+          <div class="pull-right">
+            {{ $stocks->links() }}
+          </div>
         </div>
       </div>
-      <!-- /.box -->
     </div>
+    <!-- /.box -->
+  </div>
   </div>
 </section>
 @endsection
@@ -139,11 +144,13 @@
     $("#order-table").DataTable({
       "ordering": false,
       'paging': false,
+      'info': false,
     });
 
     $("#stock-table").DataTable({
       "ordering": false,
       'paging': false,
+      'info': false,
     });
 
   });

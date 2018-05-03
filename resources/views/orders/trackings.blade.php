@@ -86,21 +86,22 @@
                 </td>
                 <td>
                   @if ($order->status === 1)
-                  <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" data-type="order" onclick="updateStatus(this)">Completed</button>
-                  @elseif ($order->status !== 1)
-                  <button class="btn btn-success btn-sm" disabled>Completed</button>
-                  @endif
+                  <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" data-type="order" onclick="updateStatus(this)">Completed</button>                  @elseif ($order->status !== 1)
+                  <button class="btn btn-success btn-sm" disabled>Completed</button> @endif
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
 
-          {{ $orders->links() }}
+          <div class="pull-right">
+            {{ $orders->links() }}
+          </div>
         </div>
       </div>
-      <!-- /.box -->
     </div>
+    <!-- /.box -->
+  </div>
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -168,21 +169,22 @@
                 </td>
                 <td>
                   @if ($stock->status === 1)
-                  <button class="btn btn-primary btn-sm" data-id="{{ $stock->id }}" data-type="stock" onclick="updateStatus(this)">Completed</button>
-                  @elseif ($stock->status !== 1)
-                  <button class="btn btn-success btn-sm" disabled>Completed</button>
-                  @endif
+                  <button class="btn btn-primary btn-sm" data-id="{{ $stock->id }}" data-type="stock" onclick="updateStatus(this)">Completed</button>                  @elseif ($stock->status !== 1)
+                  <button class="btn btn-success btn-sm" disabled>Completed</button> @endif
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
 
-          {{ $stocks->links() }}
+          <div class="pull-right">
+            {{ $stocks->links() }}
+          </div>
         </div>
       </div>
-      <!-- /.box -->
     </div>
+    <!-- /.box -->
+  </div>
   </div>
 </section>
 @endsection
@@ -193,11 +195,13 @@
     $('#order-table').DataTable({
       'ordering': false,
       'paging': false,
+      'info': false,
     });
 
     $('#stock-table').DataTable({
       'ordering': false,
       'paging': false,
+      'info': false,
     });
 
     $('#frm-order-create').on('submit', function (e) {
