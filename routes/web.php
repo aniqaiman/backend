@@ -18,8 +18,6 @@ Route::get('', ['as' => 'welcome', 'uses' =>
 
 // Route::group(['middleware' => ['api','cors']], function () {
 
-Route::get('auth/validate/{token}', ['as' => 'auth.validate', 'uses' => 'ApiController@validateUserEmail']);
-
 // -------------------------------------------Dashboard------------------------------------------------
 
 Route::post('dashboard', ['as' => 'createDashboard', 'uses' => 'DashboardController@createServiceDashboard']);
@@ -82,6 +80,7 @@ Route::get('users', ['as' => 'users', 'uses' => 'UserController@getUser', 'roles
 Route::get('editUser/{user_id}', ['as' => 'editUser', 'uses' => 'UserController@editUser']);
 Route::post('updateUser', ['as' => 'updateUser', 'uses' => 'UserController@updateUser']);
 Route::delete('users/{user_id}', ['as' => 'deleteUser', 'uses' => 'UserController@deleteUser']);
+Route::get('users/validate/{token}', ['as' => 'users.validate', 'uses' => 'UserController@validateUserEmail']);
 
 // -------------------------------------------Driver----------------------------------------------------
 

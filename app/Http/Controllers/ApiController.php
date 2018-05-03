@@ -82,16 +82,6 @@ class ApiController extends Controller
         );
     }
 
-    public function validateUserEmail($token)
-    {
-        $encrypted = Crypt::encryptString("1");
-        $decrypted = Crypt::decryptString($encrypted);
-        return response()->json([
-            "encrypted" => $encrypted,
-            "decrypted" => $decrypted,
-        ]);
-    }
-
     public function playground(Request $request)
     {
         return response()->json(

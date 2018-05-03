@@ -65,4 +65,9 @@ class UserController extends Controller
         return Redirect::to('users');
     }
 
+    public function validateUserEmail($token)
+    {
+        return response(Crypt::decryptString($token));
+    }
+
 }

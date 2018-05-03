@@ -16,7 +16,7 @@
             </p>
 
             <div style="text-align: center;">
-                <a href="{{ route('auth.validate', [$user->activation_token]) }}" style="background-color: #77b55a; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #4b8f29; display: inline-block; cursor: pointer; color: #fff; font-size: 1em; padding: 10px 15px; text-decoration: none; font-weight: bold;">
+                <a href="{{ route('users.validate', [$user->activation_token]) }}" style="background-color: #77b55a; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #4b8f29; display: inline-block; cursor: pointer; color: #fff; font-size: 1em; padding: 10px 15px; text-decoration: none; font-weight: bold;">
                     VERIFY MY ACCOUNT
                 </a>
             </div>
@@ -30,10 +30,10 @@
             <hr />
 
             <a href="#" style="text-decoration: none;">
-                <img src="https://ninjavan.herokuapp.com/img/icon/facebook.png" alt="FoodRico Facebook" width="15">
+                <img src="https://ninjavan.herokuapp.com/img/icon/facebook.png" alt="FoodRico Facebook" width="23">
             </a>
             <a href="#" style="text-decoration: none;">
-                <img src="https://ninjavan.herokuapp.com/img/icon/whatsapp.png" alt="FoodRico WhatsApp" width="15">
+                <img src="https://ninjavan.herokuapp.com/img/icon/whatsapp.png" alt="FoodRico WhatsApp" width="23">
             </a>
         </div>
 
