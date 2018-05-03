@@ -24,7 +24,7 @@ class OrderController extends Controller
         }
     }
 
-    public function getOrderReceipts()
+    public function getOrderReceipts(Request $request)
     {
         $orders = Order::where('status', 0)
             ->paginate(10);
@@ -35,7 +35,7 @@ class OrderController extends Controller
         return view('orders.receipts', compact('orders', 'stocks'));
     }
 
-    public function getOrderTrackings()
+    public function getOrderTrackings(Request $request)
     {
         $orders = Order::whereIn('status', [1, 3])
             ->orderBy('created_at', 'desc')
@@ -48,7 +48,7 @@ class OrderController extends Controller
         return view('orders.trackings', compact('orders', 'stocks'));
     }
 
-    public function getOrderRejects()
+    public function getOrderRejects(Request $request)
     {
         $orders = Order::where('status', 2)
             ->orderBy('created_at', 'desc')
@@ -140,6 +140,20 @@ class OrderController extends Controller
             $stock->save();
             return response($stock);
         }
+    }
+
+    public function getOrderDetails(Request $request, $order_id)
+    {
+        return response()->json([
+            'data' => Order::find($order_id)
+                ->products()
+                ->with('category')
+                ->get()
+                ->each(function ($product, $key) {
+                    $product['price_latest'] = $product->priceLatest();
+                    $product['price_difference'] = $product->priceDifference();
+                }),
+        ]);
     }
 
     public function editOrder($order_id, Request $request)

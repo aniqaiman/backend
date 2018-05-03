@@ -38,7 +38,7 @@ class SellerController extends Controller
             'status_account' => 0,
         ]);
 
-        Mail::send('email.sendemail', ['user' => $seller], function ($message) use ($seller) {
+        Mail::send('email.registration_sucess', ['user' => $seller], function ($message) use ($seller) {
 
             $message->subject('FoodRico Registration - Account Verification');
             $message->from('wanmuz.ada@gmail.com', 'FoodRico Notification');

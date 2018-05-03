@@ -5,8 +5,7 @@
         <div style="background-color: white; border-radius: 3px; padding: 19px; text-align: left; color: black; margin-bottom: 5px;">
             <h1 style="margin-top: 0; text-align: center;">
                 FoodRico {{ $user->group->name }}
-                <br />
-                Welcome Onboard!
+                <br /> Welcome Onboard!
             </h1>
 
             <h4>Hi {{ $user->name }},</h4>
@@ -17,8 +16,8 @@
             </p>
 
             <div style="text-align: center;">
-                <a href="#" style="background-color: #77b55a; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #4b8f29; display: inline-block; cursor: pointer; color: #fff; font-size: 1em; padding: 10px 15px; text-decoration: none;">
-                    Verify My Account
+                <a href="#" style="background-color: #77b55a; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #4b8f29; display: inline-block; cursor: pointer; color: #fff; font-size: 1em; padding: 10px 15px; text-decoration: none; font-weight: bold;">
+                    VERIFY MY ACCOUNT
                 </a>
             </div>
 
@@ -31,10 +30,10 @@
             <hr />
 
             <a href="#" style="text-decoration: none;">
-                <img src="https://ninjavan.herokuapp.com/img/icon/facebook.png" alt="FoodRico Facebook">
+                <img src="https://ninjavan.herokuapp.com/img/icon/facebook.png" alt="FoodRico Facebook" width="15">
             </a>
             <a href="#" style="text-decoration: none;">
-                <img src="https://ninjavan.herokuapp.com/img/icon/whatsapp.png" alt="FoodRico WhatsApp">
+                <img src="https://ninjavan.herokuapp.com/img/icon/whatsapp.png" alt="FoodRico WhatsApp" width="15">
             </a>
         </div>
 
