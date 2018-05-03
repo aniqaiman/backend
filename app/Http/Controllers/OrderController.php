@@ -27,10 +27,10 @@ class OrderController extends Controller
     public function getOrderReceipts()
     {
         $orders = Order::where('status', 0)
-            ->paginate(15);
+            ->paginate(10);
 
         $stocks = Stock::where('status', 0)
-            ->paginate(15);
+            ->paginate(10);
 
         return view('orders.receipts', compact('orders', 'stocks'));
     }
@@ -39,11 +39,11 @@ class OrderController extends Controller
     {
         $orders = Order::whereNotIn('status', [0, 2])
             ->orderBy('created_at', 'desc')
-            ->paginate(15);
+            ->paginate(10);
 
         $stocks = Stock::whereNotIn('status', [0, 2])
             ->orderBy('created_at', 'desc')
-            ->paginate(15);
+            ->paginate(10);
 
         return view('orders.trackings', compact('orders', 'stocks'));
     }
@@ -52,11 +52,11 @@ class OrderController extends Controller
     {
         $orders = Order::where('status', 1)
             ->orderBy('created_at', 'desc')
-            ->paginate(15);
+            ->paginate(10);
 
         $stocks = Stock::where('status', 1)
             ->orderBy('created_at', 'desc')
-            ->paginate(15);
+            ->paginate(10);
 
         return view('orders.rejects', compact('orders', 'stocks'));
     }
