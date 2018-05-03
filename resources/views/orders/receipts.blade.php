@@ -98,30 +98,15 @@
                       <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
                       <td>{{ $product->pivot->quantity }}kg</td>
                       <td>
-                        @switch($product->pivot->grade)
-                          @case("A")
-                            RM {{ number_format($product->priceLatest()->price_a, 2) }}
-                            @break
-                          @case("B")
-                            RM {{ number_format($product->priceLatest()->price_b, 2) }}
-                            @break
-                          @case("B")
-                            RM {{ number_format($product->priceLatest()->price_c, 2) }}
-                            @break
-                        @endswitch
+                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break @case("B")
+                        RM {{ number_format($product->priceLatest()->price_b, 2) }} @break @case("B") RM {{ number_format($product->priceLatest()->price_c,
+                        2) }} @break @endswitch
                       </td>
                       <td>
-                        @switch($product->pivot->grade)
-                          @case("A")
-                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }}
-                            @break
-                          @case("B")
-                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b, 2) }}
-                            @break
-                          @case("B")
-                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c, 2) }}
-                            @break
-                        @endswitch
+                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a,
+                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b,
+                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c,
+                        2) }} @break @endswitch
                       </td>
                     </tr>
                     @endforeach
@@ -146,7 +131,9 @@
             </tbody>
           </table>
 
-          {{ $orders->links() }}
+          <div class="pull-right">
+            {{ $orders->links() }}
+          </div>
         </div>
       </div>
       <!-- /.box -->
@@ -204,30 +191,15 @@
                       <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
                       <td>{{ $product->pivot->quantity }}kg</td>
                       <td>
-                        @switch($product->pivot->grade)
-                          @case("A")
-                            RM {{ number_format($product->priceLatest()->price_a, 2) }}
-                            @break
-                          @case("B")
-                            RM {{ number_format($product->priceLatest()->price_b, 2) }}
-                            @break
-                          @case("C")
-                            RM {{ number_format($product->priceLatest()->price_c, 2) }}
-                            @break
-                        @endswitch
+                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break @case("B")
+                        RM {{ number_format($product->priceLatest()->price_b, 2) }} @break @case("C") RM {{ number_format($product->priceLatest()->price_c,
+                        2) }} @break @endswitch
                       </td>
                       <td>
-                        @switch($product->pivot->grade)
-                          @case("A")
-                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }}
-                            @break
-                          @case("B")
-                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b, 2) }}
-                            @break
-                          @case("C")
-                            RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c, 2) }}
-                            @break
-                        @endswitch
+                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a,
+                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b,
+                        2) }} @break @case("C") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c,
+                        2) }} @break @endswitch
                       </td>
                     </tr>
                     @endforeach
