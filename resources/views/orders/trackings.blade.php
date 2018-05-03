@@ -102,7 +102,6 @@
     </div>
     <!-- /.box -->
   </div>
-  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="box box-success">
@@ -112,7 +111,7 @@
           <div class="box-tools pull-right">
             <span class="badge bg-light-blue">{{ $stocks->count() }}</span>
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-            </button>
+              </button>
           </div>
         </div>
         <div class="box-body">
@@ -139,15 +138,15 @@
                 <td>
                   {{ $stock->user->address }}
                   <a href="https://www.google.com/maps/search/?api=1&query={{ $stock->user->latitude }},{{ $stock->user->longitude }}" target="_blank">
-                    <i class="fa fa-map-marker"></i>
-                  </a>
+                      <i class="fa fa-map-marker"></i>
+                    </a>
                 </td>
                 <td>
                   <div class="btn-group">
                     <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        No Lorry Assigned
-                        <span class="caret"></span>
-                      </button>
+                          No Lorry Assigned
+                          <span class="caret"></span>
+                        </button>
                     <ul class="dropdown-menu">
                       <li>
                         <a href="#">Lorry 1</a>
@@ -184,7 +183,6 @@
       </div>
     </div>
     <!-- /.box -->
-  </div>
   </div>
 </section>
 @endsection
