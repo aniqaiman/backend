@@ -218,7 +218,6 @@
   });
 
   function completeOrderStock(btn) {
-        console.log("lalu 1");
     var data = {
       id: $(btn).data('id'),
       type: $(btn).data('type')
@@ -227,10 +226,9 @@
     $.ajax("{{ route('orders.complete') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {console.log("lalu error");},
+      error: (jqXHR, textStatus, errorThrown) => {},
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
-        console.log("lalu 2");
         window.location.href = window.location.href;
       }
     });

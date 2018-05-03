@@ -133,13 +133,13 @@ class OrderController extends Controller
             $order = Order::find($request->id);
             $order->status = 3;
             $order->save();
+            return response($order);
         } else if ($request->type === "stock") {
             $stock = Stock::find($request->id);
             $stock->status = 3;
             $stock->save();
+            return response($stock);
         }
-
-        return response("success");
     }
 
     public function editOrder($order_id, Request $request)

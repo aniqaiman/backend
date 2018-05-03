@@ -112,14 +112,14 @@
                 <td>{{ $stock->id }}</td>
                 <td>{{ $stock->user->name }}</td>
                 <td>{{ $stock->user->id }}</td>
-                <td>{{ $order->feedback_topic }}</td>
-                <td>{{ $order->feedback_description }}</td>
-                <td>{{ $order->feedback_response }}</td>
+                <td>{{ $stock->feedback_topic }}</td>
+                <td>{{ $stock->feedback_description }}</td>
+                <td>{{ $stock->feedback_response }}</td>
                 <td>
                   <span class="label label-danger">Rejected</span>
                 </td>
                 <td>
-                  <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" onclick="approveSellerStock(this)">Approved</button>
+                  <button class="btn btn-primary btn-sm" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
                 </td>
               </tr>
               @endforeach
