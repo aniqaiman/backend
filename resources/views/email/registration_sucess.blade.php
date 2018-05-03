@@ -1,5 +1,5 @@
 <body>
-    <div style="margin: 0 auto; background-color: #343a40; padding: 25px; text-align: center; color: white; max-width: 670px;">
+    <div style="margin: 0 auto; background-color: #343a40; padding: 25px; padding-bottom: 10px; text-align: center; color: white; max-width: 670px;">
         <img src="https://ninjavan.herokuapp.com/img/logo/logo-text.png" alt="Food Rico Logo" style="width: 190px; margin-top: 5px; margin-bottom: 15px;">
 
         <div style="background-color: white; border-radius: 3px; padding: 19px; text-align: left; color: black; margin-bottom: 5px;">
@@ -16,9 +16,7 @@
             </p>
 
             <div style="text-align: center;">
-                <a href="{{ route('users.validate', [$user->activation_token]) }}" style="background-color: #77b55a; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #4b8f29; display: inline-block; cursor: pointer; color: #fff; font-size: 1em; padding: 10px 15px; text-decoration: none; font-weight: bold;">
-                    VERIFY MY ACCOUNT
-                </a>
+                <a href="{{ route('users.validate', [$user->activation_token]) }}" style="background-color: #77b55a; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #4b8f29; display: inline-block; cursor: pointer; color: #fff; font-size: 1.3em; padding: 10px 15px; text-decoration: none; font-weight: bold;">Verify Me</a>
             </div>
 
             <p>
@@ -30,10 +28,10 @@
             <hr />
 
             <a href="#" style="text-decoration: none;">
-                <img src="https://ninjavan.herokuapp.com/img/icon/facebook.png" alt="FoodRico Facebook" width="23">
+                <img src="https://ninjavan.herokuapp.com/img/icon/facebook.png" alt="FoodRico Facebook" width="19">
             </a>
             <a href="#" style="text-decoration: none;">
-                <img src="https://ninjavan.herokuapp.com/img/icon/whatsapp.png" alt="FoodRico WhatsApp" width="23">
+                <img src="https://ninjavan.herokuapp.com/img/icon/whatsapp.png" alt="FoodRico WhatsApp" width="19">
             </a>
         </div>
 
