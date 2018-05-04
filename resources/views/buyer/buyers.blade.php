@@ -1,5 +1,5 @@
 @extends('layout.master') @section('style') @endsection @section('content')
-<div class="modal modal-danger fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -73,9 +73,11 @@
               @foreach($buyers as $buyer)
               <tr id="buyer_{{ $buyer->id }}">
                 <td>{{ $buyer->name }}</td>
-                <a href="#" data-id="{{ $buyer->id }}" data-toggle="modal" data-target="#exampleModal">
-                  {{ $buyer->id }}
-                </a>
+                <td>
+                  <a href="#" data-id="{{ $buyer->id }}" data-toggle="modal" data-target="#exampleModal">
+                    {{ $buyer->id }}
+                  </a>
+                </td>
                 <td>
                   @foreach ($buyer->orders()->orderBy('id', 'desc')->get() as $order)
                   <div class="lead">
