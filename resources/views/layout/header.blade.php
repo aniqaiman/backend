@@ -4,10 +4,12 @@
   <a href="#" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini">
-      <b>F</b>R</span>
+      <strong>F</strong>R
+    </span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg">|Food
-      <b>Rico</b>|</span>
+    <span class="logo-lg">
+      |Food<strong>Rico</strong>|
+    </span>
   </a>
 
   <!-- Header Navbar -->

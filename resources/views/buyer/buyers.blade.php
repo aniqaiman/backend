@@ -6,19 +6,26 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="exampleModalLabel">Title</h4>
+        <h4 class="modal-title" id="exampleModalLabel">Buyer Details</h4>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Topic:</label>
-            <input type="text" class="form-control" id="feedback-topic">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">Description:</label>
-            <textarea class="form-control" id="feedback-description" rows="3"></textarea>
-          </div>
-        </form>
+        <i id="spinner" class="fa fa-spinner fa-spin"></i>
+        <dl id="ud" class="dl-horizontal hidden">
+          <dt>Owner Name</dt>
+          <dd id="ud-owner-name">xxx</dd>
+          <dt>Company Name</dt>
+          <dd id="ud-company-name">xxx</dd>
+          <dt>Company Registration / MyKad Number</dt>
+          <dd id="ud-company_registration_mykad_number">xxx</dd>
+          <dt>Company Address</dt>
+          <dd id="ud-company-address">xxx</dd>
+          <dt>Handphone Number</dt>
+          <dd id="ud-phone-number">xxx</dd>
+          <dt>Business Hour</dt>
+          <dd id="ud-business-hour">xxx</dd>
+          <dt>E-Mail Address</dt>
+          <dd id="ud-email-address">xxx</dd>
+        </dl>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
@@ -49,7 +56,7 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-body">
-          <table class="table table-bordered" id="order-table" style="width:100%">
+          <table class="table table-bordered" id="buyer-table" style="width:100%">
             <thead>
               <tr class="bg-black">
                 <th class="text-nowrap">Buyer Name</th>
@@ -58,7 +65,6 @@
                 <th class="text-nowrap">Date Registered#</th>
                 <th class="text-nowrap">Location</th>
                 <th class="text-nowrap">Contact (H/P &amp; Email)</th>
-                <th style="width: 1%;">Status</th>
                 <th style="width: 1%;"></th>
               </tr>
             </thead>
@@ -67,7 +73,9 @@
               @foreach($buyers as $buyer)
               <tr id="buyer_{{ $buyer->id }}">
                 <td>{{ $buyer->name }}</td>
-                <td>{{ $buyer->id }}</td>
+                <a href="#" data-id="{{ $buyer->id }}" data-toggle="modal" data-target="#exampleModal">
+                  {{ $buyer->id }}
+                </a>
                 <td>
                   @foreach ($buyer->orders()->orderBy('id', 'desc')->get() as $order)
                   <div class="lead">
@@ -103,15 +111,12 @@
                   </a>
                 </td>
                 <td>
-                  Phone: <a href="tel:{{ $buyer->phone_number }}">{{ $buyer->phone_number }}</a><br />
-                  Mobile: <a href="tel:{{ $buyer->mobile_number }}">{{ $buyer->mobile_number }}</a><br />
-                  E-Mail: <a href="tel:{{ $buyer->email }}">{{ $buyer->email }}</a>
-                </td>
-                <td>
-                  <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $buyer->id }}" onclick="approveBuyerOrder(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $buyer->id }}" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
-                  </div>
+                  Phone:
+                  <a href="tel:{{ $buyer->phone_number }}">{{ $buyer->phone_number }}</a>
+                  <br /> Mobile:
+                  <a href="tel:{{ $buyer->mobile_number }}">{{ $buyer->mobile_number }}</a>
+                  <br /> E-Mail:
+                  <a href="tel:{{ $buyer->email }}">{{ $buyer->email }}</a>
                 </td>
                 <td>
                   {{ Form::open(array('url' => 'order/' . $buyer->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
@@ -153,13 +158,7 @@
       }
     });
 
-    $('#order-table').DataTable({
-      'ordering': false,
-      'paging': false,
-      'info': false,
-    });
-
-    $('#stock-table').DataTable({
+    $('#buyer-table').DataTable({
       'ordering': false,
       'paging': false,
       'info': false,
@@ -179,79 +178,5 @@
       });
     });
   });
-
-  function approveBuyerOrder(btn) {
-    var data = {
-      id: $(btn).data('id'),
-      status: $(btn).data('status')
-    }
-
-    $.ajax("{{ route('orders.buyers.approve') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        window.location.href = window.location.href;
-      }
-    });
-  }
-
-  function approveSellerStock(btn) {
-    var data = {
-      id: $(btn).data('id'),
-      status: $(btn).data('status')
-    }
-
-    $.ajax("{{ route('orders.sellers.approve') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        window.location.href = window.location.href;
-      }
-    });
-  }
-
-  function rejectBuyerOrder() {
-    var data = {
-      id: $('#feedback-id').val(),
-      topic: $('#feedback-topic').val(),
-      description: $('#feedback-description').val(),
-    };
-
-    console.log(data);
-
-    $.ajax("{{ route('orders.buyers.reject') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        window.location.href = window.location.href;
-      }
-    });
-  }
-
-  function rejectSellerOrder() {
-    var data = {
-      id: $('#feedback-id').val(),
-      topic: $('#feedback-topic').val(),
-      description: $('#feedback-description').val(),
-    };
-
-    console.log(data);
-
-    $.ajax("{{ route('orders.sellers.reject') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        window.location.href = window.location.href;
-      }
-    });
-  }
 </script>
 @endsection
