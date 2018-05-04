@@ -93,9 +93,9 @@ Route::get('driver/{driver_id}/driverdetail', ['as' => 'driverdetail', 'uses' =>
 
 // -------------------------------------------Buyer----------------------------------------------------
 
-Route::post('buyer', ['as' => 'createBuyer', 'uses' => 'BuyerController@createBuyer']);
-Route::get('buyer', ['as' => 'buyer', 'uses' => 'BuyerController@getBuyer']);
+Route::get('buyers', ['as' => 'buyers', 'uses' => 'BuyerController@getBuyers']);
 Route::get('editBuyer/{buyer_id}', ['as' => 'editBuyer', 'uses' => 'BuyerController@editBuyer']);
+Route::post('buyers', ['as' => 'createBuyer', 'uses' => 'BuyerController@createBuyer']);
 Route::post('updateBuyer', ['as' => 'updateBuyer', 'uses' => 'BuyerController@updateBuyer']);
 Route::delete('buyer/{buyer_id}', ['as' => 'deleteBuyer', 'uses' => 'BuyerController@deleteBuyer']);
 
