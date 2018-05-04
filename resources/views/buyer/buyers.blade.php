@@ -1,36 +1,53 @@
 @extends('layout.master') @section('style') @endsection @section('content')
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="exampleModalLabel">Buyer Details</h4>
+        <h4 class="modal-title" id="exampleModalLabel">Title</h4>
       </div>
       <div class="modal-body">
-        <i id="spinner" class="fa fa-spinner fa-spin"></i>
-        <dl id="ud" class="dl-horizontal hidden">
+        <div id="spinner">
+            <i class="fa fa-spinner fa-spin"></i>
+            Fetching buyer details...
+        </div>
+        <dl id="ud" class="hidden">
           <dt>Owner Name</dt>
           <dd id="ud-owner-name">xxx</dd>
           <dt>Company Name</dt>
           <dd id="ud-company-name">xxx</dd>
           <dt>Company Registration / MyKad Number</dt>
-          <dd id="ud-company_registration_mykad_number">xxx</dd>
-          <dt>Company Address</dt>
-          <dd id="ud-company-address">xxx</dd>
-          <dt>Handphone Number</dt>
-          <dd id="ud-phone-number">xxx</dd>
+          <dd id="ud-company-registration-mykad-number">xxx</dd>
           <dt>Business Hour</dt>
           <dd id="ud-business-hour">xxx</dd>
+          <dt>Address</dt>
+          <dd id="ud-company-address">xxx</dd>
+          <dd>
+            Latitude:
+            <span id="ud-company-address-latitude"></span>
+          </dd>
+          <dd>
+            Longitude:
+            <span id="ud-company-address-longitude"></span>
+          </dd>
+          <dd>
+            <a href="" target="_blank" id="ud-company-address-navigation">
+              <i class="fa fa-map-marker"></i> Navigate
+            </a>
+          </dd>
+          <dt>Mobile Number</dt>
+          <dd id="ud-mobile-number">xxx</dd>
+          <dt>Phone Number</dt>
+          <dd id="ud-phone-number">xxx</dd>
           <dt>E-Mail Address</dt>
-          <dd id="ud-email-address">xxx</dd>
+          <dd>
+            <span id="ud-email"></span>
+            <span id="ud-email-status-verified" class="label label-success">Verified</span>
+            <span id="ud-email-status-verified" class="label label-danger">Non-Verified</span>
+          </dd>
         </dl>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline" id="feedback-submit">Submit Feedback</button>
-        <input type="hidden" id="feedback-id" />
       </div>
     </div>
   </div>
@@ -79,7 +96,7 @@
                   </a>
                 </td>
                 <td>
-                  @foreach ($buyer->orders()->orderBy('id', 'desc')->get() as $order)
+                  @foreach ($buyer->orders()->orderBy('id', 'desc') as $order)
                   <div class="lead">
                     <span class="label label-default">{{ $order->totalQuantity() }}kg</span>
                     <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
@@ -145,19 +162,40 @@
 <script>
   $(document).ready(function () {
     $('#exampleModal').on('show.bs.modal', function (event) {
+      var spinner = $('#spinner');
+      var ud = $('#ud');
       var button = $(event.relatedTarget);
       var id = button.data('id');
+      var url = "{{ route('user', ['xxx']) }}";
+
+      spinner.toggleClass('hidden', false);
+      ud.toggleClass('hidden', true);
 
       var modal = $(this);
-      modal.find('#exampleModalLabel').text('Rejected Order Feedback | ' + id);
+      modal.find('#exampleModalLabel').text('Buyer Details | ' + id);
       modal.find('#feedback-id').val(id);
 
-      var type = button.data('type');
-      if (type === 'order') {
-        $("#feedback-submit").on("click", rejectBuyerOrder);
-      } else if (type === 'stock') {
-        $("#feedback-submit").on("click", rejectSellerOrder);
-      }
+      $.ajax(url.replace("xxx", id), {
+        dataType: "json",
+        error: (jqXHR, textStatus, errorThrown) => {},
+        method: "GET",
+        success: (data, textStatus, jqXHR) => {
+          spinner.toggleClass('hidden', true);
+          ud.toggleClass('hidden', false);
+
+          $('#ud-owner-name').text(data.name);
+          $('#ud-company-name').text(data.company_name);
+          $('#ud-company-registration-mykad-number').text(data.company_registration_mykad_number);
+          $('#ud-company-address').text(data.address);
+          $('#ud-company-address-latitude').text(data.latitude);
+          $('#ud-company-address-longitude').text(data.longitude);
+          $('#ud-company-address-navigation').attr("href", "https://www.google.com/maps/search/?api=1&query=" + data.latitude + "," + data.longitude);
+          $('#ud-mobile-number').text(data.mobile_number);
+          $('#ud-phone-number').text(data.phone_number);
+          $('#ud-business-hour').text(data.bussiness_hour);
+          $('#ud-email').text(data.email);
+        }
+      });
     });
 
     $('#buyer-table').DataTable({

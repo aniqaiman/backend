@@ -28,12 +28,10 @@ class UserController extends Controller
         }
     }
 
-    public function getUser()
+    public function getUser($user_id)
     {
-        $groups = Group::all();
-        $users = User::where('group_id', 1)->get();
-        $types = Type::all();
-        return view('user.user', compact('users', 'types', 'groups'));
+        $user = User::find($user_id);
+        return response()->json($user);
     }
 
     public function editUser($user_id, Request $request)
