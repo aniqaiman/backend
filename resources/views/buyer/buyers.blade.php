@@ -42,8 +42,14 @@
           <dt>Phone Number</dt>
           <dd id="ud-phone-number">xxx</dd>
           <dt>E-Mail Address</dt>
+          <dd id="ud-email">xxx</dd>
+          <dt>Status</dt>
           <dd>
-            <span id="ud-email"></span>
+            E-Mail:
+            <span id="ud-email-status-verified" class="label label-success">Verified</span>
+            <span id="ud-email-status-verified" class="label label-danger">Non-Verified</span>
+            <br />
+            Account:
             <span id="ud-email-status-verified" class="label label-success">Verified</span>
             <span id="ud-email-status-verified" class="label label-danger">Non-Verified</span>
           </dd>
@@ -96,7 +102,7 @@
                   </a>
                 </td>
                 <td>
-                  @foreach ($buyer->orders()->orderBy('id', 'desc') as $order)
+                  @foreach ($buyer->orders()->orderBy('id', 'desc')->get() as $order)
                   <div class="lead">
                     <span class="label label-default">{{ $order->totalQuantity() }}kg</span>
                     <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
