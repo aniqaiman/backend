@@ -40,16 +40,6 @@ Route::get('vege/{product_id}/editVegePrice/{price_id}', ['as' => 'editVegePrice
 Route::post('updateVegePrice', ['as' => 'updateVegePrice', 'uses' => 'PriceController@updateVegePrice']);
 Route::delete('vegeprice', ['as' => 'deleteVegePrice', 'uses' => 'PriceController@deleteVegePrice']);
 
-// -------------------------------------------Seller----------------------------------------------------
-
-Route::post('seller', ['as' => 'createSeller', 'uses' => 'SellerController@createSeller']);
-Route::get('seller', ['as' => 'seller', 'uses' => 'SellerController@getSeller']);
-Route::get('editSeller/{seller_id}', ['as' => 'editSeller', 'uses' => 'SellerController@editSeller']);
-Route::post('updateSeller', ['as' => 'updateSeller', 'uses' => 'SellerController@updateSeller']);
-Route::delete('seller/{seller_id}', ['as' => 'deleteSeller', 'uses' => 'SellerController@deleteSeller']);
-
-Route::get('seller/{seller_id}/sellerdetail', ['as' => 'sellerdetail', 'uses' => 'SellerController@getSellersDetail']);
-
 // -------------------------------------------Group----------------------------------------------------
 
 Route::post('group', ['as' => 'createGroup', 'uses' => 'GroupController@createGroup']);
@@ -84,16 +74,26 @@ Route::delete('users/{user_id}', ['as' => 'deleteUser', 'uses' => 'UserControlle
 // -------------------------------------------Driver----------------------------------------------------
 
 Route::post('driver', ['as' => 'createDriver', 'uses' => 'DriverController@createDriver']);
-Route::get('driver', ['as' => 'driver', 'uses' => 'DriverController@getDriver']);
+Route::get('driver', ['as' => 'users.drivers', 'uses' => 'DriverController@getDriver']);
 Route::get('editDriver/{driver_id}', ['as' => 'editDriver', 'uses' => 'DriverController@editDriver']);
 Route::post('updateDriver', ['as' => 'updateDriver', 'uses' => 'DriverController@updateDriver']);
 Route::delete('driver/{driver_id}', ['as' => 'deleteDriver', 'uses' => 'DriverController@deleteDriver']);
 
 Route::get('driver/{driver_id}/driverdetail', ['as' => 'driverdetail', 'uses' => 'DriverController@getDriverDetail']);
 
+// -------------------------------------------Seller----------------------------------------------------
+
+Route::get('sellers', ['as' => 'users.sellers', 'uses' => 'SellerController@getSellers']);
+Route::get('editSeller/{seller_id}', ['as' => 'editSeller', 'uses' => 'SellerController@editSeller']);
+Route::post('seller', ['as' => 'createSeller', 'uses' => 'SellerController@createSeller']);
+Route::post('updateSeller', ['as' => 'updateSeller', 'uses' => 'SellerController@updateSeller']);
+Route::delete('seller/{seller_id}', ['as' => 'deleteSeller', 'uses' => 'SellerController@deleteSeller']);
+
+Route::get('seller/{seller_id}/sellerdetail', ['as' => 'sellerdetail', 'uses' => 'SellerController@getSellersDetail']);
+
 // -------------------------------------------Buyer----------------------------------------------------
 
-Route::get('buyers', ['as' => 'buyers', 'uses' => 'BuyerController@getBuyers']);
+Route::get('buyers', ['as' => 'users.buyers', 'uses' => 'BuyerController@getBuyers']);
 Route::get('editBuyer/{buyer_id}', ['as' => 'editBuyer', 'uses' => 'BuyerController@editBuyer']);
 Route::post('buyers', ['as' => 'createBuyer', 'uses' => 'BuyerController@createBuyer']);
 Route::post('updateBuyer', ['as' => 'updateBuyer', 'uses' => 'BuyerController@updateBuyer']);

@@ -70,9 +70,9 @@
             </span>
           </a>
         <ul class="treeview-menu">
-          <li><a href="{{ route('driver') }}"><i class="fa fa-circle-o"></i>Manage Lorries</a></li>
-          <li><a href="{{ route('seller') }}"><i class="fa fa-circle-o"></i>Manage Suppliers</a></li>
-          <li><a href="{{ route('buyers') }}"><i class="fa fa-circle-o"></i>Manage Buyers</a></li>
+          <li><a href="{{ route('users.drivers') }}"><i class="fa fa-circle-o"></i>Manage Lorries</a></li>
+          <li><a href="{{ route('users.sellers') }}"><i class="fa fa-circle-o"></i>Manage Sellers</a></li>
+          <li><a href="{{ route('users.buyers') }}"><i class="fa fa-circle-o"></i>Manage Buyers</a></li>
         </ul>
       </li>
 

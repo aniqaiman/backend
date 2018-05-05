@@ -102,6 +102,9 @@
                   </a>
                 </td>
                 <td>
+                  @if (!$buyer->orders()->exists())
+                  <div>No products been ordered.</div>
+                  @endif
                   @foreach ($buyer->orders()->orderBy('id', 'desc')->get() as $order)
                   <div class="lead">
                     <span class="label label-default">{{ $order->totalQuantity() }}kg</span>

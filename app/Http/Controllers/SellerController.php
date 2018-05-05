@@ -33,10 +33,10 @@ class SellerController extends Controller
         }
     }
 
-    public function getSeller()
+    public function getSellers()
     {
-        $sellers = User::where('group_id', 21)->get();
-        return view('seller.seller', compact('sellers'));
+        $sellers = User::where('group_id', 21)->paginate();
+        return view('users.sellers', compact('sellers'));
     }
 
     public function editSeller($user_id, Request $request)

@@ -31,7 +31,7 @@ class BuyerController extends Controller
     public function getBuyers()
     {
         $buyers = User::where('group_id', 11)->paginate();
-        return view('buyer.buyers', compact('buyers'));
+        return view('users.buyers', compact('buyers'));
     }
 
     public function editBuyer($user_id, Request $request)
