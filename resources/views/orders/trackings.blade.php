@@ -1,4 +1,5 @@
 @extends('layout.master') @section('style') @endsection @section('content')
+
 @foreach($orders as $order)
 <div class="modal fade" id="order_{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $order->id }}">
   <div class="modal-dialog" role="document">
@@ -21,9 +22,9 @@
           <tbody>
             @foreach ($order->products as $key => $product)
             <tr>
-              <td>$key</td>
-              <td>$product->name</td>
-              <td class="text-center" nowrap>$product->totalQuantity() kg</td>
+              <td>{{ $key }}</td>
+              <td>{{ $product->name }}</td>
+              <td class="text-center" nowrap>{{ $product->totalQuantity() }} kg</td>
               <td class="text-center" nowrap>
                 @switch($product->pivot->grade) 
                   @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break
@@ -44,7 +45,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <span class="float-left">
+        <span class="pull-left">
           @if ($order->status === 1)
           <span class="label label-warning">Pending</span>
           @elseif ($order->status === 3)
@@ -54,6 +55,68 @@
         <h3 class="text-right">
           Total:
           <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
+@foreach($stocks as $stock)
+<div class="modal fade" id="stock_{{ $stock->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $stock->id }}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="exampleModalLabel_{{ $stock->id }}">{{ $stock->created_at }} | {{ $stock->id }}</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <thead>
+            <th>#</th>
+            <th>Item</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Total</th>
+          </thead>
+          <tbody>
+            @foreach ($stock->products as $key => $product)
+            <tr>
+              <td>{{ $key }}</td>
+              <td>{{ $product->name }}</td>
+              <td class="text-center" nowrap>{{ $product->totalQuantity() }} kg</td>
+              <td class="text-center" nowrap>
+                @switch($product->pivot->grade) 
+                  @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break
+                  @case("B") RM {{ number_format($product->priceLatest()->price_b, 2) }} @break
+                  @case("B") RM {{ number_format($product->priceLatest()->price_c, 2) }} @break
+                @endswitch
+              </td>
+              <td class="text-center" nowrap>
+                @switch($product->pivot->grade) 
+                  @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }} @break
+                  @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b, 2) }} @break
+                  @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c, 2) }} @break
+                @endswitch
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <span class="pull-left">
+          @if ($stock->status === 1)
+          <span class="label label-warning">Pending</span>
+          @elseif ($stock->status === 3)
+          <span class="label label-success">Completed</span>
+          @endif
+        </span>
+        <h3 class="text-right">
+          Total:
+          <span class="label label-default">RM {{ number_format($stock->totalPrice(), 2) }}</span>
         </h3>
       </div>
     </div>
@@ -210,7 +273,11 @@
               @foreach($stocks as $stock)
               <tr>
                 <td>{{ $stock->created_at }}</td>
-                <td>{{ $stock->id }}</td>
+                <td>
+                  <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">
+                    {{ $stock->id }}
+                  </a>
+                </td>
                 <td>{{ $stock->user->name }}</td>
                 <td>{{ $stock->user->id }}</td>
                 <td>
