@@ -130,14 +130,14 @@
                     </ul>
                   </div>
                 </td>
-                <td>
+                <td class="text-center">
                   @if ($order->status === 1)
                   <span class="label label-warning">Pending</span>
                   @elseif ($order->status === 3)
                   <span class="label label-success">Completed</span>
                   @endif
                 </td>
-                <td>
+                <td class="text-center">
                   @if ($order->status === 1)
                   <div class="btn-group-vertical btn-group-sm">
                     <button class="btn btn-success" data-id="{{ $order->id }}" data-type="order" onclick="completeOrderStock(this)">Completed</button>
@@ -228,14 +228,14 @@
                     </ul>
                   </div>
                 </td>
-                <td>
+                <td class="text-center">
                   @if ($stock->status === 1)
                   <span class="label label-warning">Pending</span>
                   @elseif ($stock->status === 3)
                   <span class="label label-success">Completed</span>
                   @endif
                 </td>
-                <td>
+                <td class="text-center">
                   @if ($stock->status === 1)
                   <div class="btn-group-vertical btn-group-sm">
                     <button class="btn btn-success" data-id="{{ $stock->id }}" data-type="stock" onclick="completeOrderStock(this)">Completed</button>

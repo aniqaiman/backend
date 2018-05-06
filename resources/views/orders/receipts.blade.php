@@ -115,7 +115,7 @@
                     @endforeach
                   </table>
                 </td>
-                <td>
+                <td class="text-center">
                   <div class="label label-default">Submitted</div>
                 </td>
                 <td>
@@ -211,7 +211,7 @@
                     @endforeach
                   </table>
                 </td>
-                <td>
+                <td class="text-center">
                   <div class="label label-default">Submitted</div>
                 </td>
                 <td>

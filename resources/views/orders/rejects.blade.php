@@ -66,7 +66,7 @@
                 <td>
                   <span class="label label-danger">Rejected</span>
                 </td>
-                <td>
+                <td class="text-center">
                   <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
                 </td>
               </tr>
@@ -128,7 +128,7 @@
                 <td>
                   <span class="label label-danger">Rejected</span>
                 </td>
-                <td>
+                <td class="text-center">
                   <button class="btn btn-primary btn-sm" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
                 </td>
               </tr>
