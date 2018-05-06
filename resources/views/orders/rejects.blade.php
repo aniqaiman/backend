@@ -26,7 +26,7 @@
           <tbody>
             @foreach ($order->products as $key => $product)
             <tr>
-              <td>{{ $key }}</td>
+              <td>{{ $key + 1 }}</td>
               <td>{{ $product->name }}</td>
               <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
@@ -84,7 +84,7 @@
           <tbody>
             @foreach ($stock->products as $key => $product)
             <tr>
-              <td>{{ $key }}</td>
+              <td>{{ $key + 1 }}</td>
               <td>{{ $product->name }}</td>
               <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
