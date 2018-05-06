@@ -50,11 +50,7 @@
       </div>
       <div class="modal-footer">
         <span class="pull-left">
-          @if ($order->status === 1)
-          <span class="label label-warning">Pending</span>
-          @elseif ($order->status === 3)
-          <span class="label label-success">Completed</span>
-          @endif
+          <span class="label label-danger">Rejected</span>
         </span>
         <h3 class="pull-right">
           Total:
@@ -112,11 +108,7 @@
       </div>
       <div class="modal-footer">
         <span class="pull-left">
-          @if ($stock->status === 1)
-          <span class="label label-warning">Pending</span>
-          @elseif ($stock->status === 3)
-          <span class="label label-success">Completed</span>
-          @endif
+          <span class="label label-danger">Rejected</span>
         </span>
         <h3 class="pull-right">
           Total:
