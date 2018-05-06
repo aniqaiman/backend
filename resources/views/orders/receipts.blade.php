@@ -334,10 +334,8 @@
       description: $('#feedback-description').val(),
     };
     
-    console.log(btn);
-
-    $(btn).prop('disabled', true);
-    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+    $(btn.target).prop('disabled', true);
+    $(btn.target).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
     $.ajax("{{ route('orders.buyers.reject') }}", {
       data: data,
@@ -357,8 +355,8 @@
       description: $('#feedback-description').val(),
     };
     
-    $(btn).prop('disabled', true);
-    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+    $(btn.target).prop('disabled', true);
+    $(btn.target).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
     $.ajax("{{ route('orders.sellers.reject') }}", {
       data: data,
