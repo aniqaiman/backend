@@ -84,6 +84,7 @@
                 <th>Location</th>
                 <th class="text-nowrap">Lorry Assigned</th>
                 <th style="width: 1%;">Status</th>
+                <th style="width: 1%;"></th>
               </tr>
             </thead>
 
@@ -131,9 +132,22 @@
                 </td>
                 <td>
                   @if ($order->status === 1)
-                  <button class="btn btn-success btn-sm" data-id="{{ $order->id }}" data-type="order" onclick="completeOrderStock(this)">Completed</button>
-                  @elseif ($order->status !== 1)
-                  <span class="label label-success btn-sm">Completed</span>
+                  <span class="label label-warning">Pending</span>
+                  @elseif ($order->status === 3)
+                  <span class="label label-success">Completed</span>
+                  @endif
+                </td>
+                <td>
+                  @if ($order->status === 1)
+                  <div class="btn-group-vertical btn-group-sm">
+                    <button class="btn btn-success" data-id="{{ $order->id }}" data-type="order" onclick="completeOrderStock(this)">Completed</button>
+                    <button class="btn btn-warning" disabled>Pending</button>
+                  </div>
+                  @elseif ($order->status === 3)
+                  <div class="btn-group-vertical btn-group-sm">
+                    <button class="btn btn-success" disabled>Completed</button>
+                    <button class="btn btn-warning" data-id="{{ $order->id }}" data-type="order" onclick="pendingOrderStock(this)">Pending</button>
+                  </div>
                   @endif
                 </td>
               </tr>
@@ -172,6 +186,7 @@
                 <th>Location</th>
                 <th class="text-nowrap">Lorry Assigned</th>
                 <th style="width: 1%;">Status</th>
+                <th style="width: 1%;"></th>
               </tr>
             </thead>
 
@@ -190,7 +205,7 @@
                 </td>
                 <td>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       No Lorry Assigned
                       <span class="caret"></span>
                     </button>
@@ -215,9 +230,22 @@
                 </td>
                 <td>
                   @if ($stock->status === 1)
-                  <button class="btn btn-success btn-sm" data-id="{{ $stock->id }}" data-type="stock" onclick="completeOrderStock(this)">Completed</button>
-                  @elseif ($stock->status !== 1)
-                  <span class="label label-success btn-sm">Completed</span>
+                  <span class="label label-warning">Pending</span>
+                  @elseif ($stock->status === 3)
+                  <span class="label label-success">Completed</span>
+                  @endif
+                </td>
+                <td>
+                  @if ($stock->status === 1)
+                  <div class="btn-group-vertical btn-group-sm">
+                    <button class="btn btn-success" data-id="{{ $stock->id }}" data-type="stock" onclick="completeOrderStock(this)">Completed</button>
+                    <button class="btn btn-warning" disabled>Pending</button>
+                  </div>
+                  @elseif ($stock->status === 3)
+                  <div class="btn-group-vertical btn-group-sm">
+                    <button class="btn btn-success" disabled>Completed</button>
+                    <button class="btn btn-warning" data-id="{{ $stock->id }}" data-type="stock" onclick="pendingOrderStock(this)">Pending</button>
+                  </div>
                   @endif
                 </td>
               </tr>
@@ -288,6 +316,23 @@
     }
 
     $.ajax("{{ route('orders.complete') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        window.location.href = window.location.href;
+      }
+    });
+  }
+
+  function pendingOrderStock(btn) {
+    var data = {
+      id: $(btn).data('id'),
+      type: $(btn).data('type')
+    }
+
+    $.ajax("{{ route('orders.pending') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
