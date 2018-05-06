@@ -326,8 +326,6 @@
       description: $('#feedback-description').val(),
     };
     
-    console.log(data);
-
     $.ajax("{{ route('orders.buyers.reject') }}", {
       data: data,
       dataType: "json",

@@ -56,7 +56,13 @@
                 <td>{{ $order->user->id }}</td>
                 <td>{{ $order->feedback_topic }}</td>
                 <td>{{ $order->feedback_description }}</td>
-                <td>{{ $order->feedback_response }}</td>
+                <td>
+                  @if (empty($stock->feedback_response))
+                  None
+                  @else
+                  {{ $stock->feedback_response }}
+                  @endif
+                </td>
                 <td>
                   <span class="label label-danger">Rejected</span>
                 </td>
@@ -112,7 +118,13 @@
                 <td>{{ $stock->user->id }}</td>
                 <td>{{ $stock->feedback_topic }}</td>
                 <td>{{ $stock->feedback_description }}</td>
-                <td>{{ $stock->feedback_response }}</td>
+                <td>
+                  @if (empty($stock->feedback_response))
+                  None
+                  @else
+                  {{ $stock->feedback_response }}
+                  @endif
+                </td>
                 <td>
                   <span class="label label-danger">Rejected</span>
                 </td>
@@ -158,6 +170,9 @@
       id: $(btn).data('id'),
       status: $(btn).data('status')
     }
+
+    $(btn).prop('disabled', true);
+    $(btn).html('<i class="fa fa-spinner fa-spin"></i>');
 
     $.ajax("{{ route('orders.buyers.approve') }}", {
       data: data,
