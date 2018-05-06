@@ -293,6 +293,8 @@
       status: $(btn).data('status')
     }
 
+console.log(btn);
+
     $(btn).prop('disabled', true);
     $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
