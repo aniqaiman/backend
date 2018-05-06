@@ -172,7 +172,7 @@
     }
 
     $(btn).prop('disabled', true);
-    $(btn).html('<i class="fa fa-spinner fa-spin"></i>');
+    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
     $.ajax("{{ route('orders.buyers.approve') }}", {
       data: data,
@@ -190,6 +190,9 @@
       id: $(btn).data('id'),
       status: $(btn).data('status')
     }
+
+    $(btn).prop('disabled', true);
+    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
     $.ajax("{{ route('orders.sellers.approve') }}", {
       data: data,

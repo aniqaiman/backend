@@ -315,6 +315,9 @@
       type: $(btn).data('type')
     }
 
+    $(btn).prop('disabled', true);
+    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+
     $.ajax("{{ route('orders.complete') }}", {
       data: data,
       dataType: "json",
@@ -331,6 +334,9 @@
       id: $(btn).data('id'),
       type: $(btn).data('type')
     }
+
+    $(btn).prop('disabled', true);
+    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
     $.ajax("{{ route('orders.pending') }}", {
       data: data,
