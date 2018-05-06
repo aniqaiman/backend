@@ -68,9 +68,13 @@
   <ol class="breadcrumb">
     <li>
       <a href="{{ route('dashboard') }}">
-        <i class="fa fa-dashboard"></i>Dashboard</a>
+        <i class="fa fa-dashboard"></i> Dashboard
+      </a>
     </li>
-    <li class="active">Buyer Management</li>
+    <li>
+      <a href="#">User Management</a>
+    </li>
+    <li class="active">Buyers</li>
   </ol>
 </section>
 
