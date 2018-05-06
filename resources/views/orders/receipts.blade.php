@@ -293,8 +293,6 @@
       status: $(btn).data('status')
     }
 
-console.log(btn);
-
     $(btn).prop('disabled', true);
     $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
@@ -336,6 +334,8 @@ console.log(btn);
       description: $('#feedback-description').val(),
     };
     
+    console.log(btn);
+
     $(btn).prop('disabled', true);
     $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
