@@ -39,6 +39,7 @@
                 @endswitch
               </td>
             </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
