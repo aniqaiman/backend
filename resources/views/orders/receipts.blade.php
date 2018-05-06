@@ -327,7 +327,7 @@
     });
   }
 
-  function rejectBuyerOrder() {
+  function rejectBuyerOrder(btn) {
     var data = {
       id: $('#feedback-id').val(),
       topic: $('#feedback-topic').val(),
@@ -348,7 +348,7 @@
     });
   }
 
-  function rejectSellerOrder() {
+  function rejectSellerOrder(btn) {
     var data = {
       id: $('#feedback-id').val(),
       topic: $('#feedback-topic').val(),
