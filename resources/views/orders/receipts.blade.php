@@ -98,29 +98,31 @@
                       <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
                       <td>{{ $product->pivot->quantity }}kg</td>
                       <td>
-                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break @case("B")
-                        RM {{ number_format($product->priceLatest()->price_b, 2) }} @break @case("B") RM {{ number_format($product->priceLatest()->price_c,
-                        2) }} @break @endswitch
+                        @switch($product->pivot->grade) 
+                          @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break
+                          @case("B") RM {{ number_format($product->priceLatest()->price_b, 2) }} @break
+                          @case("B") RM {{ number_format($product->priceLatest()->price_c, 2) }} @break
+                        @endswitch
                       </td>
                       <td>
-                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a,
-                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b,
-                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c,
-                        2) }} @break @endswitch
+                        @switch($product->pivot->grade) 
+                          @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }} @break
+                          @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b, 2) }} @break
+                          @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c, 2) }} @break
+                        @endswitch
                       </td>
                     </tr>
                     @endforeach
                   </table>
                 </td>
                 <td>
-                  <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
-                  </div>
+                  <div class="label label-default">Submitted</div>
                 </td>
                 <td>
                   {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
+                    <button class="btn btn-success" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
+                    <button class="btn btn-danger" data-id="{{ $order->id }}" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                     <a class="btn btn-success" href="{{ route('orders.edit', ['order_id'=> $order->order_id]) }}">Edit</a>{{
                     Form::submit('Delete', ['class' => 'btn btn-warning']) }}
                   </div>
@@ -209,14 +211,13 @@
                   </table>
                 </td>
                 <td>
-                  <div class="btn-group-vertical btn-group-sm" role="group">
-                    <button class="btn btn-success" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
-                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
-                  </div>
+                  <div class="label label-default">Submitted</div>
                 </td>
                 <td>
                   {{ Form::open(array('url' => 'orders/' . $stock->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
+                    <button class="btn btn-success" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
+                    <button class="btn btn-danger" data-id="{{ $stock->id }}" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
                     <a class="btn btn-success" href="{{ route('orders.edit', ['order_id'=> $stock->stock_id]) }}">Edit</a>{{
                     Form::submit('Delete', ['class' => 'btn btn-warning']) }}
                   </div>
