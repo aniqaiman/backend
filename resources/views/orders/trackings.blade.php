@@ -27,7 +27,7 @@
             @foreach ($order->products as $key => $product)
             <tr>
               <td>{{ $key + 1 }}</td>
-              <td>{{ $product->name }}</td>
+              <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
               <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
                 @switch($product->pivot->grade) 
@@ -89,7 +89,7 @@
             @foreach ($stock->products as $key => $product)
             <tr>
               <td>{{ $key + 1 }}</td>
-              <td>{{ $product->name }}</td>
+              <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
               <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
                 @switch($product->pivot->grade) 
