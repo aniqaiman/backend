@@ -42,7 +42,7 @@
                 <th>Feedback Topic</th>
                 <th>Feedback Description</th>
                 <th>Feedback Response</th>
-                <th style="width: 1%;">Status</th>
+                <th class="text-center" style="width: 1%;">Status</th>
                 <th style="width: 1%;"></th>
               </tr>
             </thead>
@@ -104,7 +104,7 @@
                 <th>Feedback Topic</th>
                 <th>Feedback Description</th>
                 <th>Feedback Response</th>
-                <th style="width: 1%;">Status</th>
+                <th class="text-center" style="width: 1%;">Status</th>
                 <th style="width: 1%;"></th>
               </tr>
             </thead>

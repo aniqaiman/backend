@@ -83,7 +83,7 @@
                 <th>Buyer#</th>
                 <th>Location</th>
                 <th class="text-nowrap">Lorry Assigned</th>
-                <th style="width: 1%;">Status</th>
+                <th class="text-center" style="width: 1%;">Status</th>
                 <th style="width: 1%;"></th>
               </tr>
             </thead>
@@ -185,7 +185,7 @@
                 <th>Seller#</th>
                 <th>Location</th>
                 <th class="text-nowrap">Lorry Assigned</th>
-                <th style="width: 1%;">Status</th>
+                <th class="text-center" style="width: 1%;">Status</th>
                 <th style="width: 1%;"></th>
               </tr>
             </thead>
