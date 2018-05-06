@@ -24,7 +24,7 @@
             <tr>
               <td>{{ $key }}</td>
               <td>{{ $product->name }}</td>
-              <td class="text-center" nowrap>{{ $product->totalQuantity() }} kg</td>
+              <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
                 @switch($product->pivot->grade) 
                   @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break
@@ -86,7 +86,7 @@
             <tr>
               <td>{{ $key }}</td>
               <td>{{ $product->name }}</td>
-              <td class="text-center" nowrap>{{ $product->totalQuantity() }} kg</td>
+              <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
                 @switch($product->pivot->grade) 
                   @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break
