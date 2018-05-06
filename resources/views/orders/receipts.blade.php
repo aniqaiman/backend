@@ -119,7 +119,8 @@
                   <div class="label label-default">Submitted</div>
                 </td>
                 <td>
-                  {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
+                  {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'text-center')) }}
+                  {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
                     <button type="button" class="btn btn-primary" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
                     <button type="button" class="btn btn-danger" data-id="{{ $order->id }}" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
@@ -214,7 +215,8 @@
                   <div class="label label-default">Submitted</div>
                 </td>
                 <td>
-                  {{ Form::open(array('url' => 'orders/' . $stock->id, 'class' => 'pull-right')) }} {{ Form::hidden('_method', 'DELETE') }}
+                  {{ Form::open(array('url' => 'orders/' . $stock->id, 'class' => 'text-center')) }}
+                  {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
                     <button type="button" class="btn btn-primary" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
                     <button type="button" class="btn btn-danger" data-id="{{ $stock->id }}" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
