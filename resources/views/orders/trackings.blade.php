@@ -1,12 +1,13 @@
 @extends('layout.master') @section('style') @endsection @section('content')
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+@foreach($orders as $order)
+<div class="modal fade" id="order_{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $order->id }}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="exampleModalLabel">Title</h4>
+        <h4 class="modal-title" id="exampleModalLabel_{{ $order->id }}">{{ $order->created_at }} | {{ $order->id }}</h4>
       </div>
       <div class="modal-body">
         <table class="table table-striped">
@@ -18,32 +19,46 @@
             <th class="text-center">Total</th>
           </thead>
           <tbody>
+            @foreach ($order->products as $key => $product)
             <tr>
-              <td></td>
-              <td></td>
-              <td class="text-center" nowrap> kg</td>
-              <td class="text-center" nowrap>RM</td>
-              <td class="text-center" nowrap></td>
+              <td>$key</td>
+              <td>$product->name</td>
+              <td class="text-center" nowrap>$product->totalQuantity() kg</td>
+              <td class="text-center" nowrap>
+                @switch($product->pivot->grade) 
+                  @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break
+                  @case("B") RM {{ number_format($product->priceLatest()->price_b, 2) }} @break
+                  @case("B") RM {{ number_format($product->priceLatest()->price_c, 2) }} @break
+                @endswitch
+              </td>
+              <td class="text-center" nowrap>
+                @switch($product->pivot->grade) 
+                  @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }} @break
+                  @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b, 2) }} @break
+                  @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c, 2) }} @break
+                @endswitch
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="modal-footer">
         <span class="float-left">
-          <span class="badge badge-secondary" *ngIf="selectedOrder.status === 0">Order Submitted</span>
-          <span class="badge badge-info" *ngIf="isToday(selectedOrder) && selectedOrder.status === 1">Order Approved</span>
-          <span class="badge badge-warning" *ngIf="!isToday(selectedOrder) && selectedOrder.status === 1">Order Pending</span>
-          <span class="badge badge-danger" *ngIf="selectedOrder.status === 2">Order Rejected</span>
-          <span class="badge badge-success" *ngIf="selectedOrder.status === 3">Order Completed</span>
+          @if ($order->status === 1)
+          <span class="label label-warning">Pending</span>
+          @elseif ($order->status === 3)
+          <span class="label label-success">Completed</span>
+          @endif
         </span>
         <h3 class="text-right">
           Total:
-          <span class="badge badge-dark">RM 000.00</span>
+          <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
         </h3>
       </div>
     </div>
   </div>
 </div>
+@endforeach
 
 <section class="content-header">
   <h1>
@@ -93,7 +108,7 @@
               <tr>
                 <td>{{ $order->created_at }}</td>
                 <td>
-                  <a href="#" data-id="{{ $order->id }}" data-type="order" data-date="{{ $order->created_at }}" data-toggle="modal" data-target="#exampleModal">
+                  <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">
                     {{ $order->id }}
                   </a>
                 </td>
@@ -265,23 +280,6 @@
 @endsection @section('script')
 <script>
   $(document).ready(function () {
-    $('#exampleModal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget);
-      var id = button.data('id');
-      var date = button.data('date');
-
-      var modal = $(this);
-      modal.find('#exampleModalLabel').text(date + ' | ' + id);
-      /*modal.find('#feedback-id').val(id);
-
-      var type = button.data('type');
-      if (type === 'order') {
-        $("#feedback-submit").on("click", rejectBuyerOrder);
-      } else if (type === 'stock') {
-        $("#feedback-submit").on("click", rejectSellerOrder);
-      }*/
-    });
-
     $('#order-table').DataTable({
       'ordering': false,
       'paging': false,
