@@ -123,7 +123,7 @@
                   <div class="btn-group-vertical btn-group-sm">
                     <button class="btn btn-success" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
                     <button class="btn btn-danger" data-id="{{ $order->id }}" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
-                    <a class="btn btn-success" href="{{ route('orders.edit', ['order_id'=> $order->order_id]) }}">Edit</a>{{
+                    <a class="btn btn-info" href="{{ route('orders.edit', ['order_id'=> $order->order_id]) }}">Edit</a>{{
                     Form::submit('Delete', ['class' => 'btn btn-warning']) }}
                   </div>
                   {{ Form::close() }}
@@ -218,7 +218,7 @@
                   <div class="btn-group-vertical btn-group-sm">
                     <button class="btn btn-success" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
                     <button class="btn btn-danger" data-id="{{ $stock->id }}" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
-                    <a class="btn btn-success" href="{{ route('orders.edit', ['order_id'=> $stock->stock_id]) }}">Edit</a>{{
+                    <a class="btn btn-info" href="{{ route('orders.edit', ['order_id'=> $stock->stock_id]) }}">Edit</a>{{
                     Form::submit('Delete', ['class' => 'btn btn-warning']) }}
                   </div>
                   {{ Form::close() }}
