@@ -1,4 +1,8 @@
-@extends('layout.master') @section('style') @endsection @section('content')
+@extends('layout.master')
+@section('style')
+@endsection
+
+@section('content')
 
 @foreach($orders as $order)
 <div class="modal fade" id="order_{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $order->id }}">
@@ -52,7 +56,7 @@
           <span class="label label-success">Completed</span>
           @endif
         </span>
-        <h3 class="text-right">
+        <h3 class="pull-right">
           Total:
           <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
         </h3>
@@ -114,7 +118,7 @@
           <span class="label label-success">Completed</span>
           @endif
         </span>
-        <h3 class="text-right">
+        <h3 class="pull-right">
           Total:
           <span class="label label-default">RM {{ number_format($stock->totalPrice(), 2) }}</span>
         </h3>

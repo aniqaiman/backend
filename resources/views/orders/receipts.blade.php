@@ -3,6 +3,7 @@
 @endsection
  
 @section('content')
+
 <div class="modal modal-danger fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -84,8 +85,8 @@
                 <td>
                   {{ $order->user->address }}
                   <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
-                      <i class="fa fa-map-marker"></i>
-                    </a>
+                    <i class="fa fa-map-marker"></i>
+                  </a>
                 </td>
                 <td>
                   <div class="lead">
