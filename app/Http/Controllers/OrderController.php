@@ -10,7 +10,7 @@ use Session;
 
 class OrderController extends Controller
 {
-    public function createOrder(Request $request)
+    public function store(Request $request)
     {
         if ($request->ajax()) {
             $orders = new Order;
@@ -24,7 +24,7 @@ class OrderController extends Controller
         }
     }
 
-    public function getOrderReceipts()
+    public function indexOrderReceipts()
     {
         $orders = Order::where('status', 0)
             ->paginate(10, ['*'], 'buyer');
@@ -35,7 +35,7 @@ class OrderController extends Controller
         return view('orders.receipts', compact('orders', 'stocks'));
     }
 
-    public function getOrderTrackings()
+    public function indexOrderTrackings()
     {
         $orders = Order::whereIn('status', [1, 3])
             ->orderBy('created_at', 'desc')
@@ -48,7 +48,7 @@ class OrderController extends Controller
         return view('orders.trackings', compact('orders', 'stocks'));
     }
 
-    public function getOrderRejects()
+    public function indexOrderRejects()
     {
         $orders = Order::where('status', 2)
             ->orderBy('created_at', 'desc')
@@ -61,7 +61,7 @@ class OrderController extends Controller
         return view('orders.rejects', compact('orders', 'stocks'));
     }
 
-    public function getOrderTransactions()
+    public function indexOrderTransactions()
     {
         $orders = Order::orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'buyer');
@@ -72,7 +72,7 @@ class OrderController extends Controller
         return view('orders.transactions', compact('orders', 'stocks'));
     }
 
-    public function approveBuyerOrder(Request $request)
+    public function updateApproveBuyerOrder(Request $request)
     {
         $order = Order::find($request->id);
         $order->status = 1;
@@ -93,7 +93,7 @@ class OrderController extends Controller
         return response($order);
     }
 
-    public function approveSellerStock(Request $request)
+    public function updateApproveSellerStock(Request $request)
     {
         $stock = Stock::find($request->id);
         $stock->status = 1;
@@ -114,7 +114,7 @@ class OrderController extends Controller
         return response($stock);
     }
 
-    public function rejectBuyerOrder(Request $request)
+    public function updateRejectBuyerOrder(Request $request)
     {
         $order = Order::find($request->id);
         $order->status = 2;
@@ -126,7 +126,7 @@ class OrderController extends Controller
         return response($order);
     }
 
-    public function rejectSellerStock(Request $request)
+    public function updateRejectSellerStock(Request $request)
     {
         $stock = Stock::find($request->id);
         $stock->status = 2;
@@ -138,7 +138,7 @@ class OrderController extends Controller
         return response($stock);
     }
 
-    public function pendingOrderStock(Request $request)
+    public function updatePendingOrderStock(Request $request)
     {
         if ($request->type === "order") {
             $order = Order::find($request->id);
@@ -153,7 +153,7 @@ class OrderController extends Controller
         }
     }
 
-    public function completeOrderStock(Request $request)
+    public function updateCompleteOrderStock(Request $request)
     {
         if ($request->type === "order") {
             $order = Order::find($request->id);
@@ -168,7 +168,7 @@ class OrderController extends Controller
         }
     }
 
-    public function getOrderDetails(Request $request, $order_id)
+    public function show(Request $request, $order_id)
     {
         return response()->json([
             'data' => Order::find($order_id)
@@ -182,13 +182,13 @@ class OrderController extends Controller
         ]);
     }
 
-    public function editOrder($order_id, Request $request)
+    public function edit($order_id, Request $request)
     {
         $order = Order::where('order_id', $request->order_id)->first();
         return view('order.editOrder', compact('order'));
     }
 
-    public function updateOrder(Request $request)
+    public function update(Request $request)
     {
         if ($request->ajax()) {
             $orders = Order::where('order_id', $request->order_id)->first();
@@ -202,7 +202,7 @@ class OrderController extends Controller
         }
     }
 
-    public function deleteOrder($order_id, Request $request)
+    public function delete($order_id, Request $request)
     {
         $order = Order::find($order_id);
         $order->delete();

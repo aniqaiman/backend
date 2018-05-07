@@ -50,7 +50,7 @@ Route::prefix('users')
 
         Route::get('buyers', 'BuyerController@index')->name('buyers.index');
         Route::post('buyers', 'BuyerController@store')->name('buyers.store');
-        Route::put('buyers', 'BuyerController@update')->name('buyers.update');
+        Route::put('buyers/{user_id}', 'BuyerController@update')->name('buyers.update');
         Route::delete('buyers/{user_id}', 'BuyerController@destroy')->name('buyers.destroy');
         Route::get('buyers/{user_id}/edit', 'BuyerController@edit')->name('buyers.edit');
 
@@ -78,45 +78,50 @@ Route::prefix('orders')
 
         // ------------------------------------------- Order ------------------------------------------- //
 
-        Route::get('receipts', 'OrderController@getOrderReceipts')->name('index.receipts');
-        Route::get('trackings', 'OrderController@getOrderTrackings')->name('index.trackings');
-        Route::get('rejects', 'OrderController@getOrderRejects')->name('index.rejects');
-        Route::get('transactions', 'OrderController@getOrderTransactions')->name('index.transactions');
+        Route::get('receipts', 'OrderController@indexOrderReceipts')->name('index.receipts');
+        Route::get('trackings', 'OrderController@indexOrderTrackings')->name('index.trackings');
+        Route::get('rejects', 'OrderController@indexOrderRejects')->name('index.rejects');
+        Route::get('transactions', 'OrderController@indexOrderTransactions')->name('index.transactions');
 
-        Route::post('orders', 'OrderController@store')->name('store');
-        Route::put('orders', 'OrderController@update')->name('update');
+        Route::post('', 'OrderController@store')->name('store');
+        Route::put('{order_id}', 'OrderController@update')->name('update');
         Route::get('{order_id}', 'OrderController@edit')->name('edit');
         Route::delete('{order_id}', 'OrderController@destroy')->name('destroy');
 
-        Route::put('buyers/approve', 'OrderController@approveBuyerOrder')->name('update.status.buyers.approve');
-        Route::put('buyers/reject', 'OrderController@rejectBuyerOrder')->name('update.status.buyers.reject');
+        Route::put('buyers/approve', 'OrderController@updateApproveBuyerOrder')->name('update.status.buyers.approve');
+        Route::put('buyers/reject', 'OrderController@updateRejectBuyerOrder')->name('update.status.buyers.reject');
 
-        Route::put('sellers/approve', 'OrderController@approveSellerStock')->name('update.status.sellers.reject');
-        Route::put('sellers/reject', 'OrderController@rejectSellerStock')->name('update.status.sellers.reject');
+        Route::put('sellers/approve', 'OrderController@updateApproveSellerStock')->name('update.status.sellers.reject');
+        Route::put('sellers/reject', 'OrderController@updateRejectSellerStock')->name('update.status.sellers.reject');
 
-        Route::put('pending', ['as' => 'pending', 'uses' => 'OrderController@pendingOrderStock'])->name('update.status.pending');
-        Route::put('complete', ['as' => 'complete', 'uses' => 'OrderController@completeOrderStock'])->name('update.status.complete');
+        Route::put('pending', 'OrderController@updatePendingOrderStock')->name('update.status.pending');
+        Route::put('complete', 'OrderController@updateCompleteOrderStock')->name('update.status.complete');
     
     });
 
-// ------------------------------------------- Vege ------------------------------------------- //
+Route::prefix('products')
+    ->name('products.')
+    ->group(function () {
 
-Route::post('vege', ['as' => 'products.vegetables.action.create', 'uses' => 'VegeController@createVege']);
-Route::get('vege', ['as' => 'products.vegetables', 'uses' => 'VegeController@getVege']);
-Route::get('editVege/{product_id}', ['as' => 'editVege', 'uses' => 'VegeController@editVege']);
-Route::post('updateVege', ['as' => 'updateVege', 'uses' => 'VegeController@updateVege']);
-Route::delete('vege/{product_id}', ['as' => 'deleteVege', 'uses' => 'VegeController@deleteVege']);
+        // ------------------------------------------- Vegetable ------------------------------------------- //
 
-// ------------------------------------------- Fruit ------------------------------------------- //
+        Route::post('vegetables', 'VegetableController@store')->name('vegetables.store');
+        Route::get('vegetables', 'VegetableController@index')->name('vegetables.index');
+        Route::put('vegetables/{product_id}', 'VegetableController@update')->name('vegetables.update');
+        Route::delete('vegetables/{product_id}', 'VegetableController@destroy')->name('vegetables.destroy');
+        Route::get('vegetables/{product_id}/edit', 'VegetableController@edit')->name('vegetables.edit');
 
-Route::post('products/fruits', ['as' => 'products.fruits.action.create', 'uses' => 'FruitController@createFruit']);
-Route::get('products/fruits', ['as' => 'products.fruits', 'uses' => 'FruitController@getFruit']);
-Route::get('products/fruits/{product_id}', ['as' => 'products.fruits.update', 'uses' => 'FruitController@editFruit']);
-Route::put('products/fruits', ['as' => 'products.fruits.action.update', 'uses' => 'FruitController@updateFruit']);
-Route::delete('fruit/{product_id}', ['as' => 'deleteFruit', 'uses' => 'FruitController@deleteFruit']);
+        // ------------------------------------------- Fruit ------------------------------------------- //
 
-Route::post('send', 'EmailController@send');
+        Route::post('fruits', 'FruitController@store')->name('fruits.store');
+        Route::get('fruits', 'FruitController@index')->name('fruits.index');
+        Route::put('fruits/{product_id}', 'FruitController@update')->name('fruits.update');
+        Route::delete('fruits/{product_id}', 'FruitController@destroy')->name('fruits.destroy');
+        Route::get('fruits/{product_id}/edit', 'FruitController@edit')->name('fruits.edit');
+
+    });
 
 // ------------------------------------------- Others ------------------------------------------- //
 
+Route::post('send', 'EmailController@send');
 Route::get('playground', 'ApiController@playground');

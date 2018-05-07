@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 use Redirect;
 use Session;
 
-class VegeController extends Controller
+class VegetableController extends Controller
 {
-    public function createVege(Request $request)
+    public function store(Request $request)
     {
         $path = $request->file('product_image')->store('public/images');
         if ($request->ajax()) {
@@ -27,7 +27,7 @@ class VegeController extends Controller
         }
     }
 
-    public function getVege()
+    public function index()
     {
         $vegs = Product::where('category', 11)->get();
         $categories = Category::all();
@@ -41,7 +41,7 @@ class VegeController extends Controller
         return view('product.editVege', compact('vegs'));
     }
 
-    public function updateVege(Request $request)
+    public function update(Request $request)
     {
         $path = $request->file('product_image')->store('public/images');
         if ($request->ajax()) {
@@ -58,7 +58,7 @@ class VegeController extends Controller
         }
     }
 
-    public function deleteProduct($product_id, Request $request)
+    public function delete($product_id, Request $request)
     {
         $vegs = Product::find($product_id);
         $vegs->delete();

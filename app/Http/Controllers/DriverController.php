@@ -11,7 +11,7 @@ use Session;
 
 class DriverController extends Controller
 {
-    public function createDriver(Request $request)
+    public function store(Request $request)
     {
         $path = $request->file('drivers_license')->store('public/images');
         if ($request->ajax()) {
@@ -37,7 +37,7 @@ class DriverController extends Controller
         }
     }
 
-    public function getDriver()
+    public function index()
     {
         $drivers = User::where('group_id', 31)->get();
         $types = LorryType::all();
@@ -45,7 +45,7 @@ class DriverController extends Controller
         return view('driver.driver', compact('drivers', 'types', 'capacities'));
     }
 
-    public function editDriver($user_id, Request $request)
+    public function edit($user_id, Request $request)
     {
         $drivers = User::where('user_id', $user_id)->first();
         $types = Type::all();
@@ -53,7 +53,7 @@ class DriverController extends Controller
         return view('driver.editDriver', compact('drivers', 'types', 'capacities'));
     }
 
-    public function updateDriver(Request $request)
+    public function update(Request $request)
     {
         $path = $request->file('drivers_license')->store('public/images');
         if ($request->ajax()) {
@@ -78,7 +78,7 @@ class DriverController extends Controller
         }
     }
 
-    public function deleteDriver($user_id, Request $request)
+    public function delete($user_id, Request $request)
     {
         $drivers = User::find($user_id);
         $drivers->delete();
@@ -86,7 +86,7 @@ class DriverController extends Controller
         return Redirect::to('driver');
     }
 
-    public function getDriverDetail($user_id, Request $request)
+    public function show($user_id, Request $request)
     {
         $driver = User::where('user_id', $user_id)->first();
         $types = Type::all();

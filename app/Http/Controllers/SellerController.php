@@ -11,7 +11,7 @@ use Session;
 
 class SellerController extends Controller
 {
-    public function createSeller(Request $request)
+    public function store(Request $request)
     {
         if ($request->ajax()) {
             $sellers = new User;
@@ -33,19 +33,19 @@ class SellerController extends Controller
         }
     }
 
-    public function getSellers()
+    public function index()
     {
         $sellers = User::where('group_id', 21)->paginate();
         return view('users.sellers', compact('sellers'));
     }
 
-    public function editSeller($user_id, Request $request)
+    public function edit($user_id, Request $request)
     {
         $sellers = User::where('user_id', $user_id)->first();
         return view('seller.editSeller', compact('sellers'));
     }
 
-    public function updateSeller(Request $request)
+    public function update(Request $request)
     {
         if ($request->ajax()) {
             $sellers = User::where('user_id', $request->user_id)->first();
@@ -66,7 +66,7 @@ class SellerController extends Controller
         }
     }
 
-    public function deleteSeller($user_id, Request $request)
+    public function delete($user_id, Request $request)
     {
         $sellers = User::find($user_id);
         $sellers->delete();
@@ -74,7 +74,7 @@ class SellerController extends Controller
         return Redirect::to('seller');
     }
 
-    public function getSellerDetail($user_id, Request $request)
+    public function show($user_id, Request $request)
     {
         $seller = User::where('user_id', $user_id)->first();
         $types = Type::all();

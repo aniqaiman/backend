@@ -9,7 +9,7 @@ use Session;
 
 class BuyerController extends Controller
 {
-    public function createBuyer(Request $request)
+    public function store(Request $request)
     {
         if ($request->ajax()) {
             $buyers = new User;
@@ -28,19 +28,19 @@ class BuyerController extends Controller
         }
     }
 
-    public function getBuyers()
+    public function index()
     {
         $buyers = User::where('group_id', 11)->paginate();
         return view('users.buyers', compact('buyers'));
     }
 
-    public function editBuyer($user_id, Request $request)
+    public function edit($user_id, Request $request)
     {
         $buyers = User::where('user_id', $user_id)->first();
         return view('buyer.editBuyer', compact('buyers'));
     }
 
-    public function updateBuyer(Request $request)
+    public function update(Request $request)
     {
         if ($request->ajax()) {
             $buyers = User::where('user_id', $request->user_id)->first();
@@ -58,7 +58,7 @@ class BuyerController extends Controller
         }
     }
 
-    public function deleteBuyer($user_id, Request $request)
+    public function delete($user_id, Request $request)
     {
         $buyers = User::find($user_id);
         $buyers->delete();
