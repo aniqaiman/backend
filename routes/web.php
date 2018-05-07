@@ -40,14 +40,6 @@ Route::get('vege/{product_id}/editVegePrice/{price_id}', ['as' => 'editVegePrice
 Route::post('updateVegePrice', ['as' => 'updateVegePrice', 'uses' => 'PriceController@updateVegePrice']);
 Route::delete('vegeprice', ['as' => 'deleteVegePrice', 'uses' => 'PriceController@deleteVegePrice']);
 
-// ------------------------------------------- Group ------------------------------------------- //
-
-Route::post('group', ['as' => 'createGroup', 'uses' => 'GroupController@createGroup']);
-Route::get('group', ['as' => 'group', 'uses' => 'GroupController@getGroup', 'roles' => ['admin']]);
-Route::get('editGroup/{group_id}', ['as' => 'editGroup', 'uses' => 'GroupController@editGroup']);
-Route::post('updateGroup', ['as' => 'updateGroup', 'uses' => 'GroupController@updateGroup']);
-Route::delete('group/{group_id}', ['as' => 'deleteGroup', 'uses' => 'GroupController@deleteGroup']);
-
 // ------------------------------------------- Order ------------------------------------------- //
 
 Route::get('orders/receipts', 'OrderController@getOrderReceipts')->name('orders.receipts');
@@ -65,14 +57,6 @@ Route::put('orders/sellers/reject', ['as' => 'orders.sellers.reject', 'uses' => 
 Route::put('orders/pending', ['as' => 'orders.pending', 'uses' => 'OrderController@pendingOrderStock']);
 Route::put('orders/complete', ['as' => 'orders.complete', 'uses' => 'OrderController@completeOrderStock']);
 Route::delete('orders/{order_id}', ['as' => 'deleteOrder', 'uses' => 'OrderController@deleteOrder']);
-
-// ------------------------------------------- User ------------------------------------------- //
-
-Route::post('users', ['as' => 'createUser', 'uses' => 'UserController@createUser']);
-Route::get('users/{user_id}', ['as' => 'user', 'uses' => 'UserController@getUser']);
-Route::get('editUser/{user_id}', ['as' => 'editUser', 'uses' => 'UserController@editUser']);
-Route::post('updateUser', ['as' => 'updateUser', 'uses' => 'UserController@updateUser']);
-Route::delete('users/{user_id}', ['as' => 'deleteUser', 'uses' => 'UserController@deleteUser']);
 
 // ------------------------------------------- Driver ------------------------------------------- //
 
