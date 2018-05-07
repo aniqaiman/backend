@@ -58,48 +58,51 @@ Route::put('orders/pending', ['as' => 'orders.pending', 'uses' => 'OrderControll
 Route::put('orders/complete', ['as' => 'orders.complete', 'uses' => 'OrderController@completeOrderStock']);
 Route::delete('orders/{order_id}', ['as' => 'deleteOrder', 'uses' => 'OrderController@deleteOrder']);
 
-// ------------------------------------------- Driver ------------------------------------------- //
+Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
 
-Route::post('driver', ['as' => 'createDriver', 'uses' => 'DriverController@createDriver']);
-Route::get('driver', ['as' => 'users.drivers', 'uses' => 'DriverController@getDriver']);
-Route::get('editDriver/{driver_id}', ['as' => 'editDriver', 'uses' => 'DriverController@editDriver']);
-Route::post('updateDriver', ['as' => 'updateDriver', 'uses' => 'DriverController@updateDriver']);
-Route::delete('driver/{driver_id}', ['as' => 'deleteDriver', 'uses' => 'DriverController@deleteDriver']);
+    // ------------------------------------------- Driver ------------------------------------------- //
 
-Route::get('driver/{driver_id}/driverdetail', ['as' => 'driverdetail', 'uses' => 'DriverController@getDriverDetail']);
+    Route::get('drivers', 'DriverController@index')->name('drivers.index');
+    Route::post('drivers', 'DriverController@store')->name('drivers.store');
+    Route::get('drivers/{user_id}', 'DriverController@show')->show('drivers.show');
+    Route::put('drivers/{user_id}', 'DriverController@update')->name('drivers.update');
+    Route::delete('drivers/{user_id}', 'DriverController@destroy')->name('drivers.destroy');
+    Route::get('drivers/{user_id}/edit', 'DriverController@edit')->name('drivers.edit');
 
-// ------------------------------------------- Seller ------------------------------------------- //
+    // ------------------------------------------- Seller ------------------------------------------- //
 
-Route::get('sellers', ['as' => 'users.sellers', 'uses' => 'SellerController@getSellers']);
-Route::get('editSeller/{seller_id}', ['as' => 'editSeller', 'uses' => 'SellerController@editSeller']);
-Route::post('seller', ['as' => 'createSeller', 'uses' => 'SellerController@createSeller']);
-Route::post('updateSeller', ['as' => 'updateSeller', 'uses' => 'SellerController@updateSeller']);
-Route::delete('seller/{seller_id}', ['as' => 'deleteSeller', 'uses' => 'SellerController@deleteSeller']);
+    Route::get('sellers', ['as' => 'users.sellers', 'uses' => 'SellerController@getSellers'])->name('');
+    Route::get('editSeller/{seller_id}', ['as' => 'editSeller', 'uses' => 'SellerController@editSeller'])->name('');
+    Route::post('seller', ['as' => 'createSeller', 'uses' => 'SellerController@createSeller'])->name('');
+    Route::post('updateSeller', ['as' => 'updateSeller', 'uses' => 'SellerController@updateSeller'])->name('');
+    Route::delete('seller/{seller_id}', ['as' => 'deleteSeller', 'uses' => 'SellerController@deleteSeller'])->name('');
 
-Route::get('seller/{seller_id}/sellerdetail', ['as' => 'sellerdetail', 'uses' => 'SellerController@getSellersDetail']);
+    Route::get('seller/{seller_id}/sellerdetail', ['as' => 'sellerdetail', 'uses' => 'SellerController@getSellersDetail']);
 
-// ------------------------------------------- Buyer ------------------------------------------- //
+    // ------------------------------------------- Buyer ------------------------------------------- //
 
-Route::get('buyers', ['as' => 'users.buyers', 'uses' => 'BuyerController@getBuyers']);
-Route::get('editBuyer/{buyer_id}', ['as' => 'editBuyer', 'uses' => 'BuyerController@editBuyer']);
-Route::post('buyers', ['as' => 'createBuyer', 'uses' => 'BuyerController@createBuyer']);
-Route::post('updateBuyer', ['as' => 'updateBuyer', 'uses' => 'BuyerController@updateBuyer']);
-Route::delete('buyer/{buyer_id}', ['as' => 'deleteBuyer', 'uses' => 'BuyerController@deleteBuyer']);
+    Route::get('buyers', ['as' => 'users.buyers', 'uses' => 'BuyerController@getBuyers']);
+    Route::get('editBuyer/{buyer_id}', ['as' => 'editBuyer', 'uses' => 'BuyerController@editBuyer']);
+    Route::post('buyers', ['as' => 'createBuyer', 'uses' => 'BuyerController@createBuyer']);
+    Route::post('updateBuyer', ['as' => 'updateBuyer', 'uses' => 'BuyerController@updateBuyer']);
+    Route::delete('buyer/{buyer_id}', ['as' => 'deleteBuyer', 'uses' => 'BuyerController@deleteBuyer']);
+
+});
 
 // ------------------------------------------- Vege ------------------------------------------- //
 
-Route::post('vege', ['as' => 'inventories.vegetables.action.create', 'uses' => 'VegeController@createVege']);
-Route::get('vege', ['as' => 'inventories.vegetables', 'uses' => 'VegeController@getVege']);
+Route::post('vege', ['as' => 'products.vegetables.action.create', 'uses' => 'VegeController@createVege']);
+Route::get('vege', ['as' => 'products.vegetables', 'uses' => 'VegeController@getVege']);
 Route::get('editVege/{product_id}', ['as' => 'editVege', 'uses' => 'VegeController@editVege']);
 Route::post('updateVege', ['as' => 'updateVege', 'uses' => 'VegeController@updateVege']);
 Route::delete('vege/{product_id}', ['as' => 'deleteVege', 'uses' => 'VegeController@deleteVege']);
 
 // ------------------------------------------- Fruit ------------------------------------------- //
 
-Route::post('inventories/fruits', ['as' => 'inventories.fruits.action.create', 'uses' => 'FruitController@createFruit']);
-Route::get('inventories/fruits', ['as' => 'inventories.fruits', 'uses' => 'FruitController@getFruit']);
-Route::get('inventories/fruits/{product_id}', ['as' => 'inventories.fruits.update', 'uses' => 'FruitController@editFruit']);
-Route::put('inventories/fruits', ['as' => 'inventories.fruits.action.update', 'uses' => 'FruitController@updateFruit']);
+Route::post('products/fruits', ['as' => 'products.fruits.action.create', 'uses' => 'FruitController@createFruit']);
+Route::get('products/fruits', ['as' => 'products.fruits', 'uses' => 'FruitController@getFruit']);
+Route::get('products/fruits/{product_id}', ['as' => 'products.fruits.update', 'uses' => 'FruitController@editFruit']);
+Route::put('products/fruits', ['as' => 'products.fruits.action.update', 'uses' => 'FruitController@updateFruit']);
 Route::delete('fruit/{product_id}', ['as' => 'deleteFruit', 'uses' => 'FruitController@deleteFruit']);
 
 Route::post('send', 'EmailController@send');
