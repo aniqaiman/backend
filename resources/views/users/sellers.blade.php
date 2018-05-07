@@ -90,7 +90,7 @@
               <tr class="bg-black">
                 <th>Seller Name</th>
                 <th>Seller#</th>
-                <th class="text-nowrap" nowrap>Purchased Products</th>
+                <th>Purchased Products</th>
                 <th>Date Registered#</th>
                 <th>Location</th>
                 <th>Contact (H/P &amp; Email)</th>
@@ -107,7 +107,7 @@
                     {{ $seller->id }}
                   </a>
                 </td>
-                <td>
+                <td nowrap>
                   @if (!$seller->stocks()->exists())
                   <div>No products been supplied.</div>
                   @endif

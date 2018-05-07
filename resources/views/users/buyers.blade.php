@@ -88,7 +88,7 @@
               <tr class="bg-black">
                 <th>Buyer Name</th>
                 <th>Buyer#</th>
-                <th class="text-nowrap">Purchased Products</th>
+                <th>Purchased Products</th>
                 <th>Date Registered#</th>
                 <th>Location</th>
                 <th>Contact (H/P &amp; Email)</th>
@@ -105,7 +105,7 @@
                     {{ $buyer->id }}
                   </a>
                 </td>
-                <td>
+                <td nowrap>
                   @if (!$buyer->orders()->exists())
                   <div>No products been ordered.</div>
                   @endif

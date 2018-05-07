@@ -67,10 +67,10 @@
               <tr class="bg-black">
                 <th>Date</th>
                 <th>Order#</th>
-                <th class="text-nowrap">Buyer Name</th>
+                <th>Buyer Name</th>
                 <th>Buyer#</th>
                 <th>Location</th>
-                <th nowrap>Items</th>
+                <th>Items</th>
                 <th class="text-center" style="width: 1%;">Status</th>
                 <th style="width: 1%;"></th>
               </tr>
@@ -89,7 +89,7 @@
                     <i class="fa fa-map-marker"></i>
                   </a>
                 </td>
-                <td>
+                <td nowrap>
                   <div class="lead">
                     <span class="label label-default">{{ $order->totalQuantity() }}kg</span>
                     <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
