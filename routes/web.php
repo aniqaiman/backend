@@ -28,6 +28,8 @@ Route::prefix('users')
     ->name('users.')
     ->group(function () {
 
+        Route::get('{user_id}', 'UserController@getUser')->name('json');
+        
         // ------------------------------------------- Driver ------------------------------------------- //
 
         Route::get('drivers', 'DriverController@index')->name('drivers.index');
