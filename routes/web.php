@@ -1,9 +1,9 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
+|-----------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
+|-----------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
@@ -18,13 +18,13 @@ Route::get('', ['as' => 'welcome', 'uses' =>
 
 // Route::group(['middleware' => ['api','cors']], function () {
 
-// -------------------------------------------Dashboard------------------------------------------------
+// ------------------------------------------- Dashboard ------------------------------------------- //
 
 Route::post('dashboard', ['as' => 'createDashboard', 'uses' => 'DashboardController@createServiceDashboard']);
 Route::get('dashboard', ['as' => 'dashboard', 'uses' =>
     'DashboardController@getDashboard']);
 
-// -------------------------------------------Price----------------------------------------------
+// ------------------------------------------- Price ------------------------------------------- //
 
 Route::post('fruit/{product_id}/price/add', ['as' => 'createFruitPrice', 'uses' => 'PriceController@createFruitPrice']);
 Route::get('fruit/{product_id}/detail', ['as' => 'getFruitDetail', 'uses' => 'PriceController@getFruitDetail']);
@@ -32,7 +32,7 @@ Route::get('fruit/{product_id}/editFruitPrice/{price_id}', ['as' => 'editFruitPr
 Route::post('updateFruitPrice', ['as' => 'updateFruitPrice', 'uses' => 'PriceController@updateFruitPrice']);
 Route::delete('fruitprice/{price_id}', ['as' => 'deleteFruitPrice', 'uses' => 'PriceController@deleteFruitPrice']);
 
-// -------------------------------------------Detail Fruit----------------------------------------------
+// ------------------------------------------- Detail Fruit ------------------------------------------- //
 
 Route::post('vege/{product_id}/price/add', ['as' => 'createVegePrice', 'uses' => 'PriceController@createVegePrice']);
 Route::get('vege/{product_id}/detail', ['as' => 'getVegeDetail', 'uses' => 'PriceController@getVegeDetail']);
@@ -40,7 +40,7 @@ Route::get('vege/{product_id}/editVegePrice/{price_id}', ['as' => 'editVegePrice
 Route::post('updateVegePrice', ['as' => 'updateVegePrice', 'uses' => 'PriceController@updateVegePrice']);
 Route::delete('vegeprice', ['as' => 'deleteVegePrice', 'uses' => 'PriceController@deleteVegePrice']);
 
-// -------------------------------------------Group----------------------------------------------------
+// ------------------------------------------- Group ------------------------------------------- //
 
 Route::post('group', ['as' => 'createGroup', 'uses' => 'GroupController@createGroup']);
 Route::get('group', ['as' => 'group', 'uses' => 'GroupController@getGroup', 'roles' => ['admin']]);
@@ -48,11 +48,13 @@ Route::get('editGroup/{group_id}', ['as' => 'editGroup', 'uses' => 'GroupControl
 Route::post('updateGroup', ['as' => 'updateGroup', 'uses' => 'GroupController@updateGroup']);
 Route::delete('group/{group_id}', ['as' => 'deleteGroup', 'uses' => 'GroupController@deleteGroup']);
 
-// -------------------------------------------Order----------------------------------------------------
+// ------------------------------------------- Order ------------------------------------------- //
 
-Route::get('orders/receipts', ['as' => 'orders.receipts', 'uses' => 'OrderController@getOrderReceipts']);
-Route::get('orders/trackings', ['as' => 'orders.trackings', 'uses' => 'OrderController@getOrderTrackings']);
-Route::get('orders/rejects', ['as' => 'orders.rejects', 'uses' => 'OrderController@getOrderRejects']);
+Route::get('orders/receipts', 'OrderController@getOrderReceipts')->name('orders.receipts');
+Route::get('orders/trackings', 'OrderController@getOrderTrackings')->name('orders.trackings');
+Route::get('orders/rejects', 'OrderController@getOrderRejects')->name('orders.rejects');
+Route::get('orders/transactions', 'OrderController@getOrderTransactions')->name('orders.transactions');
+
 Route::get('orders/{order_id}', ['as' => 'orders.edit', 'uses' => 'OrderController@editOrder']);
 Route::post('orders', ['as' => 'orders.create', 'uses' => 'OrderController@createOrder']);
 Route::post('orders/update', ['as' => 'orders.update', 'uses' => 'OrderController@updateOrder']);
@@ -64,7 +66,7 @@ Route::put('orders/pending', ['as' => 'orders.pending', 'uses' => 'OrderControll
 Route::put('orders/complete', ['as' => 'orders.complete', 'uses' => 'OrderController@completeOrderStock']);
 Route::delete('orders/{order_id}', ['as' => 'deleteOrder', 'uses' => 'OrderController@deleteOrder']);
 
-// -------------------------------------------User----------------------------------------------------
+// ------------------------------------------- User ------------------------------------------- //
 
 Route::post('users', ['as' => 'createUser', 'uses' => 'UserController@createUser']);
 Route::get('users/{user_id}', ['as' => 'user', 'uses' => 'UserController@getUser']);
@@ -72,7 +74,7 @@ Route::get('editUser/{user_id}', ['as' => 'editUser', 'uses' => 'UserController@
 Route::post('updateUser', ['as' => 'updateUser', 'uses' => 'UserController@updateUser']);
 Route::delete('users/{user_id}', ['as' => 'deleteUser', 'uses' => 'UserController@deleteUser']);
 
-// -------------------------------------------Driver----------------------------------------------------
+// ------------------------------------------- Driver ------------------------------------------- //
 
 Route::post('driver', ['as' => 'createDriver', 'uses' => 'DriverController@createDriver']);
 Route::get('driver', ['as' => 'users.drivers', 'uses' => 'DriverController@getDriver']);
@@ -82,7 +84,7 @@ Route::delete('driver/{driver_id}', ['as' => 'deleteDriver', 'uses' => 'DriverCo
 
 Route::get('driver/{driver_id}/driverdetail', ['as' => 'driverdetail', 'uses' => 'DriverController@getDriverDetail']);
 
-// -------------------------------------------Seller----------------------------------------------------
+// ------------------------------------------- Seller ------------------------------------------- //
 
 Route::get('sellers', ['as' => 'users.sellers', 'uses' => 'SellerController@getSellers']);
 Route::get('editSeller/{seller_id}', ['as' => 'editSeller', 'uses' => 'SellerController@editSeller']);
@@ -92,7 +94,7 @@ Route::delete('seller/{seller_id}', ['as' => 'deleteSeller', 'uses' => 'SellerCo
 
 Route::get('seller/{seller_id}/sellerdetail', ['as' => 'sellerdetail', 'uses' => 'SellerController@getSellersDetail']);
 
-// -------------------------------------------Buyer----------------------------------------------------
+// ------------------------------------------- Buyer ------------------------------------------- //
 
 Route::get('buyers', ['as' => 'users.buyers', 'uses' => 'BuyerController@getBuyers']);
 Route::get('editBuyer/{buyer_id}', ['as' => 'editBuyer', 'uses' => 'BuyerController@editBuyer']);
@@ -100,7 +102,7 @@ Route::post('buyers', ['as' => 'createBuyer', 'uses' => 'BuyerController@createB
 Route::post('updateBuyer', ['as' => 'updateBuyer', 'uses' => 'BuyerController@updateBuyer']);
 Route::delete('buyer/{buyer_id}', ['as' => 'deleteBuyer', 'uses' => 'BuyerController@deleteBuyer']);
 
-// -------------------------------------------Vege----------------------------------------------------
+// ------------------------------------------- Vege ------------------------------------------- //
 
 Route::post('vege', ['as' => 'inventories.vegetables.action.create', 'uses' => 'VegeController@createVege']);
 Route::get('vege', ['as' => 'inventories.vegetables', 'uses' => 'VegeController@getVege']);
@@ -108,7 +110,7 @@ Route::get('editVege/{product_id}', ['as' => 'editVege', 'uses' => 'VegeControll
 Route::post('updateVege', ['as' => 'updateVege', 'uses' => 'VegeController@updateVege']);
 Route::delete('vege/{product_id}', ['as' => 'deleteVege', 'uses' => 'VegeController@deleteVege']);
 
-// -------------------------------------------Fruit----------------------------------------------------
+// ------------------------------------------- Fruit ------------------------------------------- //
 
 Route::post('inventories/fruits', ['as' => 'inventories.fruits.action.create', 'uses' => 'FruitController@createFruit']);
 Route::get('inventories/fruits', ['as' => 'inventories.fruits', 'uses' => 'FruitController@getFruit']);
@@ -118,62 +120,6 @@ Route::delete('fruit/{product_id}', ['as' => 'deleteFruit', 'uses' => 'FruitCont
 
 Route::post('send', 'EmailController@send');
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ------------------------------------------- API ---------------------------------------------------- //
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Route::get('auth/user', 'ApiController@getAuthUser');
-Route::get('auth/verify/{token}', 'ApiController@verifyUserEmail');
-
-Route::post('auth/login', 'ApiController@login');
-Route::post('auth/verifyrecaptcha', 'ApiController@verifyReCAPTCHA');
-
-Route::post('api/registerseller', 'Api\SellerController@postRegisterSeller');
-Route::post('api/registerbuyer', 'Api\BuyerController@postRegisterBuyer');
-Route::post('api/registerdriver', 'Api\DriverController@postRegisterDriver');
-Route::post('api/registeruser', 'Api\UserController@postRegisterUser');
-
-Route::get('api/product/{product_id}', 'Api\ProductController@getProductbyId');
-Route::get('api/products', 'Api\ProductController@getProducts');
-Route::get('api/fruits', 'Api\ProductController@getFruits');
-Route::get('api/vegetables', 'Api\ProductController@getVegetables');
-Route::get('api/prices', 'Api\ProductController@getPrices');
-Route::get('api/buyers', 'Api\BuyerController@getBuyers');
-Route::get('api/sellers', 'Api\SellerController@getSellers');
-Route::get('api/drivers', 'Api\DriverController@getDrivers');
-Route::get('api/users', 'Api\UserController@getUsers');
-Route::get('api/buyer/{user_id}', 'Api\BuyerController@getBuyer');
-Route::get('api/driver/{user_id}', 'Api\DriverController@getDriver');
-Route::get('api/seller/{user_id}', 'Api\SellerController@getSeller');
-Route::get('api/user/{user_id}', 'Api\UserController@getUser');
-
-// ------------------------------------------- Promo ---------------------------------------------------- //
-
-Route::get('api/newproducts', 'Api\ProductController@getNewProducts');
-Route::get('api/lastpurchaseproducts', 'Api\ProductController@getLastPurchaseProducts');
-Route::get('api/bestsellingproducts', 'Api\ProductController@getBestSellingProducts');
-
-// ------------------------------------------- Order ---------------------------------------------------- //
-
-Route::get('api/orders', 'Api\OrderController@getOrders');
-Route::get('api/orders/{order_id}', 'Api\OrderController@getOrderDetails');
-
-// ------------------------------------------- Stock ---------------------------------------------------- //
-
-Route::get('api/stocks', 'Api\StockController@getStocks');
-Route::get('api/stocks/{stock_id}', 'Api\StockController@getStockDetails');
-
-Route::post('api/stocks', 'Api\StockController@postStocks');
-
-// ------------------------------------------- Cart ---------------------------------------------------- //
-
-Route::get('api/carts', 'Api\CartController@getCartItems');
-Route::get('api/carts/totalitems', 'Api\CartController@getTotalItems');
-Route::get('api/carts/totalprice', 'Api\CartController@getTotalPrice');
-
-Route::post('api/carts', 'Api\CartController@postCartItem');
-Route::post('api/carts/confirm', 'Api\CartController@postConfirm');
-
-Route::delete('api/carts/{product_id}', 'Api\CartController@deleteCartItem');
+// ------------------------------------------- Others ------------------------------------------- //
 
 Route::get('playground', 'ApiController@playground');

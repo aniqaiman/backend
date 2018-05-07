@@ -1,8 +1,8 @@
-@extends("layout.master") 
-@section("style")
+@extends('layout.master')
+@section('style')
 @endsection
- 
-@section("content")
+
+@section('content')
 
 @foreach($orders as $order)
 <div class="modal fade" id="order_{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $order->id }}">
@@ -50,7 +50,11 @@
       </div>
       <div class="modal-footer">
         <span class="pull-left">
-          <span class="label label-danger">Rejected</span>
+          @if ($order->status === 1)
+          <span class="label label-warning">Pending</span>
+          @elseif ($order->status === 3)
+          <span class="label label-success">Completed</span>
+          @endif
         </span>
         <h3 class="pull-right">
           Total:
@@ -108,7 +112,11 @@
       </div>
       <div class="modal-footer">
         <span class="pull-left">
-          <span class="label label-danger">Rejected</span>
+          @if ($stock->status === 1)
+          <span class="label label-warning">Pending</span>
+          @elseif ($stock->status === 3)
+          <span class="label label-success">Completed</span>
+          @endif
         </span>
         <h3 class="pull-right">
           Total:
@@ -123,7 +131,7 @@
 <section class="content-header">
   <h1>
     Order Management
-    <small>Rejects</small>
+    <small>Historical Transactions</small>
   </h1>
 
   <ol class="breadcrumb">
@@ -132,35 +140,33 @@
         <i class="fa fa-dashboard"></i>Dashboard</a>
     </li>
     <li>Order Management</li>
-    <li class="active">Rejects</li>
+    <li class="active">Historical Transactions</li>
   </ol>
 </section>
 
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success">
+      <div class="box box-success collapsed-box">
         <div class="box-header">
           <h3 class="box-title">Buyer</h3>
 
           <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+              <i class="fa fa-minus"></i>
             </button>
           </div>
         </div>
         <div class="box-body">
-          <table class="table table-bordered" id="order-table" style="width:100%">
+          <table class="table table-bordered" id="order-table">
             <thead>
               <tr class="bg-black">
                 <th>Date</th>
                 <th>Order#</th>
-                <th class="text-nowrap">Buyer Name</th>
                 <th>Buyer#</th>
-                <th>Feedback Topic</th>
-                <th>Feedback Description</th>
-                <th>Feedback Response</th>
-                <th class="text-center" style="width: 1%;">Status</th>
-                <th style="width: 1%;"></th>
+                <th>Buyer Name</th>
+                <th>Total Price</th>
+                <th>Lorry</th>
               </tr>
             </thead>
 
@@ -169,27 +175,12 @@
               <tr>
                 <td>{{ $order->created_at }}</td>
                 <td>
-                  <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">
-                    {{ $order->id }}
-                  </a>
+                  <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">{{ $order->id }}</a>
                 </td>
-                <td>{{ $order->user->name }}</td>
                 <td>{{ $order->user->id }}</td>
-                <td>{{ $order->feedback_topic }}</td>
-                <td>{{ $order->feedback_description }}</td>
-                <td>
-                  @if (empty($stock->feedback_response))
-                  None
-                  @else
-                  {{ $stock->feedback_response }}
-                  @endif
-                </td>
-                <td>
-                  <span class="label label-danger">Rejected</span>
-                </td>
-                <td class="text-center">
-                  <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
-                </td>
+                <td>{{ $order->user->name }}</td>
+                <td>{{ $order->user->totalPrice() }}</td>
+                <td>No Lorry Assigned</td>
               </tr>
               @endforeach
             </tbody>
@@ -200,33 +191,31 @@
           </div>
         </div>
       </div>
-      <!-- /.box -->
     </div>
+    <!-- /.box -->
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success">
+      <div class="box box-success collapsed-box">
         <div class="box-header">
           <h3 class="box-title">Seller</h3>
 
           <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+              <i class="fa fa-minus"></i>
             </button>
           </div>
         </div>
         <div class="box-body">
-          <table class="table table-bordered" id="stock-table" style="width:100%">
+          <table class="table table-bordered" id="stock-table">
             <thead>
               <tr class="bg-black">
                 <th>Date</th>
-                <th>Stock#</th>
-                <th class="text-nowrap">Seller Name</th>
+                <th>Order#</th>
                 <th>Seller#</th>
-                <th>Feedback Topic</th>
-                <th>Feedback Description</th>
-                <th>Feedback Response</th>
-                <th class="text-center" style="width: 1%;">Status</th>
-                <th style="width: 1%;"></th>
+                <th>Seller Name</th>
+                <th>Total Price</th>
+                <th>Lorry</th>
               </tr>
             </thead>
 
@@ -235,27 +224,12 @@
               <tr>
                 <td>{{ $stock->created_at }}</td>
                 <td>
-                  <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">
-                    {{ $stock->id }}
-                  </a>
+                  <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">{{ $stock->id }}</a>
                 </td>
-                <td>{{ $stock->user->name }}</td>
                 <td>{{ $stock->user->id }}</td>
-                <td>{{ $stock->feedback_topic }}</td>
-                <td>{{ $stock->feedback_description }}</td>
-                <td>
-                  @if (empty($stock->feedback_response))
-                  None
-                  @else
-                  {{ $stock->feedback_response }}
-                  @endif
-                </td>
-                <td>
-                  <span class="label label-danger">Rejected</span>
-                </td>
-                <td class="text-center">
-                  <button class="btn btn-primary btn-sm" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
-                </td>
+                <td>{{ $stock->user->name }}</td>
+                <td>{{ $stock->user->totalPrice() }}</td>
+                <td>No Lorry Assigned</td>
               </tr>
               @endforeach
             </tbody>
@@ -269,66 +243,25 @@
     </div>
     <!-- /.box -->
   </div>
-  </div>
 </section>
 @endsection
- 
-@section("script")
+
+@section('script')
 <script>
   $(document).ready(function () {
-    $("#order-table").DataTable({
-      "ordering": false,
+
+    $('#order-table').DataTable({
+      'ordering': false,
       'paging': false,
       'info': false,
     });
 
-    $("#stock-table").DataTable({
-      "ordering": false,
+    $('#stock-table').DataTable({
+      'ordering': false,
       'paging': false,
       'info': false,
     });
 
   });
-
-  function approveBuyerOrder(btn) {
-    var data = {
-      id: $(btn).data('id'),
-      status: $(btn).data('status')
-    }
-
-    $(btn).prop('disabled', true);
-    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
-
-    $.ajax("{{ route('orders.buyers.approve') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        window.location.href = window.location.href;
-      }
-    });
-  }
-
-  function approveSellerStock(btn) {
-    var data = {
-      id: $(btn).data('id'),
-      status: $(btn).data('status')
-    }
-
-    $(btn).prop('disabled', true);
-    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
-
-    $.ajax("{{ route('orders.sellers.approve') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        window.location.href = window.location.href;
-      }
-    });
-  }
-
 </script>
 @endsection

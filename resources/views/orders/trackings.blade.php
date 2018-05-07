@@ -139,7 +139,8 @@
       <a href="{{ route('dashboard') }}">
         <i class="fa fa-dashboard"></i>Dashboard</a>
     </li>
-    <li class="active">Order Management</li>
+    <li>Order Management</li>
+    <li class="active">Trackings</li>
   </ol>
 </section>
 

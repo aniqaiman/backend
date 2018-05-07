@@ -38,6 +38,7 @@
           <li><a href="{{ route('orders.receipts') }}"><i class="fa fa-circle-o"></i>Manage Receipts</a></li>
           <li><a href="{{ route('orders.trackings') }}"><i class="fa fa-circle-o"></i>Manage Trackings</a></li>
           <li><a href="{{ route('orders.rejects') }}"><i class="fa fa-circle-o"></i>Manage Rejects</a></li>
+          <li><a href="{{ route('orders.transactions') }}"><i class="fa fa-circle-o"></i>Historical Transaction</a></li>
         </ul>
       </li>
 

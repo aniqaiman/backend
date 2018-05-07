@@ -24,7 +24,7 @@ class OrderController extends Controller
         }
     }
 
-    public function getOrderReceipts(Request $request)
+    public function getOrderReceipts()
     {
         $orders = Order::where('status', 0)
             ->paginate(10, ['*'], 'buyer');
@@ -35,7 +35,7 @@ class OrderController extends Controller
         return view('orders.receipts', compact('orders', 'stocks'));
     }
 
-    public function getOrderTrackings(Request $request)
+    public function getOrderTrackings()
     {
         $orders = Order::whereIn('status', [1, 3])
             ->orderBy('created_at', 'desc')
@@ -48,7 +48,7 @@ class OrderController extends Controller
         return view('orders.trackings', compact('orders', 'stocks'));
     }
 
-    public function getOrderRejects(Request $request)
+    public function getOrderRejects()
     {
         $orders = Order::where('status', 2)
             ->orderBy('created_at', 'desc')
@@ -59,6 +59,17 @@ class OrderController extends Controller
             ->paginate(10, ['*'], 'seller');
 
         return view('orders.rejects', compact('orders', 'stocks'));
+    }
+
+    public function getOrderTransactions()
+    {
+        $orders = Order::orderBy('created_at', 'desc')
+            ->paginate(10, ['*'], 'buyer');
+
+        $stocks = Stock::orderBy('created_at', 'desc')
+            ->paginate(10, ['*'], 'seller');
+
+        return view('orders.transactions', compact('orders', 'stocks'));
     }
 
     public function approveBuyerOrder(Request $request)
