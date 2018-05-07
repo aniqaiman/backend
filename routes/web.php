@@ -102,18 +102,18 @@ Route::delete('buyer/{buyer_id}', ['as' => 'deleteBuyer', 'uses' => 'BuyerContro
 
 // -------------------------------------------Vege----------------------------------------------------
 
-Route::post('vege', ['as' => 'createVege', 'uses' => 'VegeController@createVege']);
-Route::get('vege', ['as' => 'vege', 'uses' => 'VegeController@getVege']);
+Route::post('vege', ['as' => 'inventories.vegetables.action.create', 'uses' => 'VegeController@createVege']);
+Route::get('vege', ['as' => 'inventories.vegetables', 'uses' => 'VegeController@getVege']);
 Route::get('editVege/{product_id}', ['as' => 'editVege', 'uses' => 'VegeController@editVege']);
 Route::post('updateVege', ['as' => 'updateVege', 'uses' => 'VegeController@updateVege']);
 Route::delete('vege/{product_id}', ['as' => 'deleteVege', 'uses' => 'VegeController@deleteVege']);
 
 // -------------------------------------------Fruit----------------------------------------------------
 
-Route::post('fruit', ['as' => 'createFruit', 'uses' => 'FruitController@createFruit']);
-Route::get('fruit', ['as' => 'fruit', 'uses' => 'FruitController@getFruit']);
-Route::get('editFruit/{product_id}', ['as' => 'editFruit', 'uses' => 'FruitController@editFruit']);
-Route::post('updateFruit', ['as' => 'updateFruit', 'uses' => 'FruitController@updateFruit']);
+Route::post('inventories/fruits', ['as' => 'inventories.fruits.action.create', 'uses' => 'FruitController@createFruit']);
+Route::get('inventories/fruits', ['as' => 'inventories.fruits', 'uses' => 'FruitController@getFruit']);
+Route::get('inventories/fruits/{product_id}', ['as' => 'inventories.fruits.update', 'uses' => 'FruitController@editFruit']);
+Route::put('inventories/fruits', ['as' => 'inventories.fruits.action.update', 'uses' => 'FruitController@updateFruit']);
 Route::delete('fruit/{product_id}', ['as' => 'deleteFruit', 'uses' => 'FruitController@deleteFruit']);
 
 Route::post('send', 'EmailController@send');
@@ -122,7 +122,7 @@ Route::post('send', 'EmailController@send');
 // ------------------------------------------- API ---------------------------------------------------- //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('auth/user', 'ApiController@getAuthUser');
+// Route::get('auth/user', 'ApiController@getAuthUser');
 Route::get('auth/verify/{token}', 'ApiController@verifyUserEmail');
 
 Route::post('auth/login', 'ApiController@login');

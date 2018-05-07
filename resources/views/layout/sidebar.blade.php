@@ -44,14 +44,14 @@
       <li class="treeview">
         <a href="#">
             <i class="fa fa-archive"></i>
-            <span class="text-info">Product Management</span>
+            <span class="text-info">Inventory Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
         <ul class="treeview-menu">
-          <li><a href="{{ route('fruit') }}"><i class="fa fa-circle-o"></i>Manage Fruit</a></li>
-          <li><a href="{{ route('vege') }}"><i class="fa fa-circle-o"></i>Manage Vegetable</a></li>
+          <li><a href="{{ route('inventories.fruits') }}"><i class="fa fa-circle-o"></i>Manage Fruits</a></li>
+          <li><a href="{{ route('inventories.vegetables') }}"><i class="fa fa-circle-o"></i>Manage Vegetables</a></li>
         </ul>
       </li>
 

@@ -62,7 +62,7 @@
 <section class="content-header">
   <h1>
     User Management
-    <small>Buyersx</small>
+    <small>Buyers</small>
   </h1>
 
   <ol class="breadcrumb">
