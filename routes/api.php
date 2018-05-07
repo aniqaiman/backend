@@ -25,8 +25,6 @@ Route::post('auth/verifyrecaptcha', 'ApiController@verifyReCAPTCHA');
 
 Route::post('registerseller', 'Api\SellerController@postRegisterSeller');
 Route::post('registerbuyer', 'Api\BuyerController@postRegisterBuyer');
-Route::post('registerdriver', 'Api\DriverController@postRegisterDriver');
-Route::post('registeruser', 'Api\UserController@postRegisterUser');
 
 Route::get('product/{product_id}', 'Api\ProductController@getProductbyId');
 Route::get('products', 'Api\ProductController@getProducts');
