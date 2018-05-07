@@ -27,8 +27,6 @@ Route::get('dashboard', ['as' => 'dashboard', 'uses' =>
 Route::prefix('users')
     ->name('users.')
     ->group(function () {
-
-        Route::get('{user_id}', 'UserController@getUser')->name('json');
         
         // ------------------------------------------- Driver ------------------------------------------- //
 
@@ -55,6 +53,10 @@ Route::prefix('users')
         Route::put('buyers/{user_id}', 'BuyerController@update')->name('buyers.update');
         Route::delete('buyers/{user_id}', 'BuyerController@destroy')->name('buyers.destroy');
         Route::get('buyers/{user_id}/edit', 'BuyerController@edit')->name('buyers.edit');
+
+        // ------------------------------------------- User ------------------------------------------- //
+
+        Route::get('{user_id}', 'UserController@getUser')->name('json');
 
     });
 
