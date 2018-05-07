@@ -241,7 +241,7 @@
       console.log('pressed');
       var data = $(this).serialize();
       console.log(data);
-      $.post("{{route('orders.create')}}", data, function (response) {
+      $.post("{{ route('users.buyers.store') }}", data, function (response) {
         console.log(response);
         $("[data-dismiss = modal]").trigger({
           type: "click"
