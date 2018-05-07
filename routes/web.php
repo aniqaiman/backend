@@ -11,18 +11,50 @@
 |
  */
 
-Route::get('', ['as' => 'welcome', 'uses' =>
+Route::get('/', ['as' => 'welcome', 'uses' =>
     function () {
         return view('welcome');
     }]);
-
-// Route::group(['middleware' => ['api','cors']], function () {
 
 // ------------------------------------------- Dashboard ------------------------------------------- //
 
 Route::post('dashboard', ['as' => 'createDashboard', 'uses' => 'DashboardController@createServiceDashboard']);
 Route::get('dashboard', ['as' => 'dashboard', 'uses' =>
     'DashboardController@getDashboard']);
+
+// ------------------------------------------- User ------------------------------------------- //
+
+Route::prefix('users')
+    ->name('users.')
+    ->group(function () {
+
+        // ------------------------------------------- Driver ------------------------------------------- //
+
+        Route::get('drivers', 'DriverController@index')->name('drivers.index');
+        Route::post('drivers', 'DriverController@store')->name('drivers.store');
+        Route::get('drivers/{user_id}', 'DriverController@show')->name('drivers.show');
+        Route::put('drivers/{user_id}', 'DriverController@update')->name('drivers.update');
+        Route::delete('drivers/{user_id}', 'DriverController@destroy')->name('drivers.destroy');
+        Route::get('drivers/{user_id}/edit', 'DriverController@edit')->name('drivers.edit');
+
+        // ------------------------------------------- Seller ------------------------------------------- //
+
+        Route::get('sellers', 'SellerController@index')->name('sellers.index');
+        Route::post('sellers', 'SellerController@store')->name('sellers.store');
+        Route::get('sellers/{user_id}', 'SellerController@show')->name('sellers.show');
+        Route::put('sellers/{user_id}', 'SellerController@update')->name('sellers.update');
+        Route::delete('sellers/{user_id}', 'SellerController@destroy')->name('sellers.destroy');
+        Route::get('sellers/{user_id}/edit', 'SellerController@edit')->name('sellers.edit');
+
+        // ------------------------------------------- Buyer ------------------------------------------- //
+
+        Route::get('buyers', 'BuyerController@index')->name('buyers.index');
+        Route::post('buyers', 'BuyerController@store')->name('buyers.store');
+        Route::put('buyers', 'BuyerController@update')->name('buyers.update');
+        Route::delete('buyers/{user_id}', 'BuyerController@destroy')->name('buyers.destroy');
+        Route::get('buyers/{user_id}/edit', 'BuyerController@edit')->name('buyers.edit');
+
+    });
 
 // ------------------------------------------- Price ------------------------------------------- //
 
@@ -40,54 +72,32 @@ Route::get('vege/{product_id}/editVegePrice/{price_id}', ['as' => 'editVegePrice
 Route::post('updateVegePrice', ['as' => 'updateVegePrice', 'uses' => 'PriceController@updateVegePrice']);
 Route::delete('vegeprice', ['as' => 'deleteVegePrice', 'uses' => 'PriceController@deleteVegePrice']);
 
-// ------------------------------------------- Order ------------------------------------------- //
+Route::prefix('orders')
+    ->name('orders.')
+    ->group(function () {
 
-Route::get('orders/receipts', 'OrderController@getOrderReceipts')->name('orders.receipts');
-Route::get('orders/trackings', 'OrderController@getOrderTrackings')->name('orders.trackings');
-Route::get('orders/rejects', 'OrderController@getOrderRejects')->name('orders.rejects');
-Route::get('orders/transactions', 'OrderController@getOrderTransactions')->name('orders.transactions');
+        // ------------------------------------------- Order ------------------------------------------- //
 
-Route::get('orders/{order_id}', ['as' => 'orders.edit', 'uses' => 'OrderController@editOrder']);
-Route::post('orders', ['as' => 'orders.create', 'uses' => 'OrderController@createOrder']);
-Route::post('orders/update', ['as' => 'orders.update', 'uses' => 'OrderController@updateOrder']);
-Route::put('orders/buyers/approve', ['as' => 'orders.buyers.approve', 'uses' => 'OrderController@approveBuyerOrder']);
-Route::put('orders/sellers/approve', ['as' => 'orders.sellers.approve', 'uses' => 'OrderController@approveSellerStock']);
-Route::put('orders/buyers/reject', ['as' => 'orders.buyers.reject', 'uses' => 'OrderController@rejectBuyerOrder']);
-Route::put('orders/sellers/reject', ['as' => 'orders.sellers.reject', 'uses' => 'OrderController@rejectSellerStock']);
-Route::put('orders/pending', ['as' => 'orders.pending', 'uses' => 'OrderController@pendingOrderStock']);
-Route::put('orders/complete', ['as' => 'orders.complete', 'uses' => 'OrderController@completeOrderStock']);
-Route::delete('orders/{order_id}', ['as' => 'deleteOrder', 'uses' => 'OrderController@deleteOrder']);
+        Route::get('receipts', 'OrderController@getOrderReceipts')->name('index.receipts');
+        Route::get('trackings', 'OrderController@getOrderTrackings')->name('index.trackings');
+        Route::get('rejects', 'OrderController@getOrderRejects')->name('index.rejects');
+        Route::get('transactions', 'OrderController@getOrderTransactions')->name('index.transactions');
 
-Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+        Route::post('orders', 'OrderController@store')->name('store');
+        Route::put('orders', 'OrderController@update')->name('update');
+        Route::get('{order_id}', 'OrderController@edit')->name('edit');
+        Route::delete('{order_id}', 'OrderController@destroy')->name('destroy');
 
-    // ------------------------------------------- Driver ------------------------------------------- //
+        Route::put('buyers/approve', 'OrderController@approveBuyerOrder')->name('update.status.buyers.approve');
+        Route::put('buyers/reject', 'OrderController@rejectBuyerOrder')->name('update.status.buyers.reject');
 
-    Route::get('drivers', 'DriverController@index')->name('drivers.index');
-    Route::post('drivers', 'DriverController@store')->name('drivers.store');
-    Route::get('drivers/{user_id}', 'DriverController@show')->show('drivers.show');
-    Route::put('drivers/{user_id}', 'DriverController@update')->name('drivers.update');
-    Route::delete('drivers/{user_id}', 'DriverController@destroy')->name('drivers.destroy');
-    Route::get('drivers/{user_id}/edit', 'DriverController@edit')->name('drivers.edit');
+        Route::put('sellers/approve', 'OrderController@approveSellerStock')->name('update.status.sellers.reject');
+        Route::put('sellers/reject', 'OrderController@rejectSellerStock')->name('update.status.sellers.reject');
 
-    // ------------------------------------------- Seller ------------------------------------------- //
-
-    Route::get('sellers', ['as' => 'users.sellers', 'uses' => 'SellerController@getSellers'])->name('');
-    Route::get('editSeller/{seller_id}', ['as' => 'editSeller', 'uses' => 'SellerController@editSeller'])->name('');
-    Route::post('seller', ['as' => 'createSeller', 'uses' => 'SellerController@createSeller'])->name('');
-    Route::post('updateSeller', ['as' => 'updateSeller', 'uses' => 'SellerController@updateSeller'])->name('');
-    Route::delete('seller/{seller_id}', ['as' => 'deleteSeller', 'uses' => 'SellerController@deleteSeller'])->name('');
-
-    Route::get('seller/{seller_id}/sellerdetail', ['as' => 'sellerdetail', 'uses' => 'SellerController@getSellersDetail']);
-
-    // ------------------------------------------- Buyer ------------------------------------------- //
-
-    Route::get('buyers', ['as' => 'users.buyers', 'uses' => 'BuyerController@getBuyers']);
-    Route::get('editBuyer/{buyer_id}', ['as' => 'editBuyer', 'uses' => 'BuyerController@editBuyer']);
-    Route::post('buyers', ['as' => 'createBuyer', 'uses' => 'BuyerController@createBuyer']);
-    Route::post('updateBuyer', ['as' => 'updateBuyer', 'uses' => 'BuyerController@updateBuyer']);
-    Route::delete('buyer/{buyer_id}', ['as' => 'deleteBuyer', 'uses' => 'BuyerController@deleteBuyer']);
-
-});
+        Route::put('pending', ['as' => 'pending', 'uses' => 'OrderController@pendingOrderStock'])->name('update.status.pending');
+        Route::put('complete', ['as' => 'complete', 'uses' => 'OrderController@completeOrderStock'])->name('update.status.complete');
+    
+    });
 
 // ------------------------------------------- Vege ------------------------------------------- //
 

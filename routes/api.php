@@ -33,12 +33,8 @@ Route::get('vegetables', 'Api\ProductController@getVegetables');
 Route::get('prices', 'Api\ProductController@getPrices');
 Route::get('buyers', 'Api\BuyerController@getBuyers');
 Route::get('sellers', 'Api\SellerController@getSellers');
-Route::get('drivers', 'Api\DriverController@getDrivers');
-Route::get('users', 'Api\UserController@getUsers');
 Route::get('buyer/{user_id}', 'Api\BuyerController@getBuyer');
-Route::get('driver/{user_id}', 'Api\DriverController@getDriver');
 Route::get('seller/{user_id}', 'Api\SellerController@getSeller');
-Route::get('user/{user_id}', 'Api\UserController@getUser');
 
 // ------------------------------------------- Promo ---------------------------------------------------- //
 
