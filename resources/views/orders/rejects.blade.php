@@ -299,7 +299,7 @@
     $(btn).prop('disabled', true);
     $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
-    $.ajax("{{ route('orders.buyers.approve') }}", {
+    $.ajax("{{ route('orders.update.status.buyers.approve') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
@@ -319,7 +319,7 @@
     $(btn).prop('disabled', true);
     $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
-    $.ajax("{{ route('orders.sellers.approve') }}", {
+    $.ajax("{{ route('orders.update.status.seller.approve') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},

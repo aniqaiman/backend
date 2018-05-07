@@ -279,7 +279,7 @@
       console.log('pressed');
       var data = $(this).serialize();
       console.log(data);
-      $.post("{{route('orders.create')}}", data, function (response) {
+      $.post("{{ route('orders.store') }}", data, function (response) {
         console.log(response);
         $("[data-dismiss = modal]").trigger({
           type: "click"
@@ -298,7 +298,7 @@
     $(btn).prop('disabled', true);
     $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
-    $.ajax("{{ route('orders.buyers.approve') }}", {
+    $.ajax("{{ route('orders.update.status.buyers.approve') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
@@ -318,7 +318,7 @@
     $(btn).prop('disabled', true);
     $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
-    $.ajax("{{ route('orders.sellers.approve') }}", {
+    $.ajax("{{ route('orders.update.status.sellers.approve') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
@@ -339,7 +339,7 @@
     $(btn.target).prop('disabled', true);
     $(btn.target).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
-    $.ajax("{{ route('orders.buyers.reject') }}", {
+    $.ajax("{{ route('orders.update.status.buyers.reject') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
@@ -360,7 +360,7 @@
     $(btn.target).prop('disabled', true);
     $(btn.target).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
-    $.ajax("{{ route('orders.sellers.reject') }}", {
+    $.ajax("{{ route('orders.update.status.sellers.reject') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},

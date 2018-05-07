@@ -91,7 +91,7 @@ Route::prefix('orders')
         Route::put('buyers/approve', 'OrderController@updateApproveBuyerOrder')->name('update.status.buyers.approve');
         Route::put('buyers/reject', 'OrderController@updateRejectBuyerOrder')->name('update.status.buyers.reject');
 
-        Route::put('sellers/approve', 'OrderController@updateApproveSellerStock')->name('update.status.sellers.reject');
+        Route::put('sellers/approve', 'OrderController@updateApproveSellerStock')->name('update.status.sellers.approve');
         Route::put('sellers/reject', 'OrderController@updateRejectSellerStock')->name('update.status.sellers.reject');
 
         Route::put('pending', 'OrderController@updatePendingOrderStock')->name('update.status.pending');

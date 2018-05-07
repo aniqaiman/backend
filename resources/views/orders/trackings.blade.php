@@ -364,20 +364,6 @@
       'paging': false,
       'info': false,
     });
-
-    $('#frm-order-create').on('submit', function (e) {
-      e.preventDefault();
-      console.log('pressed');
-      var data = $(this).serialize();
-      console.log(data);
-      $.post("{{route('orders.create')}}", data, function (response) {
-        console.log(response);
-        $("[data-dismiss = modal]").trigger({
-          type: "click"
-        });
-
-      });
-    });
   });
 
   function completeOrderStock(btn) {
@@ -389,7 +375,7 @@
     $(btn).prop('disabled', true);
     $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
-    $.ajax("{{ route('orders.complete') }}", {
+    $.ajax("{{ route('orders.update.status.complete') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
@@ -409,7 +395,7 @@
     $(btn).prop('disabled', true);
     $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
-    $.ajax("{{ route('orders.pending') }}", {
+    $.ajax("{{ route('orders.update.status.pending') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
