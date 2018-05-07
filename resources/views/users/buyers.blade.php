@@ -86,12 +86,12 @@
           <table class="table table-bordered" id="buyer-table" style="width:100%">
             <thead>
               <tr class="bg-black">
-                <th class="text-nowrap">Buyer Name</th>
-                <th class="text-nowrap">Buyer#</th>
+                <th>Buyer Name</th>
+                <th>Buyer#</th>
                 <th class="text-nowrap">Purchased Products</th>
-                <th class="text-nowrap">Date Registered#</th>
-                <th class="text-nowrap">Location</th>
-                <th class="text-nowrap">Contact (H/P &amp; Email)</th>
+                <th>Date Registered#</th>
+                <th>Location</th>
+                <th>Contact (H/P &amp; Email)</th>
                 <th style="width: 1%;"></th>
               </tr>
             </thead>
