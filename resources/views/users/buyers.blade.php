@@ -180,7 +180,7 @@
       var ud = $('#ud');
       var button = $(event.relatedTarget);
       var id = button.data('id');
-      var url = "{{ route('user.json', ['xxx']) }}";
+      var url = "{{ route('users.json', ['xxx']) }}";
 
       spinner.toggleClass('hidden', false);
       ud.toggleClass('hidden', true);
