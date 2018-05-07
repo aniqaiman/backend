@@ -40,18 +40,20 @@
           <dt>E-Mail Address</dt>
           <dd id="ud-email">xxx</dd>
           <dt>Bank Account Number</dt>
-          <dd id="ud-email">xxx</dd>
+          <dd id="ud-account-number">xxx</dd>
           <dt>Bank Name</dt>
-          <dd id="ud-email">xxx</dd>
+          <dd id="ud-bank-name">xxx</dd>
           <dt>Bank Account Owner Name</dt>
+          <dd id="ud-account-owner-name">xxx</dd>
+          <dt>Status</dt>
           <dd>
             E-Mail:
             <span id="ud-email-status-verified" class="label label-success">Verified</span>
-            <span id="ud-email-status-verified" class="label label-danger">Non-Verified</span>
+            <span id="ud-email-status-not-verified" class="label label-danger">Not-Verified</span>
             <br />
             Account:
-            <span id="ud-email-status-verified" class="label label-success">Verified</span>
-            <span id="ud-email-status-verified" class="label label-danger">Non-Verified</span>
+            <span id="ud-account-status-verified" class="label label-success">Verified</span>
+            <span id="ud-account-status-not-verified" class="label label-danger">Not-Verified</span>
           </dd>
         </dl>
       </div>
@@ -62,7 +64,7 @@
 <section class="content-header">
   <h1>
     User Management
-    <small>Seller</small>
+    <small>Sellers</small>
   </h1>
 
   <ol class="breadcrumb">
@@ -202,9 +204,28 @@
           $('#ud-company-address-longitude').text(data.longitude);
           $('#ud-company-address-navigation').attr("href", "https://www.google.com/maps/search/?api=1&query=" + data.latitude + "," + data.longitude);
           $('#ud-mobile-number').text(data.mobile_number);
-          $('#ud-phone-number').text(data.phone_number);
-          $('#ud-business-hour').text(data.bussiness_hour);
           $('#ud-email').text(data.email);
+          $('#ud-account-number').text(data.bank_account_number);
+          $('#ud-bank-name').text(data.bank_account_number);
+          $('#ud-bank-name').text(data.bank_account_holder_name);
+
+          if (data.status_email === 0) {
+            $('#ud-email-status-verified').hide();
+            $('#ud-email-status-not-verified').show();
+          }
+          else if (data.status_email === 1) {
+            $('#ud-email-status-verified').show();
+            $('#ud-email-status-not-verified').hide();
+          }
+
+          if (data.status_account === 0) {
+            $('#ud-account-status-verified').hide();
+            $('#ud-account-status-not-verified').show();
+          }
+          else if (data.status_account === 1) {
+            $('#ud-account-status-verified').show();
+            $('#ud-account-status-not-verified').hide();
+          }
         }
       });
     });
