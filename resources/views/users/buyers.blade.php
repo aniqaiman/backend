@@ -47,11 +47,11 @@
           <dd>
             E-Mail:
             <span id="ud-email-status-verified" class="label label-success">Verified</span>
-            <span id="ud-email-status-not-verified" class="label label-danger">Not-Verified</span>
+            <span id="ud-email-status-unverified" class="label label-danger">Unverified</span>
             <br />
             Account:
             <span id="ud-account-status-verified" class="label label-success">Verified</span>
-            <span id="ud-account-status-not-verified" class="label label-danger">Not-Verified</span>
+            <span id="ud-account-status-unverified" class="label label-danger">Unverified</span>
           </dd>
         </dl>
       </div>
@@ -211,20 +211,20 @@
 
           if (data.status_email === 0) {
             $('#ud-email-status-verified').hide();
-            $('#ud-email-status-not-verified').show();
+            $('#ud-email-status-unverified').show();
           }
           else if (data.status_email === 1) {
             $('#ud-email-status-verified').show();
-            $('#ud-email-status-not-verified').hide();
+            $('#ud-email-status-unverified').hide();
           }
 
           if (data.status_account === 0) {
             $('#ud-account-status-verified').hide();
-            $('#ud-account-status-not-verified').show();
+            $('#ud-account-status-unverified').show();
           }
           else if (data.status_account === 1) {
             $('#ud-account-status-verified').show();
-            $('#ud-account-status-not-verified').hide();
+            $('#ud-account-status-unverified').hide();
           }
         }
       });
