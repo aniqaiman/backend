@@ -219,7 +219,7 @@
             <thead>
               <tr class="bg-black">
                 <th>Date</th>
-                <th>Order#</th>
+                <th>Stock#</th>
                 <th>Seller#</th>
                 <th>Seller Name</th>
                 <th>Total Price</th>
