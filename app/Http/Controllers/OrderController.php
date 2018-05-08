@@ -74,7 +74,7 @@ class OrderController extends Controller
 
     public function indexLorries()
     {
-        return view('orders.index_lorries', []);
+        return view('orders.lorries', []);
     }
 
     public function updateApproveBuyerOrder(Request $request)

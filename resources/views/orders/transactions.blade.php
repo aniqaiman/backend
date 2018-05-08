@@ -179,7 +179,7 @@
                 </td>
                 <td>{{ $order->user->id }}</td>
                 <td>{{ $order->user->name }}</td>
-                <td>{{ $order->user->totalPrice() }}</td>
+                <td>{{ $order->totalPrice() }}</td>
                 <td>No Lorry Assigned</td>
               </tr>
               @endforeach
@@ -228,7 +228,7 @@
                 </td>
                 <td>{{ $stock->user->id }}</td>
                 <td>{{ $stock->user->name }}</td>
-                <td>{{ $stock->user->totalPrice() }}</td>
+                <td>{{ $stock->totalPrice() }}</td>
                 <td>No Lorry Assigned</td>
               </tr>
               @endforeach

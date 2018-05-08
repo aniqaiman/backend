@@ -91,7 +91,7 @@
                 <th>Seller Name</th>
                 <th>Seller#</th>
                 <th>Purchased Products</th>
-                <th></th>
+                <th>Date Registered</th>
                 <th>Location</th>
                 <th>Contact (H/P &amp; Email)</th>
                 <th style="width: 1%;"></th>
