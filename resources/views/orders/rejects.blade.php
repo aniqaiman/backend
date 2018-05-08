@@ -2,9 +2,7 @@
 @section("style")
 @endsection
  
-@section("content")
-
-@foreach($orders as $order)
+@section("content") @foreach($orders as $order)
 <div class="modal fade" id="order_{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $order->id }}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -30,18 +28,15 @@
               <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
               <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade) 
-                  @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break
-                  @case("B") RM {{ number_format($product->priceLatest()->price_b, 2) }} @break
-                  @case("C") RM {{ number_format($product->priceLatest()->price_c, 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break @case("B")
+                RM {{ number_format($product->priceLatest()->price_b, 2) }} @break @case("C") RM {{ number_format($product->priceLatest()->price_c,
+                2) }} @break @endswitch
               </td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade) 
-                  @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }} @break
-                  @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b, 2) }} @break
-                  @case("C") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c, 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a,
+                2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b,
+                2) }} @break @case("C") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c,
+                2) }} @break @endswitch
               </td>
             </tr>
             @endforeach
@@ -60,9 +55,7 @@
     </div>
   </div>
 </div>
-@endforeach
-
-@foreach($stocks as $stock)
+@endforeach @foreach($stocks as $stock)
 <div class="modal fade" id="stock_{{ $stock->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $stock->id }}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -88,18 +81,15 @@
               <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
               <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade) 
-                  @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break
-                  @case("B") RM {{ number_format($product->priceLatest()->price_b, 2) }} @break
-                  @case("C") RM {{ number_format($product->priceLatest()->price_c, 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()->price_a, 2) }} @break @case("B")
+                RM {{ number_format($product->priceLatest()->price_b, 2) }} @break @case("C") RM {{ number_format($product->priceLatest()->price_c,
+                2) }} @break @endswitch
               </td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade) 
-                  @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a, 2) }} @break
-                  @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b, 2) }} @break
-                  @case("C") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c, 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_a,
+                2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_b,
+                2) }} @break @case("C") RM {{ number_format($product->pivot->quantity * $product->priceLatest()->price_c,
+                2) }} @break @endswitch
               </td>
             </tr>
             @endforeach
@@ -178,11 +168,7 @@
                 <td>{{ $order->feedback_topic }}</td>
                 <td>{{ $order->feedback_description }}</td>
                 <td>
-                  @if (empty($stock->feedback_response))
-                  None
-                  @else
-                  {{ $stock->feedback_response }}
-                  @endif
+                  @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
                 </td>
                 <td>
                   <span class="label label-danger">Rejected</span>
@@ -244,11 +230,7 @@
                 <td>{{ $stock->feedback_topic }}</td>
                 <td>{{ $stock->feedback_description }}</td>
                 <td>
-                  @if (empty($stock->feedback_response))
-                  None
-                  @else
-                  {{ $stock->feedback_response }}
-                  @endif
+                  @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
                 </td>
                 <td>
                   <span class="label label-danger">Rejected</span>
@@ -268,7 +250,6 @@
       </div>
     </div>
     <!-- /.box -->
-  </div>
   </div>
 </section>
 @endsection
