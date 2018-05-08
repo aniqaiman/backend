@@ -72,6 +72,11 @@ class OrderController extends Controller
         return view('orders.transactions', compact('orders', 'stocks'));
     }
 
+    public function indexLorries()
+    {
+        return view('orders.index_lorries', []);
+    }
+
     public function updateApproveBuyerOrder(Request $request)
     {
         $order = Order::find($request->id);

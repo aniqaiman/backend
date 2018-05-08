@@ -19,8 +19,7 @@ Route::get('/', ['as' => 'welcome', 'uses' =>
 // ------------------------------------------- Dashboard ------------------------------------------- //
 
 Route::post('dashboard', ['as' => 'createDashboard', 'uses' => 'DashboardController@createServiceDashboard']);
-Route::get('dashboard', ['as' => 'dashboard', 'uses' =>
-    'DashboardController@getDashboard']);
+Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@getDashboard']);
 
 // ------------------------------------------- User ------------------------------------------- //
 
@@ -60,6 +59,16 @@ Route::prefix('users')
 
     });
 
+Route::prefix('prices')
+    ->name('prices.')
+    ->group(function () {
+
+        Route::get('', 'PriceController@index')->name('index');
+        Route::get('promos', 'PriceController@indexPromos')->name('index.promos');
+        Route::get('histories', 'PriceController@indexHistories')->name('index.histories');
+        
+    });
+
 // ------------------------------------------- Price ------------------------------------------- //
 
 Route::post('fruit/{product_id}/price/add', ['as' => 'createFruitPrice', 'uses' => 'PriceController@createFruitPrice']);
@@ -86,11 +95,7 @@ Route::prefix('orders')
         Route::get('trackings', 'OrderController@indexOrderTrackings')->name('index.trackings');
         Route::get('rejects', 'OrderController@indexOrderRejects')->name('index.rejects');
         Route::get('transactions', 'OrderController@indexOrderTransactions')->name('index.transactions');
-
-        Route::post('', 'OrderController@store')->name('store');
-        Route::put('{order_id}', 'OrderController@update')->name('update');
-        Route::get('{order_id}', 'OrderController@edit')->name('edit');
-        Route::delete('{order_id}', 'OrderController@destroy')->name('destroy');
+        Route::get('lorries', 'OrderController@indexLorries')->name('index.lorries');
 
         Route::put('buyers/approve', 'OrderController@updateApproveBuyerOrder')->name('update.status.buyers.approve');
         Route::put('buyers/reject', 'OrderController@updateRejectBuyerOrder')->name('update.status.buyers.reject');
@@ -101,6 +106,11 @@ Route::prefix('orders')
         Route::put('pending', 'OrderController@updatePendingOrderStock')->name('update.status.pending');
         Route::put('complete', 'OrderController@updateCompleteOrderStock')->name('update.status.complete');
     
+        Route::post('', 'OrderController@store')->name('store');
+        Route::put('{order_id}', 'OrderController@update')->name('update');
+        Route::get('{order_id}', 'OrderController@edit')->name('edit');
+        Route::delete('{order_id}', 'OrderController@destroy')->name('destroy');
+
     });
 
 Route::prefix('products')
@@ -124,6 +134,11 @@ Route::prefix('products')
         Route::get('fruits/{product_id}/edit', 'FruitController@edit')->name('fruits.edit');
 
     });
+
+// ------------------------------------------- Inventory ------------------------------------------- //
+
+Route::get('inventories', 'InventoryController@index')->name('inventories.index');
+Route::get('inventories/wastages', 'InventoryController@indexWastages')->name('inventories.index.wastages');
 
 // ------------------------------------------- Others ------------------------------------------- //
 

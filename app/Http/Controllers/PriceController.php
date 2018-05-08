@@ -10,6 +10,21 @@ use Session;
 
 class PriceController extends Controller
 {
+    public function index()
+    {
+        return view('prices.index', []);
+    }
+
+    public function indexPromos()
+    {
+        return view('prices.index_promos', []);
+    }
+
+    public function indexHistories()
+    {
+        return view('prices.index_histories', []);
+    }
+
     public function getFruitDetail($product_id, Request $request)
     {
         $fruit = Product::where('id', $product_id)->first();
@@ -56,7 +71,7 @@ class PriceController extends Controller
         $price = Price::find($price_id);
         $price->delete();
         Session::flash('message', 'Successfully deleted!');
-        return Redirect::to('fruit/'.$price->product_id.'/detail');
+        return Redirect::to('fruit/' . $price->product_id . '/detail');
     }
 
     public function createVegePrice($product_id, Request $request)

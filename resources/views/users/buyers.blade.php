@@ -89,7 +89,7 @@
                 <th>Buyer Name</th>
                 <th>Buyer#</th>
                 <th>Purchased Products</th>
-                <th>Date Registered#</th>
+                <th>Date Registered</th>
                 <th>Location</th>
                 <th>Contact (H/P &amp; Email)</th>
                 <th style="width: 1%;"></th>

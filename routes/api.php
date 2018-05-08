@@ -23,46 +23,46 @@ Route::get('auth/verify/{token}', 'ApiController@verifyUserEmail');
 Route::post('auth/login', 'ApiController@login');
 Route::post('auth/verifyrecaptcha', 'ApiController@verifyReCAPTCHA');
 
-Route::post('registerseller', 'Api\SellerController@postRegisterSeller');
-Route::post('registerbuyer', 'Api\BuyerController@postRegisterBuyer');
+Route::post('registerseller', 'API\SellerController@postRegisterSeller');
+Route::post('registerbuyer', 'API\BuyerController@postRegisterBuyer');
 
-Route::get('product/{product_id}', 'Api\ProductController@getProductbyId');
-Route::get('products', 'Api\ProductController@getProducts');
-Route::get('fruits', 'Api\ProductController@getFruits');
-Route::get('vegetables', 'Api\ProductController@getVegetables');
-Route::get('prices', 'Api\ProductController@getPrices');
-Route::get('buyers', 'Api\BuyerController@getBuyers');
-Route::get('sellers', 'Api\SellerController@getSellers');
-Route::get('buyer/{user_id}', 'Api\BuyerController@getBuyer');
-Route::get('seller/{user_id}', 'Api\SellerController@getSeller');
+Route::get('product/{product_id}', 'API\ProductController@getProductbyId');
+Route::get('products', 'API\ProductController@getProducts');
+Route::get('fruits', 'API\ProductController@getFruits');
+Route::get('vegetables', 'API\ProductController@getVegetables');
+Route::get('prices', 'API\ProductController@getPrices');
+Route::get('buyers', 'API\BuyerController@getBuyers');
+Route::get('sellers', 'API\SellerController@getSellers');
+Route::get('buyer/{user_id}', 'API\BuyerController@getBuyer');
+Route::get('seller/{user_id}', 'API\SellerController@getSeller');
 
 // ------------------------------------------- Promo ---------------------------------------------------- //
 
-Route::get('newproducts', 'Api\ProductController@getNewProducts');
-Route::get('lastpurchaseproducts', 'Api\ProductController@getLastPurchaseProducts');
-Route::get('bestsellingproducts', 'Api\ProductController@getBestSellingProducts');
+Route::get('newproducts', 'API\ProductController@getNewProducts');
+Route::get('lastpurchaseproducts', 'API\ProductController@getLastPurchaseProducts');
+Route::get('bestsellingproducts', 'API\ProductController@getBestSellingProducts');
 
 // ------------------------------------------- Order ---------------------------------------------------- //
 
-Route::get('orders', 'Api\OrderController@getOrders');
-Route::get('orders/{order_id}', 'Api\OrderController@getOrderDetails');
+Route::get('orders', 'API\OrderController@getOrders');
+Route::get('orders/{order_id}', 'API\OrderController@getOrderDetails');
 
 // ------------------------------------------- Stock ---------------------------------------------------- //
 
-Route::get('stocks', 'Api\StockController@getStocks');
-Route::get('stocks/{stock_id}', 'Api\StockController@getStockDetails');
+Route::get('stocks', 'API\StockController@getStocks');
+Route::get('stocks/{stock_id}', 'API\StockController@getStockDetails');
 
-Route::post('stocks', 'Api\StockController@postStocks');
+Route::post('stocks', 'API\StockController@postStocks');
 
 // ------------------------------------------- Cart ---------------------------------------------------- //
 
-Route::get('carts', 'Api\CartController@getCartItems');
-Route::get('carts/totalitems', 'Api\CartController@getTotalItems');
-Route::get('carts/totalprice', 'Api\CartController@getTotalPrice');
+Route::get('carts', 'API\CartController@getCartItems');
+Route::get('carts/totalitems', 'API\CartController@getTotalItems');
+Route::get('carts/totalprice', 'API\CartController@getTotalPrice');
 
-Route::post('carts', 'Api\CartController@postCartItem');
-Route::post('carts/confirm', 'Api\CartController@postConfirm');
+Route::post('carts', 'API\CartController@postCartItem');
+Route::post('carts/confirm', 'API\CartController@postConfirm');
 
-Route::delete('carts/{product_id}', 'Api\CartController@deleteCartItem');
+Route::delete('carts/{product_id}', 'API\CartController@deleteCartItem');
 
 Route::get('playground', 'ApiController@playground');
