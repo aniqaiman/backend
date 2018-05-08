@@ -155,13 +155,13 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success collapsed-box">
+      <div class="box box-success">
         <div class="box-header">
           <h3 class="box-title">Buyer</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse">
-              <i class="fa fa-plus"></i>
+              <i class="fa fa-minus"></i>
             </button>
           </div>
         </div>
@@ -204,13 +204,13 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success collapsed-box">
+      <div class="box box-success">
         <div class="box-header">
           <h3 class="box-title">Seller</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse">
-              <i class="fa fa-plus"></i>
+              <i class="fa fa-minus"></i>
             </button>
           </div>
         </div>
