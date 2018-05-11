@@ -50,6 +50,26 @@
                             </tr>
                         </thead>
                     </table>
+                    <tbody>
+                        @foreach($products as $product)
+                        <tr>
+                            <td>{{$product->name}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </div>
             </div>
             <!-- /.box -->
