@@ -75,7 +75,7 @@
     </div>
 </section>
 
-</script>
+
 @endsection
  
 @section('script')
@@ -90,4 +90,5 @@
     console.log(newPrice);
    });
 });
+</script>
 @endsection
