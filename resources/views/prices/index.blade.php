@@ -55,7 +55,7 @@
                         <tr>
                             <td>{{$product->name}}</td>
                             <td></td>
-                            <td colspan="1"><input type="number"  class="selling_a"></td>
+                            <td colspan="1"><input type="number"  class="selling_a" id="selling_a_{{$product->id}}"></td>
                             <td colspan="1"><input type="number"></td>
                             <td colspan="1"><input type="number"></td>
                             <td colspan="1"><input type="number"></td>
@@ -85,8 +85,8 @@
         console.log("loaded")
     $(".selling_a").focusout(function() {
     var newPrice = $(this).val();
-    console.log("here");
-    alert("test");
+    console.log($(this).val().attr('id'))
+
     console.log(newPrice);
    });
 });
