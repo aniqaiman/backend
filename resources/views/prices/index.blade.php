@@ -54,7 +54,7 @@
 
                         @foreach($products as $product)
                         <tr>
-                            <td>{{$product["name"]]}}</td>
+                            <td>{{$product["name"]}}</td>
                             <td></td>
                             <td colspan="1"><input type="number" class="selling_a" id='selling_a_{{$product["id"]}}' value="{{$product->selling_price_a}}"></td>
                             <td colspan="1"><input type="number" class="buying_a" id="buying_a_{{$product->id}}" value="{{$product->buying_price_a}}"></td>
