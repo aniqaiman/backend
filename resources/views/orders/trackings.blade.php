@@ -190,19 +190,15 @@
                   </a>
                 </td>
                 <td>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      No Lorry Assigned
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
+                  
+                    
+                    <select>
                       @foreach($drivers as $driver)
-                      <li>
-                        <a href="#">{{$driver->name}}</a>
-                      </li>
+               
+                        <option value="{{$driver->id}}">{{$driver->name}}</option>
                     @endforeach
-                    </ul>
-                  </div>
+                    </select>
+ 
                 </td>
                 <td class="text-center">
                   @if ($order->status === 1)
