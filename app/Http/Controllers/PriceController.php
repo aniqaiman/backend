@@ -22,7 +22,7 @@ class PriceController extends Controller
             $product_prices["selling_price_a"] ? $newProd["selling_price_a"] = $product_prices["selling_price_a"] : $newProd["selling_price_a"] = 0 ;
             $product_prices["selling_price_b"] ? $newProd["selling_price_b"]  = $product_prices["selling_price_b"] : $newProd["selling_price_b"] = 0 ;
             $product_prices["buying_price_b"] ? $newProd["buying_price_b"] = $product_prices["buying_price_b"] : $newProd["buying_price_b"] = 0;
-            $product_prices["buying_price_a"] ? $newProd["buying_price_a"] = $product_prices["buying_price_a"] = $newProd["buying_price_a"] = 0;
+            $product_prices["buying_price_a"] ? $newProd["buying_price_a"] = $product_prices["buying_price_a"] : $newProd["buying_price_a"] = 0;
             array_push($products , $newProd);
 
         }
