@@ -115,7 +115,8 @@
 
     $(".selling_b").focusout(function() {
     var newPrice = $(this).val();
-
+    console.log($(this).attr('id'))
+    console.log(newPrice);
     var arrItem = $(this).attr('id').split("_")[2]
     var currentDate = new Date();
     var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
@@ -139,7 +140,8 @@
    });
     $(".buying_a").focusout(function() {
     var newPrice = $(this).val();
-
+    console.log($(this).attr('id'))
+    console.log(newPrice);
     var arrItem = $(this).attr('id').split("_")[2]
     var currentDate = new Date();
     var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
@@ -163,7 +165,8 @@
 });
      $(".buying_b").focusout(function() {
     var newPrice = $(this).val();
-
+    console.log($(this).attr('id'))
+    console.log(newPrice);
     var arrItem = $(this).attr('id').split("_")[2]
     var currentDate = new Date();
     var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
