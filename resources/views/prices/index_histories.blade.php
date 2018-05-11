@@ -42,7 +42,7 @@
             <tbody>
               @foreach($prices as $price)
               <tr>
-                <td>{{$price->price_date}}</td>
+                <td>{{$price->date_price}}</td>
                 <td>{{$price->product->name}}</td>
                 <td></td>
                 <td>{{$price->buying_price_a}}</td>
