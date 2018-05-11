@@ -62,6 +62,7 @@ class PriceController extends Controller
             if (!$product_price){
         $product_price = new Price();
         $product_price->product_id = $request->product_id;
+        $product_price->date_price = $request->date;
     }
     if($request->price_a){
             $product_price->price_a = $request->price_a;
