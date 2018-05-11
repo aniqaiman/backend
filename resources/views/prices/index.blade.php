@@ -92,7 +92,7 @@
     var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
     var data = {
       product_id: arrItem,
-      price_a: newPrice,
+      selling_price_a: newPrice,
       date: formattedDate
     }
 
@@ -121,7 +121,7 @@
 
     var data = {
       product_id: arrItem,
-      price_b: newPrice,
+      selling_price_b: newPrice,
       date: formattedDate 
     }
 
@@ -145,7 +145,31 @@
 
     var data = {
       product_id: arrItem,
-      price_b: newPrice,
+      buying_price_a: newPrice,
+      date: formattedDate 
+    }
+
+    $.ajax("{{ route('updateFruitPrice') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "POST",
+      success: (data, textStatus, jqXHR) => {
+        console.log("ok")
+      //  window.location.href = window.location.href;
+      }
+    });
+});
+     $(".buying_b").focusout(function() {
+    var newPrice = $(this).val();
+
+    var arrItem = $(this).attr('id').split("_")[2]
+    var currentDate = new Date();
+    var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
+
+    var data = {
+      product_id: arrItem,
+      buying_price_b: newPrice,
       date: formattedDate 
     }
 
