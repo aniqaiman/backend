@@ -41,14 +41,16 @@
             </thead>
             <tbody>
               @foreach($prices as $price)
-                <td>$price->price_date</td>
-                <td>$price->product->name</td>
+              <tr>
+                <td>{{$price->price_date}}</td>
+                <td>{{$price->product->name}}</td>
                 <td></td>
-                <td>$price->buying_price_a</td>
-                <td>$price->selling_price_a</td>
-                <td>$price->buying_price_b</td>
-                <td>$price->selling_price_b</td>
+                <td>{{$price->buying_price_a}}</td>
+                <td>{{$price->selling_price_a}}</td>
+                <td>{{$price->buying_price_b}}</td>
+                <td>{{$price->selling_price_b}}</td>
                 <td></td>
+              </tr>
               @endforeach
             </tbody>
           </table>
