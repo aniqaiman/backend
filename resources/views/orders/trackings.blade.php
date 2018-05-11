@@ -367,6 +367,8 @@
 swal({
         title: "",
         text: "Assigning....",
+        showConfirmButton: false
+    });
        
    
     $.ajax("{{ route('orders.lorry.assign') }}", {
