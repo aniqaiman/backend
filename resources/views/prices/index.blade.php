@@ -55,10 +55,10 @@
                         <tr>
                             <td>{{$product->name}}</td>
                             <td></td>
-                            <td colspan="1"><input type="number" name="selling_a" class="selling_a"></td>
-                            <td colspan="1"><input type="number" name="buying_a"></td>
-                            <td colspan="1"><input type="number" name="selling_b"></td>
-                            <td colspan="1"><input type="number" name="buying_b"></td>
+                            <td colspan="1"><input type="number"  class="selling_a"></td>
+                            <td colspan="1"><input type="number"></td>
+                            <td colspan="1"><input type="number"></td>
+                            <td colspan="1"><input type="number"></td>
                             <td></td>
                             <td></td>
                             <td></td>
