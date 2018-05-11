@@ -82,9 +82,11 @@
 
 <script>
     $(document).ready(function () {
+        console.log("loaded")
     $(".selling_a").focusout(function() {
     var newPrice = $(this).val();
     console.log("here");
+    alert("test");
     console.log(newPrice);
    });
 });

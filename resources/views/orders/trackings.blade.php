@@ -340,7 +340,8 @@
     <!-- /.box -->
   </div>
 </section>
-@endsection @section('script')
+@endsection 
+@section('script')
 <script>
   $(document).ready(function () {
     $('#order-table').DataTable({
