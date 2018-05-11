@@ -197,10 +197,7 @@
                       @foreach($drivers as $driver)
                
                         <option value="{{$driver->id}}" 
-                          @if ({{$driver->id}} == {{$order->lorry_id}})
-        selected="selected"
-            @endif
-
+                          
                           >{{$driver->name}}</option>
                     @endforeach
                     </select>
