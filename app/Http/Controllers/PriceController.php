@@ -64,15 +64,18 @@ class PriceController extends Controller
         $product_price->product_id = $request->product_id;
         $product_price->date_price = $request->date;
     }
-    if($request->price_a){
-            $product_price->price_a = $request->price_a;
+    if($request->selling_price_a){
+            $product_price->selling_price_a = $request->selling_price_a;
         } 
-        if ($request->price_b){
+        if ($request->selling_price_b){
 
-         $product_price->price_b = $request->price_b;
+         $product_price->selling_price_b = $request->selling_price_b;
         }
-        if ($request->price_c){
-            $product_price->price_c = $request->price_c;
+        if ($request->buying_price_a){
+            $product_price->buying_price_a = $request->buying_price_a;
+        }
+        if ($request->buying_price_b){
+            $product_price->buying_price_b = $request->buying_price_b;
         }
         $product_price->save();
             return response($product_price);
