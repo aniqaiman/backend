@@ -82,6 +82,13 @@ class OrderController extends Controller
         return view('orders.lorries', compact('users'));
     }
 
+    public function assignDriverOrder(Request $request){
+        $order = Order::find($request->id);
+        $order->lorry_id = $request->lorry_id;
+        $order->save();
+        return response($order);
+    }
+
     public function updateApproveBuyerOrder(Request $request)
     {
         $order = Order::find($request->id);

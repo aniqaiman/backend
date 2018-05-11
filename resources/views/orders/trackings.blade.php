@@ -341,6 +341,8 @@
 @section('script')
 <script>
   $(document).ready(function () {
+
+
     $('#order-table').DataTable({
       'ordering': false,
       'paging': false,
@@ -356,6 +358,29 @@
   $('.driver_drop').change(function(){
     console.log($(this).val());
     console.log($(this).attr('id'))
+    var orderId = ($(this).val()).split("_")[2];
+    var data = {
+      id: orderId,
+      lorry_id: $(this).val()
+    }
+
+swal({
+        title: "",
+        text: "Assigning....",
+       
+   
+    $.ajax("{{ route('orders.lorry.assign') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "POST",
+      success: (data, textStatus, jqXHR) => {
+        console.log("OK");
+        swal.close();
+      }
+    });
+
+
   })
   function completeOrderStock(btn) {
     var data = {
@@ -396,5 +421,6 @@
       }
     });
   }
+
 </script>
 @endsection
