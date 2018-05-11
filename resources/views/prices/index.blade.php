@@ -55,7 +55,7 @@
                         <tr>
                             <td>{{$product->name}}</td>
                             <td></td>
-                            <td colspan="1"><input type="number" name="selling_a"></td>
+                            <td colspan="1"><input type="number" name="selling_a" class="selling_a"></td>
                             <td colspan="1"><input type="number" name="buying_a"></td>
                             <td colspan="1"><input type="number" name="selling_b"></td>
                             <td colspan="1"><input type="number" name="buying_b"></td>
@@ -74,6 +74,12 @@
         </div>
     </div>
 </section>
+<script>
+    $(".selling_a").focusout(function() {
+    var newPrice = $(this).val();
+    console.log(newPrice);
+   });
+</script>
 @endsection
  
 @section('script')
