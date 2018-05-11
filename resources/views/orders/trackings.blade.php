@@ -192,7 +192,7 @@
                 <td>
                   
                     
-                    <select class="driver_drop">
+                    <select class="driver_drop" id="lorry_select_{{$order->id}}">
                       <option value="0">No driver selected</option>
                       @foreach($drivers as $driver)
                
