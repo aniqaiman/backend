@@ -55,10 +55,10 @@
                         <tr>
                             <td>{{$product->name}}</td>
                             <td></td>
-                            <td colspan="1"><input type="number"  class="selling_a" id="selling_a_{{$product->id}}"></td>
-                            <td colspan="1"><input type="number"></td>
-                            <td colspan="1"><input type="number"></td>
-                            <td colspan="1"><input type="number"></td>
+                            <td colspan="1"><input type="number" class="selling_a" id="selling_a_{{$product->id}}"></td>
+                            <td colspan="1"><input type="number" class="buying_a" id="buying_a_{{$product->id}}"></td>
+                            <td colspan="1"><input type="number" class="selling_b" id="selling_b_{{$product->id}}"></td>
+                            <td colspan="1"><input type="number" class="buying_b" id="buying_b_{{$product->id}}"></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -85,7 +85,24 @@
         console.log("loaded")
     $(".selling_a").focusout(function() {
     var newPrice = $(this).val();
-    console.log($(this).val().attr('id'))
+    console.log($(this).attr('id'))
+    console.log(newPrice);
+   });
+    $(".selling_b").focusout(function() {
+    var newPrice = $(this).val();
+    console.log($(this).attr('id'))
+
+    console.log(newPrice);
+   });
+    $(".buying_a").focusout(function() {
+    var newPrice = $(this).val();
+    console.log($(this).attr('id'))
+
+    console.log(newPrice);
+   });
+    $(".buying_b").focusout(function() {
+    var newPrice = $(this).val();
+    console.log($(this).attr('id'))
 
     console.log(newPrice);
    });
