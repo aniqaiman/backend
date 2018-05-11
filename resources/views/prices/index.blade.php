@@ -51,8 +51,8 @@
                         </thead>
                   
                     <tbody>
-                        
-                        @foreach($products as $product)
+
+                        @foreach($products["products"] as $product)
                         <tr>
                             <td>{{$product->name}}</td>
                             <td></td>
