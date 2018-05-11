@@ -89,7 +89,7 @@
     console.log(newPrice);
     var arrItem = $(this).attr('id').split("_")[2]
     var currentDate = new Date();
-    var formattedDate = currentDate.getFullYear()+"-"currentDate.getMonth()+1+"-"+currentDate.getDate();
+    var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
     var data = {
       product_id: 1,
       price_a: parseDouble(arrItem),
