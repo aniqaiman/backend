@@ -45,7 +45,7 @@ class PriceController extends Controller
 
     public function indexHistories()
     {
-        $prices = Price::orderBy('date_price', 'desc')->all();
+        $prices = Price::orderBy('date_price', 'desc')->get();
         return view('prices.index_histories', compact('prices'));
     }
 
