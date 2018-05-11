@@ -75,10 +75,12 @@
     </div>
 </section>
 <script>
+    $(document).ready(function () {
     $(".selling_a").focusout(function() {
     var newPrice = $(this).val();
     console.log(newPrice);
    });
+});
 </script>
 @endsection
  
