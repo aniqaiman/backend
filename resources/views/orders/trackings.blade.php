@@ -358,7 +358,9 @@
   $('.driver_drop').change(function(){
     console.log($(this).val());
     console.log($(this).attr('id'))
-    var orderId = ($(this).val()).split("_")[2];
+    var orderId = ($(this).attr('id')).split("_")[2];
+    console.log(orderId)
+    console.log($(this).val())
     var data = {
       id: orderId,
       lorry_id: $(this).val()

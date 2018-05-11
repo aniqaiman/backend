@@ -85,7 +85,7 @@ class OrderController extends Controller
     public function assignDriverOrder(Request $request){
         $order = Order::find($request->id);
         dump($order);
-        exit();
+        exit()
         $order->lorry_id = $request->lorry_id;
         $order->save();
         return response($order);
@@ -93,7 +93,7 @@ class OrderController extends Controller
 
     public function updateApproveBuyerOrder(Request $request)
     {
-        $order = Order::where('id',$request->id)->first();
+        $order = Order::find($request->id);
         $order->status = 1;
         $order->save();
 
