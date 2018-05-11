@@ -17,7 +17,7 @@ class PriceController extends Controller
         foreach ($productQuery as $product) {
 
             $product_prices = Price::where('product_id',$product->id)->where('date_price', date("Y-m-d"))->first();
-            $product_yest_prices = Price::where('product_id',$product->id)->where('date_price', date('d.m.Y',strtotime("-1 days")))->first();
+            $product_yest_prices = Price::where('product_id',$product->id)->where('date_price', date('Y-m-d',strtotime("-1 days")))->first();
             dump($product_yest_prices);
             exit();
             $newProd["id"] = $product["id"];
