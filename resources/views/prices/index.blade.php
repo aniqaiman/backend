@@ -168,6 +168,7 @@
     console.log($(this).attr('id'))
     console.log(newPrice);
     var arrItem = $(this).attr('id').split("_")[2]
+    console.log(arrItem);
     var currentDate = new Date();
     var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
 

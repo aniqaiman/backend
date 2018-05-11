@@ -79,7 +79,7 @@ class PriceController extends Controller
         $product_price->date_price = $request->date;
     }
     if($request->selling_price_a){
-            $product_price->selling_price_a = $request->selling_price_a;
+        $product_price->selling_price_a = $request->selling_price_a;
         } 
         if ($request->selling_price_b){
 
