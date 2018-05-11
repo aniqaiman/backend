@@ -92,7 +92,7 @@
     var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
     var data = {
       product_id: 1,
-      price_a: parseDouble(arrItem),
+      price_a: parseFloat(arrItem),
       date: formattedDate
     }
 
