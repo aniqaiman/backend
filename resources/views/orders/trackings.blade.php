@@ -192,7 +192,7 @@
                 <td>
                   
                     
-                    <select>
+                    <select class="driver_drop">
                       <option value="0">No driver selected</option>
                       @foreach($drivers as $driver)
                
@@ -353,7 +353,10 @@
       'info': false,
     });
   });
-
+  $('.driver_drop').change(function(){
+    console.log($(this).val());
+    console.log($(this).attr('id'))
+  })
   function completeOrderStock(btn) {
     var data = {
       id: $(btn).data('id'),
