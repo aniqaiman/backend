@@ -101,7 +101,7 @@
         title: "",
         text: "Saving....",
         showConfirmButton: false
-    }
+    });
     $.ajax("{{ route('updateFruitPrice') }}", {
       data: data,
       dataType: "json",
@@ -133,7 +133,7 @@ SweetAlert.swal({
         title: "",
         text: "Saving....",
         showConfirmButton: false
-    }
+    });
     $.ajax("{{ route('updateFruitPrice') }}", {
       data: data,
       dataType: "json",
@@ -163,7 +163,7 @@ SweetAlert.swal({
         title: "",
         text: "Saving....",
         showConfirmButton: false
-    }
+    });
     $.ajax("{{ route('updateFruitPrice') }}", {
       data: data,
       dataType: "json",
@@ -184,7 +184,7 @@ SweetAlert.swal({
         title: "",
         text: "Saving....",
         showConfirmButton: false
-    }
+    });
     var currentDate = new Date();
     var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
 
