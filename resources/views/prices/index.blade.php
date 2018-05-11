@@ -84,6 +84,7 @@
     $(document).ready(function () {
     $(".selling_a").focusout(function() {
     var newPrice = $(this).val();
+    console.log("here");
     console.log(newPrice);
    });
 });
