@@ -93,7 +93,7 @@ class OrderController extends Controller
 
     public function updateApproveBuyerOrder(Request $request)
     {
-        $order = Order::find($request->id);
+        $order = Order::where('id',$request->id)->first();
         $order->status = 1;
         $order->save();
 
