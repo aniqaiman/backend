@@ -18,7 +18,7 @@ class PriceController extends Controller
 
             $product_prices = Price::where('product_id',$product->id)->where('date_price', date("Y-m-d"))->first();
             $product_yest_prices = Price::where('product_id',$product->id)->where('date_price', date('Y-m-d',strtotime("-1 days")))->first();
-           
+
             $newProd["id"] = $product["id"];
             $newProd["name"] = $product["name"];
             $product_prices["selling_price_a"] ? $newProd["selling_price_a"] = $product_prices["selling_price_a"] : $newProd["selling_price_a"] = 0 ;
@@ -45,7 +45,8 @@ class PriceController extends Controller
 
     public function indexHistories()
     {
-        return view('prices.index_histories', []);
+        $prices = Price::all();
+        return view('prices.index_histories', compact('prices'));
     }
 
     public function getFruitDetail($product_id, Request $request)
