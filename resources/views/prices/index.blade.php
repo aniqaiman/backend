@@ -97,7 +97,7 @@
       date: formattedDate
     }
 
-   SweetAlert.swal({
+   sweetAlert.swal({
         title: "",
         text: "Saving....",
         showConfirmButton: false
@@ -129,7 +129,7 @@
       selling_price_b: newPrice,
       date: formattedDate 
     }
-SweetAlert.swal({
+sweetAlert.swal({
         title: "",
         text: "Saving....",
         showConfirmButton: false
@@ -159,7 +159,7 @@ SweetAlert.swal({
       buying_price_a: newPrice,
       date: formattedDate 
     }
-SweetAlert.swal({
+sweetAlert.swal({
         title: "",
         text: "Saving....",
         showConfirmButton: false
@@ -180,7 +180,7 @@ SweetAlert.swal({
     console.log($(this).attr('id'))
     console.log(newPrice);
     var arrItem = $(this).attr('id').split("_")[2]
-     SweetAlert.swal({
+     sweetAlert.swal({
         title: "",
         text: "Saving....",
         showConfirmButton: false
