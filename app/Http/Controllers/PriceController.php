@@ -61,6 +61,7 @@ class PriceController extends Controller
             $product_price = Price::where('product_id', $request->product_id)->where('date_price',$request->date)->first();
             if (!$product_price){
         $product_price = new Price();
+        $product_price->product_id = $request->product_id;
     }
     if($request->price_a){
             $product_price->price_a = $request->price_a;
