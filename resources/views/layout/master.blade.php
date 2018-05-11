@@ -170,6 +170,7 @@ desired effect
 {!!Html::script('js/app.min.js')!!}
 <!-- datatable -->
 {!!Html::script('datatables/datatables.min.js')!!}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
  @yield('script')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
