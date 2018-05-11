@@ -59,10 +59,17 @@ class PriceController extends Controller
     {
         if ($request->ajax()) {
             $product_price = Price::where('product_id', $request->product_id)->where('date',$request->date)->first();
-        $request->price_a ? $product_price->price_a = $request->price_a;
-        $request->price_b ? $product_price->price_b = $request->price_b;
-        $request->price_c ? $product_price->price_c = $request->price_c;
-            $product_price->save();
+        if($request->price_a){
+            $product_price->price_a = $request->price_a;
+        } 
+        if ($request->price_b){
+
+         $product_price->price_b = $request->price_b;
+        }
+        if ($request->price_c){
+            $product_price->price_c = $request->price_c;
+        }
+        $product_price->save();
             return response($product_price);
         }
     }
