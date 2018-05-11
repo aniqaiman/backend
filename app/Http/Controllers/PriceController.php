@@ -58,12 +58,12 @@ class PriceController extends Controller
     public function updateFruitPrice(Request $request)
     {
         if ($request->ajax()) {
-            $prices = Price::where('price_id', $request->price_id)->first();
-            $prices->product_id = $request->product_id;
-            $prices->product_price = $request->product_price;
-            $prices->date_price = $request->date_price;
-            $prices->save();
-            return response($prices);
+            $product_price = Price::where('product_id', $request->product_id)->where('date',$request->date)->first();
+        $request->price_a ? $product_price->price_a = $request->price_a;
+        $request->price_b ? $product_price->price_b = $request->price_b;
+        $request->price_c ? $product_price->price_c = $request->price_c;
+            $product_price->save();
+            return response($product_price);
         }
     }
 

@@ -87,6 +87,27 @@
     var newPrice = $(this).val();
     console.log($(this).attr('id'))
     console.log(newPrice);
+
+    var data = {
+      product_id: 1,
+      price_a: newPrice,
+      date: '2018-03-01'
+    }
+
+    $(this).prop('disabled', true);
+    $(this).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+
+    $.ajax("{{ route('updateFruitPrice') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "POST",
+      success: (data, textStatus, jqXHR) => {
+        console.log("ok")
+        window.location.href = window.location.href;
+      }
+    });
+
    });
     $(".selling_b").focusout(function() {
     var newPrice = $(this).val();
