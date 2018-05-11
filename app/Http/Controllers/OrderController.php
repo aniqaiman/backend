@@ -78,7 +78,8 @@ class OrderController extends Controller
 
     public function indexLorries()
     {
-        return view('orders.lorries', []);
+        $user = User::where('group_id',31)->get();
+        return view('orders.lorries', compact('users'));
     }
 
     public function updateApproveBuyerOrder(Request $request)

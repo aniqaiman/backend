@@ -44,6 +44,24 @@
                 <th style="width: 1%;"></th>
               </tr>
             </thead>
+            <tbody>
+              @foreach ($users as $user)
+              <tr>
+                <td></td>
+                <td>{{$user->name}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              @endforeach
+            </tbody>
           </table>
         </div>
       </div>
