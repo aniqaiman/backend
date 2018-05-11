@@ -59,7 +59,10 @@ class PriceController extends Controller
     {
         if ($request->ajax()) {
             $product_price = Price::where('product_id', $request->product_id)->where('date_price',$request->date)->first();
-        if($request->price_a){
+            if (!$product_price){
+        $product_price = new Price();
+    }
+    if($request->price_a){
             $product_price->price_a = $request->price_a;
         } 
         if ($request->price_b){
