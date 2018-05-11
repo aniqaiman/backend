@@ -74,6 +74,12 @@
         </div>
     </div>
 </section>
+
+</script>
+@endsection
+ 
+@section('script')
+
 <script>
     $(document).ready(function () {
     $(".selling_a").focusout(function() {
@@ -81,8 +87,4 @@
     console.log(newPrice);
    });
 });
-</script>
-@endsection
- 
-@section('script')
 @endsection
