@@ -36,11 +36,11 @@ class Stock extends Model
             ->get()
             ->sum(function ($product) {
                 if ($product->pivot->grade === "A") {
-                    return $product->priceLatest()->price_a * $product->pivot->quantity;
+                    return $product->priceLatest()["buyer_price_a"] * $product->pivot->quantity;
                 } else if ($product->pivot->grade === "B") {
-                    return $product->priceLatest()->price_b * $product->pivot->quantity;
+                    return $product->priceLatest()["buyer_price_b"]* $product->pivot->quantity;
                 } else if ($product->pivot->grade === "C") {
-                    return $product->priceLatest()->price_c * $product->pivot->quantity;
+                    return $product->priceLatest()["buyer_price_b"] * $product->pivot->quantity;
                 }
             });
     }
