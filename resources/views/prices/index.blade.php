@@ -97,9 +97,11 @@
       date: formattedDate
     }
 
-    $(this).prop('disabled', true);
-    $(this).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
-
+   SweetAlert.swal({
+        title: "",
+        text: "Saving....",
+        showConfirmButton: false
+    }
     $.ajax("{{ route('updateFruitPrice') }}", {
       data: data,
       dataType: "json",
@@ -107,6 +109,7 @@
       method: "POST",
       success: (data, textStatus, jqXHR) => {
         console.log("ok")
+        swal.close();
       //  window.location.href = window.location.href;
       }
     });
@@ -126,7 +129,11 @@
       selling_price_b: newPrice,
       date: formattedDate 
     }
-
+SweetAlert.swal({
+        title: "",
+        text: "Saving....",
+        showConfirmButton: false
+    }
     $.ajax("{{ route('updateFruitPrice') }}", {
       data: data,
       dataType: "json",
@@ -134,6 +141,7 @@
       method: "POST",
       success: (data, textStatus, jqXHR) => {
         console.log("ok")
+        swal.close()
       //  window.location.href = window.location.href;
       }
     });
@@ -151,14 +159,18 @@
       buying_price_a: newPrice,
       date: formattedDate 
     }
-
+SweetAlert.swal({
+        title: "",
+        text: "Saving....",
+        showConfirmButton: false
+    }
     $.ajax("{{ route('updateFruitPrice') }}", {
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {},
       method: "POST",
       success: (data, textStatus, jqXHR) => {
-        console.log("ok")
+        swal.close();
       //  window.location.href = window.location.href;
       }
     });
@@ -168,7 +180,11 @@
     console.log($(this).attr('id'))
     console.log(newPrice);
     var arrItem = $(this).attr('id').split("_")[2]
-    console.log(arrItem);
+     SweetAlert.swal({
+        title: "",
+        text: "Saving....",
+        showConfirmButton: false
+    }
     var currentDate = new Date();
     var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
 
@@ -185,6 +201,7 @@
       method: "POST",
       success: (data, textStatus, jqXHR) => {
         console.log("ok")
+        swal.close()
       //  window.location.href = window.location.href;
       }
     });
