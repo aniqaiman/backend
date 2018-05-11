@@ -26,7 +26,7 @@ class PriceController extends Controller
             array_push($products , $newProd);
 
         }
-        $products = json_decode($products);
+        $products = json_encode($products);
         return view('prices.index', compact('products'));
     }
 
