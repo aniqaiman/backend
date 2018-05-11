@@ -12,7 +12,20 @@ class PriceController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $productQuery = Product::all();
+        $products = [];
+        foreach ($productQuery as $product) {
+
+            $product_prices = Price::where('product_id',$product->id)->where('date_price', date("Y-m-d"))->get();
+            $newProd["id"] = $product["id"];
+            $newProd["name"] = $product["name"];
+            $product_prices["selling_price_a"] ? $newProd["selling_price_a"] = $product_prices["selling_price_a"] : $newProd["selling_price_a"] = 0 ;
+            $product_prices["selling_price_b"] ? $newProd["selling_price_b"]  = $product_prices["selling_price_b"] : $newProd["selling_price_b"] = 0 ;
+            $product_prices["buying_price_b"] ? $newProd["buying_price_b"] = $product_prices["buying_price_b"] : $newProd["buying_price_b"] = 0;
+            $product_prices["buying_price_a"] ? $newProd["buying_price_a"] = $product_prices["buying_price_a"] = $newProd["buying_price_a"] = 0;
+            array_push($products , $newProd);
+
+        }
         return view('prices.index', compact('products'));
     }
 
