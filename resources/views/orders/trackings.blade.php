@@ -196,21 +196,11 @@
                       <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
+                      @foreach($drivers as $driver)
                       <li>
-                        <a href="#">Lorry 1</a>
+                        <a href="#">{{$driver->name}}</a>
                       </li>
-                      <li>
-                        <a href="#">Lorry 2</a>
-                      </li>
-                      <li>
-                        <a href="#">Lorry 3</a>
-                      </li>
-                      <li>
-                        <a href="#">Lorry 4</a>
-                      </li>
-                      <li>
-                        <a href="#">Lorry 5</a>
-                      </li>
+                    @endforeach
                     </ul>
                   </div>
                 </td>

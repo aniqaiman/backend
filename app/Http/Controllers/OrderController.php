@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Stock;
+use App\User;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -45,7 +46,10 @@ class OrderController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'seller');
 
-        return view('orders.trackings', compact('orders', 'stocks'));
+        $drivers = User::where('group_id',31)
+            ->get();
+
+        return view('orders.trackings', compact('orders', 'stocks', 'drivers'));
     }
 
     public function indexOrderRejects()
