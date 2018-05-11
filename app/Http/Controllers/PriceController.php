@@ -16,7 +16,7 @@ class PriceController extends Controller
         $products = [];
         foreach ($productQuery as $product) {
 
-            $product_prices = Price::where('product_id',$product->id)->where('date_price', date("Y-m-d"))->get();
+            $product_prices = Price::where('product_id',$product->id)->where('date_price', date("Y-m-d"))->first();
             $newProd["id"] = $product["id"];
             $newProd["name"] = $product["name"];
             $product_prices["selling_price_a"] ? $newProd["selling_price_a"] = $product_prices["selling_price_a"] : $newProd["selling_price_a"] = 0 ;
