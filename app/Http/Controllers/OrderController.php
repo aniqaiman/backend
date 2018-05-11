@@ -84,8 +84,7 @@ class OrderController extends Controller
 
     public function assignDriverOrder(Request $request){
         $order = Order::find($request->id);
-        dump($order);
-        exit()
+      
         $order->lorry_id = $request->lorry_id;
         $order->save();
         return response($order);
