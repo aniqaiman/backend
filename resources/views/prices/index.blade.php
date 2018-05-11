@@ -91,7 +91,7 @@
     var currentDate = new Date();
     var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
     var data = {
-      product_id: 1,
+      product_id: arrItem,
       price_a: parseFloat(arrItem),
       date: formattedDate
     }
@@ -111,19 +111,19 @@
     });
 
    });
+
     $(".selling_b").focusout(function() {
     var newPrice = $(this).val();
-    console.log($(this).attr('id'))
-    console.log(newPrice);
+
+    var arrItem = $(this).attr('id').split("_")[2]
+    var currentDate = new Date();
+    var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
 
     var data = {
-      product_id: 1,
+      product_id: arrItem,
       price_b: newPrice,
-      date: '2018-03-01'
+      date: formattedDate 
     }
-
-    $(this).prop('disabled', true);
-    $(this).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
     $.ajax("{{ route('updateFruitPrice') }}", {
       data: data,
@@ -138,16 +138,27 @@
    });
     $(".buying_a").focusout(function() {
     var newPrice = $(this).val();
-    console.log($(this).attr('id'))
 
-    console.log(newPrice);
-   });
-    $(".buying_b").focusout(function() {
-    var newPrice = $(this).val();
-    console.log($(this).attr('id'))
+    var arrItem = $(this).attr('id').split("_")[2]
+    var currentDate = new Date();
+    var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
 
-    console.log(newPrice);
-   });
+    var data = {
+      product_id: arrItem,
+      price_b: newPrice,
+      date: formattedDate 
+    }
+
+    $.ajax("{{ route('updateFruitPrice') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "POST",
+      success: (data, textStatus, jqXHR) => {
+        console.log("ok")
+      //  window.location.href = window.location.href;
+      }
+    });
 });
 </script>
 @endsection
