@@ -196,8 +196,8 @@
                       <option value="0">No driver selected</option>
                       @foreach($drivers as $driver)
                
-                        <option value="{{$driver->id}}"
-            @if ({{$driver->id}} == {{$order->driver_id}})
+                        <option value="{{$driver->id}}" 
+                          @if ({{$driver->id}} == {{$order->lorry_id}})
         selected="selected"
             @endif
 
