@@ -78,8 +78,8 @@ class OrderController extends Controller
 
     public function indexLorries()
     {
-        $users = User::where('group_id',31)->get();
-        return view('orders.lorries', compact('users'));
+        $orders = Order::whereNotNull('lorry_id')->get();
+        return view('orders.lorries', compact('orders'));
     }
 
     public function assignDriverOrder(Request $request){

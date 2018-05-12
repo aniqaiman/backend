@@ -19,6 +19,9 @@ class Order extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function driver(){
+        return $this->belongsTo('App\User');
+    }
 
     public function products()
     {
