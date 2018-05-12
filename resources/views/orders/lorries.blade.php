@@ -56,7 +56,7 @@
                 <td>{{$order["user_id"]}}</td>
                 <td>{{$order["user_address"]}}</td>
                 <td></td>
-                <td></td>
+                <td>{{$order["tonnage"]}}</td>
                 <td></td>
                 <td></td>
               </tr>
