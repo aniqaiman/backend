@@ -284,7 +284,7 @@
                   </a>
                 </td>
                 <td>
-                  <select class="driver_drop_seller" id="lorry_selller_{{$order->id}}">
+                  <select class="driver_drop_seller" id="lorry_selller_{{$stock->id}}">
                       <option value="0">No driver selected</option>
                       @foreach($drivers as $driver)
                
