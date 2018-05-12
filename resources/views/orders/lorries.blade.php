@@ -22,9 +22,9 @@
         </div>
         <dl id="dd" class="hidden">
           <dt>Driver Name</dt>
-          <dd id="dd-owner-name">xxx</dd>
+          <dd id="dd-driver-name">xxx</dd>
           <dt>Driver Id</dt>
-          <dd id="dd-company-name">xxx</dd>
+          <dd id="dd-driver-id">xxx</dd>
           <dt>IC Number</dt>
           <dd id="dd-mykad-number">xxx</dd>
           <dt>Home Address</dt>
@@ -131,7 +131,7 @@
 $(document).ready(function () {
     $('#exampleModal').on('show.bs.modal', function (event) {
       var spinner = $('#spinner');
-      var ud = $('#ud');
+      var ud = $('#dd');
       var button = $(event.relatedTarget);
       var id = button.data('id');
       var url = "{{ route('users.json', ['xxx']) }}";
@@ -140,7 +140,7 @@ $(document).ready(function () {
       ud.toggleClass('hidden', true);
 
       var modal = $(this);
-      modal.find('#exampleModalLabel').text('Buyer Details | ' + id);
+      modal.find('#exampleModalLabel').text('Driver Details | ' + id);
       modal.find('#feedback-id').val(id);
 
       $.ajax(url.replace("xxx", id), {
@@ -152,7 +152,7 @@ $(document).ready(function () {
           ud.toggleClass('hidden', false);
           console.log(data)
 
-          $('#dd-owner-name').text(data.name);
+          $('#dd-driver-name').text(data.name);
           $('#dd-company-name').text(data.company_name);
           $('#dd-company-registration-mykad-number').text(data.company_registration_mykad_number);
           $('#dd-business-hour').text(data.bussiness_hour);
