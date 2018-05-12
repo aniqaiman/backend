@@ -54,4 +54,12 @@ class StockController extends Controller
         Session::flash('message', 'Successfully deleted!');
         return Redirect::to('sellerdetail');
     }
+
+     public function assignDriverStocks(Request $request){
+        $stockr = Stock::find($request->id);
+      
+        $stock->lorry_id = $request->lorry_id;
+        $stock->save();
+        return response($stock);
+    }
 }

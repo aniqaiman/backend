@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInventoryTable extends Migration
+class AddDriverIdToStocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateInventoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventory', function (Blueprint $table) {
-            $table->increments('id');
-         
-
-            $table->timestamps();
+        Schema::table('stocks', function (Blueprint $table) {
+            //
+            $table->integer('lorry_id')->nullable();
         });
     }
 
@@ -28,6 +26,8 @@ class CreateInventoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventory');
+        Schema::table('stocks', function (Blueprint $table) {
+            //
+        });
     }
 }
