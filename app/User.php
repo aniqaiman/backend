@@ -85,7 +85,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->carts()
             ->get()
             ->sum(function ($cart) {
-                return $cart->priceLatest()->price_a * $cart->pivot->quantity;
+                if ($cart->pivot->grade === "A") {
+                    return $cart->priceLatest()["buying_price_a"] * $cart->pivot->quantity;
+                } else if ($cart->pivot->grade === "B") {
+                    return $cart->priceLatest()["buying_price_b"] * $cart->pivot->quantity;
+                }
             });
     }
 
