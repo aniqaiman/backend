@@ -87,6 +87,16 @@ Route::get('vege/{product_id}/editVegePrice/{price_id}', ['as' => 'editVegePrice
 Route::post('updateVegePrice', ['as' => 'updateVegePrice', 'uses' => 'PriceController@updateVegePrice']);
 Route::delete('vegeprice', ['as' => 'deleteVegePrice', 'uses' => 'PriceController@deleteVegePrice']);
 
+
+Route::prefix('stocks')
+    ->name('stocks.')
+    ->group(function () {
+
+        Route::post('lorry', 'StockController@assignDriverOrder')->name('lorry.assign');
+
+        });
+
+
 Route::prefix('orders')
     ->name('orders.')
     ->group(function () {

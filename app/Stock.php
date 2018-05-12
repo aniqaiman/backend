@@ -19,6 +19,9 @@ class Stock extends Model
     {
         return $this->belongsTo('App\User');
     }
+     public function driver(){
+        return $this->belongsTo('App\User', 'lorry_id');
+    }
 
     public function products()
     {

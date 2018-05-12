@@ -284,29 +284,18 @@
                   </a>
                 </td>
                 <td>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      No Lorry Assigned
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#">Lorry 1</a>
-                      </li>
-                      <li>
-                        <a href="#">Lorry 2</a>
-                      </li>
-                      <li>
-                        <a href="#">Lorry 3</a>
-                      </li>
-                      <li>
-                        <a href="#">Lorry 4</a>
-                      </li>
-                      <li>
-                        <a href="#">Lorry 5</a>
-                      </li>
-                    </ul>
-                  </div>
+                  <select class="driver_drop_seller" id="lorry_selller_{{$order->id}}">
+                      <option value="0">No driver selected</option>
+                      @foreach($drivers as $driver)
+               
+                        <option value="{{$driver->id}}" 
+                          @if ($driver->id == $order->lorry_id)
+                        selected="selected"
+                        @endif
+
+                          >{{$driver->name}}</option>
+                    @endforeach
+                    </select>
                 </td>
                 <td class="text-center">
                   @if ($stock->status === 1)
@@ -360,6 +349,37 @@
       'info': false,
     });
   });
+
+  $('.driver_drop_seller').change(function(){
+     console.log($(this).val());
+    console.log($(this).attr('id'))
+    var orderId = ($(this).attr('id')).split("_")[2];
+    console.log(orderId)
+    console.log($(this).val())
+    var data = {
+      id: orderId,
+      lorry_id: $(this).val()
+    }
+
+swal({
+        title: "",
+        text: "Assigning....",
+        showConfirmButton: false
+    });
+       
+   
+    $.ajax("{{ route('stocks.lorry.assign') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "POST",
+      success: (data, textStatus, jqXHR) => {
+        console.log("OK");
+        swal.close();
+      }
+    });
+
+  })
   $('.driver_drop').change(function(){
     console.log($(this).val());
     console.log($(this).attr('id'))
