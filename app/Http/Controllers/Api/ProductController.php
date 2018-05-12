@@ -19,7 +19,6 @@ class ProductController extends Controller
                 ->where("category_id", 1)
                 ->get()
                 ->each(function ($product, $key) {
-                    ///$product->priceLatest() ? $product['price_latest'] = $product->priceLatest() : $product['price_latest'] =  array("buying_price_a" => 0, "buying_price_b" => 0, "buying_price_c"=> 0);
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
                 }),
@@ -34,7 +33,6 @@ class ProductController extends Controller
                 ->where("category_id", 11)
                 ->get()
                 ->each(function ($product, $key) {
-                    // $product->priceLatest() ? $product['price_latest'] = $product->priceLatest() : $product['price_latest'] =  array("buying_price_a" => 0, "buying_price_b" => 0, "buying_price_c"=> 0);
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
                 }),
@@ -52,8 +50,6 @@ class ProductController extends Controller
                 round(($product->latestPrices[0]->price_a - $product->latestPrices[1]->price_a) / $product->latestPrices[1]->price_a, 2) : 0;
                 $product["price_b_diff"] = sizeof($product->latestPrices) > 1 ?
                 round(($product->latestPrices[0]->price_b - $product->latestPrices[1]->price_b) / $product->latestPrices[1]->price_b, 2) : 0;
-                $product["price_c_diff"] = sizeof($product->latestPrices) > 1 ?
-                round(($product->latestPrices[0]->price_c - $product->latestPrices[1]->price_c) / $product->latestPrices[1]->price_c, 2) : 0;
             });
 
         return response()->json([
@@ -84,7 +80,6 @@ class ProductController extends Controller
             $product["priceC"] = $prices[0]->product_price3;
             $product["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
             $product["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
-            $product["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
 
             array_push($productArray, $product);
         }

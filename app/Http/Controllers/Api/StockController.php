@@ -34,7 +34,6 @@ class StockController extends Controller
                 ->with('category')
                 ->get()
                 ->each(function ($product, $key) {
-                    // $product->priceLatest() ? $product['price_latest'] = $product->priceLatest() : $product['price_latest'] =  array("buying_price_a" => 0, "buying_price_b" => 0, "buying_price_c"=> 0);
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
                 }),
