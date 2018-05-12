@@ -52,8 +52,8 @@
             <span id="ud-email-status-unverified" class="label label-danger">Unverified</span>
             <br />
             Account:
-            <span id="ud-account-status-verified" class="label label-success">Verified</span>
-            <span id="ud-account-status-unverified" class="label label-danger">Unverified</span>
+            <span id="ud-account-status-verified" class="label label-success">Activated</span>
+            <span id="ud-account-status-unverified" class="label label-danger">Deactivated</span>
           </dd>
         </dl>
       </div>
