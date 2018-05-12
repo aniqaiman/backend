@@ -1,8 +1,4 @@
-@extends('layout.master') 
-@section('style')
-@endsection
- 
-@section('content')
+@extends('layout.master') @section('style') @endsection @section('content')
 <section class="content-header">
     <h1>
         Price Dashboard
@@ -11,8 +7,8 @@
     <ol class="breadcrumb">
         <li>
             <a href="{{ route('dashboard') }}">
-        <i class="fa fa-dashboard"></i> Dashboard
-      </a>
+                <i class="fa fa-dashboard"></i> Dashboard
+            </a>
         </li>
         <li>
             <a href="#">Price Dashboard</a>
@@ -28,7 +24,7 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">{{ Carbon\Carbon::now()->toFormattedDateString() }}</h3>
                     </div>
-                    <table class="table table-bordered" id="buyer-table" style="width:100%">
+                    <table class="table table-bordered" id="dashboard-table" style="width:100%">
                         <thead>
                             <tr class="bg-black">
                                 <th rowspan="2">Item</th>
@@ -49,26 +45,34 @@
                                 <th>Buying Price (Grade B)</th>
                             </tr>
                         </thead>
-                  
-                    <tbody>
 
-                        @foreach($products as $product)
-                        <tr>
-                            <td>{{$product["name"]}}</td>
-                            <td></td>
-                            <td colspan="1"><input type="number" class="selling_a" id='selling_a_{{$product["id"]}}' value='{{$product["selling_price_a"]}}'></td>
-                            <td colspan="1"><input type="number" class="buying_a" id='buying_a_{{$product["id"]}}' value='{{$product["buying_price_a"]}}'></td>
-                            <td colspan="1"><input type="number" class="selling_b" id='selling_b_{{$product["id"]}}' value='{{$product["selling_price_b"]}}'></td>
-                            <td colspan="1"><input type="number" class="buying_b" id='buying_b_{{$product["id"]}}' value='{{$product["buying_price_b"]}}'></td>
-                            <td>{{$product["selling_yest_price_a"]}}</td>
-                            <td>{{$product["buying_yest_price_a"]}}</td>
-                            <td>{{$product["selling_yest_price_b"]}}</td>
-                            <td>{{$product["buying_yest_price_a"]}}</td>
-                           
-                        </tr>
-                        @endforeach
-                    </tbody>
-                      </table>
+                        <tbody>
+
+                            @foreach($products as $product)
+                            <tr>
+                                <td>{{$product["name"]}}</td>
+                                <td></td>
+                                <td colspan="1">
+                                    <input type="number" class="selling_a" id='selling_a_{{$product["id"]}}' value='{{$product["selling_price_a"]}}'>
+                                </td>
+                                <td colspan="1">
+                                    <input type="number" class="buying_a" id='buying_a_{{$product["id"]}}' value='{{$product["buying_price_a"]}}'>
+                                </td>
+                                <td colspan="1">
+                                    <input type="number" class="selling_b" id='selling_b_{{$product["id"]}}' value='{{$product["selling_price_b"]}}'>
+                                </td>
+                                <td colspan="1">
+                                    <input type="number" class="buying_b" id='buying_b_{{$product["id"]}}' value='{{$product["buying_price_b"]}}'>
+                                </td>
+                                <td>{{$product["selling_yest_price_a"]}}</td>
+                                <td>{{$product["buying_yest_price_a"]}}</td>
+                                <td>{{$product["selling_yest_price_b"]}}</td>
+                                <td>{{$product["buying_yest_price_a"]}}</td>
+
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- /.box -->
@@ -77,135 +81,142 @@
 </section>
 
 
-@endsection
- 
-@section('script')
+@endsection @section('script')
 
 <script>
     $(document).ready(function () {
         console.log("loaded")
-    $(".selling_a").focusout(function() {
-    var newPrice = $(this).val();
-    console.log($(this).attr('id'))
-    console.log(newPrice);
-    var arrItem = $(this).attr('id').split("_")[2]
-    var currentDate = new Date();
-    var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
-    var data = {
-      product_id: arrItem,
-      selling_price_a: newPrice,
-      date: formattedDate
-    }
 
-   swal({
-        title: "",
-        text: "Saving....",
-        showConfirmButton: false
-    });
-    $.ajax("{{ route('updateFruitPrice') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "POST",
-      success: (data, textStatus, jqXHR) => {
-        console.log("ok")
-        swal.close();
-      //  window.location.href = window.location.href;
-      }
-    });
+        $('#dashboard-table').DataTable({
+            'ordering': false,
+        });
 
-   });
+        $(".selling_a").focusout(function () {
+            var newPrice = $(this).val();
+            console.log($(this).attr('id'))
+            console.log(newPrice);
+            var arrItem = $(this).attr('id').split("_")[2]
+            var currentDate = new Date();
+            var formattedDate = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" +
+                currentDate.getDate();
+            var data = {
+                product_id: arrItem,
+                selling_price_a: newPrice,
+                date: formattedDate
+            }
 
-    $(".selling_b").focusout(function() {
-    var newPrice = $(this).val();
-    console.log($(this).attr('id'))
-    console.log(newPrice);
-    var arrItem = $(this).attr('id').split("_")[2]
-    var currentDate = new Date();
-    var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
+            swal({
+                title: "",
+                text: "Saving....",
+                showConfirmButton: false
+            });
+            $.ajax("{{ route('updateFruitPrice') }}", {
+                data: data,
+                dataType: "json",
+                error: (jqXHR, textStatus, errorThrown) => {},
+                method: "POST",
+                success: (data, textStatus, jqXHR) => {
+                    console.log("ok")
+                    swal.close();
+                    //  window.location.href = window.location.href;
+                }
+            });
 
-    var data = {
-      product_id: arrItem,
-      selling_price_b: newPrice,
-      date: formattedDate 
-    }
-swal({
-        title: "",
-        text: "Saving....",
-        showConfirmButton: false
-    });
-    $.ajax("{{ route('updateFruitPrice') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "POST",
-      success: (data, textStatus, jqXHR) => {
-        console.log("ok")
-        swal.close()
-      //  window.location.href = window.location.href;
-      }
-    });
-   });
-    $(".buying_a").focusout(function() {
-    var newPrice = $(this).val();
-    console.log($(this).attr('id'))
-    console.log(newPrice);
-    var arrItem = $(this).attr('id').split("_")[2]
-    var currentDate = new Date();
-    var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
+        });
 
-    var data = {
-      product_id: arrItem,
-      buying_price_a: newPrice,
-      date: formattedDate 
-    }
-swal({
-        title: "",
-        text: "Saving....",
-        showConfirmButton: false
-    });
-    $.ajax("{{ route('updateFruitPrice') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "POST",
-      success: (data, textStatus, jqXHR) => {
-        swal.close();
-      //  window.location.href = window.location.href;
-      }
-    });
-});
-     $(".buying_b").focusout(function() {
-    var newPrice = $(this).val();
-    console.log($(this).attr('id'))
-    console.log(newPrice);
-    var arrItem = $(this).attr('id').split("_")[2]
-     swal({
-        title: "",
-        text: "Saving....",
-        showConfirmButton: false
-    });
-    var currentDate = new Date();
-    var formattedDate = currentDate.getFullYear()+"-"+(currentDate.getMonth()+1)+"-"+currentDate.getDate();
+        $(".selling_b").focusout(function () {
+            var newPrice = $(this).val();
+            console.log($(this).attr('id'))
+            console.log(newPrice);
+            var arrItem = $(this).attr('id').split("_")[2]
+            var currentDate = new Date();
+            var formattedDate = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" +
+                currentDate.getDate();
 
-    var data = {
-      product_id: arrItem,
-      buying_price_b: newPrice,
-      date: formattedDate 
-    }
+            var data = {
+                product_id: arrItem,
+                selling_price_b: newPrice,
+                date: formattedDate
+            }
+            swal({
+                title: "",
+                text: "Saving....",
+                showConfirmButton: false
+            });
+            $.ajax("{{ route('updateFruitPrice') }}", {
+                data: data,
+                dataType: "json",
+                error: (jqXHR, textStatus, errorThrown) => {},
+                method: "POST",
+                success: (data, textStatus, jqXHR) => {
+                    console.log("ok")
+                    swal.close()
+                    //  window.location.href = window.location.href;
+                }
+            });
+        });
+        $(".buying_a").focusout(function () {
+            var newPrice = $(this).val();
+            console.log($(this).attr('id'))
+            console.log(newPrice);
+            var arrItem = $(this).attr('id').split("_")[2]
+            var currentDate = new Date();
+            var formattedDate = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" +
+                currentDate.getDate();
 
-    $.ajax("{{ route('updateFruitPrice') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "POST",
-      success: (data, textStatus, jqXHR) => {
-        console.log("ok")
-        swal.close()
-      //  window.location.href = window.location.href;
-      }
-    });
-});
+            var data = {
+                product_id: arrItem,
+                buying_price_a: newPrice,
+                date: formattedDate
+            }
+            swal({
+                title: "",
+                text: "Saving....",
+                showConfirmButton: false
+            });
+            $.ajax("{{ route('updateFruitPrice') }}", {
+                data: data,
+                dataType: "json",
+                error: (jqXHR, textStatus, errorThrown) => {},
+                method: "POST",
+                success: (data, textStatus, jqXHR) => {
+                    swal.close();
+                    //  window.location.href = window.location.href;
+                }
+            });
+        });
+        $(".buying_b").focusout(function () {
+            var newPrice = $(this).val();
+            console.log($(this).attr('id'))
+            console.log(newPrice);
+            var arrItem = $(this).attr('id').split("_")[2]
+            swal({
+                title: "",
+                text: "Saving....",
+                showConfirmButton: false
+            });
+            var currentDate = new Date();
+            var formattedDate = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" +
+                currentDate.getDate();
+
+            var data = {
+                product_id: arrItem,
+                buying_price_b: newPrice,
+                date: formattedDate
+            }
+
+            $.ajax("{{ route('updateFruitPrice') }}", {
+                data: data,
+                dataType: "json",
+                error: (jqXHR, textStatus, errorThrown) => {},
+                method: "POST",
+                success: (data, textStatus, jqXHR) => {
+                    console.log("ok")
+                    swal.close()
+                    //  window.location.href = window.location.href;
+                }
+            });
+        });
     });
 </script>
 @endsection

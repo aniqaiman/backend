@@ -1,12 +1,7 @@
-@extends('layout.master')
-
-@section('style')
-@endsection
-
-@section('content')
+@extends('layout.master') @section('style') @endsection @section('content')
 <section class="content-header">
   <h1>
-    Promo Price Management
+    Historic Price Data
   </h1>
 
   <ol class="breadcrumb">
@@ -16,7 +11,7 @@
       </a>
     </li>
     <li>
-      <a href="#">Promo Price Management</a>
+      <a href="#">Historic Price Data</a>
     </li>
   </ol>
 </section>
@@ -26,7 +21,7 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-body">
-          <table class="table table-bordered" id="buyer-table" style="width:100%">
+          <table class="table table-bordered" id="historic-table" style="width:100%">
             <thead>
               <tr class="bg-black">
                 <th>Date</th>
@@ -60,7 +55,14 @@
     </div>
   </div>
 </section>
-@endsection
+@endsection @section('script')
 
-@section('script')
+<script>
+  $(document).ready(function () {
+    $('#historic-table').DataTable({
+      'ordering': false,
+    });
+  });
+</script>
+
 @endsection

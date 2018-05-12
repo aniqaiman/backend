@@ -16,22 +16,22 @@ class PriceController extends Controller
         $products = [];
         foreach ($productQuery as $product) {
 
-            $product_prices = Price::where('product_id',$product->id)->where('date_price', date("Y-m-d"))->first();
-            $product_yest_prices = Price::where('product_id',$product->id)->where('date_price', date('Y-m-d',strtotime("-1 days")))->first();
+            $product_prices = Price::where('product_id', $product->id)->where('date_price', date("Y-m-d"))->first();
+            $product_yest_prices = Price::where('product_id', $product->id)->where('date_price', date('Y-m-d', strtotime("-1 days")))->first();
 
             $newProd["id"] = $product["id"];
             $newProd["name"] = $product["name"];
-            $product_prices["selling_price_a"] ? $newProd["selling_price_a"] = $product_prices["selling_price_a"] : $newProd["selling_price_a"] = 0 ;
-            $product_prices["selling_price_b"] ? $newProd["selling_price_b"]  = $product_prices["selling_price_b"] : $newProd["selling_price_b"] = 0 ;
+            $product_prices["selling_price_a"] ? $newProd["selling_price_a"] = $product_prices["selling_price_a"] : $newProd["selling_price_a"] = 0;
+            $product_prices["selling_price_b"] ? $newProd["selling_price_b"] = $product_prices["selling_price_b"] : $newProd["selling_price_b"] = 0;
             $product_prices["buying_price_b"] ? $newProd["buying_price_b"] = $product_prices["buying_price_b"] : $newProd["buying_price_b"] = 0;
             $product_prices["buying_price_a"] ? $newProd["buying_price_a"] = $product_prices["buying_price_a"] : $newProd["buying_price_a"] = 0;
 
-            $product_yest_prices ["selling_price_a"] ? $newProd["selling_yest_price_a"] = $product_yest_prices["selling_price_a"] : $newProd["selling_yest_price_a"] = 0 ;
-            $product_yest_prices ["selling_price_b"] ? $newProd["selling_yest_price_b"]  = $product_yest_prices ["selling_price_b"] : $newProd["selling_yest_price_b"] = 0 ;
-            $product_yest_prices ["buying_price_b"] ? $newProd["buying_yest_price_b"] = $product_yest_prices ["buying_price_b"] : $newProd["buying_yest_price_b"] = 0;
-            $product_yest_prices ["buying_price_a"] ? $newProd["buying_yest_price_a"] = $product_yest_prices ["buying_price_a"] : $newProd["buying_yest_price_a"] = 0;
+            $product_yest_prices["selling_price_a"] ? $newProd["selling_yest_price_a"] = $product_yest_prices["selling_price_a"] : $newProd["selling_yest_price_a"] = 0;
+            $product_yest_prices["selling_price_b"] ? $newProd["selling_yest_price_b"] = $product_yest_prices["selling_price_b"] : $newProd["selling_yest_price_b"] = 0;
+            $product_yest_prices["buying_price_b"] ? $newProd["buying_yest_price_b"] = $product_yest_prices["buying_price_b"] : $newProd["buying_yest_price_b"] = 0;
+            $product_yest_prices["buying_price_a"] ? $newProd["buying_yest_price_a"] = $product_yest_prices["buying_price_a"] : $newProd["buying_yest_price_a"] = 0;
 
-            array_push($products , $newProd);
+            array_push($products, $newProd);
 
         }
 
@@ -82,26 +82,26 @@ class PriceController extends Controller
     public function updateFruitPrice(Request $request)
     {
         if ($request->ajax()) {
-            $product_price = Price::where('product_id', $request->product_id)->where('date_price',$request->date)->first();
-            if (!$product_price){
-        $product_price = new Price();
-        $product_price->product_id = $request->product_id;
-        $product_price->date_price = $request->date;
-    }
-    if($request->selling_price_a){
-        $product_price->selling_price_a = $request->selling_price_a;
-        } 
-        if ($request->selling_price_b){
+            $product_price = Price::where('product_id', $request->product_id)->where('date_price', $request->date)->first();
+            if (!$product_price) {
+                $product_price = new Price();
+                $product_price->product_id = $request->product_id;
+                $product_price->date_price = $request->date;
+            }
+            if ($request->selling_price_a) {
+                $product_price->selling_price_a = $request->selling_price_a;
+            }
+            if ($request->selling_price_b) {
 
-         $product_price->selling_price_b = $request->selling_price_b;
-        }
-        if ($request->buying_price_a){
-            $product_price->buying_price_a = $request->buying_price_a;
-        }
-        if ($request->buying_price_b){
-            $product_price->buying_price_b = $request->buying_price_b;
-        }
-        $product_price->save();
+                $product_price->selling_price_b = $request->selling_price_b;
+            }
+            if ($request->buying_price_a) {
+                $product_price->buying_price_a = $request->buying_price_a;
+            }
+            if ($request->buying_price_b) {
+                $product_price->buying_price_b = $request->buying_price_b;
+            }
+            $product_price->save();
             return response($product_price);
         }
     }
