@@ -289,7 +289,7 @@
                       @foreach($drivers as $driver)
                
                         <option value="{{$driver->id}}" 
-                          @if ($driver->id == $order->lorry_id)
+                          @if ($driver->id == $stock->lorry_id)
                         selected="selected"
                         @endif
 
