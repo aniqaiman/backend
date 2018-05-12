@@ -56,7 +56,7 @@ class StockController extends Controller
     }
 
      public function assignDriverStocks(Request $request){
-        $stockr = Stock::find($request->id);
+        $stock = Stock::find($request->id);
       
         $stock->lorry_id = $request->lorry_id;
         $stock->save();
