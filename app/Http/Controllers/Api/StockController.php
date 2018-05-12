@@ -25,6 +25,8 @@ class StockController extends Controller
 
     public function getStockDetails(Request $request, $stock_id)
     {
+        $arr["price_latest"]["buying_price_a"] = 0;
+        $arr["price_latest"]["buying_price_b"] = 0;
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
                 ->stocks()
@@ -33,7 +35,7 @@ class StockController extends Controller
                 ->with('category')
                 ->get()
                 ->each(function ($product, $key) {
-                    $product['price_latest'] = $product->priceLatest();
+                    $product->priceLatest()? $product['price_latest'] = $product->priceLatest() : $product['price_latest'] =  $arr["price_latest"];
                     $product['price_difference'] = $product->priceDifference();
                 }),
         ]);
