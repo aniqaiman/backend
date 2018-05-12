@@ -156,7 +156,7 @@
                     <button class="btn btn-success" data-id="{{ $buyer->id }}" onclick="activateUser(this)">Activate</button>
                     <button class="btn btn-warning" disabled>Deactivate</button>
                   </div>
-                  @elseif ($buyer->status === 1)
+                  @elseif ($buyer->status_account === 1)
                   <div class="btn-group-vertical btn-group-sm">
                     <button class="btn btn-success" disabled>Activate</button>
                     <button class="btn btn-warning" data-id="{{ $buyer->id }}" onclick="deactivateUser(this)">Deactivate</button>
