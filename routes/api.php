@@ -23,18 +23,18 @@ Route::get('auth/verify/{token}', 'ApiController@verifyUserEmail');
 Route::post('auth/login', 'ApiController@login');
 Route::post('auth/verifyrecaptcha', 'ApiController@verifyReCAPTCHA');
 
-Route::post('registerseller', 'API\SellerController@postRegisterSeller');
-Route::post('registerbuyer', 'API\BuyerController@postRegisterBuyer');
+Route::post('registerseller', 'Api\SellerController@postRegisterSeller');
+Route::post('registerbuyer', 'Api\BuyerController@postRegisterBuyer');
 
-Route::get('product/{product_id}', 'API\ProductController@getProductbyId');
-Route::get('products', 'API\ProductController@getProducts');
-Route::get('fruits', 'API\ProductController@getFruits');
-Route::get('vegetables', 'API\ProductController@getVegetables');
-Route::get('prices', 'API\ProductController@getPrices');
-Route::get('buyers', 'API\BuyerController@getBuyers');
-Route::get('sellers', 'API\SellerController@getSellers');
-Route::get('buyer/{user_id}', 'API\BuyerController@getBuyer');
-Route::get('seller/{user_id}', 'API\SellerController@getSeller');
+Route::get('product/{product_id}', 'Api\ProductController@getProductbyId');
+Route::get('products', 'Api\ProductController@getProducts');
+Route::get('fruits', 'Api\ProductController@getFruits');
+Route::get('vegetables', 'Api\ProductController@getVegetables');
+Route::get('prices', 'Api\ProductController@getPrices');
+Route::get('buyers', 'Api\BuyerController@getBuyers');
+Route::get('sellers', 'Api\SellerController@getSellers');
+Route::get('buyer/{user_id}', 'Api\BuyerController@getBuyer');
+Route::get('seller/{user_id}', 'Api\SellerController@getSeller');
 
 // ------------------------------------------- Promo ---------------------------------------------------- //
 
