@@ -4,6 +4,8 @@
 
 @section('content')
 
+
+
 @foreach($orders as $order)
 <div class="modal fade" id="order_{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $order->id }}">
   <div class="modal-dialog" role="document">

@@ -4,6 +4,57 @@
 @endsection
 
 @section('content')
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="exampleModalLabel">Title</h4>
+      </div>
+      <div class="modal-body">
+        <div id="spinner">
+            <i class="fa fa-spinner fa-spin"></i>
+            Fetching driver details...
+        </div>
+        <dl id="dd" class="hidden">
+          <dt>Driver Name</dt>
+          <dd id="dd-owner-name">xxx</dd>
+          <dt>Driver Id</dt>
+          <dd id="dd-company-name">xxx</dd>
+          <dt>IC Number</dt>
+          <dd id="dd-mykad-number">xxx</dd>
+          <dt>Home Address</dt>
+          <dd id="dd-home-address">xxx</dd>
+          <dt>Phone number</dt>
+          <dd id="dd-phone-number">xxx</dd>
+          <dt>Driver Licence Image</dt>
+          <dd id="dd-driver-image">xxx</dd>
+          <dt>Roadtax Expiry</dt>
+          <dd id="dd-roadtax-expiry">xxx</dd>
+          <dt>Type of lorry</dt>
+          <dd id="dd-lorry-type">xxx</dd>
+          <dt>Lorry capacity</dt>
+          <dd id="dd-lorry-capacity">xxx</dd>
+          <dt>Location covered</dt>
+          <dd id="dd-location-covered">xxx</dd>
+          <dt>Lorry plate no</dt>
+          <dd id="dd-lorry-plate">xxx</dd>
+          <dt>Bank account no</dt>
+          <dd id="dd-bank-account">xxx</dd>
+          <dt>Bank name</dt>
+          <dd id="dd-bank-name">xxx</dd>
+          <dt>Bank owner name</dt>
+          <dd id="dd-bank-owner-name">xxx</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section class="content-header">
   <h1>
     Lorry Management
@@ -49,7 +100,11 @@
               <tr>
                 <td>{{$order["date"]}}</td>
                 <td>{{$order["driver_name"]}}</td>
-                <td>{{$order["driver_id"]}}</td>
+
+                <td><a href="#" data-id='{{ $order["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
+                    {{ $order["driver_id"] }}
+                  </a>{{$order["driver_id"]}}
+                </td>
                 <td>{{$order["id"]}}</td>
                 <td></td>
                 <td>{{$order["user_name"]}}</td>
