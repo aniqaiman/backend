@@ -47,7 +47,6 @@
                         </thead>
 
                         <tbody>
-
                             @foreach($products as $product)
                             <tr>
                                 <td>{{$product["name"]}}</td>
@@ -68,7 +67,8 @@
                                 <td>{{$product["buying_yest_price_a"]}}</td>
                                 <td>{{$product["selling_yest_price_b"]}}</td>
                                 <td>{{$product["buying_yest_price_a"]}}</td>
-
+                                <td></td>
+                                <td></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -81,11 +81,12 @@
 </section>
 
 
-@endsection @section('script')
+@endsection
 
+@section('script')
 <script>
     $(document).ready(function () {
-        console.log("loaded")
+        console.log("loaded");
 
         $('#dashboard-table').DataTable({
             'ordering': false,
@@ -155,6 +156,7 @@
                 }
             });
         });
+
         $(".buying_a").focusout(function () {
             var newPrice = $(this).val();
             console.log($(this).attr('id'))
@@ -185,6 +187,7 @@
                 }
             });
         });
+        
         $(".buying_b").focusout(function () {
             var newPrice = $(this).val();
             console.log($(this).attr('id'))
