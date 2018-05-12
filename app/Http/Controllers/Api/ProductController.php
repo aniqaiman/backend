@@ -13,14 +13,14 @@ class ProductController extends Controller
 {
     public function getFruits(Request $request)
     {
-         
+
         return response()->json([
             "data" => Product::with('category')
                 ->where("category_id", 1)
                 ->get()
                 ->each(function ($product, $key) {
-                      $product->priceLatest() ? $product['price_latest'] = $product->priceLatest() : $product['price_latest'] =  array("buying_price_a" => 0, "buying_price_b" => 0, "buying_price_c"=> 0);
-                   
+                    ///$product->priceLatest() ? $product['price_latest'] = $product->priceLatest() : $product['price_latest'] =  array("buying_price_a" => 0, "buying_price_b" => 0, "buying_price_c"=> 0);
+                    $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
                 }),
         ]);
@@ -28,13 +28,14 @@ class ProductController extends Controller
 
     public function getVegetables()
     {
-         
+
         return response()->json([
             "data" => Product::with('category')
                 ->where("category_id", 11)
                 ->get()
                 ->each(function ($product, $key) {
-                    $product->priceLatest() ? $product['price_latest'] = $product->priceLatest() : $product['price_latest'] =  array("buying_price_a" => 0, "buying_price_b" => 0, "buying_price_c"=> 0);
+                    // $product->priceLatest() ? $product['price_latest'] = $product->priceLatest() : $product['price_latest'] =  array("buying_price_a" => 0, "buying_price_b" => 0, "buying_price_c"=> 0);
+                    $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
                 }),
         ]);

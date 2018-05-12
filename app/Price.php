@@ -10,7 +10,6 @@ class Price extends Model
     	'product_id',
         'price_a',
         'price_b',
-    	'price_c',
     	'date_price',
     	];
 

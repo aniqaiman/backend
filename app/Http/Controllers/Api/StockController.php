@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Stock;
 use App\Product;
+use App\Stock;
 use Illuminate\Http\Request;
 use JWTAuth;
 
@@ -25,7 +25,6 @@ class StockController extends Controller
 
     public function getStockDetails(Request $request, $stock_id)
     {
-         
 
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
@@ -35,7 +34,8 @@ class StockController extends Controller
                 ->with('category')
                 ->get()
                 ->each(function ($product, $key) {
-                    $product->priceLatest() ? $product['price_latest'] = $product->priceLatest() : $product['price_latest'] =  array("buying_price_a" => 0, "buying_price_b" => 0, "buying_price_c"=> 0);
+                    // $product->priceLatest() ? $product['price_latest'] = $product->priceLatest() : $product['price_latest'] =  array("buying_price_a" => 0, "buying_price_b" => 0, "buying_price_c"=> 0);
+                    $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
                 }),
         ]);

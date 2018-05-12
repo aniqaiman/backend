@@ -115,8 +115,6 @@ class OrderController extends Controller
                 $product->quantity_a -= $product->pivot->quantity;
             } else if ($product->pivot->grade === "B") {
                 $product->quantity_b -= $product->pivot->quantity;
-            } else if ($product->pivot->grade === "C") {
-                $product->quantity_c -= $product->pivot->quantity;
             }
 
             $product->save();
@@ -136,8 +134,6 @@ class OrderController extends Controller
                 $product->quantity_a += $product->pivot->quantity;
             } else if ($product->pivot->grade === "B") {
                 $product->quantity_b += $product->pivot->quantity;
-            } else if ($product->pivot->grade === "C") {
-                $product->quantity_c += $product->pivot->quantity;
             }
 
             $product->save();

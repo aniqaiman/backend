@@ -15,10 +15,8 @@ class Product extends Model
         'category_id',
         'quantity_a',
         'quantity_b',
-        'quantity_c',
         'demand_a',
         'demand_b',
-        'demand_c',
     ];
 
     public function category()
@@ -89,12 +87,11 @@ class Product extends Model
 
     public function priceDifference()
     {
-
         return (object) [
-            
-            'price_a' => is_null($this->pricePrevious()) || $this->pricePrevious()["buying_price_a"] == 0  ? 0 : round(($this->priceLatest()["buying_price_a"] - $this->pricePrevious()["buying_price_a"]) / $this->pricePrevious()["buying_price_a"], 2),
-            'price_b' => is_null($this->pricePrevious()) || $this->pricePrevious()["buying_price_b"] == 0 ? 0 : round(($this->priceLatest()["price_b"] - $this->pricePrevious()["buying_price_b"]) / $this->pricePrevious()["buying_price_b"], 2),
-            'price_c' => is_null($this->pricePrevious()) || $this->pricePrevious()["buying_price_b"]== 0 ? 0 : round(($this->priceLatest()["price_b"] - $this->pricePrevious()["buying_price_b"]) / $this->pricePrevious()["buying_price_b"], 2),
+            'selling_price_a' => is_null($this->pricePrevious()) || $this->pricePrevious()["selling_price_a"] == 0  ? 0 : round(($this->priceLatest()["selling_price_a"] - $this->pricePrevious()["selling_price_a"]) / $this->pricePrevious()["selling_price_a"], 2),
+            'selling_price_b' => is_null($this->pricePrevious()) || $this->pricePrevious()["selling_price_b"] == 0 ? 0 : round(($this->priceLatest()["selling_price_b"] - $this->pricePrevious()["selling_price_b"]) / $this->pricePrevious()["selling_price_b"], 2),
+            'buying_price_a' => is_null($this->pricePrevious()) || $this->pricePrevious()["buying_price_a"] == 0  ? 0 : round(($this->priceLatest()["buying_price_a"] - $this->pricePrevious()["buying_price_a"]) / $this->pricePrevious()["buying_price_a"], 2),
+            'buying_price_b' => is_null($this->pricePrevious()) || $this->pricePrevious()["buying_price_b"] == 0 ? 0 : round(($this->priceLatest()["buying_price_b"] - $this->pricePrevious()["buying_price_b"]) / $this->pricePrevious()["buying_price_b"], 2),
         ];
     }
 
