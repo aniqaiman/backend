@@ -78,7 +78,19 @@ class OrderController extends Controller
 
     public function indexLorries()
     {
-        $orders = Order::whereNotNull('lorry_id')->get();
+        $ordersQuery = Order::whereNotNull('lorry_id')->get();
+        $orders = []
+        foreach ($ordersQuery as $order) {
+            $newOrder["date"] = $order->created_at;
+            $newOrder["driver_name"] = $order->driver->name;
+            $newOrder["driver_id"] = $order->driver->id;
+            $newOrder["id"] = $order->id;
+            $newOrder["user_name"] = $order->user->name;
+            $newOrder["user_id"] = $order->user->id;
+            $newOrder["user_address"] = $order->user->address;
+            $weight = DB::table('order_priduct')->where('order_id',$order->id)->sum('quantity');
+            $newOrder["tonnage"] = $weight;
+        }
         return view('orders.lorries', compact('orders'));
     }
 
