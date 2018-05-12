@@ -150,6 +150,7 @@ $(document).ready(function () {
         success: (data, textStatus, jqXHR) => {
           spinner.toggleClass('hidden', true);
           ud.toggleClass('hidden', false);
+          console.log(data)
 
           $('#dd-owner-name').text(data.name);
           $('#dd-company-name').text(data.company_name);
