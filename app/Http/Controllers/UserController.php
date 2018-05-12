@@ -63,4 +63,18 @@ class UserController extends Controller
         return Redirect::to('users');
     }
 
+    public function activateUser(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->status_account = 1;
+        $user->save();
+    }
+
+    public function deactivateUser(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->status_account = 0;
+        $user->save();
+    }
+
 }

@@ -151,12 +151,17 @@
                   <a href="tel:{{ $buyer->email }}">{{ $buyer->email }}</a>
                 </td>
                 <td>
-                  {{ Form::open(array('url' => 'urers/buyers' . $buyer->id, 'class' => 'text-center')) }}
-                  {{ Form::hidden('_method', 'DELETE') }}
+                  @if ($buyer->status_account === 0)
                   <div class="btn-group-vertical btn-group-sm">
-                    <a class="btn btn-success" href="{{ route('orders.edit', ['order_id'=> $buyer->order_id]) }}">Edit</a>{{ Form::submit('Delete', ['class' => 'btn btn-warning']) }}
+                    <button class="btn btn-success" data-id="{{ $buyer->id }}" onclick="activateUser(this)">Activate</button>
+                    <button class="btn btn-warning" disabled>Deactivate</button>
                   </div>
-                  {{ Form::close() }}
+                  @elseif ($buyer->status === 1)
+                  <div class="btn-group-vertical btn-group-sm">
+                    <button class="btn btn-success" disabled>Activate</button>
+                    <button class="btn btn-warning" data-id="{{ $buyer->id }}" onclick="deactivateUser(this)">Deactivate</button>
+                  </div>
+                  @endif
                 </td>
               </tr>
               @endforeach
@@ -236,19 +241,45 @@
       'info': false,
     });
 
-    $('#frm-order-create').on('submit', function (e) {
-      e.preventDefault();
-      console.log('pressed');
-      var data = $(this).serialize();
-      console.log(data);
-      $.post("{{ route('users.buyers.store') }}", data, function (response) {
-        console.log(response);
-        $("[data-dismiss = modal]").trigger({
-          type: "click"
-        });
-
-      });
-    });
   });
+
+  function activateUser(btn) {
+    var data = {
+      id: $(btn).data('id'),
+    }
+
+    $(btn).prop('disabled', true);
+    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+
+    $.ajax("{{ route('users.activate') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        window.location.href = window.location.href;
+      }
+    });
+  }
+
+  function deactivateUser(btn) {
+    var data = {
+      id: $(btn).data('id'),
+    }
+
+    $(btn).prop('disabled', true);
+    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+
+    $.ajax("{{ route('users.deactivate') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {},
+      method: "PUT",
+      success: (data, textStatus, jqXHR) => {
+        window.location.href = window.location.href;
+      }
+    });
+  }
+
 </script>
 @endsection

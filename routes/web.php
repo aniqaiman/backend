@@ -55,6 +55,8 @@ Route::prefix('users')
 
         // ------------------------------------------- User ------------------------------------------- //
 
+        Route::put('activate', 'UserController@activateUser')->name('activate');
+        Route::put('deactivate', 'UserController@deactivateUser')->name('deactivate');
         Route::get('{user_id}', 'UserController@getUser')->name('json');
 
     });
