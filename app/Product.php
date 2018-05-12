@@ -92,9 +92,9 @@ class Product extends Model
 
         return (object) [
             
-            'price_a' => is_null($this->pricePrevious()) || $this->pricePrevious()== 0  ? 0 : round(($this->priceLatest()["buying_price_a"] - $this->pricePrevious()["buying_price_a"]) / $this->pricePrevious()["buying_price_a"], 2),
-            'price_b' => is_null($this->pricePrevious()) || $this->pricePrevious()== 0 ? 0 : round(($this->priceLatest()["price_b"] - $this->pricePrevious()["buying_price_b"]) / $this->pricePrevious()["buying_price_b"], 2),
-            'price_c' => is_null($this->pricePrevious()) || $this->pricePrevious()== 0 ? 0 : round(($this->priceLatest()["price_b"] - $this->pricePrevious()["buying_price_b"]) / $this->pricePrevious()["buying_price_b"], 2),
+            'price_a' => is_null($this->pricePrevious()) || $this->pricePrevious()["buying_price_a"] == 0  ? 0 : round(($this->priceLatest()["buying_price_a"] - $this->pricePrevious()["buying_price_a"]) / $this->pricePrevious()["buying_price_a"], 2),
+            'price_b' => is_null($this->pricePrevious()) || $this->pricePrevious()["buying_price_b"] == 0 ? 0 : round(($this->priceLatest()["price_b"] - $this->pricePrevious()["buying_price_b"]) / $this->pricePrevious()["buying_price_b"], 2),
+            'price_c' => is_null($this->pricePrevious()) || $this->pricePrevious()["buying_price_b"]== 0 ? 0 : round(($this->priceLatest()["price_b"] - $this->pricePrevious()["buying_price_b"]) / $this->pricePrevious()["buying_price_b"], 2),
         ];
     }
 
