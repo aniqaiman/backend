@@ -55,7 +55,7 @@ class StockController extends Controller
         return Redirect::to('sellerdetail');
     }
 
-     public function assignDriverStock(Request $request){
+     public function assignDriverStocks(Request $request){
         $stockr = Stock::find($request->id);
       
         $stock->lorry_id = $request->lorry_id;

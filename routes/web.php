@@ -92,7 +92,7 @@ Route::prefix('stocks')
     ->name('stocks.')
     ->group(function () {
 
-        Route::post('lorry', 'StockController@assignDriverOrder')->name('lorry.assign');
+        Route::post('lorry', 'StockController@assignDriverStocks')->name('lorry.assign');
 
         });
 
