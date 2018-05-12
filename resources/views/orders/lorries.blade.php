@@ -52,8 +52,8 @@
                 <td>{{$order->driver}}</td>
                 <td>{{$order->driver}}</td>
                 <td>{{$order->id}}</td>
-                <td>{{$order->user}}</td>
-                <td>{{$order->user}}</td>
+                <td>{{$order->user->name}}</td>
+                <td>{{$order->user->id}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
