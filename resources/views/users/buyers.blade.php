@@ -150,7 +150,7 @@
                   <br /> E-Mail:
                   <a href="tel:{{ $buyer->email }}">{{ $buyer->email }}</a>
                 </td>
-                <td>
+                <td class="text-center">
                   @if ($buyer->status_account === 0)
                   <div class="btn-group-vertical btn-group-sm">
                     <button class="btn btn-success" data-id="{{ $buyer->id }}" onclick="activateUser(this)">Activate</button>
