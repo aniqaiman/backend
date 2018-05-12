@@ -68,6 +68,8 @@ class UserController extends Controller
         $user = User::find($request->id);
         $user->status_account = 1;
         $user->save();
+
+        return response($user);
     }
 
     public function deactivateUser(Request $request)
@@ -75,6 +77,8 @@ class UserController extends Controller
         $user = User::find($request->id);
         $user->status_account = 0;
         $user->save();
+        
+        return response($user);
     }
 
 }
