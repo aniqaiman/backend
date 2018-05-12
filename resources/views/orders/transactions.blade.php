@@ -184,7 +184,11 @@
                 <td>{{ $order->user->id }}</td>
                 <td>{{ $order->user->name }}</td>
                 <td>{{ $order->totalPrice() }}</td>
-                <td>No Lorry Assigned</td>
+                @if ($order["driver"])
+                <td>{{$order->driver->name}}</td>
+                @else
+                <td>No driver assigned</td>
+                @endif
               </tr>
               @endforeach
             </tbody>
@@ -233,7 +237,12 @@
                 <td>{{ $stock->user->id }}</td>
                 <td>{{ $stock->user->name }}</td>
                 <td>{{ $stock->totalPrice() }}</td>
-                <td>No Lorry Assigned</td>
+                
+                @if ($stock["driver"])
+                <td>{{$stock->driver->name}}</td>
+                @else
+                <td>No driver assigned</td>
+                @endif
               </tr>
               @endforeach
             </tbody>

@@ -178,7 +178,8 @@
     </div>
   </div>
 </section>
-@endsection @section('script')
+@endsection 
+@section('script')
 <script>
   $(document).ready(function () {
     $('#exampleModal').on('show.bs.modal', function (event) {
