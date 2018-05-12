@@ -89,6 +89,8 @@ class OrderController extends Controller
             $newOrder["user_name"] = $order->user->name;
             $newOrder["user_id"] = $order->user->id;
             $newOrder["user_address"] = $order->user->address;
+            $newOrder["latitude"] = $order->user->latitude;
+             $newOrder["longitude"] = $order->user->longitude;
             $weight = DB::table('order_product')->where('order_id',$order->id)->sum('quantity');
             $newOrder["tonnage"] = $weight;
             array_push($orders, $newOrder);
