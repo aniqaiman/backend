@@ -109,7 +109,9 @@
                 <td></td>
                 <td>{{$order["user_name"]}}</td>
                 <td>{{$order["user_id"]}}</td>
-                <td>{{$order["user_address"]}}</td>
+                <td>{{$order["user_address"]}}<a href="https://www.google.com/maps/search/?api=1&query={{ $order->latitude }},{{ $seller->longitude }}" target="_blank">
+                    <i class="fa fa-map-marker"></i>
+                  </a></td>
                 <td></td>
                 <td>{{$order["tonnage"]}}</td>
                 <td></td>
