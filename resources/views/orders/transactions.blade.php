@@ -188,7 +188,7 @@
                 <td>{{ $order->user->id }}</td>
                 <td>{{ $order->user->name }}</td>
                 <td>{{ $order->totalPrice() }}</td>
-                <td>No Lorry Assigned</td>
+                <td>{{$order->driver->name}}</td>
               </tr>
               @endforeach
             </tbody>
