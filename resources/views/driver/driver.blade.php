@@ -245,7 +245,7 @@
    // console.log(CKEDITOR.instances.description.getData());
    $.ajax(
    {
-    url:"{{ route('createDriver') }}", 
+    url:"{{ route('drivers.store') }}", 
     type: "POST",
     data: formData,
     async: false,
