@@ -190,8 +190,8 @@
                       <td class="mailbox-date"><center>{{$driver->lorry_capacity}}</center></td>
                       <!-- <td class="mailbox-date"><center><a href="#">{{$driver->license_number}}</a></center></td> -->
                       <td class="mailbox-subject"><center><div class="btn-group">
-                        <a class="button btn btn-success btn-sm" href="{{route('editDriver', ['user_id'=> $driver->user_id])}}"><i class="fa fa-edit"></i> Edit</a>
-                        <a class="button btn btn-primary btn-sm" href="{{route('driverdetail', ['user_id'=> $driver->user_id])}}"><i class="fa fa-eye"></i> View Detail</a>
+                        <a class="button btn btn-success btn-sm" href="{{route('drivers.edit', ['user_id'=> $driver->user_id])}}"><i class="fa fa-edit"></i> Edit</a>
+                        <a class="button btn btn-primary btn-sm" href="{{route('drivers.show', ['user_id'=> $driver->user_id])}}"><i class="fa fa-eye"></i> View Detail</a>
                         {{ Form::open(array('url' => 'driver/' . $driver->user_id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}
                         {{ Form::submit('Delete', array('class' => 'button btn btn-warning btn-sm')) }}

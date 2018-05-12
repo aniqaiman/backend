@@ -21,7 +21,7 @@
         <div class="col-md-12">
             <div class="box box-success">
                 <div class="box-body">
-                    <div class="box-header with-border">
+                    <div class="box-header">
                         <h3 class="box-title">{{ Carbon\Carbon::now()->toFormattedDateString() }}</h3>
                     </div>
                     <table class="table table-bordered" id="dashboard-table" style="width:100%">
