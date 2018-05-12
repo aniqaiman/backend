@@ -79,7 +79,7 @@ class OrderController extends Controller
     public function indexLorries()
     {
         $ordersQuery = Order::whereNotNull('lorry_id')->get();
-        $orders = []
+        $orders = [];
         foreach ($ordersQuery as $order) {
             $newOrder["date"] = $order->created_at;
             $newOrder["driver_name"] = $order->driver->name;
@@ -90,6 +90,7 @@ class OrderController extends Controller
             $newOrder["user_address"] = $order->user->address;
             $weight = DB::table('order_priduct')->where('order_id',$order->id)->sum('quantity');
             $newOrder["tonnage"] = $weight;
+            array_push($orders, $newOrder);
         }
         return view('orders.lorries', compact('orders'));
     }
