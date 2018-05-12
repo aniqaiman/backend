@@ -91,7 +91,7 @@ class Product extends Model
     {
         return (object) [
             'price_a' => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()["price_ buyer_a"] - $this->pricePrevious()["price_ buyer_a"]) / $this->pricePrevious()["price_ buyer_a"], 2),
-            'price_b' => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()["price_ buyer_b"] - $this->pricePrevious()["price_ buyer_b"] / $this->pricePrevious()->price_b, 2),
+            'price_b' => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()["price_ buyer_b"] - $this->pricePrevious()["price_ buyer_b"] / $this->pricePrevious()["price_ buyer_b"], 2),
             'price_c' => is_null($this->pricePrevious()) ? 0 : round(($this->priceLatest()["price_ buyer_b"] - $this->pricePrevious()["price_ buyer_b"] / $this->pricePrevious()["price_ buyer_b"], 2),
         ];
     }
