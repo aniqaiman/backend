@@ -32,7 +32,7 @@
           <dt>Phone number</dt>
           <dd id="dd-phone-number">xxx</dd>
           <dt>Driver Licence Image</dt>
-          <dd id="dd-driver-image">xxx</dd>
+          <dd id="dd-driver-image"></dd>
           <dt>Roadtax Expiry</dt>
           <dd id="dd-roadtax-expiry">xxx</dd>
           <dt>Type of lorry</dt>
@@ -40,7 +40,7 @@
           <dt>Lorry capacity</dt>
           <dd id="dd-lorry-capacity">xxx</dd>
           <dt>Location covered</dt>
-          <dd id="dd-location-covered">xxx</dd>
+          <dd id="dd-location-covered"></dd>
           <dt>Lorry plate no</dt>
           <dd id="dd-lorry-plate">xxx</dd>
           <dt>Bank account no</dt>
@@ -153,16 +153,17 @@ $(document).ready(function () {
           console.log(data)
 
           $('#dd-driver-name').text(data.name);
-          $('#dd-company-name').text(data.company_name);
-          $('#dd-company-registration-mykad-number').text(data.company_registration_mykad_number);
-          $('#dd-business-hour').text(data.bussiness_hour);
-          $('#dd-company-address').text(data.address);
-          $('#dd-company-address-latitude').text(data.latitude);
-          $('#dd-company-address-longitude').text(data.longitude);
-          $('#dd-company-address-navigation').attr("href", "https://www.google.com/maps/search/?api=1&query=" + data.latitude + "," + data.longitude);
-          $('#dd-mobile-number').text(data.mobile_number);
+          $('#dd-driver-id').text(data.id);
+          $('#dd-mykad-number').text(data.company_registration_mykad_number);
+          $('#dd-home-address').text(data.address);
           $('#dd-phone-number').text(data.phone_number);
-          $('#dd-email').text(data.email);
+          $('#dd-roadtax-expiry').text(data.lorry_roadtax_expiry);
+          $('#dd-lorry-type').text(data.lorry_type_id);
+          $('#dd-lorry-capacity').text( data.lorry_capacity_id);
+          $('#dd-lorry-plate').text(data.lorry_plate_number);
+          $('#dd-bank-account').text(data.bank_account_number);
+          $('#dd-bank-name').text(data.bank_name);
+          $('#dd-bank-owner-name').text(data.bank_account_holder_name);
 
         }
       });
