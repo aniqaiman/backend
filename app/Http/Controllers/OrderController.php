@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
+use DB;
 
 class OrderController extends Controller
 {
