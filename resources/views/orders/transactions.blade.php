@@ -184,7 +184,7 @@
                 <td>{{ $order->user->id }}</td>
                 <td>{{ $order->user->name }}</td>
                 <td>{{ $order->totalPrice() }}</td>
-                @if (order["driver"])
+                @if ($order["driver"])
                 <td>{{$order->driver->name}}</td>
                 @else
                 <td>No driver assigned</td>
