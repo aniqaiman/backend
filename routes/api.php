@@ -38,31 +38,31 @@ Route::get('seller/{user_id}', 'Api\SellerController@getSeller');
 
 // ------------------------------------------- Promo ---------------------------------------------------- //
 
-Route::get('newproducts', 'API\ProductController@getNewProducts');
-Route::get('lastpurchaseproducts', 'API\ProductController@getLastPurchaseProducts');
-Route::get('bestsellingproducts', 'API\ProductController@getBestSellingProducts');
+Route::get('newproducts', 'Api\ProductController@getNewProducts');
+Route::get('lastpurchaseproducts', 'Api\ProductController@getLastPurchaseProducts');
+Route::get('bestsellingproducts', 'Api\ProductController@getBestSellingProducts');
 
 // ------------------------------------------- Order ---------------------------------------------------- //
 
-Route::get('orders', 'API\OrderController@getOrders');
-Route::get('orders/{order_id}', 'API\OrderController@getOrderDetails');
+Route::get('orders', 'Api\OrderController@getOrders');
+Route::get('orders/{order_id}', 'Api\OrderController@getOrderDetails');
 
 // ------------------------------------------- Stock ---------------------------------------------------- //
 
-Route::get('stocks', 'API\StockController@getStocks');
+Route::get('stocks', 'Api\StockController@getStocks');
 Route::get('stocks/{stock_id}', 'API\StockController@getStockDetails');
 
-Route::post('stocks', 'API\StockController@postStocks');
+Route::post('stocks', 'Api\StockController@postStocks');
 
 // ------------------------------------------- Cart ---------------------------------------------------- //
 
-Route::get('carts', 'API\CartController@getCartItems');
-Route::get('carts/totalitems', 'API\CartController@getTotalItems');
-Route::get('carts/totalprice', 'API\CartController@getTotalPrice');
+Route::get('carts', 'Api\CartController@getCartItems');
+Route::get('carts/totalitems', 'Api\CartController@getTotalItems');
+Route::get('carts/totalprice', 'Api\CartController@getTotalPrice');
 
-Route::post('carts', 'API\CartController@postCartItem');
-Route::post('carts/confirm', 'API\CartController@postConfirm');
+Route::post('carts', 'Api\CartController@postCartItem');
+Route::post('carts/confirm', 'Api\CartController@postConfirm');
 
-Route::delete('carts/{product_id}', 'API\CartController@deleteCartItem');
+Route::delete('carts/{product_id}', 'Api\CartController@deleteCartItem');
 
 Route::get('playground', 'ApiController@playground');
