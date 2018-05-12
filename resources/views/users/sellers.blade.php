@@ -126,10 +126,10 @@
                         RM {{ number_format($product->priceLatest()["seller_price_b"], 2) }} @break @endswitch
                       </td>
                       <td>
-                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_a"],
-                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_b"],
-                        2) }} @break @case("C") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_b"],
-                        2) }} @break @endswitch
+                        @switch($product->pivot->grade)
+                          @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_a"], 2) }} @break
+                          @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_b"], 2) }} @break
+                        @endswitch
                       </td>
                     </tr>
                     @endforeach
