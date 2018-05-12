@@ -78,7 +78,7 @@ class OrderController extends Controller
 
     public function indexLorries()
     {
-        $orders = Order::where_not_null('lorry_id')->get();
+        $orders = Order::whereNotNull('lorry_id')->get();
         return view('orders.lorries', compact('orders'));
     }
 
