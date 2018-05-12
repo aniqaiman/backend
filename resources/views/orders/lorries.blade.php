@@ -103,7 +103,7 @@
 
                 <td><a href="#" data-id='{{ $order["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
                     {{ $order["driver_id"] }}
-                  </a>{{$order["driver_id"]}}
+                  </a>
                 </td>
                 <td>{{$order["id"]}}</td>
                 <td></td>
@@ -127,4 +127,45 @@
 @endsection
 
 @section('script')
+<script>
+$(document).ready(function () {
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var spinner = $('#spinner');
+      var ud = $('#ud');
+      var button = $(event.relatedTarget);
+      var id = button.data('id');
+      var url = "{{ route('users.json', ['xxx']) }}";
+
+      spinner.toggleClass('hidden', false);
+      ud.toggleClass('hidden', true);
+
+      var modal = $(this);
+      modal.find('#exampleModalLabel').text('Buyer Details | ' + id);
+      modal.find('#feedback-id').val(id);
+
+      $.ajax(url.replace("xxx", id), {
+        dataType: "json",
+        error: (jqXHR, textStatus, errorThrown) => {},
+        method: "GET",
+        success: (data, textStatus, jqXHR) => {
+          spinner.toggleClass('hidden', true);
+          ud.toggleClass('hidden', false);
+
+          $('#dd-owner-name').text(data.name);
+          $('#dd-company-name').text(data.company_name);
+          $('#dd-company-registration-mykad-number').text(data.company_registration_mykad_number);
+          $('#dd-business-hour').text(data.bussiness_hour);
+          $('#dd-company-address').text(data.address);
+          $('#dd-company-address-latitude').text(data.latitude);
+          $('#dd-company-address-longitude').text(data.longitude);
+          $('#dd-company-address-navigation').attr("href", "https://www.google.com/maps/search/?api=1&query=" + data.latitude + "," + data.longitude);
+          $('#dd-mobile-number').text(data.mobile_number);
+          $('#dd-phone-number').text(data.phone_number);
+          $('#dd-email').text(data.email);
+
+        }
+      });
+    });
+    });
+</script>
 @endsection
