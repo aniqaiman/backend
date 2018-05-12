@@ -49,11 +49,11 @@
               <tr>
                 <td></td>
                 <td>{{$order->created_at}}</td>
-                <td>{{$order->driver->name}}</td>
-                <td>{{$order->driver->id}}</td>
+                <td>{{$order->driver["name"]}}</td>
+                <td>{{$order->driver["id"]}}</td>
                 <td>{{$order->id}}</td>
-                <td>{{$order->user->name}}</td>
-                <td>{{$order->user->id}}</td>
+                <td>{{$order->user["name"]}}</td>
+                <td>{{$order->user["id"]}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
