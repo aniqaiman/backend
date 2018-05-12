@@ -47,14 +47,14 @@
             <tbody>
               @foreach ($orders as $order)
               <tr>
-                <td>{{$order->created_at}}</td>
-                <td>{{$order->driver->name}}</td>
-                <td>{{$order->driver->id}}</td>
-                <td>{{$order->id}}</td>
+                <td>{{$order["date"]}}</td>
+                <td>{{$order["driver_name"]}}</td>
+                <td>{{$order["driver_id"]}}</td>
+                <td>{{$order["id"]}}</td>
                 <td></td>
-                <td>{{$order->user->name}}</td>
-                <td>{{$order->user->id}}</td>
-                <td>{{$order->user->address}}</td>
+                <td>{{$order["user_name"]}}</td>
+                <td>{{$order["user_id"]}}</td>
+                <td>{{$order["user_address"]}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
