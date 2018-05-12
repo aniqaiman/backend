@@ -48,6 +48,28 @@
                 <th style="width: 1%;"></th>
               </tr>
             </thead>
+            <tbody>
+              @foreach ($products as $product)
+              <tr>
+                <td>{{$product->name}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              @endforeach
+            </tbody>
           </table>
         </div>
       </div>
