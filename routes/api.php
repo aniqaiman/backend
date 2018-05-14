@@ -23,8 +23,9 @@ Route::get('auth/verify/{token}', 'ApiController@verifyUserEmail');
 Route::post('auth/login', 'ApiController@login');
 Route::post('auth/verifyrecaptcha', 'ApiController@verifyReCAPTCHA');
 
-Route::post('registerseller', 'Api\SellerController@postRegisterSeller');
-Route::post('registerbuyer', 'Api\BuyerController@postRegisterBuyer');
+Route::post('users/sellers', 'Api\SellerController@store');
+Route::post('users/buyers', 'Api\BuyerController@store');
+Route::post('users/drivers', 'Api\DriverController@store');
 
 Route::get('product/{product_id}', 'Api\ProductController@getProductbyId');
 Route::get('products', 'Api\ProductController@getProducts');

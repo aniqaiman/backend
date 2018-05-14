@@ -10,7 +10,7 @@ use Mail;
 
 class DriverController extends Controller
 {
-    public function postRegisterDriver(Request $request)
+    public function store(Request $request)
     {
         if (User::where('company_registration_mykad_number', $request->input('company_registration_mykad_number'))->exists()) {
             return response()->json([
