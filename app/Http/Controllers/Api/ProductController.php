@@ -20,9 +20,6 @@ class ProductController extends Controller
                 ->each(function ($product) {
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
-                })
-                ->filter(function ($product) {
-                    return !is_null($product['price_latest']);
                 }),
 
         ]);
@@ -37,9 +34,6 @@ class ProductController extends Controller
                 ->each(function ($product) {
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
-                })
-                ->filter(function ($product) {
-                    return !is_null($product['price_latest']);
                 }),
         ]);
     }
