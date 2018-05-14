@@ -39,7 +39,7 @@ class ProductController extends Controller
                     $product['price_difference'] = $product->priceDifference();
                 })
                 ->filter(function ($product) {
-                    return !is_null($product['price_latesta']);
+                    return !is_null($product['price_latest']);
                 }),
         ]);
     }
