@@ -13,31 +13,30 @@ class ProductController extends Controller
 {
     public function getFruits()
     {
-        return response()->json([
-            "data" => Product::with('category')
+        return response()->json(
+            Product::with('category')
                 ->where("category_id", 1)
                 ->get()
                 ->each(function ($product) {
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
                 })
-                ->paginate(25, 'fruit'),
-
-        ]);
+                ->paginate(25, 'fruit')
+        );
     }
 
     public function getVegetables()
     {
-        return response()->json([
-            "data" => Product::with('category')
+        return response()->json(
+            Product::with('category')
                 ->where("category_id", 11)
                 ->get()
                 ->each(function ($product) {
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
                 })
-                ->paginate(25, 'vegetable'),
-        ]);
+                ->paginate(25, 'vegetable')
+        );
     }
 
     public function getNewProducts(Request $request)
