@@ -14,28 +14,28 @@ class ProductController extends Controller
     public function getFruits()
     {
         return response()->json([
-            "data" => Product::full(1)
+            "data" => (new Product())->full(1)
         ]);
     }
 
     public function getVegetables()
     {
         return response()->json([
-            "data" => Product::full(11)
+            "data" => (new Product())->full(11)
         ]);
     }
 
     public function getFruitsByPage()
     {
         return response()->json(
-            Product::full(1)->paginate(30)
+            (new Product())->full(1)->paginate(30)
         );
     }
 
     public function getVegetablesByPage()
     {
         return response()->json(
-            Product::full(11)->paginate(30)
+            (new Product())->full(11)->paginate(30)
         );
     }
 
