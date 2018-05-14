@@ -86,6 +86,10 @@ class PriceController extends Controller
             $product_price = Price::where('product_id', $request->product_id)->where('date_price', $request->date)->first();
             if (!$product_price) {
                 $product_price = new Price();
+                $product_price->selling_price_a = 0;
+                $product_price->selling_price_b = 0;
+                $product_price->buying_price_a = 0;
+                $product_price->buying_price_b = 0;
                 $product_price->product_id = $request->product_id;
                 $product_price->date_price = $request->date;
             }
@@ -93,7 +97,6 @@ class PriceController extends Controller
                 $product_price->selling_price_a = $request->selling_price_a;
             }
             if ($request->selling_price_b) {
-
                 $product_price->selling_price_b = $request->selling_price_b;
             }
             if ($request->buying_price_a) {
