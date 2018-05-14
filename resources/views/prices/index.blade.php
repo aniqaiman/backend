@@ -52,13 +52,13 @@
                                 <td>{{$product["name"]}}</td>
                                 <td></td>
                                 <td colspan="1">
-                                    <input type="number" class="selling_a" id='selling_a_{{$product["id"]}}' value='{{$product["selling_price_a"]}}'>
+                                    <input type="number" class="selling_a" id='selling_a_{{$product["id"]}}' value='{{$product["seller_price_a"]}}'>
                                 </td>
                                 <td colspan="1">
                                     <input type="number" class="buying_a" id='buying_a_{{$product["id"]}}' value='{{$product["buying_price_a"]}}'>
                                 </td>
                                 <td colspan="1">
-                                    <input type="number" class="selling_b" id='selling_b_{{$product["id"]}}' value='{{$product["selling_price_b"]}}'>
+                                    <input type="number" class="selling_b" id='selling_b_{{$product["id"]}}' value='{{$product["seller_price_b"]}}'>
                                 </td>
                                 <td colspan="1">
                                     <input type="number" class="buying_b" id='buying_b_{{$product["id"]}}' value='{{$product["buying_price_b"]}}'>
@@ -98,7 +98,7 @@
                 currentDate.getDate();
             var data = {
                 product_id: arrItem,
-                selling_price_a: newPrice,
+                seller_price_a: newPrice,
                 date: formattedDate
             }
 
@@ -132,7 +132,7 @@
 
             var data = {
                 product_id: arrItem,
-                selling_price_b: newPrice,
+                seller_price_b: newPrice,
                 date: formattedDate
             }
             swal({
@@ -220,7 +220,7 @@
         $('#dashboard-table').DataTable({
             'ordering': false,
         });
-        
+
     });
 </script>
 @endsection

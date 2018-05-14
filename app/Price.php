@@ -8,8 +8,8 @@ class Price extends Model
 {
     protected $fillable = [
     	'product_id',
-        'selling_price_a',
-        'selling_price_b',
+        'seller_price_a',
+        'seller_price_b',
         'buying_price_a',
         'buying_price_b',
     	'date_price',

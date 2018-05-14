@@ -21,13 +21,13 @@ class PriceController extends Controller
 
             $newProd["id"] = $product["id"];
             $newProd["name"] = $product["name"];
-            $product_prices["selling_price_a"] ? $newProd["selling_price_a"] = $product_prices["selling_price_a"] : $newProd["selling_price_a"] = 0;
-            $product_prices["selling_price_b"] ? $newProd["selling_price_b"] = $product_prices["selling_price_b"] : $newProd["selling_price_b"] = 0;
+            $product_prices["seller_price_a"] ? $newProd["seller_price_a"] = $product_prices["seller_price_a"] : $newProd["seller_price_a"] = 0;
+            $product_prices["seller_price_b"] ? $newProd["seller_price_b"] = $product_prices["seller_price_b"] : $newProd["seller_price_b"] = 0;
             $product_prices["buying_price_b"] ? $newProd["buying_price_b"] = $product_prices["buying_price_b"] : $newProd["buying_price_b"] = 0;
             $product_prices["buying_price_a"] ? $newProd["buying_price_a"] = $product_prices["buying_price_a"] : $newProd["buying_price_a"] = 0;
 
-            $product_yest_prices["selling_price_a"] ? $newProd["selling_yest_price_a"] = $product_yest_prices["selling_price_a"] : $newProd["selling_yest_price_a"] = 0;
-            $product_yest_prices["selling_price_b"] ? $newProd["selling_yest_price_b"] = $product_yest_prices["selling_price_b"] : $newProd["selling_yest_price_b"] = 0;
+            $product_yest_prices["seller_price_a"] ? $newProd["selling_yest_price_a"] = $product_yest_prices["seller_price_a"] : $newProd["selling_yest_price_a"] = 0;
+            $product_yest_prices["seller_price_b"] ? $newProd["selling_yest_price_b"] = $product_yest_prices["seller_price_b"] : $newProd["selling_yest_price_b"] = 0;
             $product_yest_prices["buying_price_b"] ? $newProd["buying_yest_price_b"] = $product_yest_prices["buying_price_b"] : $newProd["buying_yest_price_b"] = 0;
             $product_yest_prices["buying_price_a"] ? $newProd["buying_yest_price_a"] = $product_yest_prices["buying_price_a"] : $newProd["buying_yest_price_a"] = 0;
 
@@ -86,18 +86,18 @@ class PriceController extends Controller
             $product_price = Price::where('product_id', $request->product_id)->where('date_price', $request->date)->first();
             if (!$product_price) {
                 $product_price = new Price();
-                $product_price->selling_price_a = 0;
-                $product_price->selling_price_b = 0;
+                $product_price->seller_price_a = 0;
+                $product_price->seller_price_b = 0;
                 $product_price->buying_price_a = 0;
                 $product_price->buying_price_b = 0;
                 $product_price->product_id = $request->product_id;
                 $product_price->date_price = $request->date;
             }
-            if ($request->selling_price_a) {
-                $product_price->selling_price_a = $request->selling_price_a;
+            if ($request->seller_price_a) {
+                $product_price->seller_price_a = $request->seller_price_a;
             }
-            if ($request->selling_price_b) {
-                $product_price->selling_price_b = $request->selling_price_b;
+            if ($request->seller_price_b) {
+                $product_price->seller_price_b = $request->seller_price_b;
             }
             if ($request->buying_price_a) {
                 $product_price->buying_price_a = $request->buying_price_a;

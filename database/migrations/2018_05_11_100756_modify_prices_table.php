@@ -15,8 +15,8 @@ class ModifyPricesTable extends Migration
     {
         Schema::table('prices', function (Blueprint $table) {
             //
-            $table->renameColumn('price_a', 'selling_price_a');
-            $table->renameColumn('price_b', 'selling_price_b');
+            $table->renameColumn('price_a', 'seller_price_a');
+            $table->renameColumn('price_b', 'seller_price_b');
             $table->renameColumn('price_c', 'buying_price_a');
             $table->decimal('buying_price_b', 8, 2)->nullable();
         });
