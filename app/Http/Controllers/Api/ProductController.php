@@ -25,14 +25,14 @@ class ProductController extends Controller
         ]);
     }
 
-    public function getFruitsByPage($page)
+    public function getFruitsByPage()
     {
         return response()->json(
             (new Product())->full(1)->paginate(30)
         );
     }
 
-    public function getVegetablesByPage($page)
+    public function getVegetablesByPage()
     {
         return response()->json(
             (new Product())->full(11)->paginate(30)
