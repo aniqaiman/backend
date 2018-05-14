@@ -47,7 +47,7 @@ class ProductController extends Controller
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
                 })
-                ->paginate(30, 'fruit')
+                ->paginate(30)
         );
     }
 
@@ -61,7 +61,7 @@ class ProductController extends Controller
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
                 })
-                ->paginate(30, 'vegetable')
+                ->paginate(30)
         );
     }
 
