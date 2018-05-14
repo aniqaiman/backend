@@ -13,11 +13,13 @@ class ProductController extends Controller
 {
     public function getFruits(Request $request)
     {
-
         return response()->json([
             "data" => Product::with('category')
                 ->where("category_id", 1)
                 ->get()
+                ->filter(function ($product, $key) {
+                    return !is_null($product->priceLatest());
+                })
                 ->each(function ($product, $key) {
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
@@ -27,11 +29,13 @@ class ProductController extends Controller
 
     public function getVegetables()
     {
-
         return response()->json([
             "data" => Product::with('category')
                 ->where("category_id", 11)
                 ->get()
+                ->filter(function ($product, $key) {
+                    return !is_null($product->priceLatest());
+                })
                 ->each(function ($product, $key) {
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
