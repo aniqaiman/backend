@@ -88,10 +88,6 @@
     $(document).ready(function () {
         console.log("loaded");
 
-        $('#dashboard-table').DataTable({
-            'ordering': false,
-        });
-
         $(".selling_a").focusout(function () {
             var newPrice = $(this).val();
             console.log($(this).attr('id'))
@@ -220,6 +216,11 @@
                 }
             });
         });
+
+        $('#dashboard-table').DataTable({
+            'ordering': false,
+        });
+        
     });
 </script>
 @endsection

@@ -17,13 +17,14 @@ class ProductController extends Controller
             "data" => Product::with('category')
                 ->where("category_id", 1)
                 ->get()
-                ->filter(function ($product, $key) {
-                    return !is_null($product->priceLatest());
-                })
-                ->each(function ($product, $key) {
+                ->each(function ($product) {
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
+                })
+                ->filter(function ($product) {
+                    return !is_null($product['price_latest']);
                 }),
+
         ]);
     }
 
@@ -33,12 +34,12 @@ class ProductController extends Controller
             "data" => Product::with('category')
                 ->where("category_id", 11)
                 ->get()
-                ->filter(function ($product, $key) {
-                    return !is_null($product->priceLatest());
-                })
-                ->each(function ($product, $key) {
+                ->each(function ($product) {
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
+                })
+                ->filter(function ($product) {
+                    return !is_null($product['price_latest']);
                 }),
         ]);
     }
