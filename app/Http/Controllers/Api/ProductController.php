@@ -11,32 +11,32 @@ use JWTAuth;
 
 class ProductController extends Controller
 {
-    public function getFruits($page)
+    public function getFruits()
     {
         return response()->json([
             "data" => Product::with('category')
                 ->where("category_id", 1)
                 ->get()
-                ->forPage($page, 25)
                 ->each(function ($product) {
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
-                }),
+                })
+                ->paginate(25, 'fruit'),
 
         ]);
     }
 
-    public function getVegetables($page)
+    public function getVegetables()
     {
         return response()->json([
             "data" => Product::with('category')
                 ->where("category_id", 11)
                 ->get()
-                ->forPage($page, 25)
                 ->each(function ($product) {
                     $product['price_latest'] = $product->priceLatest();
                     $product['price_difference'] = $product->priceDifference();
-                }),
+                })
+                ->paginate(25, 'vegetable'),
         ]);
     }
 
