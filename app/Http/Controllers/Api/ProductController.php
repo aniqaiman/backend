@@ -28,7 +28,7 @@ class ProductController extends Controller
     public function getFruitsByPage()
     {
         return response()->json(
-            (new Product())->full(1)->paginate(30)
+            (new Product())->full(1)->forPage($_GET['page'], $_GET['perpage'])
         );
     }
 
