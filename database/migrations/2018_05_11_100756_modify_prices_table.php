@@ -17,8 +17,8 @@ class ModifyPricesTable extends Migration
             //
             $table->renameColumn('price_a', 'seller_price_a');
             $table->renameColumn('price_b', 'seller_price_b');
-            $table->renameColumn('price_c', 'buying_price_a');
-            $table->decimal('buying_price_b', 8, 2)->nullable();
+            $table->renameColumn('price_c', 'buyer_price_a');
+            $table->decimal('buyer_price_b', 8, 2)->nullable();
         });
     }
 

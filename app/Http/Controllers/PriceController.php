@@ -23,15 +23,15 @@ class PriceController extends Controller
             $newProd["name"] = $product["name"];
             $product_prices["seller_price_a"] ? $newProd["seller_price_a"] = $product_prices["seller_price_a"] : $newProd["seller_price_a"] = 0;
             $product_prices["seller_price_b"] ? $newProd["seller_price_b"] = $product_prices["seller_price_b"] : $newProd["seller_price_b"] = 0;
-            $product_prices["buying_price_b"] ? $newProd["buying_price_b"] = $product_prices["buying_price_b"] : $newProd["buying_price_b"] = 0;
-            $product_prices["buying_price_a"] ? $newProd["buying_price_a"] = $product_prices["buying_price_a"] : $newProd["buying_price_a"] = 0;
+            $product_prices["buyer_price_b"] ? $newProd["buyer_price_b"] = $product_prices["buyer_price_b"] : $newProd["buyer_price_b"] = 0;
+            $product_prices["buyer_price_a"] ? $newProd["buyer_price_a"] = $product_prices["buyer_price_a"] : $newProd["buyer_price_a"] = 0;
 
             $product_yest_prices["seller_price_a"] ? $newProd["selling_yest_price_a"] = $product_yest_prices["seller_price_a"] : $newProd["selling_yest_price_a"] = 0;
             $product_yest_prices["seller_price_b"] ? $newProd["selling_yest_price_b"] = $product_yest_prices["seller_price_b"] : $newProd["selling_yest_price_b"] = 0;
-            $product_yest_prices["buying_price_b"] ? $newProd["buying_yest_price_b"] = $product_yest_prices["buying_price_b"] : $newProd["buying_yest_price_b"] = 0;
-            $product_yest_prices["buying_price_a"] ? $newProd["buying_yest_price_a"] = $product_yest_prices["buying_price_a"] : $newProd["buying_yest_price_a"] = 0;
+            $product_yest_prices["buyer_price_b"] ? $newProd["buying_yest_price_b"] = $product_yest_prices["buyer_price_b"] : $newProd["buying_yest_price_b"] = 0;
+            $product_yest_prices["buyer_price_a"] ? $newProd["buying_yest_price_a"] = $product_yest_prices["buyer_price_a"] : $newProd["buying_yest_price_a"] = 0;
 
-    $product_yest_prices["buying_price_a"] ? $newProd["difference"] = number_format(($product_prices["buying_price_a"] - $product_yest_prices["buying_price_a"]) * 10 / $product_yest_prices["buying_price_a"],2) : $newProd["difference"] = 0;
+    $product_yest_prices["buyer_price_a"] ? $newProd["difference"] = number_format(($product_prices["buyer_price_a"] - $product_yest_prices["buyer_price_a"]) * 10 / $product_yest_prices["buyer_price_a"],2) : $newProd["difference"] = 0;
             array_push($products, $newProd);
 
         }
@@ -88,8 +88,8 @@ class PriceController extends Controller
                 $product_price = new Price();
                 $product_price->seller_price_a = 0;
                 $product_price->seller_price_b = 0;
-                $product_price->buying_price_a = 0;
-                $product_price->buying_price_b = 0;
+                $product_price->buyer_price_a = 0;
+                $product_price->buyer_price_b = 0;
                 $product_price->product_id = $request->product_id;
                 $product_price->date_price = $request->date;
             }
@@ -99,11 +99,11 @@ class PriceController extends Controller
             if ($request->seller_price_b) {
                 $product_price->seller_price_b = $request->seller_price_b;
             }
-            if ($request->buying_price_a) {
-                $product_price->buying_price_a = $request->buying_price_a;
+            if ($request->buyer_price_a) {
+                $product_price->buyer_price_a = $request->buyer_price_a;
             }
-            if ($request->buying_price_b) {
-                $product_price->buying_price_b = $request->buying_price_b;
+            if ($request->buyer_price_b) {
+                $product_price->buyer_price_b = $request->buyer_price_b;
             }
             $product_price->save();
             return response($product_price);

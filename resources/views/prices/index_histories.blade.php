@@ -40,9 +40,9 @@
                 <td>{{$price->date_price}}</td>
                 <td>{{$price->product->name}}</td>
                 <td></td>
-                <td>{{$price->buying_price_a}}</td>
+                <td>{{$price->buyer_price_a}}</td>
                 <td>{{$price->seller_price_a}}</td>
-                <td>{{$price->buying_price_b}}</td>
+                <td>{{$price->buyer_price_b}}</td>
                 <td>{{$price->seller_price_b}}</td>
                 <td></td>
               </tr>
