@@ -14,54 +14,28 @@ class ProductController extends Controller
     public function getFruits()
     {
         return response()->json([
-            "data" => Product::with('category')
-                ->where("category_id", 1)
-                ->get()
-                ->each(function ($product) {
-                    $product['price_latest'] = $product->priceLatest();
-                    $product['price_difference'] = $product->priceDifference();
-                })
+            "data" => Product::full(1)
         ]);
     }
 
     public function getVegetables()
     {
         return response()->json([
-            "data" => Product::with('category')
-                ->where("category_id", 11)
-                ->get()
-                ->each(function ($product) {
-                    $product['price_latest'] = $product->priceLatest();
-                    $product['price_difference'] = $product->priceDifference();
-                })
+            "data" => Product::full(11)
         ]);
     }
 
     public function getFruitsByPage()
     {
         return response()->json(
-            Product::with('category')
-                ->where("category_id", 1)
-                ->get()
-                ->each(function ($product) {
-                    $product['price_latest'] = $product->priceLatest();
-                    $product['price_difference'] = $product->priceDifference();
-                })
-                ->paginate(30)
+            Product::full(1)->paginate(30)
         );
     }
 
     public function getVegetablesByPage()
     {
         return response()->json(
-            Product::with('category')
-                ->where("category_id", 11)
-                ->get()
-                ->each(function ($product) {
-                    $product['price_latest'] = $product->priceLatest();
-                    $product['price_difference'] = $product->priceDifference();
-                })
-                ->paginate(30)
+            Product::full(11)->paginate(30)
         );
     }
 

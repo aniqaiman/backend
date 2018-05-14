@@ -88,11 +88,23 @@ class Product extends Model
     public function priceDifference()
     {
         return (object) [
-            'seller_price_a' => is_null($this->pricePrevious()) || $this->pricePrevious()["seller_price_a"] == 0  ? 0 : round(($this->priceLatest()["seller_price_a"] - $this->pricePrevious()["seller_price_a"]) / $this->pricePrevious()["seller_price_a"], 2),
+            'seller_price_a' => is_null($this->pricePrevious()) || $this->pricePrevious()["seller_price_a"] == 0 ? 0 : round(($this->priceLatest()["seller_price_a"] - $this->pricePrevious()["seller_price_a"]) / $this->pricePrevious()["seller_price_a"], 2),
             'seller_price_b' => is_null($this->pricePrevious()) || $this->pricePrevious()["seller_price_b"] == 0 ? 0 : round(($this->priceLatest()["seller_price_b"] - $this->pricePrevious()["seller_price_b"]) / $this->pricePrevious()["seller_price_b"], 2),
-            'buying_price_a' => is_null($this->pricePrevious()) || $this->pricePrevious()["buying_price_a"] == 0  ? 0 : round(($this->priceLatest()["buying_price_a"] - $this->pricePrevious()["buying_price_a"]) / $this->pricePrevious()["buying_price_a"], 2),
+            'buying_price_a' => is_null($this->pricePrevious()) || $this->pricePrevious()["buying_price_a"] == 0 ? 0 : round(($this->priceLatest()["buying_price_a"] - $this->pricePrevious()["buying_price_a"]) / $this->pricePrevious()["buying_price_a"], 2),
             'buying_price_b' => is_null($this->pricePrevious()) || $this->pricePrevious()["buying_price_b"] == 0 ? 0 : round(($this->priceLatest()["buying_price_b"] - $this->pricePrevious()["buying_price_b"]) / $this->pricePrevious()["buying_price_b"], 2),
         ];
+    }
+
+    public function full($category)
+    {
+        return $this
+            ->with('category')
+            ->where("category_id", $category)
+            ->get()
+            ->each(function ($product) {
+                $product['price_latest'] = $product->priceLatest();
+                $product['price_difference'] = $product->priceDifference();
+            });
     }
 
 }
