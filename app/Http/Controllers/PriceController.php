@@ -12,15 +12,6 @@ class PriceController extends Controller
 {
     public function index()
     {
-        echo("latest");
-        dump(Product::find(21)->priceLatest());
-        echo("previous");
-        dump(Product::find(21)->pricePrevious());
-        echo("today");
-        dump(Product::find(21)->priceToday());
-        echo("yesterday");
-        dump(Product::find(21)->priceYesterday());
-        exit;
         $productQuery = Product::all();
         $products = [];
         foreach ($productQuery as $product) {
