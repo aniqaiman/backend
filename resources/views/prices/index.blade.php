@@ -1,4 +1,8 @@
-@extends('layout.master') @section('style') @endsection @section('content')
+@extends('layout.master') 
+@section('style')
+@endsection
+ 
+@section('content')
 <section class="content-header">
     <h1>
         Price Dashboard
@@ -79,10 +83,8 @@
         </div>
     </div>
 </section>
-
-
 @endsection
-
+ 
 @section('script')
 <script>
     $(document).ready(function () {
@@ -222,5 +224,6 @@
         });
 
     });
+
 </script>
 @endsection

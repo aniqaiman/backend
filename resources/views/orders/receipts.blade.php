@@ -8,7 +8,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <h4 class="modal-title" id="exampleModalLabel">Title</h4>
       </div>
       <div class="modal-body">
@@ -57,7 +59,8 @@
 
           <div class="box-tools pull-right">
             <span class="badge bg-light-blue">{{ $orders->total() }}</span>
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+              <i class="fa fa-minus"></i>
             </button>
           </div>
         </div>
@@ -100,16 +103,13 @@
                       <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
                       <td>{{ $product->pivot->quantity }}kg</td>
                       <td>
-                        @switch($product->pivot->grade) 
-                          @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break
-                          @case("B") RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break
-                        @endswitch
+                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
+                        RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
                       </td>
                       <td>
-                        @switch($product->pivot->grade) 
-                          @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"], 2) }} @break
-                          @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"], 2) }} @break
-                        @endswitch
+                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"],
+                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"],
+                        2) }} @break @endswitch
                       </td>
                     </tr>
                     @endforeach
@@ -119,8 +119,7 @@
                   <div class="label label-default">Submitted</div>
                 </td>
                 <td>
-                  {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'text-center')) }}
-                  {{ Form::hidden('_method', 'DELETE') }}
+                  {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'text-center')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
                     <button type="button" class="btn btn-primary" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
                     <button type="button" class="btn btn-danger" data-id="{{ $order->id }}" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
@@ -151,7 +150,8 @@
 
           <div class="box-tools pull-right">
             <span class="badge bg-light-blue">{{ $stocks->total() }}</span>
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+              <i class="fa fa-minus"></i>
             </button>
           </div>
         </div>
@@ -180,8 +180,8 @@
                 <td>
                   {{ $stock->user->address }}
                   <a href="https://www.google.com/maps/search/?api=1&query={{ $stock->user->latitude }},{{ $stock->user->longitude }}" target="_blank">
-                      <i class="fa fa-map-marker"></i>
-                    </a>
+                    <i class="fa fa-map-marker"></i>
+                  </a>
                 </td>
                 <td>
                   <div class="lead">
@@ -194,16 +194,13 @@
                       <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
                       <td>{{ $product->pivot->quantity }}kg</td>
                       <td>
-                        @switch($product->pivot->grade)
-                          @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break 
-                          @case("B") RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break
-                        @endswitch
+                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
+                        RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
                       </td>
                       <td>
-                        @switch($product->pivot->grade)
-                          @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"], 2) }} @break
-                          @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"], 2) }} @break
-                        @endswitch
+                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"],
+                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"],
+                        2) }} @break @endswitch
                       </td>
                     </tr>
                     @endforeach
@@ -213,8 +210,7 @@
                   <div class="label label-default">Submitted</div>
                 </td>
                 <td>
-                  {{ Form::open(array('url' => 'orders/' . $stock->id, 'class' => 'text-center')) }}
-                  {{ Form::hidden('_method', 'DELETE') }}
+                  {{ Form::open(array('url' => 'orders/' . $stock->id, 'class' => 'text-center')) }} {{ Form::hidden('_method', 'DELETE') }}
                   <div class="btn-group-vertical btn-group-sm">
                     <button type="button" class="btn btn-primary" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
                     <button type="button" class="btn btn-danger" data-id="{{ $stock->id }}" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
@@ -245,7 +241,7 @@
     $('#exampleModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget);
       var id = button.data('id');
-      
+
       var modal = $(this);
       modal.find('#exampleModalLabel').text('Rejected Order Feedback | ' + id);
       modal.find('#feedback-id').val(id);
@@ -331,7 +327,7 @@
       topic: $('#feedback-topic').val(),
       description: $('#feedback-description').val(),
     };
-    
+
     $(btn.target).prop('disabled', true);
     $(btn.target).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 
@@ -352,7 +348,7 @@
       topic: $('#feedback-topic').val(),
       description: $('#feedback-description').val(),
     };
-    
+
     $(btn.target).prop('disabled', true);
     $(btn.target).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
 

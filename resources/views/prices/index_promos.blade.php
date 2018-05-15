@@ -1,8 +1,7 @@
-@extends('layout.master')
-
+@extends('layout.master') 
 @section('style')
 @endsection
-
+ 
 @section('content')
 <section class="content-header">
   <h1>
@@ -48,6 +47,6 @@
   </div>
 </section>
 @endsection
-
+ 
 @section('script')
 @endsection

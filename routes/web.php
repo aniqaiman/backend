@@ -147,6 +147,7 @@ Route::prefix('products')
         Route::delete('fruits/{product_id}', 'FruitController@destroy')->name('fruits.destroy');
         Route::get('fruits/{product_id}/edit', 'FruitController@edit')->name('fruits.edit');
 
+        Route::put('demand', 'ProductController@updateDemand')->name('update.demand');
     });
 
 // ------------------------------------------- Inventory ------------------------------------------- //

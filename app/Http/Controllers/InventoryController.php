@@ -21,6 +21,7 @@ class InventoryController extends Controller
             CONCAT(products.name, ' (Grade ', product_stock.grade, ')') item,
             products.id product_id,
             products.sku,
+            product_stock.grade,
             CASE
                 WHEN product_stock.grade = 'A' THEN products.demand_a
                 WHEN product_stock.grade = 'B' THEN products.demand_b

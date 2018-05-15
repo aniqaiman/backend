@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Capacity;
 use App\Type;
 use App\User;
+use App\Product;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -36,7 +37,7 @@ class SellerController extends Controller
     public function index()
     {
         $sellers = User::where('group_id', 21)->paginate();
-        return view('users.sellers', compact('sellers'));
+        return view('sellers.index', compact('sellers'));
     }
 
     public function edit($user_id, Request $request)
@@ -66,7 +67,7 @@ class SellerController extends Controller
         }
     }
 
-    public function delete($user_id, Request $request)
+    public function delete(Request $request, $user_id)
     {
         $sellers = User::find($user_id);
         $sellers->delete();
@@ -74,11 +75,10 @@ class SellerController extends Controller
         return Redirect::to('seller');
     }
 
-    public function show($user_id, Request $request)
+    public function show(Request $request, $user_id)
     {
-        $seller = User::where('user_id', $user_id)->first();
-        $types = Type::all();
-        $capacities = Capacity::all();
-        return view('seller.sellerdetail', compact('seller', 'types', 'capacities'));
+        $seller = User::find($user_id);
+        $products = Product::orderBy('name')->paginate();
+        return view('sellers.show', compact('seller', 'products'));
     }
 }

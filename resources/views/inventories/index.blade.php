@@ -1,8 +1,7 @@
-@extends('layout.master')
-
+@extends('layout.master') 
 @section('style')
 @endsection
-
+ 
 @section('content')
 <section class="content-header">
   <h1>
@@ -55,9 +54,7 @@
                 <td>{{$inventory->purchase_price}}</td>
                 <td>{{$inventory->total_purchased}}</td>
                 <td>
-                  @foreach ($inventory->order_ids as $order_id)
-                    {{ $order_id->id }}
-                  @endforeach
+                  @foreach ($inventory->order_ids as $order_id) {{ $order_id->id }} @endforeach
                 </td>
                 <td>
                   <table class="table">
@@ -68,20 +65,16 @@
                     </tr>
                     @foreach ($inventory->stocks as $stock)
                     <tr>
-                        <td>
-                          {{ $stock->user->id }}
-                        </td>
-                        <td>
-                          {{ $stock->user->name }}
-                        </td>
-                        <td>
-                          @if (is_null($stock->driver))
-                          No lorry assigned
-                          @else
-                          {{ $stock->driver->name }}
-                          @endif
-                        </td>
-                      </tr>
+                      <td>
+                        {{ $stock->user->id }}
+                      </td>
+                      <td>
+                        {{ $stock->user->name }}
+                      </td>
+                      <td>
+                        @if (is_null($stock->driver)) No lorry assigned @else {{ $stock->driver->name }} @endif
+                      </td>
+                    </tr>
                     @endforeach
                   </table>
                 </td>
@@ -89,14 +82,25 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
                 <td>
                   <div class="input-group">
-                    <input type="text" class="demand form-control" value="{{ $inventory->demand }}" size="10" />
-                  <div class="input-group-addon">kg</div>
-                </div>
-              </td>
+                    <input type="number" class="demand form-control" value="0" style="min-width: 70px;" />
+                    <div class="input-group-addon">kg</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <input type="number" class="demand form-control" value="0" style="min-width: 70px;" />
+                    <div class="input-group-addon">kg</div>
+                  </div>
+                </td>
+                <td>
+                  <div class="input-group">
+                    <input type="number" class="demand form-control" data-id="{{ $inventory->product_id }}" data-grade="{{ $inventory->grade }}"
+                      value="{{ $inventory->demand }}" style="min-width: 70px;" />
+                    <div class="input-group-addon">kg</div>
+                  </div>
+                </td>
               </tr>
               @endforeach
             </tbody>
@@ -108,6 +112,43 @@
   </div>
 </section>
 @endsection
-
+ 
 @section('script')
+<script>
+  $(document).ready(function () {
+        console.log("loaded");
+
+        $(".demand").focusout(function () {
+          console.log($(this));
+          
+          var data = {
+            id: $(this).data('id'),
+            grade: $(this).data('grade'),
+            demand: $(this).val(),
+          }
+
+          swal({
+            title: "",
+            text: "Saving....",
+            showConfirmButton: false
+          });
+
+          $.ajax("{{ route('products.update.demand') }}", {
+            data: data,
+            dataType: "json",
+            error: (jqXHR, textStatus, errorThrown) => {
+              console.log("x ok")
+              swal.close();
+            },
+            method: "PUT",
+            success: (data, textStatus, jqXHR) => {
+              console.log("ok")
+              swal.close();
+            }
+          });
+
+        });
+      });
+
+</script>
 @endsection
