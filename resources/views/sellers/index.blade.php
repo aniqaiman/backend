@@ -144,29 +144,23 @@
                     <i class="fa fa-map-marker"></i>
                   </a>
                 </td>
-                <td>
+                <td class="text-center">
                   Mobile:
-                  <a href="tel:{{ $seller->mobile_number }}">{{ $seller->mobile_number }}</a>
-                  <br /> E-Mail:
-                  <a href="mailto:{{ $seller->email }}">{{ $seller->email }}</a>
+                  <br /><a href="tel:{{ $seller->mobile_number }}">{{ $seller->mobile_number }}</a>
+                  <br />E-Mail:
+                  <br /><a href="mailto:{{ $seller->email }}">{{ $seller->email }}</a>
                 </td>
                 <td>
-                  E-Mail:
-                  @if ($seller->email_status === 1)
-                  <span class="label label-success">Verified</span>
-                  @else
-                  <span class="label label-danger">Unverified</span>
-                  @endif
-                  <br /> Account:
-                  @if ($seller->account_status === 1)
-                  <span class="label label-danger">Deactivated</span>
-                  @else
-                  <span class="label label-success">Activated</span>
-                  @endif
+                  E-Mail: @if ($seller->email_status === 1)
+                  <span class="label label-success">Verified</span> @else
+                  <span class="label label-danger">Unverified</span> @endif
+                  <br /> Account: @if ($seller->account_status === 1)
+                  <span class="label label-danger">Deactivated</span> @else
+                  <span class="label label-success">Activated</span> @endif
                 </td>
                 <td class="text-center">
                   <div class="btn-group-vertical btn-group-sm">
-                    <a href="" class="btn btn-primary">View</a> @if ($seller->status_account === 0)
+                    <a href="{{ route('sellers.show', [$seller->id]) }}" class="btn btn-primary">View</a> @if ($seller->status_account === 0)
                     <button class="btn btn-success" data-id="{{ $seller->id }}" onclick="activateUser(this)">Activate</button>
                     <button class="btn btn-warning" disabled>Deactivate</button> @elseif ($seller->status_account === 1)
                     <button class="btn btn-success" disabled>Activate</button>
