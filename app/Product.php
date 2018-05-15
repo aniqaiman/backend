@@ -12,6 +12,7 @@ class Product extends Model
         'description',
         'short_description',
         'image',
+        'sku',
         'category_id',
         'quantity_a',
         'quantity_b',
@@ -59,7 +60,7 @@ class Product extends Model
         return $this->hasMany('App\Price');
     }
 
-    public function validPrices($order_date)
+    public function pricesValid($order_date)
     {
         return $this->prices()
             ->whereDate('date_price', '<=', $order_date)
@@ -68,20 +69,34 @@ class Product extends Model
 
     public function priceValid($order_date)
     {
-        return $this->validPrices($order_date)
+        return $this->pricesValid($order_date)
             ->first();
     }
 
     public function priceLatest()
     {
-        return $this->validPrices(Carbon::now())
+        return $this->pricesValid(Carbon::now())
             ->first();
     }
 
     public function pricePrevious()
     {
-        return $this->validPrices(Carbon::now())
+        return $this->pricesValid(Carbon::now())
             ->skip(1)
+            ->first();
+    }
+
+    public function priceToday()
+    {
+        return $this->prices()
+            ->whereDate('date_price', '=', Carbon::today())
+            ->first();
+    }
+
+    public function priceYesterday()
+    {
+        return $this->prices()
+            ->whereDate('date_price', '=', Carbon::yesterday())
             ->first();
     }
 

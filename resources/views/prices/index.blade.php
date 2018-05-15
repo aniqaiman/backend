@@ -35,14 +35,14 @@
                                 <th rowspan="2" style="width: 1%;"></th>
                             </tr>
                             <tr class="bg-black">
-                                <th>Selling Price (Grade A)</th>
-                                <th>Buying Price (Grade A)</th>
-                                <th>Selling Price (Grade B)</th>
-                                <th>Buying Price (Grade B)</th>
-                                <th>Selling Price (Grade A)</th>
-                                <th>Buying Price (Grade A)</th>
-                                <th>Selling Price (Grade B)</th>
-                                <th>Buying Price (Grade B)</th>
+                                <th>Seller Price (Grade A)</th>
+                                <th>Buyer Price (Grade A)</th>
+                                <th>Seller Price (Grade B)</th>
+                                <th>Buyer Price (Grade B)</th>
+                                <th>Seller Price (Grade A)</th>
+                                <th>Buyer Price (Grade A)</th>
+                                <th>Seller Price (Grade B)</th>
+                                <th>Buyer Price (Grade B)</th>
                             </tr>
                         </thead>
 

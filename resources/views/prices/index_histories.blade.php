@@ -27,10 +27,10 @@
                 <th>Date</th>
                 <th>Item</th>
                 <th>SKU#</th>
-                <th>Buying Price (Grade A)</th>
-                <th>Selling Price (Grade A)</th>
-                <th>Buying Price (Grade B)</th>
-                <th>Selling Price (Grade B)</th>
+                <th>Buyer Price (Grade A)</th>
+                <th>Seller Price (Grade A)</th>
+                <th>Buyer Price (Grade B)</th>
+                <th>Seller Price (Grade B)</th>
                 <th style="width: 1%;"></th>
               </tr>
             </thead>

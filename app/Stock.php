@@ -19,7 +19,9 @@ class Stock extends Model
     {
         return $this->belongsTo('App\User');
     }
-     public function driver(){
+    
+    public function driver()
+    {
         return $this->belongsTo('App\User', 'lorry_id');
     }
 
@@ -41,7 +43,7 @@ class Stock extends Model
                 if ($product->pivot->grade === "A") {
                     return $product->priceLatest()["buyer_price_a"] * $product->pivot->quantity;
                 } else if ($product->pivot->grade === "B") {
-                    return $product->priceLatest()["buyer_price_b"]* $product->pivot->quantity;
+                    return $product->priceLatest()["buyer_price_b"] * $product->pivot->quantity;
                 }
             });
     }
