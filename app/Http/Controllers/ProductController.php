@@ -22,7 +22,7 @@ class ProductController extends Controller
     }
     public function updateWastage(Request $request)
     {
-        $wastage = Wastage::where('product_id',$request->input('product_id'))->first();
+        $wastage = Wastage::where('product_id',$request->product_id)->first();
 
         if (!$wastage) {
             $wastage = new Wastage;
@@ -30,8 +30,8 @@ class ProductController extends Controller
             $wastage["promo_wastage"] = 0;
 
        }
-       $wastage->product_id = $request->input('product_id');
-       $wastage["storage_wastage"] += $request->input('wastage');
+       $wastage->product_id = $request->product_id;
+       $wastage["storage_wastage"] += $request->wastage;
        $wastage->save();
         return response()->json($wastage);
     }
