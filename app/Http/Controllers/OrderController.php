@@ -125,6 +125,7 @@ class OrderController extends Controller
                 ])->first();
 
                 if (is_null($inventory)) {
+                    dump('null');
                     $inventory = new Inventory();
                     $inventory->product_id = $product->id;
                     $inventory->price_id = $product->priceLatest()->id;
@@ -132,6 +133,7 @@ class OrderController extends Controller
 
                     $inventory->orders()->syncWithoutDetaching([$order->id]);
                 } else {
+                    dump('not null');
                     $inventory->orders()->syncWithoutDetaching([$order->id]);
                 }
             } else if ($product->pivot->grade === "B") {
@@ -140,6 +142,7 @@ class OrderController extends Controller
 
             $product->save();
         }
+        exit;
 
         return response($order);
     }
@@ -160,6 +163,7 @@ class OrderController extends Controller
                 ])->first();
 
                 if (is_null($inventory)) {
+                    dump('null');
                     $inventory = new Inventory();
                     $inventory->product_id = $product->id;
                     $inventory->price_id = $product->priceLatest()->id;
@@ -167,6 +171,7 @@ class OrderController extends Controller
 
                     $inventory->stocks()->syncWithoutDetaching([$order->id]);
                 } else {
+                    dump('not null');
                     $inventory->stocks()->syncWithoutDetaching([$order->id]);
                 }
             } else if ($product->pivot->grade === "B") {
@@ -175,6 +180,7 @@ class OrderController extends Controller
 
             $product->save();
         }
+        exit;
 
         return response($stock);
     }

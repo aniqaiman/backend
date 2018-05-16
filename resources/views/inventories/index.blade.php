@@ -48,13 +48,16 @@
             <tbody>
               @foreach ($inventories as $inventory)
               <tr>
-                <td>{{$inventory->item}}</td>
-                <td>{{$inventory->sku}}</td>
-                <td>{{$inventory->incoming_date}}</td>
-                <td>{{$inventory->purchase_price}}</td>
-                <td>{{$inventory->total_purchased}}</td>
+                <td>{{ $inventory->product->name }}</td>
+                <td>{{ $inventory->product->sku }}</td>
+                <td>{{ $inventory->created_at }}</td>
                 <td>
-                  @foreach ($inventory->order_ids as $order_id) {{ $order_id->id }} @endforeach
+                  Grade A: {{ $inventory->product->priceValid($inventory->created_at)->seller_price_a }}
+                  <br />Grade B: {{ $inventory->product->priceValid($inventory->created_at)->seller_price_b }}
+                </td>
+                <td>{{ $inventory->total_purchased }}</td>
+                <td>
+                  @foreach ($inventory->orders as $order) {{ $order->id }} @endforeach
                 </td>
                 <td>
                   <table class="table">
