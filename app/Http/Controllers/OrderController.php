@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Inventory;
 use App\Order;
 use App\Stock;
 use App\User;
