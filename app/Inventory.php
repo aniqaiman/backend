@@ -8,6 +8,7 @@ class Inventory extends Model
 {
     protected $fillable = [
         'product_id',
+        'grade',
         'price_id',
         'remark',
         'wastage',
