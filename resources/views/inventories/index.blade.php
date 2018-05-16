@@ -156,8 +156,8 @@
 
         $(".wastage").focusout(function () {
           console.log($(this));
-          console.log($(this).data('id'));
-          $(this).data('id').split("_")[1]
+          console.log($(this).attr('id'));
+          $(this).attr('id').split("_")[1]
           var data = {
             product_id: $(this).data('id'),
            // grade: $(this).data('grade'),
