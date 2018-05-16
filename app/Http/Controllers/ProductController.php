@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Wastage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
