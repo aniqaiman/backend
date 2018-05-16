@@ -121,6 +121,7 @@ class OrderController extends Controller
 
                 $inventory = Inventory::where([
                     ['product_id', $product->id],
+                    ['grade', $product->pivot->grade],
                     ['created_at', '>=', Carbon::today()],
                 ])->first();
 
@@ -128,6 +129,7 @@ class OrderController extends Controller
                     $inventory = new Inventory();
                     $inventory->product_id = $product->id;
                     $inventory->price_id = $product->priceLatest()->id;
+                    $inventory->grade = $product->pivot->grade;
                     $inventory->save();
 
                     $inventory->orders()->syncWithoutDetaching([$order->id]);
@@ -157,6 +159,7 @@ class OrderController extends Controller
 
                 $inventory = Inventory::where([
                     ['product_id', $product->id],
+                    ['grade', $product->pivot->grade],
                     ['created_at', '>=', Carbon::today()],
                 ])->first();
 
@@ -164,6 +167,7 @@ class OrderController extends Controller
                     $inventory = new Inventory();
                     $inventory->product_id = $product->id;
                     $inventory->price_id = $product->priceLatest()->id;
+                    $inventory->grade = $product->pivot->grade;
                     $inventory->save();
 
                     $inventory->stocks()->syncWithoutDetaching([$stock->id]);
