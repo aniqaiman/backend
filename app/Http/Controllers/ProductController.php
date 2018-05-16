@@ -22,7 +22,7 @@ class ProductController extends Controller
     }
     public function updateWastage(Request $request)
     {
-        $wastage = Wastage::where('product_id',$request->input('product_id'))->get();
+        $wastage = Wastage::where('product_id',$request->input('product_id'))->first();
 
         if (!$wastage) {
             $wastage = new Wastage;
