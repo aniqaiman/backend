@@ -26,12 +26,12 @@ class ProductController extends Controller
 
         if (!$wastage) {
             $wastage = new Wastage;
-            $wastage->storage_wastage = 0;
-            $wastage->promo_wastage = 0;
+            $wastage["storage_wastage"] = 0;
+            $wastage["promo_wastage"] = 0;
 
        }
        $wastage->product_id = $request->input('product_id');
-       $wastage->storage_wastage += $request->input('wastage');
+       $wastage["storage_wastage"] += $request->input('wastage');
        $wastage->save();
         return response()->json($wastage);
     }
