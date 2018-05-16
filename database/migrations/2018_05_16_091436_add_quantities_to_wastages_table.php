@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePromotionsTable extends Migration
+class AddQuantitiesToWastagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreatePromotionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('promotions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('product_id');
-            $table->bigInteger('stock_id');
-            $table->integer('wastage');
-            $table->timestamps();
+        Schema::table('wastages', function (Blueprint $table) {
+            //
+            $table->integer('promo_wastage');
+            $table->integer('storage_wastage');
+            $table->decimal('buy_at_price',8,2);
         });
     }
 
@@ -29,6 +28,8 @@ class CreatePromotionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('promotions');
+        Schema::table('wastages', function (Blueprint $table) {
+            //
+        });
     }
 }
