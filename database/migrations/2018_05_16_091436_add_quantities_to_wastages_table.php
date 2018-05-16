@@ -17,7 +17,8 @@ class AddQuantitiesToWastagesTable extends Migration
             //
             $table->integer('promo_wastage');
             $table->integer('storage_wastage');
-            $table->decimal('buy_at_price',8,2);
+            $table->decimal('buy_at_price',8,2
+        );
         });
     }
 
