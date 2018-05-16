@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDriverIdToStocksTable extends Migration
+class CreateLorryCapacitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddDriverIdToStocksTable extends Migration
      */
     public function up()
     {
-        Schema::table('stocks', function (Blueprint $table) {
-            //
-            $table->integer('lorry_id')->nullable();
+        Schema::create('lorry_capacities',function(Blueprint $table){
+            $table->tinyIncrements('id');
+            $table->string('capacity');
         });
     }
 
@@ -26,8 +26,6 @@ class AddDriverIdToStocksTable extends Migration
      */
     public function down()
     {
-        Schema::table('stocks', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('lorry_capacities');
     }
 }

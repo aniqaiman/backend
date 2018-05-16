@@ -98,6 +98,18 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Stock');
     }
 
+    public function supplies()
+    {
+        return $this->belongsToMany('App\Product', 'supplies')
+        ->withPivot(
+            'harvesting_period_start',
+            'harvesting_period_end',
+            'harvest_frequency',
+            'total_plants',
+            'total_farm_area'
+        );
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();

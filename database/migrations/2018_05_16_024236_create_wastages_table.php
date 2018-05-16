@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLorrycapacityTable extends Migration
+class CreateWastagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateLorrycapacityTable extends Migration
      */
     public function up()
     {
-        Schema::create('lorrycapacity',function(Blueprint $table){
-            $table->increments('cap_id');
-            $table->string('capacity');
+        Schema::create('wastages', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('product_id');
+            $table->bigInteger('stock_id');
+            $table->bigInteger('inventory_id');
+            $table->bigInteger('promotion_id');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateLorrycapacityTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lorrycapacity');
+        Schema::dropIfExists('wastages');
     }
 }

@@ -35,6 +35,18 @@ class Product extends Model
             );
     }
 
+    public function supplies()
+    {
+        return $this->belongsToMany('App\User', 'supplies')
+        ->withPivot(
+            'harvesting_period_start',
+            'harvesting_period_end',
+            'harvest_frequency',
+            'total_plants',
+            'total_farm_area'
+        );
+    }
+
     public function orders()
     {
         return $this

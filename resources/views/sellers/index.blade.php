@@ -96,7 +96,7 @@
                 <th>Date Registered</th>
                 <th>Location</th>
                 <th>Contact (H/P &amp; Email)</th>
-                <th>Status</th>
+                <th class="text-center">Status</th>
                 <th style="width: 1%;"></th>
               </tr>
             </thead>
@@ -144,19 +144,25 @@
                     <i class="fa fa-map-marker"></i>
                   </a>
                 </td>
-                <td class="text-center">
+                <td>
                   Mobile:
                   <br /><a href="tel:{{ $seller->mobile_number }}">{{ $seller->mobile_number }}</a>
                   <br />E-Mail:
                   <br /><a href="mailto:{{ $seller->email }}">{{ $seller->email }}</a>
                 </td>
-                <td>
-                  E-Mail: @if ($seller->email_status === 1)
-                  <span class="label label-success">Verified</span> @else
-                  <span class="label label-danger">Unverified</span> @endif
-                  <br /> Account: @if ($seller->account_status === 1)
-                  <span class="label label-danger">Deactivated</span> @else
-                  <span class="label label-success">Activated</span> @endif
+                <td class="text-center">
+                  E-Mail:
+                  @if ($seller->status_email === 1)
+                  <span class="label label-success">Verified</span>
+                  @else
+                  <span class="label label-danger">Unverified</span> 
+                  @endif
+                  <br /> Account:
+                  @if ($seller->status_account === 1)
+                  <span class="label label-danger">Deactivated</span> 
+                  @else
+                  <span class="label label-success">Activated</span> 
+                  @endif
                 </td>
                 <td class="text-center">
                   <div class="btn-group-vertical btn-group-sm">

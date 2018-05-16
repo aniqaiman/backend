@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Stock;
 use App\User;
+use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
-use DB;
 
 class OrderController extends Controller
 {
@@ -47,7 +48,7 @@ class OrderController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'seller');
 
-        $drivers = User::where('group_id',31)
+        $drivers = User::where('group_id', 31)
             ->get();
 
         return view('orders.trackings', compact('orders', 'stocks', 'drivers'));
@@ -90,17 +91,18 @@ class OrderController extends Controller
             $newOrder["user_id"] = $order->user->id;
             $newOrder["user_address"] = $order->user->address;
             $newOrder["latitude"] = $order->user->latitude;
-             $newOrder["longitude"] = $order->user->longitude;
-            $weight = DB::table('order_product')->where('order_id',$order->id)->sum('quantity');
+            $newOrder["longitude"] = $order->user->longitude;
+            $weight = DB::table('order_product')->where('order_id', $order->id)->sum('quantity');
             $newOrder["tonnage"] = $weight;
             array_push($orders, $newOrder);
         }
         return view('orders.lorries', compact('orders'));
     }
 
-    public function assignDriverOrder(Request $request){
+    public function assignDriverOrder(Request $request)
+    {
         $order = Order::find($request->id);
-      
+
         $order->lorry_id = $request->lorry_id;
         $order->save();
         return response($order);
@@ -114,6 +116,13 @@ class OrderController extends Controller
 
         foreach ($order->products as $product) {
             if ($product->pivot->grade === "A") {
+                $inventory = Inventory::where([
+                    ['product_id', $product->id],
+                    ['created_at', '>=', Carbon::today()],
+                ])->first();
+
+                dump($inventory);exit;
+
                 $product->quantity_a -= $product->pivot->quantity;
             } else if ($product->pivot->grade === "B") {
                 $product->quantity_b -= $product->pivot->quantity;
