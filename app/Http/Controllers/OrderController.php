@@ -160,6 +160,7 @@ class OrderController extends Controller
                 ])->first();
 
                 if (is_null($inventory)) {
+                    dump("null");exit;
                     $inventory = new Inventory();
                     $inventory->product_id = $product->id;
                     $inventory->price_id = $product->priceLatest()->id;
@@ -167,6 +168,7 @@ class OrderController extends Controller
 
                     $inventory->stocks()->syncWithoutDetaching([$order->id]);
                 } else {
+                    dump("not null");exit;
                     $inventory->stocks()->syncWithoutDetaching([$order->id]);
                 }
             } else if ($product->pivot->grade === "B") {
