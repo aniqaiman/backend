@@ -19,4 +19,19 @@ class ProductController extends Controller
 
         return response()->json($product);
     }
+    public function updateWastage(Request $request)
+    {
+        $wastage = Wastage::where($product_id,$request->input('product_id'))->get();
+
+        if (!$wastage) {
+            $wastage = new Wastage;
+            $wastage->storage_wastage = 0;
+            $wastage->promo_wastage = 0;
+
+       }
+       $wastage->product_id = $request->input('product_id');
+       $wastage->storage_wastage += $request->input('wastage');
+       $wastage->save();
+        return response()->json($wastage);
+    }
 }
