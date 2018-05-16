@@ -163,12 +163,12 @@ class OrderController extends Controller
                     $inventory = new Inventory();
                     $inventory->product_id = $product->id;
                     $inventory->price_id = $product->priceLatest()->id;
+                    $inventory->save();
+
                     $inventory->stocks()->syncWithoutDetaching([$order->id]);
                 } else {
                     $inventory->stocks()->syncWithoutDetaching([$order->id]);
                 }
-
-                $inventory->save();
             } else if ($product->pivot->grade === "B") {
                 $product->quantity_b += $product->pivot->quantity;
             }
