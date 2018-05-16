@@ -159,7 +159,7 @@
           console.log($(this).attr('id'));
           $(this).attr('id').split("_")[1]
           var data = {
-            product_id: $(this).data('id'),
+            product_id:  $(this).attr('id').split("_")[1],
            // grade: $(this).data('grade'),
             wastage: $(this).val(),
           }
