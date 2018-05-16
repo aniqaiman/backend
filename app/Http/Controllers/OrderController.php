@@ -142,7 +142,6 @@ class OrderController extends Controller
 
             $product->save();
         }
-        exit;
 
         return response($order);
     }
@@ -180,7 +179,6 @@ class OrderController extends Controller
 
             $product->save();
         }
-        exit;
 
         return response($stock);
     }
