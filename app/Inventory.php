@@ -26,11 +26,11 @@ class Inventory extends Model
 
     public function orders()
     {
-        return $this->hasMany('App\Order');
+        return $this->belongsToMany('App\Order');
     }
 
     public function stocks()
     {
-        return $this->hasMany('App\Stock');
+        return $this->belongsToMany('App\Stock');
     }
 }

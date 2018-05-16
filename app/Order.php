@@ -9,8 +9,6 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'status',
-        'inventory_id',
-        'promotion_id',
         'lorry_id',
         'feedback_topic',
         'feedback_description',
@@ -23,14 +21,9 @@ class Order extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function inventory()
+    public function inventories()
     {
-        return $this->belongsTo('App\Inventory');
-    }
-
-    public function promotion()
-    {
-        return $this->belongsTo('App\Inventory');
+        return $this->belongsToMany('App\Inventory');
     }
 
     public function driver()

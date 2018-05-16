@@ -117,14 +117,23 @@ class OrderController extends Controller
 
         foreach ($order->products as $product) {
             if ($product->pivot->grade === "A") {
+                $product->quantity_a -= $product->pivot->quantity;
+
                 $inventory = Inventory::where([
                     ['product_id', $product->id],
                     ['created_at', '>=', Carbon::today()],
                 ])->first();
 
-                dump($inventory);exit;
+                if (is_null($inventory)) {
+                    $inventory = new Inventory();
+                    $inventory->product_id = $product->id;
+                    $inventory->price_id = $product->priceLatest()->id;
+                    $inventory->orders()->syncWithoutDetaching([$order->id]);
+                } else {
+                    $inventory->orders()->syncWithoutDetaching([$order->id]);
+                }
 
-                $product->quantity_a -= $product->pivot->quantity;
+                $inventory->save();
             } else if ($product->pivot->grade === "B") {
                 $product->quantity_b -= $product->pivot->quantity;
             }
@@ -144,6 +153,22 @@ class OrderController extends Controller
         foreach ($stock->products as $product) {
             if ($product->pivot->grade === "A") {
                 $product->quantity_a += $product->pivot->quantity;
+
+                $inventory = Inventory::where([
+                    ['product_id', $product->id],
+                    ['created_at', '>=', Carbon::today()],
+                ])->first();
+
+                if (is_null($inventory)) {
+                    $inventory = new Inventory();
+                    $inventory->product_id = $product->id;
+                    $inventory->price_id = $product->priceLatest()->id;
+                    $inventory->stocks()->syncWithoutDetaching([$order->id]);
+                } else {
+                    $inventory->stocks()->syncWithoutDetaching([$order->id]);
+                }
+
+                $inventory->save();
             } else if ($product->pivot->grade === "B") {
                 $product->quantity_b += $product->pivot->quantity;
             }

@@ -9,6 +9,7 @@ class Stock extends Model
     protected $fillable = [
         'user_id',
         'status',
+        'lorry_id',
         'feedback_topic',
         'feedback_description',
         'feedback_response',
@@ -20,6 +21,16 @@ class Stock extends Model
         return $this->belongsTo('App\User');
     }
     
+    public function inventories()
+    {
+        return $this->belongsToMany('App\Inventory');
+    }
+
+    public function promotions()
+    {
+        return $this->belongsToMany('App\Inventory');
+    }
+
     public function driver()
     {
         return $this->belongsTo('App\User', 'lorry_id');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Inventory;
 use App\Order;
 use App\Stock;
 use Illuminate\Http\Request;
@@ -15,6 +16,17 @@ class InventoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        $inventories = Inventory::with('product', 'price', 'orders', 'stocks')->get();
+        return view('inventories.index', compact('inventories'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexold()
     {
         $inventories = DB::select("
         SELECT
