@@ -37,6 +37,7 @@
                   <th>Stock</th>
                   <th>Total Sold</th>
                   <th>Order</th>
+                  <th>Remaining</th>
                   <th>Remark</th>
                   <th>Wastage (E)</th>
                   <th>Promotion (E)</th>
@@ -98,7 +99,6 @@
                         <th>Order#</th>
                         <th>Date</th>
                         <th>Sold</th>
-                        <th>Remaining</th>
                       </tr>
                       @foreach ($inventory->orders as $order)
                       <tr>
@@ -111,12 +111,12 @@
                         <td>
                           {{ $order->getQuantityByProduct($inventory->product->id, $inventory->grade) }} kg
                         </td>
-                        <td>
-                          kg
-                        </td>
                       </tr>
                       @endforeach
                     </table>
+                  </td>
+                  <td>
+                    {{ $inventory->totalPurchased($inventory->product->id, $inventory->grade) - $inventory->totalSold($inventory->product->id, $inventory->grade) }} kg
                   </td>
                   <td></td>
                   <td>
@@ -137,9 +137,11 @@
                     <div class="input-group">
                       @if ($inventory->grade === 'A')
                       <input type="number" class="demand form-control" data-id="{{ $inventory->product_id }}" data-grade="{{ $inventory->grade }}"
-                        value="{{ $inventory->product->demand_a }}" style="min-width: 70px;" /> @elseif ($inventory->grade === 'B')
+                        value="{{ $inventory->product->demand_a }}" style="min-width: 70px;" />
+                      @elseif ($inventory->grade === 'B')
                       <input type="number" class="demand form-control" data-id="{{ $inventory->product_id }}" data-grade="{{ $inventory->grade }}"
-                        value="{{ $inventory->product->demand_b }}" style="min-width: 70px;" /> @endif
+                        value="{{ $inventory->product->demand_b }}" style="min-width: 70px;" />
+                      @endif
                       <div class="input-group-addon">kg</div>
                     </div>
                   </td>
