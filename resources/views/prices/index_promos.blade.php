@@ -46,10 +46,9 @@
                 <td></td>
                 <td>{{$promo->product["name"]}}</td>
                 <td>#{{$promo->product["id"]}}</td>
-                <td><input type="number" id='promo_{{ $promo->product["id"]}}'  class="promo form-control" value="0" style="min-width: 70px;"
-                      /></td>
+                <td><input type="number" id='promo_{{ $promo->product["id"]}}'  class="promo form-control" value="0" /></td>
                 <td>{{$promo->total_sold}}</td>
-                <td></td>
+                <td><input type="number" id='promo_{{ $promo->product["id"]}}'  class="promo form-control" value="0"/></td>
                 <td></td>
               </tr>
               @endforeach
