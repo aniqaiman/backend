@@ -20,7 +20,7 @@ class Stock extends Model
     {
         return $this->belongsTo('App\User');
     }
-    
+
     public function inventories()
     {
         return $this->belongsToMany('App\Inventory');
@@ -64,5 +64,15 @@ class Stock extends Model
         return $this->products()
             ->get()
             ->sum('pivot.quantity');
+    }
+
+    public function getQuantityByProduct($product_id, $grade)
+    {
+        return $this->products()
+            ->wherePivot('product_id', $product_id)
+            ->wherePivot('grade', $grade)
+            ->first()
+            ->pivot
+            ->quantity;
     }
 }
