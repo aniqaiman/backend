@@ -58,25 +58,25 @@
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="selling_a form-control" id='selling_a_{{$product["id"]}}' value='{{$product["seller_price_a"]}}'>
+                                        <input type="number" class="selling_a form-control" id='selling_a_{{$product["id"]}}' value='{{$product["seller_price_a"]}}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="buying_a form-control" id='buying_a_{{$product["id"]}}' value='{{$product["buyer_price_a"]}}'>
+                                        <input type="number" class="buying_a form-control" id='buying_a_{{$product["id"]}}' value='{{$product["buyer_price_a"]}}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="selling_b form-control" id='selling_b_{{$product["id"]}}' value='{{$product["seller_price_b"]}}'>
+                                        <input type="number" class="selling_b form-control" id='selling_b_{{$product["id"]}}' value='{{$product["seller_price_b"]}}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="buying_b form-control" id='buying_b_{{$product["id"]}}' value='{{$product["buyer_price_b"]}}'>
+                                        <input type="number" class="buying_b form-control" id='buying_b_{{$product["id"]}}' value='{{$product["buyer_price_b"]}}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
                                 <td>RM {{$product["selling_yest_price_a"]}}</td>
