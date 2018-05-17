@@ -14,14 +14,14 @@ class ProductController extends Controller
     public function getFruits()
     {
         return response()->json([
-            "data" => (new Product())->full(1)
+            "data" => (new Product())->full(1),
         ]);
     }
 
     public function getVegetables()
     {
         return response()->json([
-            "data" => (new Product())->full(11)
+            "data" => (new Product())->full(11),
         ]);
     }
 
@@ -41,15 +41,12 @@ class ProductController extends Controller
 
     public function getNewProducts(Request $request)
     {
-        $products = Product::with("latestPrices")
-            ->orderBy("created_at", "desc")
-            ->take(10)
+        $products = Product::with("category")
+            ->has('promotions')
             ->get()
             ->each(function ($product) {
-                $product["price_a_diff"] = sizeof($product->latestPrices) > 1 ?
-                round(($product->latestPrices[0]->price_a - $product->latestPrices[1]->price_a) / $product->latestPrices[1]->price_a, 2) : 0;
-                $product["price_b_diff"] = sizeof($product->latestPrices) > 1 ?
-                round(($product->latestPrices[0]->price_b - $product->latestPrices[1]->price_b) / $product->latestPrices[1]->price_b, 2) : 0;
+                $product['price_latest'] = $product->priceLatest();
+                $product['price_difference'] = $product->priceDifference();
             });
 
         return response()->json([

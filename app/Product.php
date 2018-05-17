@@ -38,13 +38,13 @@ class Product extends Model
     public function supplies()
     {
         return $this->belongsToMany('App\User', 'supplies')
-        ->withPivot(
-            'harvesting_period_start',
-            'harvesting_period_end',
-            'harvest_frequency',
-            'total_plants',
-            'total_farm_area'
-        );
+            ->withPivot(
+                'harvesting_period_start',
+                'harvesting_period_end',
+                'harvest_frequency',
+                'total_plants',
+                'total_farm_area'
+            );
     }
 
     public function orders()
@@ -125,13 +125,18 @@ class Product extends Model
     public function full($category)
     {
         return $this
-            ->with('category')
+            ->with("category")
             ->where("category_id", $category)
             ->get()
             ->each(function ($product) {
                 $product['price_latest'] = $product->priceLatest();
                 $product['price_difference'] = $product->priceDifference();
             });
+    }
+
+    public function promotions()
+    {
+        return $this->hasMany('App\Promotion');
     }
 
 }

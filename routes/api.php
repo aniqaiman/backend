@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -41,9 +41,9 @@ Route::get('seller/{user_id}', 'Api\SellerController@getSeller');
 
 // ------------------------------------------- Promo ---------------------------------------------------- //
 
-Route::get('newproducts', 'Api\ProductController@getNewProducts');
-Route::get('lastpurchaseproducts', 'Api\ProductController@getLastPurchaseProducts');
-Route::get('bestsellingproducts', 'Api\ProductController@getBestSellingProducts');
+Route::get('products/latest', 'Api\ProductController@getNewProducts');
+Route::get('products/lastpurchase', 'Api\ProductController@getLastPurchaseProducts');
+Route::get('products/popular', 'Api\ProductController@getBestSellingProducts');
 
 // ------------------------------------------- Order ---------------------------------------------------- //
 
