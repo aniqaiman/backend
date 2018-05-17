@@ -50,7 +50,7 @@
                 <td>{{$wastage->storage_wastage}}</td>
                 <td>{{$wastage->promo_wastage}}</td>
                 <td>{{$wastage->promo_wastage + $wastage->storage_wastage}}</td>
-                <td><input type="number" name="buy_price_{{$wastage->product->id}}"></td>
+                <td></td>
               </tr>
               @endforeach
             </tbody>

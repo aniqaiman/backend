@@ -52,4 +52,27 @@ class ProductController extends Controller
         $promo->save();
         return response()->json($promo);
     }
+
+    public function updatePromoPrice(Request $request)
+    {
+        $promo = Promotion::where('product_id',$request->product_id)->first();
+       $promo->price = $request->price;
+       $promo->save();
+        return response()->json($promo);
+    }
+    public function updatePromoWastage(Request $request)
+    {
+        $wastage = Wastage::where('product_id',$request->product_id)->first();
+        if (!$wastage) {
+            $wastage = new Wastage;
+            $wastage["storage_wastage"] = 0;
+            $wastage["promo_wastage"] = 0;
+            $wastage["product_id"] = $request->product_id;
+
+       }
+
+       $wastage->promo_wastage += $request->promo_wastage;
+       $wastage->save();
+        return response()->json($wastage);
+    }
 }

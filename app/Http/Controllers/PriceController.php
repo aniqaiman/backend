@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Price;
 use App\Product;
+use App\Promotion;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -41,7 +42,8 @@ class PriceController extends Controller
 
     public function indexPromos()
     {
-        return view('prices.index_promos', []);
+        $promos = Promotion::all();
+        return view('prices.index_promos', compact('promos'));
     }
 
     public function indexHistories()
