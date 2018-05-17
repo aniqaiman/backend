@@ -50,6 +50,6 @@ class ProductController extends Controller
        $promo->product_id = $request->product_id;
        $promo["quantity"] += $request->quantity;
        $promo->save();
-        return response()->json($wastage);
+        return response()->json($promo);
     }
 }
