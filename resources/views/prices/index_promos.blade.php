@@ -69,7 +69,7 @@
           console.log($(this).attr('id'));
           $(this).attr('id').split("_")[2]
           var data = {
-            product_id:  $(this).attr('id').split("_")[1],
+            product_id:  $(this).attr('id').split("_")[2],
             price: $(this).val(),
           }
 
