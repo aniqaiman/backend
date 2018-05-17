@@ -56,22 +56,34 @@
                                 <td>{{$product["name"]}}</td>
                                 <td></td>
                                 <td colspan="1">
-                                    <input type="number" class="selling_a" id='selling_a_{{$product["id"]}}' value='{{$product["seller_price_a"]}}'>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">RM</span>
+                                        <input type="number" class="selling_a form-control" id='selling_a_{{$product["id"]}}' value='{{$product["seller_price_a"]}}'>
+                                    </div>
                                 </td>
                                 <td colspan="1">
-                                    <input type="number" class="buying_a" id='buying_a_{{$product["id"]}}' value='{{$product["buyer_price_a"]}}'>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">RM</span>
+                                        <input type="number" class="buying_a form-control" id='buying_a_{{$product["id"]}}' value='{{$product["buyer_price_a"]}}'>
+                                    </div>
                                 </td>
                                 <td colspan="1">
-                                    <input type="number" class="selling_b" id='selling_b_{{$product["id"]}}' value='{{$product["seller_price_b"]}}'>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">RM</span>
+                                        <input type="number" class="selling_b form-control" id='selling_b_{{$product["id"]}}' value='{{$product["seller_price_b"]}}'>
+                                    </div>
                                 </td>
                                 <td colspan="1">
-                                    <input type="number" class="buying_b" id='buying_b_{{$product["id"]}}' value='{{$product["buyer_price_b"]}}'>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">RM</span>
+                                        <input type="number" class="buying_b form-control" id='buying_b_{{$product["id"]}}' value='{{$product["buyer_price_b"]}}'>
+                                    </div>
                                 </td>
-                                <td>{{$product["selling_yest_price_a"]}}</td>
-                                <td>{{$product["buying_yest_price_a"]}}</td>
-                                <td>{{$product["selling_yest_price_b"]}}</td>
-                                <td>{{$product["buying_yest_price_a"]}}</td>
-                                <td>{{$product["difference"]}}</td>
+                                <td>RM {{$product["selling_yest_price_a"]}}</td>
+                                <td>RM {{$product["buying_yest_price_a"]}}</td>
+                                <td>RM {{$product["selling_yest_price_b"]}}</td>
+                                <td>RM {{$product["buying_yest_price_a"]}}</td>
+                                <td>RM {{$product["difference"]}}</td>
                                 <td></td>
                             </tr>
                             @endforeach
