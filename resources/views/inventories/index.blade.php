@@ -122,7 +122,7 @@
                 </td>
                 <td>
                   <div class="input-group">
-                    <input type="number" class="wastage form-control" promo id="wastage_{{ $inventory->product->id}}" value="0" style="min-width: 70px;" />
+                    <input type="number" class="promo form-control" promo id="promo_{{ $inventory->product->id}}" value="0" style="min-width: 70px;" />
                     <div class="input-group-addon">kg</div>
                   </div>
                 </td>
