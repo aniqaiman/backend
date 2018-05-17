@@ -33,20 +33,20 @@
                             <tr class="bg-black">
                                 <th rowspan="2">Item</th>
                                 <th rowspan="2">SKU#</th>
-                                <th colspan="4">Today</th>
-                                <th colspan="4">Yesterday</th>
+                                <th colspan="4" class="text-center">Today</th>
+                                <th colspan="4" class="text-center">Yesterday</th>
                                 <th rowspan="2">% Price drop / increase from Yesterday</th>
                                 <th rowspan="2" style="width: 1%;"></th>
                             </tr>
                             <tr class="bg-black">
-                                <th>Seller Price (Grade A)</th>
-                                <th>Buyer Price (Grade A)</th>
-                                <th>Seller Price (Grade B)</th>
-                                <th>Buyer Price (Grade B)</th>
-                                <th>Seller Price (Grade A)</th>
-                                <th>Buyer Price (Grade A)</th>
-                                <th>Seller Price (Grade B)</th>
-                                <th>Buyer Price (Grade B)</th>
+                                <th class="text-center">Seller Price (Grade A)</th>
+                                <th class="text-center">Buyer Price (Grade A)</th>
+                                <th class="text-center">Seller Price (Grade B)</th>
+                                <th class="text-center">Buyer Price (Grade B)</th>
+                                <th class="text-center">Seller Price (Grade A)</th>
+                                <th class="text-center">Buyer Price (Grade A)</th>
+                                <th class="text-center">Seller Price (Grade B)</th>
+                                <th class="text-center">Buyer Price (Grade B)</th>
                             </tr>
                         </thead>
 
