@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use App\Promo;
+use App\Promotion;
 use App\Wastage;
 use Illuminate\Http\Request;
 
@@ -39,7 +39,7 @@ class ProductController extends Controller
 
     public function updatePromo(Request $request)
     {
-        $promo = Promo::where('product_id',$request->product_id)->first();
+        $promo = Promotion::where('product_id',$request->product_id)->first();
 
         if (!$promo) {
             $promo = new Promo;
