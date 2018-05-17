@@ -12,7 +12,8 @@ class Promotion extends Model
         'wastage',
         'price',
         'buy_at_price',
-        'total_sold'
+        'total_sold',
+        'quantity'
     ];
 
     public function product()
