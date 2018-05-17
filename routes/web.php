@@ -152,6 +152,7 @@ Route::prefix('products')
         Route::post('wastage', 'ProductController@updateWastage')->name('update.wastage');
 
          Route::post('promo', 'ProductController@updatePromo')->name('update.promo');
+          Route::post('promo_price', 'ProductController@updatePromoPrice')->name('update.promo_price');
     });
 
 // ------------------------------------------- Inventory ------------------------------------------- //

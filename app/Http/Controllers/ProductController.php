@@ -52,4 +52,12 @@ class ProductController extends Controller
        $promo->save();
         return response()->json($promo);
     }
+
+    public function updatePromoPrice(Request $request)
+    {
+        $promo = Promotion::where('product_id',$request->product_id)->first();
+       $promo->price = $request->price;
+       $promo->save();
+        return response()->json($promo);
+    }
 }
