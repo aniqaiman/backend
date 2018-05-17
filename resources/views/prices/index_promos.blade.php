@@ -44,8 +44,8 @@
               <tr>
                 <td></td>
                 <td></td>
-                <td>{{$promo->product}}</td>
-                <td>#{{$promo->product}}</td>
+                <td>{{$promo->product["id"]}}</td>
+                <td>#{{$promo->product["name"]}}</td>
                 <td><input type="number"  class="wastage form-control" value="0" style="min-width: 70px;"
                       /></td>
                 <td>{{$promo->total_sold}}</td>
