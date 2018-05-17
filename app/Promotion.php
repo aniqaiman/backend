@@ -26,5 +26,8 @@ class Promotion extends Model
         return $this->belongsTo('App\Stock');
     }
 
+    public function totalRemaining() {
+        return $this->quantity - $this->total_sold;
+    }
 
 }

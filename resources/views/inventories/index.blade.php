@@ -116,7 +116,7 @@
                     </table>
                   </td>
                   <td>
-                    {{ $inventory->totalPurchased($inventory->product->id, $inventory->grade) - $inventory->totalSold($inventory->product->id, $inventory->grade) }} kg
+                    {{ $inventory->totalRemaining($inventory->product->id, $inventory->grade) }} kg
                   </td>
                   <td></td>
                   <td>

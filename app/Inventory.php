@@ -40,8 +40,7 @@ class Inventory extends Model
         return $this
             ->stocks
             ->map(function ($stock, $key) use ($product_id, $grade) {
-                return $stock
-                ->getQuantityByProduct($product_id, $grade);
+                return $stock->getQuantityByProduct($product_id, $grade);
             })
             ->sum();
     }
@@ -51,9 +50,18 @@ class Inventory extends Model
         return $this
             ->orders
             ->map(function ($order, $key) use ($product_id, $grade) {
-                return $order
-                ->getQuantityByProduct($product_id, $grade);
+                return $order->getQuantityByProduct($product_id, $grade);
             })
             ->sum();
+    }
+
+    public function totalRemaining($product_id, $grade)
+    {
+        return $this->totalPurchased($product_id, $grade) - $this->totalSold($product_id, $grade);
+    }
+
+    public function totalRemainingActual($product_id, $grade)
+    {
+        return $this->totalRemaining($product_id, $grade) - $this->wastage - $this->promotion;
     }
 }

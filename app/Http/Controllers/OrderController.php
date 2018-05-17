@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Inventory;
 use App\Order;
+use App\Promotion;
 use App\Stock;
 use App\User;
 use Carbon\Carbon;
@@ -117,30 +118,68 @@ class OrderController extends Controller
 
         foreach ($order->products as $product) {
             if ($product->pivot->grade === "A") {
-                $product->quantity_a -= $product->pivot->quantity;
-
-                $inventory = Inventory::where([
+                $inventories = Inventory::where([
                     ['product_id', $product->id],
                     ['grade', $product->pivot->grade],
-                    ['created_at', '>=', Carbon::today()],
-                ])->first();
+                ])->get();
 
-                if (is_null($inventory)) {
-                    $inventory = new Inventory();
-                    $inventory->product_id = $product->id;
-                    $inventory->price_id = $product->priceLatest()->id;
-                    $inventory->grade = $product->pivot->grade;
-                    $inventory->save();
+                if ($inventories->count() > 0) {
+                    // $inventory = new Inventory();
+                    // $inventory->product_id = $product->id;
+                    // $inventory->price_id = $product->priceLatest()->id;
+                    // $inventory->grade = $product->pivot->grade;
+                    // $inventory->save();
 
-                    $inventory->orders()->syncWithoutDetaching([$order->id]);
-                } else {
-                    $inventory->orders()->syncWithoutDetaching([$order->id]);
+                    // $inventory->orders()->syncWithoutDetaching([$order->id]);
+
+                    foreach ($inventories as $inventory) {
+                        if ($inventory->totalRemainingActual() < $product->pivot->quantity) {
+                            continue;
+                        } else {
+                            $product->quantity_a -= $product->pivot->quantity;
+                            $product->save();
+
+                            $inventory->orders()->syncWithoutDetaching([$order->id]);
+                            return response($inventory);
+                        }
+                    }
                 }
-            } else if ($product->pivot->grade === "B") {
-                $product->quantity_b -= $product->pivot->quantity;
-            }
 
-            $product->save();
+                return response()->json([
+                    "message" => "No stock enough/available for $product->name (Grade $product->pivot->grade)",
+                ], 404);
+            } else if ($product->pivot->grade === "B") {
+                $promotions = Promotion::where([
+                    ['product_id', $product->id],
+                ])->get();
+
+                if ($promotions->count() > 0) {
+                    // $inventory = new Inventory();
+                    // $inventory->product_id = $product->id;
+                    // $inventory->price_id = $product->priceLatest()->id;
+                    // $inventory->grade = $product->pivot->grade;
+                    // $inventory->save();
+
+                    // $inventory->orders()->syncWithoutDetaching([$order->id]);
+
+                    foreach ($promotions as $promotion) {
+                        if ($promotion->totalRemaining() < $product->pivot->quantity) {
+                            continue;
+                        } else {
+                            $product->quantity_b -= $product->pivot->quantity;
+                            $product->save();
+
+                            //$promotion->orders()->syncWithoutDetaching([$order->id]);
+                            $promotion->total_sold += $product->pivot->quantity;
+                            return response($promotion);
+                        }
+                    }
+                }
+
+                return response()->json([
+                    "message" => "No remaining promotion enough/available for $product->name (Grade $product->pivot->grade)",
+                ], 404);
+            }
         }
 
         return response($order);

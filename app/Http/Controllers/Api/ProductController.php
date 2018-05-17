@@ -42,7 +42,9 @@ class ProductController extends Controller
     public function getNewProducts(Request $request)
     {
         $products = Product::with("category")
-            ->has('promotions')
+            ->whereHas('promotions', function ($promotion) {
+                $promotion->whereRaw('total_sold < quantity');
+            })
             ->get()
             ->each(function ($product) {
                 $product['price_latest'] = $product->priceLatest();
