@@ -42,7 +42,7 @@ class ProductController extends Controller
         $promo = Promotion::where('product_id',$request->product_id)->first();
 
         if (!$promo) {
-            $promo = new Promo;
+            $promo = new Promotion;
             $promo["quantity"] = 0;
           
 
