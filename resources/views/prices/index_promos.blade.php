@@ -39,6 +39,21 @@
                 <th style="width: 1%;"></th>
               </tr>
             </thead>
+            <tbody>
+              @foreach ($promos as $promo)
+              <tr>
+                <td></td>
+                <td></td>
+                <td>{{promo->product->name}}</td>
+                <td>#{{promo->product->id}}</td>
+                <td><input type="number" id="promo_{{ $promo->product->id}}" class="wastage form-control" value="0" style="min-width: 70px;"
+                      /></td>
+                <td>{{promo->total_sold}}</td>
+                <td></td>
+                <td></td>
+              </tr>
+              @endforeach
+            </tbody>
           </table>
         </div>
       </div>
