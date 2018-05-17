@@ -48,7 +48,7 @@
                 <td>#{{$promo->product["id"]}}</td>
                 <td><input type="number" id='promo_price_{{ $promo->product["id"]}}'  class="promo_price form-control" value='{{ $promo->price}}' /></td>
                 <td>{{$promo->total_sold}}</td>
-                <td><input type="number" id='promo_{{ $promo->product["id"]}}'  class="promo form-control" value="0"/></td>
+                <td><input type="number" id='promo_wastage_{{ $promo->product["id"]}}'  class="promo_wastage form-control" value="0"/></td>
                 <td></td>
               </tr>
               @endforeach
@@ -91,5 +91,34 @@
             }
           });
         });
+
+  $(".promo_wastage").focusout(function () {
+      
+          var data = {
+            product_id:  $(this).attr('id').split("_")[2],
+            promo_wastage: $(this).val(),
+          }
+
+          swal({
+            title: "",
+            text: "Saving....",
+            showConfirmButton: false
+          });
+
+          $.ajax("{{ route('products.update.promowastage') }}", {
+            data: data,
+            dataType: "json",
+            error: (jqXHR, textStatus, errorThrown) => {
+              console.log("x ok")
+              swal.close();
+            },
+            method: "POST",
+            success: (data, textStatus, jqXHR) => {
+              console.log("ok")
+              swal.close();
+            }
+          });
+        });
+
   </script>
 @endsection

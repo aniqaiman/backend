@@ -150,6 +150,7 @@ Route::prefix('products')
         Route::put('demand', 'ProductController@updateDemand')->name('update.demand');
 
         Route::post('wastage', 'ProductController@updateWastage')->name('update.wastage');
+        Route::post('promowastage', 'ProductController@updatePromoWastage')->name('update.promowastage');
 
          Route::post('promo', 'ProductController@updatePromo')->name('update.promo');
           Route::post('promo_price', 'ProductController@updatePromoPrice')->name('update.promo_price');
