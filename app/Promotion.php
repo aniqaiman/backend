@@ -10,6 +10,9 @@ class Promotion extends Model
         'product_id',
         'stock_id',
         'wastage',
+        'price',
+        'buy_at_price',
+        'total_sold'
     ];
 
     public function product()
