@@ -32,12 +32,10 @@
                 <th>SKU#</th>
                 <th>Incoming Date</th>
                 <th>Purchase Price</th>
-                <th>Total Purchased (kg)</th>
-                <th>Order#</th>
-                <th>Supplier</th>
-                <th>Total Sold (kg)</th>
-                <th>Date Sold</th>
-                <th>Remaining Quantity</th>
+                <th>Total Purchased</th>
+                <th>Stock</th>
+                <th>Total Sold</th>
+                <th>Order</th>
                 <th>Remark</th>
                 <th>Wastage (E)</th>
                 <th>Promotion (E)</th>
@@ -48,26 +46,32 @@
             <tbody>
               @foreach ($inventories as $inventory)
               <tr>
-                <td>{{ $inventory->product->name }}</td>
+                <td>
+                  {{ $inventory->product->name }} (Grade {{ $inventory->grade }})
+                </td>
                 <td>{{ $inventory->product->sku }}</td>
                 <td>{{ $inventory->created_at }}</td>
                 <td>
-                  Grade A: {{ $inventory->product->priceValid($inventory->created_at)->seller_price_a }}
-                  <br />Grade B: {{ $inventory->product->priceValid($inventory->created_at)->seller_price_b }}
+                  @if ($inventory->grade === 'A') {{ $inventory->product->priceValid($inventory->created_at)->seller_price_a }} @elseif ($inventory->grade
+                  === 'B') Grade B: {{ $inventory->product->priceValid($inventory->created_at)->seller_price_b }} @endif
                 </td>
-                <td>{{ $inventory->total_purchased }}</td>
                 <td>
-                  @foreach ($inventory->orders as $order) {{ $order->id }} @endforeach
+                  {{ $inventory->totalPurchased($inventory->product->id, $inventory->grade) }} kg
                 </td>
                 <td>
                   <table class="table">
                     <tr>
-                      <th>#</th>
-                      <th>Name</th>
+                      <th>Stock#</th>
+                      <th>Supplier#</th>
+                      <th>Supplier Name</th>
                       <th>Lorry</th>
+                      <th></th>
                     </tr>
                     @foreach ($inventory->stocks as $stock)
                     <tr>
+                      <td>
+                        {{ $stock->id }}
+                      </td>
                       <td>
                         {{ $stock->user->id }}
                       </td>
@@ -77,13 +81,38 @@
                       <td>
                         @if (is_null($stock->driver)) No lorry assigned @else {{ $stock->driver->name }} @endif
                       </td>
+                      <td>
+                        {{ $stock->getQuantityByProduct($inventory->product->id, $inventory->grade) }}
+                      </td>
                     </tr>
                     @endforeach
                   </table>
                 </td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>
+                  {{ $inventory->totalSold($inventory->product->id, $inventory->grade) }} kg
+                </td>
+                <td>
+                  <table class="table">
+                    <tr>
+                      <th>Order#</th>
+                      <th>Date</th>
+                      <th>Remaining</th>
+                    </tr>
+                    @foreach ($inventory->orders as $order)
+                    <tr>
+                      <td>
+                        {{ $order->id }}
+                      </td>
+                      <td>
+                        {{ $order->created_at }}
+                      </td>
+                      <td>
+                        kg
+                      </td>
+                    </tr>
+                    @endforeach
+                  </table>
+                </td>
                 <td></td>
                 <td>
                   <div class="input-group">

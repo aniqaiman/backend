@@ -60,4 +60,14 @@ class Order extends Model
             ->get()
             ->sum('pivot.quantity');
     }
+
+    public function getQuantityByProduct($product_id, $grade)
+    {
+        return $this->products()
+            ->wherePivot('product_id', $product_id)
+            ->wherePivot('grade', $grade)
+            ->first()
+            ->pivot
+            ->quantity;
+    }
 }
