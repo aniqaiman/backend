@@ -146,7 +146,7 @@ class OrderController extends Controller
                 }
 
                 return response()->json([
-                    "message" => "No stock enough/available for $product->name (Grade $product->pivot->grade)",
+                    "message" => "No stock enough/available for $product->name (Grade " . $product->pivot->grade . ")",
                 ], 404);
             } else if ($product->pivot->grade === "B") {
                 $promotions = Promotion::where([
@@ -171,13 +171,14 @@ class OrderController extends Controller
 
                             //$promotion->orders()->syncWithoutDetaching([$order->id]);
                             $promotion->total_sold += $product->pivot->quantity;
+                            $promotion->save();
                             return response($promotion);
                         }
                     }
                 }
 
                 return response()->json([
-                    "message" => "No remaining promotion enough/available for $product->name (Grade $product->pivot->grade)",
+                    "message" => "No remaining promotion enough/available for $product->name (Grade " . $product->pivot->grade . ")",
                 ], 404);
             }
         }
