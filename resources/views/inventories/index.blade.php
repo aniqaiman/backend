@@ -66,7 +66,7 @@
                         <th>Supplier#</th>
                         <th>Supplier Name</th>
                         <th>Lorry</th>
-                        <th></th>
+                        <th>Supply</th>
                       </tr>
                       @foreach ($inventory->stocks as $stock)
                       <tr>
@@ -83,7 +83,7 @@
                           @if (is_null($stock->driver)) No lorry assigned @else {{ $stock->driver->name }} @endif
                         </td>
                         <td>
-                          {{ $stock->getQuantityByProduct($inventory->product->id, $inventory->grade) }}
+                          {{ $stock->getQuantityByProduct($inventory->product->id, $inventory->grade) }} kg
                         </td>
                       </tr>
                       @endforeach
@@ -97,6 +97,7 @@
                       <tr>
                         <th>Order#</th>
                         <th>Date</th>
+                        <th>Sold</th>
                         <th>Remaining</th>
                       </tr>
                       @foreach ($inventory->orders as $order)
@@ -106,6 +107,9 @@
                         </td>
                         <td>
                           {{ $order->created_at }}
+                        </td>
+                        <td>
+                          {{ $order->getQuantityByProduct($inventory->product->id, $inventory->grade) }} kg
                         </td>
                         <td>
                           kg
