@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Inventory;
 use App\Order;
 use App\Stock;
+use App\Wastage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -98,7 +99,8 @@ class InventoryController extends Controller
      */
     public function indexWastages()
     {
-        return view('inventories.index_wastages', []);
+        $wastages = Wastage::all();
+        return view('inventories.index_wastages', compact('wastages'));
     }
 
     /**

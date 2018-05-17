@@ -116,7 +116,7 @@
                 <td></td>
                 <td>
                   <div class="input-group">
-                    <input type="number" class="demand form-control" value="0" style="min-width: 70px;" />
+                    <input type="number" id="wastage_{{ $inventory->product->id}}" class="wastage form-control" value="0" style="min-width: 70px;" />
                     <div class="input-group-addon">kg</div>
                   </div>
                 </td>
@@ -180,7 +180,42 @@
           });
 
         });
+  
+
+
+        $(".wastage").focusout(function () {
+          console.log($(this));
+          console.log($(this).attr('id'));
+          $(this).attr('id').split("_")[1]
+          var data = {
+            product_id:  $(this).attr('id').split("_")[1],
+           // grade: $(this).data('grade'),
+            wastage: $(this).val(),
+          }
+
+          swal({
+            title: "",
+            text: "Saving....",
+            showConfirmButton: false
+          });
+
+          $.ajax("{{ route('products.update.wastage') }}", {
+            data: data,
+            dataType: "json",
+            error: (jqXHR, textStatus, errorThrown) => {
+              console.log("x ok")
+              swal.close();
+            },
+            method: "POST",
+            success: (data, textStatus, jqXHR) => {
+              console.log("ok")
+              swal.close();
+            }
+          });
+
+        });
       });
+     
 
 </script>
 @endsection

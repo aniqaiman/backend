@@ -148,6 +148,8 @@ Route::prefix('products')
         Route::get('fruits/{product_id}/edit', 'FruitController@edit')->name('fruits.edit');
 
         Route::put('demand', 'ProductController@updateDemand')->name('update.demand');
+
+        Route::post('wastage', 'ProductController@updateWastage')->name('update.wastage');
     });
 
 // ------------------------------------------- Inventory ------------------------------------------- //
