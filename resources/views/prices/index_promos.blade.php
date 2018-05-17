@@ -46,7 +46,7 @@
                 <td></td>
                 <td>{{$promo->product["name"]}}</td>
                 <td>#{{$promo->product["id"]}}</td>
-                <td><input type="number" id='promo_price_{{ $promo->product["id"]}}'  class="promo_price form-control" value="0" /></td>
+                <td><input type="number" id='promo_price_{{ $promo->product["id"]}}'  class="promo_price form-control" value='{{ $promo->price}}' /></td>
                 <td>{{$promo->total_sold}}</td>
                 <td><input type="number" id='promo_{{ $promo->product["id"]}}'  class="promo form-control" value="0"/></td>
                 <td></td>
@@ -65,9 +65,7 @@
 @section('script')
 <script>
   $(".promo_price").focusout(function () {
-          console.log($(this));
-          console.log($(this).attr('id'));
-          $(this).attr('id').split("_")[2]
+      
           var data = {
             product_id:  $(this).attr('id').split("_")[2],
             price: $(this).val(),
