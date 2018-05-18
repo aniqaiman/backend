@@ -40,6 +40,8 @@ class OrderController extends Controller
         $order_active = isset($_GET['buyer']) ? "active" : "";
         $stock_active = isset($_GET['seller']) ? "active" : "";
 
+        $order_active = !isset($_GET['buyer']) && !isset($_GET['seller']) ? "active" : "";
+
         return view('orders.receipts', compact('orders', 'stocks', 'order_active', 'stock_active'));
     }
 
@@ -59,6 +61,8 @@ class OrderController extends Controller
         $order_active = isset($_GET['buyer']) ? "active" : "";
         $stock_active = isset($_GET['seller']) ? "active" : "";
 
+        $order_active = !isset($_GET['buyer']) && !isset($_GET['seller']) ? "active" : "";
+
         return view('orders.trackings', compact('orders', 'stocks', 'order_active', 'stock_active', 'drivers'));
     }
 
@@ -74,6 +78,8 @@ class OrderController extends Controller
 
         $order_active = isset($_GET['buyer']) ? "active" : "";
         $stock_active = isset($_GET['seller']) ? "active" : "";
+
+        $order_active = !isset($_GET['buyer']) && !isset($_GET['seller']) ? "active" : "";
 
         return view('orders.rejects', compact('orders', 'stocks', 'order_active', 'stock_active'));
     }
