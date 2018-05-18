@@ -147,7 +147,6 @@
                   <th>Feedback Description</th>
                   <th>Feedback Response</th>
                   <th class="text-center" style="width: 1%;">Status</th>
-                  <th style="width: 1%;"></th>
                 </tr>
               </thead>
 
@@ -170,9 +169,6 @@
                   <td>
                     <span class="label label-danger">Rejected</span>
                   </td>
-                  <td class="text-center">
-                    <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
-                  </td>
                 </tr>
                 @endforeach
               </tbody>
@@ -194,7 +190,6 @@
                   <th>Feedback Description</th>
                   <th>Feedback Response</th>
                   <th class="text-center" style="width: 1%;">Status</th>
-                  <th style="width: 1%;"></th>
                 </tr>
               </thead>
 
@@ -216,9 +211,6 @@
                   </td>
                   <td>
                     <span class="label label-danger">Rejected</span>
-                  </td>
-                  <td class="text-center">
-                    <button class="btn btn-primary btn-sm" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
                   </td>
                 </tr>
                 @endforeach
@@ -252,46 +244,6 @@
     });
 
   });
-
-  function approveBuyerOrder(btn) {
-    var data = {
-      id: $(btn).data('id'),
-      status: $(btn).data('status')
-    }
-
-    $(btn).prop('disabled', true);
-    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
-
-    $.ajax("{{ route('orders.update.status.buyers.approve') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        window.location.href = window.location.href;
-      }
-    });
-  }
-
-  function approveSellerStock(btn) {
-    var data = {
-      id: $(btn).data('id'),
-      status: $(btn).data('status')
-    }
-
-    $(btn).prop('disabled', true);
-    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
-
-    $.ajax("{{ route('orders.update.status.sellers.approve') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        window.location.href = window.location.href;
-      }
-    });
-  }
 
 </script>
 @endsection
