@@ -18,7 +18,7 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        $inventories = Inventory::with('product', 'price', 'orders', 'stocks')->get();
+        $inventories = Inventory::with('product', 'price', 'orders', 'stocks')->orderBy('created_at', 'desc')->get();
         return view('inventories.index', compact('inventories'));
     }
 

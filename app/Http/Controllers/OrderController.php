@@ -113,7 +113,7 @@ class OrderController extends Controller
     public function updateApproveBuyerOrder(Request $request)
     {
         $order = Order::find($request->id);
-     
+
         foreach ($order->products as $product) {
             if ($product->pivot->grade === "A") {
                 $inventories = Inventory::where([
@@ -122,14 +122,6 @@ class OrderController extends Controller
                 ])->get();
 
                 if ($inventories->count() > 0) {
-                    // $inventory = new Inventory();
-                    // $inventory->product_id = $product->id;
-                    // $inventory->price_id = $product->priceLatest()->id;
-                    // $inventory->grade = $product->pivot->grade;
-                    // $inventory->save();
-
-                    // $inventory->orders()->syncWithoutDetaching([$order->id]);
-
                     foreach ($inventories as $inventory) {
                         if ($inventory->totalRemainingActual($product->id, $product->pivot->grade) < $product->pivot->quantity) {
                             continue;
@@ -141,7 +133,7 @@ class OrderController extends Controller
 
                             $order->status = 1;
                             $order->save();
-                    
+
                             return response($inventory);
                         }
                     }
@@ -156,14 +148,6 @@ class OrderController extends Controller
                 ])->get();
 
                 if ($promotions->count() > 0) {
-                    // $inventory = new Inventory();
-                    // $inventory->product_id = $product->id;
-                    // $inventory->price_id = $product->priceLatest()->id;
-                    // $inventory->grade = $product->pivot->grade;
-                    // $inventory->save();
-
-                    // $inventory->orders()->syncWithoutDetaching([$order->id]);
-
                     foreach ($promotions as $promotion) {
                         if ($promotion->totalRemaining() < $product->pivot->quantity) {
                             continue;
@@ -177,7 +161,7 @@ class OrderController extends Controller
 
                             $order->status = 1;
                             $order->save();
-                    
+
                             return response($promotion);
                         }
                     }
@@ -195,13 +179,9 @@ class OrderController extends Controller
     public function updateApproveSellerStock(Request $request)
     {
         $stock = Stock::find($request->id);
-        $stock->status = 1;
-        $stock->save();
 
         foreach ($stock->products as $product) {
             if ($product->pivot->grade === "A") {
-                $product->quantity_a += $product->pivot->quantity;
-
                 $inventory = Inventory::where([
                     ['product_id', $product->id],
                     ['grade', $product->pivot->grade],
@@ -219,12 +199,17 @@ class OrderController extends Controller
                 } else {
                     $inventory->stocks()->syncWithoutDetaching([$stock->id]);
                 }
+
+                $product->quantity_a += $product->pivot->quantity;
             } else if ($product->pivot->grade === "B") {
                 $product->quantity_b += $product->pivot->quantity;
             }
 
             $product->save();
         }
+
+        $stock->status = 1;
+        $stock->save();
 
         return response($stock);
     }
