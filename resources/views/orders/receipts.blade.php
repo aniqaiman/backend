@@ -294,9 +294,7 @@
       data: data,
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
+        swal("Review Needed", jqXHR.responseJSON.message, "error");
       },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
