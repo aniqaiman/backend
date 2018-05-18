@@ -83,7 +83,7 @@
                                 <td>RM {{$product["buying_yest_price_a"]}}</td>
                                 <td>RM {{$product["selling_yest_price_b"]}}</td>
                                 <td>RM {{$product["buying_yest_price_a"]}}</td>
-                                <td>RM {{$product["difference"]}}</td>
+                                <td>RM </td>
                                 <td></td>
                             </tr>
                             @endforeach
