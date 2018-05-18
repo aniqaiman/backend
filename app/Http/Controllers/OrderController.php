@@ -92,7 +92,12 @@ class OrderController extends Controller
         $stocks = Stock::orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'seller');
 
-        return view('orders.transactions', compact('orders', 'stocks'));
+        $order_active = isset($_GET['buyer']) ? "active" : "";
+        $stock_active = isset($_GET['seller']) ? "active" : "";
+
+        $order_active = !isset($_GET['buyer']) && !isset($_GET['seller']) ? "active" : "";
+
+        return view('orders.transactions', compact('orders', 'stocks', 'order_active', 'stock_active'));
     }
 
     public function indexLorries()
