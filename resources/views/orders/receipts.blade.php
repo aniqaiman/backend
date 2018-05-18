@@ -293,7 +293,11 @@
     $.ajax("{{ route('orders.update.status.buyers.approve') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+      },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;
