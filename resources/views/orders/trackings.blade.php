@@ -1,12 +1,8 @@
-@extends('layout.master')
+@extends('layout.master') 
 @section('style')
 @endsection
-
-@section('content')
-
-
-
-@foreach($orders as $order)
+ 
+@section('content') @foreach($orders as $order)
 <div class="modal fade" id="order_{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $order->id }}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -32,16 +28,13 @@
               <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
               <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade) 
-                  @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break
-                  @case("B") RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
+                RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
               </td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade) 
-                  @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"], 2) }} @break
-                  @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"], 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"],
+                2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"],
+                2) }} @break @endswitch
               </td>
             </tr>
             @endforeach
@@ -51,10 +44,8 @@
       <div class="modal-footer">
         <span class="pull-left">
           @if ($order->status === 1)
-          <span class="label label-warning">Pending</span>
-          @elseif ($order->status === 3)
-          <span class="label label-success">Completed</span>
-          @endif
+          <span class="label label-warning">Pending</span> @elseif ($order->status === 3)
+        <span class="label label-success">Completed</span> @endif
         </span>
         <h3 class="pull-right">
           Total:
@@ -64,9 +55,7 @@
     </div>
   </div>
 </div>
-@endforeach
-
-@foreach($stocks as $stock)
+@endforeach @foreach($stocks as $stock)
 <div class="modal fade" id="stock_{{ $stock->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $stock->id }}">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -92,16 +81,13 @@
               <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
               <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade) 
-                  @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break
-                  @case("B") RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
+                RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
               </td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade) 
-                  @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"], 2) }} @break
-                  @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"], 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"],
+                2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"],
+                2) }} @break @endswitch
               </td>
             </tr>
             @endforeach
@@ -111,10 +97,8 @@
       <div class="modal-footer">
         <span class="pull-left">
           @if ($stock->status === 1)
-          <span class="label label-warning">Pending</span>
-          @elseif ($stock->status === 3)
-          <span class="label label-success">Completed</span>
-          @endif
+          <span class="label label-warning">Pending</span> @elseif ($stock->status === 3)
+        <span class="label label-success">Completed</span> @endif
         </span>
         <h3 class="pull-right">
           Total:
@@ -145,191 +129,166 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success">
-        <div class="box-header">
-          <h3 class="box-title">Buyer</h3>
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#tab_1" data-toggle="tab">Buyer</a>
+          </li>
+          <li>
+            <a href="#tab_2" data-toggle="tab">Supplier</a>
+          </li>
+        </ul>
+        <div class="tab-content clearfix">
+          <div class="tab-pane active" id="tab_1">
+            <table class="table table-bordered" id="order-table">
+              <thead>
+                <tr class="bg-black">
+                  <th>Date</th>
+                  <th>Order#</th>
+                  <th class="text-nowrap">Buyer Name</th>
+                  <th>Buyer#</th>
+                  <th>Location</th>
+                  <th class="text-nowrap">Lorry Assigned</th>
+                  <th class="text-center" style="width: 1%;">Status</th>
+                  <th style="width: 1%;"></th>
+                </tr>
+              </thead>
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-              <i class="fa fa-minus"></i>
-            </button>
-          </div>
-        </div>
-        <div class="box-body">
-          <table class="table table-bordered" id="order-table">
-            <thead>
-              <tr class="bg-black">
-                <th>Date</th>
-                <th>Order#</th>
-                <th class="text-nowrap">Buyer Name</th>
-                <th>Buyer#</th>
-                <th>Location</th>
-                <th class="text-nowrap">Lorry Assigned</th>
-                <th class="text-center" style="width: 1%;">Status</th>
-                <th style="width: 1%;"></th>
-              </tr>
-            </thead>
+              <tbody>
+                @foreach($orders as $order)
+                <tr>
+                  <td>{{ $order->created_at }}</td>
+                  <td>
+                    <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">
+                      {{ $order->id }}
+                    </a>
+                  </td>
+                  <td>{{ $order->user->name }}</td>
+                  <td>{{ $order->user->id }}</td>
+                  <td>
+                    {{ $order->user->address }}
+                    <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
+                      <i class="fa fa-map-marker"></i>
+                    </a>
+                  </td>
+                  <td>
 
-            <tbody>
-              @foreach($orders as $order)
-              <tr>
-                <td>{{ $order->created_at }}</td>
-                <td>
-                  <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">
-                    {{ $order->id }}
-                  </a>
-                </td>
-                <td>{{ $order->user->name }}</td>
-                <td>{{ $order->user->id }}</td>
-                <td>
-                  {{ $order->user->address }}
-                  <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
-                    <i class="fa fa-map-marker"></i>
-                  </a>
-                </td>
-                <td>
-                  
-                    
+
                     <select class="driver_drop" id="lorry_select_{{$order->id}}">
                       <option value="0">No driver selected</option>
                       @foreach($drivers as $driver)
-               
-                        <option value="{{$driver->id}}" 
-                          @if ($driver->id == $order->lorry_id)
-                        selected="selected"
-                        @endif
 
-                          >{{$driver->name}}</option>
-                    @endforeach
+                      <option value="{{$driver->id}}" @if ($driver->id == $order->lorry_id) selected="selected" @endif >{{$driver->name}}
+
+                      </option>
+                      @endforeach
                     </select>
- 
-                </td>
-                <td class="text-center">
-                  @if ($order->status === 1)
-                  <span class="label label-warning">Pending</span>
-                  @elseif ($order->status === 3)
-                  <span class="label label-success">Completed</span>
-                  @endif
-                </td>
-                <td class="text-center">
-                  @if ($order->status === 1)
-                  <div class="btn-group-vertical btn-group-sm">
-                    <button class="btn btn-success" data-id="{{ $order->id }}" data-type="order" onclick="completeOrderStock(this)">Completed</button>
-                    <button class="btn btn-warning" disabled>Pending</button>
-                  </div>
-                  @elseif ($order->status === 3)
-                  <div class="btn-group-vertical btn-group-sm">
-                    <button class="btn btn-success" disabled>Completed</button>
-                    <button class="btn btn-warning" data-id="{{ $order->id }}" data-type="order" onclick="pendingOrderStock(this)">Pending</button>
-                  </div>
-                  @endif
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
 
-          <div class="pull-right">
-            {{ $orders->links() }}
+                  </td>
+                  <td class="text-center">
+                    @if ($order->status === 1)
+                    <span class="label label-warning">Pending</span> @elseif ($order->status === 3)
+                    <span class="label label-success">Completed</span> @endif
+                  </td>
+                  <td class="text-center">
+                    @if ($order->status === 1)
+                    <div class="btn-group-vertical btn-group-sm">
+                      <button class="btn btn-success" data-id="{{ $order->id }}" data-type="order" onclick="completeOrderStock(this)">Completed</button>
+                      <button class="btn btn-warning" disabled>Pending</button>
+                    </div>
+                    @elseif ($order->status === 3)
+                    <div class="btn-group-vertical btn-group-sm">
+                      <button class="btn btn-success" disabled>Completed</button>
+                      <button class="btn btn-warning" data-id="{{ $order->id }}" data-type="order" onclick="pendingOrderStock(this)">Pending</button>
+                    </div>
+                    @endif
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+
+            <div class="pull-right">
+              {{ $orders->links() }}
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.box -->
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="box box-success">
-        <div class="box-header">
-          <h3 class="box-title">Supplier</h3>
+          <div class="tab-pane" id="tab_2">
+            <table class="table table-bordered" id="stock-table">
+              <thead>
+                <tr class="bg-black">
+                  <th>Date</th>
+                  <th>Order#</th>
+                  <th class="text-nowrap">Supplier Name</th>
+                  <th>Supplier#</th>
+                  <th>Location</th>
+                  <th class="text-nowrap">Lorry Assigned</th>
+                  <th class="text-center" style="width: 1%;">Status</th>
+                  <th style="width: 1%;"></th>
+                </tr>
+              </thead>
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-              <i class="fa fa-minus"></i>
-            </button>
-          </div>
-        </div>
-        <div class="box-body">
-          <table class="table table-bordered" id="stock-table">
-            <thead>
-              <tr class="bg-black">
-                <th>Date</th>
-                <th>Order#</th>
-                <th class="text-nowrap">Supplier Name</th>
-                <th>Supplier#</th>
-                <th>Location</th>
-                <th class="text-nowrap">Lorry Assigned</th>
-                <th class="text-center" style="width: 1%;">Status</th>
-                <th style="width: 1%;"></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              @foreach($stocks as $stock)
-              <tr>
-                <td>{{ $stock->created_at }}</td>
-                <td>
-                  <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">
-                    {{ $stock->id }}
-                  </a>
-                </td>
-                <td>{{ $stock->user->name }}</td>
-                <td>{{ $stock->user->id }}</td>
-                <td>
-                  {{ $stock->user->address }}
-                  <a href="https://www.google.com/maps/search/?api=1&query={{ $stock->user->latitude }},{{ $stock->user->longitude }}" target="_blank">
-                    <i class="fa fa-map-marker"></i>
-                  </a>
-                </td>
-                <td>
-                  <select class="driver_drop_seller" id="lorry_selller_{{$stock->id}}">
+              <tbody>
+                @foreach($stocks as $stock)
+                <tr>
+                  <td>{{ $stock->created_at }}</td>
+                  <td>
+                    <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">
+                      {{ $stock->id }}
+                    </a>
+                  </td>
+                  <td>{{ $stock->user->name }}</td>
+                  <td>{{ $stock->user->id }}</td>
+                  <td>
+                    {{ $stock->user->address }}
+                    <a href="https://www.google.com/maps/search/?api=1&query={{ $stock->user->latitude }},{{ $stock->user->longitude }}" target="_blank">
+                      <i class="fa fa-map-marker"></i>
+                    </a>
+                  </td>
+                  <td>
+                    <select class="driver_drop_seller" id="lorry_selller_{{$stock->id}}">
                       <option value="0">No driver selected</option>
                       @foreach($drivers as $driver)
-               
-                        <option value="{{$driver->id}}" 
-                          @if ($driver->id == $stock->lorry_id)
-                        selected="selected"
-                        @endif
 
-                          >{{$driver->name}}</option>
-                    @endforeach
+                      <option value="{{$driver->id}}" @if ($driver->id == $stock->lorry_id) selected="selected" @endif >{{$driver->name}}
+
+                      </option>
+                      @endforeach
                     </select>
-                </td>
-                <td class="text-center">
-                  @if ($stock->status === 1)
-                  <span class="label label-warning">Pending</span>
-                  @elseif ($stock->status === 3)
-                  <span class="label label-success">Completed</span>
-                  @endif
-                </td>
-                <td class="text-center">
-                  @if ($stock->status === 1)
-                  <div class="btn-group-vertical btn-group-sm">
-                    <button class="btn btn-success" data-id="{{ $stock->id }}" data-type="stock" onclick="completeOrderStock(this)">Completed</button>
-                    <button class="btn btn-warning" disabled>Pending</button>
-                  </div>
-                  @elseif ($stock->status === 3)
-                  <div class="btn-group-vertical btn-group-sm">
-                    <button class="btn btn-success" disabled>Completed</button>
-                    <button class="btn btn-warning" data-id="{{ $stock->id }}" data-type="stock" onclick="pendingOrderStock(this)">Pending</button>
-                  </div>
-                  @endif
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
+                  </td>
+                  <td class="text-center">
+                    @if ($stock->status === 1)
+                    <span class="label label-warning">Pending</span> @elseif ($stock->status === 3)
+                    <span class="label label-success">Completed</span> @endif
+                  </td>
+                  <td class="text-center">
+                    @if ($stock->status === 1)
+                    <div class="btn-group-vertical btn-group-sm">
+                      <button class="btn btn-success" data-id="{{ $stock->id }}" data-type="stock" onclick="completeOrderStock(this)">Completed</button>
+                      <button class="btn btn-warning" disabled>Pending</button>
+                    </div>
+                    @elseif ($stock->status === 3)
+                    <div class="btn-group-vertical btn-group-sm">
+                      <button class="btn btn-success" disabled>Completed</button>
+                      <button class="btn btn-warning" data-id="{{ $stock->id }}" data-type="stock" onclick="pendingOrderStock(this)">Pending</button>
+                    </div>
+                    @endif
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
 
-          <div class="pull-right">
-            {{ $stocks->links() }}
+            <div class="pull-right">
+              {{ $stocks->links() }}
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- /.box -->
   </div>
 </section>
-@endsection 
+@endsection
+ 
 @section('script')
 <script>
   $(document).ready(function () {
@@ -348,8 +307,8 @@
     });
   });
 
-  $('.driver_drop_seller').change(function(){
-     console.log($(this).val());
+  $('.driver_drop_seller').change(function () {
+    console.log($(this).val());
     console.log($(this).attr('id'))
     var orderId = ($(this).attr('id')).split("_")[2];
     console.log(orderId)
@@ -359,13 +318,13 @@
       lorry_id: $(this).val()
     }
 
-swal({
-        title: "",
-        text: "Assigning....",
-        showConfirmButton: false
+    swal({
+      title: "",
+      text: "Assigning....",
+      showConfirmButton: false
     });
-       
-   
+
+
     $.ajax("{{ route('stocks.lorry.assign') }}", {
       data: data,
       dataType: "json",
@@ -378,7 +337,7 @@ swal({
     });
 
   })
-  $('.driver_drop').change(function(){
+  $('.driver_drop').change(function () {
     console.log($(this).val());
     console.log($(this).attr('id'))
     var orderId = ($(this).attr('id')).split("_")[2];
@@ -389,13 +348,13 @@ swal({
       lorry_id: $(this).val()
     }
 
-swal({
-        title: "",
-        text: "Assigning....",
-        showConfirmButton: false
+    swal({
+      title: "",
+      text: "Assigning....",
+      showConfirmButton: false
     });
-       
-   
+
+
     $.ajax("{{ route('orders.lorry.assign') }}", {
       data: data,
       dataType: "json",
@@ -409,6 +368,7 @@ swal({
 
 
   })
+
   function completeOrderStock(btn) {
     var data = {
       id: $(btn).data('id'),
