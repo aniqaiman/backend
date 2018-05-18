@@ -195,7 +195,7 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-header">
-          <h3 class="box-title">Seller</h3>
+          <h3 class="box-title">Supplier</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -208,8 +208,8 @@
               <tr class="bg-black">
                 <th>Date</th>
                 <th>Stock#</th>
-                <th class="text-nowrap">Seller Name</th>
-                <th>Seller#</th>
+                <th class="text-nowrap">Supplier Name</th>
+                <th>Supplier#</th>
                 <th>Feedback Topic</th>
                 <th>Feedback Description</th>
                 <th>Feedback Response</th>

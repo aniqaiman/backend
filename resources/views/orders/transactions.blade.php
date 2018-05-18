@@ -206,7 +206,7 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-header">
-          <h3 class="box-title">Seller</h3>
+          <h3 class="box-title">Supplier</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -220,8 +220,8 @@
               <tr class="bg-black">
                 <th>Date</th>
                 <th>Stock#</th>
-                <th>Seller#</th>
-                <th>Seller Name</th>
+                <th>Supplier#</th>
+                <th>Supplier Name</th>
                 <th>Total Price</th>
                 <th>Lorry</th>
               </tr>

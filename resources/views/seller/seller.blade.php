@@ -147,7 +147,7 @@
                    <thead>
 
                     <tr class="bg-black">
-                      <!-- <th class="mailbox-star"><center><a href="#">Seller ID</a></center></th> -->
+                      <!-- <th class="mailbox-star"><center><a href="#">Supplier ID</a></center></th> -->
                       <!-- <th class="mailbox-star"><center><a href="#">Owner Name</a></center></th> -->
                       <th class="mailbox-star"><center>Company Name</center></th>
                       <!-- <th class="mailbox-star"><center><a href="#">Registration Number</a></center></th> -->

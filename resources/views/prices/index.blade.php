@@ -39,13 +39,13 @@
                                 <th rowspan="2" style="width: 1%;"></th>
                             </tr>
                             <tr class="bg-black">
-                                <th class="text-center">Seller Price (Grade A)</th>
+                                <th class="text-center">Supplier Price (Grade A)</th>
                                 <th class="text-center">Buyer Price (Grade A)</th>
-                                <th class="text-center">Seller Price (Grade B)</th>
+                                <th class="text-center">Supplier Price (Grade B)</th>
                                 <th class="text-center">Buyer Price (Grade B)</th>
-                                <th class="text-center">Seller Price (Grade A)</th>
+                                <th class="text-center">Supplier Price (Grade A)</th>
                                 <th class="text-center">Buyer Price (Grade A)</th>
-                                <th class="text-center">Seller Price (Grade B)</th>
+                                <th class="text-center">Supplier Price (Grade B)</th>
                                 <th class="text-center">Buyer Price (Grade B)</th>
                             </tr>
                         </thead>

@@ -11,7 +11,7 @@
       <div class="modal-body">
         <div id="spinner">
             <i class="fa fa-spinner fa-spin"></i>
-            Fetching seller details...
+            Fetching supplier details...
         </div>
         <dl id="ud" class="hidden">
           <dt>Owner Name</dt>
@@ -64,7 +64,7 @@
 <section class="content-header">
   <h1>
     User Management
-    <small>Sellers</small>
+    <small>Suppliers</small>
   </h1>
 
   <ol class="breadcrumb">
@@ -76,7 +76,7 @@
     <li>
       <a href="#">User Management</a>
     </li>
-    <li class="active">Sellers</li>
+    <li class="active">Suppliers</li>
   </ol>
 </section>
 
@@ -88,8 +88,8 @@
           <table class="table table-bordered" id="seller-table" style="width:100%">
             <thead>
               <tr class="bg-black">
-                <th>Seller Name</th>
-                <th>Seller#</th>
+                <th>Supplier Name</th>
+                <th>Supplier#</th>
                 <th>Supplied Products</th>
                 <th>Date Registered</th>
                 <th>Location</th>
@@ -189,7 +189,7 @@
       ud.toggleClass('hidden', true);
 
       var modal = $(this);
-      modal.find('#exampleModalLabel').text('Seller Details | ' + id);
+      modal.find('#exampleModalLabel').text('Supplier Details | ' + id);
       modal.find('#feedback-id').val(id);
 
       $.ajax(url.replace("xxx", id), {

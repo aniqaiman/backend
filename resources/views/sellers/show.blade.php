@@ -14,7 +14,7 @@
       </div>
       <div class="modal-body">
         <div id="spinner">
-          <i class="fa fa-spinner fa-spin"></i> Fetching seller details...
+          <i class="fa fa-spinner fa-spin"></i> Fetching supplier details...
         </div>
         <dl id="ud" class="hidden">
           <dt>Owner Name</dt>
@@ -65,7 +65,7 @@
 
 <section class="content-header">
   <h1>
-    Seller Farm
+    Supplier Farm
     <small>Dashboard</small>
   </h1>
 
@@ -79,7 +79,7 @@
       <a href="#">User Management</a>
     </li>
     <li>
-      <a href="{{ route('users.sellers.index') }}">Sellers</a>
+      <a href="{{ route('users.sellers.index') }}">Suppliers</a>
     </li>
     <li class="active">Dashboard</li>
   </ol>
@@ -185,7 +185,7 @@
       ud.toggleClass('hidden', true);
 
       var modal = $(this);
-      modal.find('#exampleModalLabel').text('Seller Details | ' + id);
+      modal.find('#exampleModalLabel').text('Supplier Details | ' + id);
       modal.find('#feedback-id').val(id);
 
       $.ajax(url.replace("xxx", id), {

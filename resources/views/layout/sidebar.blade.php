@@ -155,7 +155,7 @@
           </a>
         <ul class="treeview-menu">
           <li><a href="{{ route('users.drivers.index') }}"><i class="fa fa-circle-o"></i>Manage Lorries</a></li>
-          <li><a href="{{ route('users.sellers.index') }}"><i class="fa fa-circle-o"></i>Manage Sellers</a></li>
+          <li><a href="{{ route('users.sellers.index') }}"><i class="fa fa-circle-o"></i>Manage Suppliers</a></li>
           <li><a href="{{ route('users.buyers.index') }}"><i class="fa fa-circle-o"></i>Manage Buyers</a></li>
         </ul>
       </li>

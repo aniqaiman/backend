@@ -53,92 +53,173 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success">
-        <div class="box-header">
-          <h3 class="box-title">Buyer</h3>
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#tab_1" data-toggle="tab">
+              Buyer
+              <span class="badge bg-light-blue">{{ $orders->total() }}</span>
+            </a>
+          </li>
+          <li>
+            <a href="#tab_2" data-toggle="tab">
+              Supplier
+              <span class="badge bg-light-blue">{{ $stocks->total() }}</span>
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_1">
+            <table class="table table-bordered" id="order-table" style="width:100%">
+              <thead>
+                <tr class="bg-black">
+                  <th>Date</th>
+                  <th>Order#</th>
+                  <th>Buyer Name</th>
+                  <th>Buyer#</th>
+                  <th>Location</th>
+                  <th>Items</th>
+                  <th class="text-center" style="width: 1%;">Status</th>
+                  <th style="width: 1%;"></th>
+                </tr>
+              </thead>
 
-          <div class="box-tools pull-right">
-            <span class="badge bg-light-blue">{{ $orders->total() }}</span>
-            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-              <i class="fa fa-minus"></i>
-            </button>
+              <tbody>
+                @foreach($orders as $order)
+                <tr id="order_{{ $order->id }}">
+                  <td>{{ $order->created_at }}</td>
+                  <td>{{ $order->id }}</td>
+                  <td>{{ $order->user->name }}</td>
+                  <td>{{ $order->user->id }}</td>
+                  <td>
+                    {{ $order->user->address }}
+                    <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
+                      <i class="fa fa-map-marker"></i>
+                    </a>
+                  </td>
+                  <td nowrap>
+                    <div class="lead">
+                      <span class="label label-default">{{ $order->totalQuantity() }}kg</span>
+                      <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
+                    </div>
+                    <table class="table">
+                      @foreach ($order->products as $product)
+                      <tr>
+                        <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
+                        <td>{{ $product->pivot->quantity }}kg</td>
+                        <td>
+                          @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
+                          RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
+                        </td>
+                        <td>
+                          @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"],
+                          2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"],
+                          2) }} @break @endswitch
+                        </td>
+                      </tr>
+                      @endforeach
+                    </table>
+                  </td>
+                  <td class="text-center">
+                    <div class="label label-default">Submitted</div>
+                  </td>
+                  <td>
+                    {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'text-center')) }} {{ Form::hidden('_method', 'DELETE') }}
+                    <div class="btn-group-vertical btn-group-sm">
+                      <button type="button" class="btn btn-primary" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
+                      <button type="button" class="btn btn-danger" data-id="{{ $order->id }}" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
+                      <a class="btn btn-info" href="{{ route('orders.edit', ['order_id'=> $order->order_id]) }}">Edit</a>{{
+                      Form::submit('Delete', ['class' => 'btn btn-warning']) }}
+                    </div>
+                    {{ Form::close() }}
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+
+            <div class="pull-right">
+              {{ $orders->links() }}
+            </div>
+          </div>
+          <!-- /.tab-pane -->
+          <div class="tab-pane" id="tab_2">
+            <table class="table table-bordered" id="stock-table" style="width:100%">
+              <thead>
+                <tr class="bg-black">
+                  <th>Date</th>
+                  <th>Stock#</th>
+                  <th class="text-nowrap">Supplier Name</th>
+                  <th>Supplier#</th>
+                  <th>Location</th>
+                  <th nowrap>Items</th>
+                  <th class="text-center" style="width: 1%;">Status</th>
+                  <th style="width: 1%;"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                @foreach($stocks as $stock)
+                <tr id="stock_{{ $stock->id }}">
+                  <td>{{ $stock->created_at }}</td>
+                  <td>{{ $stock->id }}</td>
+                  <td>{{ $stock->user->name }}</td>
+                  <td>{{ $stock->user->id }}</td>
+                  <td>
+                    {{ $stock->user->address }}
+                    <a href="https://www.google.com/maps/search/?api=1&query={{ $stock->user->latitude }},{{ $stock->user->longitude }}" target="_blank">
+                      <i class="fa fa-map-marker"></i>
+                    </a>
+                  </td>
+                  <td>
+                    <div class="lead">
+                      <span class="label label-default">{{ $stock->totalQuantity() }}kg</span>
+                      <span class="label label-default">RM {{ number_format($stock->totalPrice(), 2) }}</span>
+                    </div>
+                    <table class="table">
+                      @foreach ($stock->products as $product)
+                      <tr>
+                        <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
+                        <td>{{ $product->pivot->quantity }}kg</td>
+                        <td>
+                          @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
+                          RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
+                        </td>
+                        <td>
+                          @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"],
+                          2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"],
+                          2) }} @break @endswitch
+                        </td>
+                      </tr>
+                      @endforeach
+                    </table>
+                  </td>
+                  <td class="text-center">
+                    <div class="label label-default">Submitted</div>
+                  </td>
+                  <td>
+                    {{ Form::open(array('url' => 'orders/' . $stock->id, 'class' => 'text-center')) }} {{ Form::hidden('_method', 'DELETE') }}
+                    <div class="btn-group-vertical btn-group-sm">
+                      <button type="button" class="btn btn-primary" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
+                      <button type="button" class="btn btn-danger" data-id="{{ $stock->id }}" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
+                      <a class="btn btn-info" href="{{ route('orders.edit', ['order_id'=> $stock->stock_id]) }}">Edit</a>{{
+                      Form::submit('Delete', ['class' => 'btn btn-warning']) }}
+                    </div>
+                    {{ Form::close() }}
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+
+            <div class="pull-right">
+              {{ $stocks->links() }}
+            </div>
           </div>
         </div>
-        <div class="box-body">
-          <table class="table table-bordered" id="order-table" style="width:100%">
-            <thead>
-              <tr class="bg-black">
-                <th>Date</th>
-                <th>Order#</th>
-                <th>Buyer Name</th>
-                <th>Buyer#</th>
-                <th>Location</th>
-                <th>Items</th>
-                <th class="text-center" style="width: 1%;">Status</th>
-                <th style="width: 1%;"></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              @foreach($orders as $order)
-              <tr id="order_{{ $order->id }}">
-                <td>{{ $order->created_at }}</td>
-                <td>{{ $order->id }}</td>
-                <td>{{ $order->user->name }}</td>
-                <td>{{ $order->user->id }}</td>
-                <td>
-                  {{ $order->user->address }}
-                  <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
-                    <i class="fa fa-map-marker"></i>
-                  </a>
-                </td>
-                <td nowrap>
-                  <div class="lead">
-                    <span class="label label-default">{{ $order->totalQuantity() }}kg</span>
-                    <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
-                  </div>
-                  <table class="table">
-                    @foreach ($order->products as $product)
-                    <tr>
-                      <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
-                      <td>{{ $product->pivot->quantity }}kg</td>
-                      <td>
-                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
-                        RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
-                      </td>
-                      <td>
-                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"],
-                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"],
-                        2) }} @break @endswitch
-                      </td>
-                    </tr>
-                    @endforeach
-                  </table>
-                </td>
-                <td class="text-center">
-                  <div class="label label-default">Submitted</div>
-                </td>
-                <td>
-                  {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'text-center')) }} {{ Form::hidden('_method', 'DELETE') }}
-                  <div class="btn-group-vertical btn-group-sm">
-                    <button type="button" class="btn btn-primary" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
-                    <button type="button" class="btn btn-danger" data-id="{{ $order->id }}" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
-                    <a class="btn btn-info" href="{{ route('orders.edit', ['order_id'=> $order->order_id]) }}">Edit</a>{{
-                    Form::submit('Delete', ['class' => 'btn btn-warning']) }}
-                  </div>
-                  {{ Form::close() }}
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-
-          <div class="pull-right">
-            {{ $orders->links() }}
-          </div>
-        </div>
+        <!-- /.tab-pane -->
       </div>
-      <!-- /.box -->
+      <!-- /.tab-content -->
     </div>
   </div>
 
@@ -146,7 +227,7 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-header">
-          <h3 class="box-title">Seller</h3>
+          <h3 class="box-title">Supplier</h3>
 
           <div class="box-tools pull-right">
             <span class="badge bg-light-blue">{{ $stocks->total() }}</span>
@@ -156,77 +237,6 @@
           </div>
         </div>
         <div class="box-body">
-          <table class="table table-bordered" id="stock-table" style="width:100%">
-            <thead>
-              <tr class="bg-black">
-                <th>Date</th>
-                <th>Stock#</th>
-                <th class="text-nowrap">Seller Name</th>
-                <th>Seller#</th>
-                <th>Location</th>
-                <th nowrap>Items</th>
-                <th class="text-center" style="width: 1%;">Status</th>
-                <th style="width: 1%;"></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              @foreach($stocks as $stock)
-              <tr id="stock_{{ $stock->id }}">
-                <td>{{ $stock->created_at }}</td>
-                <td>{{ $stock->id }}</td>
-                <td>{{ $stock->user->name }}</td>
-                <td>{{ $stock->user->id }}</td>
-                <td>
-                  {{ $stock->user->address }}
-                  <a href="https://www.google.com/maps/search/?api=1&query={{ $stock->user->latitude }},{{ $stock->user->longitude }}" target="_blank">
-                    <i class="fa fa-map-marker"></i>
-                  </a>
-                </td>
-                <td>
-                  <div class="lead">
-                    <span class="label label-default">{{ $stock->totalQuantity() }}kg</span>
-                    <span class="label label-default">RM {{ number_format($stock->totalPrice(), 2) }}</span>
-                  </div>
-                  <table class="table">
-                    @foreach ($stock->products as $product)
-                    <tr>
-                      <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
-                      <td>{{ $product->pivot->quantity }}kg</td>
-                      <td>
-                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
-                        RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
-                      </td>
-                      <td>
-                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"],
-                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"],
-                        2) }} @break @endswitch
-                      </td>
-                    </tr>
-                    @endforeach
-                  </table>
-                </td>
-                <td class="text-center">
-                  <div class="label label-default">Submitted</div>
-                </td>
-                <td>
-                  {{ Form::open(array('url' => 'orders/' . $stock->id, 'class' => 'text-center')) }} {{ Form::hidden('_method', 'DELETE') }}
-                  <div class="btn-group-vertical btn-group-sm">
-                    <button type="button" class="btn btn-primary" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
-                    <button type="button" class="btn btn-danger" data-id="{{ $stock->id }}" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
-                    <a class="btn btn-info" href="{{ route('orders.edit', ['order_id'=> $stock->stock_id]) }}">Edit</a>{{
-                    Form::submit('Delete', ['class' => 'btn btn-warning']) }}
-                  </div>
-                  {{ Form::close() }}
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-
-          <div class="pull-right">
-            {{ $stocks->links() }}
-          </div>
         </div>
       </div>
       <!-- /.box -->
