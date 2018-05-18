@@ -28,16 +28,13 @@
               <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
               <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade)
-                  @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break
-                  @case("B") RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
+                RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
               </td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade)
-                  @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"], 2) }} @break
-                  @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"], 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"],
+                2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"],
+                2) }} @break @endswitch
               </td>
             </tr>
             @endforeach
@@ -82,16 +79,13 @@
               <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
               <td class="text-center" nowrap>{{ $product->pivot->quantity }} kg</td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade)
-                  @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break
-                  @case("B") RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
+                RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
               </td>
               <td class="text-center" nowrap>
-                @switch($product->pivot->grade)
-                  @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"], 2) }} @break
-                  @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"], 2) }} @break
-                @endswitch
+                @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"],
+                2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"],
+                2) }} @break @endswitch
               </td>
             </tr>
             @endforeach
@@ -131,127 +125,113 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success">
-        <div class="box-header">
-          <h3 class="box-title">Buyer</h3>
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#tab_1" data-toggle="tab">Buyer</a>
+          </li>
+          <li>
+            <a href="#tab_2" data-toggle="tab">Supplier</a>
+          </li>
+        </ul>
+        <div class="tab-content clearfix">
+          <div class="tab-pane active" id="tab_1">
+            <table class="table table-bordered" id="order-table" style="width:100%">
+              <thead>
+                <tr class="bg-black">
+                  <th>Date</th>
+                  <th>Order#</th>
+                  <th class="text-nowrap">Buyer Name</th>
+                  <th>Buyer#</th>
+                  <th>Feedback Topic</th>
+                  <th>Feedback Description</th>
+                  <th>Feedback Response</th>
+                  <th class="text-center" style="width: 1%;">Status</th>
+                  <th style="width: 1%;"></th>
+                </tr>
+              </thead>
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-            </button>
+              <tbody>
+                @foreach($orders as $order)
+                <tr>
+                  <td>{{ $order->created_at }}</td>
+                  <td>
+                    <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">
+                      {{ $order->id }}
+                    </a>
+                  </td>
+                  <td>{{ $order->user->name }}</td>
+                  <td>{{ $order->user->id }}</td>
+                  <td>{{ $order->feedback_topic }}</td>
+                  <td>{{ $order->feedback_description }}</td>
+                  <td>
+                    @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
+                  </td>
+                  <td>
+                    <span class="label label-danger">Rejected</span>
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+
+            <div class="pull-right">
+              {{ $orders->links() }}
+            </div>
           </div>
-        </div>
-        <div class="box-body">
-          <table class="table table-bordered" id="order-table" style="width:100%">
-            <thead>
-              <tr class="bg-black">
-                <th>Date</th>
-                <th>Order#</th>
-                <th class="text-nowrap">Buyer Name</th>
-                <th>Buyer#</th>
-                <th>Feedback Topic</th>
-                <th>Feedback Description</th>
-                <th>Feedback Response</th>
-                <th class="text-center" style="width: 1%;">Status</th>
-                <th style="width: 1%;"></th>
-              </tr>
-            </thead>
+          <div class="tab-pane" id="tab_2">
+            <table class="table table-bordered" id="stock-table" style="width:100%">
+              <thead>
+                <tr class="bg-black">
+                  <th>Date</th>
+                  <th>Stock#</th>
+                  <th class="text-nowrap">Supplier Name</th>
+                  <th>Supplier#</th>
+                  <th>Feedback Topic</th>
+                  <th>Feedback Description</th>
+                  <th>Feedback Response</th>
+                  <th class="text-center" style="width: 1%;">Status</th>
+                  <th style="width: 1%;"></th>
+                </tr>
+              </thead>
 
-            <tbody>
-              @foreach($orders as $order)
-              <tr>
-                <td>{{ $order->created_at }}</td>
-                <td>
-                  <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">
-                    {{ $order->id }}
-                  </a>
-                </td>
-                <td>{{ $order->user->name }}</td>
-                <td>{{ $order->user->id }}</td>
-                <td>{{ $order->feedback_topic }}</td>
-                <td>{{ $order->feedback_description }}</td>
-                <td>
-                  @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
-                </td>
-                <td>
-                  <span class="label label-danger">Rejected</span>
-                </td>
-                <td class="text-center">
-                  <button class="btn btn-primary btn-sm" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
+              <tbody>
+                @foreach($stocks as $stock)
+                <tr>
+                  <td>{{ $stock->created_at }}</td>
+                  <td>
+                    <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">
+                      {{ $stock->id }}
+                    </a>
+                  </td>
+                  <td>{{ $stock->user->name }}</td>
+                  <td>{{ $stock->user->id }}</td>
+                  <td>{{ $stock->feedback_topic }}</td>
+                  <td>{{ $stock->feedback_description }}</td>
+                  <td>
+                    @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
+                  </td>
+                  <td>
+                    <span class="label label-danger">Rejected</span>
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-primary btn-sm" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
 
-          <div class="pull-right">
-            {{ $orders->links() }}
-          </div>
-        </div>
-      </div>
-      <!-- /.box -->
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="box box-success">
-        <div class="box-header">
-          <h3 class="box-title">Supplier</h3>
-
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-            </button>
-          </div>
-        </div>
-        <div class="box-body">
-          <table class="table table-bordered" id="stock-table" style="width:100%">
-            <thead>
-              <tr class="bg-black">
-                <th>Date</th>
-                <th>Stock#</th>
-                <th class="text-nowrap">Supplier Name</th>
-                <th>Supplier#</th>
-                <th>Feedback Topic</th>
-                <th>Feedback Description</th>
-                <th>Feedback Response</th>
-                <th class="text-center" style="width: 1%;">Status</th>
-                <th style="width: 1%;"></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              @foreach($stocks as $stock)
-              <tr>
-                <td>{{ $stock->created_at }}</td>
-                <td>
-                  <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">
-                    {{ $stock->id }}
-                  </a>
-                </td>
-                <td>{{ $stock->user->name }}</td>
-                <td>{{ $stock->user->id }}</td>
-                <td>{{ $stock->feedback_topic }}</td>
-                <td>{{ $stock->feedback_description }}</td>
-                <td>
-                  @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
-                </td>
-                <td>
-                  <span class="label label-danger">Rejected</span>
-                </td>
-                <td class="text-center">
-                  <button class="btn btn-primary btn-sm" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-
-          <div class="pull-right">
-            {{ $stocks->links() }}
+            <div class="pull-right">
+              {{ $stocks->links() }}
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- /.box -->
   </div>
 </section>
 @endsection
