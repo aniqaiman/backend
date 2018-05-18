@@ -92,6 +92,7 @@
                 <th>Date Registered</th>
                 <th>Location</th>
                 <th>Contact (H/P &amp; Email)</th>
+                <th class="text-center">Status</th>
                 <th style="width: 1%;"></th>
               </tr>
             </thead>
@@ -150,6 +151,20 @@
                   <a href="tel:{{ $buyer->mobile_number }}">{{ $buyer->mobile_number }}</a>
                   <br /> E-Mail:
                   <a href="tel:{{ $buyer->email }}">{{ $buyer->email }}</a>
+                </td>
+                <td class="text-center">
+                  E-Mail:
+                  @if ($seller->status_email === 1)
+                  <span class="label label-success">Verified</span>
+                  @else
+                  <span class="label label-danger">Unverified</span> 
+                  @endif
+                  <br /> Account:
+                  @if ($seller->status_account === 1)
+                  <span class="label label-success">Activated</span> 
+                  @else
+                  <span class="label label-danger">Deactivated</span> 
+                  @endif
                 </td>
                 <td class="text-center">
                   @if ($buyer->status_account === 0)

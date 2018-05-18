@@ -159,18 +159,21 @@
                   @endif
                   <br /> Account:
                   @if ($seller->status_account === 1)
-                  <span class="label label-danger">Deactivated</span> 
-                  @else
                   <span class="label label-success">Activated</span> 
+                  @else
+                  <span class="label label-danger">Deactivated</span> 
                   @endif
                 </td>
                 <td class="text-center">
                   <div class="btn-group-vertical btn-group-sm">
-                    <a href="{{ route('users.sellers.show', [$seller->id]) }}" class="btn btn-primary">View</a> @if ($seller->status_account === 0)
+                    <a href="{{ route('users.sellers.show', [$seller->id]) }}" class="btn btn-primary">View</a>
+                    @if ($seller->status_account === 0)
                     <button class="btn btn-success" data-id="{{ $seller->id }}" onclick="activateUser(this)">Activate</button>
-                    <button class="btn btn-warning" disabled>Deactivate</button> @elseif ($seller->status_account === 1)
+                    <button class="btn btn-warning" disabled>Deactivate</button>
+                    @elseif ($seller->status_account === 1)
                     <button class="btn btn-success" disabled>Activate</button>
-                    <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>                    @endif
+                    <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>
+                    @endif
                   </div>
                 </td>
               </tr>
