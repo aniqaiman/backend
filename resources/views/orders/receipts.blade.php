@@ -68,7 +68,7 @@
             </a>
           </li>
         </ul>
-        <div class="tab-content">
+        <div class="tab-content clearfix">
           <div class="tab-pane active" id="tab_1">
             <table class="table table-bordered" id="order-table" style="width:100%">
               <thead>
