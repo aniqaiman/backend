@@ -115,6 +115,8 @@ class OrderController extends Controller
         $order = Order::find($request->id);
 
         foreach ($order->products as $product) {
+            $inStock = false;
+
             if ($product->pivot->grade === "A") {
                 $inventories = Inventory::where([
                     ['product_id', $product->id],
@@ -126,22 +128,19 @@ class OrderController extends Controller
                         if ($inventory->totalRemainingActual($product->id, $product->pivot->grade) < $product->pivot->quantity) {
                             continue;
                         } else {
+                            $inStock = true;
                             $product->quantity_a -= $product->pivot->quantity;
-                            $product->save();
-
-                            $inventory->orders()->syncWithoutDetaching([$order->id]);
-
                             $order->status = 1;
-                            $order->save();
-
-                            return response($inventory);
+                            $inventory->orders()->syncWithoutDetaching([$order->id]);
                         }
                     }
                 }
 
-                return response()->json([
-                    "message" => "No stock enough/available for $product->name (Grade " . $product->pivot->grade . ")",
-                ], 404);
+                if (!$inStock) {
+                    return response()->json([
+                        "message" => "No stock enough/available for $product->name (Grade " . $product->pivot->grade . ")",
+                    ], 404);
+                }
             } else if ($product->pivot->grade === "B") {
                 $promotions = Promotion::where([
                     ['product_id', $product->id],
@@ -152,27 +151,29 @@ class OrderController extends Controller
                         if ($promotion->totalRemaining() < $product->pivot->quantity) {
                             continue;
                         } else {
+                            $inStock = true;
                             $product->quantity_b -= $product->pivot->quantity;
-                            $product->save();
+                            $order->status = 1;
 
                             //$promotion->orders()->syncWithoutDetaching([$order->id]);
                             $promotion->total_sold += $product->pivot->quantity;
                             $promotion->save();
 
-                            $order->status = 1;
-                            $order->save();
-
-                            return response($promotion);
                         }
                     }
                 }
 
-                return response()->json([
-                    "message" => "No remaining promotion enough/available for $product->name (Grade " . $product->pivot->grade . ")",
-                ], 404);
+                if (!$inStock) {
+                    return response()->json([
+                        "message" => "No remaining promotion enough/available for $product->name (Grade " . $product->pivot->grade . ")",
+                    ], 404);
+                }
             }
+
+            $product->save();
         }
 
+        $order->save();
         return response($order);
     }
 
