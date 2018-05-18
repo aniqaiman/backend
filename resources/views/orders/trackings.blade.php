@@ -131,15 +131,15 @@
     <div class="col-md-12">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active">
+          <li class="{{ $order_active }}">
             <a href="#tab_1" data-toggle="tab">Buyer</a>
           </li>
-          <li>
+          <li class="{{ $stock_active }}">
             <a href="#tab_2" data-toggle="tab">Supplier</a>
           </li>
         </ul>
         <div class="tab-content clearfix">
-          <div class="tab-pane active" id="tab_1">
+          <div class="tab-pane {{ $order_active }}" id="tab_1">
             <table class="table table-bordered" id="order-table">
               <thead>
                 <tr class="bg-black">
@@ -212,7 +212,7 @@
               {{ $orders->links() }}
             </div>
           </div>
-          <div class="tab-pane" id="tab_2">
+          <div class="tab-pane {{ $stock_active }}" id="tab_2">
             <table class="table table-bordered" id="stock-table">
               <thead>
                 <tr class="bg-black">

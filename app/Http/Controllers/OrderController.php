@@ -37,7 +37,10 @@ class OrderController extends Controller
         $stocks = Stock::where('status', 0)
             ->paginate(10, ['*'], 'seller');
 
-        return view('orders.receipts', compact('orders', 'stocks'));
+        $order_active = isset($_GET['buyer']) ? "active" : "";
+        $stock_active = isset($_GET['seller']) ? "active" : "";
+
+        return view('orders.receipts', compact('orders', 'stocks', 'order_active', 'stock_active'));
     }
 
     public function indexOrderTrackings()
@@ -53,7 +56,10 @@ class OrderController extends Controller
         $drivers = User::where('group_id', 31)
             ->get();
 
-        return view('orders.trackings', compact('orders', 'stocks', 'drivers'));
+        $order_active = isset($_GET['buyer']) ? "active" : "";
+        $stock_active = isset($_GET['seller']) ? "active" : "";
+
+        return view('orders.trackings', compact('orders', 'stocks', 'order_active', 'stock_active', 'drivers'));
     }
 
     public function indexOrderRejects()
@@ -66,7 +72,10 @@ class OrderController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'seller');
 
-        return view('orders.rejects', compact('orders', 'stocks'));
+        $order_active = isset($_GET['buyer']) ? "active" : "";
+        $stock_active = isset($_GET['seller']) ? "active" : "";
+
+        return view('orders.rejects', compact('orders', 'stocks', 'order_active', 'stock_active'));
     }
 
     public function indexOrderTransactions()
