@@ -30,7 +30,7 @@
               <thead>
                 <tr class="bg-black">
                   <th>Item</th>
-                  <th>SKU#</th>
+                  <th>Product#</th>
                   <th>Incoming Date</th>
                   <th>Purchase Price</th>
                   <th>Total Purchased</th>
@@ -51,7 +51,7 @@
                   <td>
                     {{ $inventory->product->name }} (Grade {{ $inventory->grade }})
                   </td>
-                  <td>{{ $inventory->product->sku }}</td>
+                  <td>{{ $inventory->product->id }}</td>
                   <td>{{ $inventory->created_at }}</td>
                   <td>
                     @if ($inventory->grade === 'A') {{ $inventory->product->priceValid($inventory->created_at)->seller_price_a }} @elseif ($inventory->grade

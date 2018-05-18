@@ -32,7 +32,7 @@
                 <th>Date</th>
                 <th>Order#</th>
                 <th>Item</th>
-                <th>SKU#</th>
+                <th>Product#</th>
                 <th>Storage Wastage<br />(from Inventory Mgmt)</th>
                 <th>Promo Wastage<br />(from Promo Price Mgmt)</th>
                 <th>Total Wastage</th>

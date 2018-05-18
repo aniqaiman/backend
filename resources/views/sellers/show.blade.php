@@ -124,7 +124,7 @@
             <thead>
               <tr class="bg-black">
                 <th rowspan="2">Item</th>
-                <th rowspan="2">SKU#</th>
+                <th rowspan="2">Product#</th>
                 <th colspan="2">Harvesting period</th>
                 <th rowspan="2">Harvest Frequency</th>
                 <th rowspan="2">Total plants</th>
@@ -139,7 +139,7 @@
               @foreach($products as $product)
               <tr>
                 <td>{{ $product->name }}</td>
-                <td>{{ $product->sku }}</td>
+                <td>{{ $product->id }}</td>
                 <td>
                   <input type="date" class="harvesting_period_start form-control" />
                 </td>

@@ -32,7 +32,7 @@
                         <thead>
                             <tr class="bg-black">
                                 <th rowspan="2">Item</th>
-                                <th rowspan="2">SKU#</th>
+                                <th rowspan="2">Product#</th>
                                 <th colspan="4" class="text-center">Today</th>
                                 <th colspan="4" class="text-center">Yesterday</th>
                                 <th rowspan="2" class="text-center">% Price drop / increase from Yesterday</th>

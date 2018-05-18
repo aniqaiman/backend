@@ -106,7 +106,7 @@
                     <tr class="bg-black">
                       <th class="mailbox-star"><center>Date</center></th>
                       <th class="mailbox-star"><center>Item</center></th>
-                      <th class="mailbox-star"><center>SKU#</center></th>
+                      <th class="mailbox-star"><center>Product#</center></th>
                       <th class="mailbox-star"><center>Quantity</center></th>
                       <th class="mailbox-star"><center>Pick Up Location</center></th>
                       <th class="mailbox-star"><center>Supplier Name</center></th>

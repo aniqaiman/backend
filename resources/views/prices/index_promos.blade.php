@@ -31,7 +31,7 @@
                 <th>Date</th>
                 <th>Order#</th>
                 <th>Item</th>
-                <th>SKU#</th>
+                <th>Product#</th>
                 <th>Price (We Input)</th>
                 <th>Total Sold</th>
                 <th>Promo Wastage</th>

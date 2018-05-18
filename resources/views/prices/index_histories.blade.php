@@ -30,7 +30,7 @@
               <tr class="bg-black">
                 <th>Date</th>
                 <th>Item</th>
-                <th>SKU#</th>
+                <th>Product#</th>
                 <th>Buyer Price (Grade A)</th>
                 <th>Supplier Price (Grade A)</th>
                 <th>Buyer Price (Grade B)</th>
@@ -43,7 +43,7 @@
               <tr>
                 <td>{{$price->date_price}}</td>
                 <td>{{$price->product->name}}</td>
-                <td></td>
+                <td>{{$price->product->id}}</td>
                 <td>{{$price->buyer_price_a}}</td>
                 <td>{{$price->Supplier_price_a}}</td>
                 <td>{{$price->buyer_price_b}}</td>

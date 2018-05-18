@@ -12,7 +12,6 @@ class Product extends Model
         'description',
         'short_description',
         'image',
-        'sku',
         'category_id',
         'quantity_a',
         'quantity_b',
