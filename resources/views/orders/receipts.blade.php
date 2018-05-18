@@ -142,7 +142,6 @@
               {{ $orders->links() }}
             </div>
           </div>
-          <!-- /.tab-pane -->
           <div class="tab-pane" id="tab_2">
             <table class="table table-bordered" id="stock-table" style="width:100%">
               <thead>
@@ -217,29 +216,7 @@
             </div>
           </div>
         </div>
-        <!-- /.tab-pane -->
       </div>
-      <!-- /.tab-content -->
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="box box-success">
-        <div class="box-header">
-          <h3 class="box-title">Supplier</h3>
-
-          <div class="box-tools pull-right">
-            <span class="badge bg-light-blue">{{ $stocks->total() }}</span>
-            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-              <i class="fa fa-minus"></i>
-            </button>
-          </div>
-        </div>
-        <div class="box-body">
-        </div>
-      </div>
-      <!-- /.box -->
     </div>
   </div>
 </section>
