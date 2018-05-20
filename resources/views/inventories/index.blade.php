@@ -11,8 +11,8 @@
   <ol class="breadcrumb">
     <li>
       <a href="{{ route('dashboard') }}">
-        <i class="fa fa-dashboard"></i> Dashboard
-      </a>
+          <i class="fa fa-dashboard"></i> Dashboard
+        </a>
     </li>
     <li>
       <a href="#">Inventories Management</a>
@@ -25,6 +25,20 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-body">
+          <form method="get">
+            <div class="input-group">
+              <span class="input-group-btn">
+                <a class="btn btn-default" href="{{ route('inventories.index') }}">Show All</a>
+              </span>
+              <input type="text" class="form-control" id="filter_date">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">
+                  <i class="fa fa-search"></i>
+                  Filter
+                </button>
+              </span>
+            </div>
+          </form>
           <div class="table-responsive">
             <table class="table table-bordered" id="buyer-table" style="width:100%">
               <thead>
@@ -52,10 +66,10 @@
                     {{ $inventory->product->name }} (Grade {{ $inventory->grade }})
                   </td>
                   <td>{{ $inventory->product->id }}</td>
-                  <td>{{ $inventory->created_at }}</td>
+                  <td>{{ Carbon\Carbon::parse($inventory->created_at)->format('d/m/Y') }}</td>
                   <td>
-                    @if ($inventory->grade === 'A') {{ $inventory->product->priceValid($inventory->created_at)->seller_price_a }} @elseif ($inventory->grade
-                    === 'B') Grade B: {{ $inventory->product->priceValid($inventory->created_at)->seller_price_b }} @endif
+                    @if ($inventory->grade === 'A') {{ $inventory->product->priceValid($inventory->created_at)->seller_price_a }} @if ($inventory->grade
+                    === 'B') {{ $inventory->product->priceValid($inventory->created_at)->seller_price_b }} @endif
                   </td>
                   <td>
                     {{ $inventory->totalPurchased($inventory->product->id, $inventory->grade) }} kg
@@ -121,14 +135,14 @@
                   <td></td>
                   <td>
                     <div class="input-group">
-                      <input type="number" id="wastage_{{ $inventory->product->id}}" class="wastage form-control" value="0" style="min-width: 70px;"
+                      <input type="number" id="wastage_{{ $inventory->product->id }}" class="wastage form-control" value="0" style="min-width: 70px;"
                       />
                       <div class="input-group-addon">kg</div>
                     </div>
                   </td>
                   <td>
                     <div class="input-group">
-                      <input type="number" class="promo form-control" promo id="promo_{{ $inventory->product->id}}" value="0" style="min-width: 70px;"
+                      <input type="number" class="promo form-control" promo id="promo_{{ $inventory->product->id }}" value="0" style="min-width: 70px;"
                       />
                       <div class="input-group-addon">kg</div>
                     </div>
@@ -137,10 +151,10 @@
                     <div class="input-group">
                       @if ($inventory->grade === 'A')
                       <input type="number" class="demand form-control" data-id="{{ $inventory->product_id }}" data-grade="{{ $inventory->grade }}"
-                        value="{{ $inventory->product->demand_a }}" style="min-width: 70px;" />
-                      @elseif ($inventory->grade === 'B')
+                        value="{{ $inventory->product->demand_a }}" style="min-width: 70px;" /> @elseif
+                      ($inventory->grade === 'B')
                       <input type="number" class="demand form-control" data-id="{{ $inventory->product_id }}" data-grade="{{ $inventory->grade }}"
-                        value="{{ $inventory->product->demand_b }}" style="min-width: 70px;" />
+                        value="{{ $inventory->product->demand_b }}" style="min-width: 70px;" /> @else
                       @endif
                       <div class="input-group-addon">kg</div>
                     </div>
@@ -165,7 +179,7 @@
 
         $(".demand").focusout(function () {
           console.log($(this));
-          
+
           var data = {
             id: $(this).data('id'),
             grade: $(this).data('grade'),
@@ -193,16 +207,14 @@
           });
 
         });
-  
-
 
         $(".wastage").focusout(function () {
           console.log($(this));
           console.log($(this).attr('id'));
           $(this).attr('id').split("_")[1]
           var data = {
-            product_id:  $(this).attr('id').split("_")[1],
-           // grade: $(this).data('grade'),
+            product_id: $(this).attr('id').split("_")[1],
+            // grade: $(this).data('grade'),
             wastage: $(this).val(),
           }
 
@@ -229,37 +241,37 @@
         });
       });
 
-  $(".promo").focusout(function () {
-          console.log($(this));
-          console.log($(this).attr('id'));
-          $(this).attr('id').split("_")[1]
-          var data = {
-            product_id:  $(this).attr('id').split("_")[1],
-           // grade: $(this).data('grade'),
-            quantity: $(this).val(),
-          }
+      $(".promo").focusout(function () {
+        console.log($(this));
+        console.log($(this).attr('id'));
+        $(this).attr('id').split("_")[1]
+        var data = {
+          product_id: $(this).attr('id').split("_")[1],
+          // grade: $(this).data('grade'),
+          quantity: $(this).val(),
+        }
 
-          swal({
-            title: "",
-            text: "Saving....",
-            showConfirmButton: false
-          });
-
-          $.ajax("{{ route('products.update.promo') }}", {
-            data: data,
-            dataType: "json",
-            error: (jqXHR, textStatus, errorThrown) => {
-              console.log("x ok")
-              swal.close();
-            },
-            method: "POST",
-            success: (data, textStatus, jqXHR) => {
-              console.log("ok")
-              swal.close();
-            }
-          });
-
+        swal({
+          title: "",
+          text: "Saving....",
+          showConfirmButton: false
         });
+
+        $.ajax("{{ route('products.update.promo') }}", {
+          data: data,
+          dataType: "json",
+          error: (jqXHR, textStatus, errorThrown) => {
+            console.log("x ok")
+            swal.close();
+          },
+          method: "POST",
+          success: (data, textStatus, jqXHR) => {
+            console.log("ok")
+            swal.close();
+          }
+        });
+
+      });
 
 </script>
 @endsection

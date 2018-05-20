@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Inventory;
-use App\Order;
-use App\Stock;
 use App\Wastage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class InventoryController extends Controller
 {
@@ -16,9 +13,18 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($request)
     {
-        $inventories = Inventory::with('product', 'price', 'orders', 'stocks')->orderBy('created_at', 'desc')->get();
+        if ($request->has('filter_date')) {
+            $inventories = Inventory::with('product', 'price', 'orders', 'stocks')
+                ->whereDate('created_at', '>=', $request->input('filter_date'))
+                ->orderBy('created_at', 'desc')
+                ->get();
+        } else {
+            $inventories = Inventory::with('product', 'price', 'orders', 'stocks')
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
         return view('inventories.index', compact('inventories'));
     }
 
