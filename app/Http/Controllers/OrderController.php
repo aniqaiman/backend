@@ -218,6 +218,8 @@ class OrderController extends Controller
                             $product->quantity_a -= $product->pivot->quantity;
                             $order->status = 1;
                             $inventory->orders()->syncWithoutDetaching([$order->id]);
+
+                            break;
                         }
                     }
                 }
@@ -237,6 +239,8 @@ class OrderController extends Controller
                             //$promotion->orders()->syncWithoutDetaching([$order->id]);
                             $promotion->total_sold += $product->pivot->quantity;
                             $promotion->save();
+                            
+                            break;
                         }
                     }
                 }
