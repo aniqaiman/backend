@@ -41,7 +41,7 @@
             <tbody>
               @foreach($prices as $price)
               <tr>
-                <td>{{ $price->date_price->format('d/m/Y') }}</td>
+                <td>{{ Carbon\Carbon::parse($price->date_price)->format('d/m/Y') }}</td>
                 <td>{{ $price->product->name }}</td>
                 <td>{{ $price->product->id }}</td>
                 <td>{{ $price->buyer_price_a }}</td>
