@@ -140,144 +140,146 @@
         </ul>
         <div class="tab-content clearfix">
           <div class="tab-pane {{ $order_active }}" id="tab_1">
-            <table class="table table-bordered" id="order-table">
-              <thead>
-                <tr class="bg-black">
-                  <th>Date</th>
-                  <th>Order#</th>
-                  <th class="text-nowrap">Buyer Name</th>
-                  <th>Buyer#</th>
-                  <th>Location</th>
-                  <th class="text-nowrap">Lorry Assigned</th>
-                  <th class="text-center" style="width: 1%;">Status</th>
-                  <th style="width: 1%;"></th>
-                </tr>
-              </thead>
+            <div class="table-responsive">
+              <table class="table table-bordered" id="order-table">
+                <thead>
+                  <tr class="bg-black">
+                    <th>Date</th>
+                    <th>Order#</th>
+                    <th class="text-nowrap">Buyer Name</th>
+                    <th>Buyer#</th>
+                    <th>Location</th>
+                    <th class="text-nowrap">Lorry Assigned</th>
+                    <th class="text-center" style="width: 1%;">Status</th>
+                    <th style="width: 1%;"></th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                @foreach($orders as $order)
-                <tr>
-                  <td>{{ $order->created_at }}</td>
-                  <td>
-                    <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">
-                      {{ $order->id }}
-                    </a>
-                  </td>
-                  <td>{{ $order->user->name }}</td>
-                  <td>{{ $order->user->id }}</td>
-                  <td>
-                    {{ $order->user->address }}
-                    <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
-                      <i class="fa fa-map-marker"></i>
-                    </a>
-                  </td>
-                  <td>
+                <tbody>
+                  @foreach($orders as $order)
+                  <tr>
+                    <td>{{ $order->created_at }}</td>
+                    <td>
+                      <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">
+                        {{ $order->id }}
+                      </a>
+                    </td>
+                    <td>{{ $order->user->name }}</td>
+                    <td>{{ $order->user->id }}</td>
+                    <td>
+                      {{ $order->user->address }}
+                      <a href="https://www.google.com/maps/search/?api=1&query={{ $order->user->latitude }},{{ $order->user->longitude }}" target="_blank">
+                        <i class="fa fa-map-marker"></i>
+                      </a>
+                    </td>
+                    <td>
 
 
-                    <select class="driver_drop" id="lorry_select_{{$order->id}}">
-                      <option value="0">No driver selected</option>
-                      @foreach($drivers as $driver)
+                      <select class="driver_drop" id="lorry_select_{{$order->id}}">
+                        <option value="0">No driver selected</option>
+                        @foreach($drivers as $driver)
 
-                      <option value="{{$driver->id}}" @if ($driver->id == $order->lorry_id) selected="selected" @endif >{{$driver->name}}
+                        <option value="{{$driver->id}}" @if ($driver->id == $order->lorry_id) selected="selected" @endif >{{$driver->name}}
 
-                      </option>
-                      @endforeach
-                    </select>
+                        </option>
+                        @endforeach
+                      </select>
 
-                  </td>
-                  <td class="text-center">
-                    @if ($order->status === 1)
-                    <span class="label label-warning">Pending</span> @elseif ($order->status === 3)
-                    <span class="label label-success">Completed</span> @endif
-                  </td>
-                  <td class="text-center">
-                    @if ($order->status === 1)
-                    <div class="btn-group-vertical btn-group-sm">
-                      <button class="btn btn-success" data-id="{{ $order->id }}" data-type="order" onclick="completeOrderStock(this)">Completed</button>
-                      <button class="btn btn-warning" disabled>Pending</button>
-                    </div>
-                    @elseif ($order->status === 3)
-                    <div class="btn-group-vertical btn-group-sm">
-                      <button class="btn btn-success" disabled>Completed</button>
-                      <button class="btn btn-warning" data-id="{{ $order->id }}" data-type="order" onclick="pendingOrderStock(this)">Pending</button>
-                    </div>
-                    @endif
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-
+                    </td>
+                    <td class="text-center">
+                      @if ($order->status === 1)
+                      <span class="label label-warning">Pending</span> @elseif ($order->status === 3)
+                      <span class="label label-success">Completed</span> @endif
+                    </td>
+                    <td class="text-center">
+                      @if ($order->status === 1)
+                      <div class="btn-group-vertical btn-group-sm">
+                        <button class="btn btn-success" data-id="{{ $order->id }}" data-type="order" onclick="completeOrderStock(this)">Completed</button>
+                        <button class="btn btn-warning" disabled>Pending</button>
+                      </div>
+                      @elseif ($order->status === 3)
+                      <div class="btn-group-vertical btn-group-sm">
+                        <button class="btn btn-success" disabled>Completed</button>
+                        <button class="btn btn-warning" data-id="{{ $order->id }}" data-type="order" onclick="pendingOrderStock(this)">Pending</button>
+                      </div>
+                      @endif
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
             <div class="pull-right">
               {{ $orders->links() }}
             </div>
           </div>
           <div class="tab-pane {{ $stock_active }}" id="tab_2">
-            <table class="table table-bordered" id="stock-table">
-              <thead>
-                <tr class="bg-black">
-                  <th>Date</th>
-                  <th>Order#</th>
-                  <th class="text-nowrap">Supplier Name</th>
-                  <th>Supplier#</th>
-                  <th>Location</th>
-                  <th class="text-nowrap">Lorry Assigned</th>
-                  <th class="text-center" style="width: 1%;">Status</th>
-                  <th style="width: 1%;"></th>
-                </tr>
-              </thead>
+            <div class="table-responsive">
+              <table class="table table-bordered" id="stock-table">
+                <thead>
+                  <tr class="bg-black">
+                    <th>Date</th>
+                    <th>Order#</th>
+                    <th class="text-nowrap">Supplier Name</th>
+                    <th>Supplier#</th>
+                    <th>Location</th>
+                    <th class="text-nowrap">Lorry Assigned</th>
+                    <th class="text-center" style="width: 1%;">Status</th>
+                    <th style="width: 1%;"></th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                @foreach($stocks as $stock)
-                <tr>
-                  <td>{{ $stock->created_at }}</td>
-                  <td>
-                    <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">
-                      {{ $stock->id }}
-                    </a>
-                  </td>
-                  <td>{{ $stock->user->name }}</td>
-                  <td>{{ $stock->user->id }}</td>
-                  <td>
-                    {{ $stock->user->address }}
-                    <a href="https://www.google.com/maps/search/?api=1&query={{ $stock->user->latitude }},{{ $stock->user->longitude }}" target="_blank">
-                      <i class="fa fa-map-marker"></i>
-                    </a>
-                  </td>
-                  <td>
-                    <select class="driver_drop_seller" id="lorry_selller_{{$stock->id}}">
-                      <option value="0">No driver selected</option>
-                      @foreach($drivers as $driver)
+                <tbody>
+                  @foreach($stocks as $stock)
+                  <tr>
+                    <td>{{ $stock->created_at }}</td>
+                    <td>
+                      <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">
+                        {{ $stock->id }}
+                      </a>
+                    </td>
+                    <td>{{ $stock->user->name }}</td>
+                    <td>{{ $stock->user->id }}</td>
+                    <td>
+                      {{ $stock->user->address }}
+                      <a href="https://www.google.com/maps/search/?api=1&query={{ $stock->user->latitude }},{{ $stock->user->longitude }}" target="_blank">
+                        <i class="fa fa-map-marker"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <select class="driver_drop_seller" id="lorry_selller_{{$stock->id}}">
+                        <option value="0">No driver selected</option>
+                        @foreach($drivers as $driver)
 
-                      <option value="{{$driver->id}}" @if ($driver->id == $stock->lorry_id) selected="selected" @endif >{{$driver->name}}
+                        <option value="{{$driver->id}}" @if ($driver->id == $stock->lorry_id) selected="selected" @endif >{{$driver->name}}
 
-                      </option>
-                      @endforeach
-                    </select>
-                  </td>
-                  <td class="text-center">
-                    @if ($stock->status === 1)
-                    <span class="label label-warning">Pending</span> @elseif ($stock->status === 3)
-                    <span class="label label-success">Completed</span> @endif
-                  </td>
-                  <td class="text-center">
-                    @if ($stock->status === 1)
-                    <div class="btn-group-vertical btn-group-sm">
-                      <button class="btn btn-success" data-id="{{ $stock->id }}" data-type="stock" onclick="completeOrderStock(this)">Completed</button>
-                      <button class="btn btn-warning" disabled>Pending</button>
-                    </div>
-                    @elseif ($stock->status === 3)
-                    <div class="btn-group-vertical btn-group-sm">
-                      <button class="btn btn-success" disabled>Completed</button>
-                      <button class="btn btn-warning" data-id="{{ $stock->id }}" data-type="stock" onclick="pendingOrderStock(this)">Pending</button>
-                    </div>
-                    @endif
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-
+                        </option>
+                        @endforeach
+                      </select>
+                    </td>
+                    <td class="text-center">
+                      @if ($stock->status === 1)
+                      <span class="label label-warning">Pending</span> @elseif ($stock->status === 3)
+                      <span class="label label-success">Completed</span> @endif
+                    </td>
+                    <td class="text-center">
+                      @if ($stock->status === 1)
+                      <div class="btn-group-vertical btn-group-sm">
+                        <button class="btn btn-success" data-id="{{ $stock->id }}" data-type="stock" onclick="completeOrderStock(this)">Completed</button>
+                        <button class="btn btn-warning" disabled>Pending</button>
+                      </div>
+                      @elseif ($stock->status === 3)
+                      <div class="btn-group-vertical btn-group-sm">
+                        <button class="btn btn-success" disabled>Completed</button>
+                        <button class="btn btn-warning" data-id="{{ $stock->id }}" data-type="stock" onclick="pendingOrderStock(this)">Pending</button>
+                      </div>
+                      @endif
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
             <div class="pull-right">
               {{ $stocks->links() }}
             </div>

@@ -160,71 +160,75 @@
         </ul>
         <div class="tab-content clearfix">
           <div class="tab-pane active" id="tab_1">
-            <table class="table table-bordered" id="order-table">
-              <thead>
-                <tr class="bg-black">
-                  <th>Date</th>
-                  <th>Order#</th>
-                  <th>Buyer#</th>
-                  <th>Buyer Name</th>
-                  <th>Total Price</th>
-                  <th>Lorry</th>
-                </tr>
-              </thead>
+            <div class="table-responsive">
+              <table class="table table-bordered" id="order-table">
+                <thead>
+                  <tr class="bg-black">
+                    <th>Date</th>
+                    <th>Order#</th>
+                    <th>Buyer#</th>
+                    <th>Buyer Name</th>
+                    <th>Total Price</th>
+                    <th>Lorry</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                @foreach($orders as $order)
-                <tr>
-                  <td>{{ $order->created_at }}</td>
-                  <td>
-                    <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">{{ $order->id }}</a>
-                  </td>
-                  <td>{{ $order->user->id }}</td>
-                  <td>{{ $order->user->name }}</td>
-                  <td>{{ $order->totalPrice() }}</td>
-                  @if ($order["driver"])
-                  <td>{{$order->driver->name}}</td>
-                  @else
-                  <td>No driver assigned</td>
-                  @endif
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+                <tbody>
+                  @foreach($orders as $order)
+                  <tr>
+                    <td>{{ $order->created_at }}</td>
+                    <td>
+                      <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">{{ $order->id }}</a>
+                    </td>
+                    <td>{{ $order->user->id }}</td>
+                    <td>{{ $order->user->name }}</td>
+                    <td>{{ $order->totalPrice() }}</td>
+                    @if ($order["driver"])
+                    <td>{{$order->driver->name}}</td>
+                    @else
+                    <td>No driver assigned</td>
+                    @endif
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
           </div>
           <div class="tab-pane" id="tab_2">
-            <table class="table table-bordered" id="stock-table">
-              <thead>
-                <tr class="bg-black">
-                  <th>Date</th>
-                  <th>Stock#</th>
-                  <th>Supplier#</th>
-                  <th>Supplier Name</th>
-                  <th>Total Price</th>
-                  <th>Lorry</th>
-                </tr>
-              </thead>
+            <div class="table-responsive">
+              <table class="table table-bordered" id="stock-table">
+                <thead>
+                  <tr class="bg-black">
+                    <th>Date</th>
+                    <th>Stock#</th>
+                    <th>Supplier#</th>
+                    <th>Supplier Name</th>
+                    <th>Total Price</th>
+                    <th>Lorry</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                @foreach($stocks as $stock)
-                <tr>
-                  <td>{{ $stock->created_at }}</td>
-                  <td>
-                    <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">{{ $stock->id }}</a>
-                  </td>
-                  <td>{{ $stock->user->id }}</td>
-                  <td>{{ $stock->user->name }}</td>
-                  <td>{{ $stock->totalPrice() }}</td>
+                <tbody>
+                  @foreach($stocks as $stock)
+                  <tr>
+                    <td>{{ $stock->created_at }}</td>
+                    <td>
+                      <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">{{ $stock->id }}</a>
+                    </td>
+                    <td>{{ $stock->user->id }}</td>
+                    <td>{{ $stock->user->name }}</td>
+                    <td>{{ $stock->totalPrice() }}</td>
 
-                  @if ($stock["driver"])
-                  <td>{{$stock->driver->name}}</td>
-                  @else
-                  <td>No driver assigned</td>
-                  @endif
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+                    @if ($stock["driver"])
+                    <td>{{$stock->driver->name}}</td>
+                    @else
+                    <td>No driver assigned</td>
+                    @endif
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

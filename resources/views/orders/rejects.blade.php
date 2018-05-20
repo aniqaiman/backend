@@ -136,87 +136,89 @@
         </ul>
         <div class="tab-content clearfix">
           <div class="tab-pane {{ $order_active }}" id="tab_1">
-            <table class="table table-bordered" id="order-table" style="width:100%">
-              <thead>
-                <tr class="bg-black">
-                  <th>Date</th>
-                  <th>Order#</th>
-                  <th class="text-nowrap">Buyer Name</th>
-                  <th>Buyer#</th>
-                  <th>Feedback Topic</th>
-                  <th>Feedback Description</th>
-                  <th>Feedback Response</th>
-                  <th class="text-center" style="width: 1%;">Status</th>
-                </tr>
-              </thead>
+            <div class="table-responsive">
+              <table class="table table-bordered" id="order-table" style="width:100%">
+                <thead>
+                  <tr class="bg-black">
+                    <th>Date</th>
+                    <th>Order#</th>
+                    <th class="text-nowrap">Buyer Name</th>
+                    <th>Buyer#</th>
+                    <th>Feedback Topic</th>
+                    <th>Feedback Description</th>
+                    <th>Feedback Response</th>
+                    <th class="text-center" style="width: 1%;">Status</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                @foreach($orders as $order)
-                <tr>
-                  <td>{{ $order->created_at }}</td>
-                  <td>
-                    <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">
-                      {{ $order->id }}
-                    </a>
-                  </td>
-                  <td>{{ $order->user->name }}</td>
-                  <td>{{ $order->user->id }}</td>
-                  <td>{{ $order->feedback_topic }}</td>
-                  <td>{{ $order->feedback_description }}</td>
-                  <td>
-                    @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
-                  </td>
-                  <td>
-                    <span class="label label-danger">Rejected</span>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+                <tbody>
+                  @foreach($orders as $order)
+                  <tr>
+                    <td>{{ $order->created_at }}</td>
+                    <td>
+                      <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">
+                        {{ $order->id }}
+                      </a>
+                    </td>
+                    <td>{{ $order->user->name }}</td>
+                    <td>{{ $order->user->id }}</td>
+                    <td>{{ $order->feedback_topic }}</td>
+                    <td>{{ $order->feedback_description }}</td>
+                    <td>
+                      @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
+                    </td>
+                    <td>
+                      <span class="label label-danger">Rejected</span>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
 
             <div class="pull-right">
               {{ $orders->links() }}
             </div>
           </div>
-          <div class="tab-pane {{ $stock_active }}" id="tab_2">
-            <table class="table table-bordered" id="stock-table" style="width:100%">
-              <thead>
-                <tr class="bg-black">
-                  <th>Date</th>
-                  <th>Stock#</th>
-                  <th class="text-nowrap">Supplier Name</th>
-                  <th>Supplier#</th>
-                  <th>Feedback Topic</th>
-                  <th>Feedback Description</th>
-                  <th>Feedback Response</th>
-                  <th class="text-center" style="width: 1%;">Status</th>
-                </tr>
-              </thead>
+            <div class="tab-pane {{ $stock_active }}" id="tab_2">
+              <table class="table table-bordered" id="stock-table" style="width:100%">
+                <thead>
+                  <tr class="bg-black">
+                    <th>Date</th>
+                    <th>Stock#</th>
+                    <th class="text-nowrap">Supplier Name</th>
+                    <th>Supplier#</th>
+                    <th>Feedback Topic</th>
+                    <th>Feedback Description</th>
+                    <th>Feedback Response</th>
+                    <th class="text-center" style="width: 1%;">Status</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                @foreach($stocks as $stock)
-                <tr>
-                  <td>{{ $stock->created_at }}</td>
-                  <td>
-                    <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">
-                      {{ $stock->id }}
-                    </a>
-                  </td>
-                  <td>{{ $stock->user->name }}</td>
-                  <td>{{ $stock->user->id }}</td>
-                  <td>{{ $stock->feedback_topic }}</td>
-                  <td>{{ $stock->feedback_description }}</td>
-                  <td>
-                    @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
-                  </td>
-                  <td>
-                    <span class="label label-danger">Rejected</span>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-
+                <tbody>
+                  @foreach($stocks as $stock)
+                  <tr>
+                    <td>{{ $stock->created_at }}</td>
+                    <td>
+                      <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">
+                        {{ $stock->id }}
+                      </a>
+                    </td>
+                    <td>{{ $stock->user->name }}</td>
+                    <td>{{ $stock->user->id }}</td>
+                    <td>{{ $stock->feedback_topic }}</td>
+                    <td>{{ $stock->feedback_description }}</td>
+                    <td>
+                      @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
+                    </td>
+                    <td>
+                      <span class="label label-danger">Rejected</span>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
             <div class="pull-right">
               {{ $stocks->links() }}
             </div>

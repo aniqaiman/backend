@@ -87,94 +87,95 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-body">
-          <table class="table table-bordered" id="seller-table" style="width:100%">
-            <thead>
-              <tr class="bg-black">
-                <th>Supplier Name</th>
-                <th>Supplier#</th>
-                <th>Supplied Products</th>
-                <th>Date Registered</th>
-                <th>Location</th>
-                <th>Contact (H/P &amp; Email)</th>
-                <th class="text-center">Status</th>
-                <th style="width: 1%;"></th>
-              </tr>
-            </thead>
+          <div class="table-responsive">
+            <table class="table table-bordered" id="seller-table" style="width:100%">
+              <thead>
+                <tr class="bg-black">
+                  <th>Supplier Name</th>
+                  <th>Supplier#</th>
+                  <th>Supplied Products</th>
+                  <th>Date Registered</th>
+                  <th>Location</th>
+                  <th>Contact (H/P &amp; Email)</th>
+                  <th class="text-center">Status</th>
+                  <th style="width: 1%;"></th>
+                </tr>
+              </thead>
 
-            <tbody>
-              @foreach($sellers as $seller)
-              <tr id="seller_{{ $seller->id }}">
-                <td>{{ $seller->name }}</td>
-                <td>
-                  <a href="#" data-id="{{ $seller->id }}" data-toggle="modal" data-target="#exampleModal">
-                    {{ $seller->id }}
-                  </a>
-                </td>
-                <td nowrap>
-                  @if (!$seller->stocks()->exists())
-                  <div>No products been supplied.</div>
-                  @endif @foreach ($seller->stocks()->orderBy('id', 'desc')->get() as $stock)
-                  <div class="lead">
-                    <span class="label label-default">{{ $stock->totalQuantity() }}kg</span>
-                    <span class="label label-default">RM {{ number_format($stock->totalPrice(), 2) }}</span>
-                  </div>
-                  <table class="table">
-                    @foreach ($stock->products as $product)
-                    <tr>
-                      <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
-                      <td>{{ $product->pivot->quantity }}kg</td>
-                      <td>
-                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["seller_price_a"], 2) }} @break @case("B")
-                        RM {{ number_format($product->priceLatest()["seller_price_b"], 2) }} @break @endswitch
-                      </td>
-                      <td>
-                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_a"],
-                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_b"],
-                        2) }} @break @endswitch
-                      </td>
-                    </tr>
+              <tbody>
+                @foreach($sellers as $seller)
+                <tr id="seller_{{ $seller->id }}">
+                  <td>{{ $seller->name }}</td>
+                  <td>
+                    <a href="#" data-id="{{ $seller->id }}" data-toggle="modal" data-target="#exampleModal">
+                      {{ $seller->id }}
+                    </a>
+                  </td>
+                  <td nowrap>
+                    @if (!$seller->stocks()->exists())
+                    <div>No products been supplied.</div>
+                    @endif @foreach ($seller->stocks()->orderBy('id', 'desc')->get() as $stock)
+                    <div class="lead">
+                      <span class="label label-default">{{ $stock->totalQuantity() }}kg</span>
+                      <span class="label label-default">RM {{ number_format($stock->totalPrice(), 2) }}</span>
+                    </div>
+                    <table class="table">
+                      @foreach ($stock->products as $product)
+                      <tr>
+                        <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
+                        <td>{{ $product->pivot->quantity }}kg</td>
+                        <td>
+                          @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["seller_price_a"], 2) }} @break @case("B")
+                          RM {{ number_format($product->priceLatest()["seller_price_b"], 2) }} @break @endswitch
+                        </td>
+                        <td>
+                          @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_a"],
+                          2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_b"],
+                          2) }} @break @endswitch
+                        </td>
+                      </tr>
+                      @endforeach
+                    </table>
                     @endforeach
-                  </table>
-                  @endforeach
-                </td>
-                <td>{{ $seller->created_at }}</td>
-                <td>
-                  {{ $seller->address }}
-                  <a href="https://www.google.com/maps/search/?api=1&query={{ $seller->latitude }},{{ $seller->longitude }}" target="_blank">
-                    <i class="fa fa-map-marker"></i>
-                  </a>
-                </td>
-                <td>
-                  Mobile:
-                  <br />
-                  <a href="tel:{{ $seller->mobile_number }}">{{ $seller->mobile_number }}</a>
-                  <br />E-Mail:
-                  <br />
-                  <a href="mailto:{{ $seller->email }}">{{ $seller->email }}</a>
-                </td>
-                <td class="text-center">
-                  E-Mail: @if ($seller->status_email === 1)
-                  <span class="label label-success">Verified</span> @else
-                  <span class="label label-danger">Unverified</span> @endif
-                  <br /> Account: @if ($seller->status_account === 1)
-                  <span class="label label-success">Activated</span> @else
-                  <span class="label label-danger">Deactivated</span> @endif
-                </td>
-                <td class="text-center">
-                  <div class="btn-group-vertical btn-group-sm">
-                    <a href="{{ route('users.sellers.show', [$seller->id]) }}" class="btn btn-primary">View</a> @if ($seller->status_account
-                    === 0)
-                    <button class="btn btn-success" data-id="{{ $seller->id }}" onclick="activateUser(this)">Activate</button>
-                    <button class="btn btn-warning" disabled>Deactivate</button> @elseif ($seller->status_account === 1)
-                    <button class="btn btn-success" disabled>Activate</button>
-                    <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>                    @endif
-                  </div>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-
+                  </td>
+                  <td>{{ $seller->created_at }}</td>
+                  <td>
+                    {{ $seller->address }}
+                    <a href="https://www.google.com/maps/search/?api=1&query={{ $seller->latitude }},{{ $seller->longitude }}" target="_blank">
+                      <i class="fa fa-map-marker"></i>
+                    </a>
+                  </td>
+                  <td>
+                    Mobile:
+                    <br />
+                    <a href="tel:{{ $seller->mobile_number }}">{{ $seller->mobile_number }}</a>
+                    <br />E-Mail:
+                    <br />
+                    <a href="mailto:{{ $seller->email }}">{{ $seller->email }}</a>
+                  </td>
+                  <td class="text-center">
+                    E-Mail: @if ($seller->status_email === 1)
+                    <span class="label label-success">Verified</span> @else
+                    <span class="label label-danger">Unverified</span> @endif
+                    <br /> Account: @if ($seller->status_account === 1)
+                    <span class="label label-success">Activated</span> @else
+                    <span class="label label-danger">Deactivated</span> @endif
+                  </td>
+                  <td class="text-center">
+                    <div class="btn-group-vertical btn-group-sm">
+                      <a href="{{ route('users.sellers.show', [$seller->id]) }}" class="btn btn-primary">View</a> @if ($seller->status_account
+                      === 0)
+                      <button class="btn btn-success" data-id="{{ $seller->id }}" onclick="activateUser(this)">Activate</button>
+                      <button class="btn btn-warning" disabled>Deactivate</button> @elseif ($seller->status_account === 1)
+                      <button class="btn btn-success" disabled>Activate</button>
+                      <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>                    @endif
+                    </div>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
           <div class="pull-right">
             {{ $sellers->links() }}
           </div>

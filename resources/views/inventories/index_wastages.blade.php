@@ -25,37 +25,39 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-body">
-          <table class="table table-bordered" id="wastages-table" style="width:100%">
-            <thead>
-              <tr class="bg-black">
-                <th>Date</th>
-                <th>Order#</th>
-                <th>Item</th>
-                <th>Product#</th>
-                <th>Storage Wastage
-                  <br />(from Inventory Mgmt)</th>
-                <th>Promo Wastage
-                  <br />(from Promo Price Mgmt)</th>
-                <th>Total Wastage</th>
-                <th>Buy At Price</th>
-                <th style="width: 1%;"></th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($wastages as $wastage)
-              <tr>
-                <td>{{ $wastage->created_at }}</td>
-                <td></td>
-                <td>{{ $wastage->product->name }}</td>
-                <td>#{{ sprintf("%04s", $wastage->product->id) }}</td>
-                <td>{{ $wastage->storage_wastage }}</td>
-                <td>{{ $wastage->promo_wastage }}</td>
-                <td>{{ $wastage->promo_wastage + $wastage->storage_wastage }}</td>
-                <td></td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-bordered" id="wastages-table" style="width:100%">
+              <thead>
+                <tr class="bg-black">
+                  <th>Date</th>
+                  <th>Order#</th>
+                  <th>Item</th>
+                  <th>Product#</th>
+                  <th>Storage Wastage
+                    <br />(from Inventory Mgmt)</th>
+                  <th>Promo Wastage
+                    <br />(from Promo Price Mgmt)</th>
+                  <th>Total Wastage</th>
+                  <th>Buy At Price</th>
+                  <th style="width: 1%;"></th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($wastages as $wastage)
+                <tr>
+                  <td>{{ $wastage->created_at }}</td>
+                  <td></td>
+                  <td>{{ $wastage->product->name }}</td>
+                  <td>#{{ sprintf("%04s", $wastage->product->id) }}</td>
+                  <td>{{ $wastage->storage_wastage }}</td>
+                  <td>{{ $wastage->promo_wastage }}</td>
+                  <td>{{ $wastage->promo_wastage + $wastage->storage_wastage }}</td>
+                  <td></td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <!-- /.box -->

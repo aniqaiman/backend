@@ -84,103 +84,106 @@
         </ul>
         <div class="tab-content clearfix">
           <div class="tab-pane" id="tab_1">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="driver-order-table" style="width:100%">
+                <thead>
+                  <tr class="bg-black">
+                    <th>Date</th>
+                    <th>Driver Name</th>
+                    <th>Driver#</th>
+                    <th>Order#</th>
+                    <th>Pick Up Location</th>
+                    <th>Buyer/Supplier Name</th>
+                    <th>Buyer/Supplier ID</th>
+                    <th>Drop off Location</th>
+                    <th>Total Distance</th>
+                    <th>Total Tonnage</th>
+                    <th>Total Payout</th>
+                    <th>Route Details</th>
+                    <th style="width: 1%;"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($orders as $order)
+                  <tr>
+                    <td>{{$order["date"]}}</td>
+                    <td>{{$order["driver_name"]}}</td>
 
-            <table class="table table-bordered" id="driver-order-table" style="width:100%">
-              <thead>
-                <tr class="bg-black">
-                  <th>Date</th>
-                  <th>Driver Name</th>
-                  <th>Driver#</th>
-                  <th>Order#</th>
-                  <th>Pick Up Location</th>
-                  <th>Buyer/Supplier Name</th>
-                  <th>Buyer/Supplier ID</th>
-                  <th>Drop off Location</th>
-                  <th>Total Distance</th>
-                  <th>Total Tonnage</th>
-                  <th>Total Payout</th>
-                  <th>Route Details</th>
-                  <th style="width: 1%;"></th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($orders as $order)
-                <tr>
-                  <td>{{$order["date"]}}</td>
-                  <td>{{$order["driver_name"]}}</td>
-
-                  <td>
-                    <a href="#" data-id='{{ $order["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
-                      {{ $order["driver_id"] }}
-                    </a>
-                  </td>
-                  <td>{{$order["id"]}}</td>
-                  <td></td>
-                  <td>{{$order["user_name"]}}</td>
-                  <td>{{$order["user_id"]}}</td>
-                  <td>{{$order["user_address"]}}
-                    <a href='https://www.google.com/maps/search/?api=1&query={{ $order["latitude"]}},{{ $order["longitude"] }}' target="_blank">
-                      <i class="fa fa-map-marker"></i>
-                    </a>
-                  </td>
-                  <td></td>
-                  <td>{{$order["tonnage"]}}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+                    <td>
+                      <a href="#" data-id='{{ $order["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
+                        {{ $order["driver_id"] }}
+                      </a>
+                    </td>
+                    <td>{{$order["id"]}}</td>
+                    <td></td>
+                    <td>{{$order["user_name"]}}</td>
+                    <td>{{$order["user_id"]}}</td>
+                    <td>{{$order["user_address"]}}
+                      <a href='https://www.google.com/maps/search/?api=1&query={{ $order["latitude"]}},{{ $order["longitude"] }}' target="_blank">
+                        <i class="fa fa-map-marker"></i>
+                      </a>
+                    </td>
+                    <td></td>
+                    <td>{{$order["tonnage"]}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
           </div>
           <div class="tab-pane" id="tab_2">
-            <table class="table table-bordered" id="driver-stock-table" style="width:100%">
-              <thead>
-                <tr class="bg-black">
-                  <th>Date</th>
-                  <th>Driver Name</th>
-                  <th>Driver#</th>
-                  <th>Stock#</th>
-                  <th>Pick Up Location</th>
-                  <th>Buyer/Supplier Name</th>
-                  <th>Buyer/Supplier ID</th>
-                  <th>Drop off Location</th>
-                  <th>Total Distance</th>
-                  <th>Total Tonnage</th>
-                  <th>Total Payout</th>
-                  <th>Route Details</th>
-                  <th style="width: 1%;"></th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($stocks as $stock)
-                <tr>
-                  <td>{{$stock["date"]}}</td>
-                  <td>{{$stock["driver_name"]}}</td>
+            <div class="table-responsive">
+              <table class="table table-bordered" id="driver-stock-table" style="width:100%">
+                <thead>
+                  <tr class="bg-black">
+                    <th>Date</th>
+                    <th>Driver Name</th>
+                    <th>Driver#</th>
+                    <th>Stock#</th>
+                    <th>Pick Up Location</th>
+                    <th>Buyer/Supplier Name</th>
+                    <th>Buyer/Supplier ID</th>
+                    <th>Drop off Location</th>
+                    <th>Total Distance</th>
+                    <th>Total Tonnage</th>
+                    <th>Total Payout</th>
+                    <th>Route Details</th>
+                    <th style="width: 1%;"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($stocks as $stock)
+                  <tr>
+                    <td>{{$stock["date"]}}</td>
+                    <td>{{$stock["driver_name"]}}</td>
 
-                  <td>
-                    <a href="#" data-id='{{ $order["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
-                      {{ $stock["driver_id"] }}
-                    </a>
-                  </td>
-                  <td>{{$stock["id"]}}</td>
-                  <td>{{$stock["user_address"]}}
-                    <a href='https://www.google.com/maps/search/?api=1&query={{ $stock["latitude"]}},{{ $order["longitude"] }}' target="_blank">
-                      <i class="fa fa-map-marker"></i>
-                    </a>
-                  </td>
-                  <td>{{$stock["user_name"]}}</td>
-                  <td>{{$stock["user_id"]}}</td>
-                  <td></td>
-                  <td></td>
-                  <td>{{$stock["tonnage"]}}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+                    <td>
+                      <a href="#" data-id='{{ $order["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
+                        {{ $stock["driver_id"] }}
+                      </a>
+                    </td>
+                    <td>{{$stock["id"]}}</td>
+                    <td>{{$stock["user_address"]}}
+                      <a href='https://www.google.com/maps/search/?api=1&query={{ $stock["latitude"]}},{{ $order["longitude"] }}' target="_blank">
+                        <i class="fa fa-map-marker"></i>
+                      </a>
+                    </td>
+                    <td>{{$stock["user_name"]}}</td>
+                    <td>{{$stock["user_id"]}}</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{$stock["tonnage"]}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <!-- /.box -->
