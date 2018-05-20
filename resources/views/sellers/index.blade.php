@@ -146,34 +146,28 @@
                 </td>
                 <td>
                   Mobile:
-                  <br /><a href="tel:{{ $seller->mobile_number }}">{{ $seller->mobile_number }}</a>
+                  <br />
+                  <a href="tel:{{ $seller->mobile_number }}">{{ $seller->mobile_number }}</a>
                   <br />E-Mail:
-                  <br /><a href="mailto:{{ $seller->email }}">{{ $seller->email }}</a>
+                  <br />
+                  <a href="mailto:{{ $seller->email }}">{{ $seller->email }}</a>
                 </td>
                 <td class="text-center">
-                  E-Mail:
-                  @if ($seller->status_email === 1)
-                  <span class="label label-success">Verified</span>
-                  @else
-                  <span class="label label-danger">Unverified</span> 
-                  @endif
-                  <br /> Account:
-                  @if ($seller->status_account === 1)
-                  <span class="label label-success">Activated</span> 
-                  @else
-                  <span class="label label-danger">Deactivated</span> 
-                  @endif
+                  E-Mail: @if ($seller->status_email === 1)
+                  <span class="label label-success">Verified</span> @else
+                  <span class="label label-danger">Unverified</span> @endif
+                  <br /> Account: @if ($seller->status_account === 1)
+                  <span class="label label-success">Activated</span> @else
+                  <span class="label label-danger">Deactivated</span> @endif
                 </td>
                 <td class="text-center">
                   <div class="btn-group-vertical btn-group-sm">
-                    <a href="{{ route('users.sellers.show', [$seller->id]) }}" class="btn btn-primary">View</a>
-                    @if ($seller->status_account === 0)
+                    <a href="{{ route('users.sellers.show', [$seller->id]) }}" class="btn btn-primary">View</a> @if ($seller->status_account
+                    === 0)
                     <button class="btn btn-success" data-id="{{ $seller->id }}" onclick="activateUser(this)">Activate</button>
-                    <button class="btn btn-warning" disabled>Deactivate</button>
-                    @elseif ($seller->status_account === 1)
+                    <button class="btn btn-warning" disabled>Deactivate</button> @elseif ($seller->status_account === 1)
                     <button class="btn btn-success" disabled>Activate</button>
-                    <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>
-                    @endif
+                    <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>                    @endif
                   </div>
                 </td>
               </tr>
@@ -211,7 +205,7 @@
 
       $.ajax(url.replace("xxx", id), {
         dataType: "json",
-        error: (jqXHR, textStatus, errorThrown) => {},
+        error: (jqXHR, textStatus, errorThrown) => { },
         method: "GET",
         success: (data, textStatus, jqXHR) => {
           spinner.toggleClass('hidden', true);
@@ -252,7 +246,8 @@
     });
 
     $('#seller-table').DataTable({
-      'ordering': false,
+      'order': [],
+      'ordering': true,
       'paging': false,
       'info': false,
     });
@@ -270,7 +265,7 @@
     $.ajax("{{ route('users.activate') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;
@@ -289,7 +284,7 @@
     $.ajax("{{ route('users.deactivate') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;

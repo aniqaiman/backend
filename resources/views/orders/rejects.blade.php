@@ -232,12 +232,14 @@
 <script>
   $(document).ready(function () {
     $("#order-table").DataTable({
+      'order': [],
       "ordering": true,
       'paging': false,
       'info': false,
     });
 
     $("#stock-table").DataTable({
+      'order': [],
       "ordering": true,
       'paging': false,
       'info': false,

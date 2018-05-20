@@ -58,25 +58,29 @@
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="selling_a form-control" id='selling_a_{{ $product["id"] }}' value='{{ number_format($product["seller_price_a"], 2, '.', '') }}' min="0.01" style="min-width: 70px">
+                                        <input type="number" class="selling_a form-control" id='selling_a_{{ $product["id"] }}' value='{{ number_format($product["seller_price_a"], 2, '
+                                            . ', ' ') }}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="buying_a form-control" id='buying_a_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_a"], 2, '.', '') }}' min="0.01" style="min-width: 70px">
+                                        <input type="number" class="buying_a form-control" id='buying_a_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_a"], 2, '
+                                            . ', ' ') }}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="selling_b form-control" id='selling_b_{{ $product["id"] }}' value='{{ number_format($product["seller_price_b"], 2, '.', '') }}' min="0.01" style="min-width: 70px">
+                                        <input type="number" class="selling_b form-control" id='selling_b_{{ $product["id"] }}' value='{{ number_format($product["seller_price_b"], 2, '
+                                            . ', ' ') }}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="buying_b form-control" id='buying_b_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_b"], 2, '.', '') }}' min="0.01" style="min-width: 70px">
+                                        <input type="number" class="buying_b form-control" id='buying_b_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_b"], 2, '
+                                            . ', ' ') }}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
                                 <td>RM {{ number_format($product["seller_yest_price_a"], 2, '.', '') }}</td>
@@ -124,7 +128,7 @@
             $.ajax("{{ route('updateFruitPrice') }}", {
                 data: data,
                 dataType: "json",
-                error: (jqXHR, textStatus, errorThrown) => {},
+                error: (jqXHR, textStatus, errorThrown) => { },
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
@@ -157,7 +161,7 @@
             $.ajax("{{ route('updateFruitPrice') }}", {
                 data: data,
                 dataType: "json",
-                error: (jqXHR, textStatus, errorThrown) => {},
+                error: (jqXHR, textStatus, errorThrown) => { },
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
@@ -189,7 +193,7 @@
             $.ajax("{{ route('updateFruitPrice') }}", {
                 data: data,
                 dataType: "json",
-                error: (jqXHR, textStatus, errorThrown) => {},
+                error: (jqXHR, textStatus, errorThrown) => { },
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     swal.close();
@@ -197,7 +201,7 @@
                 }
             });
         });
-        
+
         $(".buying_b").focusout(function () {
             var newPrice = $(this).val();
             console.log($(this).attr('id'))
@@ -221,7 +225,7 @@
             $.ajax("{{ route('updateFruitPrice') }}", {
                 data: data,
                 dataType: "json",
-                error: (jqXHR, textStatus, errorThrown) => {},
+                error: (jqXHR, textStatus, errorThrown) => { },
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
@@ -232,6 +236,7 @@
         });
 
         $('#dashboard-table').DataTable({
+            'order': [],
             'ordering': true,
             'paging': false,
         });

@@ -1,4 +1,8 @@
-@extends('layout.master') @section('style') @endsection @section('content')
+@extends('layout.master') 
+@section('style')
+@endsection
+ 
+@section('content')
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
@@ -10,8 +14,7 @@
       </div>
       <div class="modal-body">
         <div id="spinner">
-            <i class="fa fa-spinner fa-spin"></i>
-            Fetching buyer details...
+          <i class="fa fa-spinner fa-spin"></i> Fetching buyer details...
         </div>
         <dl id="ud" class="hidden">
           <dt>Owner Name</dt>
@@ -48,8 +51,7 @@
             E-Mail:
             <span id="ud-email-status-verified" class="label label-success">Verified</span>
             <span id="ud-email-status-unverified" class="label label-danger">Unverified</span>
-            <br />
-            Account:
+            <br /> Account:
             <span id="ud-account-status-verified" class="label label-success">Activated</span>
             <span id="ud-account-status-unverified" class="label label-danger">Deactivated</span>
           </dd>
@@ -109,8 +111,7 @@
                 <td nowrap>
                   @if (!$buyer->orders()->exists())
                   <div>No products been ordered.</div>
-                  @endif
-                  @foreach ($buyer->orders()->orderBy('id', 'desc')->get() as $order)
+                  @endif @foreach ($buyer->orders()->orderBy('id', 'desc')->get() as $order)
                   <div class="lead">
                     <span class="label label-default">{{ $order->totalQuantity() }}kg</span>
                     <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
@@ -121,16 +122,13 @@
                       <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
                       <td>{{ $product->pivot->quantity }}kg</td>
                       <td>
-                        @switch($product->pivot->grade)
-                          @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break
-                          @case("B") RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break
-                        @endswitch
+                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
+                        RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
                       </td>
                       <td>
-                        @switch($product->pivot->grade)
-                          @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"], 2) }} @break
-                          @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"], 2) }} @break
-                        @endswitch
+                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_a"],
+                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["buyer_price_b"],
+                        2) }} @break @endswitch
                       </td>
                     </tr>
                     @endforeach
@@ -153,18 +151,12 @@
                   <a href="tel:{{ $buyer->email }}">{{ $buyer->email }}</a>
                 </td>
                 <td class="text-center">
-                  E-Mail:
-                  @if ($buyer->status_email === 1)
-                  <span class="label label-success">Verified</span>
-                  @else
-                  <span class="label label-danger">Unverified</span> 
-                  @endif
-                  <br /> Account:
-                  @if ($buyer->status_account === 1)
-                  <span class="label label-success">Activated</span> 
-                  @else
-                  <span class="label label-danger">Deactivated</span> 
-                  @endif
+                  E-Mail: @if ($buyer->status_email === 1)
+                  <span class="label label-success">Verified</span> @else
+                  <span class="label label-danger">Unverified</span> @endif
+                  <br /> Account: @if ($buyer->status_account === 1)
+                  <span class="label label-success">Activated</span> @else
+                  <span class="label label-danger">Deactivated</span> @endif
                 </td>
                 <td class="text-center">
                   @if ($buyer->status_account === 0)
@@ -193,7 +185,8 @@
     </div>
   </div>
 </section>
-@endsection 
+@endsection
+ 
 @section('script')
 <script>
   $(document).ready(function () {
@@ -213,7 +206,7 @@
 
       $.ajax(url.replace("xxx", id), {
         dataType: "json",
-        error: (jqXHR, textStatus, errorThrown) => {},
+        error: (jqXHR, textStatus, errorThrown) => { },
         method: "GET",
         success: (data, textStatus, jqXHR) => {
           spinner.toggleClass('hidden', true);
@@ -253,6 +246,7 @@
     });
 
     $('#buyer-table').DataTable({
+      'order': [],
       'ordering': true,
       'paging': false,
       'info': false,
@@ -271,7 +265,7 @@
     $.ajax("{{ route('users.activate') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;
@@ -290,7 +284,7 @@
     $.ajax("{{ route('users.deactivate') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;

@@ -1,8 +1,7 @@
-@extends('layout.master')
-
+@extends('layout.master') 
 @section('style')
 @endsection
-
+ 
 @section('content')
 <section class="content-header">
   <h1>
@@ -33,8 +32,10 @@
                 <th>Order#</th>
                 <th>Item</th>
                 <th>Product#</th>
-                <th>Storage Wastage<br />(from Inventory Mgmt)</th>
-                <th>Promo Wastage<br />(from Promo Price Mgmt)</th>
+                <th>Storage Wastage
+                  <br />(from Inventory Mgmt)</th>
+                <th>Promo Wastage
+                  <br />(from Promo Price Mgmt)</th>
                 <th>Total Wastage</th>
                 <th>Buy At Price</th>
                 <th style="width: 1%;"></th>
@@ -62,14 +63,16 @@
   </div>
 </section>
 @endsection
-
+ 
 @section('script')
 <script>
-    $(document).ready(function () {
-  $('#wastages-table').DataTable({
-            'ordering': true,
-            'paging': false,
-        });
-      });
-    </script>
+  $(document).ready(function () {
+    $('#wastages-table').DataTable({
+      'order': [],
+      'ordering': true,
+      'paging': false,
+    });
+  });
+
+</script>
 @endsection

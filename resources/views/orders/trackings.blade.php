@@ -295,12 +295,14 @@
 
 
     $('#order-table').DataTable({
+      'order': [],
       'ordering': true,
       'paging': false,
       'info': false,
     });
 
     $('#stock-table').DataTable({
+      'order': [],
       'ordering': true,
       'paging': false,
       'info': false,
@@ -328,7 +330,7 @@
     $.ajax("{{ route('stocks.lorry.assign') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "POST",
       success: (data, textStatus, jqXHR) => {
         console.log("OK");
@@ -358,7 +360,7 @@
     $.ajax("{{ route('orders.lorry.assign') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "POST",
       success: (data, textStatus, jqXHR) => {
         console.log("OK");
@@ -381,7 +383,7 @@
     $.ajax("{{ route('orders.update.status.complete') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;
@@ -401,7 +403,7 @@
     $.ajax("{{ route('orders.update.status.pending') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;

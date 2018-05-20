@@ -28,14 +28,14 @@
           <form method="get" class="form-inline">
             <div class="input-group input-group-sm">
               <span class="input-group-btn">
-                  <a class="btn btn-default" href="{{ route('prices.index.histories') }}">Show All</a>
+                <a class="btn btn-default" href="{{ route('prices.index.histories') }}">Show All</a>
               </span>
               <input type="date" class="form-control" name="filter_date" value="{{ $filter_date }}" />
               <span class="input-group-btn">
-                  <button class="btn btn-primary" type="submit">
-                    <i class="fa fa-search"></i>
-                    Filter
-                  </button>
+                <button class="btn btn-primary" type="submit">
+                  <i class="fa fa-search"></i>
+                  Filter
+                </button>
               </span>
             </div>
           </form>
@@ -48,7 +48,7 @@
                 <th>Item</th>
                 <th class="text-center">Product#</th>
                 <th class="text-center">
-                  Buyer Price 
+                  Buyer Price
                   <br />(Grade A)
                 </th>
                 <th class="text-center">
@@ -91,6 +91,7 @@
 <script>
   $(document).ready(function () {
     $('#historic-table').DataTable({
+      'order': [],
       'ordering': true,
       'paging': false,
     });

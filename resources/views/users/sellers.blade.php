@@ -1,4 +1,8 @@
-@extends('layout.master') @section('style') @endsection @section('content')
+@extends('layout.master') 
+@section('style')
+@endsection
+ 
+@section('content')
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
@@ -10,8 +14,7 @@
       </div>
       <div class="modal-body">
         <div id="spinner">
-            <i class="fa fa-spinner fa-spin"></i>
-            Fetching supplier details...
+          <i class="fa fa-spinner fa-spin"></i> Fetching supplier details...
         </div>
         <dl id="ud" class="hidden">
           <dt>Owner Name</dt>
@@ -50,8 +53,7 @@
             E-Mail:
             <span id="ud-email-status-verified" class="label label-success">Verified</span>
             <span id="ud-email-status-unverified" class="label label-danger">Unverified</span>
-            <br />
-            Account:
+            <br /> Account:
             <span id="ud-account-status-verified" class="label label-success">Activated</span>
             <span id="ud-account-status-unverified" class="label label-danger">Deactivated</span>
           </dd>
@@ -110,8 +112,7 @@
                 <td nowrap>
                   @if (!$seller->stocks()->exists())
                   <div>No products been supplied.</div>
-                  @endif
-                  @foreach ($seller->stocks()->orderBy('id', 'desc')->get() as $stock)
+                  @endif @foreach ($seller->stocks()->orderBy('id', 'desc')->get() as $stock)
                   <div class="lead">
                     <span class="label label-default">{{ $stock->totalQuantity() }}kg</span>
                     <span class="label label-default">RM {{ number_format($stock->totalPrice(), 2) }}</span>
@@ -126,10 +127,9 @@
                         RM {{ number_format($product->priceLatest()["seller_price_b"], 2) }} @break @endswitch
                       </td>
                       <td>
-                        @switch($product->pivot->grade)
-                          @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_a"], 2) }} @break
-                          @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_b"], 2) }} @break
-                        @endswitch
+                        @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_a"],
+                        2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_b"],
+                        2) }} @break @endswitch
                       </td>
                     </tr>
                     @endforeach
@@ -151,14 +151,11 @@
                 </td>
                 <td class="text-center">
                   <div class="btn-group-vertical btn-group-sm">
-                    <a href="" class="btn btn-primary">View</a>
-                    @if ($seller->status_account === 0)
-                      <button class="btn btn-success" data-id="{{ $seller->id }}" onclick="activateUser(this)">Activate</button>
-                      <button class="btn btn-warning" disabled>Deactivate</button>
-                    @elseif ($seller->status_account === 1)
-                      <button class="btn btn-success" disabled>Activate</button>
-                      <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>
-                    @endif
+                    <a href="" class="btn btn-primary">View</a> @if ($seller->status_account === 0)
+                    <button class="btn btn-success" data-id="{{ $seller->id }}" onclick="activateUser(this)">Activate</button>
+                    <button class="btn btn-warning" disabled>Deactivate</button> @elseif ($seller->status_account === 1)
+                    <button class="btn btn-success" disabled>Activate</button>
+                    <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>                    @endif
                   </div>
                 </td>
               </tr>
@@ -175,7 +172,9 @@
     </div>
   </div>
 </section>
-@endsection @section('script')
+@endsection
+ 
+@section('script')
 <script>
   $(document).ready(function () {
     $('#exampleModal').on('show.bs.modal', function (event) {
@@ -194,7 +193,7 @@
 
       $.ajax(url.replace("xxx", id), {
         dataType: "json",
-        error: (jqXHR, textStatus, errorThrown) => {},
+        error: (jqXHR, textStatus, errorThrown) => { },
         method: "GET",
         success: (data, textStatus, jqXHR) => {
           spinner.toggleClass('hidden', true);
@@ -235,6 +234,7 @@
     });
 
     $('#seller-table').DataTable({
+      'order': [],
       'ordering': true,
       'paging': false,
       'info': false,
@@ -253,7 +253,7 @@
     $.ajax("{{ route('users.activate') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;
@@ -272,7 +272,7 @@
     $.ajax("{{ route('users.deactivate') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;

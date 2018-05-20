@@ -145,14 +145,14 @@
             <form method="get" class="form-inline">
               <div class="input-group input-group-sm">
                 <span class="input-group-btn">
-                    <a class="btn btn-default" href="{{ route('orders.index.transactions') }}">Show All</a>
+                  <a class="btn btn-default" href="{{ route('orders.index.transactions') }}">Show All</a>
                 </span>
                 <input type="date" class="form-control" name="filter_date" value="{{ $filter_date }}" />
                 <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">
-                      <i class="fa fa-search"></i>
-                      Filter
-                    </button>
+                  <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-search"></i>
+                    Filter
+                  </button>
                 </span>
               </div>
             </form>
@@ -239,11 +239,13 @@
   $(document).ready(function () {
 
     $('#order-table').DataTable({
+      'order': [],
       'ordering': true,
       'info': false,
     });
 
     $('#stock-table').DataTable({
+      'order': [],
       'ordering': true,
       'info': false,
     });

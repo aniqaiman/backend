@@ -242,12 +242,14 @@
     });
 
     $('#order-table').DataTable({
+      'order': [],
       'ordering': true,
       'paging': false,
       'info': false,
     });
 
     $('#stock-table').DataTable({
+      'order': [],
       'ordering': true,
       'paging': false,
       'info': false,
@@ -302,7 +304,7 @@
     $.ajax("{{ route('orders.update.status.sellers.approve') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;
@@ -323,7 +325,7 @@
     $.ajax("{{ route('orders.update.status.buyers.reject') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;
@@ -344,7 +346,7 @@
     $.ajax("{{ route('orders.update.status.sellers.reject') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
+      error: (jqXHR, textStatus, errorThrown) => { },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;

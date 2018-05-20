@@ -237,6 +237,7 @@
     $('#price-table').DataTable({
       "order": []
     });
+    
     $('#frm-price-create').on('submit', function (e) {
       e.preventDefault();
       console.log('pressed');
