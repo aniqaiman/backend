@@ -67,7 +67,7 @@
                   <td>
                     {{ $inventory->product->name }} (Grade {{ $inventory->grade }})
                   </td>
-                  <td>{{ $inventory->product->id }}</td>
+                  <td>{{ sprintf("%04s", $inventory->product->id) }}</td>
                   <td>{{ Carbon\Carbon::parse($inventory->created_at)->format('d/m/Y') }}</td>
                   <td>
                     @if ($inventory->grade === 'A') {{ $inventory->product->priceValid($inventory->created_at)->seller_price_a }} @elseif ($inventory->grade

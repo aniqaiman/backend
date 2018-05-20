@@ -70,7 +70,7 @@
               <tr>
                 <td class="text-center">{{ Carbon\Carbon::parse($price->date_price)->format('d/m/Y') }}</td>
                 <td>{{ $price->product->name }}</td>
-                <td class="text-center">{{ $price->product->id }}</td>
+                <td class="text-center">{{ sprintf("%04s", $price->product->id) }}</td>
                 <td class="text-center">{{ $price->buyer_price_a }}</td>
                 <td class="text-center">{{ $price->seller_price_a }}</td>
                 <td class="text-center">{{ $price->buyer_price_b }}</td>

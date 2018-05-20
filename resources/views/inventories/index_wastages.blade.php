@@ -44,13 +44,13 @@
             <tbody>
               @foreach($wastages as $wastage)
               <tr>
-                <td>{{$wastage->created_at}}</td>
+                <td>{{ $wastage->created_at }}</td>
                 <td></td>
-                <td>{{$wastage->product->name}}</td>
-                <td>#{{$wastage->product->id}}</td>
-                <td>{{$wastage->storage_wastage}}</td>
-                <td>{{$wastage->promo_wastage}}</td>
-                <td>{{$wastage->promo_wastage + $wastage->storage_wastage}}</td>
+                <td>{{ $wastage->product->name }}</td>
+                <td>#{{ sprintf("%04s", $wastage->product->id) }}</td>
+                <td>{{ $wastage->storage_wastage }}</td>
+                <td>{{ $wastage->promo_wastage }}</td>
+                <td>{{ $wastage->promo_wastage + $wastage->storage_wastage }}</td>
                 <td></td>
               </tr>
               @endforeach

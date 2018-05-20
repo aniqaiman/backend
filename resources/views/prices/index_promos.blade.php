@@ -44,11 +44,11 @@
               <tr>
                 <td></td>
                 <td></td>
-                <td>{{$promo->product["name"]}}</td>
-                <td>#{{$promo->product["id"]}}</td>
-                <td><input type="number" id='promo_price_{{ $promo->product["id"]}}'  class="promo_price form-control" value='{{ $promo->price}}' /></td>
-                <td>{{$promo->total_sold}}</td>
-                <td><input type="number" id='promo_wastage_{{ $promo->product["id"]}}'  class="promo_wastage form-control" value="0"/></td>
+                <td>{{ $promo->product["name"] }}</td>
+                <td>#{{ $promo->product["id"] }}</td>
+                <td><input type="number" id='promo_price_{{ $promo->product["id"] }}'  class="promo_price form-control" value='{{ $promo->price }}' /></td>
+                <td>{{ $promo->total_sold }}</td>
+                <td><input type="number" id='promo_wastage_{{ $promo->product["id"] }}'  class="promo_wastage form-control" value="0"/></td>
                 <td></td>
               </tr>
               @endforeach

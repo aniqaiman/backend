@@ -139,7 +139,7 @@
               @foreach($products as $product)
               <tr>
                 <td>{{ $product->name }}</td>
-                <td>{{ $product->id }}</td>
+                <td>{{ sprintf("%04s", $product->id) }}</td>
                 <td>
                   <input type="date" class="harvesting_period_start form-control" />
                 </td>
