@@ -75,8 +75,18 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success">
-        <div class="box-body">
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="{{ $order_active }}">
+            <a href="#tab_1" data-toggle="tab">Buyer</a>
+          </li>
+          <li class="{{ $stock_active }}">
+            <a href="#tab_2" data-toggle="tab">Supplier</a>
+          </li>
+        </ul>
+        <div class="tab-content clearfix">
+          <div class="tab-pane {{ $order_active }}" id="tab_1">
+   
           <table class="table table-bordered" id="buyer-table" style="width:100%">
             <thead>
               <tr class="bg-black">
@@ -120,8 +130,12 @@
               @endforeach
             </tbody>
           </table>
-        </div>
       </div>
+      <div class="tab-pane {{ $stock_active }}" id="tab_2">
+            <table>
+            </table>
+          </div>
+        </div>
       <!-- /.box -->
     </div>
   </div>
