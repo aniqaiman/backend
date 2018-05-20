@@ -11,8 +11,8 @@
   <ol class="breadcrumb">
     <li>
       <a href="{{ route('dashboard') }}">
-          <i class="fa fa-dashboard"></i> Dashboard
-        </a>
+        <i class="fa fa-dashboard"></i> Dashboard
+      </a>
     </li>
     <li>
       <a href="#">Inventories Management</a>
@@ -42,7 +42,7 @@
         </div>
         <div class="box-body">
           <div class="table-responsive">
-            <table class="table table-bordered" id="buyer-table" style="width:100%">
+            <table class="table table-bordered" id="inventory-table" style="width:100%">
               <thead>
                 <tr class="bg-black">
                   <th>Item</th>
@@ -176,103 +176,110 @@
 @section('script')
 <script>
   $(document).ready(function () {
-        console.log("loaded");
+    console.log("loaded");
 
-        $(".demand").focusout(function () {
-          console.log($(this));
+    $(".demand").focusout(function () {
+      console.log($(this));
 
-          var data = {
-            id: $(this).data('id'),
-            grade: $(this).data('grade'),
-            demand: $(this).val(),
-          }
+      var data = {
+        id: $(this).data('id'),
+        grade: $(this).data('grade'),
+        demand: $(this).val(),
+      }
 
-          swal({
-            title: "",
-            text: "Saving....",
-            showConfirmButton: false
-          });
-
-          $.ajax("{{ route('products.update.demand') }}", {
-            data: data,
-            dataType: "json",
-            error: (jqXHR, textStatus, errorThrown) => {
-              console.log("x ok")
-              swal.close();
-            },
-            method: "PUT",
-            success: (data, textStatus, jqXHR) => {
-              console.log("ok")
-              swal.close();
-            }
-          });
-
-        });
-
-        $(".wastage").focusout(function () {
-          console.log($(this));
-          console.log($(this).attr('id'));
-          $(this).attr('id').split("_")[1]
-          var data = {
-            product_id: $(this).attr('id').split("_")[1],
-            // grade: $(this).data('grade'),
-            wastage: $(this).val(),
-          }
-
-          swal({
-            title: "",
-            text: "Saving....",
-            showConfirmButton: false
-          });
-
-          $.ajax("{{ route('products.update.wastage') }}", {
-            data: data,
-            dataType: "json",
-            error: (jqXHR, textStatus, errorThrown) => {
-              console.log("x ok")
-              swal.close();
-            },
-            method: "POST",
-            success: (data, textStatus, jqXHR) => {
-              console.log("ok")
-              swal.close();
-            }
-          });
-
-        });
+      swal({
+        title: "",
+        text: "Saving....",
+        showConfirmButton: false
       });
 
-      $(".promo").focusout(function () {
-        console.log($(this));
-        console.log($(this).attr('id'));
-        $(this).attr('id').split("_")[1]
-        var data = {
-          product_id: $(this).attr('id').split("_")[1],
-          // grade: $(this).data('grade'),
-          quantity: $(this).val(),
+      $.ajax("{{ route('products.update.demand') }}", {
+        data: data,
+        dataType: "json",
+        error: (jqXHR, textStatus, errorThrown) => {
+          console.log("x ok")
+          swal.close();
+        },
+        method: "PUT",
+        success: (data, textStatus, jqXHR) => {
+          console.log("ok")
+          swal.close();
         }
-
-        swal({
-          title: "",
-          text: "Saving....",
-          showConfirmButton: false
-        });
-
-        $.ajax("{{ route('products.update.promo') }}", {
-          data: data,
-          dataType: "json",
-          error: (jqXHR, textStatus, errorThrown) => {
-            console.log("x ok")
-            swal.close();
-          },
-          method: "POST",
-          success: (data, textStatus, jqXHR) => {
-            console.log("ok")
-            swal.close();
-          }
-        });
-
       });
+
+    });
+
+    $(".wastage").focusout(function () {
+      console.log($(this));
+      console.log($(this).attr('id'));
+      $(this).attr('id').split("_")[1]
+      var data = {
+        product_id: $(this).attr('id').split("_")[1],
+        // grade: $(this).data('grade'),
+        wastage: $(this).val(),
+      }
+
+      swal({
+        title: "",
+        text: "Saving....",
+        showConfirmButton: false
+      });
+
+      $.ajax("{{ route('products.update.wastage') }}", {
+        data: data,
+        dataType: "json",
+        error: (jqXHR, textStatus, errorThrown) => {
+          console.log("x ok")
+          swal.close();
+        },
+        method: "POST",
+        success: (data, textStatus, jqXHR) => {
+          console.log("ok")
+          swal.close();
+        }
+      });
+
+    });
+
+    $(".promo").focusout(function () {
+      console.log($(this));
+      console.log($(this).attr('id'));
+      $(this).attr('id').split("_")[1]
+      var data = {
+        product_id: $(this).attr('id').split("_")[1],
+        // grade: $(this).data('grade'),
+        quantity: $(this).val(),
+      }
+
+      swal({
+        title: "",
+        text: "Saving....",
+        showConfirmButton: false
+      });
+
+      $.ajax("{{ route('products.update.promo') }}", {
+        data: data,
+        dataType: "json",
+        error: (jqXHR, textStatus, errorThrown) => {
+          console.log("x ok")
+          swal.close();
+        },
+        method: "POST",
+        success: (data, textStatus, jqXHR) => {
+          console.log("ok")
+          swal.close();
+        }
+      });
+
+    });
+
+    $('#inventory-table').DataTable({
+      'order': [],
+      'ordering': true,
+      'paging': false,
+      'info': false,
+    });
+  });
 
 </script>
 @endsection
