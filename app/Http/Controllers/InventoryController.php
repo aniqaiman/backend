@@ -18,7 +18,7 @@ class InventoryController extends Controller
     {
         if ($request->has('filter_date')) {
             $inventories = Inventory::with('product', 'price', 'orders', 'stocks')
-                ->whereDate('created_at', '>=', $request->input('filter_date'))
+                ->whereDate('created_at', '=', $request->input('filter_date'))
                 ->orderBy('created_at', 'desc')
                 ->get();
         } else {
