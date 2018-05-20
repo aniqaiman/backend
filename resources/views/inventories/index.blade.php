@@ -151,8 +151,7 @@
                     <div class="input-group">
                       @if ($inventory->grade === 'A')
                       <input type="number" class="demand form-control" data-id="{{ $inventory->product_id }}" data-grade="{{ $inventory->grade }}"
-                        value="{{ $inventory->product->demand_a }}" style="min-width: 70px;" /> @elseif
-                      ($inventory->grade === 'B')
+                        value="{{ $inventory->product->demand_a }}" style="min-width: 70px;" /> @elseif ($inventory->grade === 'B')
                       <input type="number" class="demand form-control" data-id="{{ $inventory->product_id }}" data-grade="{{ $inventory->grade }}"
                         value="{{ $inventory->product->demand_b }}" style="min-width: 70px;" /> @else
                       @endif
