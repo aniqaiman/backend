@@ -126,6 +126,7 @@
                 <td>{{$order["tonnage"]}}</td>
                 <td></td>
                 <td></td>
+                <td></td>
               </tr>
               @endforeach
             </tbody>
@@ -169,6 +170,7 @@
                 <td></td>
                 <td></td>
                 <td>{{$stock["tonnage"]}}</td>
+                <td></td>
                 <td></td>
                 <td></td>
               </tr>
