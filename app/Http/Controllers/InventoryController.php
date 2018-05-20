@@ -27,7 +27,7 @@ class InventoryController extends Controller
                 ->get();
         }
 
-        $filter_date = $request->input('filter_date', Carbon::today()->format('Y-m-d'));
+        $filter_date = $request->input('filter_date', '');
 
         return view('inventories.index', compact('inventories', 'filter_date'));
     }
