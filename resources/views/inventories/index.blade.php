@@ -30,7 +30,7 @@
               <span class="input-group-btn">
                 <a class="btn btn-default" href="https://ninjavan.herokuapp.com/inventories">Show All</a>
               </span>
-              <input type="date" class="form-control" id="filter_date">
+              <input type="date" class="form-control" id="filter_date" value="{{ $filter_date }}" />
               <span class="input-group-btn">
                 <button class="btn btn-primary" type="submit">
                   <i class="fa fa-search"></i>

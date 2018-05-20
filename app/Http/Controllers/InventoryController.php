@@ -25,7 +25,10 @@ class InventoryController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
         }
-        return view('inventories.index', compact('inventories'));
+
+        $filter_date = $request->input('filter_date', Carbon\Carbon::today()->format('Y-m-d'));
+
+        return view('inventories.index', compact('inventories', 'filter_date'));
     }
 
     /**
