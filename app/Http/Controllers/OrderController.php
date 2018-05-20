@@ -95,13 +95,13 @@ class OrderController extends Controller
 
             $stocks = Stock::whereDate('created_at', '=', $filter_date)
                 ->orderBy('created_at', 'desc')
-                ->paginate(10, ['*'], 'buyer');
+                ->paginate(10, ['*'], 'seller');
         } else {
             $orders = Order::orderBy('created_at', 'desc')
-                ->paginate(10, ['*'], 'seller');
+                ->paginate(10, ['*'], 'buyer');
 
             $stocks = Stock::orderBy('created_at', 'desc')
-                ->paginate(10, ['*'], 'buyer');
+                ->paginate(10, ['*'], 'seller');
         }
 
         $order_active = isset($_GET['buyer']) ? "active" : "";
