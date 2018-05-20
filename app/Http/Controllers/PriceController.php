@@ -53,11 +53,11 @@ class PriceController extends Controller
         $filter_date = $request->input('filter_date', '');
 
         if ($request->has('filter_date')) {
-            $inventories = Price::whereDate('date_price', '=', $filter_date)
+            $prices = Price::whereDate('date_price', '=', $filter_date)
                 ->orderBy('date_price', 'desc')
                 ->get();
         } else {
-            $inventories = Inventory::get();
+            $prices = Price::get();
         }
 
         return view('prices.index_histories', compact('prices', 'filter_date'));
