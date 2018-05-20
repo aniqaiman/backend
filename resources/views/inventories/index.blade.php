@@ -24,13 +24,13 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-success">
-        <div class="box-body">
-          <form method="get">
-            <div class="input-group">
+        <div class="box-header with-border">
+          <form method="get" class="form-inline">
+            <div class="input-group input-group-sm">
               <span class="input-group-btn">
-                <a class="btn btn-default" href="{{ route('inventories.index') }}">Show All</a>
+                <a class="btn btn-default" href="https://ninjavan.herokuapp.com/inventories">Show All</a>
               </span>
-              <input type="text" class="form-control" id="filter_date">
+              <input type="date" class="form-control" id="filter_date">
               <span class="input-group-btn">
                 <button class="btn btn-primary" type="submit">
                   <i class="fa fa-search"></i>
@@ -39,6 +39,8 @@
               </span>
             </div>
           </form>
+        </div>
+        <div class="box-body">
           <div class="table-responsive">
             <table class="table table-bordered" id="buyer-table" style="width:100%">
               <thead>
