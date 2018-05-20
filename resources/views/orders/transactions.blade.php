@@ -231,13 +231,13 @@
   $(document).ready(function () {
 
     $('#order-table').DataTable({
-      'ordering': false,
+      'ordering': true,
       'paging': false,
       'info': false,
     });
 
     $('#stock-table').DataTable({
-      'ordering': false,
+      'ordering': true,
       'paging': false,
       'info': false,
     });

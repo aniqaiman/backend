@@ -253,7 +253,7 @@
     });
 
     $('#buyer-table').DataTable({
-      'ordering': false,
+      'ordering': true,
       'paging': false,
       'info': false,
     });

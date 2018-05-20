@@ -26,7 +26,7 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-body">
-          <table class="table table-bordered" id="buyer-table" style="width:100%">
+          <table class="table table-bordered" id="wastages-table" style="width:100%">
             <thead>
               <tr class="bg-black">
                 <th>Date</th>
@@ -64,4 +64,12 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function () {
+  $('#wastages-table').DataTable({
+            'ordering': true,
+            'paging': false,
+        });
+      });
+    </script>
 @endsection

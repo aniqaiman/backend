@@ -118,7 +118,23 @@ class OrderController extends Controller
             $newOrder["tonnage"] = $weight;
             array_push($orders, $newOrder);
         }
-        return view('orders.lorries', compact('orders'));
+        $stocksQuery = Stock::whereNotNull('lorry_id')->get();
+        $stocks = [];
+        foreach ($stocksQuery as $stock) {
+            $newStock["date"] = $stock->created_at;
+            $newStock["driver_name"] = $stock->driver->name;
+            $newStock["driver_id"] = $stock->driver->id;
+            $newStock["id"] = $stock->id;
+            $newStock["user_name"] = $stock->user->name;
+            $newStock["user_id"] = $stock->user->id;
+            $newStock["user_address"] = $stock->user->address;
+            $newStock["latitude"] = $stock->user->latitude;
+            $newStock["longitude"] = $stock->user->longitude;
+            $weight = DB::table('product_stock')->where('stock_id', $stock->id)->sum('quantity');
+            $newStock["tonnage"] = $weight;
+            array_push($stocks, $newStock);
+        }
+        return view('orders.lorries', compact('orders','stocks'));
     }
 
     public function assignDriverOrder(Request $request)

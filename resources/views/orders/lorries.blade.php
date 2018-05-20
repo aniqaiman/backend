@@ -75,9 +75,19 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success">
-        <div class="box-body">
-          <table class="table table-bordered" id="buyer-table" style="width:100%">
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#tab_1" data-toggle="tab">Buyer</a>
+          </li>
+          <li >
+            <a href="#tab_2" data-toggle="tab">Supplier</a>
+          </li>
+        </ul>
+        <div class="tab-content clearfix">
+          <div class="tab-pane" id="tab_1">
+   
+          <table class="table table-bordered" id="driver-order-table" style="width:100%">
             <thead>
               <tr class="bg-black">
                 <th>Date</th>
@@ -116,21 +126,80 @@
                 <td>{{$order["tonnage"]}}</td>
                 <td></td>
                 <td></td>
+                <td></td>
               </tr>
               @endforeach
             </tbody>
           </table>
-        </div>
       </div>
+      <div class="tab-pane" id="tab_2">
+            <table class="table table-bordered" id="driver-stock-table" style="width:100%">
+            <thead>
+              <tr class="bg-black">
+                <th>Date</th>
+                <th>Driver Name</th>
+                <th>Driver#</th>
+                <th>Stock#</th>
+                <th>Pick Up Location</th>
+                <th>Buyer/Supplier Name</th>
+                <th>Buyer/Supplier ID</th>
+                <th>Drop off Location</th>
+                <th>Total Distance</th>
+                <th>Total Tonnage</th>
+                <th>Total Payout</th>
+                <th>Route Details</th>
+                <th style="width: 1%;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($stocks as $stock)
+              <tr>
+                <td>{{$stock["date"]}}</td>
+                <td>{{$stock["driver_name"]}}</td>
+
+                <td><a href="#" data-id='{{ $order["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
+                    {{ $stock["driver_id"] }}
+                  </a>
+                </td>
+                <td>{{$stock["id"]}}</td>
+                <td>{{$stock["user_address"]}}<a href='https://www.google.com/maps/search/?api=1&query={{ $stock["latitude"]}},{{ $order["longitude"] }}' target="_blank">
+                    <i class="fa fa-map-marker"></i>
+                  </a></td>
+                <td>{{$stock["user_name"]}}</td>
+                <td>{{$stock["user_id"]}}</td>
+                <td></td>
+                <td></td>
+                <td>{{$stock["tonnage"]}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+          </div>
+        </div>
       <!-- /.box -->
     </div>
   </div>
+</div>
 </section>
 @endsection
 
 @section('script')
 <script>
 $(document).ready(function () {
+
+   $('#driver-stock-table').DataTable({
+      'ordering': true,
+      'paging': false,
+      'info': false,
+    });
+   $('#driver-order-table').DataTable({
+      'ordering': true,
+      'paging': false,
+      'info': false,
+    });
     $('#exampleModal').on('show.bs.modal', function (event) {
       var spinner = $('#spinner');
       var ud = $('#dd');

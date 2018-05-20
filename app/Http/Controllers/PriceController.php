@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Price;
 use App\Product;
 use App\Promotion;
+use App\Inventory;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -52,11 +53,11 @@ class PriceController extends Controller
         $filter_date = $request->input('filter_date', '');
 
         if ($request->has('filter_date')) {
-            $inventories = Price::whereDate('date_price', '=', $filter_date)
+            $prices = Price::whereDate('date_price', '=', $filter_date)
                 ->orderBy('date_price', 'desc')
                 ->get();
         } else {
-            $inventories = Price::orderBy('date_price', 'desc')->get();
+            $prices = Price::orderBy('date_price', 'desc')->get();
         }
 
         return view('prices.index_histories', compact('prices', 'filter_date'));
