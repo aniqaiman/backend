@@ -84,7 +84,7 @@ class OrderController extends Controller
         return view('orders.rejects', compact('orders', 'stocks', 'order_active', 'stock_active'));
     }
 
-    public function indexOrderTransactions()
+    public function indexOrderTransactions(Request $request)
     {
         $filter_date = $request->input('filter_date', '');
 
