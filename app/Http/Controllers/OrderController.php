@@ -169,9 +169,7 @@ class OrderController extends Controller
                             continue;
                         } else {
                             $inStock = true;
-                            $product->quantity_a -= $product->pivot->quantity;
-                            $order->status = 1;
-                            $inventory->orders()->syncWithoutDetaching([$order->id]);
+                            break;
                         }
                     }
                 }
@@ -192,13 +190,7 @@ class OrderController extends Controller
                             continue;
                         } else {
                             $inStock = true;
-                            $product->quantity_b -= $product->pivot->quantity;
-                            $order->status = 1;
-
-                            //$promotion->orders()->syncWithoutDetaching([$order->id]);
-                            $promotion->total_sold += $product->pivot->quantity;
-                            $promotion->save();
-
+                            break;
                         }
                     }
                 }
@@ -207,6 +199,46 @@ class OrderController extends Controller
                     return response()->json([
                         "message" => "No remaining promotion enough/available for $product->name (Grade " . $product->pivot->grade . ")",
                     ], 404);
+                }
+            }
+        }
+
+        foreach ($order->products as $product) {
+            if ($product->pivot->grade === "A") {
+                $inventories = Inventory::where([
+                    ['product_id', $product->id],
+                    ['grade', $product->pivot->grade],
+                ])->get();
+
+                if ($inventories->count() > 0) {
+                    foreach ($inventories as $inventory) {
+                        if ($inventory->totalRemainingActual($product->id, $product->pivot->grade) < $product->pivot->quantity) {
+                            continue;
+                        } else {
+                            $product->quantity_a -= $product->pivot->quantity;
+                            $order->status = 1;
+                            $inventory->orders()->syncWithoutDetaching([$order->id]);
+                        }
+                    }
+                }
+            } else if ($product->pivot->grade === "B") {
+                $promotions = Promotion::where([
+                    ['product_id', $product->id],
+                ])->get();
+
+                if ($promotions->count() > 0) {
+                    foreach ($promotions as $promotion) {
+                        if ($promotion->totalRemaining() < $product->pivot->quantity) {
+                            continue;
+                        } else {
+                            $product->quantity_b -= $product->pivot->quantity;
+                            $order->status = 1;
+
+                            //$promotion->orders()->syncWithoutDetaching([$order->id]);
+                            $promotion->total_sold += $product->pivot->quantity;
+                            $promotion->save();
+                        }
+                    }
                 }
             }
 
