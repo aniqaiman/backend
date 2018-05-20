@@ -44,22 +44,22 @@
           <table class="table table-bordered" id="historic-table" style="width:100%">
             <thead>
               <tr class="bg-black">
-                <th>Date</th>
+                <th class="text-center">Date</th>
                 <th>Item</th>
-                <th>Product#</th>
-                <th>
+                <th class="text-center">Product#</th>
+                <th class="text-center">
                   Buyer Price 
                   <br />(Grade A)
                 </th>
-                <th>
+                <th class="text-center">
                   Supplier Price
                   <br />(Grade A)
                 </th>
-                <th>
+                <th class="text-center">
                   Buyer Price
                   <br />(Grade B)
                 </th>
-                <th>
+                <th class="text-center">
                   Supplier Price
                   <br />(Grade B)
                 </th>
@@ -68,13 +68,13 @@
             <tbody>
               @foreach($prices as $price)
               <tr>
-                <td>{{ Carbon\Carbon::parse($price->date_price)->format('d/m/Y') }}</td>
+                <td class="text-center">{{ Carbon\Carbon::parse($price->date_price)->format('d/m/Y') }}</td>
                 <td>{{ $price->product->name }}</td>
-                <td>{{ $price->product->id }}</td>
-                <td>{{ $price->buyer_price_a }}</td>
-                <td>{{ $price->seller_price_a }}</td>
-                <td>{{ $price->buyer_price_b }}</td>
-                <td>{{ $price->seller_price_b }}</td>
+                <td class="text-center">{{ $price->product->id }}</td>
+                <td class="text-center">{{ $price->buyer_price_a }}</td>
+                <td class="text-center">{{ $price->seller_price_a }}</td>
+                <td class="text-center">{{ $price->buyer_price_b }}</td>
+                <td class="text-center">{{ $price->seller_price_b }}</td>
               </tr>
               @endforeach
             </tbody>
