@@ -49,9 +49,18 @@ class PriceController extends Controller
 
     public function indexHistories()
     {
-        $prices = Price::orderBy('date_price', 'desc')->get();
+        $filter_date = $request->input('filter_date', '');
 
-        return view('prices.index_histories', compact('prices'));
+        if ($request->has('filter_date')) {
+            $inventories = Price::whereDate('date_price', '=', $filter_date)
+                ->orderBy('date_price', 'desc')
+                ->get();
+        } else {
+            $inventories = Inventory::orderBy('date_price', 'desc')
+                ->get();
+        }
+
+        return view('prices.index_histories', compact('prices', 'filter_date'));
     }
 
     public function getFruitDetail($product_id, Request $request)

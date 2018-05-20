@@ -16,9 +16,11 @@ class InventoryController extends Controller
      */
     public function index(Request $request)
     {
+        $filter_date = $request->input('filter_date', '');
+
         if ($request->has('filter_date')) {
             $inventories = Inventory::with('product', 'price', 'orders', 'stocks')
-                ->whereDate('created_at', '=', $request->input('filter_date'))
+                ->whereDate('created_at', '=', $filter_date)
                 ->orderBy('created_at', 'desc')
                 ->get();
         } else {
@@ -26,8 +28,6 @@ class InventoryController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
         }
-
-        $filter_date = $request->input('filter_date', '');
 
         return view('inventories.index', compact('inventories', 'filter_date'));
     }

@@ -26,7 +26,7 @@ Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@get
 Route::prefix('users')
     ->name('users.')
     ->group(function () {
-        
+
         // ------------------------------------------- Driver ------------------------------------------- //
 
         Route::get('drivers', 'DriverController@index')->name('drivers.index');
@@ -68,7 +68,7 @@ Route::prefix('prices')
         Route::get('', 'PriceController@index')->name('index');
         Route::get('promos', 'PriceController@indexPromos')->name('index.promos');
         Route::get('histories', 'PriceController@indexHistories')->name('index.histories');
-        
+
     });
 
 // ------------------------------------------- Price ------------------------------------------- //
@@ -87,15 +87,13 @@ Route::get('vege/{product_id}/editVegePrice/{price_id}', ['as' => 'editVegePrice
 Route::post('updateVegePrice', ['as' => 'updateVegePrice', 'uses' => 'PriceController@updateVegePrice']);
 Route::delete('vegeprice', ['as' => 'deleteVegePrice', 'uses' => 'PriceController@deleteVegePrice']);
 
-
 Route::prefix('stocks')
     ->name('stocks.')
     ->group(function () {
 
         Route::post('lorry', 'StockController@assignDriverStocks')->name('lorry.assign');
 
-        });
-
+    });
 
 Route::prefix('orders')
     ->name('orders.')
@@ -119,7 +117,7 @@ Route::prefix('orders')
         Route::put('complete', 'OrderController@updateCompleteOrderStock')->name('update.status.complete');
 
         Route::post('lorry', 'OrderController@assignDriverOrder')->name('lorry.assign');
-    
+
         Route::post('', 'OrderController@store')->name('store');
         Route::put('{order_id}', 'OrderController@update')->name('update');
         Route::get('{order_id}', 'OrderController@edit')->name('edit');
@@ -152,8 +150,8 @@ Route::prefix('products')
         Route::post('wastage', 'ProductController@updateWastage')->name('update.wastage');
         Route::post('promowastage', 'ProductController@updatePromoWastage')->name('update.promowastage');
 
-         Route::post('promo', 'ProductController@updatePromo')->name('update.promo');
-          Route::post('promo_price', 'ProductController@updatePromoPrice')->name('update.promo_price');
+        Route::post('promo', 'ProductController@updatePromo')->name('update.promo');
+        Route::post('promo_price', 'ProductController@updatePromoPrice')->name('update.promo_price');
     });
 
 // ------------------------------------------- Inventory ------------------------------------------- //
