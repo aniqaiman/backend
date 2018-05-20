@@ -141,6 +141,22 @@
           <li class="{{ $stock_active }}">
             <a href="#tab_2" data-toggle="tab">Supplier</a>
           </li>
+          <li class="pull-right">
+            <form method="get" class="form-inline">
+              <div class="input-group input-group-sm">
+                <span class="input-group-btn">
+                    <a class="btn btn-default" href="{{ route('orders.index.transactions') }}">Show All</a>
+                </span>
+                <input type="date" class="form-control" name="filter_date" value="{{ $filter_date }}" />
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">
+                      <i class="fa fa-search"></i>
+                      Filter
+                    </button>
+                </span>
+              </div>
+            </form>
+          </li>
         </ul>
         <div class="tab-content clearfix">
           <div class="tab-pane {{ $order_active }}" id="tab_1">

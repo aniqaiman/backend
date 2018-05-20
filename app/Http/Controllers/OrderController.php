@@ -86,18 +86,30 @@ class OrderController extends Controller
 
     public function indexOrderTransactions()
     {
-        $orders = Order::orderBy('created_at', 'desc')
-            ->paginate(10, ['*'], 'buyer');
+        $filter_date = $request->input('filter_date', '');
 
-        $stocks = Stock::orderBy('created_at', 'desc')
-            ->paginate(10, ['*'], 'seller');
+        if ($request->has('filter_date')) {
+            $orders = Order::whereDate('created_at', '=', $filter_date)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10, ['*'], 'buyer');
+
+            $stocks = Stock::whereDate('created_at', '=', $filter_date)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10, ['*'], 'buyer');
+        } else {
+            $orders = Order::orderBy('created_at', 'desc')
+                ->paginate(10, ['*'], 'seller');
+
+            $stocks = Stock::orderBy('created_at', 'desc')
+                ->paginate(10, ['*'], 'buyer');
+        }
 
         $order_active = isset($_GET['buyer']) ? "active" : "";
         $stock_active = isset($_GET['seller']) ? "active" : "";
 
         $order_active = !isset($_GET['buyer']) && !isset($_GET['seller']) ? "active" : "";
 
-        return view('orders.transactions', compact('orders', 'stocks', 'order_active', 'stock_active'));
+        return view('orders.transactions', compact('orders', 'stocks', 'order_active', 'stock_active', 'filter_date'));
     }
 
     public function indexLorries()
@@ -134,7 +146,7 @@ class OrderController extends Controller
             $newStock["tonnage"] = $weight;
             array_push($stocks, $newStock);
         }
-        return view('orders.lorries', compact('orders','stocks'));
+        return view('orders.lorries', compact('orders', 'stocks'));
     }
 
     public function assignDriverOrder(Request $request)
