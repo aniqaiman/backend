@@ -161,14 +161,13 @@
                   </a>
                 </td>
                 <td>{{$stock["id"]}}</td>
-                <td></td>
-                <td>{{$stock["user_name"]}}</td>
-                <td>{{$stock["user_id"]}}</td>
-                <td></td>
                 <td>{{$stock["user_address"]}}<a href='https://www.google.com/maps/search/?api=1&query={{ $stock["latitude"]}},{{ $order["longitude"] }}' target="_blank">
                     <i class="fa fa-map-marker"></i>
                   </a></td>
-                
+                <td>{{$stock["user_name"]}}</td>
+                <td>{{$stock["user_id"]}}</td>
+                <td></td>
+                <td></td>
                 <td>{{$stock["tonnage"]}}</td>
                 <td></td>
                 <td></td>
