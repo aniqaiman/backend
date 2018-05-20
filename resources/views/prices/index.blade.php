@@ -53,36 +53,36 @@
                         <tbody>
                             @foreach($products as $product)
                             <tr>
-                                <td>{{$product["name"]}}</td>
+                                <td>{{ $product["name"] }}</td>
                                 <td></td>
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="selling_a form-control" id='selling_a_{{$product["id"]}}' value='{{$product["seller_price_a"]}}' min="0.01" style="min-width: 70px">
+                                        <input type="number" class="selling_a form-control" id='selling_a_{{ $product["id"] }}' value='{{ $product["seller_price_a"] }}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="buying_a form-control" id='buying_a_{{$product["id"]}}' value='{{$product["buyer_price_a"]}}' min="0.01" style="min-width: 70px">
+                                        <input type="number" class="buying_a form-control" id='buying_a_{{ $product["id"] }}' value='{{ $product["buyer_price_a"] }}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="selling_b form-control" id='selling_b_{{$product["id"]}}' value='{{$product["seller_price_b"]}}' min="0.01" style="min-width: 70px">
+                                        <input type="number" class="selling_b form-control" id='selling_b_{{ $product["id"] }}' value='{{ $product["seller_price_b"] }}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
-                                        <input type="number" class="buying_b form-control" id='buying_b_{{$product["id"]}}' value='{{$product["buyer_price_b"]}}' min="0.01" style="min-width: 70px">
+                                        <input type="number" class="buying_b form-control" id='buying_b_{{ $product["id"] }}' value='{{ $product["buyer_price_b"] }}' min="0.01" style="min-width: 70px">
                                     </div>
                                 </td>
-                                <td>RM {{$product["selling_yest_price_a"]}}</td>
-                                <td>RM {{$product["buying_yest_price_a"]}}</td>
-                                <td>RM {{$product["selling_yest_price_b"]}}</td>
-                                <td>RM {{$product["buying_yest_price_a"]}}</td>
+                                <td>RM {{ $product["seller_yest_price_a"] }}</td>
+                                <td>RM {{ $product["buyer_yest_price_a"] }}</td>
+                                <td>RM {{ $product["seller_yest_price_b"] }}</td>
+                                <td>RM {{ $product["buyer_yest_price_b"] }}</td>
                                 <td>RM </td>
                                 <td></td>
                             </tr>
