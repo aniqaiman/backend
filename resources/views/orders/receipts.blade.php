@@ -287,6 +287,8 @@
       dataType: "json",
       error: (jqXHR, textStatus, errorThrown) => {
         swal("Review Needed", jqXHR.responseJSON.message, "error");
+        $(btn).prop('disabled', false);
+        $(btn).html('Approved');
       },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
@@ -307,7 +309,11 @@
     $.ajax("{{ route('orders.update.status.sellers.approve') }}", {
       data: data,
       dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => { },
+      error: (jqXHR, textStatus, errorThrown) => {
+        swal("Review Needed", jqXHR.responseJSON.message, "error");
+        $(btn).prop('disabled', false);
+        $(btn).html('Approved');
+      },
       method: "PUT",
       success: (data, textStatus, jqXHR) => {
         window.location.href = window.location.href;
