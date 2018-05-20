@@ -41,13 +41,13 @@
             <tbody>
               @foreach($prices as $price)
               <tr>
-                <td>{{$price->date_price}}</td>
-                <td>{{$price->product->name}}</td>
-                <td>{{$price->product->id}}</td>
-                <td>{{$price->buyer_price_a}}</td>
-                <td>{{$price->Supplier_price_a}}</td>
-                <td>{{$price->buyer_price_b}}</td>
-                <td>{{$price->Supplier_price_b}}</td>
+                <td>{{ $price->date_price->format('d/m/Y') }}</td>
+                <td>{{ $price->product->name }}</td>
+                <td>{{ $price->product->id }}</td>
+                <td>{{ $price->buyer_price_a }}</td>
+                <td>{{ $price->Supplier_price_a }}</td>
+                <td>{{ $price->buyer_price_b }}</td>
+                <td>{{ $price->Supplier_price_b }}</td>
                 <td></td>
               </tr>
               @endforeach
