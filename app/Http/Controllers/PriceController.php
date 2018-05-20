@@ -57,8 +57,7 @@ class PriceController extends Controller
                 ->orderBy('date_price', 'desc')
                 ->get();
         } else {
-            $inventories = Inventory::orderBy('date_price', 'desc')
-                ->get();
+            $inventories = Inventory::get();
         }
 
         return view('prices.index_histories', compact('prices', 'filter_date'));
