@@ -33,10 +33,10 @@
                             <tr class="bg-black">
                                 <th>Item</th>
                                 <th>Product#</th>
-                                <th class="text-center">Today</th>
-                                <th class="text-center">Yesterday</th>
-                                <th class="text-center">% Price drop / increase from Yesterday</th>
-                                <th style="width: 1%;"></th>
+                                <th colspan="4" class="text-center">Today</th>
+                                <th colspan="4" class="text-center">Yesterday</th>
+                                <th rowspan="2" class="text-center">% Price drop / increase from Yesterday</th>
+                                <th rowspan="2" style="width: 1%;"></th>
                             </tr>
                             <tr class="bg-black">
                                 <th class="text-center">Supplier Price (Grade A)</th>
