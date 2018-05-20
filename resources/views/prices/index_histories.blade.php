@@ -81,7 +81,7 @@
 <script>
   $(document).ready(function () {
     $('#historic-table').DataTable({
-      'ordering': false,
+      'ordering': true,
       'paging': false,
     });
   });
