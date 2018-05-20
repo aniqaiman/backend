@@ -47,11 +47,22 @@
                 <th>Date</th>
                 <th>Item</th>
                 <th>Product#</th>
-                <th>Buyer Price (Grade A)</th>
-                <th>Supplier Price (Grade A)</th>
-                <th>Buyer Price (Grade B)</th>
-                <th>Supplier Price (Grade B)</th>
-                <th style="width: 1%;"></th>
+                <th>
+                  Buyer Price 
+                  <br />(Grade A)
+                </th>
+                <th>
+                  Supplier Price
+                  <br />(Grade A)
+                </th>
+                <th>
+                  Buyer Price
+                  <br />(Grade B)
+                </th>
+                <th>
+                  Supplier Price
+                  <br />(Grade B)
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -61,10 +72,9 @@
                 <td>{{ $price->product->name }}</td>
                 <td>{{ $price->product->id }}</td>
                 <td>{{ $price->buyer_price_a }}</td>
-                <td>{{ $price->Supplier_price_a }}</td>
+                <td>{{ $price->seller_price_a }}</td>
                 <td>{{ $price->buyer_price_b }}</td>
-                <td>{{ $price->Supplier_price_b }}</td>
-                <td></td>
+                <td>{{ $price->seller_price_b }}</td>
               </tr>
               @endforeach
             </tbody>
