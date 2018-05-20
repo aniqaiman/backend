@@ -58,7 +58,6 @@
                   <th>Wastage (E)</th>
                   <th>Promotion (E)</th>
                   <th>Edit Demand (E)</th>
-                  <th style="width: 1%;"></th>
                 </tr>
               </thead>
               <tbody>
