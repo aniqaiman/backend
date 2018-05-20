@@ -154,13 +154,13 @@
                 </td>
                 <td class="text-center">
                   E-Mail:
-                  @if ($seller->status_email === 1)
+                  @if ($buyer->status_email === 1)
                   <span class="label label-success">Verified</span>
                   @else
                   <span class="label label-danger">Unverified</span> 
                   @endif
                   <br /> Account:
-                  @if ($seller->status_account === 1)
+                  @if ($buyer->status_account === 1)
                   <span class="label label-success">Activated</span> 
                   @else
                   <span class="label label-danger">Deactivated</span> 
