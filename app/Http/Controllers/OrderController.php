@@ -91,25 +91,17 @@ class OrderController extends Controller
         if ($request->has('filter_date')) {
             $orders = Order::whereDate('created_at', '=', $filter_date)
                 ->orderBy('created_at', 'desc')
-                ->paginate(10, ['*'], 'buyer');
+                ->get();
 
             $stocks = Stock::whereDate('created_at', '=', $filter_date)
                 ->orderBy('created_at', 'desc')
-                ->paginate(10, ['*'], 'seller');
+                ->get();
         } else {
-            $orders = Order::orderBy('created_at', 'desc')
-                ->paginate(10, ['*'], 'buyer');
-
-            $stocks = Stock::orderBy('created_at', 'desc')
-                ->paginate(10, ['*'], 'seller');
+            $orders = Order::orderBy('created_at', 'desc')->get();
+            $stocks = Stock::orderBy('created_at', 'desc')->get();
         }
 
-        $order_active = isset($_GET['buyer']) ? "active" : "";
-        $stock_active = isset($_GET['seller']) ? "active" : "";
-
-        $order_active = !isset($_GET['buyer']) && !isset($_GET['seller']) ? "active" : "";
-
-        return view('orders.transactions', compact('orders', 'stocks', 'order_active', 'stock_active', 'filter_date'));
+        return view('orders.transactions', compact('orders', 'stocks', 'filter_date'));
     }
 
     public function indexLorries()

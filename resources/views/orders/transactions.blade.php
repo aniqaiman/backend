@@ -135,10 +135,10 @@
     <div class="col-md-12">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="{{ $order_active }}">
+          <li class="active">
             <a href="#tab_1" data-toggle="tab">Buyer</a>
           </li>
-          <li class="{{ $stock_active }}">
+          <li>
             <a href="#tab_2" data-toggle="tab">Supplier</a>
           </li>
           <li class="pull-right">
@@ -159,7 +159,7 @@
           </li>
         </ul>
         <div class="tab-content clearfix">
-          <div class="tab-pane {{ $order_active }}" id="tab_1">
+          <div class="tab-pane active" id="tab_1">
             <table class="table table-bordered" id="order-table">
               <thead>
                 <tr class="bg-black">
@@ -191,12 +191,8 @@
                 @endforeach
               </tbody>
             </table>
-
-            <div class="pull-right">
-              {{ $orders->links() }}
-            </div>
           </div>
-          <div class="tab-pane {{ $stock_active }}" id="tab_2">
+          <div class="tab-pane" id="tab_2">
             <table class="table table-bordered" id="stock-table">
               <thead>
                 <tr class="bg-black">
@@ -229,10 +225,6 @@
                 @endforeach
               </tbody>
             </table>
-
-            <div class="pull-right">
-              {{ $stocks->links() }}
-            </div>
           </div>
         </div>
       </div>
@@ -248,13 +240,11 @@
 
     $('#order-table').DataTable({
       'ordering': true,
-      'paging': false,
       'info': false,
     });
 
     $('#stock-table').DataTable({
       'ordering': true,
-      'paging': false,
       'info': false,
     });
 
