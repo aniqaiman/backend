@@ -131,7 +131,7 @@
             </tbody>
           </table>
       </div>
-      <div class="tab-pane {{ $stock_active }}" id="tab_2">
+      <div class="tab-pane" id="tab_2">
             <table>
             </table>
           </div>
