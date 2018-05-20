@@ -233,6 +233,7 @@
 
         $('#dashboard-table').DataTable({
             'ordering': false,
+            'paging': false,
         });
 
     });

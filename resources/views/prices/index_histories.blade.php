@@ -66,6 +66,7 @@
   $(document).ready(function () {
     $('#historic-table').DataTable({
       'ordering': false,
+      'paging': false,
     });
   });
 
