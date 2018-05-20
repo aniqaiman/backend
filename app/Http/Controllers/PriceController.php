@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Price;
 use App\Product;
 use App\Promotion;
+use App\Inventory;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
