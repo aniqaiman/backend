@@ -47,7 +47,7 @@ class PriceController extends Controller
         return view('prices.index_promos', compact('promos'));
     }
 
-    public function indexHistories()
+    public function indexHistories(Request $request)
     {
         $filter_date = $request->input('filter_date', '');
 
