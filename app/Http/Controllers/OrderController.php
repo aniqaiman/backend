@@ -130,7 +130,7 @@ class OrderController extends Controller
             $newStock["user_address"] = $stock->user->address;
             $newStock["latitude"] = $stock->user->latitude;
             $newStock["longitude"] = $stock->user->longitude;
-            $weight = DB::table('product_stock')->where('order_id', $stock->id)->sum('quantity');
+            $weight = DB::table('product_stock')->where('stock_id', $stock->id)->sum('quantity');
             $newOrder["tonnage"] = $weight;
             array_push($stocks, $newStock);
         }
