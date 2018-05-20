@@ -87,7 +87,7 @@
         <div class="tab-content clearfix">
           <div class="tab-pane" id="tab_1">
    
-          <table class="table table-bordered" id="buyer-table" style="width:100%">
+          <table class="table table-bordered" id="driver-order-table" style="width:100%">
             <thead>
               <tr class="bg-black">
                 <th>Date</th>
@@ -132,7 +132,7 @@
           </table>
       </div>
       <div class="tab-pane" id="tab_2">
-            <table class="table table-bordered" id="buyer-table" style="width:100%">
+            <table class="table table-bordered" id="driver-stock-table" style="width:100%">
             <thead>
               <tr class="bg-black">
                 <th>Date</th>
@@ -187,6 +187,17 @@
 @section('script')
 <script>
 $(document).ready(function () {
+
+   $('#driver-stock-table').DataTable({
+      'ordering': true,
+      'paging': false,
+      'info': false,
+    });
+   $('#driver-order-table').DataTable({
+      'ordering': true,
+      'paging': false,
+      'info': false,
+    });
     $('#exampleModal').on('show.bs.modal', function (event) {
       var spinner = $('#spinner');
       var ud = $('#dd');
