@@ -54,7 +54,7 @@
                             @foreach($products as $product)
                             <tr>
                                 <td>{{ $product["name"] }}</td>
-                                <td></td>
+                                <td>{{ $product["id"] }}</td>
                                 <td colspan="1">
                                     <div class="input-group">
                                         <span class="input-group-addon">RM</span>
