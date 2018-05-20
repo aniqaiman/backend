@@ -31,8 +31,8 @@
                     <table class="table" id="dashboard-table" style="width:100%">
                         <thead>
                             <tr class="bg-black">
-                                <th>Item</th>
-                                <th>Product#</th>
+                                <th rowspan="2">Item</th>
+                                <th rowspan="2">Product#</th>
                                 <th colspan="4" class="text-center">Today</th>
                                 <th colspan="4" class="text-center">Yesterday</th>
                                 <th rowspan="2" class="text-center">% Price drop / increase from Yesterday</th>
