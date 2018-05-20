@@ -138,7 +138,7 @@
                 <th>Date</th>
                 <th>Driver Name</th>
                 <th>Driver#</th>
-                <th>Order#</th>
+                <th>Stock#</th>
                 <th>Pick Up Location</th>
                 <th>Buyer/Supplier Name</th>
                 <th>Buyer/Supplier ID</th>
@@ -164,10 +164,11 @@
                 <td></td>
                 <td>{{$stock["user_name"]}}</td>
                 <td>{{$stock["user_id"]}}</td>
+                <td></td>
                 <td>{{$stock["user_address"]}}<a href='https://www.google.com/maps/search/?api=1&query={{ $stock["latitude"]}},{{ $order["longitude"] }}' target="_blank">
                     <i class="fa fa-map-marker"></i>
                   </a></td>
-                <td></td>
+                
                 <td>{{$stock["tonnage"]}}</td>
                 <td></td>
                 <td></td>
