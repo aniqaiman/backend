@@ -13,7 +13,7 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($request)
+    public function index(Request $request)
     {
         if ($request->has('filter_date')) {
             $inventories = Inventory::with('product', 'price', 'orders', 'stocks')
