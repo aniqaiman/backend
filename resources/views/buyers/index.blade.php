@@ -114,7 +114,7 @@
                     <div>No products been ordered.</div>
                     @endif
                     <ul class="list-unstyled">
-                      @foreach ($buyer->products()->orderBy('active_counter', 'desc')->get() as $product)
+                      @foreach ($buyer->products as $product)
                       <li>{{ $product->name }}</li>
                       @endforeach
                     </ul>

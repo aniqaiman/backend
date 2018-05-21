@@ -35,7 +35,7 @@ class BuyerController extends Controller
             ->where('group_id', 11)
             ->get()
             ->each(function ($buyer) {
-                $buyer->products = Product::orderBy('name', 'asc')
+                $buyer->products = Product::orderBy('active_counter', 'asc')
                     ->whereHas('orders', function ($order) use ($buyer) {
                         $order->where('user_id', $buyer->id);
                     })->get();
