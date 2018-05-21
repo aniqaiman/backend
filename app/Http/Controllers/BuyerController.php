@@ -30,8 +30,14 @@ class BuyerController extends Controller
 
     public function index()
     {
-        $buyers = User::where('group_id', 11)->paginate();
-        return view('users.buyers', compact('buyers'));
+        $buyers = User::where('group_id', 11)
+            ->get()
+            ->each(function ($buyer) {
+                $buyer->products = Product::whereHas('orders', function($order) use ($buyer) {
+                    return $order->user_id = $buyer->id;
+                });
+            });
+        return view('buyers.index', compact('buyers'));
     }
 
     public function edit($user_id, Request $request)
