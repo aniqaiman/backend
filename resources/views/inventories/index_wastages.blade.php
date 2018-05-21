@@ -55,7 +55,7 @@
                   <td class="text-center">{{ $wastage->storage_wastage }} kg</td>
                   <td class="text-center">{{ $wastage->promo_wastage }} kg</td>
                   <td class="text-center">{{ $wastage->promo_wastage + $wastage->storage_wastage }} kg</td>
-                  <td></td>
+                  <td class="text-center">RM {{ $wastage->buy_at_price }}</td>
                 </tr>
                 @endforeach
               </tbody>
