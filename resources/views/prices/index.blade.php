@@ -36,7 +36,7 @@
                                     <th rowspan="2">Product#</th>
                                     <th colspan="4" class="text-center">Today</th>
                                     <th colspan="4" class="text-center">Yesterday</th>
-                                    <th colspan="2" class="text-center">% Price Difference</th>
+                                    <th colspan="4" class="text-center">% Price Difference</th>
                                 </tr>
                                 <tr class="bg-black">
                                     <th class="text-center">Supplier Price (Grade A)</th>
@@ -87,14 +87,14 @@
                                             value='{{ number_format($product["buyer_price_b"], 2, '.', '') }}' min="0.01" style="min-width: 70px">
                                         </div>
                                     </td>
-                                    <td>RM {{ number_format($product["seller_yest_price_a"], 2, '.', '') }}</td>
-                                    <td>RM {{ number_format($product["buyer_yest_price_a"], 2, '.', '') }}</td>
-                                    <td>RM {{ number_format($product["seller_yest_price_b"], 2, '.', '') }}</td>
-                                    <td>RM {{ number_format($product["buyer_yest_price_b"], 2, '.', '') }}</td>
-                                    <td>{{ $product["difference"]->seller_price_a }}%</td>
-                                    <td>{{ $product["difference"]->buyer_price_a }}%</td>
-                                    <td>{{ $product["difference"]->seller_price_b }}%</td>
-                                    <td>{{ $product["difference"]->buyer_price_b }}%</td>
+                                    <td class="text-center">RM {{ number_format($product["seller_yest_price_a"], 2, '.', '') }}</td>
+                                    <td class="text-center">RM {{ number_format($product["buyer_yest_price_a"], 2, '.', '') }}</td>
+                                    <td class="text-center">RM {{ number_format($product["seller_yest_price_b"], 2, '.', '') }}</td>
+                                    <td class="text-center">RM {{ number_format($product["buyer_yest_price_b"], 2, '.', '') }}</td>
+                                    <td class="text-center">{{ $product["difference"]->seller_price_a }}%</td>
+                                    <td class="text-center">{{ $product["difference"]->buyer_price_a }}%</td>
+                                    <td class="text-center">{{ $product["difference"]->seller_price_b }}%</td>
+                                    <td class="text-center">{{ $product["difference"]->buyer_price_b }}%</td>
                                 </tr>
                                 @endforeach
                             </tbody>
