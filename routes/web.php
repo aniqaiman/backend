@@ -68,6 +68,7 @@ Route::prefix('prices')
         Route::get('', 'PriceController@index')->name('index');
         Route::get('promos', 'PriceController@indexPromos')->name('index.promos');
         Route::get('histories', 'PriceController@indexHistories')->name('index.histories');
+        Route::get('difference', 'PriceController@getPriceDifference')->name('difference');
 
     });
 

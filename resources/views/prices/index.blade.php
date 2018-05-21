@@ -1,8 +1,4 @@
-@extends('layout.master') 
-@section('style')
-@endsection
- 
-@section('content')
+@extends('layout.master') @section('style') @endsection @section('content')
 <section class="content-header">
     <h1>
         Price Dashboard
@@ -62,39 +58,39 @@
                                     <td colspan="1">
                                         <div class="input-group">
                                             <span class="input-group-addon">RM</span>
-                                            <input type="number" class="selling_a form-control" id='selling_a_{{ $product["id"] }}' value='{{ number_format($product["seller_price_a"], 2, '
-                                                . ', ' ') }}' min="0.01" style="min-width: 70px">
+                                            <input type="number" class="selling_a form-control" id='selling_a_{{ $product["id"] }}' value='{{ number_format($product["seller_price_a"], 2, ".", "") }}'
+                                                min="0.01" style="min-width: 70px">
                                         </div>
                                     </td>
                                     <td colspan="1">
                                         <div class="input-group">
                                             <span class="input-group-addon">RM</span>
-                                            <input type="number" class="buying_a form-control" id='buying_a_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_a"], 2, '
-                                                . ', ' ') }}' min="0.01" style="min-width: 70px">
+                                            <input type="number" class="buying_a form-control" id='buying_a_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_a"], 2, ".", "") }}'
+                                                min="0.01" style="min-width: 70px">
                                         </div>
                                     </td>
                                     <td colspan="1">
                                         <div class="input-group">
                                             <span class="input-group-addon">RM</span>
-                                            <input type="number" class="selling_b form-control" id='selling_b_{{ $product["id"] }}' value='{{ number_format($product["seller_price_b"], 2, '
-                                                . ', ' ') }}' min="0.01" style="min-width: 70px">
+                                            <input type="number" class="selling_b form-control" id='selling_b_{{ $product["id"] }}' value='{{ number_format($product["seller_price_b"], 2, ".", "")) }}'
+                                                min="0.01" style="min-width: 70px">
                                         </div>
                                     </td>
                                     <td colspan="1">
                                         <div class="input-group">
                                             <span class="input-group-addon">RM</span>
-                                            <input type="number" class="buying_b form-control" id='buying_b_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_b"], 2, '
-                                                . ', ' ') }}' min="0.01" style="min-width: 70px">
+                                            <input type="number" class="buying_b form-control" id='buying_b_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_b"], 2, ".", "") }}'
+                                                min="0.01" style="min-width: 70px">
                                         </div>
                                     </td>
                                     <td class="text-center">RM {{ number_format($product["seller_yest_price_a"], 2, '.', '') }}</td>
                                     <td class="text-center">RM {{ number_format($product["buyer_yest_price_a"], 2, '.', '') }}</td>
                                     <td class="text-center">RM {{ number_format($product["seller_yest_price_b"], 2, '.', '') }}</td>
                                     <td class="text-center">RM {{ number_format($product["buyer_yest_price_b"], 2, '.', '') }}</td>
-                                    <td class="text-center" id="{{ $product["id"] }}_seller_price_a">{{ number_format($product["difference"]->seller_price_a, 2, '.', '') }}%</td>
-                                    <td class="text-center" id="{{ $product["id"] }}_buyer_price_a">{{ number_format($product["difference"]->buyer_price_a, 2, '.', '') }}%</td>
-                                    <td class="text-center" id="{{ $product["id"] }}_seller_price_b">{{ number_format($product["difference"]->seller_price_b, 2, '.', '') }}%</td>
-                                    <td class="text-center" id="{{ $product["id"] }}_buyer_price_b">{{ number_format($product["difference"]->buyer_price_b, 2, '.', '') }}%</td>
+                                    <td class="text-center" id='{{ $product["id"] }}_seller_price_a'>{{ number_format($product["difference"]->seller_price_a, 2, '.', '') }}%</td>
+                                    <td class="text-center" id='{{ $product["id"] }}_buyer_price_a'>{{ number_format($product["difference"]->buyer_price_a, 2, '.', '') }}%</td>
+                                    <td class="text-center" id='{{ $product["id"] }}_seller_price_b'>{{ number_format($product["difference"]->seller_price_b, 2, '.', '') }}%</td>
+                                    <td class="text-center" id='{{ $product["id"] }}_buyer_price_b'>{{ number_format($product["difference"]->buyer_price_b, 2, '.', '') }}%</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -106,9 +102,7 @@
         </div>
     </div>
 </section>
-@endsection
- 
-@section('script')
+@endsection @section('script')
 <script>
     $(document).ready(function () {
         console.log("loaded");
@@ -140,6 +134,7 @@
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
                     swal.close();
+                    updatePriceDifference(arrItem);
                     //  window.location.href = window.location.href;
                 }
             });
@@ -173,6 +168,7 @@
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
                     swal.close()
+                    updatePriceDifference(arrItem);
                     //  window.location.href = window.location.href;
                 }
             });
@@ -204,6 +200,7 @@
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     swal.close();
+                    updatePriceDifference(arrItem);
                     //  window.location.href = window.location.href;
                 }
             });
@@ -237,6 +234,7 @@
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
                     swal.close()
+                    updatePriceDifference(arrItem);
                     //  window.location.href = window.location.href;
                 }
             });
@@ -250,5 +248,21 @@
 
     });
 
-</script>
-@endsection
+    function updatePriceDifference(id) {
+        $.ajax("{{ route('prices.difference') }}?id=" + id, {
+            data: data,
+            dataType: "json",
+            error: (jqXHR, textStatus, errorThrown) => { },
+            method: "GET",
+            success: (data, textStatus, jqXHR) => {
+                console.log(jqXHR);
+
+                $("#" + id + "_seller_price_a").html();
+                $("#" + id + "_buyer_price_a").html();
+                $("#" + id + "_seller_price_b").html();
+                $("#" + id + "_buyer_price_b").html();
+            }
+        });
+    }
+
+</script> @endsection

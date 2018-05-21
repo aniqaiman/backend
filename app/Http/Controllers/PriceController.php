@@ -176,4 +176,12 @@ class PriceController extends Controller
         Session::flash('message', 'Successfully deleted!');
         return Redirect::to('vegeprice');
     }
+
+    public function getPriceDifference(Request $request)
+    {
+        return response()->json(
+            Product::find($request->input("id"))
+                ->priceTodayYesterdayDifference()
+        );
+    }
 }
