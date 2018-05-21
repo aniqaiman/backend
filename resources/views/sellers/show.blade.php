@@ -140,11 +140,11 @@
               <tr>
                 <td>{{ $supply->name }}</td>
                 <td class="text-center">{{ sprintf("%04s", $supply->id) }}</td>
-                <td class="text-center">{{ $supply->harvesting_period_start }}</td>
-                <td class="text-center">{{ $supply->harvesting_period_end }}</td>
-                <td class="text-center">{{ $supply->harvest_frequency }}</td>
-                <td class="text-center">{{ $supply->total_plants }}</td>
-                <td class="text-center">{{ $supply->total_farm_area }}</td>
+                <td class="text-center">{{ $supply->pivot->harvesting_period_start }}</td>
+                <td class="text-center">{{ $supply->pivot->harvesting_period_end }}</td>
+                <td class="text-center">{{ $supply->pivot->harvest_frequency }}</td>
+                <td class="text-center">{{ $supply->pivot->total_plants }}</td>
+                <td class="text-center">{{ $supply->pivot->total_farm_area }}</td>
               </tr>
               @endforeach
             </tbody>
