@@ -177,9 +177,6 @@
               </tbody>
             </table>
           </div>
-          <div class="pull-right">
-            {{ $buyers->links() }}
-          </div>
         </div>
       </div>
       <!-- /.box -->
