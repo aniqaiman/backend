@@ -255,8 +255,8 @@
     });
 
     function updatePriceDifference(id) {
+                console.log(id);
         $.ajax("{{ route('prices.difference') }}?id=" + id, {
-            data: data,
             dataType: "json",
             error: (jqXHR, textStatus, errorThrown) => { },
             method: "GET",
