@@ -140,10 +140,10 @@
               <table class="table table-bordered" id="order-table" style="width:100%">
                 <thead>
                   <tr class="bg-black">
-                    <th>Date</th>
-                    <th>Order#</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Order#</th>
                     <th class="text-nowrap">Buyer Name</th>
-                    <th>Buyer#</th>
+                    <th class="text-center">Buyer#</th>
                     <th>Feedback Topic</th>
                     <th>Feedback Description</th>
                     <th>Feedback Response</th>
@@ -154,20 +154,20 @@
                 <tbody>
                   @foreach($orders as $order)
                   <tr>
-                    <td>{{ $order->created_at }}</td>
-                    <td>
+                    <td class="text-center">{{ $order->created_at }}</td>
+                    <td class="text-center">
                       <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">
                         {{ $order->id }}
                       </a>
                     </td>
                     <td>{{ $order->user->name }}</td>
-                    <td>{{ $order->user->id }}</td>
+                    <td class="text-center">{{ $order->user->id }}</td>
                     <td>{{ $order->feedback->topic }}</td>
                     <td>{{ $order->feedback->description }}</td>
                     <td>
                       @if (empty($stock->feedback->response)) None @else {{ $stock->feedback->response }} @endif
                     </td>
-                    <td>
+                    <td class="text-center">
                       <span class="label label-danger">Rejected</span>
                     </td>
                   </tr>
@@ -184,10 +184,10 @@
               <table class="table table-bordered" id="stock-table" style="width:100%">
                 <thead>
                   <tr class="bg-black">
-                    <th>Date</th>
-                    <th>Stock#</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Stock#</th>
                     <th class="text-nowrap">Supplier Name</th>
-                    <th>Supplier#</th>
+                    <th class="text-center">Supplier#</th>
                     <th>Feedback Topic</th>
                     <th>Feedback Description</th>
                     <th>Feedback Response</th>
@@ -198,20 +198,20 @@
                 <tbody>
                   @foreach($stocks as $stock)
                   <tr>
-                    <td>{{ $stock->created_at }}</td>
-                    <td>
+                    <td class="text-center">{{ $stock->created_at }}</td>
+                    <td class="text-center">
                       <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">
                         {{ $stock->id }}
                       </a>
                     </td>
                     <td>{{ $stock->user->name }}</td>
-                    <td>{{ $stock->user->id }}</td>
+                    <td class="text-center">{{ $stock->user->id }}</td>
                     <td>{{ $stock->feedback_topic }}</td>
                     <td>{{ $stock->feedback_description }}</td>
                     <td>
                       @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
                     </td>
-                    <td>
+                    <td class="text-center">
                       <span class="label label-danger">Rejected</span>
                     </td>
                   </tr>
