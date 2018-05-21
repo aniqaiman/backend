@@ -255,7 +255,6 @@
     });
 
     function updatePriceDifference(id) {
-                console.log(id);
         $.ajax("{{ route('prices.difference') }}?id=" + id, {
             dataType: "json",
             error: (jqXHR, textStatus, errorThrown) => { },
@@ -263,10 +262,10 @@
             success: (data, textStatus, jqXHR) => {
                 console.log(jqXHR);
 
-                $("#" + id + "_seller_price_a").html(parseFloat(Math.round(jqXHR.responseJSON.seller_price_a * 100)).toFixed(2));
-                $("#" + id + "_buyer_price_a").html(parseFloat(Math.round(jqXHR.responseJSON.buyer_price_a * 100)).toFixed(2));
-                $("#" + id + "_seller_price_b").html(parseFloat(Math.round(jqXHR.responseJSON.seller_price_b * 100)).toFixed(2));
-                $("#" + id + "_buyer_price_b").html(parseFloat(Math.round(jqXHR.responseJSON.buyer_price_b * 100)).toFixed(2));
+                $("#" + id + "_seller_price_a").html(parseFloat(Math.round(jqXHR.responseJSON.seller_price_a * 100)).toFixed(2)%);
+                $("#" + id + "_buyer_price_a").html(parseFloat(Math.round(jqXHR.responseJSON.buyer_price_a * 100)).toFixed(2)%);
+                $("#" + id + "_seller_price_b").html(parseFloat(Math.round(jqXHR.responseJSON.seller_price_b * 100)).toFixed(2)%);
+                $("#" + id + "_buyer_price_b").html(parseFloat(Math.round(jqXHR.responseJSON.buyer_price_b * 100)).toFixed(2)%);
             }
         });
     }
