@@ -53,7 +53,7 @@ Route::get('orders/{order_id}', 'Api\OrderController@getOrderDetails');
 // ------------------------------------------- Stock ---------------------------------------------------- //
 
 Route::get('stocks', 'Api\StockController@getStocks');
-Route::get('stocks/{stock_id}', 'API\StockController@getStockDetails');
+Route::get('stocks/{stock_id}', 'Api\StockController@getStockDetails');
 
 Route::post('stocks', 'Api\StockController@postStocks');
 
