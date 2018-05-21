@@ -64,10 +64,14 @@
               <tbody>
                 @foreach ($order->products as $product)
                 <tr>
-                  <td>{{ $product->name }}</td>
+                  <td>
+                    {{ $product->name }}
+                    (Grade {{ $product->pivot->grade }})
+                  </td>
                   <td>
                     <div class="input-group">
                       <input type="hidden" name="id[]" value="{{ $product->id }}">
+                      <input type="hidden" name="grade[]" value="{{ $product->pivot->grade }}">
                       <input type="number" name="quantity[]" class="form-control" value="{{ $product->pivot->quantity }}" />
                       <div class="input-group-addon">kg</div>
                     </div>

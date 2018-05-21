@@ -385,7 +385,10 @@ class OrderController extends Controller
         $order = Order::find($id);
 
         for ($x = 0; $x < count($request->input('id')); $x++) {
-            $order->products()->updateExistingPivot($request->input('id')[$x], ['quantity' => $request->input('quantity')[$x]]);
+            $order->products()->updateExistingPivot($request->input('id')[$x], [
+                'quantity' => $request->input('quantity')[$x],
+                'grade' => $request->input('grade')[$x],
+            ]);
         }
 
         $order->save();
