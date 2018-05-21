@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Redirect;
@@ -33,7 +34,7 @@ class BuyerController extends Controller
         $buyers = User::where('group_id', 11)
             ->get()
             ->each(function ($buyer) {
-                $buyer->products = Product::whereHas('orders', function($order) use ($buyer) {
+                $buyer->products = Product::whereHas('orders', function ($order) use ($buyer) {
                     return $order->user_id = $buyer->id;
                 });
             });
