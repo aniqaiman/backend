@@ -87,10 +87,12 @@ class ProductController extends Controller
             $wastage["storage_wastage"] = 0;
             $wastage["promo_wastage"] = 0;
             $wastage["product_id"] = $request->product_id;
+            $wastage["buy_at_price"] = $promo->buy_at_price;
         }
 
         $wastage->promo_wastage += $request->promo_wastage;
         $wastage->save();
+        
         return response()->json($wastage);
     }
 }

@@ -29,29 +29,32 @@
             <table class="table table-bordered" id="wastages-table" style="width:100%">
               <thead>
                 <tr class="bg-black">
-                  <th>Date</th>
+                  <th class="text-center">Date</th>
                   <th>Order#</th>
                   <th>Item</th>
-                  <th>Product#</th>
-                  <th>Storage Wastage
-                    <br />(from Inventory Mgmt)</th>
-                  <th>Promo Wastage
-                    <br />(from Promo Price Mgmt)</th>
-                  <th>Total Wastage</th>
-                  <th>Buy At Price</th>
-                  <th style="width: 1%;"></th>
+                  <th class="text-center">Product#</th>
+                  <th class="text-center">
+                    Storage Wastage
+                    <br />(from Inventory Mgmt)
+                  </th>
+                  <th class="text-center">
+                    Promo Wastage
+                    <br />(from Promo Price Mgmt)
+                  </th>
+                  <th class="text-center">Total Wastage</th>
+                  <th class="text-center">Buy At Price</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($wastages as $wastage)
                 <tr>
-                  <td>{{ $wastage->created_at }}</td>
+                  <td class="text-center">{{ Carbon\Carbon::parse($wastage->created_at)->format('d/m/Y') }}</td>
                   <td></td>
                   <td>{{ $wastage->product->name }}</td>
-                  <td>{{ sprintf("%04s", $wastage->product->id) }}</td>
-                  <td>{{ $wastage->storage_wastage }}</td>
-                  <td>{{ $wastage->promo_wastage }}</td>
-                  <td>{{ $wastage->promo_wastage + $wastage->storage_wastage }}</td>
+                  <td class="text-center">{{ sprintf("%04s", $wastage->product->id) }}</td>
+                  <td class="text-center">{{ $wastage->storage_wastage }} kg</td>
+                  <td class="text-center">{{ $wastage->promo_wastage }} kg</td>
+                  <td class="text-center">{{ $wastage->promo_wastage + $wastage->storage_wastage }} kg</td>
                   <td></td>
                 </tr>
                 @endforeach
