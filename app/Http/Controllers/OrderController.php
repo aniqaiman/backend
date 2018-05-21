@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Inventory;
 use App\Order;
+use App\Product;
 use App\Promotion;
 use App\Stock;
 use App\User;
@@ -401,7 +402,10 @@ class OrderController extends Controller
         $stock = Stock::find($id);
 
         for ($x = 0; $x < count($request->input('id')); $x++) {
-            $stock->products()->updateExistingPivot($request->input('id')[$x], [
+            $stock->products()->detach();
+            
+            $product = Product::find($request->input('id')[$x]);
+            $stock->products()->save($product, [
                 'quantity' => $request->input('quantity')[$x],
                 'grade' => $request->input('grade')[$x],
             ]);
