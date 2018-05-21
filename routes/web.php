@@ -122,8 +122,10 @@ Route::prefix('orders')
         Route::get('buyers/{id}', 'OrderController@editBuyer')->name('edit.buyers');
         Route::get('sellers/{id}', 'OrderController@editSeller')->name('edit.sellers');
 
+        Route::put('buyers/{id}', 'OrderController@updateBuyer')->name('update.buyers');
+        Route::put('sellers/{id}', 'OrderController@updateSeller')->name('update.sellers');
+
         Route::post('', 'OrderController@store')->name('store');
-        Route::put('{order_id}', 'OrderController@update')->name('update');
         Route::delete('{order_id}', 'OrderController@destroy')->name('destroy');
 
     });

@@ -380,18 +380,17 @@ class OrderController extends Controller
         return view('order.edit_order', compact('stock'));
     }
 
-    public function update(Request $request)
+    public function updateBuyer(Request $request, $id)
     {
-        if ($request->ajax()) {
-            $orders = Order::where('order_id', $request->order_id)->first();
-            $orders->user_id = $request->user_id;
-            $orders->product_id = $request->product_id;
-            $orders->item_quantity = $request->item_quantity;
-            $orders->product_price = $request->product_price;
-            $orders->promo_price = $request->promo_price;
-            $orders->save();
-            return response($orders);
+        $order = Order::find($id);
+
+        for ($x = 0; $x < count($request->input('id')); $x++) {
+            $order->products()->updateExistingPivot($request->input('id')[$x], ['quantity' => $request->input('quantity')[$x]]);
         }
+
+        $order->save();
+
+        return redirect()->route('orders.index.receipts');
     }
 
     public function delete($order_id, Request $request)

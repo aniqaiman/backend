@@ -51,22 +51,33 @@
           <div class="box-title">Items</div>
         </div>
         <div class="box-body">
-          <table class="table table-bordered" style="width:100%">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ($order->products as $product)
-              <tr>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->pivot->quantity }}</td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
+          <form method="post" action="{{ action('OrderController@updateBuyer', $order->id) }}">
+            @csrf
+            <input name="_method" type="hidden" value="PUT">
+            <table class="table table-bordered" style="width:100%">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($order->products as $product)
+                <tr>
+                  <td>{{ $product->name }}</td>
+                  <td>
+                    <div class="input-group">
+                      <input type="hidden" name="id[]" value="{{ $product->id }}">
+                      <input type="number" name="quantity[]" class="form-control" value="{{ $product->pivot->quantity }}" />
+                      <div class="input-group-addon">kg</div>
+                    </div>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Update Order</button>
+          </form>
         </div>
       </div>
     </div>
