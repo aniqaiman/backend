@@ -168,6 +168,8 @@ desired effect
   {!!Html::script('js/jquery-2.2.3.min.js')!!}
   <!-- Bootstrap 3.3.6 -->
   {!!Html::script('js/bootstrap.min.js')!!}
+  <!-- SlimScroll -->
+  {!!Html::script('js/jquery.slimscroll.min.js')!!}
   <!-- AdminLTE App -->
   {!!Html::script('js/app.min.js')!!}
   <!-- datatable -->
