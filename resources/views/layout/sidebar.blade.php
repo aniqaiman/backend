@@ -2,19 +2,7 @@
 <aside class="main-sidebar">
 
   <!-- sidebar: style can be found in sidebar.less -->
-  <section class="sidebar">
-
-    <!-- Sidebar user panel (optional) -->
-    <div class="user-panel">
-      <div class="pull-left image">
-        {{ HTML::image('img/foodrico.png', 'User Image', array('class' => 'img-circle')) }}
-      </div>
-      <div class="pull-left info">
-        <p>FoodRico Admin</p>
-        <!-- Status -->
-        <a href="#"><i class="fa fa-circle text-success"></i> Ready to Serve</a>
-      </div>
-    </div>
+  <section class="sidebar" style="position: fixed;">
 
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu " data-widget="tree">
@@ -25,8 +13,6 @@
             <i class="fa fa-dashboard"></i> <span class="text-info">Dashboard</span>
           </a>
       </li>
-
-      <li class="header">PER SKETCH (TEMPORARY)</li>
 
       <li class="treeview">
         <a href="{{ route('orders.index.receipts') }}">
@@ -106,7 +92,7 @@
           </a>
       </li>
 
-      <li class="header">GROUPED (TEMPORARY)</li>
+      {{-- <li class="header">GROUPED (TEMPORARY)</li>
 
       <li class="treeview">
         <a href="#">
@@ -158,7 +144,7 @@
           <li><a href="{{ route('users.sellers.index') }}"><i class="fa fa-circle-o"></i>Manage Suppliers</a></li>
           <li><a href="{{ route('users.buyers.index') }}"><i class="fa fa-circle-o"></i>Manage Buyers</a></li>
         </ul>
-      </li>
+      </li> --}}
 
     </ul>
   </section>
