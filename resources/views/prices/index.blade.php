@@ -28,72 +28,78 @@
                     <div class="box-header">
                         <h3 class="box-title">{{ Carbon\Carbon::now()->toFormattedDateString() }}</h3>
                     </div>
-                    <table class="table" id="dashboard-table" style="width:100%">
-                        <thead>
-                            <tr class="bg-black">
-                                <th rowspan="2">Item</th>
-                                <th rowspan="2">Product#</th>
-                                <th colspan="4" class="text-center">Today</th>
-                                <th colspan="4" class="text-center">Yesterday</th>
-                                <th colspan="2" class="text-center">% Price Difference</th>
-                            </tr>
-                            <tr class="bg-black">
-                                <th class="text-center">Supplier Price (Grade A)</th>
-                                <th class="text-center">Buyer Price (Grade A)</th>
-                                <th class="text-center">Supplier Price (Grade B)</th>
-                                <th class="text-center">Buyer Price (Grade B)</th>
-                                <th class="text-center">Supplier Price (Grade A)</th>
-                                <th class="text-center">Buyer Price (Grade A)</th>
-                                <th class="text-center">Supplier Price (Grade B)</th>
-                                <th class="text-center">Buyer Price (Grade B)</th>
-                                <th class="text-center">Supplier Price (Grade A)</th>
-                                <th class="text-center">Buyer Price (Grade A)</th>
-                                <th class="text-center">Supplier Price (Grade B)</th>
-                                <th class="text-center">Buyer Price (Grade B)</th>
-                            </tr>
-                        </thead>
+                    <div class="table-responsive">
+                        <table class="table" id="dashboard-table" style="width:100%">
+                            <thead>
+                                <tr class="bg-black">
+                                    <th rowspan="2">Item</th>
+                                    <th rowspan="2">Product#</th>
+                                    <th colspan="4" class="text-center">Today</th>
+                                    <th colspan="4" class="text-center">Yesterday</th>
+                                    <th colspan="2" class="text-center">% Price Difference</th>
+                                </tr>
+                                <tr class="bg-black">
+                                    <th class="text-center">Supplier Price (Grade A)</th>
+                                    <th class="text-center">Buyer Price (Grade A)</th>
+                                    <th class="text-center">Supplier Price (Grade B)</th>
+                                    <th class="text-center">Buyer Price (Grade B)</th>
+                                    <th class="text-center">Supplier Price (Grade A)</th>
+                                    <th class="text-center">Buyer Price (Grade A)</th>
+                                    <th class="text-center">Supplier Price (Grade B)</th>
+                                    <th class="text-center">Buyer Price (Grade B)</th>
+                                    <th class="text-center">Supplier Price (Grade A)</th>
+                                    <th class="text-center">Buyer Price (Grade A)</th>
+                                    <th class="text-center">Supplier Price (Grade B)</th>
+                                    <th class="text-center">Buyer Price (Grade B)</th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            @foreach($products as $product)
-                            <tr>
-                                <td>{{ $product["name"] }}</td>
-                                <td>{{ sprintf("%04s", $product["id"]) }}</td>
-                                <td colspan="1">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">RM</span>
-                                        <input type="number" class="selling_a form-control" id='selling_a_{{ $product["id"] }}' value='{{ number_format($product["seller_price_a"], 2, '.', '') }}' min="0.01" style="min-width: 70px">
-                                    </div>
-                                </td>
-                                <td colspan="1">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">RM</span>
-                                        <input type="number" class="buying_a form-control" id='buying_a_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_a"], 2, '.', '') }}' min="0.01" style="min-width: 70px">
-                                    </div>
-                                </td>
-                                <td colspan="1">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">RM</span>
-                                        <input type="number" class="selling_b form-control" id='selling_b_{{ $product["id"] }}' value='{{ number_format($product["seller_price_b"], 2, '.', '') }}' min="0.01" style="min-width: 70px">
-                                    </div>
-                                </td>
-                                <td colspan="1">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">RM</span>
-                                        <input type="number" class="buying_b form-control" id='buying_b_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_b"], 2, '.', '') }}' min="0.01" style="min-width: 70px">
-                                    </div>
-                                </td>
-                                <td>RM {{ number_format($product["seller_yest_price_a"], 2, '.', '') }}</td>
-                                <td>RM {{ number_format($product["buyer_yest_price_a"], 2, '.', '') }}</td>
-                                <td>RM {{ number_format($product["seller_yest_price_b"], 2, '.', '') }}</td>
-                                <td>RM {{ number_format($product["buyer_yest_price_b"], 2, '.', '') }}</td>
-                                <td>RM {{ number_format($product["difference"]->seller_price_a, 2, '.', '') }}</td>
-                                <td>RM {{ number_format($product["difference"]->buyer_price_a, 2, '.', '') }}</td>
-                                <td>RM {{ number_format($product["difference"]->seller_price_b, 2, '.', '') }}</td>
-                                <td>RM {{ number_format($product["difference"]->buyer_price_b, 2, '.', '') }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            <tbody>
+                                @foreach($products as $product)
+                                <tr>
+                                    <td>{{ $product["name"] }}</td>
+                                    <td>{{ sprintf("%04s", $product["id"]) }}</td>
+                                    <td colspan="1">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">RM</span>
+                                            <input type="number" class="selling_a form-control" id='selling_a_{{ $product["id"] }}' value='{{ number_format($product["seller_price_a"], 2, '
+                                                . ', ' ') }}' min="0.01" style="min-width: 70px">
+                                        </div>
+                                    </td>
+                                    <td colspan="1">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">RM</span>
+                                            <input type="number" class="buying_a form-control" id='buying_a_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_a"], 2, '
+                                                . ', ' ') }}' min="0.01" style="min-width: 70px">
+                                        </div>
+                                    </td>
+                                    <td colspan="1">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">RM</span>
+                                            <input type="number" class="selling_b form-control" id='selling_b_{{ $product["id"] }}' value='{{ number_format($product["seller_price_b"], 2, '
+                                                . ', ' ') }}' min="0.01" style="min-width: 70px">
+                                        </div>
+                                    </td>
+                                    <td colspan="1">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">RM</span>
+                                            <input type="number" class="buying_b form-control" id='buying_b_{{ $product["id"] }}' value='{{ number_format($product["buyer_price_b"], 2, '
+                                                . ', ' ') }}' min="0.01" style="min-width: 70px">
+                                        </div>
+                                    </td>
+                                    <td>RM {{ number_format($product["seller_yest_price_a"], 2, '.', '') }}</td>
+                                    <td>RM {{ number_format($product["buyer_yest_price_a"], 2, '.', '') }}</td>
+                                    <td>RM {{ number_format($product["seller_yest_price_b"], 2, '.', '') }}</td>
+                                    <td>RM {{ number_format($product["buyer_yest_price_b"], 2, '.', '') }}</td>
+                                    <td>RM {{ number_format($product["difference"]->seller_price_a, 2, '.', '') }}</td>
+                                    <td>RM {{ number_format($product["difference"]->buyer_price_a, 2, '.', '') }}</td>
+                                    <td>RM {{ number_format($product["difference"]->seller_price_b, 2, '.', '') }}</td>
+                                    <td>RM {{ number_format($product["difference"]->buyer_price_b, 2, '.', '') }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!-- /.box -->
