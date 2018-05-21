@@ -70,6 +70,10 @@ class ProductController extends Controller
             ], 404);
         }
 
+        $promo = Promo::find($request->product_id);
+        $promo->wastage = $request->promo_wastage;
+        $promo->save();
+
         $wastage = Wastage::where('product_id', $request->product_id)->first();
         if (!$wastage) {
             $wastage = new Wastage;
