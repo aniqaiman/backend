@@ -64,16 +64,15 @@
                 @foreach ($inventories as $inventory)
                 <tr>
                   <td>
-                    {{ $inventory->product->name }} (Grade {{ $inventory->grade }})
+                    {{ $inventory->product->name }}
                   </td>
                   <td>{{ sprintf("%04s", $inventory->product->id) }}</td>
                   <td>{{ Carbon\Carbon::parse($inventory->created_at)->format('d/m/Y') }}</td>
                   <td>
-                    @if ($inventory->grade === 'A') {{ $inventory->product->priceValid($inventory->created_at)->seller_price_a }} @elseif ($inventory->grade
-                    === 'B') {{ $inventory->product->priceValid($inventory->created_at)->seller_price_b }} @endif
+                    {{ $inventory->product->priceValid($inventory->created_at)->seller_price_a }}
                   </td>
                   <td>
-                    {{ $inventory->totalPurchased($inventory->product->id, $inventory->grade) }} kg
+                    {{ $inventory->totalPurchased($inventory->product->id) }} kg
                   </td>
                   <td>
                     <table class="table">
@@ -99,14 +98,14 @@
                           @if (is_null($stock->driver)) No lorry assigned @else {{ $stock->driver->name }} @endif
                         </td>
                         <td>
-                          {{ $stock->getQuantityByProduct($inventory->product->id, $inventory->grade) }} kg
+                          {{ $stock->getQuantityByProduct($inventory->product->id) }} kg
                         </td>
                       </tr>
                       @endforeach
                     </table>
                   </td>
                   <td>
-                    {{ $inventory->totalSold($inventory->product->id, $inventory->grade) }} kg
+                    {{ $inventory->totalSold($inventory->product->id) }} kg
                   </td>
                   <td>
                     <table class="table">
@@ -124,14 +123,14 @@
                           {{ $order->created_at }}
                         </td>
                         <td>
-                          {{ $order->getQuantityByProduct($inventory->product->id, $inventory->grade) }} kg
+                          {{ $order->getQuantityByProduct($inventory->product->id) }} kg
                         </td>
                       </tr>
                       @endforeach
                     </table>
                   </td>
                   <td>
-                    {{ $inventory->totalRemaining($inventory->product->id, $inventory->grade) }} kg
+                    {{ $inventory->totalRemaining($inventory->product->id) }} kg
                   </td>
                   <td></td>
                   <td>
@@ -150,12 +149,8 @@
                   </td>
                   <td>
                     <div class="input-group">
-                      @if ($inventory->grade === 'A')
-                      <input type="number" class="demand form-control" data-id="{{ $inventory->product_id }}" data-grade="{{ $inventory->grade }}"
-                        value="{{ $inventory->product->demand_a }}" style="min-width: 70px;" /> @elseif ($inventory->grade === 'B')
-                      <input type="number" class="demand form-control" data-id="{{ $inventory->product_id }}" data-grade="{{ $inventory->grade }}"
-                        value="{{ $inventory->product->demand_b }}" style="min-width: 70px;" /> @else
-                      @endif
+                      <input type="number" class="demand form-control" data-id="{{ $inventory->product_id }}" value="{{ $inventory->product->demand_a }}"
+                        style="min-width: 70px;" />
                       <div class="input-group-addon">kg</div>
                     </div>
                   </td>
@@ -182,7 +177,7 @@
 
       var data = {
         id: $(this).data('id'),
-        grade: $(this).data('grade'),
+        grade: 'A',
         demand: $(this).val(),
       }
 
@@ -214,7 +209,6 @@
       $(this).attr('id').split("_")[1]
       var data = {
         product_id: $(this).attr('id').split("_")[1],
-        // grade: $(this).data('grade'),
         wastage: $(this).val(),
       }
 
@@ -246,7 +240,6 @@
       $(this).attr('id').split("_")[1]
       var data = {
         product_id: $(this).attr('id').split("_")[1],
-        // grade: $(this).data('grade'),
         quantity: $(this).val(),
       }
 

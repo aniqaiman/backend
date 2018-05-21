@@ -8,7 +8,6 @@ class Inventory extends Model
 {
     protected $fillable = [
         'product_id',
-        'grade',
         'price_id',
         'remark',
         'wastage',
@@ -35,33 +34,33 @@ class Inventory extends Model
         return $this->belongsToMany('App\Stock');
     }
 
-    public function totalPurchased($product_id, $grade)
+    public function totalPurchased($product_id)
     {
         return $this
             ->stocks
-            ->map(function ($stock, $key) use ($product_id, $grade) {
-                return $stock->getQuantityByProduct($product_id, $grade);
+            ->map(function ($stock, $key) use ($product_id) {
+                return $stock->getQuantityByProduct($product_id, 'A');
             })
             ->sum();
     }
 
-    public function totalSold($product_id, $grade)
+    public function totalSold($product_id)
     {
         return $this
             ->orders
-            ->map(function ($order, $key) use ($product_id, $grade) {
-                return $order->getQuantityByProduct($product_id, $grade);
+            ->map(function ($order, $key) use ($product_id) {
+                return $order->getQuantityByProduct($product_id, 'A');
             })
             ->sum();
     }
 
-    public function totalRemaining($product_id, $grade)
+    public function totalRemaining($product_id)
     {
-        return $this->totalPurchased($product_id, $grade) - $this->totalSold($product_id, $grade);
+        return $this->totalPurchased($product_id, 'A') - $this->totalSold($product_id, 'A');
     }
 
-    public function totalRemainingActual($product_id, $grade)
+    public function totalRemainingActual($product_id)
     {
-        return $this->totalRemaining($product_id, $grade) - $this->wastage - $this->promotion;
+        return $this->totalRemaining($product_id, 'A') - $this->wastage - $this->promotion;
     }
 }
