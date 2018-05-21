@@ -60,7 +60,7 @@ desired effect
 |---------------------------------------------------------|
 -->
 
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-green fixed sidebar-mini">
   <div class="wrapper">
 
     <!-- Main Header -->
