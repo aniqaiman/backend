@@ -32,6 +32,11 @@ class Stock extends Model
         return $this->belongsTo('App\User', 'lorry_id');
     }
 
+    public function feedback()
+    {
+        return $this->hasOne('App\Feedback');
+    }
+
     public function products()
     {
         return $this
