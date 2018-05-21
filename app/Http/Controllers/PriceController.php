@@ -23,15 +23,15 @@ class PriceController extends Controller
             $newProd["id"] = $product["id"];
             $newProd["name"] = $product["name"];
 
-            $product_yest_prices["seller_price_a"] ? $newProd["seller_yest_price_a"] = $product_yest_prices["seller_price_a"] : $newProd["seller_yest_price_a"] = 0;
-            $product_yest_prices["seller_price_b"] ? $newProd["seller_yest_price_b"] = $product_yest_prices["seller_price_b"] : $newProd["seller_yest_price_b"] = 0;
-            $product_yest_prices["buyer_price_a"] ? $newProd["buyer_yest_price_a"] = $product_yest_prices["buyer_price_a"] : $newProd["buyer_yest_price_a"] = 0;
-            $product_yest_prices["buyer_price_b"] ? $newProd["buyer_yest_price_b"] = $product_yest_prices["buyer_price_b"] : $newProd["buyer_yest_price_b"] = 0;
+            $product_yest_prices["seller_price_a"] ? $newProd["seller_yest_price_a"] = number_format($product_yest_prices["seller_price_a"], 2, '.', '') : $newProd["seller_yest_price_a"] = 0.00;
+            $product_yest_prices["seller_price_b"] ? $newProd["seller_yest_price_b"] = number_format($product_yest_prices["seller_price_b"], 2, '.', '') : $newProd["seller_yest_price_b"] = 0.00;
+            $product_yest_prices["buyer_price_a"] ? $newProd["buyer_yest_price_a"] = number_format($product_yest_prices["buyer_price_a"], 2, '.', '') : $newProd["buyer_yest_price_a"] = 0.00;
+            $product_yest_prices["buyer_price_b"] ? $newProd["buyer_yest_price_b"] = number_format($product_yest_prices["buyer_price_b"], 2, '.', '') : $newProd["buyer_yest_price_b"] = 0.00;
 
-            $product_prices["seller_price_a"] ? $newProd["seller_price_a"] = $product_prices["seller_price_a"] : $newProd["seller_price_a"] = $newProd["seller_yest_price_a"];
-            $product_prices["seller_price_b"] ? $newProd["seller_price_b"] = $product_prices["seller_price_b"] : $newProd["seller_price_b"] = $newProd["seller_yest_price_b"];
-            $product_prices["buyer_price_a"] ? $newProd["buyer_price_a"] = $product_prices["buyer_price_a"] : $newProd["buyer_price_a"] = $newProd["buyer_yest_price_a"];
-            $product_prices["buyer_price_b"] ? $newProd["buyer_price_b"] = $product_prices["buyer_price_b"] : $newProd["buyer_price_b"] = $newProd["buyer_yest_price_a"];
+            $product_prices["seller_price_a"] ? $newProd["seller_price_a"] = number_format($product_prices["seller_price_a"], 2, '.', '') : $newProd["seller_price_a"] = $newProd["seller_yest_price_a"];
+            $product_prices["seller_price_b"] ? $newProd["seller_price_b"] = number_format($product_prices["seller_price_b"], 2, '.', '') : $newProd["seller_price_b"] = $newProd["seller_yest_price_b"];
+            $product_prices["buyer_price_a"] ? $newProd["buyer_price_a"] = number_format($product_prices["buyer_price_a"], 2, '.', '') : $newProd["buyer_price_a"] = $newProd["buyer_yest_price_a"];
+            $product_prices["buyer_price_b"] ? $newProd["buyer_price_b"] = number_format($product_prices["buyer_price_b"], 2, '.', '') : $newProd["buyer_price_b"] = $newProd["buyer_yest_price_a"];
 
             //$product_yest_prices["buyer_price_a"] ? $newProd["difference"] = number_format(($product_prices["buyer_price_a"] - $product_yest_prices["buyer_price_a"]) * 10 / $product_yest_prices["buyer_price_a"], 2) : $newProd["difference"] = 0;
             array_push($products, $newProd);
