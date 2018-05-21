@@ -34,10 +34,10 @@ class BuyerController extends Controller
         $buyers = User::where('group_id', 11)
             ->get()
             ->each(function ($buyer) {
-                $buyer->products = Product::whereHas('orders', function ($order) use ($buyer) {
-                    return $order->user_id = $buyer->id;
-                })
-                ->get();
+                $buyer->products = Product::orderBy('name', 'asc')
+                    ->whereHas('orders', function ($order) use ($buyer) {
+                        $order->where('user_id', $buyer->id);
+                    })->get();
             });
         return view('buyers.index', compact('buyers'));
     }

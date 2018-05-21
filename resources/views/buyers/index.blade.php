@@ -112,7 +112,12 @@
                   <td nowrap>
                     @if (!$buyer->orders()->exists())
                     <div>No products been ordered.</div>
-                    @endif @foreach ($buyer->products as $product) {{ $product->name }} @endforeach
+                    @endif
+                    <ul class="list-unstyled">
+                      @foreach ($buyer->products as $product)
+                      <li>{{ $product->name }}</li>
+                      @endforeach
+                    </ul>
                   </td>
                   <td>{{ $buyer->created_at }}</td>
                   <td>
