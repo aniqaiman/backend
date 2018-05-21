@@ -396,6 +396,22 @@ class OrderController extends Controller
         return redirect()->route('orders.index.receipts');
     }
 
+    public function updateSeller(Request $request, $id)
+    {
+        $stock = Stock::find($id);
+
+        for ($x = 0; $x < count($request->input('id')); $x++) {
+            $stock->products()->updateExistingPivot($request->input('id')[$x], [
+                'quantity' => $request->input('quantity')[$x],
+                'grade' => $request->input('grade')[$x],
+            ]);
+        }
+
+        $stock->save();
+
+        return redirect()->route('orders.index.receipts');
+    }
+
     public function delete($order_id, Request $request)
     {
         $order = Order::find($order_id);
