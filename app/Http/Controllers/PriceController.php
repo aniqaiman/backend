@@ -17,8 +17,8 @@ class PriceController extends Controller
         $products = [];
         foreach ($productQuery as $product) {
 
-            $product_prices = $product->priceToday();
-            $product_yest_prices = $product->priceYesterday();
+            $product_prices = Price::where('product_id', $product->id)->where('date_price', date("Y-m-d"))->first();
+            $product_yest_prices = Price::where('product_id', $product->id)->where('date_price', date('Y-m-d', strtotime("-1 days")))->first();
 
             $newProd["id"] = $product["id"];
             $newProd["name"] = $product["name"];
@@ -31,10 +31,9 @@ class PriceController extends Controller
             $product_prices["seller_price_a"] ? $newProd["seller_price_a"] = $product_prices["seller_price_a"] : $newProd["seller_price_a"] = $newProd["seller_yest_price_a"];
             $product_prices["seller_price_b"] ? $newProd["seller_price_b"] = $product_prices["seller_price_b"] : $newProd["seller_price_b"] = $newProd["seller_yest_price_b"];
             $product_prices["buyer_price_a"] ? $newProd["buyer_price_a"] = $product_prices["buyer_price_a"] : $newProd["buyer_price_a"] = $newProd["buyer_yest_price_a"];
-            $product_prices["buyer_price_b"] ? $newProd["buyer_price_b"] = $product_prices["buyer_price_b"] : $newProd["buyer_price_b"] = $newProd["buyer_yest_price_b"];
+            $product_prices["buyer_price_b"] ? $newProd["buyer_price_b"] = $product_prices["buyer_price_b"] : $newProd["buyer_price_b"] = $newProd["buyer_yest_price_a"];
 
-            $newProd["difference"] = $product->priceTodayYesterdayDifference();
-            
+            //$product_yest_prices["buyer_price_a"] ? $newProd["difference"] = number_format(($product_prices["buyer_price_a"] - $product_yest_prices["buyer_price_a"]) * 10 / $product_yest_prices["buyer_price_a"], 2) : $newProd["difference"] = 0;
             array_push($products, $newProd);
 
         }
