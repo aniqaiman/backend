@@ -116,7 +116,7 @@
                     <div>No products been supplied.</div>
                     @endif
                     <ul class="list-unstyled">
-                      @foreach ($seller->supplies as $supply)
+                      @foreach ($seller->supplies()->orderBy('active_counter', 'desc')->get() as $supply)
                       <li>{{ $supply->name }}</li>
                       @endforeach
                     </ul>
