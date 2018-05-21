@@ -77,60 +77,62 @@
 @section('script')
 <script>
   $(".promo_price").focusout(function () {
-      
-          var data = {
-            product_id:  $(this).attr('id').split("_")[2],
-            price: $(this).val(),
-          }
 
-          swal({
-            title: "",
-            text: "Saving....",
-            showConfirmButton: false
-          });
+    var data = {
+      product_id: $(this).attr('id').split("_")[2],
+      price: $(this).val(),
+    }
 
-          $.ajax("{{ route('products.update.promo_price') }}", {
-            data: data,
-            dataType: "json",
-            error: (jqXHR, textStatus, errorThrown) => {
-              console.log("x ok")
-              swal.close();
-            },
-            method: "POST",
-            success: (data, textStatus, jqXHR) => {
-              console.log("ok")
-              swal.close();
-            }
-          });
-        });
+    swal({
+      title: "",
+      text: "Saving....",
+      showConfirmButton: false
+    });
+
+    $.ajax("{{ route('products.update.promo_price') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {
+        console.log("x ok")
+        swal.close();
+      },
+      method: "POST",
+      success: (data, textStatus, jqXHR) => {
+        console.log("ok")
+        swal.close();
+      }
+    });
+  });
 
   $(".promo_wastage").focusout(function () {
-      
-          var data = {
-            product_id:  $(this).attr('id').split("_")[2],
-            promo_wastage: $(this).val(),
-          }
 
-          swal({
-            title: "",
-            text: "Saving....",
-            showConfirmButton: false
-          });
+    var data = {
+      product_id: $(this).attr('id').split("_")[2],
+      promo_wastage: $(this).val(),
+    }
 
-          $.ajax("{{ route('products.update.promowastage') }}", {
-            data: data,
-            dataType: "json",
-            error: (jqXHR, textStatus, errorThrown) => {
-              console.log("x ok")
-              swal.close();
-            },
-            method: "POST",
-            success: (data, textStatus, jqXHR) => {
-              console.log("ok")
-              swal.close();
-            }
-          });
-        });
+    swal({
+      title: "",
+      text: "Saving....",
+      showConfirmButton: false
+    });
+
+    $.ajax("{{ route('products.update.promowastage') }}", {
+      data: data,
+      dataType: "json",
+      error: (jqXHR, textStatus, errorThrown) => {
+        console.log("x ok")
+        swal.close();
+        
+        swal("Review Needed", jqXHR.responseJSON.message, "error");
+      },
+      method: "POST",
+      success: (data, textStatus, jqXHR) => {
+        console.log("ok")
+        swal.close();
+      }
+    });
+  });
 
 </script>
 @endsection
