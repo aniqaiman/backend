@@ -47,8 +47,10 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box box-success">
-        <div class="box-body">
+        <div class="box-header">
           <div class="box-title">Items</div>
+        </div>
+        <div class="box-body">
           <table class="table table-bordered" style="width:100%">
             <thead>
               <tr>
