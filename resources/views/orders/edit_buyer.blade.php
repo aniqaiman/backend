@@ -26,7 +26,7 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-success">
+      <div class="box">
         <div class="box-body">
           <dl class="dl-horizontal">
             <dt>Date</dt>
@@ -40,8 +40,15 @@
               <div class="label label-default">Submitted</div>
             </dd>
           </dl>
-
-          <h3>Items</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-success">
+        <div class="box-body">
+          <div class="box-title">Items</div>
           <table class="table table-bordered" style="width:100%">
             <thead>
               <tr>
