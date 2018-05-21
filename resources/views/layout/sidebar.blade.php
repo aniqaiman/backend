@@ -10,89 +10,103 @@
 
       <li class="treeview">
         <a href="{{ route('welcome') }}">
-            <i class="fa fa-dashboard"></i> <span class="text-info">Dashboard</span>
-          </a>
+          <i class="fa fa-dashboard"></i>
+          <span class="text-info">Dashboard</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('orders.index.receipts') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A1 - Order Receipt</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A1 - Order Receipt</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('orders.index.trackings') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A2 - Order Tracking</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A2 - Order Tracking</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('orders.index.rejects') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A4 - Feedback Management</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A4 - Feedback Management</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('inventories.index') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A5 - Inventory Management</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A5 - Inventory Management</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('prices.index.promos') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A6 - Promo Price Management</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A6 - Promo Price Management</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('inventories.index.wastages') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A7 - Wastage Management</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A7 - Wastage Management</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('prices.index') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A8 - Price Dashboard</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A8 - Price Dashboard</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('prices.index.histories') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A9 - Historic Price Data</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A9 - Historic Price Data</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('orders.index.lorries') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A10 - Lorry Management</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A10 - Lorry Management</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('users.sellers.index') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A12 - Supplier Management</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A12 - Supplier Management</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('users.buyers.index') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A15 - Buyer Management</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A15 - Buyer Management</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('orders.index.transactions') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A18 - Buyer Transcation</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A18 - Buyer Transcation</span>
+        </a>
       </li>
 
       <li class="treeview">
         <a href="{{ route('orders.index.transactions') }}">
-            <i class="fa fa-chevron-circle-right"></i> <span class="text-info">A20 - Supplier Transcation</span>
-          </a>
+          <i class="fa fa-chevron-circle-right"></i>
+          <span class="text-info">A20 - Supplier Transcation</span>
+        </a>
       </li>
 
-      {{-- <li class="header">GROUPED (TEMPORARY)</li>
+      <!-- <li class="header">GROUPED (TEMPORARY)</li>
 
       <li class="treeview">
         <a href="#">
@@ -144,7 +158,7 @@
           <li><a href="{{ route('users.sellers.index') }}"><i class="fa fa-circle-o"></i>Manage Suppliers</a></li>
           <li><a href="{{ route('users.buyers.index') }}"><i class="fa fa-circle-o"></i>Manage Buyers</a></li>
         </ul>
-      </li> --}}
+      </li> -->
 
     </ul>
   </section>
