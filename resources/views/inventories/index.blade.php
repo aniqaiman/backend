@@ -123,7 +123,7 @@
                           {{ $order->created_at }}
                         </td>
                         <td>
-                          {{ $order->getQuantityByProduct($inventory->product->id) }} kg
+                          {{ $order->getQuantityByProduct($inventory->product->id, 'A') }} kg
                         </td>
                       </tr>
                       @endforeach
