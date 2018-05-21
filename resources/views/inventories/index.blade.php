@@ -98,7 +98,7 @@
                           @if (is_null($stock->driver)) No lorry assigned @else {{ $stock->driver->name }} @endif
                         </td>
                         <td>
-                          {{ $stock->getQuantityByProduct($inventory->product->id) }} kg
+                          {{ $stock->getQuantityByProduct($inventory->product->id, 'A') }} kg
                         </td>
                       </tr>
                       @endforeach
