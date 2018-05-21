@@ -162,10 +162,10 @@
                     </td>
                     <td>{{ $order->user->name }}</td>
                     <td>{{ $order->user->id }}</td>
-                    <td>{{ $order->feedback_topic }}</td>
-                    <td>{{ $order->feedback_description }}</td>
+                    <td>{{ $order->feedback->topic }}</td>
+                    <td>{{ $order->feedback->description }}</td>
                     <td>
-                      @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
+                      @if (empty($stock->feedback->response)) None @else {{ $stock->feedback->response }} @endif
                     </td>
                     <td>
                       <span class="label label-danger">Rejected</span>
