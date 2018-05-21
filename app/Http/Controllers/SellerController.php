@@ -36,7 +36,7 @@ class SellerController extends Controller
 
     public function index()
     {
-        $sellers = User::where('group_id', 21)->paginate();
+        $sellers = User::where('group_id', 21)->get();
         return view('sellers.index', compact('sellers'));
     }
 

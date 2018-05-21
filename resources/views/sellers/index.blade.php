@@ -114,29 +114,12 @@
                   <td nowrap>
                     @if (!$seller->stocks()->exists())
                     <div>No products been supplied.</div>
-                    @endif @foreach ($seller->stocks()->orderBy('id', 'desc')->get() as $stock)
-                    <div class="lead">
-                      <span class="label label-default">{{ $stock->totalQuantity() }}kg</span>
-                      <span class="label label-default">RM {{ number_format($stock->totalPrice(), 2) }}</span>
-                    </div>
-                    <table class="table">
-                      @foreach ($stock->products as $product)
-                      <tr>
-                        <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
-                        <td>{{ $product->pivot->quantity }}kg</td>
-                        <td>
-                          @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["seller_price_a"], 2) }} @break @case("B")
-                          RM {{ number_format($product->priceLatest()["seller_price_b"], 2) }} @break @endswitch
-                        </td>
-                        <td>
-                          @switch($product->pivot->grade) @case("A") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_a"],
-                          2) }} @break @case("B") RM {{ number_format($product->pivot->quantity * $product->priceLatest()["seller_price_b"],
-                          2) }} @break @endswitch
-                        </td>
-                      </tr>
+                    @endif
+                    <ul class="list-unstyled">
+                      @foreach ($seller->supplies as $supply)
+                      <li>{{ $supply->name }}</li>
                       @endforeach
-                    </table>
-                    @endforeach
+                    </ul>
                   </td>
                   <td>{{ $seller->created_at }}</td>
                   <td>
@@ -168,16 +151,13 @@
                       <button class="btn btn-success" data-id="{{ $seller->id }}" onclick="activateUser(this)">Activate</button>
                       <button class="btn btn-warning" disabled>Deactivate</button> @elseif ($seller->status_account === 1)
                       <button class="btn btn-success" disabled>Activate</button>
-                      <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>                    @endif
+                      <button class="btn btn-warning" data-id="{{ $seller->id }}" onclick="deactivateUser(this)">Deactivate</button>                      @endif
                     </div>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-          </div>
-          <div class="pull-right">
-            {{ $sellers->links() }}
           </div>
         </div>
       </div>
