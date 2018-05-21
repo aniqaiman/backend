@@ -45,9 +45,8 @@ class StockController extends Controller
         $stock = new Stock();
         $stock->status = 0;
 
-        JWTAuth::parseToken()->authenticate()
-            ->stocks()
-            ->save($stock);
+        $user = JWTAuth::parseToken()->authenticate();
+        $user->stocks()->save($stock);
 
         foreach ($request->all() as $json) {
             $product = Product::find($json['product']['id']);
@@ -64,7 +63,7 @@ class StockController extends Controller
 
         $user->active_counter += 1;
         $user->save();
-        
+
         return response()->json([
             'data' => $stock,
         ]);
