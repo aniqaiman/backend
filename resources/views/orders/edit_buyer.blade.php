@@ -7,7 +7,7 @@
 <section class="content-header">
   <h1>
     Order Receipt
-    <small>Edit</small>
+    <small>Edit Order</small>
   </h1>
 
   <ol class="breadcrumb">
@@ -17,9 +17,7 @@
       </a>
     </li>
     <li>
-      <a href="{{ route('orders.index.receipts') }}">
-        <i class="fa fa-dashboard"></i> Order Receipt
-      </a>
+      <a href="{{ route('orders.index.receipts') }}">Order Receipt</a>
     </li>
     <li class="active">Edit</li>
   </ol>
@@ -30,8 +28,36 @@
     <div class="col-md-12">
       <div class="box box-success">
         <div class="box-body">
-          <div class="table-responsive">
-          </div>
+          <dl class="dl-horizontal">
+            <dt>Date</dt>
+            <dd>{{ $order->created_at }}</dd>
+            <dt>Order#</dt>
+            <dd>{{ $order->id }}</dd>
+            <dt>Buyer</dt>
+            <dd>{{ $order->user->id }} | {{ $order->user->name }}</dd>
+            <dt>Status</dt>
+            <dd>
+              <div class="label label-default">Submitted</div>
+            </dd>
+          </dl>
+
+          <h3>Items</h3>
+          <table class="table table-bordered" style="width:100%">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($order->products as $product)
+              <tr>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->pivot->quantity }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
