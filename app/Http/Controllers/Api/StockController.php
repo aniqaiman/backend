@@ -57,6 +57,14 @@ class StockController extends Controller
             ]);
         }
 
+        foreach ($stock->products as $product) {
+            $product->active_counter += 1;
+            $product->save();
+        }
+
+        $user->active_counter += 1;
+        $user->save();
+        
         return response()->json([
             'data' => $stock,
         ]);

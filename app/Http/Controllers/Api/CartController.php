@@ -81,6 +81,14 @@ class CartController extends Controller
 
         $user->carts()->detach();
 
+        foreach ($order->products as $product) {
+            $product->active_counter += 1;
+            $product->save();
+        }
+
+        $user->active_counter += 1;
+        $user->save();
+        
         return response()->json([
             'data' => $order,
         ]);

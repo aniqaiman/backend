@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Capacity;
-use App\Type;
 use App\User;
-use App\Product;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -36,7 +33,9 @@ class SellerController extends Controller
 
     public function index()
     {
-        $sellers = User::where('group_id', 21)->get();
+        $sellers = User::orderBy('active_counter', 'desc')
+            ->where('group_id', 21)
+            ->get();
         return view('sellers.index', compact('sellers'));
     }
 

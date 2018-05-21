@@ -31,7 +31,8 @@ class BuyerController extends Controller
 
     public function index()
     {
-        $buyers = User::where('group_id', 11)
+        $buyers = User::orderBy('active_counter', 'desc')
+            ->where('group_id', 11)
             ->get()
             ->each(function ($buyer) {
                 $buyer->products = Product::orderBy('name', 'asc')
