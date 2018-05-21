@@ -384,9 +384,11 @@ class OrderController extends Controller
     public function updateBuyer(Request $request, $id)
     {
         $order = Order::find($id);
+        $order->products()->detach();
 
         for ($x = 0; $x < count($request->input('id')); $x++) {
-            $order->products()->updateExistingPivot($request->input('id')[$x], [
+            $product = Product::find($request->input('id')[$x]);
+            $order->products()->save($product, [
                 'quantity' => $request->input('quantity')[$x],
                 'grade' => $request->input('grade')[$x],
             ]);
