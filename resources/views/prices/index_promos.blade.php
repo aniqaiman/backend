@@ -58,7 +58,7 @@
                   <td class="text-center">{{ $promo->total_sold }} kg</td>
                   <td>
                     <div class="input-group">
-                    <input type="number" id='promo_wastage_{{ $promo->product["id"] }}' class="promo_wastage form-control" value="{{ $promo->wastage }}" data-promo-id="{{ $promo->id }}"/>
+                    <input type="number" id='promo_wastage_{{ $promo->product["id"] }}' class="promo_wastage form-control" value="{{ $promo->wastage }}" data-promoid="{{ $promo->id }}"/>
                       <div class="input-group-addon">kg</div>
                     </div>
                   </td>
@@ -81,7 +81,7 @@
   $(".promo_price").focusout(function () {
 
     var data = {
-      promo_id: $(this).data('promo-id'),
+      promo_id: $(this).data('promoid'),
       product_id: $(this).attr('id').split("_")[2],
       price: $(this).val(),
     }
