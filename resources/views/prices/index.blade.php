@@ -1,4 +1,8 @@
-@extends('layout.master') @section('style') @endsection @section('content')
+@extends('layout.master') 
+@section('style')
+@endsection
+ 
+@section('content')
 <section class="content-header">
     <h1>
         Price Dashboard
@@ -72,7 +76,7 @@
                                     <td colspan="1">
                                         <div class="input-group">
                                             <span class="input-group-addon">RM</span>
-                                            <input type="number" class="selling_b form-control" id='selling_b_{{ $product["id"] }}' value='{{ number_format($product["seller_price_b"], 2, ".", "")) }}'
+                                            <input type="number" class="selling_b form-control" id='selling_b_{{ $product["id"] }}' value='{{ number_format($product["seller_price_b"], 2, ".", "") }}'
                                                 min="0.01" style="min-width: 70px">
                                         </div>
                                     </td>
@@ -102,7 +106,9 @@
         </div>
     </div>
 </section>
-@endsection @section('script')
+@endsection
+ 
+@section('script')
 <script>
     $(document).ready(function () {
         console.log("loaded");
@@ -265,4 +271,5 @@
         });
     }
 
-</script> @endsection
+</script>
+@endsection
