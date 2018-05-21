@@ -70,7 +70,7 @@ class ProductController extends Controller
             ], 404);
         }
 
-        $promo = Promotion::find($request->product_id);
+        $promo = Promotion::find($request->promo_id);
 
         if ($promo->totalRemaining() < $request->promo_wastage) {
             return response()->json([
