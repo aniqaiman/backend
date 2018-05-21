@@ -91,10 +91,10 @@
                                     <td class="text-center">RM {{ number_format($product["buyer_yest_price_a"], 2, '.', '') }}</td>
                                     <td class="text-center">RM {{ number_format($product["seller_yest_price_b"], 2, '.', '') }}</td>
                                     <td class="text-center">RM {{ number_format($product["buyer_yest_price_b"], 2, '.', '') }}</td>
-                                    <td class="text-center" id='{{ $product["id"] }}_seller_price_a'>{{ number_format($product["difference"]->seller_price_a, 2, '.', '') }}%</td>
-                                    <td class="text-center" id='{{ $product["id"] }}_buyer_price_a'>{{ number_format($product["difference"]->buyer_price_a, 2, '.', '') }}%</td>
-                                    <td class="text-center" id='{{ $product["id"] }}_seller_price_b'>{{ number_format($product["difference"]->seller_price_b, 2, '.', '') }}%</td>
-                                    <td class="text-center" id='{{ $product["id"] }}_buyer_price_b'>{{ number_format($product["difference"]->buyer_price_b, 2, '.', '') }}%</td>
+                                    <td class="text-center" id='{{ $product["id"] }}_seller_price_a'>{{ number_format($product["difference"]->seller_price_a * 100, 2, '.', '') }}%</td>
+                                    <td class="text-center" id='{{ $product["id"] }}_buyer_price_a'>{{ number_format($product["difference"]->buyer_price_a * 100, 2, '.', '') }}%</td>
+                                    <td class="text-center" id='{{ $product["id"] }}_seller_price_b'>{{ number_format($product["difference"]->seller_price_b * 100, 2, '.', '') }}%</td>
+                                    <td class="text-center" id='{{ $product["id"] }}_buyer_price_b'>{{ number_format($product["difference"]->buyer_price_b * 100, 2, '.', '') }}%</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -263,10 +263,10 @@
             success: (data, textStatus, jqXHR) => {
                 console.log(jqXHR);
 
-                $("#" + id + "_seller_price_a").html();
-                $("#" + id + "_buyer_price_a").html();
-                $("#" + id + "_seller_price_b").html();
-                $("#" + id + "_buyer_price_b").html();
+                $("#" + id + "_seller_price_a").html(parseFloat(Math.round(jqXHR.responseJSON.seller_price_a * 100)).toFixed(2));
+                $("#" + id + "_buyer_price_a").html(parseFloat(Math.round(jqXHR.responseJSON.buyer_price_a * 100)).toFixed(2));
+                $("#" + id + "_seller_price_b").html(parseFloat(Math.round(jqXHR.responseJSON.seller_price_b * 100)).toFixed(2));
+                $("#" + id + "_buyer_price_b").html(parseFloat(Math.round(jqXHR.responseJSON.buyer_price_b * 100)).toFixed(2));
             }
         });
     }
