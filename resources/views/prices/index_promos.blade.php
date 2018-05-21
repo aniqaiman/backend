@@ -32,12 +32,11 @@
                   <th>Date</th>
                   <th>Order#</th>
                   <th>Item</th>
-                  <th>Product#</th>
-                  <th>Price (We Input)</th>
-                  <th>Total Sold</th>
-                  <th>Promo Wastage</th>
-                  <th>Buy At Price</th>
-                  <th style="width: 1%;"></th>
+                  <th class="text-center">Product#</th>
+                  <th class="text-center">Price</th>
+                  <th class="text-center">Total Sold</th>
+                  <th class="text-center">Promo Wastage</th>
+                  <th class="text-center">Buy At Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -46,7 +45,7 @@
                   <td>{{ Carbon\Carbon::parse($promo->created_at)->format('d/m/Y') }}</td>
                   <td></td>
                   <td>{{ $promo->product["name"] }}</td>
-                  <td>{{ sprintf("%04s", $promo->product["id"]) }}</td>
+                  <td class="text-center">{{ sprintf("%04s", $promo->product["id"]) }}</td>
                   <td>
                     <div class="input-group">
                       <span class="input-group-addon">RM</span>
@@ -54,14 +53,14 @@
                       />
                     </div>
                   </td>
-                  <td>{{ $promo->total_sold }}</td>
+                  <td class="text-center">{{ $promo->total_sold }} kg</td>
                   <td>
                     <div class="input-group">
                       <input type="number" id='promo_wastage_{{ $promo->product["id"] }}' class="promo_wastage form-control" value="0" />
                       <div class="input-group-addon">kg</div>
                     </div>
                   </td>
-                  <td>{{ $promo->buy_at_price }}</td>
+                  <td class="text-center">RM {{ $promo->buy_at_price }}</td>
                 </tr>
                 @endforeach
               </tbody>
