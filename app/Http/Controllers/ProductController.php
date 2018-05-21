@@ -71,6 +71,13 @@ class ProductController extends Controller
         }
 
         $promo = Promo::find($request->product_id);
+
+        if ($promo->totalRemaining() < $request->promo_wastage) {
+            return response()->json([
+                "message" => "Wastage is greater than remaining quantity.",
+            ], 400);
+        }
+
         $promo->wastage = $request->promo_wastage;
         $promo->save();
 
