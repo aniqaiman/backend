@@ -34,6 +34,7 @@
                   <th>Item</th>
                   <th class="text-center">Product#</th>
                   <th class="text-center">Price</th>
+                  <th class="text-center">Quantity</th>
                   <th class="text-center">Total Sold</th>
                   <th class="text-center">Promo Wastage</th>
                   <th class="text-center">Buy At Price</th>
@@ -53,6 +54,7 @@
                       />
                     </div>
                   </td>
+                  <td class="text-center">{{ $promo->quantity }} kg</td>
                   <td class="text-center">{{ $promo->total_sold }} kg</td>
                   <td>
                     <div class="input-group">
