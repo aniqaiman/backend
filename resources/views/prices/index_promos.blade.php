@@ -81,7 +81,6 @@
   $(".promo_price").focusout(function () {
 
     var data = {
-      promo_id: $(this).data('promoid'),
       product_id: $(this).attr('id').split("_")[2],
       price: $(this).val(),
     }
@@ -110,6 +109,7 @@
   $(".promo_wastage").focusout(function () {
 
     var data = {
+      promo_id: $(this).data('promoid'),
       product_id: $(this).attr('id').split("_")[2],
       promo_wastage: $(this).val(),
     }
