@@ -124,11 +124,11 @@
             <thead>
               <tr class="bg-black">
                 <th rowspan="2">Item</th>
-                <th rowspan="2">Product#</th>
-                <th colspan="2">Harvesting period</th>
-                <th rowspan="2">Harvest Frequency</th>
-                <th rowspan="2">Total plants</th>
-                <th rowspan="2">Total Farm Area</th>
+                <th rowspan="2" class="text-center">Product#</th>
+                <th colspan="2" class="text-center">Harvesting period</th>
+                <th rowspan="2" class="text-center">Harvest Frequency</th>
+                <th rowspan="2" class="text-center">Total plants</th>
+                <th rowspan="2" class="text-center">Total Farm Area</th>
               </tr>
               <tr class="bg-black">
                 <th>Start</th>
@@ -136,33 +136,19 @@
               </tr>
             </thead>
             <tbody>
-              @foreach($products as $product)
+              @foreach($seller->supplies as $supply)
               <tr>
-                <td>{{ $product->name }}</td>
-                <td>{{ sprintf("%04s", $product->id) }}</td>
-                <td>
-                  <input type="date" class="harvesting_period_start form-control" />
-                </td>
-                <td>
-                  <input type="date" class="harvesting_period_end form-control" />
-                </td>
-                <td>
-                  <input type="text" class="harvest_frequency form-control" />
-                </td>
-                <td>
-                  <input type="number" class="total_plants form-control" />
-                </td>
-                <td>
-                  <input type="number" class="total_farm_area form-control" />
-                </td>
+                <td>{{ $supply->name }}</td>
+                <td class="text-center">{{ sprintf("%04s", $supply->id) }}</td>
+                <td class="text-center">{{ $supply->harvesting_period_start }}</td>
+                <td class="text-center">{{ $supply->harvesting_period_end }}</td>
+                <td class="text-center">{{ $supply->harvest_frequency }}</td>
+                <td class="text-center">{{ $supply->total_plants }}</td>
+                <td class="text-center">{{ $supply->total_farm_area }}</td>
               </tr>
               @endforeach
             </tbody>
           </table>
-
-          <div class="text-center">
-            {{ $products->links() }}
-          </div>
         </div>
       </div>
       <!-- /.box -->
@@ -230,44 +216,6 @@
     });
 
   });
-
-  function activateUser(btn) {
-    var data = {
-      id: $(btn).data('id'),
-    }
-
-    $(btn).prop('disabled', true);
-    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
-
-    $.ajax("{{ route('users.activate') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        window.location.href = window.location.href;
-      }
-    });
-  }
-
-  function deactivateUser(btn) {
-    var data = {
-      id: $(btn).data('id'),
-    }
-
-    $(btn).prop('disabled', true);
-    $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
-
-    $.ajax("{{ route('users.deactivate') }}", {
-      data: data,
-      dataType: "json",
-      error: (jqXHR, textStatus, errorThrown) => {},
-      method: "PUT",
-      success: (data, textStatus, jqXHR) => {
-        window.location.href = window.location.href;
-      }
-    });
-  }
 
 </script>
 @endsection

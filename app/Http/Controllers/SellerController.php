@@ -78,7 +78,6 @@ class SellerController extends Controller
     public function show(Request $request, $user_id)
     {
         $seller = User::find($user_id);
-        $products = Product::orderBy('name')->paginate();
-        return view('sellers.show', compact('seller', 'products'));
+        return view('sellers.show', compact('seller'));
     }
 }
