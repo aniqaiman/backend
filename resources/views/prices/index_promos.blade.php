@@ -43,14 +43,25 @@
               <tbody>
                 @foreach ($promos as $promo)
                 <tr>
-                  <td></td>
+                  <td>{{ Carbon\Carbon::parse($promo->created_at)->format('d/m/Y') }}</td>
                   <td></td>
                   <td>{{ $promo->product["name"] }}</td>
                   <td>{{ sprintf("%04s", $promo->product["id"]) }}</td>
-                  <td><input type="number" id='promo_price_{{ $promo->product["id"] }}'  class="promo_price form-control" value='{{ $promo->price }}' /></td>
+                  <td>
+                    <div class="input-group">
+                      <span class="input-group-addon">RM</span>
+                      <input type="number" id='promo_price_{{ $promo->product["id"] }}' class="promo_price form-control" value='{{ $promo->price }}'
+                      />
+                    </div>
+                  </td>
                   <td>{{ $promo->total_sold }}</td>
-                  <td><input type="number" id='promo_wastage_{{ $promo->product["id"] }}'  class="promo_wastage form-control" value="0"/></td>
-                  <td></td>
+                  <td>
+                    <div class="input-group">
+                      <input type="number" id='promo_wastage_{{ $promo->product["id"] }}' class="promo_wastage form-control" value="0" />
+                      <div class="input-group-addon">kg</div>
+                    </div>
+                  </td>
+                  <td>{{ $promo->buy_at_price }}</td>
                 </tr>
                 @endforeach
               </tbody>
@@ -121,5 +132,6 @@
             }
           });
         });
-  </script>
+
+</script>
 @endsection
