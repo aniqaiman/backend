@@ -131,8 +131,8 @@
                 <th rowspan="2" class="text-center">Total Farm Area</th>
               </tr>
               <tr class="bg-black">
-                <th>Start</th>
-                <th>End</th>
+                <th class="text-center">Start</th>
+                <th class="text-center">End</th>
               </tr>
             </thead>
             <tbody>
