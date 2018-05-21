@@ -31,9 +31,9 @@
           <dl class="dl-horizontal">
             <dt>Date</dt>
             <dd>{{ $stock->created_at }}</dd>
-            <dt>Order#</dt>
+            <dt>Stock#</dt>
             <dd>{{ $stock->id }}</dd>
-            <dt>Buyer</dt>
+            <dt>Supplier</dt>
             <dd>{{ $stock->user->id }} | {{ $stock->user->name }}</dd>
             <dt>Status</dt>
             <dd>
