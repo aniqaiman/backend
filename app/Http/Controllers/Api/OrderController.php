@@ -36,4 +36,14 @@ class OrderController extends Controller
                 }),
         ]);
     }
+
+    public function getOrderRejects(Request $request)
+    {
+        return response()->json([
+            'data' => JWTAuth::parseToken()->authenticate()
+                ->orders()
+                ->where('status', 2)
+                ->get()
+        ]);
+    }
 }

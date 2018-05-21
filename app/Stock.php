@@ -10,10 +10,6 @@ class Stock extends Model
         'user_id',
         'status',
         'lorry_id',
-        'feedback_topic',
-        'feedback_description',
-        'feedback_response',
-        'feedback_read',
     ];
 
     public function user()

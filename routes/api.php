@@ -48,7 +48,9 @@ Route::get('products/popular', 'Api\ProductController@getBestSellingProducts');
 // ------------------------------------------- Order ---------------------------------------------------- //
 
 Route::get('orders', 'Api\OrderController@getOrders');
+Route::get('orders/rejects', 'Api\OrderController@getOrderRejects');
 Route::get('orders/{order_id}', 'Api\OrderController@getOrderDetails');
+
 
 // ------------------------------------------- Stock ---------------------------------------------------- //
 

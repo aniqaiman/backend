@@ -10,10 +10,6 @@ class Order extends Model
         'user_id',
         'status',
         'lorry_id',
-        'feedback_topic',
-        'feedback_description',
-        'feedback_response',
-        'feedback_read',
     ];
 
     public function user()
@@ -29,6 +25,11 @@ class Order extends Model
     public function driver()
     {
         return $this->belongsTo('App\User', 'lorry_id');
+    }
+
+    public function feedback()
+    {
+        return $this->hasOne('App\Feedback');
     }
 
     public function products()

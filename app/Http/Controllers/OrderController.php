@@ -6,6 +6,7 @@ use App\Inventory;
 use App\Order;
 use App\Product;
 use App\Promotion;
+use App\Feedback;
 use App\Stock;
 use App\User;
 use Carbon\Carbon;
@@ -305,9 +306,14 @@ class OrderController extends Controller
     {
         $order = Order::find($request->id);
         $order->status = 2;
-        $order->feedback_topic = $request->topic;
-        $order->feedback_description = $request->description;
-        $order->feedback_read = 0;
+        $order->save();
+
+        $feedback = new Feedback();
+        $feedback->topic = $request->topic;
+        $feedback->description = $request->description;
+        $feedback->save();
+
+        $order->feedback()->associate($feedback);
         $order->save();
 
         return response($order);
@@ -317,9 +323,14 @@ class OrderController extends Controller
     {
         $stock = Stock::find($request->id);
         $stock->status = 2;
-        $stock->feedback_topic = $request->topic;
-        $stock->feedback_description = $request->description;
-        $stock->feedback_read = 0;
+        $stock->save();
+
+        $feedback = new Feedback();
+        $feedback->topic = $request->topic;
+        $feedback->description = $request->description;
+        $feedback->save();
+
+        $stock->feedback()->associate($feedback);
         $stock->save();
 
         return response($stock);
