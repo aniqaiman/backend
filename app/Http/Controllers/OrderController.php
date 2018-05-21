@@ -311,10 +311,8 @@ class OrderController extends Controller
         $feedback = new Feedback();
         $feedback->topic = $request->topic;
         $feedback->description = $request->description;
+        $feedback->order()->associate($order);
         $feedback->save();
-
-        $order->feedback()->associate($feedback);
-        $order->save();
 
         return response($order);
     }
@@ -328,10 +326,8 @@ class OrderController extends Controller
         $feedback = new Feedback();
         $feedback->topic = $request->topic;
         $feedback->description = $request->description;
+        $feedback->stock()->associate($stock);
         $feedback->save();
-
-        $stock->feedback()->associate($feedback);
-        $stock->save();
 
         return response($stock);
     }
