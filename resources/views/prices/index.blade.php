@@ -91,10 +91,10 @@
                                     <td>RM {{ number_format($product["buyer_yest_price_a"], 2, '.', '') }}</td>
                                     <td>RM {{ number_format($product["seller_yest_price_b"], 2, '.', '') }}</td>
                                     <td>RM {{ number_format($product["buyer_yest_price_b"], 2, '.', '') }}</td>
-                                    <td>RM {{ number_format($product["difference"]->seller_price_a, 2, '.', '') }}</td>
-                                    <td>RM {{ number_format($product["difference"]->buyer_price_a, 2, '.', '') }}</td>
-                                    <td>RM {{ number_format($product["difference"]->seller_price_b, 2, '.', '') }}</td>
-                                    <td>RM {{ number_format($product["difference"]->buyer_price_b, 2, '.', '') }}</td>
+                                    <td>{{ $product["difference"]->seller_price_a }}%</td>
+                                    <td>{{ $product["difference"]->buyer_price_a }}%</td>
+                                    <td>{{ $product["difference"]->seller_price_b }}%</td>
+                                    <td>{{ $product["difference"]->buyer_price_b }}%</td>
                                 </tr>
                                 @endforeach
                             </tbody>
