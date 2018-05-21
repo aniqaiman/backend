@@ -123,11 +123,14 @@ class Product extends Model
 
     public function priceTodayYesterdayDifference()
     {
+        $today = $this->priceToday();
+        $yesterday = $this->priceYesterday();
+
         return (object) [
-            'seller_price_a' => is_null($this->priceToday()) || is_null($this->priceYesterday()) || $this->priceYesterday()["seller_price_a"] == 0 ? 0 : round(($this->priceToday()["seller_price_a"] - $this->priceYesterday()["seller_price_a"]) / $this->priceYesterday()["seller_price_a"], 2),
-            'seller_price_b' => is_null($this->priceToday()) || is_null($this->priceYesterday()) || $this->priceYesterday()["seller_price_b"] == 0 ? 0 : round(($this->priceToday()["seller_price_b"] - $this->priceYesterday()["seller_price_b"]) / $this->priceYesterday()["seller_price_b"], 2),
-            'buyer_price_a' => is_null($this->priceToday()) || is_null($this->priceYesterday()) || $this->priceYesterday()["buyer_price_a"] == 0 ? 0 : round(($this->priceToday()["buyer_price_a"] - $this->priceYesterday()["buyer_price_a"]) / $this->priceYesterday()["buyer_price_a"], 2),
-            'buyer_price_b' => is_null($this->priceToday()) || is_null($this->priceYesterday()) || $this->priceYesterday()["buyer_price_b"] == 0 ? 0 : round(($this->priceToday()["buyer_price_b"] - $this->priceYesterday()["buyer_price_b"]) / $this->priceYesterday()["buyer_price_b"], 2),
+            'seller_price_a' => is_null($today) || is_null($yesterday) || $yesterday["seller_price_a"] == 0 ? 0 : round(($today["seller_price_a"] - $yesterday["seller_price_a"]) / $yesterday["seller_price_a"], 2),
+            'seller_price_b' => is_null($today) || is_null($yesterday) || $yesterday["seller_price_b"] == 0 ? 0 : round(($today["seller_price_b"] - $yesterday["seller_price_b"]) / $yesterday["seller_price_b"], 2),
+            'buyer_price_a' => is_null($today) || is_null($yesterday) || $yesterday["buyer_price_a"] == 0 ? 0 : round(($today["buyer_price_a"] - $yesterday["buyer_price_a"]) / $yesterday["buyer_price_a"], 2),
+            'buyer_price_b' => is_null($today) || is_null($yesterday) || $yesterday["buyer_price_b"] == 0 ? 0 : round(($today["buyer_price_b"] - $yesterday["buyer_price_b"]) / $yesterday["buyer_price_b"], 2),
         ];
     }
 
