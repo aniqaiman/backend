@@ -46,8 +46,10 @@
                                 <th class="text-center">Buyer Price (Grade A)</th>
                                 <th class="text-center">Supplier Price (Grade B)</th>
                                 <th class="text-center">Buyer Price (Grade B)</th>
-                                <th class="text-center">Grade A</th>
-                                <th class="text-center">Grade B</th>
+                                <th class="text-center">Supplier Price (Grade A)</th>
+                                <th class="text-center">Buyer Price (Grade A)</th>
+                                <th class="text-center">Supplier Price (Grade B)</th>
+                                <th class="text-center">Buyer Price (Grade B)</th>
                             </tr>
                         </thead>
 
@@ -84,9 +86,10 @@
                                 <td>RM {{ number_format($product["buyer_yest_price_a"], 2, '.', '') }}</td>
                                 <td>RM {{ number_format($product["seller_yest_price_b"], 2, '.', '') }}</td>
                                 <td>RM {{ number_format($product["buyer_yest_price_b"], 2, '.', '') }}</td>
-                                <td>RM </td>
-                                <td>RM </td>
-                                <td></td>
+                                <td>RM {{ number_format($product["difference"]->seller_price_a, 2, '.', '') }}</td>
+                                <td>RM {{ number_format($product["difference"]->buyer_price_a, 2, '.', '') }}</td>
+                                <td>RM {{ number_format($product["difference"]->seller_price_b, 2, '.', '') }}</td>
+                                <td>RM {{ number_format($product["difference"]->buyer_price_b, 2, '.', '') }}</td>
                             </tr>
                             @endforeach
                         </tbody>

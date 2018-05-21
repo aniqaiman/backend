@@ -33,7 +33,7 @@ class PriceController extends Controller
             $product_prices["buyer_price_a"] ? $newProd["buyer_price_a"] = $product_prices["buyer_price_a"] : $newProd["buyer_price_a"] = $newProd["buyer_yest_price_a"];
             $product_prices["buyer_price_b"] ? $newProd["buyer_price_b"] = $product_prices["buyer_price_b"] : $newProd["buyer_price_b"] = $newProd["buyer_yest_price_a"];
 
-            //$product_yest_prices["buyer_price_a"] ? $newProd["difference"] = number_format(($product_prices["buyer_price_a"] - $product_yest_prices["buyer_price_a"]) * 10 / $product_yest_prices["buyer_price_a"], 2) : $newProd["difference"] = 0;
+            $newProd["difference"] = $product->priceTodayYesterdayDifference();
             array_push($products, $newProd);
 
         }
