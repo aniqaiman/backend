@@ -112,7 +112,7 @@
                     </a>
                   </td>
                   <td nowrap>
-                    @if (!$seller->stocks()->exists())
+                    @if (!$seller->supplies()->exists())
                     <div>No products been supplied.</div>
                     @endif
                     <ul class="list-unstyled">
