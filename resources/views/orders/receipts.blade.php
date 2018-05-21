@@ -36,8 +36,7 @@
 
 <section class="content-header">
   <h1>
-    Order Management
-    <small>Receipts</small>
+    Order Receipt
   </h1>
 
   <ol class="breadcrumb">
@@ -45,8 +44,7 @@
       <a href="{{ route('dashboard') }}">
         <i class="fa fa-dashboard"></i>Dashboard</a>
     </li>
-    <li>Order Management</li>
-    <li class="active">Receipts</li>
+    <li class="active">Order Receipt</li>
   </ol>
 </section>
 
@@ -125,14 +123,11 @@
                       <div class="label label-default">Submitted</div>
                     </td>
                     <td>
-                      {{ Form::open(array('url' => 'order/' . $order->id, 'class' => 'text-center')) }} {{ Form::hidden('_method', 'DELETE') }}
                       <div class="btn-group-vertical btn-group-sm">
                         <button type="button" class="btn btn-primary" data-id="{{ $order->id }}" onclick="approveBuyerOrder(this)">Approved</button>
                         <button type="button" class="btn btn-danger" data-id="{{ $order->id }}" data-type="order" data-toggle="modal" data-target="#exampleModal">Rejected</button>
-                        <a class="btn btn-info" href="{{ route('orders.edit', ['order_id'=> $order->order_id]) }}">Edit</a>{{
-                        Form::submit('Delete', ['class' => 'btn btn-warning']) }}
+                        <a class="btn btn-info" href="{{ route('orders.edit.buyers', ['id'=> $order->id]) }}">Edit</a>
                       </div>
-                      {{ Form::close() }}
                     </td>
                   </tr>
                   @endforeach
@@ -200,14 +195,11 @@
                       <div class="label label-default">Submitted</div>
                     </td>
                     <td>
-                      {{ Form::open(array('url' => 'orders/' . $stock->id, 'class' => 'text-center')) }} {{ Form::hidden('_method', 'DELETE') }}
                       <div class="btn-group-vertical btn-group-sm">
                         <button type="button" class="btn btn-primary" data-id="{{ $stock->id }}" onclick="approveSellerStock(this)">Approved</button>
                         <button type="button" class="btn btn-danger" data-id="{{ $stock->id }}" data-type="stock" data-toggle="modal" data-target="#exampleModal">Rejected</button>
-                        <a class="btn btn-info" href="{{ route('orders.edit', ['order_id'=> $stock->stock_id]) }}">Edit</a>{{
-                        Form::submit('Delete', ['class' => 'btn btn-warning']) }}
+                        <a class="btn btn-info" href="{{ route('orders.edit.sellers', ['id'=> $stock->id]) }}">Edit</a>
                       </div>
-                      {{ Form::close() }}
                     </td>
                   </tr>
                   @endforeach

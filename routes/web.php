@@ -119,9 +119,11 @@ Route::prefix('orders')
 
         Route::post('lorry', 'OrderController@assignDriverOrder')->name('lorry.assign');
 
+        Route::get('buyers/{id}', 'OrderController@editBuyer')->name('edit.buyers');
+        Route::get('sellers/{id}', 'OrderController@editSeller')->name('edit.sellers');
+
         Route::post('', 'OrderController@store')->name('store');
         Route::put('{order_id}', 'OrderController@update')->name('update');
-        Route::get('{order_id}', 'OrderController@edit')->name('edit');
         Route::delete('{order_id}', 'OrderController@destroy')->name('destroy');
 
     });
