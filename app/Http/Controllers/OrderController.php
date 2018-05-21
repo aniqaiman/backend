@@ -400,10 +400,9 @@ class OrderController extends Controller
     public function updateSeller(Request $request, $id)
     {
         $stock = Stock::find($id);
+        $stock->products()->detach();
 
         for ($x = 0; $x < count($request->input('id')); $x++) {
-            $stock->products()->detach();
-            
             $product = Product::find($request->input('id')[$x]);
             $stock->products()->save($product, [
                 'quantity' => $request->input('quantity')[$x],
