@@ -154,12 +154,11 @@ class OrderController extends Controller
             if ($product->pivot->grade === "A") {
                 $inventories = Inventory::where([
                     ['product_id', $product->id],
-                    ['grade', $product->pivot->grade],
                 ])->get();
 
                 if ($inventories->count() > 0) {
                     foreach ($inventories as $inventory) {
-                        if ($inventory->totalRemainingActual($product->id, $product->pivot->grade) < $product->pivot->quantity) {
+                        if ($inventory->totalRemainingActual($product->id) < $product->pivot->quantity) {
                             continue;
                         } else {
                             $inStock = true;
@@ -170,7 +169,7 @@ class OrderController extends Controller
 
                 if (!$inStock) {
                     return response()->json([
-                        "message" => "No stock enough/available for $product->name (Grade " . $product->pivot->grade . ")",
+                        "message" => "No stock enough/available for $product->name (Grade A)",
                     ], 404);
                 }
             } else if ($product->pivot->grade === "B") {
@@ -191,7 +190,7 @@ class OrderController extends Controller
 
                 if (!$inStock) {
                     return response()->json([
-                        "message" => "No remaining promotion enough/available for $product->name (Grade " . $product->pivot->grade . ")",
+                        "message" => "No remaining promotion enough/available for $product->name (Grade B)",
                     ], 404);
                 }
             }
@@ -201,12 +200,11 @@ class OrderController extends Controller
             if ($product->pivot->grade === "A") {
                 $inventories = Inventory::where([
                     ['product_id', $product->id],
-                    ['grade', $product->pivot->grade],
                 ])->get();
 
                 if ($inventories->count() > 0) {
                     foreach ($inventories as $inventory) {
-                        if ($inventory->totalRemainingActual($product->id, $product->pivot->grade) < $product->pivot->quantity) {
+                        if ($inventory->totalRemainingActual($product->id) < $product->pivot->quantity) {
                             continue;
                         } else {
                             $product->quantity_a -= $product->pivot->quantity;
@@ -233,7 +231,7 @@ class OrderController extends Controller
                             //$promotion->orders()->syncWithoutDetaching([$order->id]);
                             $promotion->total_sold += $product->pivot->quantity;
                             $promotion->save();
-                            
+
                             break;
                         }
                     }
@@ -255,7 +253,6 @@ class OrderController extends Controller
             if ($product->pivot->grade === "A") {
                 $inventory = Inventory::where([
                     ['product_id', $product->id],
-                    ['grade', $product->pivot->grade],
                     ['created_at', '>=', Carbon::today()],
                 ])->first();
 
@@ -263,7 +260,6 @@ class OrderController extends Controller
                     $inventory = new Inventory();
                     $inventory->product_id = $product->id;
                     $inventory->price_id = $product->priceLatest()->id;
-                    $inventory->grade = $product->pivot->grade;
                     $inventory->save();
 
                     $inventory->stocks()->syncWithoutDetaching([$stock->id]);
@@ -273,6 +269,25 @@ class OrderController extends Controller
 
                 $product->quantity_a += $product->pivot->quantity;
             } else if ($product->pivot->grade === "B") {
+                $promotion = Promotion::where([
+                    ['product_id', $product->id],
+                    ['created_at', '>=', Carbon::today()],
+                ])->first();
+
+                if (is_null($promotion)) {
+                    $promotion = new Promotion();
+                    $promotion->product_id = $product->id;
+                    $promotion->price = $product->priceValid($stock->created_at)->buyer_price_b;
+                    $promotion->buy_at_price = $product->priceValid($stock->created_at)->seller_price_b;
+                    $promotion->quantity = $product->pivot->quantity;
+                    $promotion->save();
+
+                    // $promotion->stocks()->syncWithoutDetaching([$stock->id]);
+                } else {
+                    $promotion->quantity += $product->pivot->quantity;
+                    // $promotion->stocks()->syncWithoutDetaching([$stock->id]);
+                }
+
                 $product->quantity_b += $product->pivot->quantity;
             }
 
