@@ -37,10 +37,8 @@ class OrderController extends Controller
         $stocks = Stock::where('status', 0)
             ->paginate(10, ['*'], 'seller');
 
-        $order_active = isset($_GET['buyer']) ? "active" : "";
+        $order_active = isset($_GET['buyer']) || !isset($_GET['seller']) ? "active" : "";
         $stock_active = isset($_GET['seller']) ? "active" : "";
-
-        $order_active = !isset($_GET['buyer']) && !isset($_GET['seller']) ? "active" : "";
 
         return view('orders.receipts', compact('orders', 'stocks', 'order_active', 'stock_active'));
     }
@@ -58,10 +56,8 @@ class OrderController extends Controller
         $drivers = User::where('group_id', 31)
             ->get();
 
-        $order_active = isset($_GET['buyer']) ? "active" : "";
+        $order_active = isset($_GET['buyer']) || !isset($_GET['seller']) ? "active" : "";
         $stock_active = isset($_GET['seller']) ? "active" : "";
-
-        $order_active = !isset($_GET['buyer']) && !isset($_GET['seller']) ? "active" : "";
 
         return view('orders.trackings', compact('orders', 'stocks', 'order_active', 'stock_active', 'drivers'));
     }
@@ -76,10 +72,8 @@ class OrderController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'seller');
 
-        $order_active = isset($_GET['buyer']) ? "active" : "";
+        $order_active = isset($_GET['buyer']) || !isset($_GET['seller']) ? "active" : "";
         $stock_active = isset($_GET['seller']) ? "active" : "";
-
-        $order_active = !isset($_GET['buyer']) && !isset($_GET['seller']) ? "active" : "";
 
         return view('orders.rejects', compact('orders', 'stocks', 'order_active', 'stock_active'));
     }
