@@ -370,7 +370,7 @@ class OrderController extends Controller
 
     public function editBuyer(Request $request, $id)
     {
-        $stock = Order::find($id)->first();
+        $order = Order::find($id)->first();
         return view('orders.edit_buyer', compact('order'));
     }
 
