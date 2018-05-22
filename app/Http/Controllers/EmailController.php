@@ -7,7 +7,11 @@ use Mail;
 
 class EmailController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function send(Request $request, $title, $content)
     {
         //Logic will go here

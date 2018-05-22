@@ -10,6 +10,11 @@ use Session;
 
 class FruitController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function createFruit(Request $request)
     {
         $path = $request->file('product_image')->store('public/images');
@@ -26,7 +31,7 @@ class FruitController extends Controller
         }
     }
 
-    public function getFruit()
+    public function index()
     {
         $fruits = Product::where('category_id', 1)->get();
         $categories = Category::all();

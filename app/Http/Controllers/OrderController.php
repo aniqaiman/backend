@@ -17,6 +17,11 @@ use Session;
 
 class OrderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request)
     {
         if ($request->ajax()) {

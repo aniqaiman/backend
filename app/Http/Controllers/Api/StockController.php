@@ -25,7 +25,6 @@ class StockController extends Controller
 
     public function getStockDetails(Request $request, $stock_id)
     {
-
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
                 ->stocks()

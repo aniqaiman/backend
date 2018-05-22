@@ -17,11 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('auth/user', 'ApiController@getAuthUser');
-Route::get('auth/verify/{token}', 'ApiController@verifyUserEmail');
+Route::get('auth/user', 'Api\ApiController@getAuthUser');
+Route::get('auth/verify/{token}', 'Api\ApiController@verifyUserEmail');
 
-Route::post('auth/login', 'ApiController@login');
-Route::post('auth/verifyrecaptcha', 'ApiController@verifyReCAPTCHA');
+Route::post('auth/login', 'Api\ApiController@login');
+Route::post('auth/verifyrecaptcha', 'Api\ApiController@verifyReCAPTCHA');
 
 Route::post('users/sellers', 'Api\SellerController@store');
 Route::post('users/buyers', 'Api\BuyerController@store');
@@ -70,4 +70,4 @@ Route::post('carts/confirm', 'Api\CartController@postConfirm');
 
 Route::delete('carts/{product_id}', 'Api\CartController@deleteCartItem');
 
-Route::get('playground', 'ApiController@playground');
+Route::get('playground', 'Api\ApiController@playground');

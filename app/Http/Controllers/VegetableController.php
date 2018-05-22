@@ -10,6 +10,11 @@ use Session;
 
 class VegetableController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request)
     {
         $path = $request->file('product_image')->store('public/images');

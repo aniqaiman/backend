@@ -11,6 +11,11 @@ use Session;
 
 class PriceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $productQuery = Product::all();

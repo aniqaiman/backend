@@ -10,6 +10,11 @@ use Session;
 
 class GroupController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function createGroup(Request $request)
     {
         if ($request->ajax()) {

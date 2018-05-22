@@ -62,27 +62,11 @@ Route::prefix('prices')
     ->group(function () {
 
         Route::get('', 'PriceController@index')->name('index');
-        Route::get('promos', 'PriceController@indexPromos')->name('index.promos');
+        Route::get('promotions', 'PriceController@indexPromos')->name('index.promos');
         Route::get('histories', 'PriceController@indexHistories')->name('index.histories');
         Route::get('difference', 'PriceController@getPriceDifference')->name('difference');
 
     });
-
-// ------------------------------------------- Price ------------------------------------------- //
-
-Route::post('fruit/{product_id}/price/add', ['as' => 'createFruitPrice', 'uses' => 'PriceController@createFruitPrice']);
-Route::get('fruit/{product_id}/detail', ['as' => 'getFruitDetail', 'uses' => 'PriceController@getFruitDetail']);
-Route::get('fruit/{product_id}/editFruitPrice/{price_id}', ['as' => 'editFruitPrice', 'uses' => 'PriceController@editFruitPrice']);
-Route::post('updateFruitPrice', ['as' => 'updateFruitPrice', 'uses' => 'PriceController@updateFruitPrice']);
-Route::delete('fruitprice/{price_id}', ['as' => 'deleteFruitPrice', 'uses' => 'PriceController@deleteFruitPrice']);
-
-// ------------------------------------------- Detail Fruit ------------------------------------------- //
-
-Route::post('vege/{product_id}/price/add', ['as' => 'createVegePrice', 'uses' => 'PriceController@createVegePrice']);
-Route::get('vege/{product_id}/detail', ['as' => 'getVegeDetail', 'uses' => 'PriceController@getVegeDetail']);
-Route::get('vege/{product_id}/editVegePrice/{price_id}', ['as' => 'editVegePrice', 'uses' => 'PriceController@editVegePrice']);
-Route::post('updateVegePrice', ['as' => 'updateVegePrice', 'uses' => 'PriceController@updateVegePrice']);
-Route::delete('vegeprice', ['as' => 'deleteVegePrice', 'uses' => 'PriceController@deleteVegePrice']);
 
 Route::prefix('stocks')
     ->name('stocks.')
@@ -154,6 +138,22 @@ Route::prefix('products')
         Route::post('promo', 'ProductController@updatePromo')->name('update.promo');
         Route::post('promo_price', 'ProductController@updatePromoPrice')->name('update.promo_price');
     });
+
+// ------------------------------------------- Price ------------------------------------------- //
+
+Route::post('fruit/{product_id}/price/add', ['as' => 'createFruitPrice', 'uses' => 'PriceController@createFruitPrice']);
+Route::get('fruit/{product_id}/detail', ['as' => 'getFruitDetail', 'uses' => 'PriceController@getFruitDetail']);
+Route::get('fruit/{product_id}/editFruitPrice/{price_id}', ['as' => 'editFruitPrice', 'uses' => 'PriceController@editFruitPrice']);
+Route::post('updateFruitPrice', ['as' => 'updateFruitPrice', 'uses' => 'PriceController@updateFruitPrice']);
+Route::delete('fruitprice/{price_id}', ['as' => 'deleteFruitPrice', 'uses' => 'PriceController@deleteFruitPrice']);
+
+// ------------------------------------------- Detail Fruit ------------------------------------------- //
+
+Route::post('vege/{product_id}/price/add', ['as' => 'createVegePrice', 'uses' => 'PriceController@createVegePrice']);
+Route::get('vege/{product_id}/detail', ['as' => 'getVegeDetail', 'uses' => 'PriceController@getVegeDetail']);
+Route::get('vege/{product_id}/editVegePrice/{price_id}', ['as' => 'editVegePrice', 'uses' => 'PriceController@editVegePrice']);
+Route::post('updateVegePrice', ['as' => 'updateVegePrice', 'uses' => 'PriceController@updateVegePrice']);
+Route::delete('vegeprice', ['as' => 'deleteVegePrice', 'uses' => 'PriceController@deleteVegePrice']);
 
 // ------------------------------------------- Inventory ------------------------------------------- //
 

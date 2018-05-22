@@ -11,6 +11,11 @@ use Session;
 
 class DriverController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request)
     {
         $path = $request->file('drivers_license')->store('public/images');
