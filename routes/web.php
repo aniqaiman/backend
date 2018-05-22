@@ -11,15 +11,11 @@
 |
  */
 
-Route::get('/', ['as' => 'welcome', 'uses' =>
-    function () {
-        return view('welcome');
-    }]);
+Auth::routes();
 
 // ------------------------------------------- Dashboard ------------------------------------------- //
 
-Route::post('dashboard', ['as' => 'createDashboard', 'uses' => 'DashboardController@createServiceDashboard']);
-Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@getDashboard']);
+Route::get('/', 'DashboardController@getDashboard')->name('index');
 
 // ------------------------------------------- User ------------------------------------------- //
 

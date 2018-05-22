@@ -9,8 +9,6 @@ class DashboardController extends Controller
 {
     public function getDashboard(Request $request)
     {
-        if ($request->ajax()) {
-            return response(Product::create($request->all()));
-        }
+        return view('dashboard');
     }
 }

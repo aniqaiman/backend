@@ -37,25 +37,26 @@
             {{ HTML::image('img/foodrico.png', 'User Image', array('class' => 'user-image')) }}
 
             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-            <span class="hidden-ms">Admin</span>
+            <span class="hidden-ms">Welcome, {{ Auth::user()->name }}</span>
           </a>
           <ul class="dropdown-menu">
             <!-- The user image in the menu -->
             <li class="user-header">
               {{ HTML::image('img/foodrico.png', 'User Image', array('class' => 'img-circle')) }}
               <p>
-                FoodRico Admin
-                <small>@ FoodRico Web</small>
+                {{ Auth::user()->name }}
+                <small>FoodRico {{ Auth::user()->group->name }}</small>
               </p>
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">
-              <div class="pull-left">
-                <!-- <a href="#" class="btn btn-default btn-flat">Profile</a> -->
-              </div>
-              <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Sign out</a>
-              </div>
+              <a class="btn btn-default btn-block btn-flat" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ __('Sign Out') }}
+              </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
             </li>
           </ul>
         </li>

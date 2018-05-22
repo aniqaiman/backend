@@ -71,7 +71,7 @@
 
   <ol class="breadcrumb">
     <li>
-      <a href="{{ route('dashboard') }}">
+      <a href="{{ route('index') }}">
         <i class="fa fa-dashboard"></i> Dashboard
       </a>
     </li>

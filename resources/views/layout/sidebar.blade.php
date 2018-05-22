@@ -9,7 +9,7 @@
       <li class="header">MAIN NAVIGATION</li>
 
       <li class="treeview">
-        <a href="{{ route('welcome') }}">
+        <a href="{{ route('index') }}">
           <i class="fa fa-dashboard"></i>
           <span class="text-info">Dashboard</span>
         </a>
