@@ -50,9 +50,9 @@
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">
-              <a class="btn btn-default btn-block btn-flat" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <button type="button" class="btn btn-default btn-block" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 {{ __('Sign Out') }}
-              </a>
+              </button>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
