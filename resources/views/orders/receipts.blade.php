@@ -98,14 +98,14 @@
                     </td>
                     <td nowrap>
                       <div class="lead">
-                        <span class="label label-default">{{ $order->totalQuantity() }}kg</span>
+                        <span class="label label-default">{{ $order->totalQuantity() }} kg</span>
                         <span class="label label-default">RM {{ number_format($order->totalPrice(), 2) }}</span>
                       </div>
                       <table class="table">
                         @foreach ($order->products as $product)
                         <tr>
                           <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
-                          <td>{{ $product->pivot->quantity }}kg</td>
+                          <td>{{ $product->pivot->quantity }} kg</td>
                           <td>
                             @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
                             RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch
@@ -170,14 +170,14 @@
                     </td>
                     <td>
                       <div class="lead">
-                        <span class="label label-default">{{ $stock->totalQuantity() }}kg</span>
+                        <span class="label label-default">{{ $stock->totalQuantity() }} kg</span>
                         <span class="label label-default">RM {{ number_format($stock->totalPrice(), 2) }}</span>
                       </div>
                       <table class="table">
                         @foreach ($stock->products as $product)
                         <tr>
                           <td>{{ $product->name }} (Grade {{ $product->pivot->grade }})</td>
-                          <td>{{ $product->pivot->quantity }}kg</td>
+                          <td>{{ $product->pivot->quantity }} kg</td>
                           <td>
                             @switch($product->pivot->grade) @case("A") RM {{ number_format($product->priceLatest()["buyer_price_a"], 2) }} @break @case("B")
                             RM {{ number_format($product->priceLatest()["buyer_price_b"], 2) }} @break @endswitch

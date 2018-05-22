@@ -90,49 +90,47 @@
                   <tr class="bg-black">
                     <th>Date</th>
                     <th>Driver Name</th>
-                    <th>Driver#</th>
-                    <th>Order#</th>
-                    <th>Pick Up Location</th>
-                    <th>Buyer/Supplier Name</th>
-                    <th>Buyer/Supplier ID</th>
-                    <th>Drop off Location</th>
-                    <th>Total Distance</th>
-                    <th>Total Tonnage</th>
-                    <th>Total Payout</th>
-                    <th>Route Details</th>
-                    <th style="width: 1%;"></th>
+                    <th class="text-center">Driver#</th>
+                    <th class="text-center">Order#</th>
+                    <th class="text-center">Pick Up Location</th>
+                    <th>Buyer Name</th>
+                    <th class="text-center">Buyer#</th>
+                    <th class="text-center">Drop off Location</th>
+                    <th class="text-center">Total Distance</th>
+                    <th class="text-center">Total Tonnage</th>
+                    <th class="text-center">Total Payout</th>
+                    <th class="text-center">Route Details</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($orders as $order)
                   <tr>
-                    <td>{{$order["date"]}}</td>
-                    <td>{{$order["driver_name"]}}</td>
-                    <td>
+                    <td>{{ $order["date"] }}</td>
+                    <td>{{ $order["driver_name"] }}</td>
+                    <td class="text-center">
                       <a href="#" data-id='{{ $order["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
                         {{ $order["driver_id"] }}
                       </a>
                     </td>
-                    <td>{{$order["id"]}}</td>
-                    <td>
+                    <td class="text-center">{{ $order["id"] }}</td>
+                    <td class="text-center">
                       Warehouse
                       <a href='https://www.google.com/maps/search/?api=1&query=3.123093,101.468913' target="_blank">
                         <i class="fa fa-map-marker"></i>
                       </a>
                     </td>
-                    <td>{{$order["user_name"]}}</td>
-                    <td>{{$order["user_id"]}}</td>
-                    <td>
-                      {{$order["user_address"]}}
-                      <a href='https://www.google.com/maps/search/?api=1&query={{ $order["latitude"]}},{{ $order["longitude"] }}' target="_blank">
+                    <td>{{ $order["user_name"] }}</td>
+                    <td class="text-center">{{ $order["user_id"] }}</td>
+                    <td class="text-center">
+                      {{ $order["user_address"] }}
+                      <a href='https://www.google.com/maps/search/?api=1&query={{ $order["latitude"] }},{{ $order["longitude"] }}' target="_blank">
                         <i class="fa fa-map-marker"></i>
                       </a>
                     </td>
-                    <td></td>
-                    <td>{{$order["tonnage"]}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="text-center">{{ $order["distance"] }} km</td>
+                    <td class="text-center">{{ $order["tonnage"] }} kg</td>
+                    <td class="text-center">RM {{ number_format($order["total_payout"], 2) }}</td>
+                    <td class="text-center"></td>
                   </tr>
                   @endforeach
                 </tbody>
@@ -146,49 +144,47 @@
                   <tr class="bg-black">
                     <th>Date</th>
                     <th>Driver Name</th>
-                    <th>Driver#</th>
-                    <th>Stock#</th>
-                    <th>Pick Up Location</th>
-                    <th>Buyer/Supplier Name</th>
-                    <th>Buyer/Supplier ID</th>
-                    <th>Drop off Location</th>
-                    <th>Total Distance</th>
-                    <th>Total Tonnage</th>
-                    <th>Total Payout</th>
-                    <th>Route Details</th>
-                    <th style="width: 1%;"></th>
+                    <th class="text-center">Driver#</th>
+                    <th class="text-center">Order#</th>
+                    <th class="text-center">Pick Up Location</th>
+                    <th>Supplier Name</th>
+                    <th class="text-center">Supplier#</th>
+                    <th class="text-center">Drop off Location</th>
+                    <th class="text-center">Total Distance</th>
+                    <th class="text-center">Total Tonnage</th>
+                    <th class="text-center">Total Payout</th>
+                    <th class="text-center">Route Details</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($stocks as $stock)
                   <tr>
-                    <td>{{$stock["date"]}}</td>
-                    <td>{{$stock["driver_name"]}}</td>
+                    <td>{{ $stock["date"] }}</td>
+                    <td>{{ $stock["driver_name"] }}</td>
 
-                    <td>
+                    <td class="text-center">
                       <a href="#" data-id='{{ $order["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
                         {{ $stock["driver_id"] }}
                       </a>
                     </td>
-                    <td>{{$stock["id"]}}</td>
-                    <td>{{$stock["user_address"]}}
-                      <a href='https://www.google.com/maps/search/?api=1&query={{ $stock["latitude"]}},{{ $order["longitude"] }}' target="_blank">
+                    <td class="text-center">{{ $stock["id"] }}</td>
+                    <td class="text-center">{{ $stock["user_address"] }}
+                      <a href='https://www.google.com/maps/search/?api=1&query={{ $stock["latitude"] }},{{ $order["longitude"] }}' target="_blank">
                         <i class="fa fa-map-marker"></i>
                       </a>
                     </td>
-                    <td>{{$stock["user_name"]}}</td>
-                    <td>{{$stock["user_id"]}}</td>
-                    <td>
+                    <td>{{ $stock["user_name"] }}</td>
+                    <td class="text-center">{{ $stock["user_id"] }}</td>
+                    <td class="text-center">
                       Warehouse
                       <a href='https://www.google.com/maps/search/?api=1&query=3.123093,101.468913' target="_blank">
                         <i class="fa fa-map-marker"></i>
                       </a>
                     </td>
-                    <td></td>
-                    <td>{{$stock["tonnage"]}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="text-center">{{ $stock["distance"] }} km</td>
+                    <td class="text-center">{{ $stock["tonnage"] }} kg</td>
+                    <td class="text-center">RM {{ number_format($stock["total_payout"], 2) }}</td>
+                    <td class="text-center"></td>
                   </tr>
                   @endforeach
                 </tbody>

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Feedback;
 use App\Inventory;
 use App\Order;
 use App\Product;
 use App\Promotion;
-use App\Feedback;
 use App\Stock;
 use App\User;
 use Carbon\Carbon;
 use DB;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -107,8 +108,13 @@ class OrderController extends Controller
 
     public function indexLorries()
     {
-        $ordersQuery = Order::whereNotNull('lorry_id')->get();
+        $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/']);
+        $warehouse = "3.123093,101.468913";
+
         $orders = [];
+        $locations = [];
+
+        $ordersQuery = Order::whereNotNull('lorry_id')->get();
         foreach ($ordersQuery as $order) {
             $newOrder["date"] = $order->created_at;
             $newOrder["driver_name"] = $order->driver->name;
@@ -121,10 +127,25 @@ class OrderController extends Controller
             $newOrder["longitude"] = $order->user->longitude;
             $weight = DB::table('order_product')->where('order_id', $order->id)->sum('quantity');
             $newOrder["tonnage"] = $weight;
+
             array_push($orders, $newOrder);
+            array_push($locations, $order->user->latitude . "," . $order->user->longitude);
         }
-        $stocksQuery = Stock::whereNotNull('lorry_id')->get();
+
+        $distances = json_decode(
+            $client->get("json?origins=" . implode("|", $locations) . "&destinations=$warehouse&key=" . env("GMAP_KEY"))
+                ->getBody()
+        )->rows;
+
+        foreach ($orders as $key => $order) {
+            $orders[$key]["distance"] = isset($distances[$key]->elements[0]->distance) ? round($distances[$key]->elements[0]->distance->value / 1000, 2) : "0";
+            $orders[$key]["total_payout"] = $orders[$key]["distance"] * 0.2;
+        }
+
         $stocks = [];
+        $locations = [];
+
+        $stocksQuery = Stock::whereNotNull('lorry_id')->get();
         foreach ($stocksQuery as $stock) {
             $newStock["date"] = $stock->created_at;
             $newStock["driver_name"] = $stock->driver->name;
@@ -137,8 +158,21 @@ class OrderController extends Controller
             $newStock["longitude"] = $stock->user->longitude;
             $weight = DB::table('product_stock')->where('stock_id', $stock->id)->sum('quantity');
             $newStock["tonnage"] = $weight;
+
             array_push($stocks, $newStock);
+            array_push($locations, $stock->user->latitude . "," . $stock->user->longitude);
         }
+
+        $distances = json_decode(
+            $client->get("json?destinations=" . implode("|", $locations) . "&origins=$warehouse&key=" . env("GMAP_KEY"))
+                ->getBody()
+        )->rows[0]->elements;
+
+        foreach ($stocks as $key => $stock) {
+            $stocks[$key]["distance"] = isset($distances[$key]->distance) ? round($distances[$key]->distance->value / 1000, 2) : "0";
+            $stocks[$key]["total_payout"] = $stocks[$key]["distance"] * 0.2;
+        }
+
         return view('orders.lorries', compact('orders', 'stocks'));
     }
 
