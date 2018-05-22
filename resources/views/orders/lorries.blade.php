@@ -83,7 +83,7 @@
           </li>
         </ul>
         <div class="tab-content clearfix">
-          <div class="tab-pane" id="tab_1">
+          <div class="tab-pane active" id="tab_1">
             <div class="table-responsive">
               <table class="table table-bordered" id="driver-order-table" style="width:100%">
                 <thead>
@@ -108,17 +108,22 @@
                   <tr>
                     <td>{{$order["date"]}}</td>
                     <td>{{$order["driver_name"]}}</td>
-
                     <td>
                       <a href="#" data-id='{{ $order["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
                         {{ $order["driver_id"] }}
                       </a>
                     </td>
                     <td>{{$order["id"]}}</td>
-                    <td></td>
+                    <td>
+                      Warehouse
+                      <a href='https://www.google.com/maps/search/?api=1&query=3.123093,101.468913' target="_blank">
+                        <i class="fa fa-map-marker"></i>
+                      </a>
+                    </td>
                     <td>{{$order["user_name"]}}</td>
                     <td>{{$order["user_id"]}}</td>
-                    <td>{{$order["user_address"]}}
+                    <td>
+                      {{$order["user_address"]}}
                       <a href='https://www.google.com/maps/search/?api=1&query={{ $order["latitude"]}},{{ $order["longitude"] }}' target="_blank">
                         <i class="fa fa-map-marker"></i>
                       </a>
@@ -173,7 +178,12 @@
                     </td>
                     <td>{{$stock["user_name"]}}</td>
                     <td>{{$stock["user_id"]}}</td>
-                    <td></td>
+                    <td>
+                      Warehouse
+                      <a href='https://www.google.com/maps/search/?api=1&query=3.123093,101.468913' target="_blank">
+                        <i class="fa fa-map-marker"></i>
+                      </a>
+                    </td>
                     <td></td>
                     <td>{{$stock["tonnage"]}}</td>
                     <td></td>
