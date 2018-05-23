@@ -152,7 +152,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Fruit List</h3>
                     <div class="pull-right box-tools">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#add-product">Add Fruit</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add-product">Add Fruit</button>
                     </div>
                 </div>
                 <div class="box-body">
