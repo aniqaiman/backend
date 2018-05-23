@@ -81,6 +81,22 @@
           <li>
             <a href="#tab_2" data-toggle="tab">Supplier</a>
           </li>
+          <li class="pull-right" style="margin-top: 3px;">
+            <form method="get" class="form-inline">
+              <div class="input-group input-group-sm">
+                <span class="input-group-btn">
+                  <a class="btn btn-default" href="{{ route('orders.index.lorries') }}">Show All</a>
+                </span>
+                <input type="date" class="form-control" name="filter_date" value="{{ $filter_date }}" />
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-search"></i>
+                    Filter
+                  </button>
+                </span>
+              </div>
+            </form>
+          </li>
         </ul>
         <div class="tab-content clearfix">
           <div class="tab-pane active" id="tab_1">
@@ -163,13 +179,13 @@
                     <td>{{ $stock["driver_name"] }}</td>
 
                     <td class="text-center">
-                      <a href="#" data-id='{{ $order["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
+                      <a href="#" data-id='{{ $stock["driver_id"] }}' data-toggle="modal" data-target="#exampleModal">
                         {{ $stock["driver_id"] }}
                       </a>
                     </td>
                     <td class="text-center">{{ $stock["id"] }}</td>
                     <td class="text-center">{{ $stock["user_address"] }}
-                      <a href='https://www.google.com/maps/search/?api=1&query={{ $stock["latitude"] }},{{ $order["longitude"] }}' target="_blank">
+                      <a href='https://www.google.com/maps/search/?api=1&query={{ $stock["latitude"] }},{{ $stock["longitude"] }}' target="_blank">
                         <i class="fa fa-map-marker"></i>
                       </a>
                     </td>

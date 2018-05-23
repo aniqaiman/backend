@@ -106,15 +106,28 @@ class OrderController extends Controller
         return view('orders.transactions', compact('orders', 'stocks', 'filter_date'));
     }
 
-    public function indexLorries()
+    public function indexLorries(Request $request)
     {
+        $filter_date = $request->input('filter_date', '');
+
         $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/']);
         $warehouse = "3.123093,101.468913";
+
+        if ($request->has('filter_date')) {
+            $ordersQuery = Order::whereDate('created_at', '=', $filter_date)
+                ->whereNotNull('lorry_id')
+                ->get();
+            $stocksQuery = Stock::whereDate('created_at', '=', $filter_date)
+                ->whereNotNull('lorry_id')
+                ->get();
+        } else {
+            $ordersQuery = Order::whereNotNull('lorry_id')->get();
+            $stocksQuery = Stock::whereNotNull('lorry_id')->get();
+        }
 
         $orders = [];
         $locations = [];
 
-        $ordersQuery = Order::whereNotNull('lorry_id')->get();
         foreach ($ordersQuery as $order) {
             $newOrder["date"] = $order->created_at;
             $newOrder["driver_name"] = $order->driver->name;
@@ -132,7 +145,7 @@ class OrderController extends Controller
             array_push($locations, $order->user->latitude . "," . $order->user->longitude);
         }
 
-        $distances = json_decode(
+        $distances = empty($locations) ? [] : json_decode(
             $client->get("json?origins=" . implode("|", $locations) . "&destinations=$warehouse&key=" . env("GMAP_KEY"))
                 ->getBody()
         )->rows;
@@ -145,7 +158,6 @@ class OrderController extends Controller
         $stocks = [];
         $locations = [];
 
-        $stocksQuery = Stock::whereNotNull('lorry_id')->get();
         foreach ($stocksQuery as $stock) {
             $newStock["date"] = $stock->created_at;
             $newStock["driver_name"] = $stock->driver->name;
@@ -163,7 +175,7 @@ class OrderController extends Controller
             array_push($locations, $stock->user->latitude . "," . $stock->user->longitude);
         }
 
-        $distances = json_decode(
+        $distances = empty($locations) ? [] : json_decode(
             $client->get("json?destinations=" . implode("|", $locations) . "&origins=$warehouse&key=" . env("GMAP_KEY"))
                 ->getBody()
         )->rows[0]->elements;
@@ -173,7 +185,7 @@ class OrderController extends Controller
             $stocks[$key]["total_payout"] = $stocks[$key]["distance"] * 0.2;
         }
 
-        return view('orders.lorries', compact('orders', 'stocks'));
+        return view('orders.lorries', compact('orders', 'stocks', 'filter_date'));
     }
 
     public function assignDriverOrder(Request $request)

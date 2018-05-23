@@ -141,7 +141,7 @@
           <li>
             <a href="#tab_2" data-toggle="tab">Supplier</a>
           </li>
-          <li class="pull-right header">
+          <li class="pull-right" style="margin-top: 3px;">
             <form method="get" class="form-inline">
               <div class="input-group input-group-sm">
                 <span class="input-group-btn">
