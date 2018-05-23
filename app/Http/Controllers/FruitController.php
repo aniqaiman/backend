@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Redirect;
-use Session;
 
 class FruitController extends Controller
 {
@@ -15,58 +16,73 @@ class FruitController extends Controller
         $this->middleware('auth');
     }
 
-    public function createFruit(Request $request)
-    {
-        $path = $request->file('product_image')->store('public/images');
-        if ($request->ajax()) {
-            $fruits = new Product;
-            $fruits->product_name = $request->product_name;
-            $fruits->product_desc = $request->product_desc;
-            $fruits->quantity = $request->quantity;
-            $fruits->short_desc = $request->short_desc;
-            $fruits->product_image = $path;
-            $fruits->category = 1;
-            $fruits->save();
-            return response($fruits);
-        }
-    }
-
     public function index()
     {
-        $fruits = Product::where('category_id', 1)->get();
+        $fruits = Product::orderBy('name', 'asc')->where('category_id', 1)->get();
         $categories = Category::all();
-        return view('product.fruit', compact('fruits', 'categories'));
+        return view('products.fruits.index', compact('fruits', 'categories'));
     }
 
-    public function editFruit($product_id, Request $request)
+    public function store(Request $request)
     {
-        $fruits = Product::where('product_id', $product_id)->first();
-        $categories = Category::all();
-        return view('product.editFruit', compact('fruits', 'categories'));
+        $awspath = $request->file('image')->store('public/images');
+
+        $fruit = new Product();
+        $fruit->name = $request->name;
+        $fruit->description = $request->description;
+        $fruit->short_description = $request->short_description;
+        $fruit->image = $awspath;
+        $fruit->category_id = 1;
+        $fruit->quantity_a = $request->quantity_a;
+        $fruit->quantity_b = $request->quantity_b;
+        $fruit->demand_a = $request->demand_a;
+        $fruit->demand_b = $request->demand_b;
+        $fruit->save();
+
+        $fruit->prices()->create([
+            'seller_price_a' => $request->seller_price_a,
+            'seller_price_b' => $request->seller_price_b,
+            'buyer_price_a' => $request->buyer_price_a,
+            'buyer_price_b' => $request->buyer_price_b,
+            'date_price' => Carbon::today(),
+        ]);
+
+        return redirect()->route('products.fruits.index');
     }
 
-    public function updateFruit(Request $request)
+    public function edit($product_id)
     {
-        $path = $request->file('product_image')->store('public/images');
-        if ($request->ajax()) {
-            $fruits = Product::where('product_id', $request->product_id)->first();
-            $fruits->product_name = $request->product_name;
-            $fruits->product_desc = $request->product_desc;
-            $fruits->quantity = $request->quantity;
-            // $fruits->product_price = $request->product_price;
-            // $fruits->category = $request->category;
-            $fruits->short_desc = $request->short_desc;
-            $fruits->product_image = $path;
-            $fruits->save();
-            return response($fruits);
+        $fruit = Product::find($product_id);
+        $categories = Category::all();
+        return view('products.fruits.edit', compact('fruit', 'categories'));
+    }
+
+    public function update(Request $request, $product_id)
+    {
+        $fruit = Product::find($product_id);
+
+        if ($request->hasFile('image')) {
+            Storage::delete($fruit->image);
+            $awspath = $request->file('image')->store('public/images');
+            $fruit->image = $awspath;
         }
+
+        $fruit->name = $request->name;
+        $fruit->description = $request->description;
+        $fruit->short_description = $request->short_description;
+        $fruit->category_id = 1;
+        $fruit->quantity_a = $request->quantity_a;
+        $fruit->quantity_b = $request->quantity_b;
+        $fruit->demand_a = $request->demand_a;
+        $fruit->demand_b = $request->demand_b;
+        $fruit->save();
+
+        return redirect()->route('products.fruits.index');
     }
 
-    public function deleteFruit($product_id, Request $request)
+    public function destroy($product_id)
     {
-        $fruits = Product::find($product_id);
-        $fruits->delete();
-        Session::flash('message', 'Successfully deleted!');
-        return Redirect::to('fruit');
+        Product::find($product_id)->delete();
+        return redirect()->route('products.fruits.index');
     }
 }

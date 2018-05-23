@@ -126,6 +126,7 @@ Route::prefix('products')
 
         Route::post('fruits', 'FruitController@store')->name('fruits.store');
         Route::get('fruits', 'FruitController@index')->name('fruits.index');
+        Route::get('fruits/{product_id}', 'FruitController@show')->name('fruits.show');
         Route::put('fruits/{product_id}', 'FruitController@update')->name('fruits.update');
         Route::delete('fruits/{product_id}', 'FruitController@destroy')->name('fruits.destroy');
         Route::get('fruits/{product_id}/edit', 'FruitController@edit')->name('fruits.edit');

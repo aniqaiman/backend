@@ -27,7 +27,7 @@ class Product extends Model
     public function carts()
     {
         return $this
-            ->belongsToMany('App\User')
+            ->belongsToMany('App\User', 'carts')
             ->withPivot(
                 'grade',
                 'quantity'
@@ -151,4 +151,23 @@ class Product extends Model
         return $this->hasMany('App\Promotion');
     }
 
+    public function wastages()
+    {
+        return $this->hasMany('App\Wastage');
+    }
+
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($product) {
+             $product->prices()->delete();
+             $product->promotions()->delete();
+             $product->wastages()->delete();
+
+             $product->carts()->detach();
+             $product->orders()->detach();
+             $product->stocks()->detach();
+             $product->supplies()->detach();
+        });
+    }
 }
