@@ -159,7 +159,7 @@ Route::delete('vegeprice', ['as' => 'deleteVegePrice', 'uses' => 'PriceControlle
 // ------------------------------------------- Inventory ------------------------------------------- //
 
 Route::get('inventories', 'InventoryController@index')->name('inventories.index');
-Route::get('inventories/wastages', 'InventoryController@indexWastages')->name('inventories.wastages.index.');
+Route::get('inventories/wastages', 'InventoryController@indexWastages')->name('inventories.wastages.index');
 Route::get('inventories/promotions', 'InventoryController@indexPromotions')->name('inventories.promotions.index');
 
 // ------------------------------------------- Others ------------------------------------------- //
