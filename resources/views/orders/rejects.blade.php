@@ -206,10 +206,10 @@
                     </td>
                     <td>{{ $stock->user->name }}</td>
                     <td class="text-center">{{ $stock->user->id }}</td>
-                    <td>{{ $stock->feedback_topic }}</td>
-                    <td>{{ $stock->feedback_description }}</td>
+                    <td>{{ $stock->feedback->topic }}</td>
+                    <td>{{ $stock->feedback->description }}</td>
                     <td>
-                      @if (empty($stock->feedback_response)) None @else {{ $stock->feedback_response }} @endif
+                      @if (empty($stock->feedback->response)) None @else {{ $stock->feedback->response }} @endif
                     </td>
                     <td class="text-center">
                       <span class="label label-danger">Rejected</span>
