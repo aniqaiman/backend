@@ -17,8 +17,8 @@ class CartController extends Controller
                 ->with('category')
                 ->get()
                 ->each(function ($product, $key) {
-                    $product['price_latest'] = $product->priceLatest();
-                    $product['price_difference'] = $product->priceDifference();
+                    $product['price_latest'] = $product->price_latest;
+                    $product['price_difference'] = $product->price_difference;
                 }),
         ]);
     }
