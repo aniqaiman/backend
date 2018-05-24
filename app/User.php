@@ -76,8 +76,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function totalCartItems()
     {
-        return $this->carts()
-            ->count();
+        return $this->carts()->count();
     }
 
     public function totalCartPrice()

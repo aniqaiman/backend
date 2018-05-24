@@ -150,7 +150,7 @@ class Product extends Model
     public function scopeFull($query)
     {
         return $query
-            ->with("category")
+            ->with("category", "prices")
             ->orderBy('products.name', 'asc')
             ->getWithPrice();
     }
@@ -158,7 +158,7 @@ class Product extends Model
     public function scopeFullByCategory($query, $category)
     {
         return $query
-            ->with("category")
+            ->with("category", "prices")
             ->orderBy('products.name', 'asc')
             ->where("category_id", $category)
             ->getWithPrice();
@@ -169,6 +169,7 @@ class Product extends Model
         return $query
             ->get()
             ->each(function ($product) {
+                unset($product->prices);
                 $product['price_latest'] = $product->price_latest;
                 $product['price_difference'] = $product->price_difference;
             });
