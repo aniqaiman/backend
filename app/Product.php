@@ -138,6 +138,7 @@ class Product extends Model
     {
         return $this
             ->with("category")
+            ->orderBy('products.name')
             ->where("category_id", $category)
             ->get()
             ->each(function ($product) {
