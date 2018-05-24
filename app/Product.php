@@ -84,47 +84,50 @@ class Product extends Model
             ->first();
     }
 
-    public function priceLatest()
+    public function priceExact($order_date)
+    {
+        return $this->prices()
+            ->whereDate('date_price', '=', $order_date)
+            ->first();
+    }
+
+    public function getPriceLatestAttribute()
     {
         return $this->pricesValid(Carbon::now())
             ->first();
     }
 
-    public function pricePrevious()
+    public function getPricePreviousAttribute()
     {
         return $this->pricesValid(Carbon::now())
             ->skip(1)
             ->first();
     }
 
-    public function priceToday()
+    public function getPriceTodayAttribute()
     {
-        return $this->prices()
-            ->whereDate('date_price', '=', Carbon::today())
-            ->first();
+        return $this->priceExact(Carbon::today());
     }
 
-    public function priceYesterday()
+    public function getPriceYesterdayAttribute()
     {
-        return $this->prices()
-            ->whereDate('date_price', '=', Carbon::yesterday())
-            ->first();
+        return $this->priceExact(Carbon::yesterday());
     }
 
-    public function priceDifference()
+    public function getPriceDifferenceAttribute()
     {
         return (object) [
-            'seller_price_a' => is_null($this->pricePrevious()) || $this->pricePrevious()["seller_price_a"] == 0 ? 0 : round(($this->priceLatest()["seller_price_a"] - $this->pricePrevious()["seller_price_a"]) / $this->pricePrevious()["seller_price_a"], 2),
-            'seller_price_b' => is_null($this->pricePrevious()) || $this->pricePrevious()["seller_price_b"] == 0 ? 0 : round(($this->priceLatest()["seller_price_b"] - $this->pricePrevious()["seller_price_b"]) / $this->pricePrevious()["seller_price_b"], 2),
-            'buyer_price_a' => is_null($this->pricePrevious()) || $this->pricePrevious()["buyer_price_a"] == 0 ? 0 : round(($this->priceLatest()["buyer_price_a"] - $this->pricePrevious()["buyer_price_a"]) / $this->pricePrevious()["buyer_price_a"], 2),
-            'buyer_price_b' => is_null($this->pricePrevious()) || $this->pricePrevious()["buyer_price_b"] == 0 ? 0 : round(($this->priceLatest()["buyer_price_b"] - $this->pricePrevious()["buyer_price_b"]) / $this->pricePrevious()["buyer_price_b"], 2),
+            'seller_price_a' => is_null($this->price_previous) || $this->price_previous["seller_price_a"] == 0 ? 0 : round(($this->price_latest["seller_price_a"] - $this->price_previous["seller_price_a"]) / $this->price_previous["seller_price_a"], 2),
+            'seller_price_b' => is_null($this->price_previous) || $this->price_previous["seller_price_b"] == 0 ? 0 : round(($this->price_latest["seller_price_b"] - $this->price_previous["seller_price_b"]) / $this->price_previous["seller_price_b"], 2),
+            'buyer_price_a' => is_null($this->price_previous) || $this->price_previous["buyer_price_a"] == 0 ? 0 : round(($this->price_latest["buyer_price_a"] - $this->price_previous["buyer_price_a"]) / $this->price_previous["buyer_price_a"], 2),
+            'buyer_price_b' => is_null($this->price_previous) || $this->price_previous["buyer_price_b"] == 0 ? 0 : round(($this->price_latest["buyer_price_b"] - $this->price_previous["buyer_price_b"]) / $this->price_previous["buyer_price_b"], 2),
         ];
     }
 
-    public function priceTodayYesterdayDifference()
+    public function getPriceTodayYesterdayDifferenceAttribute()
     {
-        $today = $this->priceToday();
-        $yesterday = $this->priceYesterday();
+        $today = $this->price_today;
+        $yesterday = $this->price_yesterday;
 
         return (object) [
             'seller_price_a' => is_null($today) || is_null($yesterday) || $yesterday["seller_price_a"] == 0 ? 0 : round(($today["seller_price_a"] - $yesterday["seller_price_a"]) / $yesterday["seller_price_a"], 2),
@@ -144,31 +147,46 @@ class Product extends Model
         return $this->hasMany('App\Wastage');
     }
 
-    public function scopeFull($query, $category)
+    public function scopeFull($query)
+    {
+        return $query
+            ->with("category")
+            ->orderBy('products.name', 'asc')
+            ->getWithPrice();
+    }
+
+    public function scopeFullByCategory($query, $category)
     {
         return $query
             ->with("category")
             ->orderBy('products.name', 'asc')
             ->where("category_id", $category)
+            ->getWithPrice();
+    }
+
+    public function scopeGetWithPrice($query)
+    {
+        return $query
             ->get()
             ->each(function ($product) {
-                $product['price_latest'] = $product->priceLatest();
-                $product['price_difference'] = $product->priceDifference();
+                $product['price_latest'] = $product->price_latest;
+                $product['price_difference'] = $product->price_difference;
             });
     }
 
-    protected static function boot() {
+    protected static function boot()
+    {
         parent::boot();
 
-        static::deleting(function($product) {
-             $product->prices()->delete();
-             $product->promotions()->delete();
-             $product->wastages()->delete();
+        static::deleting(function ($product) {
+            $product->prices()->delete();
+            $product->promotions()->delete();
+            $product->wastages()->delete();
 
-             $product->carts()->detach();
-             $product->orders()->detach();
-             $product->stocks()->detach();
-             $product->supplies()->detach();
+            $product->carts()->detach();
+            $product->orders()->detach();
+            $product->stocks()->detach();
+            $product->supplies()->detach();
         });
     }
 }

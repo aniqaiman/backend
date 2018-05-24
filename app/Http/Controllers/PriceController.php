@@ -22,8 +22,8 @@ class PriceController extends Controller
         $products = [];
         foreach ($productQuery as $product) {
 
-            $product_prices = $product->priceToday();
-            $product_yest_prices = $product->priceYesterday();
+            $product_prices = $product->price_today;
+            $product_yest_prices = $product->price_yesterday;
 
             $newProd["id"] = $product["id"];
             $newProd["name"] = $product["name"];
@@ -38,7 +38,7 @@ class PriceController extends Controller
             $product_prices["buyer_price_a"] ? $newProd["buyer_price_a"] = $product_prices["buyer_price_a"] : $newProd["buyer_price_a"] = $newProd["buyer_yest_price_a"];
             $product_prices["buyer_price_b"] ? $newProd["buyer_price_b"] = $product_prices["buyer_price_b"] : $newProd["buyer_price_b"] = $newProd["buyer_yest_price_a"];
 
-            $newProd["difference"] = $product->priceTodayYesterdayDifference();
+            $newProd["difference"] = $product->price_today_yesterday_difference;
 
             array_push($products, $newProd);
 
@@ -185,8 +185,7 @@ class PriceController extends Controller
     public function getPriceDifference(Request $request)
     {
         return response()->json(
-            Product::find($request->input("id"))
-                ->priceTodayYesterdayDifference()
+            Product::find($request->input("id"))->price_today_yesterday_difference
         );
     }
 }

@@ -14,28 +14,28 @@ class ProductController extends Controller
     public function getFruits()
     {
         return response()->json([
-            "data" => Product::full(1),
+            "data" => Product::fullByCategory(1),
         ]);
     }
 
     public function getVegetables()
     {
         return response()->json([
-            "data" => Product::full(11),
+            "data" => Product::fullByCategory(11),
         ]);
     }
 
     public function getFruitsByPage()
     {
         return response()->json(
-            Product::full(1)->paginate(30)
+            Product::fullByCategory(1)->paginate(30)
         );
     }
 
     public function getVegetablesByPage()
     {
         return response()->json(
-            Product::full(11)->paginate(30)
+            Product::fullByCategory(11)->paginate(30)
         );
     }
 
@@ -45,11 +45,7 @@ class ProductController extends Controller
             ->whereHas('promotions', function ($promotion) {
                 $promotion->whereRaw('total_sold < quantity');
             })
-            ->get()
-            ->each(function ($product) {
-                $product['price_latest'] = $product->priceLatest();
-                $product['price_difference'] = $product->priceDifference();
-            });
+            ->getWithPrice();
 
         return response()->json([
             "data" => $products,

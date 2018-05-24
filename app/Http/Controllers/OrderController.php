@@ -312,7 +312,7 @@ class OrderController extends Controller
                 if (is_null($inventory)) {
                     $inventory = new Inventory();
                     $inventory->product_id = $product->id;
-                    $inventory->price_id = $product->priceLatest()->id;
+                    $inventory->price_id = $product->price_latest->id;
                     $inventory->save();
 
                     $inventory->stocks()->syncWithoutDetaching([$stock->id]);
@@ -418,12 +418,7 @@ class OrderController extends Controller
         return response()->json([
             'data' => Order::find($order_id)
                 ->products()
-                ->with('category')
-                ->get()
-                ->each(function ($product, $key) {
-                    $product['price_latest'] = $product->priceLatest();
-                    $product['price_difference'] = $product->priceDifference();
-                }),
+                ->full(),
         ]);
     }
 

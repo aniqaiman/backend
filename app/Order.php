@@ -48,9 +48,9 @@ class Order extends Model
             ->get()
             ->sum(function ($product) {
                 if ($product->pivot->grade === "A") {
-                    return $product->priceLatest()["buyer_price_a"] * $product->pivot->quantity;
+                    return $product->price_latest["buyer_price_a"] * $product->pivot->quantity;
                 } else if ($product->pivot->grade === "B") {
-                    return $product->priceLatest()["buyer_price_b"] * $product->pivot->quantity;
+                    return $product->price_latest["buyer_price_b"] * $product->pivot->quantity;
                 }
             });
     }

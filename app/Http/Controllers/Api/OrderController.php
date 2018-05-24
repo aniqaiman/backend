@@ -28,12 +28,7 @@ class OrderController extends Controller
                 ->orders()
                 ->find($order_id)
                 ->products()
-                ->with('category')
-                ->get()
-                ->each(function ($product, $key) {
-                    $product['price_latest'] = $product->priceLatest();
-                    $product['price_difference'] = $product->priceDifference();
-                }),
+                ->full(),
         ]);
     }
 
