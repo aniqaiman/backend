@@ -8,8 +8,7 @@
         </span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">
-            |Food
-            <strong>Rico</strong>|
+            | Food<strong>Rico</strong> |
         </span>
     </a>
 
