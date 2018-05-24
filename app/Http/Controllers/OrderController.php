@@ -91,11 +91,12 @@ class OrderController extends Controller
         $filter_date = $request->input('filter_date', '');
 
         if ($request->has('filter_date')) {
-            $orders = Order::whereDate('created_at', '=', $filter_date)
+            $orders = Order::with('products.prices')
+                ->whereDate('created_at', '=', $filter_date)
                 ->orderBy('created_at', 'desc')
                 ->get();
         } else {
-            $orders = Order::orderBy('created_at', 'desc')->get();
+            $orders = Order::with('products')->orderBy('created_at', 'desc')->get();
         }
 
         return view('orders.buyers.index', compact('orders', 'filter_date'));
@@ -106,11 +107,12 @@ class OrderController extends Controller
         $filter_date = $request->input('filter_date', '');
 
         if ($request->has('filter_date')) {
-            $stocks = Stock::whereDate('created_at', '=', $filter_date)
+            $stocks = Stock::with('products.prices')
+                ->whereDate('created_at', '=', $filter_date)
                 ->orderBy('created_at', 'desc')
                 ->get();
         } else {
-            $stocks = Stock::orderBy('created_at', 'desc')->get();
+            $stocks = Stock::with('products')->orderBy('created_at', 'desc')->get();
         }
 
         return view('orders.sellers.index', compact('stocks', 'filter_date'));
