@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Inventory;
+use App\Promotion;
 use App\Wastage;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class InventoryController extends Controller
 {
