@@ -117,10 +117,10 @@ class Product extends Model
     public function getPriceDifferenceAttribute()
     {
         return (object) [
-            'seller_price_a' => is_null($this->price_previous) || $this->price_previous["seller_price_a"] == 0 ? 0 : round(($this->price_latest["seller_price_a"] - $this->price_previous["seller_price_a"]) / $this->price_previous["seller_price_a"], 2),
-            'seller_price_b' => is_null($this->price_previous) || $this->price_previous["seller_price_b"] == 0 ? 0 : round(($this->price_latest["seller_price_b"] - $this->price_previous["seller_price_b"]) / $this->price_previous["seller_price_b"], 2),
-            'buyer_price_a' => is_null($this->price_previous) || $this->price_previous["buyer_price_a"] == 0 ? 0 : round(($this->price_latest["buyer_price_a"] - $this->price_previous["buyer_price_a"]) / $this->price_previous["buyer_price_a"], 2),
-            'buyer_price_b' => is_null($this->price_previous) || $this->price_previous["buyer_price_b"] == 0 ? 0 : round(($this->price_latest["buyer_price_b"] - $this->price_previous["buyer_price_b"]) / $this->price_previous["buyer_price_b"], 2),
+            'seller_price_a' => is_null($this->price_previous) || $this->price_previous['seller_price_a'] == 0 ? 0 : round(($this->price_latest['seller_price_a'] - $this->price_previous['seller_price_a']) / $this->price_previous['seller_price_a'], 2),
+            'seller_price_b' => is_null($this->price_previous) || $this->price_previous['seller_price_b'] == 0 ? 0 : round(($this->price_latest['seller_price_b'] - $this->price_previous['seller_price_b']) / $this->price_previous['seller_price_b'], 2),
+            'buyer_price_a' => is_null($this->price_previous) || $this->price_previous['buyer_price_a'] == 0 ? 0 : round(($this->price_latest['buyer_price_a'] - $this->price_previous['buyer_price_a']) / $this->price_previous['buyer_price_a'], 2),
+            'buyer_price_b' => is_null($this->price_previous) || $this->price_previous['buyer_price_b'] == 0 ? 0 : round(($this->price_latest['buyer_price_b'] - $this->price_previous['buyer_price_b']) / $this->price_previous['buyer_price_b'], 2),
         ];
     }
 
@@ -130,10 +130,10 @@ class Product extends Model
         $yesterday = $this->price_yesterday;
 
         return (object) [
-            'seller_price_a' => is_null($today) || is_null($yesterday) || $yesterday["seller_price_a"] == 0 ? 0 : round(($today["seller_price_a"] - $yesterday["seller_price_a"]) / $yesterday["seller_price_a"], 2),
-            'seller_price_b' => is_null($today) || is_null($yesterday) || $yesterday["seller_price_b"] == 0 ? 0 : round(($today["seller_price_b"] - $yesterday["seller_price_b"]) / $yesterday["seller_price_b"], 2),
-            'buyer_price_a' => is_null($today) || is_null($yesterday) || $yesterday["buyer_price_a"] == 0 ? 0 : round(($today["buyer_price_a"] - $yesterday["buyer_price_a"]) / $yesterday["buyer_price_a"], 2),
-            'buyer_price_b' => is_null($today) || is_null($yesterday) || $yesterday["buyer_price_b"] == 0 ? 0 : round(($today["buyer_price_b"] - $yesterday["buyer_price_b"]) / $yesterday["buyer_price_b"], 2),
+            'seller_price_a' => is_null($today) || is_null($yesterday) || $yesterday['seller_price_a'] == 0 ? 0 : round(($today['seller_price_a'] - $yesterday['seller_price_a']) / $yesterday['seller_price_a'], 2),
+            'seller_price_b' => is_null($today) || is_null($yesterday) || $yesterday['seller_price_b'] == 0 ? 0 : round(($today['seller_price_b'] - $yesterday['seller_price_b']) / $yesterday['seller_price_b'], 2),
+            'buyer_price_a' => is_null($today) || is_null($yesterday) || $yesterday['buyer_price_a'] == 0 ? 0 : round(($today['buyer_price_a'] - $yesterday['buyer_price_a']) / $yesterday['buyer_price_a'], 2),
+            'buyer_price_b' => is_null($today) || is_null($yesterday) || $yesterday['buyer_price_b'] == 0 ? 0 : round(($today['buyer_price_b'] - $yesterday['buyer_price_b']) / $yesterday['buyer_price_b'], 2),
         ];
     }
 
@@ -150,7 +150,7 @@ class Product extends Model
     public function scopeFull($query)
     {
         return $query
-            ->with("category", "prices")
+            ->with('category', 'prices')
             ->orderBy('products.name', 'asc')
             ->getWithPrice();
     }
@@ -158,9 +158,9 @@ class Product extends Model
     public function scopeFullByCategory($query, $category)
     {
         return $query
-            ->with("category", "prices")
+            ->with('category', 'prices')
             ->orderBy('products.name', 'asc')
-            ->where("category_id", $category)
+            ->where('category_id', $category)
             ->getWithPrice();
     }
 

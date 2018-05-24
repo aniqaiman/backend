@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Log;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,6 +43,14 @@ class AppServiceProvider extends ServiceProvider
                     'path' => LengthAwarePaginator::resolveCurrentPath(),
                     'pageName' => $pageName,
                 ]
+            );
+        });
+
+        DB::listen(function ($query) {
+            Log::info(
+                $query->sql,
+                $query->bindings,
+                $query->time
             );
         });
     }

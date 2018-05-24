@@ -219,4 +219,6 @@ return [
 
     ],
 
+    'log' => env('APP_LOG', 'errorlog'),
+
 ];
