@@ -25,7 +25,7 @@
         <div class="col-md-12">
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <form method="get" class="form-inline">
+                    <form method="get" class="form-inline text-center">
                         <div class="input-group input-group-sm">
                             <span class="input-group-btn">
                                 <a class="btn btn-default" href="{{ route('inventories.index') }}">Show All</a>

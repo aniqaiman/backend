@@ -44,14 +44,14 @@
             </li>
 
             <li class="treeview">
-                <a href="{{ route('prices.index.promos') }}">
+                <a href="{{ route('prices.promotions.index') }}">
                     <i class="fa fa-chevron-circle-right"></i>
                     <span class="text-info">A6 - Promo Price Management</span>
                 </a>
             </li>
 
             <li class="treeview">
-                <a href="{{ route('inventories.index.wastages') }}">
+                <a href="{{ route('inventories.wastages.index') }}">
                     <i class="fa fa-chevron-circle-right"></i>
                     <span class="text-info">A7 - Wastage Management</span>
                 </a>

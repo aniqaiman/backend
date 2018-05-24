@@ -47,12 +47,6 @@ class PriceController extends Controller
         return view('prices.index', compact('products'));
     }
 
-    public function indexPromos()
-    {
-        $promos = Promotion::all();
-        return view('prices.index_promos', compact('promos'));
-    }
-
     public function indexHistories(Request $request)
     {
         $filter_date = $request->input('filter_date', '');
@@ -65,7 +59,7 @@ class PriceController extends Controller
             $prices = Price::orderBy('date_price', 'desc')->get();
         }
 
-        return view('prices.index_histories', compact('prices', 'filter_date'));
+        return view('prices.histories.index', compact('prices', 'filter_date'));
     }
 
     public function getFruitDetail($product_id, Request $request)

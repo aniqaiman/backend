@@ -45,7 +45,13 @@ class InventoryController extends Controller
     public function indexWastages()
     {
         $wastages = Wastage::all();
-        return view('inventories.index_wastages', compact('wastages'));
+        return view('inventories.wastages.index', compact('wastages'));
+    }
+
+    public function indexPromotions()
+    {
+        $promotions = Promotion::all();
+        return view('inventories.promotions.index', compact('promotions'));
     }
 
     /**

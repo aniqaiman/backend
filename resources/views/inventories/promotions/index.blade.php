@@ -41,7 +41,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($promos as $promo)
+                @foreach ($promotions as $promo)
                 <tr>
                   <td>{{ Carbon\Carbon::parse($promo->created_at)->format('d/m/Y') }}</td>
                   <td></td>

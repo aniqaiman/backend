@@ -1,4 +1,8 @@
-@extends('layout.master') @section('style') @endsection @section('content') @foreach($orders as $order)
+@extends('layout.master') 
+@section('style')
+@endsection
+ 
+@section('content') @foreach($orders as $order)
 <div class="modal fade" id="order_{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $order->id }}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -41,9 +45,9 @@
                 <span class="pull-left">
                     @if ($order->status === 0)
                     <span class="label label-default">Submitted</span> @elseif ($order->status === 1)
-                    <span class="label label-warning">Pending</span> @elseif ($order->status === 2)
-                    <span class="label label-danger">Rejected</span> @elseif ($order->status === 3)
-                    <span class="label label-success">Completed</span> @endif
+                <span class="label label-warning">Pending</span> @elseif ($order->status === 2)
+                <span class="label label-danger">Rejected</span> @elseif ($order->status === 3)
+                <span class="label label-success">Completed</span> @endif
                 </span>
                 <h3 class="pull-right">
                     Total:
@@ -74,23 +78,21 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-success">
-                <div class="box-header with-border">
-                    <div class="pull-right box-tools">
-                        <form method="get" class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-btn">
-                                    <a class="btn btn-default" href="{{ route('orders.buyers.index') }}">Show All</a>
-                                </span>
-                                <input type="date" class="form-control" name="filter_date" value="{{ $filter_date }}" />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">
-                                        <i class="fa fa-search"></i>
-                                        Filter
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
+                <div class="box-header with-border text-center">
+                    <form method="get" class="form-inline text-center">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-btn">
+                                <a class="btn btn-default" href="{{ route('orders.buyers.index') }}">Show All</a>
+                            </span>
+                            <input type="date" class="form-control" name="filter_date" value="{{ $filter_date }}" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fa fa-search"></i>
+                                    Filter
+                                </button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
                 <div class="box-body">
                     <div class="table-responsive">
@@ -132,7 +134,9 @@
         <!-- /.box -->
     </div>
 </section>
-@endsection @section('script')
+@endsection
+ 
+@section('script')
 <script>
     $(document).ready(function () {
 
@@ -144,4 +148,5 @@
 
     });
 
-</script> @endsection
+</script>
+@endsection

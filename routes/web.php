@@ -62,7 +62,6 @@ Route::prefix('prices')
     ->group(function () {
 
         Route::get('', 'PriceController@index')->name('index');
-        Route::get('promotions', 'PriceController@indexPromos')->name('index.promos');
         Route::get('histories', 'PriceController@indexHistories')->name('index.histories');
         Route::get('difference', 'PriceController@getPriceDifference')->name('difference');
 
@@ -160,7 +159,8 @@ Route::delete('vegeprice', ['as' => 'deleteVegePrice', 'uses' => 'PriceControlle
 // ------------------------------------------- Inventory ------------------------------------------- //
 
 Route::get('inventories', 'InventoryController@index')->name('inventories.index');
-Route::get('inventories/wastages', 'InventoryController@indexWastages')->name('inventories.index.wastages');
+Route::get('inventories/wastages', 'InventoryController@indexWastages')->name('inventories.wastages.index.');
+Route::get('inventories/promotions', 'InventoryController@indexPromotions')->name('inventories.promotions.index');
 
 // ------------------------------------------- Others ------------------------------------------- //
 
