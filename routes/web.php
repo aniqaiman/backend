@@ -85,12 +85,13 @@ Route::prefix('orders')
         Route::get('receipts', 'OrderController@indexOrderReceipts')->name('index.receipts');
         Route::get('trackings', 'OrderController@indexOrderTrackings')->name('index.trackings');
         Route::get('rejects', 'OrderController@indexOrderRejects')->name('index.rejects');
-        Route::get('transactions', 'OrderController@indexOrderTransactions')->name('index.transactions');
         Route::get('lorries', 'OrderController@indexLorries')->name('index.lorries');
 
+        Route::get('buyers', 'OrderController@indexBuyerOrderTransactions')->name('buyers.index');
         Route::put('buyers/approve', 'OrderController@updateApproveBuyerOrder')->name('update.status.buyers.approve');
         Route::put('buyers/reject', 'OrderController@updateRejectBuyerOrder')->name('update.status.buyers.reject');
 
+        Route::get('sellers', 'OrderController@indexSellerOrderTransactions')->name('sellers.index');
         Route::put('sellers/approve', 'OrderController@updateApproveSellerStock')->name('update.status.sellers.approve');
         Route::put('sellers/reject', 'OrderController@updateRejectSellerStock')->name('update.status.sellers.reject');
 

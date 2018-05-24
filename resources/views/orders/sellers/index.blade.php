@@ -116,8 +116,7 @@
 
 <section class="content-header">
   <h1>
-    Order Management
-    <small>Historical Transactions</small>
+    Sellers Transactions
   </h1>
 
   <ol class="breadcrumb">
@@ -126,7 +125,7 @@
         <i class="fa fa-dashboard"></i>Dashboard</a>
     </li>
     <li>Order Management</li>
-    <li class="active">Historical Transactions</li>
+    <li class="active">Sellers Transactions</li>
   </ol>
 </section>
 
@@ -141,11 +140,11 @@
           <li>
             <a href="#tab_2" data-toggle="tab">Supplier</a>
           </li>
-          <li class="pull-right header">
+          <li class="pull-right" style="margin-top: 3px;">
             <form method="get" class="form-inline">
               <div class="input-group input-group-sm">
                 <span class="input-group-btn">
-                  <a class="btn btn-default" href="{{ route('orders.index.transactions') }}">Show All</a>
+                  <a class="btn btn-default" href="{{ route('orders.sellers.index') }}">Show All</a>
                 </span>
                 <input type="date" class="form-control" name="filter_date" value="{{ $filter_date }}" />
                 <span class="input-group-btn">
