@@ -44,7 +44,7 @@
             </li>
 
             <li class="treeview">
-                <a href="{{ route('prices.promotions.index') }}">
+                <a href="{{ route('inventories.promotions.index') }}">
                     <i class="fa fa-chevron-circle-right"></i>
                     <span class="text-info">A6 - Promo Price Management</span>
                 </a>
