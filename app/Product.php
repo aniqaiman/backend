@@ -151,7 +151,11 @@ class Product extends Model
     {
         return $query
             ->with("category")
-            ->getWithPrice();
+            ->get()
+            ->each(function ($product) {
+                $product['price_latest'] = $product->price_latest;
+                $product['price_difference'] = $product->price_difference;
+            });
     }
 
     public function scopeFullByCategory($query, $category)
