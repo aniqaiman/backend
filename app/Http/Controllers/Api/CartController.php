@@ -14,8 +14,7 @@ class CartController extends Controller
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
                 ->carts()
-                ->with('category')
-                ->getWithPrice(),
+                ->full(),
         ]);
     }
 
@@ -84,7 +83,7 @@ class CartController extends Controller
 
         $user->active_counter += 1;
         $user->save();
-
+        
         return response()->json([
             'data' => $order,
         ]);
