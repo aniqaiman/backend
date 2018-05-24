@@ -14,7 +14,12 @@ class CartController extends Controller
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
                 ->carts()
-                ->full(),
+                ->with('category')
+                ->get()
+                ->each(function ($product, $key) {
+                    $product['price_latest'] = $product->priceLatest();
+                    $product['price_difference'] = $product->priceDifference();
+                }),
         ]);
     }
 
