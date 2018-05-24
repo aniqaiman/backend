@@ -134,19 +134,6 @@ class Product extends Model
         ];
     }
 
-    public function full($category)
-    {
-        return $this
-            ->with("category")
-            ->orderBy('products.name')
-            ->where("category_id", $category)
-            ->get()
-            ->each(function ($product) {
-                $product['price_latest'] = $product->priceLatest();
-                $product['price_difference'] = $product->priceDifference();
-            });
-    }
-
     public function promotions()
     {
         return $this->hasMany('App\Promotion');
@@ -155,6 +142,19 @@ class Product extends Model
     public function wastages()
     {
         return $this->hasMany('App\Wastage');
+    }
+
+    public function scopeFull($query, $category)
+    {
+        return $query
+            ->with("category")
+            ->orderBy('products.name', 'asc')
+            ->where("category_id", $category)
+            ->get()
+            ->each(function ($product) {
+                $product['price_latest'] = $product->priceLatest();
+                $product['price_difference'] = $product->priceDifference();
+            });
     }
 
     protected static function boot() {
