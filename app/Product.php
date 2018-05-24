@@ -169,9 +169,9 @@ class Product extends Model
         return $query
             ->get()
             ->each(function ($product) {
-                unset($product->prices);
                 $product['price_latest'] = $product->price_latest;
                 $product['price_difference'] = $product->price_difference;
+                unset($product->prices);
             });
     }
 
