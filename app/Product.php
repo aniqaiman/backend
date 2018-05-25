@@ -74,7 +74,7 @@ class Product extends Model
     public function pricesValid($order_date)
     {
         return $this->prices()
-            ->whereDate('date_price', '<=', $order_date)
+            ->where('date_price', '<=', $order_date)
             ->orderBy('date_price', 'desc');
     }
 
