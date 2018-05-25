@@ -112,8 +112,7 @@
 
 <section class="content-header">
   <h1>
-    Order Management
-    <small>Trackings</small>
+    Order Trackings
   </h1>
 
   <ol class="breadcrumb">
@@ -121,8 +120,7 @@
       <a href="{{ route('index') }}">
         <i class="fa fa-dashboard"></i>Dashboard</a>
     </li>
-    <li>Order Management</li>
-    <li class="active">Trackings</li>
+    <li class="active">Order Trackings</li>
   </ol>
 </section>
 
