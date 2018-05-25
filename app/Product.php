@@ -156,6 +156,15 @@ class Product extends Model
             ->getWithPrice();
     }
 
+    public function scopeFullByDate($query, $date)
+    {
+        return $query
+            ->has('prices')
+            ->with('category', 'prices')
+            ->orderBy('products.name', 'asc')
+            ->getWithPriceByDate($date);
+    }
+
     public function scopeFullByCategory($query, $category)
     {
         return $query
@@ -172,6 +181,17 @@ class Product extends Model
             ->get()
             ->each(function ($product) {
                 $product['price_latest'] = $product->price_latest;
+                $product['price_difference'] = $product->price_difference;
+                unset($product->prices);
+            });
+    }
+
+    public function scopeGetWithPriceByDate($query, $date)
+    {
+        return $query
+            ->get()
+            ->each(function ($product) {
+                $product['price_latest'] = $product->priceValid($date);
                 $product['price_difference'] = $product->price_difference;
                 unset($product->prices);
             });

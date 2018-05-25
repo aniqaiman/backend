@@ -23,12 +23,12 @@ class OrderController extends Controller
 
     public function getOrderDetails(Request $request, $order_id)
     {
+        $order = JWTAuth::parseToken()->authenticate()
+            ->orders()
+            ->find($order_id);
+
         return response()->json([
-            'data' => JWTAuth::parseToken()->authenticate()
-                ->orders()
-                ->find($order_id)
-                ->products()
-                ->full(),
+            'data' => $order->products()->fullByDate($order->created_at),
         ]);
     }
 
@@ -38,7 +38,7 @@ class OrderController extends Controller
             'data' => JWTAuth::parseToken()->authenticate()
                 ->orders()
                 ->where('status', 2)
-                ->get()
+                ->get(),
         ]);
     }
 }
