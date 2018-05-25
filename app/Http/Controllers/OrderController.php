@@ -473,10 +473,10 @@ class OrderController extends Controller
 
     public function show(Request $request, $order_id)
     {
+        $order = Order::find($order_id);
+
         return response()->json([
-            'data' => Order::find($order_id)
-                ->products()
-                ->full(),
+            'data' => $order->products()->fullByDate($order->created_at),
         ]);
     }
 
