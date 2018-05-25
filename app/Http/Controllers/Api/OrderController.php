@@ -29,7 +29,7 @@ class OrderController extends Controller
 
         $data = $order->products()->fullByDate($order->created_at);
         return response()->json([
-            'data' => $data,
+            'dataa' => $data,
         ]);
     }
 
