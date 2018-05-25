@@ -150,6 +150,7 @@ class Product extends Model
     public function scopeFull($query)
     {
         return $query
+            ->has('prices')
             ->with('category', 'prices')
             ->orderBy('products.name', 'asc')
             ->getWithPrice();
@@ -158,6 +159,7 @@ class Product extends Model
     public function scopeFullByCategory($query, $category)
     {
         return $query
+            ->has('prices')
             ->with('category', 'prices')
             ->orderBy('products.name', 'asc')
             ->where('category_id', $category)
