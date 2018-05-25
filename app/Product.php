@@ -187,7 +187,6 @@ class Product extends Model
 
     public function scopeGetWithPriceByDate($query, $date)
     {
-        dump($date);exit;
         return $query
             ->get()
             ->each(function ($product) use ($date) {

@@ -26,6 +26,7 @@ class OrderController extends Controller
         $order = JWTAuth::parseToken()->authenticate()
             ->orders()
             ->find($order_id);
+
         return response()->json([
             'data' => $order->products()->fullByDate($order->created_at),
         ]);
