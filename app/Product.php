@@ -158,7 +158,6 @@ class Product extends Model
 
     public function scopeFullByDate($query, $date)
     {
-        dump($date);exit;
         return $query
             ->has('prices')
             ->with('category')
@@ -188,6 +187,7 @@ class Product extends Model
 
     public function scopeGetWithPriceByDate($query, $date)
     {
+        dump($date);exit;
         return $query
             ->get()
             ->each(function ($product) use ($date) {
