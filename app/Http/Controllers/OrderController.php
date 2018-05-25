@@ -239,15 +239,6 @@ class OrderController extends Controller
         $order = Order::find($request->id);
 
         $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/']);
-        dump("json?origins=" . $order->user->latitude . "," . $order->user->longitude
-        . "&destinations=" . env("WAREHOUSE")
-        . "&key=" . env("GMAP_KEY"));
-        dump(json_decode(
-            $client->get("json?origins=" . $order->user->latitude . "," . $order->user->longitude
-                . "&destinations=" . env("WAREHOUSE")
-                . "&key=" . env("GMAP_KEY"))
-                ->getBody()
-        ));exit;
         $element = empty($locations) ? [] : json_decode(
             $client->get("json?origins=" . $order->user->latitude . "," . $order->user->longitude
                 . "&destinations=" . env("WAREHOUSE")
@@ -256,9 +247,8 @@ class OrderController extends Controller
         )->rows[0]->elements[0];
 
         $order->lorry_id = $request->lorry_id;
-
         $order->distance = isset($element->distance) ? round($element->distance->value / 1000, 2) : "0";
-        
+        dump($order);exit;
         $order->save();
 
         return response($order);
