@@ -61,10 +61,21 @@ class StockController extends Controller
     }
 
      public function assignDriverStocks(Request $request){
+        $driver = User::find($request->lorry_id);
+
+        $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/']);
+        $element = empty($locations) ? [] : json_decode(
+            $client->get("json?origins=" . env("WAREHOUSE")
+                . "&destinations=" . $driver->latitude . "," . $driver->longitude
+                . "&key=" . env("GMAP_KEY"))
+                ->getBody()
+        )->rows[0]->elements[0];
+
         $stock = Stock::find($request->id);
-      
-        $stock->lorry_id = $request->lorry_id;
+        $stock->driver()->associate($driver);
+        $stock->distance = isset($element->distance) ? round($element->distance->value / 1000, 2) : "0";
         $stock->save();
+        
         return response($stock);
     }
 }

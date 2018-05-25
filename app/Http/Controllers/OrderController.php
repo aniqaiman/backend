@@ -126,19 +126,29 @@ class OrderController extends Controller
     {
         $filter_date = $request->input('filter_date', '');
 
-        $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/']);
-        $warehouse = "3.123093,101.468913";
+        // $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/']);
+        // $warehouse = "3.123093,101.468913";
 
         if ($request->has('filter_date')) {
-            $ordersQuery = Order::whereDate('created_at', '=', $filter_date)
-                ->whereNotNull('lorry_id')
+            $ordersQuery = Order::with('user', 'driver')
+                ->orderBy('lorry_id')
+                ->whereDate('created_at', '=', $filter_date)
+                ->whereHas('driver')
                 ->get();
-            $stocksQuery = Stock::whereDate('created_at', '=', $filter_date)
-                ->whereNotNull('lorry_id')
+            $stocksQuery = Stock::with('user', 'driver')
+                ->orderBy('lorry_id')
+                ->whereDate('created_at', '=', $filter_date)
+                ->whereHas('driver')
                 ->get();
         } else {
-            $ordersQuery = Order::whereNotNull('lorry_id')->get();
-            $stocksQuery = Stock::whereNotNull('lorry_id')->get();
+            $ordersQuery = Order::with('user', 'driver')
+                ->orderBy('lorry_id')
+                ->whereHas('driver')
+                ->get();
+            $stocksQuery = Stock::with('user', 'driver')
+                ->orderBy('lorry_id')
+                ->whereHas('driver')
+                ->get();
         }
 
         $orders = [];
@@ -154,22 +164,23 @@ class OrderController extends Controller
             $newOrder["user_address"] = $order->user->address;
             $newOrder["latitude"] = $order->user->latitude;
             $newOrder["longitude"] = $order->user->longitude;
-            $weight = DB::table('order_product')->where('order_id', $order->id)->sum('quantity');
-            $newOrder["tonnage"] = $weight;
+            $newOrder["tonnage"] = DB::table('order_product')->where('order_id', $order->id)->sum('quantity');
+            $newOrder["distance"] = $order->distance;
+            $newOrder["total_payout"] = $order->distance * 0.2;
 
             array_push($orders, $newOrder);
             array_push($locations, $order->user->latitude . "," . $order->user->longitude);
         }
 
-        $distances = empty($locations) ? [] : json_decode(
-            $client->get("json?origins=" . implode("|", $locations) . "&destinations=$warehouse&key=" . env("GMAP_KEY"))
-                ->getBody()
-        )->rows;
+        // $distances = empty($locations) ? [] : json_decode(
+        //     $client->get("json?origins=" . implode("|", $locations) . "&destinations=$warehouse&key=" . env("GMAP_KEY"))
+        //         ->getBody()
+        // )->rows;
 
-        foreach ($orders as $key => $order) {
-            $orders[$key]["distance"] = isset($distances[$key]->elements[0]->distance) ? round($distances[$key]->elements[0]->distance->value / 1000, 2) : "0";
-            $orders[$key]["total_payout"] = $orders[$key]["distance"] * 0.2;
-        }
+        // foreach ($orders as $key => $order) {
+        //     $orders[$key]["distance"] = isset($distances[$key]->elements[0]->distance) ? round($distances[$key]->elements[0]->distance->value / 1000, 2) : "0";
+        //     $orders[$key]["total_payout"] = $orders[$key]["distance"] * 0.2;
+        // }
 
         $stocks = [];
         $locations = [];
@@ -184,32 +195,62 @@ class OrderController extends Controller
             $newStock["user_address"] = $stock->user->address;
             $newStock["latitude"] = $stock->user->latitude;
             $newStock["longitude"] = $stock->user->longitude;
-            $weight = DB::table('product_stock')->where('stock_id', $stock->id)->sum('quantity');
-            $newStock["tonnage"] = $weight;
+            $newStock["tonnage"] = DB::table('product_stock')->where('stock_id', $stock->id)->sum('quantity');
+            $newStock["distance"] = $stock->distance;
+            $newStock["total_payout"] = $stock->distance * 0.2;
 
             array_push($stocks, $newStock);
             array_push($locations, $stock->user->latitude . "," . $stock->user->longitude);
         }
 
-        $distances = empty($locations) ? [] : json_decode(
-            $client->get("json?destinations=" . implode("|", $locations) . "&origins=$warehouse&key=" . env("GMAP_KEY"))
-                ->getBody()
-        )->rows[0]->elements;
+        // $distances = empty($locations) ? [] : json_decode(
+        //     $client->get("json?destinations=" . implode("|", $locations) . "&origins=$warehouse&key=" . env("GMAP_KEY"))
+        //         ->getBody()
+        // )->rows[0]->elements;
 
-        foreach ($stocks as $key => $stock) {
-            $stocks[$key]["distance"] = isset($distances[$key]->distance) ? round($distances[$key]->distance->value / 1000, 2) : "0";
-            $stocks[$key]["total_payout"] = $stocks[$key]["distance"] * 0.2;
-        }
+        // foreach ($stocks as $key => $stock) {
+        //     $stocks[$key]["distance"] = isset($distances[$key]->distance) ? round($distances[$key]->distance->value / 1000, 2) : "0";
+        //     $stocks[$key]["total_payout"] = $stocks[$key]["distance"] * 0.2;
+        // }
+
+        // Grouping
+
+        // $orders = collect($orders)
+        //     ->groupBy('driver_id')
+        //     ->each(function ($item, $key) {
+        //         $orders[$key] = $item->sortBy('distance');
+        //     });
+
+        // $stocks = collect($stocks)
+        //     ->groupBy('driver_id')
+        //     ->each(function ($item, $key) {
+        //         $stocks[$key] = $item->sortBy('distance');
+        //     });
+
+        // dump($orders);
+        // dump($stocks);
+        // exit;
 
         return view('orders.lorries', compact('orders', 'stocks', 'filter_date'));
     }
 
     public function assignDriverOrder(Request $request)
     {
-        $order = Order::find($request->id);
+        $driver = User::find($request->lorry_id);
 
-        $order->lorry_id = $request->lorry_id;
+        $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/']);
+        $element = empty($locations) ? [] : json_decode(
+            $client->get("json?origins=" . $driver->latitude . "," . $driver->longitude
+                . "&destinations=" . env("WAREHOUSE")
+                . "&key=" . env("GMAP_KEY"))
+                ->getBody()
+        )->rows[0]->elements[0];
+
+        $order = Order::find($request->id);
+        $order->driver()->associate($driver);
+        $order->distance = isset($element->distance) ? round($element->distance->value / 1000, 2) : "0";
         $order->save();
+
         return response($order);
     }
 
