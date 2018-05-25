@@ -250,6 +250,7 @@
             'order': [],
             'ordering': true,
             'paging': false,
+            'info': false,
         });
 
     });

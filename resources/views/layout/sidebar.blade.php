@@ -95,14 +95,14 @@
             <li class="treeview">
                 <a href="{{ route('orders.buyers.index') }}">
                     <i class="fa fa-chevron-circle-right"></i>
-                    <span class="text-info">A18 - Buyer Transcation</span>
+                    <span class="text-info">A18 - Buyer Transaction</span>
                 </a>
             </li>
 
             <li class="treeview">
                 <a href="{{ route('orders.sellers.index') }}">
                     <i class="fa fa-chevron-circle-right"></i>
-                    <span class="text-info">A20 - Supplier Transcation</span>
+                    <span class="text-info">A20 - Supplier Transaction</span>
                 </a>
             </li>
             <li class="treeview">

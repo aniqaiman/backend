@@ -1,4 +1,8 @@
-@extends('layout.master') @section('style') @endsection @section('content')
+@extends('layout.master') 
+@section('style')
+@endsection
+ 
+@section('content')
 <section class="content-header">
     <h1>
         Promo Price Management
@@ -71,7 +75,9 @@
         </div>
     </div>
 </section>
-@endsection @section('script')
+@endsection
+ 
+@section('script')
 <script>
     $(document).ready(function () {
         console.log("loaded");
@@ -143,4 +149,5 @@
         });
     });
 
-</script> @endsection
+</script>
+@endsection
