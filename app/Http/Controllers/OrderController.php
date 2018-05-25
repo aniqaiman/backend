@@ -236,28 +236,29 @@ class OrderController extends Controller
 
     public function assignDriverOrder(Request $request)
     {
-        $driver = User::find($request->lorry_id);
+        $order = Order::find($request->id);
 
         $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/']);
-        dump("json?origins=" . $driver->latitude . "," . $driver->longitude
+        dump("json?origins=" . $order->user->latitude . "," . $order->user->longitude
         . "&destinations=" . env("WAREHOUSE")
         . "&key=" . env("GMAP_KEY"));
         dump(json_decode(
-            $client->get("json?origins=" . $driver->latitude . "," . $driver->longitude
+            $client->get("json?origins=" . $order->user->latitude . "," . $order->user->longitude
                 . "&destinations=" . env("WAREHOUSE")
                 . "&key=" . env("GMAP_KEY"))
                 ->getBody()
         ));exit;
         $element = empty($locations) ? [] : json_decode(
-            $client->get("json?origins=" . $driver->latitude . "," . $driver->longitude
+            $client->get("json?origins=" . $order->user->latitude . "," . $order->user->longitude
                 . "&destinations=" . env("WAREHOUSE")
                 . "&key=" . env("GMAP_KEY"))
                 ->getBody()
         )->rows[0]->elements[0];
 
-        $order = Order::find($request->id);
-        $order->driver()->associate($driver);
+        $order->lorry_id = $request->lorry_id;
+
         $order->distance = isset($element->distance) ? round($element->distance->value / 1000, 2) : "0";
+        
         $order->save();
 
         return response($order);
