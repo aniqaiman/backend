@@ -28,7 +28,6 @@ class OrderController extends Controller
             ->find($order_id);
 
         $data = $order->products()->fullByDate($order->created_at);
-        dump($data);exit;
         return response()->json([
             'data' => $data,
         ]);
