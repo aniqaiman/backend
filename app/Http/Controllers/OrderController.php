@@ -250,7 +250,6 @@ class OrderController extends Controller
 
         $order->lorry_id = $request->lorry_id;
         $order->distance = isset($element->distance) ? round($element->distance->value / 1000, 2) : "0";
-        dump($order);exit;
         $order->save();
 
         return response($order);
