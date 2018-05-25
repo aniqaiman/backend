@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Stock;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Redirect;
 use Session;
@@ -60,7 +61,8 @@ class StockController extends Controller
         return Redirect::to('sellerdetail');
     }
 
-     public function assignDriverStocks(Request $request){
+    public function assignDriverStocks(Request $request)
+    {
         $stock = Stock::find($request->id);
 
         $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/']);
