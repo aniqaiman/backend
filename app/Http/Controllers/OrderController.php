@@ -239,6 +239,9 @@ class OrderController extends Controller
         $driver = User::find($request->lorry_id);
 
         $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/']);
+        dump("json?origins=" . $driver->latitude . "," . $driver->longitude
+        . "&destinations=" . env("WAREHOUSE")
+        . "&key=" . env("GMAP_KEY"));
         dump(json_decode(
             $client->get("json?origins=" . $driver->latitude . "," . $driver->longitude
                 . "&destinations=" . env("WAREHOUSE")
