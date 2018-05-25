@@ -5,7 +5,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Inventories Management
+        Inventory Management
     </h1>
 
     <ol class="breadcrumb">
@@ -15,7 +15,7 @@
             </a>
         </li>
         <li>
-            <a href="#">Inventories Management</a>
+            <a href="#">Inventory Management</a>
         </li>
     </ol>
 </section>

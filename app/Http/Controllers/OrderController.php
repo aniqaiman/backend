@@ -83,7 +83,7 @@ class OrderController extends Controller
         $order_active = isset($_GET['buyer']) || !isset($_GET['seller']) ? "active" : "";
         $stock_active = isset($_GET['seller']) ? "active" : "";
 
-        return view('orders.rejects', compact('orders', 'stocks', 'order_active', 'stock_active'));
+        return view('orders.feedbacks', compact('orders', 'stocks', 'order_active', 'stock_active'));
     }
 
     public function indexBuyerOrderTransactions(Request $request)
