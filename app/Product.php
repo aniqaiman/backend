@@ -180,7 +180,7 @@ class Product extends Model
         return $query
             ->get()
             ->each(function ($product) {
-                $product['price_valid'] = $product->price_latest;
+                $product['price_latest'] = $product->price_latest;
                 $product['price_difference'] = $product->price_difference;
             });
     }
@@ -190,7 +190,7 @@ class Product extends Model
         return $query
             ->get()
             ->each(function ($product) use ($date) {
-                $product['price_latest'] = $product->priceValid($date);
+                $product['price_valid'] = $product->priceValid($date);
                 $product['price_difference'] = $product->price_difference;
             });
     }
