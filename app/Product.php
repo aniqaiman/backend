@@ -160,7 +160,7 @@ class Product extends Model
     {
         return $query
             ->has('prices')
-            ->with('category', 'prices')
+            ->with('category')
             ->orderBy('products.name', 'asc')
             ->getWithPriceByDate($date);
     }
@@ -169,7 +169,7 @@ class Product extends Model
     {
         return $query
             ->has('prices')
-            ->with('category', 'prices')
+            ->with('category')
             ->orderBy('products.name', 'asc')
             ->where('category_id', $category)
             ->getWithPrice();
@@ -182,7 +182,6 @@ class Product extends Model
             ->each(function ($product) {
                 $product['price_latest'] = $product->price_latest;
                 $product['price_difference'] = $product->price_difference;
-                unset($product->prices);
             });
     }
 
@@ -190,10 +189,9 @@ class Product extends Model
     {
         return $query
             ->get()
-            ->each(function ($product) {
+            ->each(function ($product) use ($date) {
                 $product['price_latest'] = $product->priceValid($date);
                 $product['price_difference'] = $product->price_difference;
-                unset($product->prices);
             });
     }
 
