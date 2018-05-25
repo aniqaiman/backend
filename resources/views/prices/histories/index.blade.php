@@ -47,7 +47,7 @@
                 <tr class="bg-black">
                   <th class="text-center">Date</th>
                   <th>Item</th>
-                  <th class="text-center">Product#</th>
+                  <th class="text-center">SKU#</th>
                   <th class="text-center">
                     Buyer Price
                     <br />(Grade A)
@@ -71,7 +71,7 @@
                 <tr>
                   <td class="text-center">{{ Carbon\Carbon::parse($price->date_price)->format('d/m/Y') }}</td>
                   <td>{{ $price->product->name }}</td>
-                  <td class="text-center">{{ sprintf("%04s", $price->product->id) }}</td>
+                  <td class="text-center">#{{ sprintf("%04s", $price->product->id) }}</td>
                   <td class="text-center">{{ $price->buyer_price_a }}</td>
                   <td class="text-center">{{ $price->seller_price_a }}</td>
                   <td class="text-center">{{ $price->buyer_price_b }}</td>

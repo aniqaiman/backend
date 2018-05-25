@@ -124,7 +124,7 @@
             <thead>
               <tr class="bg-black">
                 <th rowspan="2">Item</th>
-                <th rowspan="2" class="text-center">Product#</th>
+                <th rowspan="2" class="text-center">SKU#</th>
                 <th colspan="2" class="text-center">Harvesting period</th>
                 <th rowspan="2" class="text-center">Harvest Frequency</th>
                 <th rowspan="2" class="text-center">Total plants</th>
@@ -139,7 +139,7 @@
               @foreach($seller->supplies as $supply)
               <tr>
                 <td>{{ $supply->name }}</td>
-                <td class="text-center">{{ sprintf("%04s", $supply->id) }}</td>
+                <td class="text-center">#{{ sprintf("%04s", $supply->id) }}</td>
                 <td class="text-center">{{ $supply->pivot->harvesting_period_start }}</td>
                 <td class="text-center">{{ $supply->pivot->harvesting_period_end }}</td>
                 <td class="text-center">{{ $supply->pivot->harvest_frequency }}</td>

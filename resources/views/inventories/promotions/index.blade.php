@@ -32,7 +32,7 @@
                   <th>Date</th>
                   <th>Order#</th>
                   <th>Item</th>
-                  <th class="text-center">Product#</th>
+                  <th class="text-center">SKU#</th>
                   <th class="text-center">Price</th>
                   <th class="text-center">Quantity</th>
                   <th class="text-center">Total Sold</th>
@@ -46,7 +46,7 @@
                   <td>{{ Carbon\Carbon::parse($promo->created_at)->format('d/m/Y') }}</td>
                   <td></td>
                   <td>{{ $promo->product["name"] }}</td>
-                  <td class="text-center">{{ sprintf("%04s", $promo->product["id"]) }}</td>
+                  <td class="text-center">#{{ sprintf("%04s", $promo->product["id"]) }}</td>
                   <td>
                     <div class="input-group">
                       <span class="input-group-addon">RM</span>

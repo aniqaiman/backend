@@ -33,7 +33,7 @@
                             <thead>
                                 <tr class="bg-black">
                                     <th rowspan="2">Item</th>
-                                    <th rowspan="2">Product#</th>
+                                    <th rowspan="2">SKU#</th>
                                     <th colspan="4" class="text-center">Today</th>
                                     <th colspan="4" class="text-center">Yesterday</th>
                                     <th colspan="4" class="text-center">% Price Difference</th>
@@ -58,7 +58,7 @@
                                 @foreach($products as $product)
                                 <tr>
                                     <td>{{ $product["name"] }}</td>
-                                    <td>{{ sprintf("%04s", $product["id"]) }}</td>
+                                    <td>#{{ sprintf("%04s", $product["id"]) }}</td>
                                     <td colspan="1">
                                         <div class="input-group">
                                             <span class="input-group-addon">RM</span>

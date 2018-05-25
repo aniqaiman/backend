@@ -46,7 +46,7 @@
                             <thead>
                                 <tr class="bg-black">
                                     <th>Item</th>
-                                    <th>Product#</th>
+                                    <th>SKU#</th>
                                     <th>Incoming Date</th>
                                     <th>Purchase Price</th>
                                     <th>Total Purchased</th>
@@ -66,7 +66,7 @@
                                     <td>
                                         {{ $inventory->product->name }}
                                     </td>
-                                    <td>{{ sprintf("%04s", $inventory->product->id) }}</td>
+                                    <td>#{{ sprintf("%04s", $inventory->product->id) }}</td>
                                     <td>{{ Carbon\Carbon::parse($inventory->created_at)->format('d/m/Y') }}</td>
                                     <td>
                                         {{ $inventory->product->priceValid($inventory->created_at)->seller_price_a }}

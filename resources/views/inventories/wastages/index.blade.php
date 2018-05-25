@@ -32,7 +32,7 @@
                   <th class="text-center">Date</th>
                   <th>Order#</th>
                   <th>Item</th>
-                  <th class="text-center">Product#</th>
+                  <th class="text-center">SKU#</th>
                   <th class="text-center">
                     Storage Wastage
                     <br />(from Inventory Mgmt)
@@ -51,7 +51,7 @@
                   <td class="text-center">{{ Carbon\Carbon::parse($wastage->created_at)->format('d/m/Y') }}</td>
                   <td></td>
                   <td>{{ $wastage->product->name }}</td>
-                  <td class="text-center">{{ sprintf("%04s", $wastage->product->id) }}</td>
+                  <td class="text-center">#{{ sprintf("%04s", $wastage->product->id) }}</td>
                   <td class="text-center">{{ $wastage->storage_wastage }} kg</td>
                   <td class="text-center">{{ $wastage->promo_wastage }} kg</td>
                   <td class="text-center">{{ $wastage->promo_wastage + $wastage->storage_wastage }} kg</td>
