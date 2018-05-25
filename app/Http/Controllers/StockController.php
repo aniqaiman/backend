@@ -68,7 +68,7 @@ class StockController extends Controller
         $client = new Client(['base_uri' => 'https://maps.googleapis.com/maps/api/distancematrix/']);
         $element = json_decode(
             $client->get("json?origins=" . env("WAREHOUSE")
-                . "&destinations=" . $order->user->latitude . "," . $order->user->longitude
+                . "&destinations=" . $stock->user->latitude . "," . $stock->user->longitude
                 . "&key=" . env("GMAP_KEY"))
                 ->getBody()
         )
