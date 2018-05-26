@@ -156,6 +156,15 @@ class Product extends Model
             ->getWithPrice();
     }
 
+    public function scopeGetMinimal($query)
+    {
+        return $query
+            ->has('prices')
+            ->with('category')
+            ->orderBy('products.name', 'asc')
+            ->get();
+    }
+
     public function scopeGetFullByDate($query, $date)
     {
         return $query

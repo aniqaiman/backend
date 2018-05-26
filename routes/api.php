@@ -27,8 +27,10 @@ Route::post('users/sellers', 'Api\SellerController@store');
 Route::post('users/buyers', 'Api\BuyerController@store');
 Route::post('users/drivers', 'Api\DriverController@store');
 
-Route::get('product/{product_id}', 'Api\ProductController@getProductbyId');
 Route::get('products', 'Api\ProductController@getProducts');
+Route::get('products/minimal', 'Api\ProductController@getMinimalProducts');
+Route::get('products/{product_id}', 'Api\ProductController@getProductbyId');
+Route::get('products/{product_id}/price', 'Api\PriceController@getProductPriceLatest');
 Route::get('fruits', 'Api\ProductController@getFruits');
 Route::get('fruits/goto', 'Api\ProductController@getFruitsByPage');
 Route::get('fruits/minimal', 'Api\ProductController@getMinimalFruits');
@@ -52,7 +54,6 @@ Route::get('products/popular', 'Api\ProductController@getBestSellingProducts');
 Route::get('orders', 'Api\OrderController@getOrders');
 Route::get('orders/rejects', 'Api\OrderController@getOrderRejects');
 Route::get('orders/{order_id}', 'Api\OrderController@getOrderDetails');
-
 
 // ------------------------------------------- Stock ---------------------------------------------------- //
 

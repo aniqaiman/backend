@@ -11,6 +11,13 @@ use JWTAuth;
 
 class ProductController extends Controller
 {
+    public function getMinimalProducts()
+    {
+        return response()->json([
+            "data" => Product::getMinimal(),
+        ]);
+    }
+
     public function getFruits()
     {
         return response()->json([
