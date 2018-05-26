@@ -151,7 +151,7 @@ class Product extends Model
     {
         return $query
             ->has('prices')
-            ->with('category', 'prices')
+            ->with('category')
             ->orderBy('products.name', 'asc')
             ->getWithPrice();
     }
