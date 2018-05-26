@@ -147,7 +147,7 @@ class Product extends Model
         return $this->hasMany('App\Wastage');
     }
 
-    public function scopeFull($query)
+    public function scopeGetFull($query)
     {
         return $query
             ->has('prices')
@@ -156,7 +156,7 @@ class Product extends Model
             ->getWithPrice();
     }
 
-    public function scopeFullByDate($query, $date)
+    public function scopeGetFullByDate($query, $date)
     {
         return $query
             ->has('prices')
@@ -165,7 +165,7 @@ class Product extends Model
             ->getWithPriceByDate($date);
     }
 
-    public function scopeFullByCategory($query, $category)
+    public function scopeGetFullByCategory($query, $category)
     {
         return $query
             ->has('prices')
@@ -173,6 +173,16 @@ class Product extends Model
             ->orderBy('products.name', 'asc')
             ->where('category_id', $category)
             ->getWithPrice();
+    }
+
+    public function scopeGetMinimalByCategory($query, $category)
+    {
+        return $query
+            ->has('prices')
+            ->with('category')
+            ->orderBy('products.name', 'asc')
+            ->where('category_id', $category)
+            ->get();
     }
 
     public function scopeGetWithPrice($query)

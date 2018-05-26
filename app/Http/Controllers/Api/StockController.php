@@ -30,7 +30,7 @@ class StockController extends Controller
                 ->stocks()
                 ->find($stock_id)
                 ->products()
-                ->full(),
+                ->getFull(),
         ]);
     }
 

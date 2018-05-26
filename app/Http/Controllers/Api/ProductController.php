@@ -14,29 +14,43 @@ class ProductController extends Controller
     public function getFruits()
     {
         return response()->json([
-            "data" => Product::fullByCategory(1),
+            "data" => Product::getFullByCategory(1),
         ]);
     }
 
     public function getVegetables()
     {
         return response()->json([
-            "data" => Product::fullByCategory(11),
+            "data" => Product::getFullByCategory(11),
         ]);
     }
 
     public function getFruitsByPage()
     {
         return response()->json(
-            Product::fullByCategory(1)->paginate(30)
+            Product::getFullByCategory(1)->paginate(30)
         );
     }
 
     public function getVegetablesByPage()
     {
         return response()->json(
-            Product::fullByCategory(11)->paginate(30)
+            Product::getFullByCategory(11)->paginate(30)
         );
+    }
+
+    public function getMinimalFruits()
+    {
+        return response()->json([
+            "data" => Product::getMinimalByCategory(1),
+        ]);
+    }
+
+    public function getMinimalVegetables()
+    {
+        return response()->json([
+            "data" => Product::getMinimalByCategory(11),
+        ]);
     }
 
     public function getNewProducts(Request $request)
