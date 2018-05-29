@@ -31,7 +31,7 @@ Route::get('products', 'Api\ProductController@getProducts');
 Route::get('products/minimal', 'Api\ProductController@getMinimalProducts');
 Route::get('products/{product_id}', 'Api\ProductController@getProductbyId');
 Route::get('products/{product_id}/price', 'Api\PriceController@getProductPriceLatest');
-Route::get('products/{product_id}/price/difference', 'Api\PriceController@getProductPriceLatest');
+Route::get('products/{product_id}/price/difference', 'Api\PriceController@getProductPriceDifference');
 Route::get('fruits', 'Api\ProductController@getFruits');
 Route::get('fruits/goto', 'Api\ProductController@getFruitsByPage');
 Route::get('fruits/minimal', 'Api\ProductController@getMinimalFruits');
