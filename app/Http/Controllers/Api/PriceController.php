@@ -14,4 +14,10 @@ class PriceController extends Controller
         ]);
     }
 
+    public function getProductPriceDifference($product_id)
+    {
+        return response()->json([
+            "data" => Product::find($product_id)->price_difference,
+        ]);
+    }
 }
