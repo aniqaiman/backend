@@ -23,7 +23,7 @@ class CartController extends Controller
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
                 ->carts()
-                ->getFull(),
+                ->getMinimal(),
         ]);
     }
 
