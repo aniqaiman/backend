@@ -34,9 +34,11 @@ Route::get('products/{product_id}/price', 'Api\PriceController@getProductPriceLa
 Route::get('fruits', 'Api\ProductController@getFruits');
 Route::get('fruits/goto', 'Api\ProductController@getFruitsByPage');
 Route::get('fruits/minimal', 'Api\ProductController@getMinimalFruits');
+Route::get('fruits/minimal/goto', 'Api\ProductController@getMinimalFruitsByPage');
 Route::get('vegetables', 'Api\ProductController@getVegetables');
 Route::get('vegetables/goto', 'Api\ProductController@getVegetablesByPage');
 Route::get('vegetables/minimal', 'Api\ProductController@getMinimalVegetables');
+Route::get('vegetables/minimal/goto', 'Api\ProductController@getMinimalVegetablesByPage');
 Route::get('prices', 'Api\ProductController@getPrices');
 Route::get('buyers', 'Api\BuyerController@getBuyers');
 Route::get('sellers', 'Api\SellerController@getSellers');

@@ -46,6 +46,20 @@ class ProductController extends Controller
         );
     }
 
+    public function getMinimalFruitsByPage()
+    {
+        return response()->json([
+            "data" => Product::getMinimalByCategory(1)->paginate(30),
+        ]);
+    }
+
+    public function getMinimalVegetablesByPage()
+    {
+        return response()->json([
+            "data" => Product::getMinimalByCategory(11)->paginate(30),
+        ]);
+    }
+
     public function getMinimalFruits()
     {
         return response()->json([
