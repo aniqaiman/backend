@@ -9,7 +9,16 @@ use JWTAuth;
 
 class CartController extends Controller
 {
-    public function getCartItems(Request $request)
+    public function getCartItem($product_id)
+    {
+        return response()->json([
+            'data' => JWTAuth::parseToken()->authenticate()
+                ->carts()
+                ->find($product_id),
+        ]);
+    }
+
+    public function getCartItems()
     {
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
@@ -18,7 +27,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function getTotalItems(Request $request)
+    public function getTotalItems()
     {
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
@@ -26,7 +35,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function getTotalPrice(Request $request)
+    public function getTotalPrice()
     {
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
@@ -48,7 +57,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function deleteCartItem(Request $request, $product_id)
+    public function deleteCartItem($product_id)
     {
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
@@ -57,7 +66,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function postConfirm(Request $request)
+    public function postConfirm()
     {
         $user = JWTAuth::parseToken()->authenticate();
 

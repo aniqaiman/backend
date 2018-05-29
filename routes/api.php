@@ -68,6 +68,7 @@ Route::post('stocks', 'Api\StockController@postStocks');
 // ------------------------------------------- Cart ---------------------------------------------------- //
 
 Route::get('carts', 'Api\CartController@getCartItems');
+Route::get('carts/products/{product_id}', 'Api\CartController@getCartItem');
 Route::get('carts/totalitems', 'Api\CartController@getTotalItems');
 Route::get('carts/totalprice', 'Api\CartController@getTotalPrice');
 
