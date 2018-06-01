@@ -483,13 +483,13 @@ class OrderController extends Controller
     public function editBuyer(Request $request, $id)
     {
         $order = Order::find($id);
-        return view('orders.edit_buyer', compact('order'));
+        return view('orders.buyers.edit', compact('order'));
     }
 
     public function editSeller(Request $request, $id)
     {
         $stock = Stock::find($id);
-        return view('orders.edit_seller', compact('stock'));
+        return view('orders.sellers.edit', compact('stock'));
     }
 
     public function updateBuyer(Request $request, $id)
