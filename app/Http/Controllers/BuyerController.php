@@ -48,6 +48,11 @@ class BuyerController extends Controller
         return view('buyers.index', compact('buyers'));
     }
 
+    public function create(Request $request)
+    {
+        return view('buyers.create');
+    }
+
     public function edit($user_id, Request $request)
     {
         $buyers = User::where('user_id', $user_id)->first();

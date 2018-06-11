@@ -46,6 +46,7 @@ Route::prefix('users')
 
         Route::get('buyers', 'BuyerController@index')->name('buyers.index');
         Route::post('buyers', 'BuyerController@store')->name('buyers.store');
+        Route::get('buyers/create', 'BuyerController@create')->name('buyers.create');
         Route::put('buyers/{user_id}', 'BuyerController@update')->name('buyers.update');
         Route::delete('buyers/{user_id}', 'BuyerController@destroy')->name('buyers.destroy');
         Route::get('buyers/{user_id}/edit', 'BuyerController@edit')->name('buyers.edit');
