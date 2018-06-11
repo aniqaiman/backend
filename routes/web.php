@@ -27,7 +27,7 @@ Route::prefix('users')
 
         Route::get('drivers', 'DriverController@index')->name('drivers.index');
         Route::post('drivers', 'DriverController@store')->name('drivers.store');
-        Route::post('drivers/create', 'DriverController@create')->name('drivers.create');
+        Route::get('drivers/create', 'DriverController@create')->name('drivers.create');
         Route::get('drivers/{user_id}', 'DriverController@show')->name('drivers.show');
         Route::put('drivers/{user_id}', 'DriverController@update')->name('drivers.update');
         Route::delete('drivers/{user_id}', 'DriverController@destroy')->name('drivers.destroy');
