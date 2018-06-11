@@ -16,7 +16,7 @@
             </a>
         </li>
         <li>User Management</li>
-        <li class="active">Add Seller</li>
+        <li class="active">New Supplier</li>
     </ol>
 </section>
 
@@ -25,7 +25,7 @@
         <div class="col-md-12">
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Add Seller</h3>
+                    <h3 class="box-title">Add Supplier</h3>
                 </div>
                 <form action="{{ action('SellerController@store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                     @csrf
