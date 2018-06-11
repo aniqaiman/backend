@@ -61,7 +61,7 @@
 
 <section class="content-header">
     <h1>
-        Seller Transaction
+        Supplier Transaction
     </h1>
 
     <ol class="breadcrumb">
@@ -69,7 +69,7 @@
             <a href="{{ route('index') }}">
                 <i class="fa fa-dashboard"></i>Dashboard</a>
         </li>
-        <li class="active">Seller Transaction</li>
+        <li class="active">Supplier Transaction</li>
     </ol>
 </section>
 
