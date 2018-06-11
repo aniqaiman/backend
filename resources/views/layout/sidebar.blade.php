@@ -5,7 +5,8 @@
     <section class="sidebar">
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu " data-widget="tree">
+        @if(Auth::User()->group_id === 1)
+        <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
 
             <li class="treeview">
@@ -154,6 +155,7 @@
                 </ul>
             </li>
         </ul>
+        @endif
     </section>
     <!-- /.sidebar -->
 </aside>

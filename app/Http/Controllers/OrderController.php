@@ -101,7 +101,10 @@ class OrderController extends Controller
                 ->get();
         }
 
-        return view('orders.buyers.index', compact('orders', 'filter_date'));
+        $pending_orders = $orders->where('status', '!=', 3);
+        $completed_orders = $orders->where('status', 3);
+
+        return view('orders.buyers.index', compact('orders', 'pending_orders', 'completed_orders', 'filter_date'));
     }
 
     public function indexSellerOrderTransactions(Request $request)

@@ -76,58 +76,104 @@
 <section class="content">
     <div class="row">
         <div class="col-md-12">
-            <div class="box box-success">
-                <div class="box-header with-border text-center">
-                    <form method="get" class="form-inline text-center">
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-btn">
-                                <a class="btn btn-default" href="{{ route('orders.buyers.index') }}">Show All</a>
-                            </span>
-                            <input type="date" class="form-control" name="filter_date" value="{{ $filter_date }}" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fa fa-search"></i>
-                                    Filter
-                                </button>
-                            </span>
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab_1" data-toggle="tab">Pending</a>
+                    </li>
+                    <li>
+                        <a href="#tab_2" data-toggle="tab">Completed</a>
+                    </li>
+                    <li class="pull-right" style="margin-top: 3px;">
+                        <form method="get" class="form-inline text-center">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-btn">
+                                    <a class="btn btn-default" href="{{ route('orders.buyers.index') }}">Show All</a>
+                                </span>
+                                <input type="date" class="form-control" name="filter_date" value="{{ $filter_date }}" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                        Filter
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+                <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="tab_1">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="pending-order-table">
+                                <thead>
+                                    <tr class="bg-black">
+                                        <th>Date</th>
+                                        <th>Order#</th>
+                                        <th>Buyer#</th>
+                                        <th>Buyer Name</th>
+                                        <th>Total Price</th>
+                                        <th>Lorry</th>
+                                    </tr>
+                                </thead>
+    
+                                <tbody>
+                                    @foreach($pending_orders as $order)
+                                    <tr>
+                                        <td>{{ $order->created_at }}</td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">{{ $order->id }}</a>
+                                        </td>
+                                        <td>{{ $order->user->id }}</td>
+                                        <td>{{ $order->user->name }}</td>
+                                        <td>{{ $order->totalPrice() }}</td>
+                                        @if ($order["driver"])
+                                        <td>{{$order->driver->name}}</td>
+                                        @else
+                                        <td>No driver assigned</td>
+                                        @endif
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                    </form>
-                </div>
-                <div class="box-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="order-table">
-                            <thead>
-                                <tr class="bg-black">
-                                    <th>Date</th>
-                                    <th>Order#</th>
-                                    <th>Buyer#</th>
-                                    <th>Buyer Name</th>
-                                    <th>Total Price</th>
-                                    <th>Lorry</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach($orders as $order)
-                                <tr>
-                                    <td>{{ $order->created_at }}</td>
-                                    <td>
-                                        <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">{{ $order->id }}</a>
-                                    </td>
-                                    <td>{{ $order->user->id }}</td>
-                                    <td>{{ $order->user->name }}</td>
-                                    <td>{{ $order->totalPrice() }}</td>
-                                    @if ($order["driver"])
-                                    <td>{{$order->driver->name}}</td>
-                                    @else
-                                    <td>No driver assigned</td>
-                                    @endif
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab_2">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="completed-order-table">
+                                <thead>
+                                    <tr class="bg-black">
+                                        <th>Date</th>
+                                        <th>Order#</th>
+                                        <th>Buyer#</th>
+                                        <th>Buyer Name</th>
+                                        <th>Total Price</th>
+                                        <th>Lorry</th>
+                                    </tr>
+                                </thead>
+    
+                                <tbody>
+                                    @foreach($completed_orders as $order)
+                                    <tr>
+                                        <td>{{ $order->created_at }}</td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#order_{{ $order->id }}">{{ $order->id }}</a>
+                                        </td>
+                                        <td>{{ $order->user->id }}</td>
+                                        <td>{{ $order->user->name }}</td>
+                                        <td>{{ $order->totalPrice() }}</td>
+                                        @if ($order["driver"])
+                                        <td>{{$order->driver->name}}</td>
+                                        @else
+                                        <td>No driver assigned</td>
+                                        @endif
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+                <!-- /.box -->
             </div>
         </div>
         <!-- /.box -->
