@@ -170,7 +170,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane {{ $stock_active }}" id="tab_2">
+                    <div class="tab-pane" id="tab_2">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="seller-table" style="width:100%">
                                 <thead>
