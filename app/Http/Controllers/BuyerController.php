@@ -34,7 +34,7 @@ class BuyerController extends Controller
             'status_account' => 0,
         ]);
 
-        return redirect()->route('users.buyers.create')->with('New buyer had been added.');
+        return redirect()->route('users.buyers.create')->with('success', 'New buyer had been added.');
     }
 
     public function index()
