@@ -30,8 +30,8 @@ class BuyerController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'group_id' => 11,
-            'status_email' => 0,
-            'status_account' => 0,
+            'status_email' => 1,
+            'status_account' => 1,
         ]);
 
         return redirect()->route('users.buyers.create')->with('success', 'New buyer had been added.');

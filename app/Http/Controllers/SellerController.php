@@ -16,24 +16,22 @@ class SellerController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->ajax()) {
-            $sellers = new User;
-            $sellers->name = $request->name;
-            $sellers->company_name = $request->company_name;
-            $sellers->company_reg_ic_number = $request->company_reg_ic_number;
-            $sellers->address = $request->address;
-            $sellers->latitude = $request->latitude;
-            $sellers->longitude = $request->longitude;
-            $sellers->handphone_number = $request->handphone_number;
-            $sellers->email = $request->email;
-            $sellers->password = bcrypt($request->password);
-            $sellers->bank_name = $request->bank_name;
-            $sellers->bank_acc_holder_name = $request->bank_acc_holder_name;
-            $sellers->bank_acc_number = $request->bank_acc_number;
-            $sellers->group_id = 21;
-            $sellers->save();
-            return response($sellers);
-        }
+        $buyer = User::create([
+            'name' => $request->input('name'),
+            'company_name' => $request->input('company_name'),
+            'company_registration_mykad_number' => $request->input('company_registration_mykad_number'),
+            'address' => $request->input('address'),
+            'latitude' => $request->input('latitude'),
+            'longitude' => $request->input('longitude'),
+            'mobile_number' => $request->input('mobile_number'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'group_id' => 21,
+            'status_email' => 1,
+            'status_account' => 1,
+        ]);
+
+        return redirect()->route('users.sellers.create')->with('success', 'New supplier had been added.');
     }
 
     public function index()
