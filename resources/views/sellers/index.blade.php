@@ -91,7 +91,7 @@
                     <li>
                         <a href="#tab_2" data-toggle="tab">
                             Unverified
-                            <span class="badge bg-light-blue">{{ $unverified_sellers->total() }}</span>
+                            <span class="badge bg-light-blue">{{ $unverified_sellers->count() }}</span>
                         </a>
                     </li>
                 </ul>
