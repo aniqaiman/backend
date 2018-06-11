@@ -6,7 +6,7 @@
 <section class="content-header">
     <h1>
         User Management
-        <small>New Seller</small>
+        <small>New Supplier</small>
     </h1>
 
     <ol class="breadcrumb">

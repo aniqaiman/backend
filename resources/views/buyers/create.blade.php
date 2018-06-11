@@ -16,7 +16,7 @@
             </a>
         </li>
         <li>User Management</li>
-        <li class="active">Add Buyer</li>
+        <li class="active">New Buyer</li>
     </ol>
 </section>
 

@@ -16,7 +16,7 @@
             </a>
         </li>
         <li>User Management</li>
-        <li class="active">Add Driver</li>
+        <li class="active">New Driver</li>
     </ol>
 </section>
 
