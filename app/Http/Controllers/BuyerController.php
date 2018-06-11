@@ -33,8 +33,8 @@ class BuyerController extends Controller
             'status_email' => 0,
             'status_account' => 0,
         ]);
-        
-        return redirect()->route('orders.index.lorries');
+
+        return redirect()->route('users.buyers.create')->with('New buyer had been added.');
     }
 
     public function index()

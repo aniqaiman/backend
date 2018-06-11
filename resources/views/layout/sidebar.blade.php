@@ -126,7 +126,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-archive"></i>
+                    <i class="fa fa-user"></i>
                     <span class="text-info">User Registration</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>

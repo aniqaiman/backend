@@ -31,6 +31,14 @@
                     @csrf
 
                     <div class="box-body">
+                        @if (Session::has('success'))
+                        <div class="alert alert-success">
+                            <p>
+                                <i class="icon fa fa-check"></i> {{ Session::get('success') }}
+                            </p>
+                        </div>
+                        @endif
+
                         <div class="form-group">
                             <label for="name" class="col-sm-3 control-label">Name:</label>
                             <div class="col-sm-9">
