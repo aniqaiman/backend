@@ -38,6 +38,7 @@ class User extends Authenticatable implements JWTSubject
         'state_id',
         'status_email',
         'status_account',
+        'location_covered',
     ];
 
     public function group()

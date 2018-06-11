@@ -1,4 +1,8 @@
-@extends('layout.master') @section('style') @endsection @section('content')
+@extends('layout.master') 
+@section('style')
+@endsection
+ 
+@section('content')
 <section class="content-header">
     <h1>
         Product Management
@@ -40,7 +44,8 @@
                             <div class="col-sm-offset-3 col-sm-9">
                                 Current:
                                 <br/>
-                                <img style="max-width: 100px;" src="{{ env('APP_PHOTO_URL') }}{{ $vegetable->image }}" onerror="this.src='/img/no-image.jpg'" />
+                                <img style="max-width: 100px;" src="{{ env('APP_PHOTO_URL') }}{{ $vegetable->image }}" onerror="this.src='/img/no-image.jpg'"
+                                />
                             </div>
                         </div>
 
@@ -61,7 +66,8 @@
                         <div class="form-group">
                             <label for="short_desc" class="col-sm-3 control-label">Short Description:</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="short_description" />{{ $vegetable->short_description }}</textarea>
+                                <textarea class="form-control" name="short_description" />{{ $vegetable->short_description
+                                }}</textarea>
                             </div>
                         </div>
 
@@ -111,4 +117,7 @@
         </div>
     </div>
 </section>
-@endsection @section('script') @endsection
+@endsection
+ 
+@section('script')
+@endsection

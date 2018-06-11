@@ -95,6 +95,7 @@
                                     </button>
                                 </span>
                             </div>
+                            <a href="{{ route('users.drivers.create') }}" class="btn btn-success btn-sm" style="margin-left: 5px;">Add Driver</a>
                         </form>
                     </li>
                 </ul>

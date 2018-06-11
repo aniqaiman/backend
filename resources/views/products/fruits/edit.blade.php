@@ -1,4 +1,8 @@
-@extends('layout.master') @section('style') @endsection @section('content')
+@extends('layout.master') 
+@section('style')
+@endsection
+ 
+@section('content')
 <section class="content-header">
     <h1>
         Product Management
@@ -40,7 +44,8 @@
                             <div class="col-sm-offset-3 col-sm-9">
                                 Current:
                                 <br/>
-                                <img style="max-width: 100px;" src="{{ env('APP_PHOTO_URL') }}{{ $fruit->image }}" onerror="this.src='/img/no-image.jpg'" />
+                                <img style="max-width: 100px;" src="{{ env('APP_PHOTO_URL') }}{{ $fruit->image }}" onerror="this.src='/img/no-image.jpg'"
+                                />
                             </div>
                         </div>
 
@@ -111,4 +116,7 @@
         </div>
     </div>
 </section>
-@endsection @section('script') @endsection
+@endsection
+ 
+@section('script')
+@endsection
