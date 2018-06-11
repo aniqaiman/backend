@@ -32,7 +32,6 @@
                 </div>
                 <form action="{{ action('DriverController@store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                     @csrf
-                    <input type="hidden" name="_method" value="PUT" />
 
                     <div class="box-body">
                         <div class="form-group">
