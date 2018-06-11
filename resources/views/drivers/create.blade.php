@@ -118,9 +118,17 @@
                                 <input type="text" name="location_covered" class="form-control" />
                             </div>
                         </div>
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Add New</button>
+
+                        <div class="form-group">
+                            <label for="password" class="col-sm-3 control-label">Password:</label>
+                            <div class="col-sm-9">
+                                <input type="password" name="password" class="form-control" />
+                            </div>
                         </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Add New</button>
+                    </div>
                 </form>
                 </div>
                 <!-- /.box -->
