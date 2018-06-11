@@ -113,9 +113,10 @@
                                         <th>Buyer Name</th>
                                         <th>Total Price</th>
                                         <th>Lorry</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
-    
+
                                 <tbody>
                                     @foreach($pending_orders as $order)
                                     <tr>
@@ -131,6 +132,17 @@
                                         @else
                                         <td>No driver assigned</td>
                                         @endif
+                                        <td>
+                                            @if ($order->status === 0)
+                                            <span class="label label-default">Submitted</span> 
+                                            @elseif ($order->status === 1)
+                                            <span class="label label-warning">Pending</span>
+                                            @elseif ($order->status === 2)
+                                            <span class="label label-danger">Rejected</span>
+                                            @elseif ($order->status === 3)
+                                            <span class="label label-success">Completed</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -148,9 +160,10 @@
                                         <th>Buyer Name</th>
                                         <th>Total Price</th>
                                         <th>Lorry</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
-    
+
                                 <tbody>
                                     @foreach($completed_orders as $order)
                                     <tr>
@@ -166,6 +179,17 @@
                                         @else
                                         <td>No driver assigned</td>
                                         @endif
+                                        <td>
+                                            @if ($order->status === 0)
+                                            <span class="label label-default">Submitted</span> 
+                                            @elseif ($order->status === 1)
+                                            <span class="label label-warning">Pending</span>
+                                            @elseif ($order->status === 2)
+                                            <span class="label label-danger">Rejected</span>
+                                            @elseif ($order->status === 3)
+                                            <span class="label label-success">Completed</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
