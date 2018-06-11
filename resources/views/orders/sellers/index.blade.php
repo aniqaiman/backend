@@ -76,59 +76,128 @@
 <section class="content">
     <div class="row">
         <div class="col-md-12">
-            <div class="box box-success">
-                <div class="box-header with-border text-center">
-                    <form method="get" class="form-inline text-center">
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-btn">
-                                <a class="btn btn-default" href="{{ route('orders.buyers.index') }}">Show All</a>
-                            </span>
-                            <input type="date" class="form-control" name="filter_date" value="{{ $filter_date }}" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fa fa-search"></i>
-                                    Filter
-                                </button>
-                            </span>
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab_1" data-toggle="tab">Pending</a>
+                    </li>
+                    <li>
+                        <a href="#tab_2" data-toggle="tab">Completed</a>
+                    </li>
+                    <li class="pull-right" style="margin-top: 3px;">
+                        <form method="get" class="form-inline text-center">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-btn">
+                                    <a class="btn btn-default" href="{{ route('stocks.buyers.index') }}">Show All</a>
+                                </span>
+                                <input type="date" class="form-control" name="filter_date" value="{{ $filter_date }}" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                        Filter
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+                <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="tab_1">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="pending-stock-table">
+                                <thead>
+                                    <tr class="bg-black">
+                                        <th>Date</th>
+                                        <th>Order#</th>
+                                        <th>Buyer#</th>
+                                        <th>Buyer Name</th>
+                                        <th>Total Price</th>
+                                        <th>Lorry</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach($pending_stocks as $stock)
+                                    <tr>
+                                        <td>{{ $stock->created_at }}</td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">{{ $stock->id }}</a>
+                                        </td>
+                                        <td>{{ $stock->user->id }}</td>
+                                        <td>{{ $stock->user->name }}</td>
+                                        <td>{{ $stock->totalPrice() }}</td>
+                                        @if ($stock["driver"])
+                                        <td>{{$stock->driver->name}}</td>
+                                        @else
+                                        <td>No driver assigned</td>
+                                        @endif
+                                        <td>
+                                            @if ($stock->status === 0)
+                                            <span class="label label-default">Submitted</span> 
+                                            @elseif ($stock->status === 1)
+                                            <span class="label label-warning">Pending</span>
+                                            @elseif ($stock->status === 2)
+                                            <span class="label label-danger">Rejected</span>
+                                            @elseif ($stock->status === 3)
+                                            <span class="label label-success">Completed</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                    </form>
-                </div>
-                <div class="box-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="stock-table">
-                            <thead>
-                                <tr class="bg-black">
-                                    <th>Date</th>
-                                    <th>Stock#</th>
-                                    <th>Supplier#</th>
-                                    <th>Supplier Name</th>
-                                    <th>Total Price</th>
-                                    <th>Lorry</th>
-                                </tr>
-                            </thead>
+                    </div>
+                    <div class="tab-pane" id="tab_2">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="completed-stock-table">
+                                <thead>
+                                    <tr class="bg-black">
+                                        <th>Date</th>
+                                        <th>Order#</th>
+                                        <th>Buyer#</th>
+                                        <th>Buyer Name</th>
+                                        <th>Total Price</th>
+                                        <th>Lorry</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
 
-                            <tbody>
-                                @foreach($stocks as $stock)
-                                <tr>
-                                    <td>{{ $stock->created_at }}</td>
-                                    <td>
-                                        <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">{{ $stock->id }}</a>
-                                    </td>
-                                    <td>{{ $stock->user->id }}</td>
-                                    <td>{{ $stock->user->name }}</td>
-                                    <td>{{ $stock->totalPrice() }}</td>
-
-                                    @if ($stock["driver"])
-                                    <td>{{$stock->driver->name}}</td>
-                                    @else
-                                    <td>No driver assigned</td>
-                                    @endif
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                <tbody>
+                                    @foreach($completed_stocks as $stock)
+                                    <tr>
+                                        <td>{{ $stock->created_at }}</td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#stock_{{ $stock->id }}">{{ $stock->id }}</a>
+                                        </td>
+                                        <td>{{ $stock->user->id }}</td>
+                                        <td>{{ $stock->user->name }}</td>
+                                        <td>{{ $stock->totalPrice() }}</td>
+                                        @if ($stock["driver"])
+                                        <td>{{$stock->driver->name}}</td>
+                                        @else
+                                        <td>No driver assigned</td>
+                                        @endif
+                                        <td>
+                                            @if ($stock->status === 0)
+                                            <span class="label label-default">Submitted</span> 
+                                            @elseif ($stock->status === 1)
+                                            <span class="label label-warning">Pending</span>
+                                            @elseif ($stock->status === 2)
+                                            <span class="label label-danger">Rejected</span>
+                                            @elseif ($stock->status === 3)
+                                            <span class="label label-success">Completed</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+                <!-- /.box -->
             </div>
         </div>
         <!-- /.box -->
@@ -140,7 +209,13 @@
 <script>
     $(document).ready(function () {
 
-        $('#stock-table').DataTable({
+        $('#pending-stock-table').DataTable({
+            'order': [],
+            'ordering': true,
+            'info': false,
+        });
+
+        $('#completed-stock-table').DataTable({
             'order': [],
             'ordering': true,
             'info': false,

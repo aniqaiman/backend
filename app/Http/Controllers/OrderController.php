@@ -122,7 +122,10 @@ class OrderController extends Controller
                 ->get();
         }
 
-        return view('orders.sellers.index', compact('stocks', 'filter_date'));
+        $pending_stocks = $stocks->where('status', '!=', 3);
+        $completed_stocks = $stocks->where('status', 3);
+
+        return view('orders.sellers.index', compact('stocks', 'pending_stocks', 'completed_stocks', 'filter_date'));
     }
 
     public function indexLorries(Request $request)

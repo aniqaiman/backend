@@ -209,7 +209,13 @@
 <script>
     $(document).ready(function () {
 
-        $('#order-table').DataTable({
+        $('#pending-order-table').DataTable({
+            'order': [],
+            'ordering': true,
+            'info': false,
+        });
+
+        $('#completed-order-table').DataTable({
             'order': [],
             'ordering': true,
             'info': false,
