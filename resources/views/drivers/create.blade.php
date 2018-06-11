@@ -15,7 +15,6 @@
                 <i class="fa fa-dashboard"></i> Dashboard
             </a>
         </li>
-        <li>User Management</li>
         <li>
             <a href="{{ route('orders.index.lorries') }}">Lorry Management</a>
         </li>
