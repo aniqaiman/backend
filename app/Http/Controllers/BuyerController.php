@@ -17,21 +17,24 @@ class BuyerController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->ajax()) {
-            $buyers = new User;
-            $buyers->name = $request->name;
-            $buyers->company_name = $request->company_name;
-            $buyers->company_reg_ic_number = $request->company_reg_ic_number;
-            $buyers->buss_hour = $request->buss_hour;
-            $buyers->address = $request->address;
-            $buyers->phonenumber = $request->phonenumber;
-            $buyers->handphone_number = $request->handphone_number;
-            $buyers->email = $request->email;
-            $buyers->password = bcrypt($request->password);
-            $buyers->group_id = 11;
-            $buyers->save();
-            return response($buyers);
-        }
+        $buyer = User::create([
+            'name' => $request->input('name'),
+            'company_name' => $request->input('company_name'),
+            'company_registration_mykad_number' => $request->input('company_registration_mykad_number'),
+            'bussiness_hour' => $request->input('bussiness_hour'),
+            'address' => $request->input('address'),
+            'latitude' => $request->input('latitude'),
+            'longitude' => $request->input('longitude'),
+            'mobile_number' => $request->input('mobile_number'),
+            'phone_number' => $request->input('phone_number'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'group_id' => 11,
+            'status_email' => 0,
+            'status_account' => 0,
+        ]);
+        
+        return redirect()->route('orders.index.lorries');
     }
 
     public function index()

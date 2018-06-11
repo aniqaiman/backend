@@ -124,6 +124,32 @@
                     </li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-archive"></i>
+                    <span class="text-info">User Registration</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('users.buyers.create') }}">
+                            <i class="fa fa-circle-o"></i>New Buyer
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('users.sellers.create') }}">
+                            <i class="fa fa-circle-o"></i>New Supplier
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('users.drivers.create') }}">
+                            <i class="fa fa-circle-o"></i>New Driver
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
