@@ -44,7 +44,7 @@ class DriverController extends Controller
         }
 
         $driver->save();
-        return redirect()->route('users.drivers.create')->with('New driver had been added.');;
+        return redirect()->route('users.drivers.create')->with('New driver had been added.');
     }
 
     public function index()
