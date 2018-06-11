@@ -42,6 +42,11 @@ class SellerController extends Controller
         return view('sellers.index', compact('sellers'));
     }
 
+    public function create()
+    {
+        return view('sellers.create');
+    }
+
     public function edit($user_id, Request $request)
     {
         $sellers = User::where('user_id', $user_id)->first();
