@@ -105,6 +105,9 @@
                     <span class="text-info">A20 - Supplier Transaction</span>
                 </a>
             </li>
+
+            <li class="header">UTILITIES</li>
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-archive"></i>
