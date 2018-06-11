@@ -86,20 +86,24 @@
 
                         <div class="form-group">
                             <label for="lorry_type_id" class="col-sm-3 control-label">Type of Lorry:</label>
-                            <select name="lorry_type_id" class="form-control">
-                                @foreach ($lorry_types as $lorry_type)
-                                <option value="{{ $lorry_type->id }}">{{ $lorry_type->type }}</option>
-                                @endforeach
-                            </select>
+                            <div class="col-sm-9">
+                                <select name="lorry_type_id" class="form-control">
+                                    @foreach ($lorry_types as $lorry_type)
+                                    <option value="{{ $lorry_type->id }}">{{ $lorry_type->type }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="lorry_capacity_id" class="col-sm-3 control-label">Lorry Capacity:</label>
-                            <select name="lorry_capacity_id" class="form-control">
-                                @foreach ($lorry_capacities as $lorry_capacity)
-                                <option value="{{ $lorry_capacity->id }}">{{ $lorry_capacity->capacity }}</option>
-                                @endforeach
-                            </select>
+                            <div class="col-sm-9">
+                                <select name="lorry_capacity_id" class="form-control">
+                                    @foreach ($lorry_capacities as $lorry_capacity)
+                                    <option value="{{ $lorry_capacity->id }}">{{ $lorry_capacity->capacity }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group">
