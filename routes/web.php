@@ -36,6 +36,7 @@ Route::prefix('users')
         // ------------------------------------------- Seller ------------------------------------------- //
 
         Route::get('sellers', 'SellerController@index')->name('sellers.index');
+        Route::get('sellers/create', 'SellerController@create')->name('sellers.create');
         Route::post('sellers', 'SellerController@store')->name('sellers.store');
         Route::get('sellers/{user_id}', 'SellerController@show')->name('sellers.show');
         Route::put('sellers/{user_id}', 'SellerController@update')->name('sellers.update');
