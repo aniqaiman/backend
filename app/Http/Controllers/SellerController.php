@@ -40,10 +40,10 @@ class SellerController extends Controller
             ->where('group_id', 21)
             ->get();
 
-        $verified_sellers = $sellers->where('status_account', 1);
-        $unverified_sellers = $sellers->where('status_account', 0);
+        $activated_sellers = $sellers->where('status_account', 1);
+        $deactivated_sellers = $sellers->where('status_account', 0);
 
-        return view('sellers.index', compact('sellers', 'verified_sellers', 'unverified_sellers'));
+        return view('sellers.index', compact('sellers', 'activated_sellers', 'deactivated_sellers'));
     }
 
     public function create()

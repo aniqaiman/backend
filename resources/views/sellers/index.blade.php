@@ -85,13 +85,14 @@
                 <ul class="nav nav-tabs">
                     <li>
                         <a href="#tab_1" data-toggle="tab">
-                            Verified
+                            Activated
+                            <span class="badge bg-light-blue">{{ $activated_sellers->count() }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab_2" data-toggle="tab">
-                            Unverified
-                            <span class="badge bg-light-blue">{{ $unverified_sellers->count() }}</span>
+                            Deactivated
+                            <span class="badge bg-light-blue">{{ $deactivated_sellers->count() }}</span>
                         </a>
                     </li>
                 </ul>
@@ -113,7 +114,7 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach($verified_sellers as $seller)
+                                    @foreach($activated_sellers as $seller)
                                     <tr id="seller_{{ $seller->id }}">
                                         <td>{{ $seller->name }}</td>
                                         <td>
@@ -187,7 +188,7 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach($unverified_sellers as $seller)
+                                    @foreach($deactivated_sellers as $seller)
                                     <tr id="seller_{{ $seller->id }}">
                                         <td>{{ $seller->name }}</td>
                                         <td>
