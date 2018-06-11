@@ -15,9 +15,7 @@
                 <i class="fa fa-dashboard"></i> Dashboard
             </a>
         </li>
-        <li>
-            <a href="{{ route('orders.index.lorries') }}">Lorry Management</a>
-        </li>
+        <li>User Management</li>
         <li class="active">Add Driver</li>
     </ol>
 </section>
@@ -129,10 +127,10 @@
                         <button type="submit" class="btn btn-primary">Add New</button>
                     </div>
                 </form>
-                </div>
-                <!-- /.box -->
             </div>
+            <!-- /.box -->
         </div>
+    </div>
 </section>
 @endsection
  
