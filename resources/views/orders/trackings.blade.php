@@ -173,7 +173,7 @@
                                         <td>
 
 
-                                            <select class="driver_drop" id="lorry_select_{{$order->id}}">
+                                            <select class="driver_drop" id="lorry_select_{{$order->id}}" class="form-control">
                                                 <option value="0">No driver selected</option>
                                                 @foreach($drivers as $driver)
 
@@ -246,7 +246,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <select class="driver_drop_seller" id="lorry_selller_{{$stock->id}}">
+                                            <select class="driver_drop_seller" id="lorry_selller_{{$stock->id}}" class="form-control">
                                                 <option value="0">No driver selected</option>
                                                 @foreach($drivers as $driver)
 
