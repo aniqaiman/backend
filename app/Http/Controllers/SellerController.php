@@ -39,7 +39,11 @@ class SellerController extends Controller
         $sellers = User::orderBy('active_counter', 'desc')
             ->where('group_id', 21)
             ->get();
-        return view('sellers.index', compact('sellers'));
+
+        $verified_sellers = $sellers->where('status_account', 1);
+        $unverified_sellers = $sellers->where('status_account', 0);
+
+        return view('sellers.index', compact('sellers', 'verified_sellers', 'unverified_sellers'));
     }
 
     public function create()

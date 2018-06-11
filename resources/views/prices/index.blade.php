@@ -6,6 +6,7 @@
 <section class="content-header">
     <h1>
         Price Dashboard
+        <small>{{ Carbon\Carbon::now()->toFormattedDateString() }}</small>
     </h1>
 
     <ol class="breadcrumb">
@@ -25,9 +26,6 @@
         <div class="col-md-12">
             <div class="box box-success">
                 <div class="box-body">
-                    <div class="box-header">
-                        <h3 class="box-title">{{ Carbon\Carbon::now()->toFormattedDateString() }}</h3>
-                    </div>
                     <div class="table-responsive">
                         <table class="table" id="dashboard-table" style="width:100%">
                             <thead>
