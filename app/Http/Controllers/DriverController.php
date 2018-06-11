@@ -42,7 +42,7 @@ class DriverController extends Controller
         }
 
         $driver->save();
-        return response($driver);
+        return redirect()->route('orders.index.lorries');
     }
 
     public function index()
