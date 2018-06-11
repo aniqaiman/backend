@@ -108,12 +108,16 @@
 
                         <div class="form-group">
                             <label for="lorry_plate_number" class="col-sm-3 control-label">Lorry Plate Number:</label>
-                            <input type="text" name="lorry_plate_number" class="form-control" />
+                            <div class="col-sm-9">
+                                <input type="text" name="lorry_plate_number" class="form-control" />
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="location_covered" class="col-sm-3 control-label">Location Covered:</label>
-                            <input type="text" name="location_covered" class="form-control" />
+                            <div class="col-sm-9">
+                                <input type="text" name="location_covered" class="form-control" />
+                            </div>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Add New</button>
