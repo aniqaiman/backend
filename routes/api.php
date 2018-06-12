@@ -24,8 +24,9 @@ Route::post('auth/login', 'Api\ApiController@login');
 Route::post('auth/verifyrecaptcha', 'Api\ApiController@verifyReCAPTCHA');
 
 Route::post('users/sellers', 'Api\SellerController@store');
+Route::put('users/sellers', 'Api\SellerController@update');
 Route::post('users/buyers', 'Api\BuyerController@store');
-Route::post('users/drivers', 'Api\DriverController@store');
+Route::put('users/buyers', 'Api\BuyerController@update');
 
 Route::get('products', 'Api\ProductController@getProducts');
 Route::get('products/minimal', 'Api\ProductController@getMinimalProducts');
