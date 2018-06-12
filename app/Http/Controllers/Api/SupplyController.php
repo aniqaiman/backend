@@ -14,7 +14,8 @@ class SupplyController extends Controller
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
                 ->supplies()
-                ->with('category'),
+                ->with('category')
+                ->get(),
         ]);
     }
 }
