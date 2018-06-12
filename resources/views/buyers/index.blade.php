@@ -84,13 +84,13 @@
                     <li>
                         <a href="#tab_1" data-toggle="tab">
                             Activated
-                            <span class="badge bg-light-blue">{{ $activated_sellers->count() }}</span>
+                            <span class="badge bg-light-blue">{{ $activated_buyers->count() }}</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab_2" data-toggle="tab">
                             Deactivated
-                            <span class="badge bg-light-blue">{{ $deactivated_sellers->count() }}</span>
+                            <span class="badge bg-light-blue">{{ $deactivated_buyers->count() }}</span>
                         </a>
                     </li>
                 </ul>
