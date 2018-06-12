@@ -13,10 +13,12 @@ class OrderController extends Controller
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
                 ->orders()
+                ->with('feedback')
                 ->orderBy('created_at', 'desc')
                 ->get()
                 ->each(function ($order, $key) {
                     $order['total_price'] = $order->totalPrice();
+                    $stock['total_quantity'] = $stock->totalQuantity();
                 }),
         ]);
     }
