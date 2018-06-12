@@ -78,4 +78,8 @@ Route::post('carts/confirm', 'Api\CartController@postConfirm');
 
 Route::delete('carts/{product_id}', 'Api\CartController@deleteCartItem');
 
+// ------------------------------------------- Supply ---------------------------------------------------- //
+
+Route::get('supplies', 'Api\SupplyController@getSupplies');
+
 Route::get('playground', 'Api\ApiController@playground');
