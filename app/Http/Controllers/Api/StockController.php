@@ -15,6 +15,7 @@ class StockController extends Controller
         return response()->json([
             'data' => JWTAuth::parseToken()->authenticate()
                 ->stocks()
+                ->with('feedback')
                 ->orderBy('created_at', 'desc')
                 ->get()
                 ->each(function ($stock, $key) {
