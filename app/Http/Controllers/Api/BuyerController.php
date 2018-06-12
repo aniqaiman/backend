@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use JWTAuth;
 use Mail;
 
 class BuyerController extends Controller
@@ -60,14 +61,14 @@ class BuyerController extends Controller
     {
         $buyer = JWTAuth::parseToken()->authenticate();
 
-        if ($buyer->company_registration_mykad_number !== $request->company_registration_mykad_number 
+        if ($buyer->company_registration_mykad_number !== $request->company_registration_mykad_number
             && User::where('company_registration_mykad_number', $request->company_registration_mykad_number)->exists()) {
             return response()->json([
                 'message' => 'The (company registration / MyKad) number had been used.',
             ], 403);
         }
 
-        if ($buyer->email !== $request->email 
+        if ($buyer->email !== $request->email
             && User::where('email', $request->email)->exists()) {
             return response()->json([
                 'message' => 'The email had been used.',
@@ -85,7 +86,7 @@ class BuyerController extends Controller
         $buyer->phone_number = $request->phone_number;
         $buyer->email = $request->email;
         $buyer->save();
-        
+
         return response()->json([
             "data" => $buyer,
         ]);
