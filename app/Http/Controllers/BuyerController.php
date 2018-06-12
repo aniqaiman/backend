@@ -48,7 +48,11 @@ class BuyerController extends Controller
                         $order->where('user_id', $buyer->id);
                     })->get();
             });
-        return view('buyers.index', compact('buyers'));
+
+        $activated_buyers = $buyers->where('status_account', 1);
+        $deactivated_buyers = $buyers->where('status_account', 0);
+        
+        return view('buyers.index', compact('buyers', 'activated_buyers', 'deactivated_buyers'));
     }
 
     public function create(Request $request)

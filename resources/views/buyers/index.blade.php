@@ -79,86 +79,178 @@
 <section class="content">
     <div class="row">
         <div class="col-md-12">
-            <div class="box box-success">
-                <div class="box-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="buyer-table" style="width:100%">
-                            <thead>
-                                <tr class="bg-black">
-                                    <th>Buyer Name</th>
-                                    <th>Buyer#</th>
-                                    <th>Purchased Products</th>
-                                    <th>Date Registered</th>
-                                    <th>Location</th>
-                                    <th>Contact (H/P &amp; Email)</th>
-                                    <th class="text-center">Status</th>
-                                    <th style="width: 1%;"></th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach($buyers as $buyer)
-                                <tr id="buyer_{{ $buyer->id }}">
-                                    <td>{{ $buyer->name }}</td>
-                                    <td>
-                                        <a href="#" data-id="{{ $buyer->id }}" data-toggle="modal" data-target="#exampleModal">
-                                            {{ $buyer->id }}
-                                        </a>
-                                    </td>
-                                    <td nowrap>
-                                        @if (!$buyer->orders()->exists())
-                                        <div>No products been ordered.</div>
-                                        @endif
-                                        <ul class="list-unstyled">
-                                            @foreach ($buyer->products as $product)
-                                            <li>{{ $product->name }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </td>
-                                    <td>{{ $buyer->created_at }}</td>
-                                    <td>
-                                        {{ $buyer->address }}
-                                        <a href="https://www.google.com/maps/search/?api=1&query={{ $buyer->latitude }},{{ $buyer->longitude }}" target="_blank">
-                                            <i class="fa fa-map-marker"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        Phone:
-                                        <a href="tel:{{ $buyer->phone_number }}">{{ $buyer->phone_number }}</a>
-                                        <br /> Mobile:
-                                        <a href="tel:{{ $buyer->mobile_number }}">{{ $buyer->mobile_number }}</a>
-                                        <br /> E-Mail:
-                                        <a href="tel:{{ $buyer->email }}">{{ $buyer->email }}</a>
-                                    </td>
-                                    <td class="text-center">
-                                        E-Mail: @if ($buyer->status_email === 1)
-                                        <span class="label label-success">Verified</span> @else
-                                        <span class="label label-danger">Unverified</span> @endif
-                                        <br /> Account: @if ($buyer->status_account === 1)
-                                        <span class="label label-success">Activated</span> @else
-                                        <span class="label label-danger">Deactivated</span> @endif
-                                    </td>
-                                    <td class="text-center">
-                                        @if ($buyer->status_account === 0)
-                                        <div class="btn-group-vertical btn-group-sm">
-                                            <button class="btn btn-success" data-id="{{ $buyer->id }}" onclick="activateUser(this)">Activate</button>
-                                            <button class="btn btn-warning" disabled>Deactivate</button>
-                                        </div>
-                                        @elseif ($buyer->status_account === 1)
-                                        <div class="btn-group-vertical btn-group-sm">
-                                            <button class="btn btn-success" disabled>Activate</button>
-                                            <button class="btn btn-warning" data-id="{{ $buyer->id }}" onclick="deactivateUser(this)">Deactivate</button>
-                                        </div>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a href="#tab_1" data-toggle="tab">
+                            Activated
+                            <span class="badge bg-light-blue">{{ $activated_sellers->count() }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tab_2" data-toggle="tab">
+                            Deactivated
+                            <span class="badge bg-light-blue">{{ $deactivated_sellers->count() }}</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content clearfix">
+                    <div class="tab-pane" id="tab_1">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="activated-buyer-table" style="width:100%">
+                                <thead>
+                                    <tr class="bg-black">
+                                        <th>Buyer Name</th>
+                                        <th>Buyer#</th>
+                                        <th>Purchased Products</th>
+                                        <th>Date Registered</th>
+                                        <th>Location</th>
+                                        <th>Contact (H/P &amp; Email)</th>
+                                        <th class="text-center">Status</th>
+                                        <th style="width: 1%;"></th>
+                                    </tr>
+                                </thead>
+    
+                                <tbody>
+                                    @foreach($activated_buyers as $buyer)
+                                    <tr id="buyer_{{ $buyer->id }}">
+                                        <td>{{ $buyer->name }}</td>
+                                        <td>
+                                            <a href="#" data-id="{{ $buyer->id }}" data-toggle="modal" data-target="#exampleModal">
+                                                {{ $buyer->id }}
+                                            </a>
+                                        </td>
+                                        <td nowrap>
+                                            @if (!$buyer->orders()->exists())
+                                            <div>No products been ordered.</div>
+                                            @endif
+                                            <ul class="list-unstyled">
+                                                @foreach ($buyer->products as $product)
+                                                <li>{{ $product->name }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
+                                        <td>{{ $buyer->created_at }}</td>
+                                        <td>
+                                            {{ $buyer->address }}
+                                            <a href="https://www.google.com/maps/search/?api=1&query={{ $buyer->latitude }},{{ $buyer->longitude }}" target="_blank">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Phone:
+                                            <a href="tel:{{ $buyer->phone_number }}">{{ $buyer->phone_number }}</a>
+                                            <br /> Mobile:
+                                            <a href="tel:{{ $buyer->mobile_number }}">{{ $buyer->mobile_number }}</a>
+                                            <br /> E-Mail:
+                                            <a href="tel:{{ $buyer->email }}">{{ $buyer->email }}</a>
+                                        </td>
+                                        <td class="text-center">
+                                            E-Mail: @if ($buyer->status_email === 1)
+                                            <span class="label label-success">Verified</span> @else
+                                            <span class="label label-danger">Unverified</span> @endif
+                                            <br /> Account: @if ($buyer->status_account === 1)
+                                            <span class="label label-success">Activated</span> @else
+                                            <span class="label label-danger">Deactivated</span> @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if ($buyer->status_account === 0)
+                                            <div class="btn-group-vertical btn-group-sm">
+                                                <button class="btn btn-success" data-id="{{ $buyer->id }}" onclick="activateUser(this)">Activate</button>
+                                                <button class="btn btn-warning" disabled>Deactivate</button>
+                                            </div>
+                                            @elseif ($buyer->status_account === 1)
+                                            <div class="btn-group-vertical btn-group-sm">
+                                                <button class="btn btn-success" disabled>Activate</button>
+                                                <button class="btn btn-warning" data-id="{{ $buyer->id }}" onclick="deactivateUser(this)">Deactivate</button>
+                                            </div>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab_2">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="deactivated-buyer-table" style="width:100%">
+                                <thead>
+                                    <tr class="bg-black">
+                                        <th>Buyer Name</th>
+                                        <th>Buyer#</th>
+                                        <th>Purchased Products</th>
+                                        <th>Date Registered</th>
+                                        <th>Location</th>
+                                        <th>Contact (H/P &amp; Email)</th>
+                                        <th class="text-center">Status</th>
+                                        <th style="width: 1%;"></th>
+                                    </tr>
+                                </thead>
+    
+                                <tbody>
+                                    @foreach($deactivated_buyers as $buyer)
+                                    <tr id="buyer_{{ $buyer->id }}">
+                                        <td>{{ $buyer->name }}</td>
+                                        <td>
+                                            <a href="#" data-id="{{ $buyer->id }}" data-toggle="modal" data-target="#exampleModal">
+                                                {{ $buyer->id }}
+                                            </a>
+                                        </td>
+                                        <td nowrap>
+                                            @if (!$buyer->orders()->exists())
+                                            <div>No products been ordered.</div>
+                                            @endif
+                                            <ul class="list-unstyled">
+                                                @foreach ($buyer->products as $product)
+                                                <li>{{ $product->name }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
+                                        <td>{{ $buyer->created_at }}</td>
+                                        <td>
+                                            {{ $buyer->address }}
+                                            <a href="https://www.google.com/maps/search/?api=1&query={{ $buyer->latitude }},{{ $buyer->longitude }}" target="_blank">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            Phone:
+                                            <a href="tel:{{ $buyer->phone_number }}">{{ $buyer->phone_number }}</a>
+                                            <br /> Mobile:
+                                            <a href="tel:{{ $buyer->mobile_number }}">{{ $buyer->mobile_number }}</a>
+                                            <br /> E-Mail:
+                                            <a href="tel:{{ $buyer->email }}">{{ $buyer->email }}</a>
+                                        </td>
+                                        <td class="text-center">
+                                            E-Mail: @if ($buyer->status_email === 1)
+                                            <span class="label label-success">Verified</span> @else
+                                            <span class="label label-danger">Unverified</span> @endif
+                                            <br /> Account: @if ($buyer->status_account === 1)
+                                            <span class="label label-success">Activated</span> @else
+                                            <span class="label label-danger">Deactivated</span> @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if ($buyer->status_account === 0)
+                                            <div class="btn-group-vertical btn-group-sm">
+                                                <button class="btn btn-success" data-id="{{ $buyer->id }}" onclick="activateUser(this)">Activate</button>
+                                                <button class="btn btn-warning" disabled>Deactivate</button>
+                                            </div>
+                                            @elseif ($buyer->status_account === 1)
+                                            <div class="btn-group-vertical btn-group-sm">
+                                                <button class="btn btn-success" disabled>Activate</button>
+                                                <button class="btn btn-warning" data-id="{{ $buyer->id }}" onclick="deactivateUser(this)">Deactivate</button>
+                                            </div>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- /.box -->
         </div>
     </div>
 </section>
@@ -222,7 +314,14 @@
             });
         });
 
-        $('#buyer-table').DataTable({
+        $('#activated-buyer-table').DataTable({
+            'order': [],
+            'ordering': true,
+            'paging': false,
+            'info': false,
+        });
+
+        $('#deactivated-buyer-table').DataTable({
             'order': [],
             'ordering': true,
             'paging': false,

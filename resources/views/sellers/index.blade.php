@@ -99,7 +99,7 @@
                 <div class="tab-content clearfix">
                     <div class="tab-pane" id="tab_1">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="seller-table" style="width:100%">
+                            <table class="table table-bordered" id="activated-seller-table" style="width:100%">
                                 <thead>
                                     <tr class="bg-black">
                                         <th>Supplier Name</th>
@@ -173,7 +173,7 @@
                     </div>
                     <div class="tab-pane" id="tab_2">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="seller-table" style="width:100%">
+                            <table class="table table-bordered" id="deactivated-seller-table" style="width:100%">
                                 <thead>
                                     <tr class="bg-black">
                                         <th>Supplier Name</th>
@@ -311,7 +311,14 @@
             });
         });
 
-        $('#seller-table').DataTable({
+        $('#activated-seller-table').DataTable({
+            'order': [],
+            'ordering': true,
+            'paging': false,
+            'info': false,
+        });
+
+        $('#deactivated-seller-table').DataTable({
             'order': [],
             'ordering': true,
             'paging': false,
