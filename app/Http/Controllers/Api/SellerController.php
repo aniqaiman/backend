@@ -54,6 +54,39 @@ class SellerController extends Controller
         ]);
     }
 
+    public function update(Request $request)
+    {
+        $seller = JWTAuth::parseToken()->authenticate();
+
+        if ($seller->company_registration_mykad_number !== $request->company_registration_mykad_number
+            && User::where('company_registration_mykad_number', $request->company_registration_mykad_number)->exists()) {
+            return response()->json([
+                'message' => 'The (company registration / MyKad) number had been used.',
+            ], 403);
+        }
+
+        if ($seller->email !== $request->email
+            && User::where('email', $request->email)->exists()) {
+            return response()->json([
+                'message' => 'The email had been used.',
+            ], 403);
+        }
+
+        $seller->name = $request->name;
+        $seller->company_name = $request->company_name;
+        $seller->company_registration_mykad_number = $request->company_registration_mykad_number;
+        $seller->address = $request->address;
+        $seller->latitude = $request->latitude;
+        $seller->longitude = $request->longitude;
+        $seller->mobile_number = $request->mobile_number;
+        $seller->email = $request->email;
+        $seller->save();
+
+        return response()->json([
+            "data" => $seller,
+        ]);
+    }
+
     public function getSellers(Request $request)
     {
         $sellers = User::where('group_id', 21)->get();
