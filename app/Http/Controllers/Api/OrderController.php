@@ -18,7 +18,7 @@ class OrderController extends Controller
                 ->get()
                 ->each(function ($order, $key) {
                     $order['total_price'] = $order->totalPrice();
-                    $stock['total_quantity'] = $stock->totalQuantity();
+                    $order['total_quantity'] = $order->totalQuantity();
                 }),
         ]);
     }
