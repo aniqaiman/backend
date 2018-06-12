@@ -7,14 +7,14 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         @if(Auth::User()->group_id === 1)
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MAIN NAVIGATION</li>
-
             <li class="treeview">
                 <a href="{{ route('index') }}">
                     <i class="fa fa-dashboard"></i>
                     <span class="text-info">Dashboard</span>
                 </a>
             </li>
+
+            <li class="header">MAIN NAVIGATION</li>
 
             <li class="treeview">
                 <a href="{{ route('orders.index.receipts') }}">
@@ -153,6 +153,35 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+        </ul>
+        @endif
+        @if(Auth::User()->group_id === 31)
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MAIN NAVIGATION</li>
+
+            <li class="treeview">
+                <a href="{{ route('orders.index.lorries') }}">
+                    <i class="fa fa-chevron-circle-right"></i>
+                    <span class="text-info">A10 - Lorry Management</span>
+                </a>
+            </li>
+        </ul>
+        @endif
+        @if(Auth::User()->group_id === 41)
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="treeview">
+                <a href="{{ route('prices.index') }}">
+                    <i class="fa fa-chevron-circle-right"></i>
+                    <span class="text-info">A8 - Price Dashboard</span>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="{{ route('prices.index.histories') }}">
+                    <i class="fa fa-chevron-circle-right"></i>
+                    <span class="text-info">A9 - Historic Price Data</span>
+                </a>
             </li>
         </ul>
         @endif

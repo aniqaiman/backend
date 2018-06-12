@@ -41,9 +41,9 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">
-        @if ($errors->has('email'))
+        @if ($errors->has('company_registration_mykad_number'))
           <span class="text-red">
-            <strong>{{ $errors->first('email') }}</strong>
+            <strong>{{ $errors->first('company_registration_mykad_number') }}</strong>
           </span>
         @else
           Sign in to start your session
@@ -53,11 +53,11 @@
       <form action="{{ route('login') }}" method="POST">
         @csrf
 
-        <div class="form-group{{ $errors->has('email') ? ' has-error' : ' has-feedback' }}">
-          <input type="email" name="email" class="form-control" placeholder="E-Mail Address" value="{{ old('email') }}" required autofocus />
+        <div class="form-group{{ $errors->has('company_registration_mykad_number') ? ' has-error' : ' has-feedback' }}">
+          <input type="text" name="company_registration_mykad_number" class="form-control" placeholder="Company Reg. No. / MyKad No." value="{{ old('company_registration_mykad_number') }}" required autofocus />
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
-        <div class="form-group{{ $errors->has('email') ? ' has-error' : ' has-feedback' }}">
+        <div class="form-group{{ $errors->has('company_registration_mykad_number') ? ' has-error' : ' has-feedback' }}">
           <input type="password" name="password" class="form-control" placeholder="Password" required />
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
