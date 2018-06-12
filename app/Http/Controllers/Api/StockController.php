@@ -19,6 +19,7 @@ class StockController extends Controller
                 ->get()
                 ->each(function ($stock, $key) {
                     $stock['total_price'] = $stock->totalPrice();
+                    $stock['total_quantity'] = $stock->totalQuantity();
                 }),
         ]);
     }
