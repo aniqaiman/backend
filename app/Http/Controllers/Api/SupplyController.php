@@ -25,8 +25,8 @@ class SupplyController extends Controller
 
         foreach ($request->all() as $supply) {
             $user->supplies()->syncWithoutDetaching([$supply["product"]["id"] => [
-                'harvesting_period_start' => $supply["harvestingPeriodStart"],
-                'harvesting_period_end' => $supply["harvestingPeriodEnd"],
+                'harvesting_period_start' => Carbon::parse($supply["harvestingPeriodStart"]),
+                'harvesting_period_end' => Carbon::parse($supply["harvestingPeriodEnd"]),
                 'harvest_frequency' => $supply["harvestFrequency"],
                 'total_plants' => $supply["totalPlants"],
                 'total_farm_area' => $supply["totalFarmArea"],
