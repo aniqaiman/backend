@@ -24,7 +24,7 @@ class SupplyController extends Controller
         $user->supplies()->detach();
 
         foreach ($request->all() as $supply) {
-            $user->syncWithoutDetaching([$supply["product"]["id"] => [
+            $user->supplies()->syncWithoutDetaching([$supply["product"]["id"] => [
                 'harvesting_period_start' => $supply["harvestingPeriodStart"],
                 'harvesting_period_end' => $supply["harvestingPeriodEnd"],
                 'harvest_frequency' => $supply["harvestFrequency"],
