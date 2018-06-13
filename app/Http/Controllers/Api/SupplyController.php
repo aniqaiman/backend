@@ -23,7 +23,7 @@ class SupplyController extends Controller
         $user = JWTAuth::parseToken()->authenticate();
         $user->supplies()->detach();
 
-        foreach ($user->all() as $supply) {
+        foreach ($request->all() as $supply) {
             dump($supply);
         }
         exit;
