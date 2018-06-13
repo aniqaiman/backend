@@ -24,12 +24,12 @@ class SupplyController extends Controller
         $user->supplies()->detach();
 
         foreach ($request->all() as $supply) {
-            $user->syncWithoutDetaching([$supply->product["id"] => [
-                'harvesting_period_start' => $request->harvestingPeriodStart,
-                'harvesting_period_end' => $request->harvestingPeriodEnd,
-                'harvest_frequency' => $request->harvestFrequency,
-                'total_plants' => $request->totalPlants,
-                'total_farm_area' => $request->totalFarmArea,
+            $user->syncWithoutDetaching([$supply["product"]["id"] => [
+                'harvesting_period_start' => $supply["harvestingPeriodStart"],
+                'harvesting_period_end' => $supply["harvestingPeriodEnd"],
+                'harvest_frequency' => $supply["harvestFrequency"],
+                'total_plants' => $supply["totalPlants"],
+                'total_farm_area' => $supply["totalFarmArea"],
             ]]);
         }
 
