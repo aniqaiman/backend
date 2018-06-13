@@ -81,5 +81,6 @@ Route::delete('carts/{product_id}', 'Api\CartController@deleteCartItem');
 // ------------------------------------------- Supply ---------------------------------------------------- //
 
 Route::get('supplies', 'Api\SupplyController@getSupplies');
+Route::post('supplies', 'Api\SupplyController@postSupplies');
 
 Route::get('playground', 'Api\ApiController@playground');

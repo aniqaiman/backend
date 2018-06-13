@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Order;
 use Illuminate\Http\Request;
 use JWTAuth;
 
@@ -17,5 +16,11 @@ class SupplyController extends Controller
                 ->with('category')
                 ->get(),
         ]);
+    }
+
+    public function postSupplies(Request $request)
+    {
+        dump($request);
+        exit;
     }
 }
