@@ -20,7 +20,7 @@ class SupplyController extends Controller
 
     public function postSupplies(Request $request)
     {
-        dump($request);
+        dump($request->all());
         exit;
     }
 }
