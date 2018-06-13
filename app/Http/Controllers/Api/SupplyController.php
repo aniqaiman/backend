@@ -20,7 +20,12 @@ class SupplyController extends Controller
 
     public function postSupplies(Request $request)
     {
-        dump($request->all());
+        $user = JWTAuth::parseToken()->authenticate();
+        $user->supplies()->detach();
+
+        foreach ($user->all() as $supply) {
+            dump($supply);
+        }
         exit;
     }
 }
