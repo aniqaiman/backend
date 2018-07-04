@@ -50,8 +50,7 @@
                                     <td>
                                         <div class="input-group">
                                             <span class="input-group-addon">RM</span>
-                                            <input type="number" id='promo_price_{{ $promo->product["id"] }}' class="promo_price form-control" value='{{ $promo->price }}'
-                                            />
+                                            <input type="number" id='promo_price_{{ $promo->product["id"] }}' class="promo_price form-control" value='{{ $promo->price }}' style="min-width: 70px;" />
                                         </div>
                                     </td>
                                     <td class="text-center">{{ $promo->quantity }} kg</td>
@@ -59,7 +58,7 @@
                                     <td>
                                         <div class="input-group">
                                             <input type="number" id='promo_wastage_{{ $promo->product["id"] }}' class="promo_wastage form-control" value="{{ $promo->wastage }}"
-                                                data-promoid="{{ $promo->id }}" />
+                                                data-promoid="{{ $promo->id }}" style="min-width: 70px;" />
                                             <div class="input-group-addon">kg</div>
                                         </div>
                                     </td>
