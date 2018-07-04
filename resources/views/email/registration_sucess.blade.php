@@ -27,17 +27,19 @@
 
             <hr />
 
-            <a href="#" style="text-decoration: none;">
+            <a href="https://www.facebook.com/pg/Foodricocom-179974779485327" style="text-decoration: none;">
                 <img src="https://ninjavan.herokuapp.com/img/icon/facebook.png" alt="FoodRico Facebook" width="19">
             </a>
-            <a href="#" style="text-decoration: none;">
+            <a href="https://api.whatsapp.com/send?phone=60163349412" style="text-decoration: none;">
                 <img src="https://ninjavan.herokuapp.com/img/icon/whatsapp.png" alt="FoodRico WhatsApp" width="19">
             </a>
         </div>
 
         <small>
             &copy; FoodRico {{ Carbon\Carbon::now()->format('Y') }}
-            <br /> Address
+            <br />Seksyen U10,
+            <br />Shah Alam U10/32G,
+            <br />40150 Shah Alam, Selangor Darul Ehsan
         </small>
     </div>
 </body>
