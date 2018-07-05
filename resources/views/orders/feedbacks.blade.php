@@ -69,10 +69,10 @@
                 <p>{{ $order->feedback->description }}</p>
                 <span class="lead">Response</span>
                 <p>
-                    @if (empty($stock->feedback->response)) 
+                    @if (empty($order->feedback->response)) 
                         None
                     @else 
-                        {{ $stock->feedback->response }}
+                        {{ $order->feedback->response }}
                     @endif
                 </p>
             </div>
