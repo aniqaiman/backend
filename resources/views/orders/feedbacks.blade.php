@@ -53,6 +53,32 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="order_feedback_{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelFeedback_{{ $order->id }}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabelFeedback_{{ $order->id }}">Feedback | {{ $order->id }}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="lead">Topic</div>
+                <p>{{ $order->feedback->topic }}</p>
+                <div class="lead">Description</div>
+                <p>{{ $order->feedback->description }}</p>
+                <div class="lead">Response</div>
+                <p>
+                    @if (empty($stock->feedback->response)) 
+                        None
+                    @else 
+                        {{ $stock->feedback->response }}
+                    @endif
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 @endforeach @foreach($stocks as $stock)
 <div class="modal fade" id="stock_{{ $stock->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_{{ $stock->id }}">
     <div class="modal-dialog" role="document">
@@ -142,9 +168,7 @@
                                         <th class="text-center">Order#</th>
                                         <th class="text-nowrap">Buyer Name</th>
                                         <th class="text-center">Buyer#</th>
-                                        <th>Feedback Topic</th>
-                                        <th>Feedback Description</th>
-                                        <th>Feedback Response</th>
+                                        <th>Feedback</th>
                                         <th class="text-center" style="width: 1%;">Status</th>
                                     </tr>
                                 </thead>
@@ -160,10 +184,14 @@
                                         </td>
                                         <td>{{ $order->user->name }}</td>
                                         <td class="text-center">{{ $order->user->id }}</td>
-                                        <td>{{ $order->feedback->topic }}</td>
-                                        <td>{{ $order->feedback->description }}</td>
                                         <td>
-                                            @if (empty($stock->feedback->response)) None @else {{ $stock->feedback->response }} @endif
+                                            <a href="#" data-toggle="modal" data-target="#order_feedback_{{ $order->id }}">
+                                                @if (empty($order->feedback->response))
+                                                    <i class="text-muted fa fa-comments"></i>
+                                                @else
+                                                    <i class="text-info fa fa-comments"></i>
+                                                @endif
+                                            </a>
                                         </td>
                                         <td class="text-center">
                                             <span class="label label-danger">Rejected</span>
@@ -186,9 +214,7 @@
                                     <th class="text-center">Stock#</th>
                                     <th class="text-nowrap">Supplier Name</th>
                                     <th class="text-center">Supplier#</th>
-                                    <th>Feedback Topic</th>
-                                    <th>Feedback Description</th>
-                                    <th>Feedback Response</th>
+                                    <th>Feedback</th>
                                     <th class="text-center" style="width: 1%;">Status</th>
                                 </tr>
                             </thead>
