@@ -130,6 +130,32 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="stock_feedback_{{ $stock->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelFeedback_{{ $stock->id }}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabelFeedback_{{ $stock->id }}">Feedback | {{ $stock->id }}</h4>
+            </div>
+            <div class="modal-body" style="word-break: break-all;">
+                <span class="lead">Topic</span>
+                <p>{{ $stock->feedback->topic }}</p>
+                <span class="lead">Description</span>
+                <p>{{ $stock->feedback->description }}</p>
+                <span class="lead">Response</span>
+                <p>
+                    @if (empty($stock->feedback->response)) 
+                        None
+                    @else 
+                        {{ $stock->feedback->response }}
+                    @endif
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 @endforeach
 
 <section class="content-header">
@@ -214,7 +240,7 @@
                                     <th class="text-center">Stock#</th>
                                     <th class="text-nowrap">Supplier Name</th>
                                     <th class="text-center">Supplier#</th>
-                                    <th>Feedback</th>
+                                    <th class="text-center" style="width: 1%;">Feedback</th>
                                     <th class="text-center" style="width: 1%;">Status</th>
                                 </tr>
                             </thead>
@@ -230,10 +256,14 @@
                                     </td>
                                     <td>{{ $stock->user->name }}</td>
                                     <td class="text-center">{{ $stock->user->id }}</td>
-                                    <td>{{ $stock->feedback->topic }}</td>
-                                    <td>{{ $stock->feedback->description }}</td>
-                                    <td>
-                                        @if (empty($stock->feedback->response)) None @else {{ $stock->feedback->response }} @endif
+                                    <td class="text-center">
+                                        <a href="#" data-toggle="modal" data-target="#stock_feedback_{{ $stock->id }}">
+                                            @if (empty($stock->feedback->response))
+                                                <i class="text-muted fa fa-comments"></i>
+                                            @else
+                                                <i class="text-info fa fa-comments"></i>
+                                            @endif
+                                        </a>
                                     </td>
                                     <td class="text-center">
                                         <span class="label label-danger">Rejected</span>
