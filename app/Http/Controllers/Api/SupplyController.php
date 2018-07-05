@@ -35,7 +35,7 @@ class SupplyController extends Controller
         }
 
         return response()->json([
-            "data" => $user,
+            "data" => $user->supplies,
         ]);
     }
 }
