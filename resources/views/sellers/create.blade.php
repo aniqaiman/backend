@@ -86,21 +86,21 @@
                         <div class="form-group">
                             <label for="mobile_number" class="col-sm-3 control-label">Mobile Number:</label>
                             <div class="col-sm-9">
-                                <input type="text" name="mobile_number" class="form-control" />
+                                <input type="text" name="mobile_number" class="form-control" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-sm-3 control-label">E-Mail Address:</label>
                             <div class="col-sm-9">
-                                <input type="email" name="email" class="form-control" />
+                                <input type="email" name="email" class="form-control" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="password" class="col-sm-3 control-label">Password:</label>
                             <div class="col-sm-9">
-                                <input type="password" name="password" class="form-control" />
+                                <input type="password" name="password" class="form-control" required />
                             </div>
                         </div>
                     </div>

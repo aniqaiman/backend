@@ -56,35 +56,35 @@
                         <div class="form-group">
                             <label for="address" class="col-sm-3 control-label">Address:</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="address" /></textarea>
+                                <textarea class="form-control" name="address" required /></textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="phone_number" class="col-sm-3 control-label">Phone Number:</label>
                             <div class="col-sm-9">
-                                <input type="text" name="phone_number" class="form-control" />
+                                <input type="text" name="phone_number" class="form-control" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="driver_license_number" class="col-sm-3 control-label">Licence Number:</label>
                             <div class="col-sm-9">
-                                <input type="text" name="driver_license_number" class="form-control" />
+                                <input type="text" name="driver_license_number" class="form-control" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="driver_license_picture" class="col-sm-3 control-label">Licence Picture:</label>
                             <div class="col-sm-9">
-                                <input type="file" class="form-control" name="driver_license_picture" />
+                                <input type="file" class="form-control" name="driver_license_picture" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="lorry_roadtax_expiry" class="col-sm-3 control-label">Roadtax Expiry:</label>
                             <div class="col-sm-9">
-                                <input type="date" name="lorry_roadtax_expiry" class="form-control" />
+                                <input type="date" name="lorry_roadtax_expiry" class="form-control" required />
                             </div>
                         </div>
 
@@ -113,21 +113,21 @@
                         <div class="form-group">
                             <label for="lorry_plate_number" class="col-sm-3 control-label">Lorry Plate Number:</label>
                             <div class="col-sm-9">
-                                <input type="text" name="lorry_plate_number" class="form-control" />
+                                <input type="text" name="lorry_plate_number" class="form-control" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="location_covered" class="col-sm-3 control-label">Location Covered:</label>
                             <div class="col-sm-9">
-                                <input type="text" name="location_covered" class="form-control" />
+                                <input type="text" name="location_covered" class="form-control" required />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="password" class="col-sm-3 control-label">Password:</label>
                             <div class="col-sm-9">
-                                <input type="password" name="password" class="form-control" />
+                                <input type="password" name="password" class="form-control" required />
                             </div>
                         </div>
                     </div>
