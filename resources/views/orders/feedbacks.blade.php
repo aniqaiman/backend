@@ -62,12 +62,12 @@
                 </button>
                 <h4 class="modal-title" id="exampleModalLabelFeedback_{{ $order->id }}">Feedback | {{ $order->id }}</h4>
             </div>
-            <div class="modal-body">
-                <div class="lead">Topic</div>
+            <div class="modal-body" style="word-break: break-all;">
+                <span class="lead">Topic</span>
                 <p>{{ $order->feedback->topic }}</p>
-                <div class="lead">Description</div>
+                <span class="lead">Description</span>
                 <p>{{ $order->feedback->description }}</p>
-                <div class="lead">Response</div>
+                <span class="lead">Response</span>
                 <p>
                     @if (empty($stock->feedback->response)) 
                         None
@@ -168,7 +168,7 @@
                                         <th class="text-center">Order#</th>
                                         <th class="text-nowrap">Buyer Name</th>
                                         <th class="text-center">Buyer#</th>
-                                        <th>Feedback</th>
+                                        <th class="text-center" style="width: 1%;">Feedback</th>
                                         <th class="text-center" style="width: 1%;">Status</th>
                                     </tr>
                                 </thead>
@@ -184,7 +184,7 @@
                                         </td>
                                         <td>{{ $order->user->name }}</td>
                                         <td class="text-center">{{ $order->user->id }}</td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="#" data-toggle="modal" data-target="#order_feedback_{{ $order->id }}">
                                                 @if (empty($order->feedback->response))
                                                     <i class="text-muted fa fa-comments"></i>
