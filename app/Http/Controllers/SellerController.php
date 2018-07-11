@@ -16,16 +16,27 @@ class SellerController extends Controller
 
     public function store(Request $request)
     {
+        if (User::where('company_registration_mykad_number', $request->input('company_registration_mykad_number'))->exists()) {
+            return redirect()->route('users.sellers.create')->with('error', 'The (company registration / MyKad) number had been used.');
+        }
+
+        if (User::where('email', $request->input('email'))->exists()) {
+            return redirect()->route('users.sellers.create')->with('error', 'The email had been used.');
+        }
+
         $buyer = User::create([
             'name' => $request->input('name'),
             'company_name' => $request->input('company_name'),
-            'company_registration_mykad_number' => $request->input('company_registration_mykad_number'),
-            'address' => $request->input('address'),
-            'latitude' => $request->input('latitude'),
-            'longitude' => $request->input('longitude'),
-            'mobile_number' => $request->input('mobile_number'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'company_registration_mykad_number' => $request->company_registration_mykad_number,
+            'address' => $request->address,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'mobile_number' => $request->mobile_number,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'bank_name' => $request->bank_name,
+            'bank_account_holder_name' => $request->bank_account_holder_name,
+            'bank_account_number' => $request->bank_account_number,
             'group_id' => 21,
             'status_email' => 1,
             'status_account' => 1,

@@ -37,6 +37,12 @@
                                 <i class="icon fa fa-check"></i> {{ Session::get('success') }}
                             </p>
                         </div>
+                        @elseif (Session::has('error'))
+                        <div class="alert alert-error">
+                            <p>
+                                <i class="icon fa fa-times"></i> {{ Session::get('error') }}
+                            </p>
+                        </div>
                         @endif
 
                         <div class="form-group">
@@ -78,16 +84,19 @@
                             <label class="col-sm-3 control-label">Location:</label>
                             <div class="col-sm-9">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Latitude</span>
-                                    <input type="number" name="latitude" class="form-control" required />
+                                    <span class="input-group-addon" style="min-width: 95px;">Latitude</span>
+                                    <input type="text" id="latitude" name="latitude" class="form-control" required />
                                 </div>
                             </div>
                             <div class="col-sm-offset-3 col-sm-9">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Longitude</span>
-                                    <input type="number" name="longitude" class="form-control" required />
+                                    <span class="input-group-addon" style="min-width: 95px;">Longitude</span>
+                                    <input type="text" id="longitude" name="longitude" class="form-control" required />
                                 </div>
                             </div>
+                            <a href="#" class="help-block col-sm-offset-3 col-sm-9" onclick="locate()">
+                                <i class="fa fa-map-pin"></i> Use Current Location
+                            </a>
                         </div>
 
                         <div class="form-group">
@@ -130,4 +139,18 @@
 @endsection
  
 @section('script')
+<script>
+    function locate() {
+        const latitude = $('#latitude');
+        const longitude = $('#longitude');
+
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                latitude.val(position.coords.latitude);
+                longitude.val(position.coords.longitude);
+            }, error => swal("Location Retrieval Error", "Cannot retrieve current location. Please retry.", "error"), { timeout: 15000 }
+        );
+
+    }
+</script>
 @endsection

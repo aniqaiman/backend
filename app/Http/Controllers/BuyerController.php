@@ -17,18 +17,26 @@ class BuyerController extends Controller
 
     public function store(Request $request)
     {
+        if (User::where('company_registration_mykad_number', $request->input('company_registration_mykad_number'))->exists()) {
+            return redirect()->route('users.buyers.create')->with('error', 'The (company registration / MyKad) number had been used.');
+        }
+
+        if (User::where('email', $request->input('email'))->exists()) {
+            return redirect()->route('users.buyers.create')->with('error', 'The email had been used.');
+        }
+
         $buyer = User::create([
-            'name' => $request->input('name'),
-            'company_name' => $request->input('company_name'),
-            'company_registration_mykad_number' => $request->input('company_registration_mykad_number'),
-            'bussiness_hour' => $request->input('bussiness_hour'),
-            'address' => $request->input('address'),
-            'latitude' => $request->input('latitude'),
-            'longitude' => $request->input('longitude'),
-            'mobile_number' => $request->input('mobile_number'),
-            'phone_number' => $request->input('phone_number'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'name' => $request->name,
+            'company_name' => $request->company_name,
+            'company_registration_mykad_number' => $request->company_registration_mykad_number,
+            'bussiness_hour' => $request->bussiness_hour,
+            'address' => $request->address,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'mobile_number' => $request->mobile_number,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
             'group_id' => 11,
             'status_email' => 1,
             'status_account' => 1,

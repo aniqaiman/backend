@@ -28,13 +28,16 @@ class SellerController extends Controller
         $seller = User::create([
             'name' => $request->input('name'),
             'company_name' => $request->input('company_name'),
-            'company_registration_mykad_number' => $request->input('company_registration_mykad_number'),
-            'address' => $request->input('address'),
-            'latitude' => $request->input('latitude'),
-            'longitude' => $request->input('longitude'),
-            'mobile_number' => $request->input('mobile_number'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'company_registration_mykad_number' => $request->company_registration_mykad_number,
+            'address' => $request->address,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'mobile_number' => $request->mobile_number,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'bank_name' => $request->bank_name,
+            'bank_account_holder_name' => $request->bank_account_holder_name,
+            'bank_account_number' => $request->bank_account_number,
             'group_id' => 21,
             'status_email' => 0,
             'status_account' => 0,
@@ -81,6 +84,9 @@ class SellerController extends Controller
         $seller->longitude = $request->longitude;
         $seller->mobile_number = $request->mobile_number;
         $seller->email = $request->email;
+        $seller->bank_name = $request->bank_name;
+        $seller->bank_account_holder_name = $request->bank_account_holder_name;
+        $seller->bank_account_number = $request->bank_account_number;
         $seller->save();
 
         return response()->json([
