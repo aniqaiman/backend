@@ -12,15 +12,15 @@ class FeedbackController extends Controller
     public function getFeedbacks($type)
     {
         if ($type === 'buyers') {
-            $feedbacks = Feedback::whereHas('orders', function ($orders) {
-                $orders->where('user_id', JWTAuth::parseToken()->authenticate()->id);
+            $feedbacks = Feedback::whereHas('order', function ($order) {
+                $order->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
 
             return response()->json([
                 'data' => $feedbacks->get(),
             ]);
         } else if ($type === 'sellers') {
-            $feedbacks = Feedback::whereHas('stocks', function ($stocks) {
+            $feedbacks = Feedback::whereHas('stock', function ($stock) {
                 $stocks->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
 
