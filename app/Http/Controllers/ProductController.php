@@ -18,6 +18,7 @@ class ProductController extends Controller
     {
         $product = Product::find($request->input('id'));
 
+        dump($request->all());exit;
         if ($request->input('grade') === 'A') {
             $product->demand_a = $request->input('demand');
         } else if ($request->input('grade') === 'B') {
