@@ -133,7 +133,7 @@
                                         @else
                                         <td>No driver assigned</td>
                                         @endif
-                                        <td>
+                                        <td class="text-center">
                                             @if ($stock->status === 0)
                                             <span class="label label-default">Submitted</span> 
                                             @elseif ($stock->status === 1)
@@ -164,7 +164,7 @@
                                         <th>Total Price</th>
                                         <th>Lorry</th>
                                         <th>Status</th>
-                                        <th></th>
+                                        <th style="width: 1%;"></th>
                                     </tr>
                                 </thead>
 
@@ -183,7 +183,7 @@
                                         @else
                                         <td>No driver assigned</td>
                                         @endif
-                                        <td>
+                                        <td class="text-center">
                                             @if ($stock->status === 0)
                                             <span class="label label-default">Submitted</span> 
                                             @elseif ($stock->status === 1)
@@ -196,7 +196,7 @@
                                             <span class="label label-success">Paid</span>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             @if ($stock->status === 3)
                                             <div class="btn-group-vertical btn-group-sm">
                                                 <button class="btn btn-success" data-id="{{ $stock->id }}" data-type="stock" data-status="4" onclick="payment(this)">Paid</button>
