@@ -191,6 +191,19 @@
                                             <span class="label label-success">Completed</span>
                                             @endif
                                         </td>
+                                        <td class="text-center">
+                                            @if ($order->status === 3)
+                                            <div class="btn-group-vertical btn-group-sm">
+                                                <button class="btn btn-success" data-id="{{ $order->id }}" data-type="order" data-status="4" onclick="payment(this)">Paid</button>
+                                                <button class="btn btn-warning" disabled>Unpaid</button>
+                                            </div>
+                                            @elseif ($order->status === 4)
+                                            <div class="btn-group-vertical btn-group-sm">
+                                                <button class="btn btn-success" disabled>Paid</button>
+                                                <button class="btn btn-warning" data-id="{{ $order->id }}" data-type="order" data-status="3"onclick="payment(this)">Unpaid</button>
+                                            </div>
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -223,6 +236,27 @@
         });
 
     });
+
+    function payment(btn) {
+        var data = {
+            id: $(btn).data('id'),
+            type: $(btn).data('type'),
+            status: $(btn).data('status')
+        }
+
+        $(btn).prop('disabled', true);
+        $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+
+        $.ajax("{{ route('orders.update.status.payment') }}", {
+            data: data,
+            dataType: "json",
+            error: (jqXHR, textStatus, errorThrown) => { },
+            method: "PUT",
+            success: (data, textStatus, jqXHR) => {
+                window.location.href = window.location.href;
+            }
+        });
+    }
 
 </script>
 @endsection
