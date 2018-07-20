@@ -162,6 +162,7 @@
                                         <th>Total Price</th>
                                         <th>Lorry</th>
                                         <th>Status</th>
+                                        <th style="width: 1%;"></th>
                                     </tr>
                                 </thead>
 
@@ -180,7 +181,7 @@
                                         @else
                                         <td>No driver assigned</td>
                                         @endif
-                                        <td>
+                                        <td class="text-center">
                                             @if ($order->status === 0)
                                             <span class="label label-default">Submitted</span> 
                                             @elseif ($order->status === 1)
