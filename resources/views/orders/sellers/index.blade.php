@@ -200,12 +200,12 @@
                                             @if ($stock->status === 3)
                                             <div class="btn-group-vertical btn-group-sm">
                                                 <button class="btn btn-success" data-id="{{ $stock->id }}" data-type="stock" data-status="4" onclick="payment(this)">Paid</button>
-                                                <button class="btn btn-warning" disabled>Unpaid</button>
+                                                <button class="btn btn-danger" disabled>Unpaid</button>
                                             </div>
                                             @elseif ($stock->status === 4)
                                             <div class="btn-group-vertical btn-group-sm">
                                                 <button class="btn btn-success" disabled>Paid</button>
-                                                <button class="btn btn-warning" data-id="{{ $stock->id }}" data-type="stock" data-status="3"onclick="payment(this)">Unpaid</button>
+                                                <button class="btn btn-danger" data-id="{{ $stock->id }}" data-type="stock" data-status="3"onclick="payment(this)">Unpaid</button>
                                             </div>
                                             @endif
                                         </td>

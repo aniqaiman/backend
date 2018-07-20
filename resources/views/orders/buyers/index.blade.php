@@ -47,7 +47,7 @@
                     <span class="label label-default">Submitted</span> @elseif ($order->status === 1)
                     <span class="label label-warning">Pending</span> @elseif ($order->status === 2)
                     <span class="label label-danger">Rejected</span> @elseif ($order->status === 3)
-                    <span class="label label-warning">Unpaid</span> @elseif ($order->status === 4)
+                    <span class="label label-danger">Unpaid</span> @elseif ($order->status === 4)
                     <span class="label label-success">Paid</span> @endif
                 </span>
                 <h3 class="pull-right">
@@ -200,12 +200,12 @@
                                             @if ($order->status === 3)
                                             <div class="btn-group-vertical btn-group-sm">
                                                 <button class="btn btn-success" data-id="{{ $order->id }}" data-type="order" data-status="4" onclick="payment(this)">Paid</button>
-                                                <button class="btn btn-warning" disabled>Unpaid</button>
+                                                <button class="btn btn-danger" disabled>Unpaid</button>
                                             </div>
                                             @elseif ($order->status === 4)
                                             <div class="btn-group-vertical btn-group-sm">
                                                 <button class="btn btn-success" disabled>Paid</button>
-                                                <button class="btn btn-warning" data-id="{{ $order->id }}" data-type="order" data-status="3"onclick="payment(this)">Unpaid</button>
+                                                <button class="btn btn-danger" data-id="{{ $order->id }}" data-type="order" data-status="3"onclick="payment(this)">Unpaid</button>
                                             </div>
                                             @endif
                                         </td>
