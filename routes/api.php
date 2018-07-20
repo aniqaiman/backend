@@ -80,4 +80,12 @@ Route::delete('carts/{product_id}', 'Api\CartController@deleteCartItem');
 Route::get('supplies', 'Api\SupplyController@getSupplies');
 Route::post('supplies', 'Api\SupplyController@postSupplies');
 
+// ------------------------------------------- Supply ---------------------------------------------------- //
+
+Route::get('feedbacks', 'Api\FeedbackController@getFeedbacks');
+Route::get('feedbacks/unread', 'Api\FeedbackController@getUnreadFeedbacks');
+Route::put('supplies/read/{id}', 'Api\FeedbackController@setReadFeedback');
+Route::put('supplies/response/{id}', 'Api\FeedbackController@updateResponseFeedback');
+Route::get('supplies/{id}', 'Api\FeedbackController@getSingleFeedback');
+
 Route::get('playground', 'Api\ApiController@playground');
