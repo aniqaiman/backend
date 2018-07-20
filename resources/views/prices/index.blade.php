@@ -132,14 +132,16 @@
                 data: data,
                 dataType: "json",
                 error: (jqXHR, textStatus, errorThrown) => {
-                    $(this).parent().toggleClass('has-error');
+                    $(this).parent().addClass('has-error');
+                    $(this).parent().removeClass('has-success');
                     $(this).prop('disabled', false);
                 },
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
                     updatePriceDifference(arrItem);
-                    $(this).parent().toggleClass('has-success');
+                    $(this).parent().addClass('has-success');
+                    $(this).parent().removeClass('has-error');
                     $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
                 }
@@ -168,14 +170,16 @@
                 data: data,
                 dataType: "json",
                 error: (jqXHR, textStatus, errorThrown) => {
-                    $(this).parent().toggleClass('has-error');
+                    $(this).parent().addClass('has-error');
+                    $(this).parent().removeClass('has-success');
                     $(this).prop('disabled', false);
                 },
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
                     updatePriceDifference(arrItem);
-                    $(this).parent().toggleClass('has-success');
+                    $(this).parent().addClass('has-success');
+                    $(this).parent().removeClass('has-error');
                     $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
                 }
@@ -203,13 +207,15 @@
                 data: data,
                 dataType: "json",
                 error: (jqXHR, textStatus, errorThrown) => {
-                    $(this).parent().toggleClass('has-error');                    
+                    $(this).parent().addClass('has-error');
+                    $(this).parent().removeClass('has-success');
                     $(this).prop('disabled', false);
                 },
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     updatePriceDifference(arrItem);
-                    $(this).parent().toggleClass('has-success');                    
+                    $(this).parent().addClass('has-success');
+                    $(this).parent().removeClass('has-error');
                     $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
                 }
@@ -238,14 +244,16 @@
                 data: data,
                 dataType: "json",
                 error: (jqXHR, textStatus, errorThrown) => {
-                    $(this).parent().toggleClass('has-error');
+                    $(this).parent().addClass('has-error');
+                    $(this).parent().removeClass('has-success');
                     $(this).prop('disabled', false);
                 },
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
                     updatePriceDifference(arrItem);
-                    $(this).parent().toggleClass('has-success');
+                    $(this).parent().addClass('has-success');
+                    $(this).parent().removeClass('has-error');
                     $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
                 }
