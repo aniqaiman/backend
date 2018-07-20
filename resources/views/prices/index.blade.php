@@ -121,7 +121,7 @@
             var currentDate = new Date();
             var formattedDate = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" +
                 currentDate.getDate();
-                
+
             var data = {
                 product_id: arrItem,
                 seller_price_a: newPrice,
@@ -135,7 +135,6 @@
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
-                    swal.close();
                     updatePriceDifference(arrItem);
                     $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
@@ -168,7 +167,6 @@
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
-                    swal.close()
                     updatePriceDifference(arrItem);
                     $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
@@ -199,7 +197,6 @@
                 error: (jqXHR, textStatus, errorThrown) => $(this).prop('disabled', false),
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
-                    swal.close();
                     updatePriceDifference(arrItem);
                     $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
