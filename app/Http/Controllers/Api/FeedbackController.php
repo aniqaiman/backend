@@ -15,7 +15,7 @@ class FeedbackController extends Controller
             $feedbacks = Feedback::whereHas('order', function ($order) {
                 $order->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
-        } else if ($type === 'sellers') {
+        } else if ($type === 'suppliers') {
             $feedbacks = Feedback::whereHas('stock', function ($stock) {
                 $stock->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
@@ -32,7 +32,7 @@ class FeedbackController extends Controller
             $feedbacks = Feedback::whereHas('order', function ($order) {
                 $order->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
-        } else if ($type === 'sellers') {
+        } else if ($type === 'suppliers') {
             $feedbacks = Feedback::whereHas('stock', function ($stock) {
                 $stock->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
@@ -49,7 +49,7 @@ class FeedbackController extends Controller
             $feedbacks = Feedback::whereHas('order', function ($order) {
                 $order->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
-        } else if ($type === 'sellers') {
+        } else if ($type === 'suppliers') {
             $feedbacks = Feedback::whereHas('stock', function ($stock) {
                 $stock->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
@@ -66,7 +66,7 @@ class FeedbackController extends Controller
             $feedbacks = Feedback::whereHas('order', function ($order) {
                 $order->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
-        } else if ($type === 'sellers') {
+        } else if ($type === 'suppliers') {
             $feedbacks = Feedback::whereHas('stock', function ($stock) {
                 $stock->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
@@ -87,7 +87,7 @@ class FeedbackController extends Controller
             $feedbacks = Feedback::whereHas('order', function ($order) {
                 $order->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
-        } else if ($type === 'sellers') {
+        } else if ($type === 'suppliers') {
             $feedbacks = Feedback::whereHas('stock', function ($stock) {
                 $stock->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
