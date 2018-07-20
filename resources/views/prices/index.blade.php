@@ -231,15 +231,14 @@
             $.ajax("{{ route('updateFruitPrice') }}", {
                 data: data,
                 dataType: "json",
-                error: (jqXHR, textStatus, errorThrown) => { },
+                error: (jqXHR, textStatus, errorThrown) => $(this).prop('disabled', false),
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
                     updatePriceDifference(arrItem);
                     $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
-                },
-                error: () => $(this).prop('disabled', false);
+                }
             });
         });
 
