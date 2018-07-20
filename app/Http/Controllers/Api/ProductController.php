@@ -76,11 +76,12 @@ class ProductController extends Controller
 
     public function getNewProducts(Request $request)
     {
-        $products = Product::with("category")
+        $products = Product::query()
+            ->with("category")
             ->whereHas('promotions', function ($promotion) {
                 $promotion->whereRaw('total_sold < quantity');
             })
-            ->getWithPrice();
+            ->scopeGetFull();
 
         return response()->json([
             "data" => $products,
