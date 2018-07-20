@@ -122,8 +122,8 @@ class OrderController extends Controller
                 ->get();
         }
 
-        $pending_orders = $orders->where('status', '<', 3);
-        $completed_orders = $orders->where('status', '>=', 3);
+        $pending_stocks = $stocks->where('status', '<', 3);
+        $completed_stocks = $stocks->where('status', '>=', 3);
 
         return view('orders.sellers.index', compact('stocks', 'pending_stocks', 'completed_stocks', 'filter_date'));
     }
