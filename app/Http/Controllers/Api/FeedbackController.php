@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Feedback;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use JWTAuth;
 
@@ -15,10 +15,10 @@ class FeedbackController extends Controller
 
         return response()->json([
             'data' => Feedback::with([
-                'orders' => function($orders) use ($userId) {
+                'orders' => function ($orders) use ($userId) {
                     $orders->where('user_id', $userId);
                 },
-                'stocks' => function($stocks) use ($userId) {
+                'stocks' => function ($stocks) use ($userId) {
                     $stocks->where('user_id', $userId);
                 },
             ]),
