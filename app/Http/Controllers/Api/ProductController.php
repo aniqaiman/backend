@@ -89,34 +89,8 @@ class ProductController extends Controller
         });
 
         return response()->json([
-            "data" => $lastPurchaseProducts->get(),
+            "data" => $lastPurchaseProducts->getFullPromotion(),
         ]);
-
-        $lastPurchaseProducts = Product::whereHas("orders", function ($orders) use ($user) {$orders->where("user_id", $user->user_id);})
-            ->select("id")
-            ->distinct()
-            ->take(10)
-            ->get();
-
-        $productArray = [];
-
-        foreach ($lastPurchaseProducts as $product) {
-            $product = Product::find($product->id);
-            $prices = Price::where("product_id", $product->id)
-                ->orderBy("created_at", "desc")
-                ->take(2)
-                ->get();
-
-            $product["priceA"] = $prices[0]->product_price;
-            $product["priceB"] = $prices[0]->product_price2;
-            $product["priceC"] = $prices[0]->product_price3;
-            $product["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
-            $product["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
-
-            array_push($productArray, $product);
-        }
-
-        return response()->json(["data" => $productArray, "status" => "ok"]);
     }
 
     public function getBestSellingProducts(Request $request)
