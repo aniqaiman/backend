@@ -112,6 +112,8 @@
         console.log("loaded");
 
         $(".selling_a").focusout(function () {
+            $(this).prop('disabled', true);
+
             var newPrice = $(this).val();
             console.log($(this).attr('id'))
             console.log(newPrice);
@@ -119,26 +121,23 @@
             var currentDate = new Date();
             var formattedDate = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" +
                 currentDate.getDate();
+                
             var data = {
                 product_id: arrItem,
                 seller_price_a: newPrice,
                 date: formattedDate
             }
 
-            swal({
-                title: "",
-                text: "Saving....",
-                showConfirmButton: false
-            });
             $.ajax("{{ route('updateFruitPrice') }}", {
                 data: data,
                 dataType: "json",
-                error: (jqXHR, textStatus, errorThrown) => { },
+                error: (jqXHR, textStatus, errorThrown) => $(this).prop('disabled', false),
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
                     swal.close();
                     updatePriceDifference(arrItem);
+                    $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
                 }
             });
@@ -146,6 +145,8 @@
         });
 
         $(".selling_b").focusout(function () {
+            $(this).prop('disabled', true);
+
             var newPrice = $(this).val();
             console.log($(this).attr('id'))
             console.log(newPrice);
@@ -159,26 +160,25 @@
                 seller_price_b: newPrice,
                 date: formattedDate
             }
-            swal({
-                title: "",
-                text: "Saving....",
-                showConfirmButton: false
-            });
+
             $.ajax("{{ route('updateFruitPrice') }}", {
                 data: data,
                 dataType: "json",
-                error: (jqXHR, textStatus, errorThrown) => { },
+                error: (jqXHR, textStatus, errorThrown) => $(this).prop('disabled', false),
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
                     swal.close()
                     updatePriceDifference(arrItem);
+                    $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
                 }
             });
         });
 
         $(".buying_a").focusout(function () {
+            $(this).prop('disabled', true);
+
             var newPrice = $(this).val();
             console.log($(this).attr('id'))
             console.log(newPrice);
@@ -192,19 +192,16 @@
                 buyer_price_a: newPrice,
                 date: formattedDate
             }
-            swal({
-                title: "",
-                text: "Saving....",
-                showConfirmButton: false
-            });
+
             $.ajax("{{ route('updateFruitPrice') }}", {
                 data: data,
                 dataType: "json",
-                error: (jqXHR, textStatus, errorThrown) => { },
+                error: (jqXHR, textStatus, errorThrown) => $(this).prop('disabled', false),
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     swal.close();
                     updatePriceDifference(arrItem);
+                    $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
                 }
             });
