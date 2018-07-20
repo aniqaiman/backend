@@ -12,7 +12,7 @@ class FeedbackController extends Controller
     public function getFeedbacks($type)
     {
         if ($type === 'buyers') {
-            $feedbacks = Feedback::whereHas('orders', function ($orders) use ($userId) {
+            $feedbacks = Feedback::whereHas('orders', function ($orders) {
                 $orders->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
 
@@ -20,7 +20,7 @@ class FeedbackController extends Controller
                 'data' => $feedbacks->get(),
             ]);
         } else if ($type === 'sellers') {
-            $feedbacks = Feedback::whereHas('stocks', function ($stocks) use ($userId) {
+            $feedbacks = Feedback::whereHas('stocks', function ($stocks) {
                 $stocks->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
 
