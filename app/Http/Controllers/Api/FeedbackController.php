@@ -21,7 +21,7 @@ class FeedbackController extends Controller
             ]);
         } else if ($type === 'sellers') {
             $feedbacks = Feedback::whereHas('stock', function ($stock) {
-                $stocks->where('user_id', JWTAuth::parseToken()->authenticate()->id);
+                $stock->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
 
             return response()->json([
