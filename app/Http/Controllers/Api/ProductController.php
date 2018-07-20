@@ -89,7 +89,7 @@ class ProductController extends Controller
         })->take(10);
 
         return response()->json([
-            "data" => $lastPurchaseProducts->getFullPromotion(),
+            "data" => $lastPurchaseProducts,
         ]);
 
         $lastPurchaseProducts = Product::whereHas("orders", function ($orders) use ($user) {$orders->where("user_id", $user->user_id);})
