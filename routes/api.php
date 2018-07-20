@@ -82,10 +82,10 @@ Route::post('supplies', 'Api\SupplyController@postSupplies');
 
 // ------------------------------------------- Supply ---------------------------------------------------- //
 
-Route::get('feedbacks', 'Api\FeedbackController@getFeedbacks');
-Route::get('feedbacks/unread', 'Api\FeedbackController@getUnreadFeedbacks');
-Route::put('supplies/read/{id}', 'Api\FeedbackController@setReadFeedback');
-Route::put('supplies/response/{id}', 'Api\FeedbackController@updateResponseFeedback');
-Route::get('supplies/{id}', 'Api\FeedbackController@getSingleFeedback');
+Route::get('{type}/feedbacks', 'Api\FeedbackController@getFeedbacks');
+Route::get('{type}/feedbacks/unread', 'Api\FeedbackController@getUnreadFeedbacks');
+Route::put('{type}/supplies/read/{id}', 'Api\FeedbackController@setReadFeedback');
+Route::put('{type}/supplies/response/{id}', 'Api\FeedbackController@updateResponseFeedback');
+Route::get('{type}/supplies/{id}', 'Api\FeedbackController@getSingleFeedback');
 
 Route::get('playground', 'Api\ApiController@playground');

@@ -2,47 +2,93 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Feedback;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use JWTAuth;
 
 class FeedbackController extends Controller
 {
-    public function getFeedbacks()
+    public function getFeedbacks($type)
     {
-        $userId = JWTAuth::parseToken()->authenticate()->id;
-
-        return response()->json([
-            'data' => Feedback::with([
-                'orders' => function ($orders) use ($userId) {
-                    $orders->where('user_id', $userId);
-                },
-                'stocks' => function ($stocks) use ($userId) {
-                    $stocks->where('user_id', $userId);
-                },
-            ]),
-        ]);
+        if ($type === 'buyers') {
+            return response()->json([
+                'data' => JWTAuth::parseToken()
+                    ->authenticate()
+                    ->orders()
+                    ->feedbacks()
+                    ->get(),
+            ]);
+        } else if ($type === 'sellers') {
+            return response()->json([
+                'data' => JWTAuth::parseToken()
+                    ->authenticate()
+                    ->stocks()
+                    ->feedbacks()
+                    ->get(),
+            ]);
+        }
     }
 
-    public function getUnreadFeedbacks()
+    public function getUnreadFeedbacks($type)
     {
-        return response()->json([
-            'data' => Feedback::query()
-                ->where('has_read', 0),
-        ]);
+        if ($type === 'buyers') {
+            return response()->json([
+                'data' => JWTAuth::parseToken()
+                    ->authenticate()
+                    ->orders()
+                    ->feedbacks()
+                    ->where('has_read', 0)
+                    ->get(),
+            ]);
+        } else if ($type === 'sellers') {
+            return response()->json([
+                'data' => JWTAuth::parseToken()
+                    ->authenticate()
+                    ->stocks()
+                    ->feedbacks()
+                    ->where('has_read', 0)
+                    ->get(),
+            ]);
+        }
     }
 
-    public function getSingleFeedback($id)
+    public function getSingleFeedback($type, $id)
     {
-        return response()->json([
-            'data' => Feedback::find($id),
-        ]);
+        if ($type === 'buyers') {
+            return response()->json([
+                'data' => JWTAuth::parseToken()
+                    ->authenticate()
+                    ->orders()
+                    ->feedbacks()
+                    ->find($id),
+            ]);
+        } else if ($type === 'sellers') {
+            return response()->json([
+                'data' => JWTAuth::parseToken()
+                    ->authenticate()
+                    ->stocks()
+                    ->feedbacks()
+                    ->find($id),
+            ]);
+        }
     }
 
-    public function setReadFeedback($id)
+    public function setReadFeedback($type, $id)
     {
-        $feedback = Feedback::find($id);
+        if ($type === 'buyers') {
+            $feedback = JWTAuth::parseToken()
+                ->authenticate()
+                ->orders()
+                ->feedbacks()
+                ->find($id);
+        } else if ($type === 'sellers') {
+            $feedback = JWTAuth::parseToken()
+                ->authenticate()
+                ->stocks()
+                ->feedbacks()
+                ->find($id);
+        }
+
         $feedback->has_read = 1;
         $feedback->save();
 
@@ -51,9 +97,22 @@ class FeedbackController extends Controller
         ]);
     }
 
-    public function updateResponseFeedback(Request $request, $id)
+    public function updateResponseFeedback(Request $request, $type, $id)
     {
-        $feedback = Feedback::find($id);
+        if ($type === 'buyers') {
+            $feedback = JWTAuth::parseToken()
+                ->authenticate()
+                ->orders()
+                ->feedbacks()
+                ->find($id);
+        } else if ($type === 'sellers') {
+            $feedback = JWTAuth::parseToken()
+                ->authenticate()
+                ->stocks()
+                ->feedbacks()
+                ->find($id);
+        }
+
         $feedback->response = $request->response;
         $feedback->save();
 
