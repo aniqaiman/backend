@@ -77,7 +77,7 @@ class ProductController extends Controller
     public function getNewProducts(Request $request)
     {
         return response()->json([
-            "data" => Product::getFullPromotion(),
+            "data" => Product::take(10)->getFullPromotion(),
         ]);
     }
 
@@ -89,38 +89,15 @@ class ProductController extends Controller
         });
 
         return response()->json([
-            "data" => $lastPurchaseProducts->getFullPromotion(),
+            "data" => $lastPurchaseProducts->take(10)->getFullPromotion(),
         ]);
     }
 
     public function getBestSellingProducts(Request $request)
     {
-        $bestSellingProducts = OrderItem::select(DB::raw("product_id, count(*) as product_count"))
-            ->groupBy("product_id")
-            ->orderBy("product_count", "desc")
-            ->take(10)
-            ->get();
-
-        $productArray = [];
-
-        foreach ($bestSellingProducts as $product) {
-            $product = Product::find($product->id);
-            $prices = Price::where("product_id", $product->id)
-                ->orderBy("created_at", "desc")
-                ->take(2)
-                ->get();
-
-            $product["priceA"] = $prices[0]->product_price;
-            $product["priceB"] = $prices[0]->product_price2;
-            $product["priceC"] = $prices[0]->product_price3;
-            $product["priceADiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price - $prices[1]->product_price) / $prices[1]->product_price, 2) : 0;
-            $product["priceBDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price2 - $prices[1]->product_price2) / $prices[1]->product_price2, 2) : 0;
-            $product["priceCDiff"] = sizeof($prices) > 1 ? round(($prices[0]->product_price3 - $prices[1]->product_price3) / $prices[1]->product_price3, 2) : 0;
-
-            array_push($productArray, $product);
-        }
-
-        return response()->json(["data" => $productArray, "status" => "ok"]);
+        return response()->json([
+            "data" => Product::orderBy('active_counter', 'desc')->take(10)->getFullPromotion(),
+        ]);
     }
 
 }

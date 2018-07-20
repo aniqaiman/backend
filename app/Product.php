@@ -173,7 +173,6 @@ class Product extends Model
             ->whereHas('promotions', function ($promotion) {
                 $promotion->whereRaw('total_sold < quantity');
             })
-            ->orderBy('products.name', 'asc')
             ->getWithPrice();
     }
     
