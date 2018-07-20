@@ -78,10 +78,12 @@ class ProductController extends Controller
     {
         $products = Product::query()
             ->with("category")
+            ->has('prices')
             ->whereHas('promotions', function ($promotion) {
                 $promotion->whereRaw('total_sold < quantity');
             })
-            ->scopeGetFull();
+            ->orderBy('products.name', 'asc')
+            ->getWithPrice();
 
         return response()->json([
             "data" => $products,
