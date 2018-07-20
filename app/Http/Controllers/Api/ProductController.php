@@ -85,7 +85,7 @@ class ProductController extends Controller
     {
         $user = JWTAuth::parseToken()->authenticate();
         $lastPurchaseProducts = Product::whereHas("orders", function ($orders) use ($user) { 
-            $orders->where("user_id", $user->user_id); 
+            $orders->where("user_id", $user->user_id);
         });
 
         return response()->json([
