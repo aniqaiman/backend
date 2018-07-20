@@ -99,6 +99,7 @@ Route::prefix('orders')
 
         Route::put('pending', 'OrderController@updatePendingOrderStock')->name('update.status.pending');
         Route::put('complete', 'OrderController@updateCompleteOrderStock')->name('update.status.complete');
+        Route::put('payment', 'OrderController@updatePayment')->name('update.status.payment');
 
         Route::post('lorry', 'OrderController@assignDriverOrder')->name('lorry.assign');
 

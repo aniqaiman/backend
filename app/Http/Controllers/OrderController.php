@@ -101,8 +101,8 @@ class OrderController extends Controller
                 ->get();
         }
 
-        $pending_orders = $orders->where('status', '!=', 3);
-        $completed_orders = $orders->where('status', 3);
+        $pending_orders = $orders->where('status', '<', 3);
+        $completed_orders = $orders->where('status', '>=', 3);
 
         return view('orders.buyers.index', compact('orders', 'pending_orders', 'completed_orders', 'filter_date'));
     }
@@ -122,8 +122,8 @@ class OrderController extends Controller
                 ->get();
         }
 
-        $pending_stocks = $stocks->where('status', '!=', 3);
-        $completed_stocks = $stocks->where('status', 3);
+        $pending_orders = $orders->where('status', '<', 3);
+        $completed_orders = $orders->where('status', '>=', 3);
 
         return view('orders.sellers.index', compact('stocks', 'pending_stocks', 'completed_stocks', 'filter_date'));
     }
@@ -458,6 +458,23 @@ class OrderController extends Controller
             $stock = Stock::find($request->id);
             $stock->status = 1;
             $stock->save();
+            return response($stock);
+        }
+    }
+
+    public function updatePayment(Request $request)
+    {
+        if ($request->type === "order") {
+            $order = Order::find($request->id);
+            $order->status = $request->status;
+            $order->save();
+
+            return response($order);
+        } else if ($request->type === "stock") {
+            $stock = Stock::find($request->id);
+            $stock->status = $request->status;
+            $stock->save();
+
             return response($stock);
         }
     }

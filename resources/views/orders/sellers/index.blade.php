@@ -45,9 +45,10 @@
                 <span class="pull-left">
                     @if ($stock->status === 0)
                     <span class="label label-default">Submitted</span> @elseif ($stock->status === 1)
-                <span class="label label-warning">Pending</span> @elseif ($stock->status === 2)
-                <span class="label label-danger">Rejected</span> @elseif ($stock->status === 3)
-                <span class="label label-success">Completed</span> @endif
+                    <span class="label label-warning">Pending</span> @elseif ($stock->status === 2)
+                    <span class="label label-danger">Rejected</span> @elseif ($stock->status === 3)
+                    <span class="label label-success">Unpaid</span> @elseif ($stock->status === 4)
+                    <span class="label label-success">Paid</span> @endif
                 </span>
                 <h3 class="pull-right">
                     Total:
@@ -114,6 +115,7 @@
                                         <th>Total Price</th>
                                         <th>Lorry</th>
                                         <th>Status</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -190,6 +192,19 @@
                                             <span class="label label-success">Completed</span>
                                             @endif
                                         </td>
+                                        <td>
+                                            @if ($stock->status === 3)
+                                            <div class="btn-group-vertical btn-group-sm">
+                                                <button class="btn btn-success" data-id="{{ $stock->id }}" data-type="stock" data-status="4" onclick="payment(this)">Paid</button>
+                                                <button class="btn btn-warning" disabled>Unpaid</button>
+                                            </div>
+                                            @elseif ($stock->status === 4)
+                                            <div class="btn-group-vertical btn-group-sm">
+                                                <button class="btn btn-success" disabled>Paid</button>
+                                                <button class="btn btn-warning" data-id="{{ $stock->id }}" data-type="stock" data-status="3"onclick="payment(this)">Unpaid</button>
+                                            </div>
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -220,6 +235,27 @@
             'ordering': true,
             'info': false,
         });
+
+        function payment(btn) {
+            var data = {
+                id: $(btn).data('id'),
+                type: $(btn).data('type'),
+                status: $(btn).data('status')
+            }
+
+            $(btn).prop('disabled', true);
+            $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+
+            $.ajax("{{ route('orders.update.status.payment') }}", {
+                data: data,
+                dataType: "json",
+                error: (jqXHR, textStatus, errorThrown) => { },
+                method: "PUT",
+                success: (data, textStatus, jqXHR) => {
+                    window.location.href = window.location.href;
+                }
+            });
+        }
 
     });
 
