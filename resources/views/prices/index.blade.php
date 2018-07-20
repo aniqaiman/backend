@@ -239,7 +239,7 @@
                     $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
                 },
-                error: $(this).prop('disabled', false);
+                error: () => $(this).prop('disabled', false);
             });
         });
 
