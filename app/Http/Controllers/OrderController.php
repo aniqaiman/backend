@@ -53,11 +53,11 @@ class OrderController extends Controller
 
     public function indexOrderTrackings()
     {
-        $orders = Order::whereIn('status', [1, 3])
+        $orders = Order::whereIn('status', [1, 3, 4])
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'buyer');
 
-        $stocks = Stock::whereIn('status', [1, 3])
+        $stocks = Stock::whereIn('status', [1, 3, 4])
             ->orderBy('created_at', 'desc')
             ->paginate(10, ['*'], 'seller');
 
