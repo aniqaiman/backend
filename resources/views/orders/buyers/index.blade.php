@@ -47,7 +47,7 @@
                     <span class="label label-default">Submitted</span> @elseif ($order->status === 1)
                     <span class="label label-warning">Pending</span> @elseif ($order->status === 2)
                     <span class="label label-danger">Rejected</span> @elseif ($order->status === 3)
-                    <span class="label label-success">Unpaid</span> @elseif ($order->status === 4)
+                    <span class="label label-warning">Unpaid</span> @elseif ($order->status === 4)
                     <span class="label label-success">Paid</span> @endif
                 </span>
                 <h3 class="pull-right">
@@ -141,7 +141,9 @@
                                             @elseif ($order->status === 2)
                                             <span class="label label-danger">Rejected</span>
                                             @elseif ($order->status === 3)
-                                            <span class="label label-success">Completed</span>
+                                            <span class="label label-danger">Unpaid</span>
+                                            @elseif ($order->status === 4)
+                                            <span class="label label-success">Paid</span>
                                             @endif
                                         </td>
                                     </tr>
@@ -189,7 +191,9 @@
                                             @elseif ($order->status === 2)
                                             <span class="label label-danger">Rejected</span>
                                             @elseif ($order->status === 3)
-                                            <span class="label label-success">Completed</span>
+                                            <span class="label label-danger">Unpaid</span>
+                                            @elseif ($order->status === 4)
+                                            <span class="label label-success">Paid</span>
                                             @endif
                                         </td>
                                         <td class="text-center">
