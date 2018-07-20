@@ -30,6 +30,9 @@ Route::put('users/buyers', 'Api\BuyerController@update');
 
 Route::get('products', 'Api\ProductController@getProducts');
 Route::get('products/minimal', 'Api\ProductController@getMinimalProducts');
+Route::get('products/latest', 'Api\ProductController@getNewProducts');
+Route::get('products/lastpurchase', 'Api\ProductController@getLastPurchaseProducts');
+Route::get('products/popular', 'Api\ProductController@getBestSellingProducts');
 Route::get('products/{product_id}', 'Api\ProductController@getProductbyId');
 Route::get('products/{product_id}/price', 'Api\PriceController@getProductPriceLatest');
 Route::get('products/{product_id}/price/difference', 'Api\PriceController@getProductPriceDifference');
@@ -46,12 +49,6 @@ Route::get('buyers', 'Api\BuyerController@getBuyers');
 Route::get('sellers', 'Api\SellerController@getSellers');
 Route::get('buyer/{user_id}', 'Api\BuyerController@getBuyer');
 Route::get('seller/{user_id}', 'Api\SellerController@getSeller');
-
-// ------------------------------------------- Promo ---------------------------------------------------- //
-
-Route::get('products/latest', 'Api\ProductController@getNewProducts');
-Route::get('products/lastpurchase', 'Api\ProductController@getLastPurchaseProducts');
-Route::get('products/popular', 'Api\ProductController@getBestSellingProducts');
 
 // ------------------------------------------- Order ---------------------------------------------------- //
 
