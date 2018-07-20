@@ -84,13 +84,12 @@ class ProductController extends Controller
     public function getLastPurchaseProducts(Request $request)
     {
         $user = JWTAuth::parseToken()->authenticate();
-        dump($user);
         $lastPurchaseProducts = Product::whereHas("orders", function ($orders) use ($user) { 
             $orders->where("user_id", $user->user_id); 
         });
 
         return response()->json([
-            "data" => $lastPurchaseProducts,
+            "data" => $lastPurchaseProducts->get(),
         ]);
 
         $lastPurchaseProducts = Product::whereHas("orders", function ($orders) use ($user) {$orders->where("user_id", $user->user_id);})
