@@ -84,9 +84,12 @@ class ProductController extends Controller
     public function getLastPurchaseProducts(Request $request)
     {
         $user = JWTAuth::parseToken()->authenticate();
+        $lastPurchaseProducts = Product::whereHas("orders", function ($orders) use ($user) { 
+            $orders->where("user_id", $user->user_id); 
+        })->take(10);
 
         return response()->json([
-            "data" => $user->orders()->getFullPromotion(),
+            "data" => $lastPurchaseProducts->getFullPromotion(),
         ]);
 
         $lastPurchaseProducts = Product::whereHas("orders", function ($orders) use ($user) {$orders->where("user_id", $user->user_id);})
