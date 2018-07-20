@@ -47,7 +47,7 @@
                     <span class="label label-default">Submitted</span> @elseif ($stock->status === 1)
                     <span class="label label-warning">Pending</span> @elseif ($stock->status === 2)
                     <span class="label label-danger">Rejected</span> @elseif ($stock->status === 3)
-                    <span class="label label-success">Unpaid</span> @elseif ($stock->status === 4)
+                    <span class="label label-danger">Unpaid</span> @elseif ($stock->status === 4)
                     <span class="label label-success">Paid</span> @endif
                 </span>
                 <h3 class="pull-right">
@@ -115,7 +115,6 @@
                                         <th>Total Price</th>
                                         <th>Lorry</th>
                                         <th>Status</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -142,7 +141,9 @@
                                             @elseif ($stock->status === 2)
                                             <span class="label label-danger">Rejected</span>
                                             @elseif ($stock->status === 3)
-                                            <span class="label label-success">Completed</span>
+                                            <span class="label label-danger">Unpaid</span>
+                                            @elseif ($stock->status === 4)
+                                            <span class="label label-success">Paid</span>
                                             @endif
                                         </td>
                                     </tr>
@@ -163,6 +164,7 @@
                                         <th>Total Price</th>
                                         <th>Lorry</th>
                                         <th>Status</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -189,7 +191,9 @@
                                             @elseif ($stock->status === 2)
                                             <span class="label label-danger">Rejected</span>
                                             @elseif ($stock->status === 3)
-                                            <span class="label label-success">Completed</span>
+                                            <span class="label label-danger">Unpaid</span>
+                                            @elseif ($stock->status === 4)
+                                            <span class="label label-success">Paid</span>
                                             @endif
                                         </td>
                                         <td>
@@ -236,28 +240,28 @@
             'info': false,
         });
 
-        function payment(btn) {
-            var data = {
-                id: $(btn).data('id'),
-                type: $(btn).data('type'),
-                status: $(btn).data('status')
-            }
+    });
 
-            $(btn).prop('disabled', true);
-            $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
-
-            $.ajax("{{ route('orders.update.status.payment') }}", {
-                data: data,
-                dataType: "json",
-                error: (jqXHR, textStatus, errorThrown) => { },
-                method: "PUT",
-                success: (data, textStatus, jqXHR) => {
-                    window.location.href = window.location.href;
-                }
-            });
+    function payment(btn) {
+        var data = {
+            id: $(btn).data('id'),
+            type: $(btn).data('type'),
+            status: $(btn).data('status')
         }
 
-    });
+        $(btn).prop('disabled', true);
+        $(btn).html('<i class="fa fa-spinner fa-spin"></i> Updating...');
+
+        $.ajax("{{ route('orders.update.status.payment') }}", {
+            data: data,
+            dataType: "json",
+            error: (jqXHR, textStatus, errorThrown) => { },
+            method: "PUT",
+            success: (data, textStatus, jqXHR) => {
+                window.location.href = window.location.href;
+            }
+        });
+    }
 
 </script>
 @endsection
