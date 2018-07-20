@@ -159,12 +159,24 @@ class Product extends Model
     public function scopeGetMinimal($query)
     {
         return $query
-            ->has('prices')
-            ->with('category')
-            ->orderBy('products.name', 'asc')
-            ->get();
+        ->has('prices')
+        ->with('category')
+        ->orderBy('products.name', 'asc')
+        ->get();
     }
-
+    
+    public function scopeGetFullPromotion($query)
+    {
+        return $query
+            ->with("category")
+            ->has('prices')
+            ->whereHas('promotions', function ($promotion) {
+                $promotion->whereRaw('total_sold < quantity');
+            })
+            ->orderBy('products.name', 'asc')
+            ->getWithPrice();
+    }
+    
     public function scopeGetFullByDate($query, $date)
     {
         return $query

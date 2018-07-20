@@ -76,23 +76,19 @@ class ProductController extends Controller
 
     public function getNewProducts(Request $request)
     {
-        $products = Product::query()
-            ->with("category")
-            ->has('prices')
-            ->whereHas('promotions', function ($promotion) {
-                $promotion->whereRaw('total_sold < quantity');
-            })
-            ->orderBy('products.name', 'asc')
-            ->getWithPrice();
-
         return response()->json([
-            "data" => $products,
+            "data" => Product::getFullPromotion(),
         ]);
     }
 
     public function getLastPurchaseProducts(Request $request)
     {
         $user = JWTAuth::parseToken()->authenticate();
+
+        return response()->json([
+            "data" => $user->orders()->getFullPromotion(),
+        ]);
+
         $lastPurchaseProducts = Product::whereHas("orders", function ($orders) use ($user) {$orders->where("user_id", $user->user_id);})
             ->select("id")
             ->distinct()
