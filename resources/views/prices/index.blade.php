@@ -211,15 +211,13 @@
         });
 
         $(".buying_b").focusout(function () {
+            $(this).prop('disabled', true);
+
             var newPrice = $(this).val();
             console.log($(this).attr('id'))
             console.log(newPrice);
             var arrItem = $(this).attr('id').split("_")[2]
-            swal({
-                title: "",
-                text: "Saving....",
-                showConfirmButton: false
-            });
+
             var currentDate = new Date();
             var formattedDate = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" +
                 currentDate.getDate();
@@ -237,10 +235,11 @@
                 method: "POST",
                 success: (data, textStatus, jqXHR) => {
                     console.log("ok")
-                    swal.close()
                     updatePriceDifference(arrItem);
+                    $(this).prop('disabled', false);
                     //  window.location.href = window.location.href;
-                }
+                },
+                error: $(this).prop('disabled', false);
             });
         });
 
