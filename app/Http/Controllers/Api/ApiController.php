@@ -46,6 +46,8 @@ class ApiController extends Controller
             ], 500);
         }
 
+        JWTAuth::setToken($token);
+        
         $user = JWTAuth::parseToken()->authenticate();
         $user["group"] = $user->group;
 
