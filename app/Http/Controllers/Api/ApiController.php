@@ -46,7 +46,7 @@ class ApiController extends Controller
             ], 500);
         }
 
-        $user = Auth::user();
+        $user = auth()->user();
         $user["group"] = $user->group;
 
         return response()->json([
