@@ -27,12 +27,14 @@ class StockController extends Controller
 
     public function getStockDetails(Request $request, $stock_id)
     {
+        $stock = JWTAuth::parseToken()->authenticate()
+            ->stocks()
+            ->find($stock_id);
+
+        $stock["items"] = $stock->products()->getFullByDate($stock->created_at);
+
         return response()->json([
-            'data' => JWTAuth::parseToken()->authenticate()
-                ->stocks()
-                ->find($stock_id)
-                ->products()
-                ->getFull(),
+            'data' => $stock,
         ]);
     }
 
