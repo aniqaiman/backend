@@ -11,11 +11,11 @@ class FeedbackController extends Controller
 {
     public function getFeedbacks($type)
     {
-        if ($type === 'buyers') {
+        if ($type === 'buyer') {
             $feedbacks = Feedback::whereHas('order', function ($order) {
                 $order->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
-        } else if ($type === 'suppliers') {
+        } else if ($type === 'supplier') {
             $feedbacks = Feedback::whereHas('stock', function ($stock) {
                 $stock->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
@@ -28,11 +28,11 @@ class FeedbackController extends Controller
 
     public function getUnreadFeedbacks($type)
     {
-        if ($type === 'buyers') {
+        if ($type === 'buyer') {
             $feedbacks = Feedback::whereHas('order', function ($order) {
                 $order->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
-        } else if ($type === 'suppliers') {
+        } else if ($type === 'supplier') {
             $feedbacks = Feedback::whereHas('stock', function ($stock) {
                 $stock->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
@@ -45,11 +45,11 @@ class FeedbackController extends Controller
 
     public function getSingleFeedback($type, $id)
     {
-        if ($type === 'buyers') {
+        if ($type === 'buyer') {
             $feedbacks = Feedback::whereHas('order', function ($order) {
                 $order->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
-        } else if ($type === 'suppliers') {
+        } else if ($type === 'supplier') {
             $feedbacks = Feedback::whereHas('stock', function ($stock) {
                 $stock->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
@@ -62,11 +62,11 @@ class FeedbackController extends Controller
 
     public function setReadFeedback($type, $id)
     {
-        if ($type === 'buyers') {
+        if ($type === 'buyer') {
             $feedbacks = Feedback::whereHas('order', function ($order) {
                 $order->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
-        } else if ($type === 'suppliers') {
+        } else if ($type === 'supplier') {
             $feedbacks = Feedback::whereHas('stock', function ($stock) {
                 $stock->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
@@ -83,11 +83,11 @@ class FeedbackController extends Controller
 
     public function updateResponseFeedback(Request $request, $type, $id)
     {
-        if ($type === 'buyers') {
+        if ($type === 'buyer') {
             $feedbacks = Feedback::whereHas('order', function ($order) {
                 $order->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
-        } else if ($type === 'suppliers') {
+        } else if ($type === 'supplier') {
             $feedbacks = Feedback::whereHas('stock', function ($stock) {
                 $stock->where('user_id', JWTAuth::parseToken()->authenticate()->id);
             });
