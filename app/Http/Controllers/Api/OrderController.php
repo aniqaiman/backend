@@ -29,7 +29,12 @@ class OrderController extends Controller
             ->orders()
             ->find($order_id);
 
-        $order["items"] = $order->products()->getFullByDate($order->created_at);
+        $order["items"] = $order->products()
+            ->getFullByDate($order->created_at)
+            ->each(function ($order, $key) {
+                $order['total_price'] = $order->totalPrice();
+                $order['total_quantity'] = $order->totalQuantity();
+            });
 
         return response()->json([
             'data' => $order,
