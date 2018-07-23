@@ -31,12 +31,9 @@ class StockController extends Controller
             ->stocks()
             ->find($stock_id);
 
-        $stock["items"] = $stock->products()
-            ->getFullByDate($stock->created_at)
-            ->each(function ($order, $key) {
-                $order['total_price'] = $order->totalPrice();
-                $order['total_quantity'] = $order->totalQuantity();
-            });
+        $stock['items'] = $stock->products()->getFullByDate($stock->created_at);
+        $stock['total_price'] = $stock->totalPrice();
+        $stock['total_quantity'] = $stock->totalQuantity();
 
         return response()->json([
             'data' => $stock,
