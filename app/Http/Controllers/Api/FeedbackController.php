@@ -56,7 +56,7 @@ class FeedbackController extends Controller
         }
 
         return response()->json([
-            'data' => $feedbacks()->find($id),
+            'data' => $feedbacks->find($id),
         ]);
     }
 
