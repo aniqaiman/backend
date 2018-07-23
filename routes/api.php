@@ -28,6 +28,14 @@ Route::put('users/sellers', 'Api\SellerController@update');
 Route::post('users/buyers', 'Api\BuyerController@store');
 Route::put('users/buyers', 'Api\BuyerController@update');
 
+// ------------------------------------------- Feedback ---------------------------------------------------- //
+
+Route::get('{type}/feedbacks', 'Api\FeedbackController@getFeedbacks');
+Route::get('{type}/feedbacks/unread', 'Api\FeedbackController@getUnreadFeedbacks');
+Route::get('{type}/feedbacks/{id}', 'Api\FeedbackController@getSingleFeedback');
+Route::put('{type}/feedbacks/read/{id}', 'Api\FeedbackController@setReadFeedback');
+Route::put('{type}/feedbacks/response/{id}', 'Api\FeedbackController@updateResponseFeedback');
+
 Route::get('products', 'Api\ProductController@getProducts');
 Route::get('products/minimal', 'Api\ProductController@getMinimalProducts');
 Route::get('products/latest', 'Api\ProductController@getNewProducts');
@@ -79,13 +87,5 @@ Route::delete('carts/{product_id}', 'Api\CartController@deleteCartItem');
 
 Route::get('supplies', 'Api\SupplyController@getSupplies');
 Route::post('supplies', 'Api\SupplyController@postSupplies');
-
-// ------------------------------------------- Feedback ---------------------------------------------------- //
-
-Route::get('{type}/feedbacks', 'Api\FeedbackController@getFeedbacks');
-Route::get('{type}/feedbacks/unread', 'Api\FeedbackController@getUnreadFeedbacks');
-Route::get('{type}/feedbacks/{id}', 'Api\FeedbackController@getSingleFeedback');
-Route::put('{type}/feedbacks/read/{id}', 'Api\FeedbackController@setReadFeedback');
-Route::put('{type}/feedbacks/response/{id}', 'Api\FeedbackController@updateResponseFeedback');
 
 Route::get('playground', 'Api\ApiController@playground');
